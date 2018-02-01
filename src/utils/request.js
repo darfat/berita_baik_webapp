@@ -29,10 +29,7 @@ service.interceptors.response.use(
   /**
   * code为非20000是抛错 可结合自己业务进行修改
   */
-    console.log('resss!')
-    console.log(response)
     const res = response.data
-    console.log(response.code)
 
     if (response.status !== 200) {
       Message({
@@ -55,7 +52,8 @@ service.interceptors.response.use(
       }
       return Promise.reject('error')
     } else {
-      console.log('result success....')
+      console.log('result success.... ')
+      console.log(response)
       return response.data
     }
   },

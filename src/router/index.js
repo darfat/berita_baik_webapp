@@ -73,23 +73,45 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/editorial',
+    path: '/editorial/articles',
     component: Layout,
-    redirect: '/editorial/article',
+    redirect: '/editorial/articles/indonesia-baik',
     name: 'Editorial',
     meta: { title: 'Editorial', icon: 'example' },
     children: [
       {
-        path: 'articles/indonesia-bangga',
-        name: 'indonesiaBangga',
-        component: () => import('@/views/articles/indonesiaBangga'),
-        meta: { title: 'Indonesia Bangga', icon: 'table' }
-      },
-      {
-        path: 'articles/indonesia-baik',
+        path: 'indonesia-baik',
         name: 'indonesiaBaik',
         component: () => import('@/views/articles/indonesiaBaik'),
         meta: { title: 'Indonesia Baik', icon: 'table' }
+      },
+      {
+        path: 'indonesia-bangga',
+        name: 'indonesiaBangga',
+        component: () => import('@/views/articles/indonesiaBangga'),
+        meta: { title: 'Indonesia Bangga', icon: 'table' }
+      }
+    ]
+  },
+
+  {
+    path: '/configuration',
+    component: Layout,
+    redirect: '/configuration/tag',
+    name: 'Configuration',
+    meta: { title: 'Configuration', icon: 'example' },
+    children: [
+      {
+        path: 'tag',
+        name: 'Tag',
+        component: () => import('@/views/tag/index'),
+        meta: { title: 'Tag', icon: 'tag' }
+      },
+      {
+        path: 'editorial',
+        name: 'Editorial',
+        component: () => import('@/views/editorial/index'),
+        meta: { title: 'Editorial', icon: 'editorial' }
       }
     ]
   },
