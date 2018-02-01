@@ -116,7 +116,10 @@ export const constantRouterMap = [
     ]
   },
 
-  { path: '*', redirect: '/404', hidden: true }
+  { path: '*', redirect: '/404', hidden: true },
+
+  { path: '/home', component: () => import('@/views/home/index'), hidden: true }
+
 ]
 
 export default new Router({
