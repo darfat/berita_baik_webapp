@@ -82,13 +82,13 @@ export const constantRouterMap = [
       {
         path: 'indonesia-baik',
         name: 'indonesiaBaik',
-        component: () => import('@/views/articles/indonesiaBaik'),
+        component: () => import('@/views/article/index'),
         meta: { title: 'Indonesia Baik', icon: 'table' }
       },
       {
         path: 'indonesia-bangga',
         name: 'indonesiaBangga',
-        component: () => import('@/views/articles/indonesiaBangga'),
+        component: () => import('@/views/article/index'),
         meta: { title: 'Indonesia Bangga', icon: 'table' }
       }
     ]

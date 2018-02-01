@@ -6,9 +6,9 @@ export function getListByEditorialSlug(params) {
     method: 'get'
   })
 }
-export function test(params) {
+export function getAll(params) {
   return request({
-    url: '/',
+    url: '/articles',
     method: 'get',
     params
   })

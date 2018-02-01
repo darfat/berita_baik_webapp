@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { test } from '@/api/article'
+import { getAll } from '@/api/article'
 
 export default {
   name: 'articles',
@@ -44,7 +44,7 @@ export default {
       //   this.articles = response.data.items
       //   this.listLoading = false
       // })
-      test({}).then(response => {
+      getAll({}).then(response => {
         console.log(response)
       })
     },
