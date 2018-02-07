@@ -1,16 +1,22 @@
 <template>
-  <div >
-      <h1>Home Page</h1>
-  </div>
+    <div class="container">
+        <top-slider></top-slider>
+        <headline-slider></headline-slider>
+
+        <h3>This is FrontPage </h3>
+    </div>
 </template>
 
 <script>
+import { TopSlider, HeadlineSlider } from '@/views/home/components'
 
 export default {
-  name: 'home'
+  name: 'frontpage',
+  components: {
+    TopSlider,
+    HeadlineSlider
+  },
+  computed: {
+  }
 }
 </script>
-
-<style rel="stylesheet/scss" lang="scss" scoped>
-
-</style>

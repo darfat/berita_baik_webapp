@@ -8,6 +8,7 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '../views/layout/Layout'
+import HomeLayout from '../views/home/Layout'
 
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -22,13 +23,27 @@ import Layout from '../views/layout/Layout'
   }
 **/
 export const constantRouterMap = [
+  // portal part
+  {
+    path: '/',
+    component: HomeLayout,
+    redirect: '/home',
+    name: 'Home',
+    hidden: true,
+    children: [{
+      path: 'home',
+      component: () => import('@/views/home/index')
+    }]
+  },
+
+  // cms part
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
 
   {
-    path: '/',
+    path: '/cms',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/cms/dashboard',
     name: 'Dashboard',
     hidden: true,
     children: [{
@@ -73,9 +88,9 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/editorial/articles',
+    path: '/editorial-articles',
     component: Layout,
-    redirect: '/editorial/articles/indonesia-baik',
+    redirect: '/editorial-articles/indonesia-baik',
     name: 'Editorial',
     meta: { title: 'Editorial', icon: 'example' },
     children: [
@@ -116,9 +131,7 @@ export const constantRouterMap = [
     ]
   },
 
-  { path: '*', redirect: '/404', hidden: true },
-
-  { path: '/home', component: () => import('@/views/home/index'), hidden: true }
+  { path: '*', redirect: '/404', hidden: true }
 
 ]
 

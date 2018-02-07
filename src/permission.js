@@ -13,7 +13,7 @@ router.beforeEach((to, from, next) => {
     console.log('2')
     if (to.path === '/login') {
       console.log('3')
-      next({ path: '/' })
+      next({ path: '/cms' })
     } else {
       console.log('4')
       if (store.getters.roles.length === 0) {
