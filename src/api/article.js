@@ -15,14 +15,15 @@ export function getAll(params) {
     params
   })
 }
-export function create(title, content) {
+export function create(data) {
   const req = request({
     url: '/articles',
     method: 'post',
-    data: {
-      title,
-      content
-    }
+    // data: {
+    //   title,
+    //   content
+    // }
+    data
   })
   console.log(req)
   return req

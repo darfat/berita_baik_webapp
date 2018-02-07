@@ -46,13 +46,13 @@ export default {
     return {
       article: {
         title: 'Default Title 123asdasd asdasd!!!',
-        section_id: '',
-        editorial_id: '',
-        slug: '',
-        publish_date: '',
-        article_type_id: '',
+       // section_id: '',
+        editorial_id: '88e21aa6-eea5-3943-cbb3-9c2949a66c77',
+        slug: 'selug',
+    //    publish_date: '',
+     //   article_type_id: '',
         published: false,
-        content: ''
+        content: 'My Content'
       }
     }
   },
@@ -69,7 +69,7 @@ export default {
       console.log('submit!')
       const strJ = JSON.stringify(this.article)
       console.log(strJ)
-      create(this.article.title, this.article.content)
+      create(this.article)
         .then(response => {
           console.log(response)
         })
