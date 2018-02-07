@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Articles from './Articles'
+import Articles from './articles'
 
 export default {
   name: 'indonesiaBaikArticles',

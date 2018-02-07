@@ -97,18 +97,23 @@ export const constantRouterMap = [
       {
         path: 'indonesia-baik',
         name: 'indonesiaBaik',
-        component: () => import('@/views/article/index'),
+        component: () => import('@/views/article/indonesiaBaik'),
         meta: { title: 'Indonesia Baik', icon: 'table' }
       },
       {
         path: 'indonesia-bangga',
         name: 'indonesiaBangga',
-        component: () => import('@/views/article/index'),
+        component: () => import('@/views/article/indonesiaBangga'),
         meta: { title: 'Indonesia Bangga', icon: 'table' }
+      },
+      {
+        path: 'new',
+        name: 'newArticleByEditorial',
+        component: () => import('@/views/article/form'),
+        hidden: true
       }
     ]
   },
-
   {
     path: '/configuration',
     component: Layout,
