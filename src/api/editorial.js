@@ -7,3 +7,10 @@ export function getAll(params) {
     params
   })
 }
+export function getEditorialIdBySlug(params) {
+  return request({
+    url: '/editorial-by-slug/' + params.slug,
+    method: 'get'
+  })
+}
+

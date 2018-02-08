@@ -2,7 +2,7 @@
   <div>
       <div> <h1> Test {{ editorialSlug }} </h1> </div>
       <div>
-        <router-link :to="{ path: '/editorial-articles/new', params: { editorialSlug } }" >
+        <router-link :to="{ path: '/editorial-articles/new-article-'+editorialSlug, params: { editorialSlug } }" >
           <el-button type="primary" >Create</el-button>
         </router-link>
       </div>
