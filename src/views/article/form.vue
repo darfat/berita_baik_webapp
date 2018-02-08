@@ -1,6 +1,13 @@
 <template>
     <div>
-        <div> <h1> {{editorialSlug}} </h1> </div>
+        <div> 
+          <!-- <el-alert
+            title="success alert"
+            type="success"
+            description=""
+            show-icon>
+          </el-alert>   -->
+        </div>
         
         <el-form ref="form" :model="article" label-width="120px">
             <el-form-item label="Tanggal Publish">
@@ -106,7 +113,9 @@
             <el-form-item label="Related News">
             </el-form-item>
             <el-form-item label="Author">
+              
             </el-form-item>
+          
             <el-form-item>
                 <el-button type="primary" @click="onSubmit">Create</el-button>
                 <el-button>Cancel</el-button>
@@ -158,7 +167,20 @@ export default {
       editorial_id: '',
       tagArray: [],
       inputVisible: false,
-      inputValue: ''
+      inputValue: '',
+      author_type_opts: [
+        {
+          value: 'reporter',
+          label: 'Reporter'
+        },
+        {
+          value: 'editor',
+          label: 'Editor'
+        }
+      ],
+      author_opts: [],
+      author_social_id_opts: [],
+      valute: ''
     }
   },
 
@@ -173,9 +195,14 @@ export default {
       this.article.article_tags = this.tagArray.toString()
       create(this.article)
         .then(response => {
-          console.log(response)
+          console.log('success')
+          this.$router.push({ path: '/cms' })
+        })
+        .catch(error => {
+          console.log(error)
         })
     },
+
     init() {
       this.getSectionOptions()
       this.getArticleTypeOptions()
