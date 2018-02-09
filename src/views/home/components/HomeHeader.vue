@@ -1,70 +1,86 @@
 <template>
-  <header class="bb-head">
-    <div class="small-top">
-      <div class="container">
-        <div class="row">				
-          <div class="col-md-12 col-xs-12">
-            <div class="pull-right">
-              <a href="#" title="Kerjasama"><i class="fa fa-handshake-o visible-xs"></i><span class="hidden-xs"> Kerjasama</span></a>
-              <a href="#" title="Mail"><i class="fa fa-envelope"></i><span class="hidden-xs"> beritabaik.id@gmail.com</span></a>
-              <a href="#" title="Tentang Kami"><i class="fa fa-info-circle visible-xs"></i><span class="hidden-xs"> Tentang Kami</span></a>
-            </div>
-          </div>
+<el-header>
+
+  <div class="topnav-container">
+    <el-menu mode="horizontal">
+      <el-menu-item index="1"><a>Kerjasama</a></el-menu-item>
+      <el-menu-item index="2"><a>Mail</a></el-menu-item>
+      <el-menu-item index="3"><a>Tentang Kami</a></el-menu-item>
+    </el-menu>
+  </div>
+
+  <div class="head-container">
+    <el-row>
+      <el-col :span="6">
+        <div class="head-logo">
+          <img src="/assets/images/logo_beritabaik.png" alt="beritabaik.id">
         </div>
-      </div>
-    </div><!--small-top-->
-  
-    <div class="top-head">
-      <div class="container">
-        <div class="row vertical-align">
-        
-          <div class="col-md-4 col-xs-12">
-          
-            <div class="logo">
-              <a  href="" alt="" ><img src="assets/images/logo_beritabaik.png" class="img-responsive"></a>
-            </div>
-            
-          </div>
-          
-          <div class="col-md-8 hidden-xs vertical-align">
-          
-            
-              <div class="search">
-                <form class="navbar-form" role="search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" name="q">
-                    <div class="input-group-btn">
-                      <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-        
-              <div class="tulisberita">
-                <button type="button" class="btn"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Tulis Berita Baik</button>		
-              </div>
-        
-              <div class="selectlang">
-                <select class="selectpicker">
-                  <option>Indonesia</option>
-                  <option>English</option>
-                </select>
-              </div>					
-          
-              <div class="admin-bar">
-                <a href="#" class="nav-link"><img class="img-fluid img-circle" src="assets/images/admin-bg.jpg"></a>
-              </div>
-            
-            
-          </div>				
-        </div>
-      </div>
-    </div>
-  
-  </header><!-- head -->
+      </el-col>
+      <el-col :span="6"><div class="head-search">search</div></el-col>
+      <el-col :span="6"><div class="head-lang">lang</div></el-col>
+      <el-col :span="6"><div class="head-user">user</div></el-col>
+    </el-row>
+  </div>
+
+</el-header>
 </template>
 
 <script>
+//import img_404 from '@/assets/404_images/logo_beritabaik.png'
 console.log('Header part')
 </script>
+
+<style rel="stylesheet/scss" lang="scss" scoped>
+@import "src/styles/home.scss";
+
+.el-header{
+  padding: 0;
+}
+
+/*
+  top navigation
+*/
+.topnav-container {    
+  background-color : $bb-blue;    
+  font-size: 12px;
+  font-weight: normal;
+  padding: 0 20px;
+  
+  .el-menu{
+    background-color: transparent;      
+    border: none; 
+    
+    &-item{
+      color:ghostwhite;
+      height: 40px;
+      line-height: 40px;       
+      float: right;
+      position: relative;        
+      text-align: right;
+
+      &:hover{
+        background-color: transparent;
+        color:gainsboro
+      }
+
+    }
+
+  }    
+  
+}
+
+/********************
+  logo beritabaik.id
+  search form
+  lang select
+  user/member area 
+**********************/
+.head-container {  
+  padding: 0 20px;
+}
+
+
+</style>
+
+
 
