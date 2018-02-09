@@ -107,9 +107,15 @@ export const constantRouterMap = [
         meta: { title: 'Indonesia Bangga', icon: 'table' }
       },
       {
-        path: 'new',
-        name: 'newArticleByEditorial',
-        component: () => import('@/views/article/form'),
+        path: 'new-article-indonesia-baik',
+        name: 'indonesiaBaikForm',
+        component: () => import('@/views/article/indonesiaBaikForm'),
+        hidden: true
+      },
+      {
+        path: 'new-article-indonesia-bangga',
+        name: 'indonesiaBanggaForm',
+        component: () => import('@/views/article/indonesiaBanggaForm'),
         hidden: true
       }
     ]
@@ -129,7 +135,7 @@ export const constantRouterMap = [
       },
       {
         path: 'editorial',
-        name: 'Editorial',
+        name: 'EditorialConfig',
         component: () => import('@/views/editorial/index'),
         meta: { title: 'Editorial', icon: 'editorial' }
       }

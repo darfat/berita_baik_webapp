@@ -16,15 +16,9 @@ export function getAll(params) {
   })
 }
 export function create(data) {
-  const req = request({
+  return request({
     url: '/articles',
     method: 'post',
-    // data: {
-    //   title,
-    //   content
-    // }
     data
   })
-  console.log(req)
-  return req
 }
