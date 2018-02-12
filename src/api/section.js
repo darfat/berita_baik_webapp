@@ -11,7 +11,6 @@ const SECTION_LIST = [
   }
 ]
 export function getSections(params) {
-  console.log(SECTION_LIST)
   return SECTION_LIST
   // return request({
   //   url: '/sections',
