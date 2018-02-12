@@ -26,7 +26,7 @@
 </template>
 
 <script>
-//import img_404 from '@/assets/404_images/logo_beritabaik.png'
+// import img_404 from '@/assets/404_images/logo_beritabaik.png'
 console.log('Header part')
 </script>
 

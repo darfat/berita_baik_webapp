@@ -1,12 +1,11 @@
 <template>
   <div>
       <div> <h1> Test {{ editorialSlug }} </h1> </div>
-      <div>
+      <div class="m-b-10">
         <router-link :to="{ path: '/editorial-articles/new-article-'+editorialSlug, params: { editorialSlug } }" >
           <el-button type="primary" >Create</el-button>
         </router-link>
       </div>
-      <hr/>
       <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column label="Title" >
         <template slot-scope="scope">

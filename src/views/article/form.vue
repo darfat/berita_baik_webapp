@@ -16,20 +16,20 @@
                 </el-col>
             </el-form-item>
             <el-form-item label="Type">
-                <el-radio-group v-model="article.article_type_id">
+                <el-radio-group v-model="article.article_type">
                 <el-radio v-for="item in article_type_opts"
-                    :key="item.id"
-                    :label="item.id"
-                > {{ item.name }} </el-radio>
+                    :key="item.value"
+                    :label="item.value"
+                > {{ item.label }} </el-radio>
                 </el-radio-group>
             </el-form-item>
             <el-form-item label="Section">
-                <el-select v-model="article.section_id" placeholder="Please select section">
+                <el-select v-model="article.section" placeholder="Please select section">
                 <el-option
                     v-for="item in section_opts"
-                    :key="item.id"
-                    :label="item.name"
-                    :value="item.id" >
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value" >
                 </el-option>
                 </el-select>
             </el-form-item>
@@ -150,7 +150,7 @@ export default {
   data() {
     return {
       article: {
-        title: 'Default Title 123asdasd asdasd!!!',
+        title: 'Test',
         editorial_id: null,
         slug: 'selug',
         publish_date: new Date(),
@@ -158,7 +158,7 @@ export default {
         teaser: '',
         content: '',
         status: 'draft',
-        article_tags: 'asdf,123,asds',
+        article_tags: null,
         is_can_comment: true
       },
       section_opts: [],
@@ -208,17 +208,15 @@ export default {
       this.getArticleTypeOptions()
       this.setEditorialId(this.editorialSlug)
       this.getCityOptions()
-      this.tagArray = this.article.article_tags.split(',')
+      if (this.article.article_tags) {
+        this.tagArray = this.article.article_tags.split(',')
+      }
     },
     getSectionOptions() {
-      getSections().then(response => {
-        this.section_opts = response
-      })
+      this.section_opts = getSections()
     },
     getArticleTypeOptions() {
-      getArticleTypes().then(response => {
-        this.article_type_opts = response
-      })
+      this.article_type_opts = getArticleTypes()
     },
     getCityOptions() {
       getCities().then(response => {
