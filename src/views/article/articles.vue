@@ -1,30 +1,30 @@
 <template>
-  <div>
-      <div> <h1> Test {{ editorialSlug }} </h1> </div>
-      <div class="m-b-10">
-        <router-link :to="{ path: '/editorial-articles/new-article-'+editorialSlug, params: { editorialSlug } }" >
-          <el-button type="primary" >Create</el-button>
-        </router-link>
+  <div class="app-container calendar-list-container">
+      <div class="filter-container">
+      <el-input style="width: 200px;" class="filter-item" placeholder="Title">
+      </el-input>
+      <!-- <el-select clearable style="width: 90px" class="filter-item" v-model="listQuery.importance" placeholder="Author">
+        <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item">
+        </el-option>
+      </el-select> -->
+      <!-- <el-select clearable class="filter-item" style="width: 130px" placeholder="Author">
+        <el-option v-for="item in  calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key">
+        </el-option>
+      </el-select>
+      <el-select @change='handleFilter' style="width: 140px" class="filter-item" v-model="listQuery.sort">
+        <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key">
+        </el-option>
+      </el-select> -->
+      <el-button class="filter-item" type="primary"  icon="el-icon-search" @click="handleFilter">Search</el-button>
+      <router-link class="filter-item" :to="{ path: '/editorial-articles/new-article-'+editorialSlug, params: { editorialSlug } }" >
+                <el-button type="primary" >Create</el-button>
+      </router-link>    
       </div>
-      <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
+    
+      <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row style="width: 100%"> 
       <el-table-column label="Title" >
         <template slot-scope="scope">
           {{scope.row.title}}
-        </template>
-      </el-table-column>
-      <el-table-column label="Slug" width="150">
-        <template slot-scope="scope">
-          {{scope.row.slug}}
-        </template>
-      </el-table-column>
-      <el-table-column label="Tags" >
-        <template slot-scope="scope">
-          <el-tag v-if="scope.row.article_tags"
-            v-for="tag in scope.row.article_tags.split(',')"
-            :key="tag"
-            >
-            {{tag}}
-          </el-tag>
         </template>
       </el-table-column>
       <el-table-column class-name="status-col" label="Status" width="110" align="center">
@@ -35,7 +35,12 @@
       <el-table-column align="center" prop="publish_date" label="Published Date" width="200">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
-          <span>{{scope.row.publish_date}}</span>
+          <span>{{scope.row.publish_date }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center" label="Actions" width="230" class-name="small-padding fixed-width">
+        <template slot-scope="scope">
+          <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">Edit</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -92,6 +97,12 @@ export default {
       } else {
         return 'Draft'
       }
+    },
+    handleUpdate(row) {
+      // const data = Object.assign({}, row) // copy obj
+    },
+    handleFilter() {
+      // const data = Object.assign({}, row) // copy obj
     }
   }
 }
@@ -101,6 +112,15 @@ export default {
 
   .el-tag + .el-tag {
     margin-left: 10px;
+  }
+
+  .filter-container {
+    padding-bottom: 10px;
+    .filter-item {
+      display: inline-block;
+      vertical-align: middle;
+      margin-bottom: 10px;
+    }
   }
 
 </style>

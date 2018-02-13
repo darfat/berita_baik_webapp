@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// const _import = require('./_import_' + process.env.NODE_ENV)
 
 // in development-env not use lazy-loading, because lazy-loading too many pages will cause webpack hot update too slow. so only in production use lazy-loading;
 // detail: https://panjiachen.github.io/vue-element-admin-site/#/lazy-loading
@@ -51,29 +52,6 @@ export const constantRouterMap = [
       component: () => import('@/views/dashboard/index')
     }]
   },
-
-  // {
-  //   path: '/example',
-  //   component: Layout,
-  //   redirect: '/example/table',
-  //   name: 'Example Test',
-  //   meta: { title: 'Example Test', icon: 'example' },
-  //   children: [
-  //     {
-  //       path: 'table',
-  //       name: 'Table',
-  //       component: () => import('@/views/table/index'),
-  //       meta: { title: 'Table', icon: 'table' }
-  //     },
-  //     {
-  //       path: 'tree',
-  //       name: 'Tree',
-  //       component: () => import('@/views/tree/index'),
-  //       meta: { title: 'Tree', icon: 'tree' }
-  //     }
-  //   ]
-  // },
-
   // {
   //   path: '/form',
   //   component: Layout,
