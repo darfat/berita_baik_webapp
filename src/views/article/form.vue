@@ -61,10 +61,12 @@
                 <el-button v-else class="button-new-tag" size="small" @click="showInputTag">+ New Tag</el-button>
             </el-form-item>
             <el-form-item label="Ringkasan Utama">
-              <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser'></tinymce>
+              <div class="editor-container">
+                <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser'></tinymce>
+              </div>
             </el-form-item>
             <el-form-item label="Isi">
-              <tinymce :height="350" v-model="article.content" ref="editor"  id='content'></tinymce>
+              <tinymce :height="400" v-model="article.content" ref="editor"  id='content'></tinymce>
             </el-form-item>
             <el-row :gutter="20">
               <el-col :span="12">
