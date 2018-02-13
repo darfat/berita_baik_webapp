@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="createPost-container">
         <div> 
           <!-- <el-alert
             title="success alert"
@@ -9,7 +9,7 @@
           </el-alert>   -->
         </div>
         
-        <el-form ref="form" :model="article" label-width="120px">
+        <el-form  class="form-container"  ref="form" :model="article" label-width="120px">
             <el-form-item label="Tanggal Publish">
                 <el-col :span="11">
                 <el-date-picker type="datetime" placeholder="Pick a date" v-model="article.publish_date" style="width: 100%;"></el-date-picker>
@@ -61,10 +61,10 @@
                 <el-button v-else class="button-new-tag" size="small" @click="showInputTag">+ New Tag</el-button>
             </el-form-item>
             <el-form-item label="Ringkasan Utama">
-              <tinymce :height="100" v-model="article.teaser" id='teaser'></tinymce>
+              <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser'></tinymce>
             </el-form-item>
             <el-form-item label="Isi">
-              <tinymce :height="350" v-model="article.content" id='content'></tinymce>
+              <tinymce :height="350" v-model="article.content" ref="editor"  id='content'></tinymce>
             </el-form-item>
             <el-row :gutter="20">
               <el-col :span="12">
@@ -159,7 +159,8 @@ export default {
         content: '',
         status: 'draft',
         article_tags: null,
-        is_can_comment: true
+        is_can_comment: true,
+        article_type: 'news'
       },
       section_opts: [],
       article_type_opts: [],
@@ -196,7 +197,7 @@ export default {
       create(this.article)
         .then(response => {
           console.log('success')
-          this.$router.push({ path: '/cms' })
+          this.$router.push({ path: '/editorial-articles/' + this.editorialSlug })
         })
         .catch(error => {
           console.log(error)
@@ -253,7 +254,9 @@ export default {
 
 </script>
 
-<style>
+<style rel="stylesheet/scss" lang="scss" scoped>
+  @import "src/styles/mixin.scss";
+
   .el-tag + .el-tag {
     margin-left: 10px;
   }
@@ -268,5 +271,36 @@ export default {
     width: 90px;
     margin-left: 10px;
     vertical-align: bottom;
+  }
+  .createPost-container {
+    position: relative;
+    .createPost-main-container {
+      padding: 40px 45px 20px 50px;
+      .postInfo-container {
+        position: relative;
+        @include clearfix;
+        margin-bottom: 10px;
+        .postInfo-container-item {
+          float: left;
+        }
+      }
+      .editor-container {
+        min-height: 500px;
+        margin: 0 0 30px;
+        .editor-upload-btn-container {
+            text-align: right;
+            margin-right: 10px;
+            .editor-upload-btn {
+                display: inline-block;
+            }
+        }
+      }
+    }
+    .word-counter {
+      width: 40px;
+      position: absolute;
+      right: -10px;
+      top: 0px;
+    }
   }
 </style>

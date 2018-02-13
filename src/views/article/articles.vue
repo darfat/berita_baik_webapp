@@ -17,14 +17,19 @@
           {{scope.row.slug}}
         </template>
       </el-table-column>
-      <!-- <el-table-column label="Teaser" >
+      <el-table-column label="Tags" >
         <template slot-scope="scope">
-          <span>{{scope.row.teaser}}</span>
+          <el-tag v-if="scope.row.article_tags"
+            v-for="tag in scope.row.article_tags.split(',')"
+            :key="tag"
+            >
+            {{tag}}
+          </el-tag>
         </template>
-      </el-table-column> -->
+      </el-table-column>
       <el-table-column class-name="status-col" label="Status" width="110" align="center">
         <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{scope.row.status}}</el-tag>
+          <el-tag :type="scope.row.published | statusFilter"> {{getPublishedStatus(scope.row.published)}}</el-tag>
         </template>
       </el-table-column>
       <el-table-column align="center" prop="publish_date" label="Published Date" width="200">
@@ -55,13 +60,12 @@ export default {
     }
   },
   filters: {
-    statusFilter(status) {
+    statusFilter(isPublished) {
       const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
+        true: 'success',
+        false: 'danger'
       }
-      return statusMap[status]
+      return statusMap[isPublished]
     }
   },
   created() {
@@ -81,7 +85,22 @@ export default {
         this.list = response
         this.listLoading = false
       })
+    },
+    getPublishedStatus(isPublished) {
+      if (isPublished === true) {
+        return 'Published'
+      } else {
+        return 'Draft'
+      }
     }
   }
 }
 </script>
+
+<style rel="stylesheet/scss" lang="scss" scoped>
+
+  .el-tag + .el-tag {
+    margin-left: 10px;
+  }
+
+</style>
