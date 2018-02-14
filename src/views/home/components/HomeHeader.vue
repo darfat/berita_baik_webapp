@@ -1,8 +1,8 @@
 <template>
-<el-header>
+<div id="header">
 
   <div class="topnav-container">
-    <el-menu mode="horizontal">
+    <el-menu class="container" mode="horizontal">
       <el-menu-item index="1"><a>Kerjasama</a></el-menu-item>
       <el-menu-item index="2"><a>Mail</a></el-menu-item>
       <el-menu-item index="3"><a>Tentang Kami</a></el-menu-item>
@@ -10,41 +10,98 @@
   </div>
 
   <div class="head-container">
-    <el-row>
-      <el-col :span="6">
+    <el-row class="container">
+      <el-col :span="12">
         <div class="head-logo">
-          <img src="/assets/images/logo_beritabaik.png" alt="beritabaik.id">
+          <img class="head-logo-img" :src="img_logo" alt="beritabaik.id">
         </div>
       </el-col>
-      <el-col :span="6"><div class="head-search">search</div></el-col>
-      <el-col :span="6"><div class="head-lang">lang</div></el-col>
-      <el-col :span="6"><div class="head-user">user</div></el-col>
+      <el-col :span="8" class="hidden-sm-and-down">
+        <div class="head-search">          
+          <el-input placeholder="Search" suffix-icon="el-icon-search" v-model="search"></el-input>
+        </div>
+      </el-col>
+      <el-col :span="2" class="hidden-sm-and-down">
+        <div class="head-lang">
+          <el-dropdown>
+            <span class="el-dropdown-link">
+              Bahasa<i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>Indonesia</el-dropdown-item>
+              <el-dropdown-item>English</el-dropdown-item>           
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
+        </el-col>
+      <el-col :span="2" class="hidden-sm-and-down">
+        <div class="head-user">
+          <el-dropdown class="avatar-container" >
+            <div class="avatar-wrapper">
+            <img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'">
+            <i class="el-icon-caret-bottom"></i>
+            </div>
+            <el-dropdown-menu class="user-dropdown" slot="dropdown">
+            <router-link class="inlineBlock" to="/">
+            <el-dropdown-item>
+              Home
+            </el-dropdown-item>
+            </router-link>
+            <el-dropdown-item divided>
+            <span @click="logout" style="display:block;">LogOut</span>
+            </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
+      </el-col>
     </el-row>
   </div>
 
-</el-header>
+</div>
 </template>
 
 <script>
-//import img_404 from '@/assets/404_images/logo_beritabaik.png'
+import { mapGetters } from 'vuex'
+import img_logo from '@/assets/images/logo_beritabaik.png'
+
+export default {
+  data() {
+    return {
+      img_logo,
+      search: '',
+    }
+  },
+  computed: {
+    message() {
+      return 'msg'
+    },
+    ...mapGetters([    
+      'avatar'
+    ])
+  },
+  methods: {
+      onSubmit() {
+        console.log('submit!');
+      }
+    }
+}
 console.log('Header part')
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+
 @import "src/styles/home.scss";
 
 .el-header{
-  padding: 0;
+  padding:0;  
+  width: 100%;
 }
 
 /*
   top navigation
 */
-.topnav-container {    
-  background-color : $bb-blue;    
-  font-size: 12px;
-  font-weight: normal;
-  padding: 0 20px;
+.topnav-container {
+  background-color : $bb-blue; 
   
   .el-menu{
     background-color: transparent;      
@@ -76,7 +133,46 @@ console.log('Header part')
   user/member area 
 **********************/
 .head-container {  
-  padding: 0 20px;
+  //background-color: aquamarine;  
+  .container{
+    display: flex;
+    align-items: center;
+    //background-color: aqua;
+
+    .head-logo{
+      //background-color: blue;
+      &-img{
+        height: 80px;
+      }
+    } //.head-logo
+
+    .head-search{
+      text-align: right;
+    }
+
+    .head-lang{
+      text-align: right;
+    }
+
+    .head-user{
+      text-align: right;
+    }
+
+  }
+  
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  .topnav-container {       
+    .el-menu{      
+      &-item{
+        font-size: 12px;
+      }
+    }    
+  }
+      
 }
 
 

@@ -1,49 +1,49 @@
 <template>
-  <h1>This is Navbar</h1>
+  <div class="menu-wrapper">
+    <el-menu
+    :default-active="activeIndex"
+    class="container el-menu-nav"
+    mode="horizontal"
+    @select="handleSelect"
+    background-color="#F5DF00"
+    text-color="#0A2F88"
+    active-text-color="#0A2F88">
+      <el-menu-item index="1">Home</el-menu-item>
+      <el-menu-item index="2"><a href="">Indonesia Baik</a></el-menu-item>
+      <el-menu-item index="3"><a href="">Indonesia Membangun</a></el-menu-item>
+      <el-menu-item index="4"><a href="">Indonesia Bangga</a></el-menu-item>
+      <el-menu-item index="5"><a href="">Melancong</a></el-menu-item>
+      <el-menu-item index="6"><a href="">Teknologi</a></el-menu-item>
+      <el-menu-item index="7"><a href="">Panggung</a></el-menu-item>
+      <el-menu-item index="8"><a href="">Citra</a></el-menu-item>
+    </el-menu>
+  </div>
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      activeIndex: '1',
+    };
+  },
+  methods: {
+    handleSelect(key, keyPath) {
+      console.log(key, keyPath);
+    }
+  }
+}
 console.log('home navbar')
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-.navbar {
-  height: 50px;
-  line-height: 50px;
-  border-radius: 0px !important;
-  .hamburger-container {
-    line-height: 58px;
-    height: 50px;
-    float: left;
-    padding: 0 10px;
-  }
-  .screenfull {
-    position: absolute;
-    right: 90px;
-    top: 16px;
-    color: red;
-  }
-  .avatar-container {
-    height: 50px;
-    display: inline-block;
-    position: absolute;
-    right: 35px;
-    .avatar-wrapper {
-      cursor: pointer;
-      margin-top: 5px;
-      position: relative;
-      .user-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-      }
-      .el-icon-caret-bottom {
-        position: absolute;
-        right: -20px;
-        top: 25px;
-        font-size: 12px;
-      }
-    }
+@import "src/styles/home.scss";
+.menu-wrapper {
+  background-color: $bb-yellow;
+  font-weight: 700;
+
+  .el-menu-nav{
+    
   }
 }
 </style>

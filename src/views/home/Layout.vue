@@ -1,8 +1,8 @@
 <template>
-  <div class="app-wrapper">
+  <div class="app-wrapper">      
       <home-header></home-header>
       <home-navbar></home-navbar>
-      <home-main></home-main>
+      <home-main></home-main>      
   </div>
 </template>
 
