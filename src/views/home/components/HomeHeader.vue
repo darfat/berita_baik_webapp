@@ -61,7 +61,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import { mapGetters } from 'vuex'
 import img_logo from '@/assets/images/logo_beritabaik.png'
 
@@ -86,9 +85,6 @@ export default {
       }
     }
 }
-=======
-// import img_404 from '@/assets/404_images/logo_beritabaik.png'
->>>>>>> 2214c6eacdbe958d3e288a7ca74787ee1d1b4377
 console.log('Header part')
 </script>
 
