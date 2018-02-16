@@ -119,7 +119,9 @@
             </el-form-item>
           
             <el-form-item>
-                <el-button type="primary" @click="onSubmit">Create</el-button>
+                <el-button type="primary" @click="onSubmit" v-if="articleId === null">Create</el-button>
+                                <el-button type="primary" @click="onSubmit" v-if="articleId !== null">Update</el-button>
+
                 <el-button>Cancel</el-button>
             </el-form-item>
         </el-form>
@@ -131,7 +133,7 @@
 // eslint-disable-next-line
 // eslint-disable-indent
 
-import { create } from '@/api/article'
+import { create, getArticle, update } from '@/api/article'
 import { getSections } from '@/api/section'
 import { getArticleTypes } from '@/api/article_type'
 import { getEditorialIdBySlug } from '@/api/editorial'
@@ -142,9 +144,8 @@ import Tinymce from '@/components/Tinymce'
 export default {
   name: 'ArticleForm',
   props: {
-    editorialSlug: {
-      type: String
-    }
+    editorialSlug: { type: String },
+    articleId: { type: String }
   },
   components: {
     Tinymce
@@ -188,6 +189,8 @@ export default {
   },
 
   created() {
+    console.log('created')
+    console.log(this.articleId)
     this.init()
   },
 
@@ -196,14 +199,25 @@ export default {
   methods: {
     onSubmit() {
       this.article.article_tags = this.tagArray.toString()
-      create(this.article)
-        .then(response => {
-          console.log('success')
-          this.$router.push({ path: '/editorial-articles/' + this.editorialSlug })
-        })
-        .catch(error => {
-          console.log(error)
-        })
+      if (this.articleId === null) {
+        create(this.article)
+          .then(response => {
+            console.log('create success')
+            this.$router.push({ path: '/editorial-articles/' + this.editorialSlug })
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      } else {
+        update(this.article)
+          .then(response => {
+            console.log('update success')
+            this.$router.push({ path: '/editorial-articles/' + this.editorialSlug })
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
     },
 
     init() {
@@ -213,6 +227,9 @@ export default {
       this.getCityOptions()
       if (this.article.article_tags) {
         this.tagArray = this.article.article_tags.split(',')
+      }
+      if (this.articleId !== null) {
+        this.getArticleById(this.articleId)
       }
     },
     getSectionOptions() {
@@ -232,6 +249,15 @@ export default {
       }).then(response => {
         this.editorial_id = response.id
         this.article.editorial_id = this.editorial_id
+      })
+    },
+    getArticleById(articleId) {
+      getArticle({
+        articleId
+      }).then(response => {
+        console.log('response get article')
+        console.log(response)
+        this.article = response
       })
     },
     handleCloseTag(tag) {
