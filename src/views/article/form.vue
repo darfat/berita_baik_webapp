@@ -9,7 +9,7 @@
           </el-alert>   -->
         </div>
         
-        <el-form  class="form-container"  ref="form" :model="article" label-width="120px">
+        <el-form  class="form-container"  ref="articleForm" :model="article" :rules="rules" label-width="120px">
             <el-form-item label="Tanggal Publish">
                 <el-col :span="11">
                 <el-date-picker type="datetime" placeholder="Pick a date" v-model="article.publish_date" style="width: 100%;"></el-date-picker>
@@ -33,7 +33,7 @@
                 </el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="Judul">
+            <el-form-item label="Judul" prop="title">
                 <el-input v-model="article.title"></el-input>
             </el-form-item>
             <el-form-item label="Slug">
@@ -115,13 +115,55 @@
             <el-form-item label="Related News">
             </el-form-item>
             <el-form-item label="Author">
-              
+                <div>
+                  <el-table
+                    :data="article.article_authors"
+                    style="width: 100%">
+                    <el-table-column
+                      label="Role"
+                      prop="role_id"
+                      width="180">
+                      <template slot-scope="scope">
+                        <el-select v-model="scope.row.role_id" placeholder="Please select role">
+                          <el-option
+                              v-for="item in role_opts"
+                              :key="item.id"
+                              :label="item.name"
+                              :value="item.id" >
+                          </el-option>
+                        </el-select>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      prop="use_id"
+                      label="Author"
+                      width="180">
+                      <template slot-scope="scope">
+                        <el-select v-model="scope.row.user_id" placeholder="Please select author">
+                          <el-option
+                              v-for="item in author_opts"
+                              :key="item.id"
+                              :label="item.name"
+                              :value="item.id" >
+                          </el-option>
+                        </el-select>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      prop="social_media_id"
+                      label="Sosial Media">
+                    </el-table-column>
+                  </el-table>
+                </div>
+                <el-form-item class="m-t-10">
+                  <el-button>Add More Author</el-button>
+              </el-form-item>
             </el-form-item>
-          
+            <el-row :gutter="20">
+            </el-row>
             <el-form-item>
-                <el-button type="primary" @click="onSubmit" v-if="articleId === null">Create</el-button>
-                                <el-button type="primary" @click="onSubmit" v-if="articleId !== null">Update</el-button>
-
+                <el-button type="primary" @click="onSubmit('articleForm')" v-if="action === 'add'">Create</el-button>
+                <el-button type="primary" @click="onSubmit('articleForm')" v-if="action === 'edit'">Update</el-button>
                 <el-button>Cancel</el-button>
             </el-form-item>
         </el-form>
@@ -138,6 +180,8 @@ import { getSections } from '@/api/section'
 import { getArticleTypes } from '@/api/article_type'
 import { getEditorialIdBySlug } from '@/api/editorial'
 import { getCities } from '@/api/city'
+import { getRoles } from '@/api/role'
+import { getUsers } from '@/api/user'
 
 import Tinymce from '@/components/Tinymce'
 
@@ -163,28 +207,32 @@ export default {
         status: 'draft',
         article_tags: null,
         is_can_comment: true,
-        article_type: 'news'
+        article_type: 'news',
+        article_authors: [
+          {
+            role_id: null,
+            user_id: null,
+            social_media_id: '@test1'
+          }
+        ]
       },
       section_opts: [],
       article_type_opts: [],
       city_opts: [],
+      role_opts: [],
       editorial_id: '',
       tagArray: [],
       inputVisible: false,
       inputValue: '',
-      author_type_opts: [
-        {
-          value: 'reporter',
-          label: 'Reporter'
-        },
-        {
-          value: 'editor',
-          label: 'Editor'
-        }
-      ],
       author_opts: [],
       author_social_id_opts: [],
-      valute: ''
+      valute: '',
+      rules: {
+        title: [
+          { required: true, message: 'Silahkan isi judul', trigger: 'blur' }
+        ]
+      },
+      action: 'add'
     }
   },
 
@@ -197,39 +245,48 @@ export default {
   watch: {},
 
   methods: {
-    onSubmit() {
-      this.article.article_tags = this.tagArray.toString()
-      if (this.articleId === null) {
-        create(this.article)
-          .then(response => {
-            console.log('create success')
-            this.$router.push({ path: '/editorial-articles/' + this.editorialSlug })
-          })
-          .catch(error => {
-            console.log(error)
-          })
-      } else {
-        update(this.article)
-          .then(response => {
-            console.log('update success')
-            this.$router.push({ path: '/editorial-articles/' + this.editorialSlug })
-          })
-          .catch(error => {
-            console.log(error)
-          })
-      }
+    onSubmit(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.article.article_tags = this.tagArray.toString()
+          if (this.action === 'add') {
+            create(this.article)
+              .then(response => {
+                console.log('create success')
+                this.$router.push({ path: '/editorial-articles/' + this.editorialSlug })
+              })
+              .catch(error => {
+                console.log(error)
+              })
+          } else {
+            update(this.article)
+              .then(response => {
+                console.log('update success')
+                this.$router.push({ path: '/editorial-articles/' + this.editorialSlug })
+              })
+              .catch(error => {
+                console.log(error)
+              })
+          }
+        } else {
+          console.error('failed to submit!!')
+          return false
+        }
+      })
     },
-
     init() {
       this.getSectionOptions()
       this.getArticleTypeOptions()
       this.setEditorialId(this.editorialSlug)
       this.getCityOptions()
+      this.getRoleOptions()
+      this.getUserOptions()
       if (this.article.article_tags) {
         this.tagArray = this.article.article_tags.split(',')
       }
-      if (this.articleId !== null) {
+      if (this.articleId && this.articleId !== null) {
         this.getArticleById(this.articleId)
+        this.action = 'edit'
       }
     },
     getSectionOptions() {
@@ -241,6 +298,16 @@ export default {
     getCityOptions() {
       getCities().then(response => {
         this.city_opts = response
+      })
+    },
+    getRoleOptions() {
+      getRoles().then(response => {
+        this.role_opts = response
+      })
+    },
+    getUserOptions() {
+      getUsers().then(response => {
+        this.author_opts = response
       })
     },
     setEditorialId(slug) {
@@ -258,6 +325,9 @@ export default {
         console.log('response get article')
         console.log(response)
         this.article = response
+        if (this.article.article_tags) {
+          this.tagArray = this.article.article_tags.split(',')
+        }
       })
     },
     handleCloseTag(tag) {
@@ -276,6 +346,9 @@ export default {
       }
       this.inputVisible = false
       this.inputValue = ''
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields()
     }
   }
 }

@@ -16,7 +16,7 @@
         </el-option>
       </el-select> -->
       <el-button class="filter-item" type="primary"  icon="el-icon-search" @click="handleFilter">Search</el-button>
-      <router-link class="filter-item" :to="{ path: '/editorial-articles/new-article-'+editorialSlug, params: { editorialSlug } }" >
+      <router-link class="filter-item" :to="{ name: 'article-form', params: { editorialSlug} }" >
         <el-button type="primary" >Create</el-button>
       </router-link>    
       </div>
