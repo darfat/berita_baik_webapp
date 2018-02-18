@@ -1,7 +1,7 @@
 <template>
   <div class="app-wrapper">      
       <home-header></home-header>
-      <home-navbar></home-navbar>
+      <div style="clear: both; padding: 10px 0"></div>
       <home-main></home-main>      
   </div>
 </template>
@@ -27,9 +27,8 @@ export default {
 
 .app-wrapper {
   @include clearfix;
-  position: relative;
+  position: absolute;
   height: 100%;
-  width: 100%;
+  width: 100%;  
 }
-
 </style>
