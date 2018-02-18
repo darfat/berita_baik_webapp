@@ -9,7 +9,7 @@
     text-color="#0A2F88"
     active-text-color="#0A2F88">
       <el-menu-item index="1">Home</el-menu-item>
-      <el-menu-item index="2"><a href="">Indonesia Baik</a></el-menu-item>
+      <el-menu-item index="2" :route="{ name: 'indonesia-baik-menu'}" >Indonesia Baik</el-menu-item>
       <el-menu-item index="3"><a href="">Indonesia Membangun</a></el-menu-item>
       <el-menu-item index="4"><a href="">Indonesia Bangga</a></el-menu-item>
       <el-menu-item index="5"><a href="">Melancong</a></el-menu-item>

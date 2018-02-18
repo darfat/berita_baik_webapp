@@ -34,6 +34,12 @@ export const constantRouterMap = [
     children: [{
       path: 'home',
       component: () => import('@/views/home/index')
+    },
+    {
+      path: 'indonesia-baik',
+      name: 'indonesia-baik-menu',
+      props: true,
+      component: () => import('@/views/portal/editorial/index')
     }]
   },
 
