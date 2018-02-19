@@ -1,5 +1,5 @@
 <template>
-  
+  <h1>delete next</h1>
 </template>
 
 <script>
@@ -7,16 +7,7 @@
 export default {
   data() {
     return {
-<<<<<<< HEAD
       x: '1'
-=======
-      activeIndex: '1'
-    }
-  },
-  methods: {
-    handleSelect(key, keyPath) {
-      console.log(key, keyPath)
->>>>>>> c67b334c0ec493b2a1af6faf1b7a5fced5d96fbf
     }
   }
 }
