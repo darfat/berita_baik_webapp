@@ -81,18 +81,12 @@
       <el-menu-item index="7"><a href="">Panggung</a></el-menu-item>
       <el-menu-item index="8"><a href="">Citra</a></el-menu-item>
     </el-menu>
-  </nav>
-  
-  
-  
+  </nav>  
   </el-header>
-   
-
   </fixed-header>
 </template>
 
 <script>
-<<<<<<< HEAD
 import img_logo from '@/assets/images/logo_beritabaik.png'
 import img_b_logo from '@/assets/images/logo_beritabaik_b.png'
 import FixedHeader from 'vue-fixed-header'
@@ -112,10 +106,6 @@ export default {
     }
   }
 }
-=======
-// import img_404 from '@/assets/404_images/logo_beritabaik.png'
-console.log('Header part')
->>>>>>> c67b334c0ec493b2a1af6faf1b7a5fced5d96fbf
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
@@ -136,7 +126,7 @@ console.log('Header part')
 }
 
 /*
-  top navigation
+  top navigation ok
 */
 .topnav-wrapper {
   background-color : $bb-blue; 
