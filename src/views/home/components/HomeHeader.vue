@@ -87,15 +87,12 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import img_logo from '@/assets/images/logo_beritabaik.png'
 import img_b_logo from '@/assets/images/logo_beritabaik_b.png'
 import FixedHeader from 'vue-fixed-header'
-import HomeNavbar from '@/views/home/components/HomeNavbar.vue'
 export default {
   components: {
-    FixedHeader,
-    HomeNavbar
+    FixedHeader
   },
   data() {
     return {
@@ -107,10 +104,8 @@ export default {
     }
   }
 }
-=======
-// import img_404 from '@/assets/404_images/logo_beritabaik.png'
+
 console.log('Header part')
->>>>>>> c67b334c0ec493b2a1af6faf1b7a5fced5d96fbf
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

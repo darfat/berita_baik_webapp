@@ -7,7 +7,7 @@
 export default {
   data() {
     return {
-      x: '1'
+      x: '1',
       activeIndex: '1'
     }
   },
