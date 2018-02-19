@@ -8,6 +8,12 @@ export default {
   data() {
     return {
       x: '1'
+      activeIndex: '1'
+    }
+  },
+  methods: {
+    handleSelect(key, keyPath) {
+      console.log(key, keyPath)
     }
   }
 }
