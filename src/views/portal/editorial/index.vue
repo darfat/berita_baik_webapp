@@ -28,9 +28,9 @@
                   <el-col :span="2"><div>love</div></el-col>
                   <el-col :span="2"><div>like</div></el-col>
               </el-row>
-              <el-row :gutter="20">
+              <el-row :gutter="20" class="title">
                 <el-col >
-                  <div> 
+                  <div > 
                     {{ latestNews.title }}
                   </div>
                 </el-col>
@@ -46,14 +46,9 @@
                   <el-col :span="1"><article-separator></article-separator></el-col>
               </el-row>
               <el-row :gutter="20">
-                  <el-col :span="2">
+                  <el-col class="footer">
                     <div>
-                      {{ latestNews.reporter.name }}
-                    </div>
-                  </el-col>
-                  <el-col :span="2">
-                    <div>
-                      {{ latestNews.publish_date_counter }}
+                      {{ latestNews.reporter.name }} | {{ latestNews.publish_date_counter }}
                     </div>
                   </el-col>
               </el-row>
@@ -70,7 +65,7 @@
               <el-col :span="10" v-for="(article, index) in articles" :key="article.id" class="news-col">
                 <el-card :body-style="{ padding: '0px' }" class="news-card">
                   <div>
-                      <div class="thumbnail">
+                      <div class="mini-thumbnail">
                         <img :src="article.main_image" class="card-image" />
                         <div class="editorial-type-img">
                             <p style="font-size:10px;">{{ article.editorial }}</p>

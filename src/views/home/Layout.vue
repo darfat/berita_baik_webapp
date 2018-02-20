@@ -3,18 +3,21 @@
       <home-header></home-header>
       <home-navbar></home-navbar>
       <home-main></home-main>      
+      <home-footer></home-footer>      
+
   </div>
 </template>
 
 <script>
-import { HomeHeader, HomeNavbar, HomeMain } from '@/views/home/components'
+import { HomeHeader, HomeNavbar, HomeMain, HomeFooter } from '@/views/home/components'
 
 export default {
   name: 'HomeLayout',
   components: {
     HomeHeader,
     HomeNavbar,
-    HomeMain
+    HomeMain,
+    HomeFooter
   },
   computed: {
   }

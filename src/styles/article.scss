@@ -1,30 +1,30 @@
-.editoral-container {
+.article-container {
 
 }
-.editoral-container .headline-container {
+.article-container .headline-container {
     background-color: #e6e6e6;
 }
 .grid-content {
     border-radius: 4px;
     min-height: 36px;
 }
-.editoral-container .headline-container .title-container{
+.article-container .headline-container .title-container{
     padding: 10px;
 }
-.editoral-container .headline-container .title-container .title {
+.article-container .headline-container .title-container .title {
     font-size: 30px;
     color: #042f7f;
 }
-.editoral-container .headline-container .latest-news{
+.article-container .headline-container .main{
     background-color: #fff;
     min-height: 300px;
     margin-bottom: 40px;
 }
-.editoral-container .headline-container .latest-news .thumbnail {
+.article-container .headline-container .main .thumbnail {
     position: relative;
 }
 
-.editoral-container .headline-container .latest-news .thumbnail .editorial-type-img {
+.article-container .headline-container .main .thumbnail .editorial-type-img {
     position: absolute;
     top: 3%;
     left: 3%;
@@ -36,28 +36,28 @@
     padding-left: 8px;
     padding-right: 8px;
 }
-.editoral-container .headline-container .latest-news .thumbnail img{
+.article-container .headline-container .main .thumbnail img{
     width: 100%;
     height: auto;
     display: block;
 }
 
-.editoral-container .headline-container .latest-news .title{
+.article-container .headline-container .main .title{
     font-weight: bold;
     font-size: 1.1em;
 }
 
-.editoral-container .headline-container .latest-news .footer{
+.article-container .headline-container .main .footer{
     font-weight: bold;
     font-size: 0.8em;
 }
-.editoral-container .list-container{
+.article-container .list-container{
     margin-top:30px;
     background-color: #fff;
 }
-.editoral-container .list-container .content{
+.article-container .list-container .content{
 }
-.editoral-container .list-container .content .a-content{
+.article-container .list-container .content .a-content{
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -66,12 +66,12 @@
 .a-side{
   margin-left: 20px;
 }
-.editoral-container .list-container .content .a-content .news-col{
+.article-container .list-container .content .a-content .news-col{
     margin: 10px;
     border: solid 1px;
     border-color: #e6e6e6;
 }
-.editoral-container .list-container .content .a-content .news-col .news-card{
+.article-container .list-container .content .a-content .news-col .news-card{
     margin: 5px;
 } 
 .mini-thumbnail {

@@ -10,7 +10,6 @@ export default {
   props: {},
   computed: {},
   created() {
-    console.log('separator')
   }
 }
 </script>

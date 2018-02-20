@@ -40,6 +40,12 @@ export const constantRouterMap = [
       name: 'indonesia-baik-menu',
       props: true,
       component: () => import('@/views/portal/editorial/index')
+    },
+    {
+      path: 'article/:editorialSlug/:slug',
+      name: 'article-detail',
+      props: true,
+      component: () => import('@/views/portal/article/index')
     }]
   },
 
