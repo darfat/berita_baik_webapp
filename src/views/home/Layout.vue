@@ -2,19 +2,20 @@
   <div class="app-wrapper">      
       <home-header></home-header>
       <div style="clear: both; padding: 10px 0"></div>
-      <home-main></home-main>      
+      <home-main></home-main>
+      <home-footer></home-footer>
   </div>
 </template>
 
 <script>
-import { HomeHeader, HomeNavbar, HomeMain } from '@/views/home/components'
+import { HomeHeader, HomeMain, HomeFooter } from '@/views/home/components'
 
 export default {
   name: 'HomeLayout',
   components: {
     HomeHeader,
-    HomeNavbar,
-    HomeMain
+    HomeMain,
+    HomeFooter
   },
   computed: {
   }

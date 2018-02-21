@@ -2,27 +2,28 @@
     <div class="frontpage-wrapper">
         <top-slider></top-slider>
         <headline-slider></headline-slider>    
-    
-        <h3>This is FrontPage </h3>        
-        <h3>This is FrontPage </h3>
-        <h3>This is FrontPage </h3>
-        <h3>This is FrontPage </h3>
-        <h3>This is FrontPage </h3>
-        <h3>This is FrontPage </h3>
-    </div>
-    
-
-    
+        <div class="container">
+        <latest-news></latest-news>
+        
+        <div>BOX LATEST</div><div>BOX TERPOPULAR</div>
+        <div>BOX SECTION</div><div>SIDEBAR</div>
+        <div>BOX SECTION</div><div>SIDEBAR</div>
+        <div>CITRA</div>
+        <div>MEDSOS</div>
+        <div>AGENDA</div>
+        </div>
+    </div>    
 </template>
 
 <script>
-import { TopSlider, HeadlineSlider } from '@/views/home/components'
+import { TopSlider, HeadlineSlider, LatestNews } from '@/views/home/components'
 
 export default {
   name: 'frontpage',
   components: {
     TopSlider,
-    HeadlineSlider
+    HeadlineSlider,
+    LatestNews
   },
   computed: {
   }
