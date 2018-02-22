@@ -1,88 +1,88 @@
 <template>
-  <fixed-header :fixed.sync="isFixed" threshold="140">
-  <el-header height="auto" >
-    
-    <div class="topnav-wrapper" v-if="!isFixed">
-    <el-menu class="container" mode="horizontal">      
-      <el-menu-item index="1"><a href="#">Kerjasama</a></el-menu-item>
-      <el-menu-item index="2"><a href="#">Mail</a></el-menu-item>
-      <el-menu-item index="3"><a href="#">Tentang Kami</a></el-menu-item>
-    </el-menu>
-  </div>
+  <fixed-header :fixed.sync="isFixed" :threshold=140>
+    <el-header height="auto" >
+      
+      <div class="topnav-wrapper" v-if="!isFixed">
+      <el-menu class="container" mode="horizontal">      
+        <el-menu-item index="1"><a href="#">Kerjasama</a></el-menu-item>
+        <el-menu-item index="2"><a href="#">Mail</a></el-menu-item>
+        <el-menu-item index="3"><a href="#">Tentang Kami</a></el-menu-item>
+      </el-menu>
+    </div>
 
-  <div class="head-wrapper" v-if="!isFixed">
-    <el-row class="container">
-      <el-col :span="10">
-        <div class="head-logo">
-          <img class="head-logo-img" :src="img_logo" alt="beritabaik.id">
-        </div>
-      </el-col>
-      <el-col :span="8" class="hidden-sm-and-down">
-        <div class="head-search">          
-          <el-input placeholder="Search" suffix-icon="el-icon-search" v-model="search"></el-input>
-        </div>
-      </el-col>
-      <el-col :span="4" class="hidden-sm-and-down">
-        <div class="head-lang">
-          <el-dropdown>
-            <span class="el-dropdown-link">
-              Bahasa<i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>Indonesia</el-dropdown-item>
-              <el-dropdown-item>English</el-dropdown-item>           
-            </el-dropdown-menu>
-          </el-dropdown>
-        </div>
+    <div class="head-wrapper" v-if="!isFixed">
+      <el-row class="container">
+        <el-col :span="10">
+          <div class="head-logo">
+            <img class="head-logo-img" :src="img_logo" alt="beritabaik.id">
+          </div>
         </el-col>
-      <el-col :span="2" class="hidden-sm-and-down">
-        <div class="head-user">
-          <el-dropdown class="avatar-container" >
-            <div class="avatar-wrapper">
-            <img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'">
-            <i class="el-icon-caret-bottom"></i>
-            </div>
-            <el-dropdown-menu class="user-dropdown" slot="dropdown">
-            <router-link class="inlineBlock" to="/">
-            <el-dropdown-item>
-              Home
-            </el-dropdown-item>
-            </router-link>
-            <el-dropdown-item divided>
-            <span @click="logout" style="display:block;">LogOut</span>
-            </el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-        </div>
-      </el-col>
-    </el-row>
-  </div>
-     
-  <nav class="menu-wrapper">
-    <el-menu
-    :default-active="activeIndex"
-    class="container el-menu-nav"
-    mode="horizontal"
-    @select="handleSelect"
-    background-color="#F5DF00"
-    text-color="#0A2F88"
-    active-text-color="#0A2F88">
-      <el-menu-item index="1">
-        <div class="menu-logo" v-if="isFixed">
-          <a href="#/home"><img class="menu-logo-img" :src="img_b_logo" alt="beritabaik.id"></a>          
-       </div>
-       <span v-else><a href="#/home">Home</a></span>
-      </el-menu-item>
-      <el-menu-item index="2"><a href="">Indonesia Baik</a></el-menu-item>
-      <el-menu-item index="3"><a href="">Indonesia Membangun</a></el-menu-item>
-      <el-menu-item index="4"><a href="">Indonesia Bangga</a></el-menu-item>
-      <el-menu-item index="5"><a href="">Melancong</a></el-menu-item>
-      <el-menu-item index="6"><a href="">Teknologi</a></el-menu-item>
-      <el-menu-item index="7"><a href="">Panggung</a></el-menu-item>
-      <el-menu-item index="8"><a href="">Citra</a></el-menu-item>
-    </el-menu>
-  </nav>  
-  </el-header>
+        <el-col :span="8" class="hidden-sm-and-down">
+          <div class="head-search">          
+            <el-input placeholder="Search" suffix-icon="el-icon-search" v-model="search"></el-input>
+          </div>
+        </el-col>
+        <el-col :span="4" class="hidden-sm-and-down">
+          <div class="head-lang">
+            <el-dropdown>
+              <span class="el-dropdown-link">
+                Bahasa<i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>Indonesia</el-dropdown-item>
+                <el-dropdown-item>English</el-dropdown-item>           
+              </el-dropdown-menu>
+            </el-dropdown>
+          </div>
+          </el-col>
+        <el-col :span="2" class="hidden-sm-and-down">
+          <div class="head-user">
+            <el-dropdown class="avatar-container" >
+              <div class="avatar-wrapper">
+              <img class="user-avatar" src="">
+              <i class="el-icon-caret-bottom"></i>
+              </div>
+              <el-dropdown-menu class="user-dropdown" slot="dropdown">
+              <router-link class="inlineBlock" to="/">
+              <el-dropdown-item>
+                Home
+              </el-dropdown-item>
+              </router-link>
+              <el-dropdown-item divided>
+              <span style="display:block;">LogOut</span>
+              </el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+      
+      <nav class="menu-wrapper">
+        <el-menu
+        :default-active="activeIndex"
+        class="container el-menu-nav"
+        mode="horizontal"
+        
+        background-color="#F5DF00"
+        text-color="#0A2F88"
+        active-text-color="#0A2F88">
+          <el-menu-item index="1">
+            <div class="menu-logo" v-if="isFixed">
+              <a href="#/home"><img class="menu-logo-img" :src="img_b_logo" alt="beritabaik.id"></a>          
+          </div>
+          <span v-else><a href="#/home">Home</a></span>
+          </el-menu-item>
+          <el-menu-item index="2"><a href="">Indonesia Baik</a></el-menu-item>
+          <el-menu-item index="3"><a href="">Indonesia Membangun</a></el-menu-item>
+          <el-menu-item index="4"><a href="">Indonesia Bangga</a></el-menu-item>
+          <el-menu-item index="5"><a href="">Melancong</a></el-menu-item>
+          <el-menu-item index="6"><a href="">Teknologi</a></el-menu-item>
+          <el-menu-item index="7"><a href="">Panggung</a></el-menu-item>
+          <el-menu-item index="8"><a href="">Citra</a></el-menu-item>
+        </el-menu>
+      </nav>
+    </el-header>
   </fixed-header>
 </template>
 
