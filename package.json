@@ -18,8 +18,10 @@
     "js-cookie": "2.2.0",
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",
+    "vee-validate": "^2.0.4",
     "vue": "2.5.10",
     "vue-fixed-header": "^1.0.1",
+    "vue-icon": "^2.0.0",
     "vue-router": "3.0.1",
     "vuex": "3.0.1"
   },

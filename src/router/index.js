@@ -34,6 +34,18 @@ export const constantRouterMap = [
     children: [{
       path: 'home',
       component: () => import('@/views/home/index')
+    },
+    {
+      path: 'indonesia-baik',
+      name: 'indonesia-baik-menu',
+      props: true,
+      component: () => import('@/views/portal/editorial/index')
+    },
+    {
+      path: 'article/:editorialSlug/:slug',
+      name: 'article-detail',
+      props: true,
+      component: () => import('@/views/portal/article/index')
     }]
   },
 
@@ -85,14 +97,23 @@ export const constantRouterMap = [
         meta: { title: 'Indonesia Bangga', icon: 'table' }
       },
       {
+        path: 'form',
+        name: 'article-form',
+        props: true,
+        component: () => import('@/views/article/form'),
+        hidden: true
+      },
+      {
         path: 'new-article-indonesia-baik',
-        name: 'indonesiaBaikForm',
+        name: 'indonesia-baik-form',
+        props: true,
         component: () => import('@/views/article/indonesiaBaikForm'),
         hidden: true
       },
       {
         path: 'new-article-indonesia-bangga',
-        name: 'indonesiaBanggaForm',
+        name: 'indonesia-bangga-form',
+        props: true,
         component: () => import('@/views/article/indonesiaBanggaForm'),
         hidden: true
       }

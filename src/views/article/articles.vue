@@ -16,8 +16,8 @@
         </el-option>
       </el-select> -->
       <el-button class="filter-item" type="primary"  icon="el-icon-search" @click="handleFilter">Search</el-button>
-      <router-link class="filter-item" :to="{ path: '/editorial-articles/new-article-'+editorialSlug, params: { editorialSlug } }" >
-                <el-button type="primary" >Create</el-button>
+      <router-link class="filter-item" :to="{ name: 'article-form', params: { editorialSlug} }" >
+        <el-button type="primary" >Create</el-button>
       </router-link>    
       </div>
     
@@ -40,7 +40,9 @@
       </el-table-column>
       <el-table-column align="center" label="Actions" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">Edit</el-button>
+          <router-link class="filter-item" :to="{ name: 'article-form', params: { editorialSlug, 'articleId': scope.row.id} }" >
+            <el-button type="primary" size="mini" >Edit</el-button>
+          </router-link>
         </template>
       </el-table-column>
     </el-table>
@@ -99,7 +101,8 @@ export default {
       }
     },
     handleUpdate(row) {
-      // const data = Object.assign({}, row) // copy obj
+      const data = Object.assign({}, row) // copy obj
+      console.log(data)
     },
     handleFilter() {
       // const data = Object.assign({}, row) // copy obj
