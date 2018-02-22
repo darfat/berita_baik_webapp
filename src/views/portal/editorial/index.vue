@@ -9,57 +9,59 @@
             </div>
           </el-col>
       </el-row>
-      <el-col :span="2"><div class="grid-content"></div></el-col>
-      <el-col :span="20">
-        <div class="grid-content latest-news">
-              <el-row :gutter="20">
-                <el-col >
-                  <div>
-                      <div class="thumbnail">
-                        <img :src="latestNews.main_image" />
-                        <div class="editorial-type-img">
-                            <p>{{ latestNews.editorial }}</p>
+      <el-row :gutter="20">
+        <el-col :span="2"><div class="grid-content"></div></el-col>
+        <el-col :span="20">
+          <div class="grid-content latest-news">
+                <el-row :gutter="20">
+                  <el-col >
+                    <div>
+                        <div class="background">
+                          <img :src="latestNews.main_image" />
+                          <div class="editorial-type-img">
+                              <p>{{ latestNews.editorial }}</p>
+                          </div>
                         </div>
-                      </div>
-                  </div>
-                </el-col>
-              </el-row>
-              <el-row :gutter="20" class="content"> 
-                <el-col>
-                  <el-row :gutter="20">
-                      <el-col :span="4">
-                          <span> <v-icon name="heart" base-class="icon-20"></v-icon> </span>
-                          <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
-                      </el-col>
-                  </el-row>
-                  <el-row :gutter="20" class="title">
-                    <el-col >
-                      <div > 
-                        {{ latestNews.title }}
-                      </div>
-                    </el-col>
-                  </el-row>
-                  <el-row :gutter="20">
+                    </div>
+                  </el-col>
+                </el-row>
+                <el-row :gutter="20" class="content"> 
+                  <el-col>
+                    <el-row :gutter="20">
+                        <el-col :span="4">
+                            <span> <v-icon name="heart" base-class="icon-20"></v-icon> </span>
+                            <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
+                        </el-col>
+                    </el-row>
+                    <el-row :gutter="20" class="title">
                       <el-col >
-                        <div v-html="latestNews.teaser" class="article-content">
+                        <div > 
+                          {{ latestNews.title }}
                         </div>
                       </el-col>
-                  </el-row>
-                  <el-row :gutter="20">
-                      <el-col :span="1"><article-separator></article-separator></el-col>
-                  </el-row>
-                  <el-row :gutter="20">
-                      <el-col class="footer">
-                        <div>
-                          {{ latestNews.reporter.name }} | {{ latestNews.publish_date_counter }}
-                        </div>
-                      </el-col>
-                  </el-row>
-                </el-col>
-              </el-row>
-        </div>
-      </el-col>
-      <el-col :span="2"><div class="grid-content"></div></el-col>
+                    </el-row>
+                    <el-row :gutter="20">
+                        <el-col >
+                          <div v-html="latestNews.teaser" class="article-content">
+                          </div>
+                        </el-col>
+                    </el-row>
+                    <el-row :gutter="20">
+                        <el-col :span="1"><article-separator></article-separator></el-col>
+                    </el-row>
+                    <el-row :gutter="20">
+                        <el-col class="footer">
+                          <div>
+                            {{ latestNews.reporter.name }} | {{ latestNews.publish_date_counter }}
+                          </div>
+                        </el-col>
+                    </el-row>
+                  </el-col>
+                </el-row>
+          </div>
+        </el-col>
+        <el-col :span="2"><div class="grid-content"></div></el-col>
+      </el-row>
     </el-row>
     <el-row :gutter="20" class="list-container">
       <el-col :span="2"><div class="grid-content"></div></el-col>

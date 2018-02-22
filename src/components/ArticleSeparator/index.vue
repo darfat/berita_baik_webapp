@@ -17,8 +17,9 @@ export default {
 <style scoped>
 .separator {
   background-color: #fbdd01;
-  width:60%; 
-  display:inline-table;
-  min-height: 3%;
+  width:1.5em; 
+  height: 0.8em;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 </style>

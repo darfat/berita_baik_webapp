@@ -20,11 +20,25 @@
     min-height: 300px;
     margin-bottom: 40px;
 }
-.editoral-container .headline-container .latest-news .thumbnail {
+.editoral-container .headline-container .latest-news .background {
     position: relative;
 }
 
-.editoral-container .headline-container .latest-news .thumbnail .editorial-type-img {
+
+.editoral-container .headline-container .latest-news .backgroundx {
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    left: 0px; 
+    top: 0px; 
+    z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
+}
+.editoral-container .headline-container .latest-news .background img{
+    width:100%;
+    height:100%;
+}
+
+.editoral-container .headline-container .latest-news .background .editorial-type-img {
     position: absolute;
     top: 3%;
     left: 3%;
@@ -36,15 +50,12 @@
     padding-left: 8px;
     padding-right: 8px;
 }
-.editoral-container .headline-container .latest-news .thumbnail img{
-    width: 100%;
-    height: auto;
-    display: block;
-}
+
 
 .editoral-container .headline-container .latest-news .content{
     padding-left: 20px;
     padding-right: 20px;
+    padding-bottom: 20px;
 }
 
 .editoral-container .headline-container .latest-news .content .title{
