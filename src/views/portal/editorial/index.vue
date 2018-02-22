@@ -5,7 +5,7 @@
           <el-col :span="2"><div class="grid-content"></div></el-col>
           <el-col :span="16">
             <div class="grid-content title-container">
-                <span class="title"> Indonesia Baik </span> 
+                <span class="latest-news-title"> Indonesia Baik </span> 
             </div>
           </el-col>
       </el-row>
@@ -24,33 +24,38 @@
                   </div>
                 </el-col>
               </el-row>
-              <el-row :gutter="20">
-                  <el-col :span="2"><div>love</div></el-col>
-                  <el-col :span="2"><div>like</div></el-col>
-              </el-row>
-              <el-row :gutter="20" class="title">
-                <el-col >
-                  <div > 
-                    {{ latestNews.title }}
-                  </div>
+              <el-row :gutter="20" class="content"> 
+                <el-col>
+                  <el-row :gutter="20">
+                      <el-col :span="4">
+                          <span> <v-icon name="heart" base-class="icon-20"></v-icon> </span>
+                          <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
+                      </el-col>
+                  </el-row>
+                  <el-row :gutter="20" class="title">
+                    <el-col >
+                      <div > 
+                        {{ latestNews.title }}
+                      </div>
+                    </el-col>
+                  </el-row>
+                  <el-row :gutter="20">
+                      <el-col >
+                        <div v-html="latestNews.teaser" class="article-content">
+                        </div>
+                      </el-col>
+                  </el-row>
+                  <el-row :gutter="20">
+                      <el-col :span="1"><article-separator></article-separator></el-col>
+                  </el-row>
+                  <el-row :gutter="20">
+                      <el-col class="footer">
+                        <div>
+                          {{ latestNews.reporter.name }} | {{ latestNews.publish_date_counter }}
+                        </div>
+                      </el-col>
+                  </el-row>
                 </el-col>
-              </el-row>
-              <el-row :gutter="20">
-                  <el-col >
-                    <div v-html="latestNews.teaser">
-                      
-                    </div>
-                  </el-col>
-              </el-row>
-              <el-row :gutter="20">
-                  <el-col :span="1"><article-separator></article-separator></el-col>
-              </el-row>
-              <el-row :gutter="20">
-                  <el-col class="footer">
-                    <div>
-                      {{ latestNews.reporter.name }} | {{ latestNews.publish_date_counter }}
-                    </div>
-                  </el-col>
               </el-row>
         </div>
       </el-col>
@@ -60,91 +65,20 @@
       <el-col :span="2"><div class="grid-content"></div></el-col>
 
       <el-col :span="14" class="content">
-        <div class="grid-content a-content">
-            <el-row>
-              <el-col :span="10" v-for="(article, index) in articles" :key="article.id" class="news-col">
-                <el-card :body-style="{ padding: '0px' }" class="news-card">
-                  <div>
-                      <div class="mini-thumbnail">
-                        <img :src="article.main_image" class="card-image" />
-                        <div class="editorial-type-img">
-                            <p style="font-size:10px;">{{ article.editorial }}</p>
-                        </div>
-                      </div>
-                  </div>
-                  <div style="padding: 14px;">
-                    <div class="bottom clearfix">
-                      <el-row >
-                        <el-col :span="2"><div>love</div></el-col>
-                        <el-col :span="2"><div>like</div></el-col>
-                    </el-row>
-                    </div>
-                    <el-row >
-                      <div>
-                        <span>{{ article.title}}</span>
-                      </div>
-                    </el-row>
-                    <el-row >
-                        <el-col :span="2"><article-separator></article-separator></el-col>
-                    </el-row>
-                    <el-row >
-                        <el-col :span="4">
-                          <div>
-                            {{ article.reporter.name }}
-                          </div>
-                        </el-col>
-                        <el-col :span="10">
-                          <div>
-                            {{ article.publish_date_counter }}
-                          </div>
-                        </el-col>
-                    </el-row>
-                  </div>
-                </el-card>
-              </el-col>
-            </el-row>
-
+        <div class="grid-content">
+            <articles-card></articles-card>
         </div>
       </el-col>
       <el-col :span="6" class="side-content">
         <div class="grid-content a-side">
-          <div class="popular-news">
-            <el-row v-for="(article) in popular_articles" :key="article.id"  >
-              <el-col :span="6">
-                <div>
-                  <img :src="article.main_image" class="card-image"/>
-                </div>
-              </el-col>
-              <el-col :span="18">
-                <div>
-                  <el-row >
-                      <div>
-                        <span>{{ article.title}}</span>
-                      </div>
-                    </el-row>
-                    <el-row >
-                        <el-col :span="2"><article-separator></article-separator></el-col>
-                    </el-row>
-                    <el-row >
-                        <el-col :span="6">
-                          <div>
-                            {{ article.reporter.name }}
-                          </div>
-                        </el-col>
-                        <el-col :span="10">
-                          <div>
-                            {{ article.publish_date_counter }}
-                          </div>
-                        </el-col>
-                    </el-row>
-                </div>
-              </el-col>         
-            </el-row>            
-          </div>
+          <popular-news-side> </popular-news-side>
           <div class="side-separator">
             <span> Buka lebih banyak lagi </span>
           </div>
           <div>Infografis</div>
+          <div class="side-separator">
+            <span> Buka lebih banyak lagi </span>
+          </div>
           <div>iklan</div>
 
         </div>
@@ -157,17 +91,20 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
+import { PopularNewsSide, ArticlesCard } from '@/views/portal/components'
 
 export default {
   name: 'editorials',
   components: {
-    ArticleSeparator
+    ArticleSeparator,
+    PopularNewsSide,
+    ArticlesCard
   },
   data() {
     return {
       latestNews: {
         id: '1',
-        main_image: 'static/images/news/img.jpg',
+        main_image: 'static/upload/images/1.jpg',
         teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
         title: 'Lorem Ipsum Title',
         editorial: 'Indonesia Baik',
@@ -177,115 +114,7 @@ export default {
           role: 'reporter'
         },
         publish_date_counter: '2 Jam Yang lalu'
-      },
-      articles: [
-        {
-          id: '1',
-          main_image: 'static/images/news/burger.png',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '2',
-          main_image: 'static/images/news/burger.png',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '3',
-          main_image: 'static/images/news/burger.png',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '4',
-          main_image: 'static/images/news/burger.png',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        }
-      ],
-      popular_articles: [
-        {
-          id: '1',
-          main_image: 'static/images/news/burger.png',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '2',
-          main_image: 'static/images/news/burger.png',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '3',
-          main_image: 'static/images/news/burger.png',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '4',
-          main_image: 'static/images/news/burger.png',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        }
-      ]
+      }
     }
   },
   created() {
@@ -298,11 +127,12 @@ export default {
 @import "src/styles/editorial-list.scss";
 
 .el-row {
+  margin-bottom: 3px;
   &:last-child {
     margin-bottom: 0;
   }
 }
 .el-col {
-    border-radius: 4px;
+    border-radius: 0px;
 }
 </style>

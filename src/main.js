@@ -16,8 +16,10 @@ import '@/icons' // icon
 // import '@/permission' // permission control
 
 import VeeValidate from 'vee-validate'
+import feather from 'vue-icon'
 
 Vue.use(ElementUI, { locale })
+Vue.use(feather, 'v-icon')
 
 const config = {
   errorBagName: 'errors', // change if property conflicts

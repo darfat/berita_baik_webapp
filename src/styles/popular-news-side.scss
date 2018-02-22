@@ -1,0 +1,38 @@
+.mini-thumbnail {
+    position: relative;
+}
+.mini-thumbnail .card-image{
+    width: 100%;
+    height: auto;
+    max-height: 235px;
+}
+
+.card-image{
+    width: 100%;
+    height: auto;
+    max-height: 235px;
+}
+
+.mini-thumbnail .editorial-type-img {
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    // transform: translate( -50%, -50% );
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    background-color: #0a2f88;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.mini-thumbnail img{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.popular-news {
+    border: solid 1px;
+    padding: 15px;
+    border-color: #e6e6e6;
+}

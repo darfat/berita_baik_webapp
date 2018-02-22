@@ -1,8 +1,9 @@
 <template>
-<div class="footer">
+<div class="main-footer">
   <span> this is footer</span>
 </div>
 </template>
+
 
 <script>
 console.log('footer main')
@@ -11,6 +12,7 @@ export default {
 }
 </script>
 
-<style>
+<style rel="stylesheet/scss" lang="scss" scoped>
+
 
 </style>
