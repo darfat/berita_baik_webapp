@@ -1,0 +1,11 @@
+@import './variables.scss';
+
+.comment-box{
+    background-color: $bb-blue!important;
+}
+.comment-box .content{
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

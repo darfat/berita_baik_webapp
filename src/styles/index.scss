@@ -69,6 +69,8 @@ a:hover {
   padding: 20px;
 }
 
+
+//DARFAT start
 .m-t-10 {
   margin-top: 10px;
 }
@@ -76,13 +78,27 @@ a:hover {
 .m-b-20 {
   margin-top: 20px;
 }
+.p-tb-5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.p-r-20 {
+  padding-right: 20px;
+}
+.m-t-20 {
+  margin-top: 20px;
+}
+.p-b-20 {
+  padding-bottom: 20px;
+}
+
 
 .m-tb-10 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.latest-news-title {
+.main-article-title {
   font-size: 25px;
   color: #042f7f;
   font-weight: bold;
@@ -130,3 +146,26 @@ a:hover {
   border-bottom: 1px solid #e6e6e6;
   margin: auto;
 }
+.align-right {
+  text-align: right;
+}
+.v-align-middle {
+  vertical-align: middle;
+}
+.img-mini {
+  max-height: 50px;
+}
+.img-circle {
+  border-radius: 50%;
+  border: 1px solid #696968;
+
+}
+.follow-user {
+  border: solid 1px #696968;
+  padding-top :3px;
+  padding-bottom :3px;
+  width: 90px;
+  text-align: center;
+
+}
+//END start

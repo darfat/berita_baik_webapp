@@ -39,17 +39,24 @@
 .article-container .headline-container .main .thumbnail img{
     width: 100%;
     height: auto;
-    display: block;
+    //display: block;
 }
-
-.article-container .headline-container .main .title{
+.article-container .headline-container .main .content{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+.article-container .headline-container .main .content .title{
     font-weight: bold;
     font-size: 1.1em;
 }
 
-.article-container .headline-container .main .footer{
+.article-container .headline-container .main .content .footer{
     font-weight: bold;
     font-size: 0.8em;
+}
+.article-container .headline-container .main .content .article-option{
+    color: #696968
 }
 .article-container .list-container{
     margin-top:30px;
