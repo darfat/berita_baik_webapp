@@ -73,7 +73,7 @@
           </div>
           <span v-else><a href="#/home">Home</a></span>
           </el-menu-item>
-          <el-menu-item index="2"><a href="">Indonesia Baik</a></el-menu-item>
+          <el-menu-item index="2"><a href="#/indonesia-baik">Indonesia Baik</a></el-menu-item>
           <el-menu-item index="3"><a href="">Indonesia Membangun</a></el-menu-item>
           <el-menu-item index="4"><a href="">Indonesia Bangga</a></el-menu-item>
           <el-menu-item index="5"><a href="">Melancong</a></el-menu-item>
