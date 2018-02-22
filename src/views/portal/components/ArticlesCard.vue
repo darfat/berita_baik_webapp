@@ -24,7 +24,7 @@
                         </el-col>
                     </el-row>
                     </div>
-                    <el-row class="title">
+                    <el-row class="ac-title">
                       <div>
                         <span>{{ article.title}}</span>
                       </div>

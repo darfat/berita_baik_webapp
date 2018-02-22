@@ -25,7 +25,7 @@
                 </el-col>
               </el-row>
               <el-row class="content">
-                <el-row :gutter="20" class="title">
+                <el-row :gutter="20" class="a-title">
                   <el-col >
                     <div > 
                       {{ mainArticle.title }}

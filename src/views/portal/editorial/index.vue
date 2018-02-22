@@ -33,7 +33,7 @@
                             <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
                         </el-col>
                     </el-row>
-                    <el-row :gutter="20" class="title">
+                    <el-row :gutter="20" class="ln-title">
                       <el-col >
                         <div > 
                           {{ latestNews.title }}
