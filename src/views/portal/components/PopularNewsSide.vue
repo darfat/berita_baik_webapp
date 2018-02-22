@@ -5,15 +5,15 @@
           </el-row>
           
           <div class="popular-news m-t-10">
-            <el-row v-for="(article) in popular_articles" :key="article.id"  >
-              <el-col :span="6">
+            <el-row v-for="(article) in popular_articles" :key="article.id" class="side-row"  >
+              <el-col :span="8" class="side-image">
                 <div>
                   <img :src="article.main_image" class="card-image"/>
                 </div>
               </el-col>
-              <el-col :span="18">
-                <div>
-                  <el-row >
+              <el-col :span="16" class="side-content">
+                <div class="content-container">
+                   <el-row class="side-title-section">
                       <div>
                         <span>{{ article.title}}</span>
                       </div>
@@ -22,15 +22,10 @@
                         <el-col :span="2"><article-separator></article-separator></el-col>
                     </el-row>
                     <el-row >
-                        <el-col :span="6">
-                          <div>
-                            {{ article.reporter.name }}
-                          </div>
-                        </el-col>
-                        <el-col :span="10">
-                          <div>
-                            {{ article.publish_date_counter }}
-                          </div>
+                        <el-col  class="footer">
+                         <div>
+                          {{ article.reporter.name }} | {{ article.publish_date_counter }}
+                        </div>
                         </el-col>
                     </el-row>
                 </div>
@@ -54,7 +49,7 @@ export default {
           id: '1',
           main_image: 'static/upload/images/6.jpg',
           teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title',
+          title: 'Lorem Ipsum Title asd asdlkasd',
           editorial: 'Indonesia Baik',
           reporter: {
             id: '1',
@@ -67,7 +62,7 @@ export default {
           id: '2',
           main_image: 'static/upload/images/1.jpg',
           teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title',
+          title: 'Lorem Ipsum Title praesent euripidis, veri nobis eripuit eum id. An sea sus ',
           editorial: 'Indonesia Baik',
           reporter: {
             id: '1',
