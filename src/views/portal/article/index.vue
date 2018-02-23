@@ -103,11 +103,11 @@
     </el-row>
     <el-row :gutter="20" class="comments-container">
       <el-row :gutter="20" >
-        <el-col>
-          <div class="comments">
-            scomments list
-          </div>
+        <el-col :span="2"><div class="grid-content"></div></el-col>
+        <el-col :span="20"  class="comments-content">
+          <comment-list></comment-list>
         </el-col>
+        <el-col :span="2"><div class="grid-content"></div></el-col>
       </el-row>
     </el-row>
     <el-row :gutter="20" class="list-container">
@@ -166,7 +166,7 @@
     <el-row :gutter="20" class="subscriber-container">
       <el-col :span="1"><div class="grid-content"></div></el-col>
           <el-col :span="22" class="content">
-              <div >Subscriber</div>
+              <subscribe></subscribe>
           </el-col>
       <el-col :span="1"><div class="grid-content"></div></el-col>
     </el-row>
@@ -175,7 +175,7 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
-import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav } from '@/views/portal/components'
+import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav, CommentList, Subscribe } from '@/views/portal/components'
 
 export default {
   name: 'article-detail',
@@ -184,7 +184,9 @@ export default {
     PopularNewsSide,
     ArticlesCard,
     CommentBox,
-    ArticleNav
+    ArticleNav,
+    CommentList,
+    Subscribe
   },
   data() {
     return {

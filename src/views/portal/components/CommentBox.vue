@@ -9,7 +9,7 @@
                 <el-input
                     type="textarea"
                     :rows="5"
-                    placeholder="Comments..."
+                    placeholder="Tulis Komentarmu..."
                     >
                     </el-input>
             </el-col>
@@ -20,14 +20,13 @@
             </el-col>
         </el-row>
     </div>
-
 </div>
 </template>
 
 
 <script>
 export default {
-  name: 'ArticleNav',
+  name: 'CommentBox',
   data() {
     return {
       userLogin: {

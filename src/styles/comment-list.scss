@@ -1,0 +1,23 @@
+@import './variables.scss';
+
+.comment-list{
+}
+.comment-list .content{
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.comment-list .comment-info{
+}
+.comment-list .comment-info .comment-date{
+    color: $bb-grayWhite;
+}
+.comment-list .comment-comment{
+    min-height: 80px;
+}
+.comment-list .comment-option{
+}
+.comment-list .comment-option .opt-label{
+    font-size: 0.8em;
+}
