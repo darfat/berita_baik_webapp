@@ -8,7 +8,7 @@
               <latest-news></latest-news>
             </el-col>
             <el-col :span="8">
-              TERPOPULAR
+              <popular-news-side></popular-news-side>
             </el-col>
           </el-row>
         </div>
@@ -23,14 +23,14 @@
 </template>
 
 <script>
-import { TopSlider, HeadlineSlider, LatestNews } from '@/views/home/components'
-
+import { TopSlider, HeadlineSlider, LatestNews, PopularNewsSide } from '@/views/home/components'
 export default {
   name: 'frontpage',
   components: {
     TopSlider,
     HeadlineSlider,
-    LatestNews
+    LatestNews,
+    PopularNewsSide
   },
   computed: {
   }

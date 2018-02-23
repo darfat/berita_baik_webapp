@@ -3,7 +3,8 @@
   <el-carousel :interval="4000" type="card" height="200px">
     <el-carousel-item v-for="item in idata" :key="item.id">
       <div class="item-wrapper">
-      <img :src="imgpath+item.img">
+      <img :src="imgpath+item.img" class="image">
+      <div class="section">{{item.section_name}}</div>
       <div class="title">{{item.title}}</div>
       </div>
     </el-carousel-item>
@@ -17,7 +18,7 @@ export default {
   name: 'TopSlider',
   data() {
     return {
-      imgpath: '../../../static/',
+      imgpath: 'static/',
       idata: [
         {
           'id': 1,
@@ -110,9 +111,6 @@ export default {
 .slidertop-wrapper{
   padding-top: 20px;
   background-color: rgba(238, 238, 238, 0.226);
-  
-  
-  
 
   .el-carousel__item h3 {    
     color: #475669;
@@ -136,11 +134,27 @@ export default {
   position: relative;  
   width: 100%; 
 }
+
+.image{
+  width: 100%;
+}
+
 .title {    
-    
     position: absolute;
     top: 100px;
     left: 0;
 }
 
+.section{
+  position: absolute;
+    top: 3%;
+    left: 3%;
+    // transform: translate( -50%, -50% );
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    background-color: #0a2f88;
+    padding-left: 15px;
+    padding-right: 15px;
+}
 </style>
