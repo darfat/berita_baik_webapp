@@ -152,7 +152,7 @@
     <el-row :gutter="20" class="events-container">
       <el-col :span="2"><div class="grid-content"></div></el-col>
       <el-col :span="14" class="content">
-            events
+            <events></events>
       </el-col>
       <el-col :span="2"><div class="grid-content"></div></el-col>
     </el-row>  
@@ -175,7 +175,7 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
-import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav, CommentList, Subscribe } from '@/views/portal/components'
+import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav, CommentList, Subscribe, Events } from '@/views/portal/components'
 
 export default {
   name: 'article-detail',
@@ -186,7 +186,8 @@ export default {
     CommentBox,
     ArticleNav,
     CommentList,
-    Subscribe
+    Subscribe,
+    Events
   },
   data() {
     return {

@@ -4,4 +4,4 @@ export { default as CommentBox } from './CommentBox'
 export { default as ArticleNav } from './ArticleNav'
 export { default as CommentList } from './CommentList'
 export { default as Subscribe } from './Subscribe'
-
+export { default as Events } from './Events'
