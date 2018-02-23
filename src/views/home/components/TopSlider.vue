@@ -137,6 +137,7 @@ export default {
 
 .image{
   width: 100%;
+  min-h
 }
 
 .title {    
