@@ -1,11 +1,11 @@
 <template>
 <div class="slidertop-wrapper">
-  <el-carousel :interval="4000" type="card" height="200px">
+  <el-carousel :interval="4000" type="card" height="200px" indicator-position="none">
     <el-carousel-item v-for="item in idata" :key="item.id">
       <div class="item-wrapper">
       <img :src="imgpath+item.img" class="image">
       <div class="section">{{item.section_name}}</div>
-      <div class="title">{{item.title}}</div>
+      <div class="title"><h3>{{item.title}}</h3></div>
       </div>
     </el-carousel-item>
   </el-carousel>
@@ -109,52 +109,51 @@ export default {
 
 <style>
 .slidertop-wrapper{
-  padding-top: 20px;
-  background-color: rgba(238, 238, 238, 0.226);
-
-  .el-carousel__item h3 {    
-    color: #475669;
-    font-size: 14px;
-    opacity: 0.75;
-    line-height: 200px;
-    margin: 0;
-  }
-
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-  }
-
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
-  }
+  padding: 20px 0;
+}  
+/*
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;    
 }
 
-
-.item-wrapper{
-  position: relative;  
-  width: 100%; 
+.el-carousel__item:nth-child(2n+1) {
+  background-color: #d3dce6;
 }
+*/
+
+
 
 .image{
   width: 100%;
-  min-height: 200px;  
+  min-height: 200px;    
 }
 
-.title {    
-    position: absolute;
-    top: 100px;
-    left: 0;
-}
 
 .section{
   position: absolute;
   top: 3%;
   left: 3%;
   text-align: center;
-  color: white;
+  color: #FFF;
   font-weight: bold;
   background-color: #0a2f88;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 5px 15px;
+}
+
+
+.title{
+	position:absolute; /* absolute position (so we can position it where we want)*/
+	bottom:2%; /* position will be on bottom */
+	left:1%;
+	width:98%;
+	/* styling bellow */
+	background-color: rgba(255,255,255, 0.9);
+	color:#0a2f88;
+  font-height:700;  
+}
+
+.title h3{
+    padding:10px 15px;
+    margin:0;    
 }
 </style>

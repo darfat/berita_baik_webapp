@@ -1,7 +1,18 @@
 <template>
-  <el-carousel indicator-position="outside">
-    <el-carousel-item v-for="item in headline" :key="item.id">      
-      <img :src="imgpath+item.img">
+  <el-carousel indicator-position="outside" height="560px">
+    <el-carousel-item v-for="item in headline" :key="item.id">
+      <div class="item-wrapper-hl">
+        <img :src="imgpath+item.img" class="image-hl">
+        <div class="section-hl">{{item.section_name}}</div>        
+      </div>
+      <div class="bottom-caption">
+      <span> <v-icon name="heart" base-class="icon-20"></v-icon> </span>
+      <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
+      <h2>{{item.title}}</h2>
+      <p>{{item.teaser}}</p>
+      <span class="separator">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      Boim | 5 menit yang lalu
+      </div>
     </el-carousel-item>
   </el-carousel>
 </template>
@@ -12,7 +23,7 @@ export default {
   name: 'HeadlineSlider',
   data() {
     return {
-      imgpath: '../../../static/',
+      imgpath: 'static/',
       headline: [
         {
           'id': 1,
@@ -20,7 +31,7 @@ export default {
           'url': '#',
           'section_name': 'Section 1',
           'title': 'Menikmati Hari Pertama Car Free Day di JLNT Antasari',
-          'teaser': 'Posted by Kevin on Friday',
+          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
           'isActive': true
         },
         {
@@ -29,7 +40,7 @@ export default {
           'url': '#',
           'section_name': 'Section 2',
           'title': 'Muntahkan Lahar, Gunung Mayon Siap Meletus',
-          'teaser': 'Posted by Kevin on Friday',
+          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
           'isActive': false
         },
         {
@@ -38,7 +49,7 @@ export default {
           'url': '#',
           'section_name': 'Section 3',
           'title': 'Ribuan Nelayan Minta Kejelasan Terkait Penggunaan Cantrang',
-          'teaser': 'Posted by Kevin on Friday',
+          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
           'isActive': false
         },
         {
@@ -47,7 +58,7 @@ export default {
           'url': '#',
           'section_name': 'Section 4',
           'title': 'Sepeda Federal Vintage',
-          'teaser': 'Posted by Kevin on Friday',
+          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
           'isActive': false
         },
         {
@@ -56,7 +67,7 @@ export default {
           'url': '#',
           'section_name': 'Section 4',
           'title': 'Timnas Islandia Raih Kemenangan Atas Timnas Indonesia',
-          'teaser': 'Posted by Kevin on Friday',
+          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
           'isActive': false
         },
         {
@@ -65,7 +76,7 @@ export default {
           'url': '#',
           'section_name': 'Section 4',
           'title': 'Saksi Seret Nama SBY dalam Sidang Korupsi e-KTP Setya Novanto',
-          'teaser': 'Saksi Seret Nama SBY dalam Sidang Korupsi e-KTP Setya Novanto',
+          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
           'isActive': false
         },
         {
@@ -74,7 +85,7 @@ export default {
           'url': '#',
           'section_name': 'Section 4',
           'title': 'SMP Darul Hikam Gelar Try Out Ujian Nasional (UN) SD/MI 2017',
-          'teaser': 'SMP Darul Hikam Gelar Try Out Ujian Nasional (UN) SD/MI 2017',
+          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
           'isActive': false
         },
         {
@@ -83,7 +94,7 @@ export default {
           'url': '#',
           'section_name': 'Section 4',
           'title': 'Persela Lamongan Imbangi Bhayangkara FC',
-          'teaser': 'Posted by Kevin on Friday',
+          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
           'isActive': false
         },
         {
@@ -92,7 +103,7 @@ export default {
           'url': '#',
           'section_name': 'Section 4',
           'title': 'Panglima TNI : Pengiriman Satgas Kesehatan TNI Sesuai Konstitusi',
-          'teaser': 'Posted by Kevin on Friday',
+          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
           'isActive': false
         }
       ]
@@ -102,19 +113,42 @@ export default {
 </script>
 
 <style>
-  .el-carousel__item h3 {
-    color: #475669;
-    font-size: 18px;
-    opacity: 0.75;
-    line-height: 300px;
-    margin: 0;
-  }
+.el-carousel__item{
+  background-color: #FFF;
+}
+.image-hl{
+  width: 100%;
+  max-height: 400px;    
+}
 
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-  }
 
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
-  }
+.section-hl{
+  position: absolute;
+  top: 5%;
+  left: 3%;
+  text-align: center;
+  color: #FFF;
+  font-weight: bold;
+  background-color: #0a2f88;
+  padding: 5px 15px;
+}
+
+
+.bottom-caption{	
+	width:100%;
+  padding:10px 15px;	  
+}
+
+.bottom-caption h2{    
+  line-height: 0.03em;
+}
+
+.separator {
+    background-color: #fbdd01;
+    width: 1.5em;
+    height: 0.8em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 </style>

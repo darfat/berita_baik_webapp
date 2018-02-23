@@ -1,7 +1,11 @@
 <template>
     <div class="frontpage-wrapper">
-        <top-slider></top-slider>
-        <headline-slider></headline-slider>    
+        <div class="slider-wrapper"  style="background-color: #e6e6e6; margin-bottom: 20px;">
+          <div class="container">
+            <top-slider></top-slider>
+            <headline-slider></headline-slider>
+          </div>
+        </div>
         <div class="container">
           <el-row :gutter="20">
             <el-col :span="16">
