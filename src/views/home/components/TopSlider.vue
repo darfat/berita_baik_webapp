@@ -137,7 +137,7 @@ export default {
 
 .image{
   width: 100%;
-  min-h
+  min-height: 200px;  
 }
 
 .title {    
@@ -148,14 +148,13 @@ export default {
 
 .section{
   position: absolute;
-    top: 3%;
-    left: 3%;
-    // transform: translate( -50%, -50% );
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    background-color: #0a2f88;
-    padding-left: 15px;
-    padding-right: 15px;
+  top: 3%;
+  left: 3%;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  background-color: #0a2f88;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 </style>
