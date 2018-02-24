@@ -16,25 +16,21 @@
             </el-col>
           </el-row>
         </div>
-        <div>BOX LATEST</div><div>BOX TERPOPULAR</div>
-        <div>BOX SECTION</div><div>SIDEBAR</div>
-        <div>BOX SECTION</div><div>SIDEBAR</div>
-        <div>CITRA</div>
-        <div>MEDSOS</div>
-        <div>AGENDA</div>
+        <citra></citra>
         
     </div>    
 </template>
 
 <script>
-import { TopSlider, HeadlineSlider, LatestNews, PopularNewsSide } from '@/views/home/components'
+import { TopSlider, HeadlineSlider, LatestNews, PopularNewsSide, Citra } from '@/views/home/components'
 export default {
   name: 'frontpage',
   components: {
     TopSlider,
     HeadlineSlider,
     LatestNews,
-    PopularNewsSide
+    PopularNewsSide,
+    Citra
   },
   computed: {
   }

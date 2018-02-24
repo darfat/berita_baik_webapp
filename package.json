@@ -23,6 +23,7 @@
     "vue-fixed-header": "^1.0.1",
     "vue-icon": "^2.0.0",
     "vue-router": "3.0.1",
+    "vue-video-player": "^5.0.2",
     "vuex": "3.0.1"
   },
   "devDependencies": {
