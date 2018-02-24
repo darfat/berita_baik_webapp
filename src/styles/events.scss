@@ -4,17 +4,43 @@
     margin-bottom: 10px;
 }
 
+.events .events-title{
+  font-size: 1.2em;
+}
 .events .events-content{
-   // color: $bb-gray;
+  color: $bb-grayWhite;
+  font-size: 0.8em;
+  min-height: 150px;
+}
+
+.events .events-content .events-separator {
+  border-left: 2px solid $bb-grayWhite;
+  height: 100%;
+}
+.events .events-content .events-month{
+  color: $bb-blue;
+  font-weight: bold;
+  font-size: 2.0em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.events .events-content .events-date{
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.events .events-title{
+  font-size: 1.2em;
 }
 
 .event-text-circle {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  min-height:100px;
   border-radius: 50%;
-  color: $bb-gray;
+  color: $bb-grayWhite;
   line-height: 2px;
   text-align: center;
   border-style: solid;
   border-width: 2px;
+  padding-top: 45px;
 }

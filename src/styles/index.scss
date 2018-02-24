@@ -168,6 +168,9 @@ a:hover {
 .align-right {
   text-align: right;
 }
+.align-center {
+  text-align: center;
+}
 .v-align-middle {
   vertical-align: middle;
 }
@@ -190,7 +193,13 @@ a:hover {
 .font-blue {
   color: $bb-blue;
 }
+.font-black {
+  color: $bb-black;
+}
 .p-t-18{
   padding-top: 18px;
+}
+.font-h1{
+  font-size: 2.0em;
 }
 //END start

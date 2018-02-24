@@ -151,7 +151,7 @@
     </el-row>
     <el-row :gutter="20" class="events-container">
       <el-col :span="2"><div class="grid-content"></div></el-col>
-      <el-col :span="14" class="content">
+      <el-col :span="20" class="content">
             <events></events>
       </el-col>
       <el-col :span="2"><div class="grid-content"></div></el-col>

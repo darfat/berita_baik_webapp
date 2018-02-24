@@ -1,7 +1,7 @@
 <template>
     <div class="citra-wrapper">
 	   <video muted>
-		     <source src="static/media/waynesworld.mp4" type="video/mp4">
+		     <source src="https://www.youtube.com/watch?v=8LeQN249Jqw" type="video/mp4">
 		     Your browser does not support the video tag.
 	   </video>
      
