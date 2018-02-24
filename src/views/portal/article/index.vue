@@ -5,7 +5,6 @@
           <el-col :span="2"><div class="grid-content"></div></el-col>
           <el-col :span="16">
             <div class="grid-content title-container">
-                <span class="main-article-title"> Indonesia Baik </span> 
             </div>
           </el-col>
       </el-row>

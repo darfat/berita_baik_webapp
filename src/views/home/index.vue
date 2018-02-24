@@ -16,13 +16,27 @@
             </el-col>
           </el-row>
         </div>
-        <citra></citra>
+       
+           
+        <div class="container">
+            <hr/>
+            <citra></citra> 
+            <hr/>
+            <events></events>   
+            
+        </div>
         
+        <div>
+          <hr/>
+          <subscribe></subscribe>
+        </div> 
     </div>    
 </template>
 
 <script>
-import { TopSlider, HeadlineSlider, LatestNews, PopularNewsSide, Citra } from '@/views/home/components'
+import { TopSlider, HeadlineSlider, LatestNews, Citra } from '@/views/home/components'
+import { PopularNewsSide, Subscribe, Events } from '@/views/portal/components'
+
 export default {
   name: 'frontpage',
   components: {
@@ -30,7 +44,9 @@ export default {
     HeadlineSlider,
     LatestNews,
     PopularNewsSide,
-    Citra
+    Citra,
+    Subscribe,
+    Events
   },
   computed: {
   }
