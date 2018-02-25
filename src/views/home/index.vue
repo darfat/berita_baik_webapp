@@ -22,6 +22,8 @@
             <hr/>
             <citra></citra> 
             <hr/>
+            <social-feed></social-feed>   
+            <hr/>
             <events></events>   
             
         </div>
@@ -35,7 +37,7 @@
 
 <script>
 import { TopSlider, HeadlineSlider, LatestNews, Citra } from '@/views/home/components'
-import { PopularNewsSide, Subscribe, Events } from '@/views/portal/components'
+import { PopularNewsSide, Subscribe, Events, SocialFeed } from '@/views/portal/components'
 
 export default {
   name: 'frontpage',
@@ -46,7 +48,8 @@ export default {
     PopularNewsSide,
     Citra,
     Subscribe,
-    Events
+    Events,
+    SocialFeed
   },
   computed: {
   }

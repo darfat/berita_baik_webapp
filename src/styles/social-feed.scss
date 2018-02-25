@@ -1,0 +1,47 @@
+@import './variables.scss';
+
+.social-feed{
+
+}
+
+.social-feed .feed-main{
+    background-color: $bb-blue;
+    color: #fff;
+    font-size: 1em;
+    min-height: 200px;
+    border:$bb-gray solid 1px;
+}
+.social-feed .feed-main .feed-content{
+    padding : 10px;
+}
+.social-feed .feed-main .feed-content .feed-logo{
+    position:absolute;
+    bottom:15px;
+}
+.social-feed .feed-list{
+    color: $bb-grayWhite;
+    border:$bb-gray solid 0.5px;
+    font-size: 0.8em;
+    min-height: 200px;
+}
+.social-feed .feed-list .feed-content{
+}
+.social-feed .feed-list .feed-content .feed-box{
+    border:$bb-gray solid 0.5px;
+    padding: 10px;
+    min-height: 100px;
+}
+.social-feed .feed-list .feed-content .feed-box .feed-logo{
+    color: $bb-blue;
+} 
+.social-feed .feed-list .feed-content .feed-box .feed-logo span{
+    color: #000000;
+} 
+.social-feed .feed-list .feed-content .feed-box .feed-logo .feed-date{
+    color: $bb-gray;
+} 
+.social-feed .feed-list .feed-content .feed-box .feed-date{
+    color: $bb-gray;
+} 
+.social-feed .feed-list .feed-content .feed-box .feed-stream{
+} 
