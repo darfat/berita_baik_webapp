@@ -36,8 +36,8 @@ export const constantRouterMap = [
       component: () => import('@/views/home/index')
     },
     {
-      path: 'indonesia-baik',
-      name: 'indonesia-baik-menu',
+      path: 'editorial/:editorialSlug',
+      name: 'editorial-menu',
       props: true,
       component: () => import('@/views/portal/editorial/index')
     },

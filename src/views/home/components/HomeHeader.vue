@@ -73,13 +73,13 @@
           </div>
           <span v-else><a href="#/home">Home</a></span>
           </el-menu-item>
-          <el-menu-item index="2"><a href="#/indonesia-baik">Indonesia Baik</a></el-menu-item>
-          <el-menu-item index="3"><a href="">Indonesia Membangun</a></el-menu-item>
-          <el-menu-item index="4"><a href="">Indonesia Bangga</a></el-menu-item>
-          <el-menu-item index="5"><a href="">Melancong</a></el-menu-item>
-          <el-menu-item index="6"><a href="">Teknologi</a></el-menu-item>
-          <el-menu-item index="7"><a href="">Panggung</a></el-menu-item>
-          <el-menu-item index="8"><a href="">Citra</a></el-menu-item>
+          <el-menu-item index="2"> <router-link :to="{ path: '/editorial/indonesia-baik' }">Indonesia Baik </router-link> </el-menu-item>
+          <el-menu-item index="3"> <router-link :to="{ path: '/editorial/indonesia-membangun' }">Indonesia Membangun</router-link> </el-menu-item>
+          <el-menu-item index="4"> <router-link :to="{ path: '/editorial/indonesia-bangga' }">Indonesia Bangga</router-link> </el-menu-item>
+          <el-menu-item index="5"> <router-link :to="{ path: '/editorial/melancong' }">Melancong</router-link> </el-menu-item>
+          <el-menu-item index="6"> <router-link :to="{ path: '/editorial/teknologi' }">Teknologi</router-link> </el-menu-item>
+          <el-menu-item index="7"> <router-link :to="{ path: '/editorial/panggung' }">Panggung</router-link> </el-menu-item>
+          <el-menu-item index="8"> <router-link :to="{ path: '/editorial/citra' }">Citra</router-link> </el-menu-item>
         </el-menu>
       </nav>
     </el-header>
