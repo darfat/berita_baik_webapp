@@ -46,6 +46,12 @@ export const constantRouterMap = [
       name: 'article-detail',
       props: true,
       component: () => import('@/views/portal/article/index')
+    },
+    {
+      path: 'infografis',
+      name: 'infografis-menu',
+      props: true,
+      component: () => import('@/views/portal/infografis/index')
     }]
   },
 
