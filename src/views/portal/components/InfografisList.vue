@@ -48,7 +48,7 @@
         :total="20"
         prev-text="Pertama" next-text="Terakhir"
         >
-    </el-pagination>
+      </el-pagination>
     </div>
   </div>
 </template>

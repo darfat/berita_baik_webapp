@@ -1,20 +1,20 @@
 <template>
-  <div class="infografis-main">      
+  <div class="infografis-detail-main">      
     <div class="main-container">
-        <infografis-list></infografis-list>
+        <infografis></infografis>
     </div>
   </div>
 </template>
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
-import { InfografisList, PopularNewsSide, ArticlesCard, Subscribe, Events } from '@/views/portal/components'
+import { Infografis, PopularNewsSide, ArticlesCard, Subscribe, Events } from '@/views/portal/components'
 
 export default {
-  name: 'InfografisListLayout',
+  name: 'InfografisLayout',
   components: {
     ArticleSeparator,
-    InfografisList, PopularNewsSide, ArticlesCard, Subscribe, Events
+    Infografis, PopularNewsSide, ArticlesCard, Subscribe, Events
   },
   data() {
     return {
@@ -29,6 +29,6 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-@import "src/styles/infografis-main.scss";
+@import "src/styles/infografis-detail-main.scss";
 
 </style>
