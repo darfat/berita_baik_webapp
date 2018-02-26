@@ -1,263 +1,60 @@
-<template>
-    <div class="citra-wrapper">
-    <div class="player">
-        <video-player  class="vjs-custom-skin"
-                        ref="videoPlayer"
-                        :options="playerOptions"
-                        :playsinline="true"
-                        @play="onPlayerPlay($event)"
-                        @pause="onPlayerPause($event)"
-                        @ended="onPlayerEnded($event)"
-                        @loadeddata="onPlayerLoadeddata($event)"
-                        @waiting="onPlayerWaiting($event)"
-                        @playing="onPlayerPlaying($event)"
-                        @timeupdate="onPlayerTimeupdate($event)"
-                        @canplay="onPlayerCanplay($event)"
-                        @canplaythrough="onPlayerCanplaythrough($event)"
-                        @ready="playerReadied"
-                        @statechanged="playerStateChanged($event)">
-        </video-player>
-    </div>
-    </div>
+<template>  
+  <section class="video-container">    
+    <youtube :video-id="videoId" @ready="ready" @playing="playing" ></youtube>
+  </section>
 </template>
 
 <script>
-  import 'video.js/dist/video-js.css'
-  import { videoPlayer } from 'vue-video-player'
-
-  // Similarly, you can also introduce the plugin resource pack you want to use within the component
-  // import 'some-videojs-plugin'
-  export default {
-    components: {
-      videoPlayer
+import Vue from 'vue'
+import VueYouTubeEmbed from 'vue-youtube-embed'
+Vue.use(VueYouTubeEmbed)
+export default {
+  data() {
+    return {
+      videoId: 'YIOjH0AuqEo'
+    }
+  },
+  methods: {
+    ready(player) {
+      this.player = player
     },
-    data() {
-      return {
-        playerOptions: {
-          // videojs options
-          muted: true,
-          language: 'en',
-          playbackRates: [0.7, 1.0, 1.5, 2.0],
-          sources: [{
-            type: 'video/mp4',
-            src: 'static/media/waynesworld.mp4'
-          }]
-        }
-      }
+    playing(player) {
+      // The player is playing a video.
     },
-    mounted() {
-      console.log('this is current player instance object', this.player)
+    change() {
+      // when you change the value, the player will also change.
+      // If you would like to change `playerVars`, please change it before you change `videoId`.
+      // If `playerVars.autoplay` is 1, `loadVideoById` will be called.
+      // If `playerVars.autoplay` is 0, `cueVideoById` will be called.
+      this.videoId = 'another video id'
     },
-    computed: {
-      player() {
-        return this.$refs.videoPlayer.player
-      }
+    stop() {
+      this.player.stopVideo()
     },
-    methods: {
-      // listen event
-      onPlayerPlay(player) {
-        // console.log('player play!', player)
-      },
-      onPlayerPause(player) {
-        // console.log('player pause!', player)
-      },
-      // ...player event
-
-      // or listen state event
-      playerStateChanged(playerCurrentState) {
-        // console.log('player current update state', playerCurrentState)
-      },
-
-      // player is ready
-      playerReadied(player) {
-        console.log('the player is readied', player)
-        // you can use it to do something...
-        // player.[methods]
-      }
+    pause() {
+      this.player.pauseVideo()
     }
   }
+}
 </script>
+
 <style>
-.vjs-custom-skin > .video-js {
-  width: 100%;
-  max-height: 560px;
+
+
+
+.video-container {
+position: relative;
+padding-bottom: 56.25%;
+padding-top: 30px; height: 0; overflow: hidden;
 }
 
-.vjs-custom-skin > .video-js .vjs-menu-button-inline.vjs-slider-active,.vjs-custom-skin > .video-js .vjs-menu-button-inline:focus,.vjs-custom-skin > .video-js .vjs-menu-button-inline:hover,.video-js.vjs-no-flex .vjs-menu-button-inline {
-  width: 10em
+.video-container iframe,
+.video-container object,
+.video-container embed {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
 }
-
-.vjs-custom-skin > .video-js .vjs-controls-disabled .vjs-big-play-button {
-  display: none!important
-}
-
-.vjs-custom-skin > .video-js .vjs-control {
-  width: 3em
-}
-
-.vjs-custom-skin > .video-js .vjs-control.vjs-live-control{
-  width: auto;
-  padding-left: .5em;
-  letter-spacing: .1em;
-}
-
-.vjs-custom-skin > .video-js .vjs-menu-button-inline:before {
-  width: 1.5em
-}
-
-.vjs-menu-button-inline .vjs-menu {
-  left: 3em
-}
-
-.vjs-paused.vjs-has-started.vjs-custom-skin > .video-js .vjs-big-play-button,.video-js.vjs-ended .vjs-big-play-button,.video-js.vjs-paused .vjs-big-play-button {
-  display: block
-}
-
-.vjs-custom-skin > .video-js .vjs-load-progress div,.vjs-seeking .vjs-big-play-button,.vjs-waiting .vjs-big-play-button {
-  display: none!important
-}
-
-.vjs-custom-skin > .video-js .vjs-mouse-display:after,.vjs-custom-skin > .video-js .vjs-play-progress:after {
-  padding: 0 .4em .3em
-}
-
-.video-js.vjs-ended .vjs-loading-spinner {
-  display: none;
-}
-
-.video-js.vjs-ended .vjs-big-play-button {
-  display: block !important;
-}
-
-.video-js.vjs-ended .vjs-big-play-button,.video-js.vjs-paused .vjs-big-play-button,.vjs-paused.vjs-has-started.vjs-custom-skin > .video-js .vjs-big-play-button {
-  display: block
-}
-
-.vjs-custom-skin > .video-js .vjs-big-play-button {
-  top: 50%;
-  left: 50%;
-  margin-left: -1.5em;
-  margin-top: -1em
-}
-
-.vjs-custom-skin > .video-js .vjs-big-play-button {
-  background-color: rgba(0,0,0,0.45);
-  font-size: 3.5em;
-   /*border-radius: 50%;*/
-  height: 2em !important;
-  line-height: 2em !important;
-  margin-top: -1em !important
-}
-
-.video-js:hover .vjs-big-play-button,.vjs-custom-skin > .video-js .vjs-big-play-button:focus,.vjs-custom-skin > .video-js .vjs-big-play-button:active {
-  background-color: rgba(36,131,213,0.9)
-}
-
-.vjs-custom-skin > .video-js .vjs-loading-spinner {
-  border-color: rgba(36,131,213,0.8)
-}
-
-.vjs-custom-skin > .video-js .vjs-control-bar2 {
-  background-color: #000000
-}
-
-.vjs-custom-skin > .video-js .vjs-control-bar {
-   /*background-color: rgba(0,0,0,0.3) !important;*/
-  color: #ffffff;
-  font-size: 14px
-}
-
-.vjs-custom-skin > .video-js .vjs-play-progress,.vjs-custom-skin > .video-js  .vjs-volume-level {
-  background-color: #2483d5
-}
-
-.vjs-custom-skin > .video-js .vjs-play-progress:before {
-  top: -0.3em;
-}
-
-.vjs-custom-skin > .video-js .vjs-progress-control:hover .vjs-progress-holder {
-  font-size: 1.3em;
-}
-
-.vjs-menu-button-popup.vjs-volume-menu-button-vertical .vjs-menu {
-  left: 0em;
-}
-
-.vjs-custom-skin > .video-js .vjs-menu li {
-  padding: 0;
-  line-height: 2em;
-  font-size: 1.1em;
-  font-family: "PingFang SC","Helvetica Neue","Hiragino Sans GB","Segoe UI","Microsoft YaHei","微软雅黑",sans-serif;
-}
-
-.vjs-custom-skin > .video-js .vjs-time-tooltip,
-.vjs-custom-skin > .video-js .vjs-mouse-display:after, 
-.vjs-custom-skin > .video-js .vjs-play-progress:after {
-  border-radius: 0;
-  font-size: 1em;
-  padding: 0;
-  width: 3em;
-  height: 1.5em;
-  line-height: 1.5em;
-  top: -3em;
-}
-
-.vjs-custom-skin > .video-js .vjs-menu-button-popup .vjs-menu {
-  width: 5em;
-  left: -1em;
-}
-
-.vjs-custom-skin > .video-js .vjs-menu-button-popup.vjs-volume-menu-button-vertical .vjs-menu {
-  left: 0;
-}
-
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-resolution-button .vjs-menu {
-   /*order: 4;*/
-}
-
- /*排序顺序*/
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-play-control {
-  order: 0;
-}
-
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-time-control {
-  min-width: 1em;
-  padding: 0;
-  margin: 0 .1em;
-  text-align: center;
-  display: block;
-  order: 1;
-}
-
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-playback-rate .vjs-playback-rate-value{
-  font-size: 1.2em;
-  line-height: 2.4;
-}
-
-.vjs-custom-skin > .video-js .vjs-progress-control.vjs-control {
-  order: 2;
-}
-
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-volume-menu-button {
-  order: 3;
-}
-
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-resolution-button {
-  order: 4;
-}
-
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-resolution-button .vjs-resolution-button-label {
-  display: block;
-  line-height: 3em;
-}
-
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-playback-rate {
-  order: 5;
-}
-
-.vjs-custom-skin > .video-js .vjs-control-bar .vjs-fullscreen-control {
-  order: 6;
-}
-
-
 </style>
