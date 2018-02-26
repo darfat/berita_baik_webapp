@@ -60,6 +60,8 @@ export const constantRouterMap = [
       component: () => import('@/views/portal/infografis-detail/index')
     }]
   },
+  { path: '/portal/login', component: () => import('@/views/portal/login/index'), hidden: true },
+  { path: '/portal/signup', component: () => import('@/views/portal/signup/index'), hidden: true },
 
   // cms part
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
