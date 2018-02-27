@@ -1,6 +1,5 @@
 <template>  
-  
-  <div style="height: 500px">    
+  <div style="height: 500px" >    
     <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
       <swiper-slide class="slide-1"></swiper-slide>
       <swiper-slide class="slide-2"></swiper-slide>
@@ -17,17 +16,11 @@
       <swiper-slide class="slide-4"></swiper-slide>
       <swiper-slide class="slide-5"></swiper-slide>
     </swiper>
-  
   </div>
-
 </template>
-
 <script>
-// require styles
 import 'swiper/dist/css/swiper.css'
-
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-
 export default {
   components: {
     swiper,
