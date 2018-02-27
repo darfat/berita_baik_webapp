@@ -2,7 +2,7 @@
   <div class="gallery-detail">      
     <div class="gallery-content"> 
         <el-row :gutter="20" >
-            <el-col :span="22" class="gallery-col">
+            <el-col :span="24" class="gallery-col">
                   <div class="gallery-thumbnail">
                       <img :src="mainGallery.image" class="gallery-image" />
                       <div class="gallery-image-title">
@@ -49,7 +49,7 @@
     </div>
     <div class="gallery-card-container">    
         <el-row :gutter="20" >
-            <el-col :span="7" v-for="(g) in galleries" :key="g.id" class="gallery-col">
+            <el-col :span="8" v-for="(g) in galleries" :key="g.id" class="gallery-col">
                 <el-card  :body-style="{ padding: '0px' }" class="gallery-card">
                   <div class="gallery-thumbnail">
                       <img :src="g.image" class="gallery-image" />

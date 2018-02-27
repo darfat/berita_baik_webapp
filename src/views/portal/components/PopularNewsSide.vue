@@ -5,7 +5,7 @@
           </el-row>
           
           <div class="popular-news m-t-10">
-            <el-row v-for="(article) in popular_articles" :key="article.id" class="side-row"  >
+            <el-row :gitter="20" v-for="(article) in popular_articles" :key="article.id" class="side-row"  >
               <el-col :span="8" class="side-image">
                 <div>
                   <img :src="article.main_image" class="card-image"/>
@@ -61,8 +61,8 @@ export default {
         {
           id: '2',
           main_image: 'static/upload/images/1.jpg',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title praesent euripidis, veri nobis eripuit eum id. An sea sus ',
+          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, .</p>',
+          title: 'Lorem Ipsum Title praesent euripidis, sus ',
           editorial: 'Indonesia Baik',
           reporter: {
             id: '1',
@@ -74,7 +74,7 @@ export default {
         {
           id: '3',
           main_image: 'static/upload/images/2.jpg',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
+          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt,</p>',
           title: 'Lorem Ipsum Title',
           editorial: 'Indonesia Baik',
           reporter: {
