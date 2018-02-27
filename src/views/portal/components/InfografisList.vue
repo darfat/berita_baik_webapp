@@ -3,7 +3,7 @@
     <div class="infografis-header"> INFOGRAFIS</div>
     <div class="infografis-content"> 
         <el-row :gutter="20" >
-            <el-col :span="7" v-for="(infografis, index) in list" :key="infografis.id" class="infografis-col">
+            <el-col :span="7" v-for="(infografis) in list" :key="infografis.id" class="infografis-col">
                 <el-card  :body-style="{ padding: '0px' }" class="infografis-card">
                   <div class="infografis-thumbnail">
                       <img :src="infografis.image" class="infografis-image" />
