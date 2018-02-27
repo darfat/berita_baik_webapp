@@ -1,0 +1,166 @@
+<template>
+  <div class="vid-wrapper">
+      <div class="vid-main">
+        <youtube :video-id="videoId" :player-vars="{ showinfo: 0 }" @ready="ready" @playing="playing" ></youtube>
+      </div>
+      <div class="bottom clearfix"></div>
+      <el-row class="vid-main-attr">
+        <el-col :span="20"><h2>{{videoTitle}}</h2></el-col>
+        <el-col :span="4" class="share-icon">
+          <a><v-icon name="facebook" base-class="icon-20"></v-icon></a>
+          <a><v-icon name="twitter" base-class="icon-20"></v-icon></a>
+          <a><v-icon name="instagram" base-class="icon-20"></v-icon></a>
+          <a href=""><v-icon name="play" base-class="icon-20"></v-icon></a>
+        </el-col>
+      </el-row>
+      <div class="vid-thumb">
+        <el-row :gutter="20">
+          <el-col :span="8" v-for="(item) in idata" :key="item.id" style="margin-bottom:20px">
+            <div class="vid-thumb-wrapper">
+              <youtube :video-id="videoId" :player-vars="{ showinfo: 0 }" @ready="ready" @playing="playing" ></youtube>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <div class="videopaging align-center">
+          <el-pagination
+          background
+          layout="prev, pager, next"
+          :total="20"
+          prev-text="Pertama" next-text="Terakhir"
+          >
+        </el-pagination>
+      </div>
+
+  </div>
+  
+  
+</template>
+
+<script>
+import ArticleSeparator from '@/components/ArticleSeparator'
+import Vue from 'vue'
+import VueYouTubeEmbed from 'vue-youtube-embed'
+Vue.use(VueYouTubeEmbed)
+export default {
+  name: 'VideoG',
+  components: {
+    ArticleSeparator
+  },
+  data() {
+    return {
+      videoId: 'PHs39R0AbRw',
+      videoTitle: '5 Destinasi Wisata Terbaik di Jawa Barat',
+      idata: [{
+        id: 1,
+        vid: 'PHs39R0AbRw',
+        vidTitle: 'Title Video'
+      },
+      {
+        id: 2,
+        vid: 'PHs39R0AbRw',
+        vidTitle: 'Title Video'
+      },
+      {
+        id: 3,
+        vid: 'PHs39R0AbRw',
+        vidTitle: 'Title Video'
+      },
+      {
+        id: 4,
+        vid: 'PHs39R0AbRw',
+        vidTitle: 'Title Video'
+      },
+      {
+        id: 5,
+        vid: 'PHs39R0AbRw',
+        vidTitle: 'Title Video'
+      },
+      {
+        id: 6,
+        vid: 'PHs39R0AbRw',
+        vidTitle: 'Title Video'
+      }]
+    }
+  },
+  created() {
+    console.log('videog')
+  },
+  methods: {
+    ready(player) {
+      this.player = player
+    },
+    playing(player) {
+      // The player is playing a video.
+    },
+    change() {
+      // when you change the value, the player will also change.
+      // If you would like to change `playerVars`, please change it before you change `videoId`.
+      // If `playerVars.autoplay` is 1, `loadVideoById` will be called.
+      // If `playerVars.autoplay` is 0, `cueVideoById` will be called.
+      this.videoId = 'another video id'
+    },
+    stop() {
+      this.player.stopVideo()
+    },
+    pause() {
+      this.player.pauseVideo()
+    }
+  }
+}
+</script>
+
+<style >
+
+.vid-main {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 0;
+  height: 0;
+  overflow: hidden;    
+}
+
+.vid-main iframe,
+.vid-main object,
+.vid-main embed{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.vid-main-attr{
+  width: 100%;
+  color: #FFF;
+  line-height: 3em;
+}
+
+.vid-main-attr h2{
+  margin: 0;
+  padding: 0;
+}
+
+.vid-main-attr .share{
+  
+}
+.vid-thumb{  
+  margin: 10px 0;
+}
+.vid-thumb .vid-thumb-wrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.vid-thumb .vid-thumb-wrapper iframe,
+.vid-thumb .vid-thumb-wrapper object,
+.vid-thumb .vid-thumb-wrapper embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+  height: 100%;
+}
+
+
+</style>

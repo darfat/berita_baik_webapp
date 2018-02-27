@@ -64,6 +64,12 @@ export const constantRouterMap = [
       name: 'gallery-menu',
       props: true,
       component: () => import('@/views/portal/gallery/index')
+    },
+    {
+      path: 'video',
+      name: 'video-menu',
+      props: true,
+      component: () => import('@/views/portal/videog/index')
     }]
   },
   { path: '/portal/login', component: () => import('@/views/portal/login/index'), hidden: true },
