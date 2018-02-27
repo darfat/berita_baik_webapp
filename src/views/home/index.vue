@@ -16,8 +16,9 @@
             </el-col>
           </el-row>
         </div>
-       <div class="container"><hr/></div>
-        <citra></citra>   
+       <div class="video-container">
+          <citra></citra>   
+       </div>
         <div class="container">            
             <hr/>
             <social-feed></social-feed>   
