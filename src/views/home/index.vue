@@ -16,16 +16,13 @@
             </el-col>
           </el-row>
         </div>
-       
-           
-        <div class="container">
-            <hr/>
-            <citra></citra> 
+       <div class="container"><hr/></div>
+        <citra></citra>   
+        <div class="container">            
             <hr/>
             <social-feed></social-feed>   
             <hr/>
             <events></events>   
-            
         </div>
         
         <div>
