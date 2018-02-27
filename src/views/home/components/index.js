@@ -6,4 +6,5 @@ export { default as HomeFooter } from './HomeFooter'
 export { default as LatestNews } from './LatestNews'
 export { default as PopularNewsSide } from './PopularNewsSide'
 export { default as Citra } from './Citra'
+export { default as Galeri } from './Galeri'
 
