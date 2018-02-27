@@ -74,7 +74,7 @@ export default {
         },
         {
           id: '2',
-          main_image: 'static/upload/images/3.jpg',
+          main_image: 'static/upload/images/1.jpg',
           teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
           title: 'Lorem Ipsum Title',
           editorial: 'Indonesia Baik',

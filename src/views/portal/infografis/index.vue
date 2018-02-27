@@ -1,7 +1,26 @@
 <template>
   <div class="infografis-main">      
-    <div class="main-container">
+    <div class="infografis-main-container">
+      <div class="content-container">
         <infografis-list></infografis-list>
+      </div>
+    </div>
+    <div class="content-container">
+      <el-row :gutter="20">
+        <el-col :span="16">
+          <articles-card></articles-card>
+        </el-col>
+        <el-col :span="8">
+          <popular-news-side></popular-news-side>
+        </el-col>
+      </el-row>
+      <hr/>
+      <events></events>
+       
+    </div>
+    <div class="sub-content-container" >
+      <hr/>
+       <subscribe></subscribe>
     </div>
   </div>
 </template>

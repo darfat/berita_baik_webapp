@@ -2,8 +2,8 @@
   <div class="infografis-list">      
     <div class="infografis-header"> INFOGRAFIS</div>
     <div class="infografis-content"> 
-        <el-row :gutter="20" >
-            <el-col :span="7" v-for="(infografis) in list" :key="infografis.id" class="infografis-col">
+        <el-row >
+            <el-col :span="8" v-for="(infografis) in list" :key="infografis.id" class="infografis-col">
                 <el-card  :body-style="{ padding: '0px' }" class="infografis-card">
                   <div class="infografis-thumbnail">
                       <img :src="infografis.image" class="infografis-image" />
@@ -153,4 +153,13 @@ export default {
     background-color: green;
 }
 
+.el-row {
+  margin-bottom: 3px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+.el-col {
+    border-radius: 0px;
+}
 </style>

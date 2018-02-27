@@ -1,5 +1,15 @@
 @import './variables.scss';
 
 .infografis-main{
-    padding-top: 150px
+    padding-top: 150px;
+}
+.infografis-main .infografis-main-container{
+    background-color: #000;
+    
+}
+.infografis-main .infografis-main-container .infografis-main-list{
+    width: 80%;
+    margin: 0 auto;
+}
+.infografis-main .infografis-other-container{
 }
