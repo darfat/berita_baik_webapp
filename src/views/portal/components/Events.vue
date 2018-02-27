@@ -20,7 +20,7 @@
         </el-row>
       </el-col>
       <el-col :span="6" class="events-separator">
-         <el-row gutter="20" >
+         <el-row :gutter="20" >
           <el-col :span="8" class="align-center" >
              <div class="event-text-circle "> <span class="events-date"> 01 </span> </div>
           </el-col>
@@ -36,7 +36,7 @@
         </el-row>
       </el-col>
       <el-col :span="6" class="events-separator">
-        <el-row gutter="20" >
+        <el-row :gutter="20" >
           <el-col :span="8" class="align-center" >
              <div class="event-text-circle "> <span class="events-date"> 03 </span> </div>
           </el-col>
@@ -52,7 +52,7 @@
         </el-row>
       </el-col>
       <el-col :span="6" class="events-separator">
-        <el-row gutter="20" >
+        <el-row :gutter="20" >
           <el-col :span="8" class="align-center" >
              <div class="event-text-circle "> <span class="events-date"> 18 </span> </div>
           </el-col>

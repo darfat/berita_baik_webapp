@@ -36,8 +36,8 @@ export const constantRouterMap = [
       component: () => import('@/views/home/index')
     },
     {
-      path: 'indonesia-baik',
-      name: 'indonesia-baik-menu',
+      path: 'editorial/:editorialSlug',
+      name: 'editorial-menu',
       props: true,
       component: () => import('@/views/portal/editorial/index')
     },
@@ -46,8 +46,28 @@ export const constantRouterMap = [
       name: 'article-detail',
       props: true,
       component: () => import('@/views/portal/article/index')
+    },
+    {
+      path: 'infografis',
+      name: 'infografis-menu',
+      props: true,
+      component: () => import('@/views/portal/infografis/index')
+    },
+    {
+      path: 'infografis/:slug',
+      name: 'infografis-detail',
+      props: true,
+      component: () => import('@/views/portal/infografis-detail/index')
+    },
+    {
+      path: 'gallery',
+      name: 'gallery-menu',
+      props: true,
+      component: () => import('@/views/portal/gallery/index')
     }]
   },
+  { path: '/portal/login', component: () => import('@/views/portal/login/index'), hidden: true },
+  { path: '/portal/signup', component: () => import('@/views/portal/signup/index'), hidden: true },
 
   // cms part
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },

@@ -5,7 +5,7 @@
           <el-col :span="2"><div class="grid-content"></div></el-col>
           <el-col :span="16">
             <div class="grid-content title-container">
-                <span class="main-article-title"> Indonesia Baik </span> 
+                <span class="main-article-title"> {{ editorialTitle }} </span> 
             </div>
           </el-col>
       </el-row>
@@ -19,7 +19,7 @@
                         <div class="background">
                           <img :src="latestNews.main_image" />
                           <div class="editorial-type-img">
-                              <p>{{ latestNews.editorial }}</p>
+                              <p>{{ editorialTitle }}</p>
                           </div>
                         </div>
                     </div>
@@ -94,6 +94,7 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import { PopularNewsSide, ArticlesCard } from '@/views/portal/components'
+import { getEditorialLabelBySlug } from '@/api/editorial'
 
 export default {
   name: 'editorials',
@@ -116,11 +117,19 @@ export default {
           role: 'reporter'
         },
         publish_date_counter: '2 Jam Yang lalu'
-      }
+      },
+      editorialTitle: ''
     }
   },
   created() {
     console.log('Editorials')
+    console.log(this.$route.params.editorialSlug)
+    this.init()
+  },
+  methods: {
+    init() {
+      this.editorialTitle = getEditorialLabelBySlug(this.$route.params.editorialSlug)
+    }
   }
 }
 </script>

@@ -1,0 +1,50 @@
+@import './variables.scss';
+
+.login{
+    background-image: url("/static/images/login-bg.jpg");
+   background-color: #fff;
+   position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    overflow:hidden;
+    z-index:-1; /* Remove this line if it's not going to be a background! */
+}
+.login .login-box{
+    position: absolute;
+    background-color: #fff;
+    height: 330px;
+    width: 320px;
+    border-radius: 10px;
+    padding: 5px;
+    top: 30%;
+    left: 70%;
+    font-size: 0.8em;
+}
+.login .login-box .logo{
+    text-align: center;
+}
+.login .login-box img{
+    max-width: 50px;
+    height: auto;
+}
+.login .login-box .form{
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.login .login-box .options{
+    text-align: center;
+}
+.login .login-box .options .login-with{
+    position:absolute;
+    left: 35%;
+    bottom:40px;
+    font-size: 4em;
+}
+.login .login-box .options .sign-up{
+    position:absolute;
+    left: 18%;
+    bottom:15px;
+}

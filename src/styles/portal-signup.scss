@@ -1,0 +1,49 @@
+@import './variables.scss';
+
+.signup{
+    background-image: url("/static/images/signup-bg.jpg");
+   background-color: #fff;
+   position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    overflow:hidden;
+    z-index:-1; /* Remove this line if it's not going to be a background! */
+}
+.signup .signup-box{
+    position: absolute;
+    background-color: #fff;
+    height: 380px;
+    width: 320px;
+    border-radius: 10px;
+    padding: 5px;
+    top: 30%;
+    left: 70%;
+    font-size: 0.8em;
+}
+.signup .signup-box .logo{
+    text-align: center;
+}
+.signup .signup-box img{
+    max-width: 50px;
+    height: auto;
+}
+.signup .signup-box .form{
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.signup .signup-box .options{
+    text-align: center;
+    margin-top:20px;
+}
+.signup .signup-box .options .signup-label{
+}
+.signup .signup-box .options .signup-with{
+    margin-top: -10px;
+    font-size: 4em;
+}
+.signup .signup-box .options .login{
+ margin-top: 20px;
+}

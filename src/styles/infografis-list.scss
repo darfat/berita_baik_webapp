@@ -1,0 +1,67 @@
+@import './variables.scss';
+
+.infografis-list{
+
+}
+.infografis-list .infografis-header{
+    padding-top: 10px;
+    padding-bottom: 5px;
+    font-style: bold;
+    // color: #fff;
+    font-size: 1.6em;
+}
+.infografis-list .infografis-content{
+
+}
+.infografis-list .infografis-content .infografis-col {
+}
+.infografis-list .infografis-content .infografis-col .infografis-card {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0px;
+
+}
+.infografis-list .infografis-content .infografis-col .infografis-card .infografis-info{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.infografis-list .infografis-content .infografis-col .infografis-card .infografis-info .infografis-content-title{
+    font-weight: bold;
+    font-size: 1.0em;
+}.infografis-list .infografis-content .infografis-col .infografis-card .infografis-info .infografis-footer{
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.infografis-list .infografis-content .infografis-col .infografis-card .infografis-thumbnail {
+    position: relative;
+}
+.infografis-list .infografis-content .infografis-col .infografis-card .infografis-thumbnail .infografis-image{
+    width: 100%;
+    height: auto;
+    max-height: 235px;
+}
+
+.infografis-list .infografis-content .infografis-col .infografis-card .infografis-thumbnail .infografis-image-title {
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    // transform: translate( -50%, -50% );
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    background-color: $bb-blue;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 0.8em;
+}
+.infografis-list .infografis-content .infografis-col .infografis-card .infografis-thumbnail img{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.infografis-list .infografis-paging{
+    text-align: center;
+
+}
