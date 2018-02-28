@@ -77,7 +77,7 @@
           <div class="side-separator">
             <span> Buka lebih banyak lagi </span>
           </div>
-          <div>Infografis</div>
+          <div><router-link :to="{ path: '/infografis' }"> Infografis </router-link></div>
           <div class="side-separator">
             <span> Buka lebih banyak lagi </span>
           </div>

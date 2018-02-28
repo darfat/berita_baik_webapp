@@ -6,10 +6,12 @@
             <el-col :span="8" v-for="(infografis) in list" :key="infografis.id" class="infografis-col">
                 <el-card  :body-style="{ padding: '0px' }" class="infografis-card">
                   <div class="infografis-thumbnail">
-                      <img :src="infografis.image" class="infografis-image" />
-                      <div class="infografis-image-title">
-                        <p >{{ infografis.editorial }}</p>
-                      </div>
+                      <router-link :to="{ path: '/infografis/slug-id' }">
+                        <img :src="infografis.image" class="infografis-image" />
+                        <div class="infografis-image-title">
+                          <p >{{ infografis.editorial }}</p>
+                        </div>
+                      </router-link>
                   </div>
                   <hr/>
                   <div class="infografis-info">

@@ -26,7 +26,8 @@
   <div class="container">            
     <hr/><events></events><hr/>
     <el-row :gutter="20" style="background-color: #222; padding: 10px 0;">
-      <el-col :span="16"><galeri></galeri></el-col>
+      <el-col :span="16">
+        <galeri></galeri></el-col>
       <el-col :span="8">ads</el-col>
     </el-row>      
   </div>

@@ -3,9 +3,11 @@
   <el-carousel :interval="4000" type="card" height="200px" indicator-position="none">
     <el-carousel-item v-for="item in idata" :key="item.id">
       <div class="item-wrapper">
-      <img :src="imgpath+item.img" class="image">
-      <div class="section">{{item.section_name}}</div>
-      <div class="title"><h3>{{item.title}}</h3></div>
+      <router-link :to="{ path: '/article/indonesia-baik/my-slug' }">
+        <img :src="imgpath+item.img" class="image">
+        <div class="section">{{item.section_name}}</div>
+        <div class="title"><h3>{{item.title}}</h3></div>
+      </router-link>
       </div>
     </el-carousel-item>
   </el-carousel>

@@ -1,12 +1,11 @@
 <template>
-  <div class="video-wrapper">
-    <div class="video-main">  
-      <div class="container">
+  <div class="video-main">
+    <div class="video-main-container">  
+      <div class="content-container">
         <video-g></video-g>
       </div>
     </div>
-    <div class="section-wrapper">
-      <div class="container">
+    <div class="content-container" >
         <el-row>
           <el-col :span="18">
             <articles-card></articles-card>
@@ -17,11 +16,12 @@
         </el-row>
         <hr style="margin:20px 0" />
         <events></events>
-        <hr style="margin:20px 0" />
-        <subscribe></subscribe>
-      </div>
+        
     </div>
-    
+    <div class="sub-content-container" >
+      <hr style="margin:20px 0" />
+        <subscribe></subscribe>
+    </div>
   </div>
     
 </template>
@@ -55,11 +55,18 @@ export default {
   margin-right: auto;
      
   width: 100%;
-  height: auto;
+  height: 100%;
   background-color: #FFF;
 }
 .video-main{
+  padding-top: 150px
+ 
+}
+.video-main-container{
   background-color: #222;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   padding: 20px 0; 
 }
 .container{
