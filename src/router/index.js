@@ -70,6 +70,12 @@ export const constantRouterMap = [
       name: 'video-menu',
       props: true,
       component: () => import('@/views/portal/videog/index')
+    },
+    {
+      path: 'tentang-kami',
+      name: 'tentang-kami-menu',
+      props: true,
+      component: () => import('@/views/portal/aboutus/index')
     }]
   },
   { path: '/portal/login', component: () => import('@/views/portal/login/index'), hidden: true },
