@@ -15,7 +15,7 @@
                 <el-col >
                   <div>
                       <div class="thumbnail">
-                        <img :src="mainArticle.main_image" />
+                          <img :src="mainArticle.main_image" />
                         <div class="editorial-type-img">
                             <p>{{ mainArticle.editorial }}</p>
                         </div>
@@ -202,14 +202,20 @@ export default {
           role: 'reporter',
           image: 'static/upload/images/profile.jpg'
         },
-        publish_date_counter: '2 Jam Yang lalu'
+        publish_date_counter: '2 Jam Yang lalu',
+        slug: 'title-slug'
       },
-      articles: []
+      articles: [],
+      editorialSlug: null
     }
   },
   created() {
-    console.log('Article Detail')
-    console.log(this.$route.params.editorialSlug)
+    this.init()
+  },
+  methods: {
+    init() {
+      this.editorialSlug = this.$route.params.editorialSlug
+    }
   }
 }
 </script>

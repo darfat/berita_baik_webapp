@@ -17,7 +17,7 @@
                   <el-col >
                     <div>
                         <div class="background">
-                          <img :src="latestNews.main_image" />
+                            <img :src="latestNews.main_image" />
                           <div class="editorial-type-img">
                               <p>{{ editorialTitle }}</p>
                           </div>
@@ -36,7 +36,9 @@
                     <el-row :gutter="20" class="ln-title">
                       <el-col >
                         <div > 
-                          {{ latestNews.title }}
+                          <router-link :to="{ path: '/article/'+editorialSlug+'/'+latestNews.slug }"> 
+                            {{ latestNews.title }}
+                          </router-link>
                         </div>
                       </el-col>
                     </el-row>
@@ -116,19 +118,20 @@ export default {
           name: 'Boim',
           role: 'reporter'
         },
-        publish_date_counter: '2 Jam Yang lalu'
+        publish_date_counter: '2 Jam Yang lalu',
+        slug: 'title-slug'
       },
-      editorialTitle: ''
+      editorialTitle: '',
+      editorialSlug: null
     }
   },
   created() {
-    console.log('Editorials')
-    console.log(this.$route.params.editorialSlug)
     this.init()
   },
   methods: {
     init() {
       this.editorialTitle = getEditorialLabelBySlug(this.$route.params.editorialSlug)
+      this.editorialSlug = this.$route.params.editorialSlug
     }
   }
 }
