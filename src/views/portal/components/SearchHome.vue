@@ -25,14 +25,35 @@
           </el-row>                         
         </div>
         <div class="search-result">
-          <el-row :gutter="20">
-            <el-span :md="8" v-for="n in 9">
-              <div style="display: block; width:100%; height: 100px; background-color: #0f0">{{n}}</div>
-            </el-span>
+          <el-row :gutter="20" >
+            <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" v-for="n in 9" :key="n">
+              
+              <el-card :body-style="{ padding: '0px' }">
+              <img src="" class="image">
+              <div class="desc">
+                  <span><v-icon name="heart" base-class="icon-20"></v-icon> </span>
+                  <span><v-icon name="share-2" base-class="icon-20"></v-icon> </span>
+                <div class="bottom clearfix">
+                  <h2><a>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h2>
+                </div>
+                <div class="bottom clearfix">
+                  <hr align="left" />
+                  <span>author</span> | <span>time</span>
+                </div>
+              </div>
+            </el-card>
+
+            </el-col>
           </el-row>
         </div>
         <div class="search-pagination">
-
+          <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="20"
+            prev-text="Pertama" next-text="Terakhir"
+            >
+          </el-pagination>
         </div>
       </div>    
   </div>
@@ -44,39 +65,7 @@ export default {
   name: 'SearchHome',
   data() {
     return {
-      input1: '',
-      videoId: 'PHs39R0AbRw',
-      videoTitle: '5 Destinasi Wisata Terbaik di Jawa Barat',
-      idata: [{
-        id: 1,
-        vid: 'PHs39R0AbRw',
-        vidTitle: 'Title Video'
-      },
-      {
-        id: 2,
-        vid: 'PHs39R0AbRw',
-        vidTitle: 'Title Video'
-      },
-      {
-        id: 3,
-        vid: 'PHs39R0AbRw',
-        vidTitle: 'Title Video'
-      },
-      {
-        id: 4,
-        vid: 'PHs39R0AbRw',
-        vidTitle: 'Title Video'
-      },
-      {
-        id: 5,
-        vid: 'PHs39R0AbRw',
-        vidTitle: 'Title Video'
-      },
-      {
-        id: 6,
-        vid: 'PHs39R0AbRw',
-        vidTitle: 'Title Video'
-      }]
+      input1: ''
     }
   },
   created() {
@@ -89,7 +78,7 @@ export default {
 @import "src/styles/variables.scss";
 .search{
   padding: 40px 0;
-  background-color: $bb-gray;
+  background-color: #e6e6e6;
   &-box{
     &-label{
       color: $bb-blue;
@@ -105,10 +94,42 @@ export default {
   }
 
   &-result{
-    width: 100%;
-    min-height: 400px;
-    background-color: #fff;
-    margin: 20px 0;
+    width: 100%;    
+    margin: 40px 0;
   }
+
+  &-pagination{
+    text-align: center;
+  }
+}
+
+.el-card{
+  margin-bottom: 20px;
+  background-color: #fff;  
+  border: 1px solid #1a1a1a;
+  border-radius: none;
+  box-shadow: none;
+  
+  .image{
+    display: block;
+    width: 100%;
+    padding: 10px;    
+    min-height: 250px;    
+  }
+
+  .desc{
+    padding: 14px;    
+    border-top: 1px solid #1a1a1a;
+  }
+  h2{
+    margin: 0;    
+  }
+  hr{
+    height: 10px;
+    background-color: $bb-yellow;
+    border: none;
+    width: 10%;    
+  }
+
 }
 </style>
