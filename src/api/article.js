@@ -35,3 +35,11 @@ export function update(data) {
     data
   })
 }
+
+export function getLatestNewsByEditorial(params) {
+  return request({
+    url: '/articles-editorial/latest/' + params.editorialSlug,
+    method: 'get'
+  })
+}
+

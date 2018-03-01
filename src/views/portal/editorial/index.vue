@@ -12,8 +12,8 @@
       <el-row :gutter="20">
         <el-col :span="2"><div class="grid-content"></div></el-col>
         <el-col :span="20">
-          <div class="grid-content latest-news">
-                <el-row :gutter="20">
+          <div class="grid-content latest-news" v-loading="loading.latestNews">
+                <el-row :gutter="20" >
                   <el-col >
                     <div>
                         <div class="background">
@@ -54,7 +54,7 @@
                     <el-row :gutter="20">
                         <el-col class="footer">
                           <div>
-                            {{ latestNews.reporter.name }} | {{ latestNews.publish_date_counter }}
+                            <!-- {{ latestNews.reporter.name }} | {{ latestNews.publish_date_counter }} -->
                           </div>
                         </el-col>
                     </el-row>
@@ -97,6 +97,7 @@
 import ArticleSeparator from '@/components/ArticleSeparator'
 import { PopularNewsSide, ArticlesCard } from '@/views/portal/components'
 import { getEditorialLabelBySlug } from '@/api/editorial'
+import { getLatestNewsByEditorial } from '@/api/article'
 
 export default {
   name: 'editorials',
@@ -107,31 +108,29 @@ export default {
   },
   data() {
     return {
-      latestNews: {
-        id: '1',
-        main_image: 'static/upload/images/3.jpg',
-        teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-        title: 'Lorem Ipsum Title',
-        editorial: 'Indonesia Baik',
-        reporter: {
-          id: '1',
-          name: 'Boim',
-          role: 'reporter'
-        },
-        publish_date_counter: '2 Jam Yang lalu',
-        slug: 'title-slug'
-      },
+      latestNews: {},
       editorialTitle: '',
-      editorialSlug: null
+      editorialSlug: null,
+      loading: {
+        latestNews: false
+      }
     }
   },
   created() {
     this.init()
+    this.getLatestNews(this.editorialSlug)
   },
   methods: {
     init() {
       this.editorialTitle = getEditorialLabelBySlug(this.$route.params.editorialSlug)
       this.editorialSlug = this.$route.params.editorialSlug
+    },
+    getLatestNews(editorialSlug) {
+      this.loading.latestNews = true
+      getLatestNewsByEditorial({ editorialSlug }).then(response => {
+        this.latestNews = response
+        this.loading.latestNews = false
+      })
     }
   }
 }
