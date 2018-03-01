@@ -20,9 +20,43 @@
               117 Artikel | Halaman 1 dari 6                
             </el-col>
             <el-col :span="6" class="search-box-advanced">
-              <a href="#/search-advanced">Opsi Lanjutan +</a>
+              <a v-on:click="isShow = !isShow" >Opsi Lanjutan +</a>
             </el-col>
           </el-row>                         
+        </div>
+        <div class="search-advanced" v-show="isShow">
+          <div class="search-advanced-info">
+            <b>INFORMASI</b> Nama pengguna/penulis berisi <i>username</i> yang dipakai penulis terkait.
+          </div>
+          
+          <el-row type="flex"  justify="space-between" class="search-advanced-input">
+            <el-col :span="6">
+              <span>Penulis</span>
+              <el-input v-model="input"></el-input>
+            </el-col>
+            <el-col :span="6">
+              <span>Mulai</span>
+              <el-input
+                placeholder="Pick a date"
+                suffix-icon="el-icon-date"
+                v-model="input2">
+              </el-input>
+            </el-col>
+            <el-col :span="6">  
+              <span>Hingga</span>
+              <el-input
+                placeholder="Pick a date"
+                suffix-icon="el-icon-date"
+                v-model="input2">
+              </el-input>
+            </el-col>            
+          </el-row>
+          <el-row type="flex" justify="end">            
+            <el-col :span="6" style="text-align: right">
+              <el-button>Batal</el-button>
+              <el-button>Terapkan</el-button>
+            </el-col>            
+          </el-row>
         </div>
         <div class="search-result">
           <el-row :gutter="20" >
@@ -65,7 +99,8 @@ export default {
   name: 'SearchHome',
   data() {
     return {
-      input1: ''
+      input1: '',
+      isShow: false
     }
   },
   created() {
@@ -92,7 +127,34 @@ export default {
       text-align: right;
     }
   }
-
+  &-advanced{
+    margin: 40px 0;
+    padding: 20px;
+    border: 2px solid $bb-blue;
+    background-color: #fff;
+    min-height: 300px;
+    &-info{
+      background-color: #BFE2F5;
+      padding: 20px 10px;
+      width: 100%
+    }
+    &-input{
+      padding: 40px 0;
+      span{
+        display: inline-block;
+        color: $bb-blue;
+        font-weight: 700;
+        padding-right: 10px;
+      }      
+      .el-input{
+        width: 70%;
+      }
+      .el-button{
+        background-color: $bb-blue;
+        color: #fff;
+      }
+    }
+  }
   &-result{
     width: 100%;    
     margin: 40px 0;
@@ -121,9 +183,11 @@ export default {
     padding: 14px;    
     border-top: 1px solid #1a1a1a;
   }
+
   h2{
     margin: 0;    
   }
+
   hr{
     height: 10px;
     background-color: $bb-yellow;
