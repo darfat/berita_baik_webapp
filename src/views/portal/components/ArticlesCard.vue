@@ -5,13 +5,13 @@
     </el-row>
           <div>
             <el-row>
-              <el-col :span="11" v-for="(article, index) in articles" :key="article.id" class="news-col">
+              <el-col :span="11" v-for="(article) in articles" :key="article.id" class="news-col">
                 <el-card :body-style="{ padding: '0px' }" class="news-card">
                   <div>
                       <div class="mini-thumbnail">
                         <img :src="article.main_image" class="card-image" />
                         <div class="editorial-type-img">
-                            <p style="font-size:10px;">{{ article.editorial }}</p>
+                            <p style="font-size:10px;">{{ article.editorial.name }}</p>
                         </div>
                       </div>
                   </div>
@@ -50,72 +50,44 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
+import { getListByEditorialSlug } from '@/api/article'
 
 export default {
   name: 'ArticlesCard',
   components: {
     ArticleSeparator
   },
+  props: {
+    editorialSlug: { type: String },
+    limit: { default: 9, type: Number }
+  },
   data() {
     return {
-      articles: [
-        {
-          id: '1',
-          main_image: 'static/upload/images/3.jpg',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '2',
-          main_image: 'static/upload/images/1.jpg',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '3',
-          main_image: 'static/upload/images/4.jpg',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '4',
-          main_image: 'static/upload/images/5.jpg',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        }
-      ]
+      articles: [],
+      loading: {
+        articles: false
+      }
     }
   },
   created() {
     console.log('articles card')
+    console.log(this.editorialSlug)
+    console.log(this.limit)
+    this.init()
+  },
+  methods: {
+    init() {
+      this.getArticles(this.editorialSlug)
+    },
+    getArticles(editorialSlug) {
+      this.loading.articles = true
+      getListByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit + 1 }).then(response => {
+        if (response) {
+          this.articles = response.slice(1)
+          this.loading.articles = false
+        }
+      })
+    }
   }
 }
 </script>

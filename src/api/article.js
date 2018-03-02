@@ -4,7 +4,8 @@ export function getListByEditorialSlug(params) {
   console.log(params)
   return request({
     url: '/articles-editorial/' + params.editorialSlug,
-    method: 'get'
+    method: 'get',
+    params
   })
 }
 export function getAll(params) {

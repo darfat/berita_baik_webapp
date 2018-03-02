@@ -12,14 +12,14 @@
       <el-row :gutter="20">
         <el-col :span="2"><div class="grid-content"></div></el-col>
         <el-col :span="20">
-          <div class="grid-content latest-news" v-loading="loading.latestNews">
+          <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">
                 <el-row :gutter="20" >
                   <el-col >
                     <div>
                         <div class="background">
                             <img :src="latestNews.main_image" />
-                          <div class="editorial-type-img">
-                              <p>{{ editorialTitle }}</p>
+                          <div class="editorial-type-img" v-if="latestNews.id">
+                              <p>{{ latestNews.editorial.name }}</p>
                           </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                 <el-row :gutter="20" class="content"> 
                   <el-col>
                     <el-row :gutter="20">
-                        <el-col :span="4">
+                        <el-col :span="4" v-if="latestNews.id">
                             <span> <v-icon name="heart" base-class="icon-20"></v-icon> </span>
                             <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
                         </el-col>
@@ -54,7 +54,7 @@
                     <el-row :gutter="20">
                         <el-col class="footer">
                           <div>
-                            <!-- {{ latestNews.reporter.name }} | {{ latestNews.publish_date_counter }} -->
+                            {{ latestNews.reporter.name }} | {{ latestNews.publish_date_counter }}
                           </div>
                         </el-col>
                     </el-row>
@@ -70,7 +70,7 @@
 
       <el-col :span="14" class="content">
         <div class="grid-content">
-            <articles-card></articles-card>
+            <articles-card :editorialSlug="editorialSlug" :limit=6></articles-card>
         </div>
       </el-col>
       <el-col :span="6" class="side-content">
@@ -84,7 +84,6 @@
             <span> Buka lebih banyak lagi </span>
           </div>
           <div>iklan</div>
-
         </div>
       </el-col>
       
@@ -128,8 +127,10 @@ export default {
     getLatestNews(editorialSlug) {
       this.loading.latestNews = true
       getLatestNewsByEditorial({ editorialSlug }).then(response => {
-        this.latestNews = response
-        this.loading.latestNews = false
+        if (response) {
+          this.latestNews = response
+          this.loading.latestNews = false
+        }
       })
     }
   }

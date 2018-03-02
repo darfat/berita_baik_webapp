@@ -31,7 +31,7 @@ service.interceptors.response.use(
   */
     const res = response.data
     console.log(response)
-    if (response.status !== 200 && response.status !== 201) {
+    if (response.status !== 200 && response.status !== 201 && response.status !== 202 && response.status !== 204) {
       Message({
         message: res.data,
         type: 'error',
@@ -53,18 +53,22 @@ service.interceptors.response.use(
       return Promise.reject('error')
     } else {
       console.log('result success.... ')
+      if (response.data !== null && response.data.length === 0) {
+        console.log('result empty ')
+        return undefined
+      }
       return response.data
     }
   },
   error => {
-    console.log('errrrrrr!')
+    console.log('Error !')
 
     console.log('err' + error)// for debug
-    Message({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000
-    })
+    // Message({
+    //   message: error.message,
+    //   type: 'error',
+    //   duration: 5 * 1000
+    // })
     return Promise.reject(error)
   }
 )
