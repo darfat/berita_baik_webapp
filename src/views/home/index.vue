@@ -11,7 +11,7 @@
   <div class="container">
     <el-row :gutter="20">
       <el-col :span="16">
-        <latest-news></latest-news>
+        <articles-card :title="BeritaBaikTerbaru" :limit=9></articles-card>
       </el-col>
       <el-col :span="8">
         <popular-news-side></popular-news-side>
@@ -40,7 +40,7 @@
 
 <script>
 import { TopSlider, HeadlineSlider, LatestNews, Citra, Galeri } from '@/views/home/components'
-import { PopularNewsSide, Subscribe, Events } from '@/views/portal/components'
+import { PopularNewsSide, Subscribe, Events, ArticlesCard } from '@/views/portal/components'
 
 export default {
   name: 'frontpage',
@@ -52,7 +52,8 @@ export default {
     Citra,
     Subscribe,
     Events,
-    Galeri
+    Galeri,
+    ArticlesCard
   },
   computed: {
   }

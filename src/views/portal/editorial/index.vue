@@ -36,7 +36,7 @@
                     <el-row :gutter="20" class="ln-title">
                       <el-col >
                         <div > 
-                          <router-link :to="{ path: '/article/'+editorialSlug+'/'+latestNews.slug }"> 
+                          <router-link  :to="{ name: 'article-detail-route', params: { editorialSlug, 'slug': latestNews.slug,  'articleID': latestNews.id} }" >
                             {{ latestNews.title }}
                           </router-link>
                         </div>
@@ -139,7 +139,6 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/styles/editorial-list.scss";
-
 .el-row {
   margin-bottom: 3px;
   &:last-child {

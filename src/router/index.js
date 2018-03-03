@@ -43,7 +43,7 @@ export const constantRouterMap = [
     },
     {
       path: 'article/:editorialSlug/:slug',
-      name: 'article-detail',
+      name: 'article-detail-route',
       props: true,
       component: () => import('@/views/portal/article/index')
     },

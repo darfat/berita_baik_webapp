@@ -1,7 +1,7 @@
 <template>
 <div class="card-content">
   <el-row>
-        <div class="section-title"> BACA LAINNYA</div>
+        <div class="section-title"> {{title}}</div>
     </el-row>
           <div>
             <el-row>
@@ -26,7 +26,9 @@
                     </div>
                     <el-row class="ac-title">
                       <div>
-                        <span>{{ article.title}}</span>
+                        <router-link  :to="{ name: 'article-detail-route', params: { editorialSlug, 'slug': article.slug,  'articleID': article.id} }" >
+                          <span>{{ article.title}}</span>
+                        </router-link>
                       </div>
                     </el-row>
                     <el-row >
@@ -50,7 +52,7 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
-import { getListByEditorialSlug } from '@/api/article'
+import { getNewsByEditorialSlug, getLatestNewsAll } from '@/api/article'
 
 export default {
   name: 'ArticlesCard',
@@ -59,6 +61,7 @@ export default {
   },
   props: {
     editorialSlug: { type: String },
+    title: { type: String, default: 'BACA LAINNYA' },
     limit: { default: 9, type: Number }
   },
   data() {
@@ -81,12 +84,22 @@ export default {
     },
     getArticles(editorialSlug) {
       this.loading.articles = true
-      getListByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit + 1 }).then(response => {
-        if (response) {
-          this.articles = response.slice(1)
-          this.loading.articles = false
-        }
-      })
+      if (editorialSlug) {
+        getNewsByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit + 1 }).then(response => {
+          if (response) {
+            this.articles = response.slice(1)
+            this.loading.articles = false
+          }
+        })
+      } else {
+        console.log('Get From All Channel')
+        getLatestNewsAll({ page: 1, per_page: this.limit }).then(response => {
+          if (response) {
+            this.articles = response
+            this.loading.articles = false
+          }
+        })
+      }
     }
   }
 }

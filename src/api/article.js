@@ -1,5 +1,7 @@
 import request from '@/utils/request'
 
+const NEWS_TYPE = 'news'
+
 export function getListByEditorialSlug(params) {
   console.log(params)
   return request({
@@ -24,7 +26,7 @@ export function create(data) {
 }
 export function getArticle(params) {
   return request({
-    url: '/articles/' + params.articleId,
+    url: '/articles/' + params.articleID,
     method: 'get'
   })
 }
@@ -38,9 +40,28 @@ export function update(data) {
 }
 
 export function getLatestNewsByEditorial(params) {
+  params.type = NEWS_TYPE
   return request({
     url: '/articles-editorial/latest/' + params.editorialSlug,
-    method: 'get'
+    method: 'get',
+    params
   })
 }
 
+export function getNewsByEditorialSlug(params) {
+  params.type = NEWS_TYPE
+  return request({
+    url: '/articles-editorial/' + params.editorialSlug,
+    method: 'get',
+    params
+  })
+}
+
+export function getLatestNewsAll(params) {
+  params.type = NEWS_TYPE
+  return request({
+    url: '/articles-all/latest',
+    method: 'get',
+    params
+  })
+}
