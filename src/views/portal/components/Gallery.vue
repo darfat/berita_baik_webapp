@@ -1,10 +1,10 @@
 <template>
   <div class="gallery-detail">      
-    <div class="gallery-content"> 
+    <div class="gallery-content" v-loading="loading.mainGallery"> 
         <el-row :gutter="20" >
             <el-col :span="24" class="gallery-col">
                   <div class="gallery-thumbnail">
-                      <img :src="mainGallery.image" class="gallery-image" />
+                      <img :src="mainGallery.main_image" class="gallery-image" />
                       <div class="gallery-image-title">
                         <p >{{ mainGallery.editorial }}</p>
                       </div>
@@ -25,7 +25,7 @@
                     </el-row>
                     <el-row class="gallery-content-teaser">
                       <div>
-                        <span>{{ mainGallery.teaser}}</span>
+                        <span>{{ mainGallery.subtitle}}</span>
                       </div>
                     </el-row>
                     <el-row class="gallery-content-content">
@@ -39,7 +39,7 @@
                     <el-row >
                         <el-col class="gallery-footer">
                         <div>
-                          {{ mainGallery.reporter.name }} | {{ mainGallery.publish_date_counter }}
+                          <!-- {{ mainGallery.reporter.name }} | {{ mainGallery.publish_date_counter }} -->
                         </div>
                       </el-col>
                     </el-row>
@@ -47,14 +47,14 @@
             </el-col>
         </el-row>            
     </div>
-    <div class="gallery-card-container">    
+    <div class="gallery-card-container" v-loading="loading.galleries">    
         <el-row :gutter="20" >
             <el-col :span="8" v-for="(g) in galleries" :key="g.id" class="gallery-col">
                 <el-card  :body-style="{ padding: '0px' }" class="gallery-card">
                   <div class="gallery-thumbnail">
-                      <img :src="g.image" class="gallery-image" />
+                      <img :src="g.main_image" class="gallery-image" />
                       <div class="gallery-image-title">
-                        <p >{{ g.editorial }}</p>
+                        <p >{{ g.editorial.name }}</p>
                       </div>
                   </div>
                   <hr/>
@@ -101,71 +101,61 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
+import { getLatestNewsByEditorial, getNewsByEditorialSlug } from '@/api/article'
+import { getEditorialLabelBySlug } from '@/api/editorial'
+
 export default {
   name: 'Gallery',
   components: {
     ArticleSeparator
   },
+  props: {
+    editorialSlug: { type: String },
+    limit: { default: 6, type: Number }
+  },
   data() {
     return {
-      mainGallery: {
-        id: '1',
-        image: 'static/upload/images/3.jpg',
-        editorial: 'Teknologi',
-        title: 'Title 1',
-        reporter: {
-          id: '1',
-          name: 'Boim',
-          role: 'reporter'
-        },
-        publish_date_counter: '2 Jam Yang lalu',
-        teaser: 'This is teaser',
-        content: 'this is content....'
-      },
-      galleries: [{
-        id: '1',
-        image: 'static/upload/images/4.jpg',
-        editorial: 'Teknologi',
-        title: 'Title 1',
-        reporter: {
-          id: '1',
-          name: 'Boim',
-          role: 'reporter'
-        },
-        publish_date_counter: '2 Jam Yang lalu',
-        teaser: 'This is teaser',
-        content: 'this is content....'
-      },
-      { id: '2',
-        image: 'static/upload/images/2.jpg',
-        editorial: 'Teknologi',
-        title: 'Title 1',
-        reporter: {
-          id: '1',
-          name: 'Boim',
-          role: 'reporter'
-        },
-        publish_date_counter: '2 Jam Yang lalu',
-        teaser: 'This is teaser',
-        content: 'this is content....'
-      },
-      { id: '3',
-        image: 'static/upload/images/5.jpg',
-        editorial: 'Teknologi',
-        title: 'Title 1',
-        reporter: {
-          id: '1',
-          name: 'Boim',
-          role: 'reporter'
-        },
-        publish_date_counter: '2 Jam Yang lalu',
-        teaser: 'This is teaser',
-        content: 'this is content....'
-      }]
+      mainGallery: {},
+      galleries: [],
+      loading: {
+        mainGallery: false,
+        galleries: false
+      }
     }
   },
   created() {
     console.log('gallery')
+    console.log(this.editorialSlug)
+    this.init()
+  },
+  methods: {
+    init() {
+      this.editorialTitle = getEditorialLabelBySlug(this.editorialSlug)
+      this.getLatestNews(this.editorialSlug)
+      this.getArticles(this.editorialSlug)
+    },
+    getLatestNews(editorialSlug) {
+      this.loading.mainGallery = true
+      getLatestNewsByEditorial({ editorialSlug }).then(response => {
+        if (response) {
+          console.log('latest news')
+          this.mainGallery = response
+          this.loading.mainGallery = false
+        }
+      })
+    },
+    getArticles(editorialSlug) {
+      this.loading.galleries = true
+      if (editorialSlug) {
+        getNewsByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit + 1 }).then(response => {
+          if (response) {
+            console.log('latest article by slug')
+            this.galleries = response.slice(1)
+            this.loading.galleries = false
+          }
+        })
+      }
+    }
   }
 }
 </script>

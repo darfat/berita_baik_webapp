@@ -2,13 +2,13 @@
   <div class="gallery-main">  
     <div class="gallery-main-container">    
       <div class="content-container">
-          <gallery></gallery>
+          <gallery :editorialSlug="editorialSlug" ></gallery>
       </div>
     </div>
     <div class="content-container">
       <el-row :gutter="20">
         <el-col :span="16">
-          <articles-card></articles-card>
+          <articles-card :editorialSlug="editorialSlug"></articles-card>
         </el-col>
         <el-col :span="8">
           <popular-news-side></popular-news-side>
@@ -37,7 +37,8 @@ export default {
   },
   data() {
     return {
-      title: ''
+      title: '',
+      editorialSlug: 'gallery-foto'
     }
   },
   created() {
