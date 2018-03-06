@@ -2,7 +2,7 @@
     <div class="profile-wrapper">
         <h1>Edit Profile</h1>
         <small>Edit Profile</small>
-        <el-form class="form-container" ref="profileForm" :model="profile" :rules="rules" label-width="120px">
+        <el-form class="form-container" ref="profileForm" :model="profile" label-width="120px">
             <el-row>
                 <el-col :span="21">
                     <el-form-item label="Full Name" prop="fullname">
