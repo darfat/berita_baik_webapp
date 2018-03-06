@@ -1,11 +1,11 @@
 <template>  
-  <div style="height: 500px" >    
-    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
+  <div style="height: 500px; background-color: #1a1a1a" >    
+    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" c>
       <swiper-slide class="slide-1"></swiper-slide>
       <swiper-slide class="slide-2"></swiper-slide>
       <swiper-slide class="slide-3"></swiper-slide>
       <swiper-slide class="slide-4"></swiper-slide>
-      <swiper-slide class="slide-5"></swiper-slide>
+      <swiper-slide class="slide-5"></swiper-slide>      
       <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
       <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
     </swiper>    
@@ -28,6 +28,38 @@ export default {
   },
   data() {
     return {
+      idata: [
+        {
+          id: 1,
+          img: '/static/images/01.jpg',
+          title: '',
+          url: ''
+        },
+        {
+          id: 1,
+          img: '/static/images/02.jpg',
+          title: '',
+          url: ''
+        },
+        {
+          id: 1,
+          img: '/static/images/03.jpg',
+          title: '',
+          url: ''
+        },
+        {
+          id: 1,
+          img: '/static/images/04.jpg',
+          title: '',
+          url: ''
+        },
+        {
+          id: 1,
+          img: '/static/images/05.jpg',
+          title: '',
+          url: ''
+        }
+      ],
       swiperOptionTop: {
         spaceBetween: 10,
         loop: true,
