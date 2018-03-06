@@ -17,13 +17,29 @@
     a {
       display: inline-block;
       width: 100%;
-    }
+    }    
     .svg-icon {
       margin-right: 16px;
     }
     .el-menu {
       border: none;
       width: 100%;
+      background-color: $menuBg;
+      .el-submenu {
+        &>.el-submenu__title {
+          color: white;          
+          &>span {
+            font-weight: 700;
+          }
+          .el-submenu__icon-arrow {
+            color: white;
+          }
+          &:hover{
+            background-color: $menuHover;
+            color: $bb-blue;
+          }
+        }        
+      }
     }
   }
   .hideSidebar {
@@ -90,8 +106,14 @@
   .el-submenu .el-menu-item {
     min-width: 180px!important;
     background-color: $subMenuBg!important;
+    color: white!important;
     &:hover {
       background-color: $menuHover!important;
+      color: $bb-blue!important;
+    }
+    &.is-active {
+      background-color: $menuHover!important;
+      color: $bb-blue!important;
     }
   }
   .el-menu--collapse .el-menu .el-submenu{
