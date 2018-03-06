@@ -1,12 +1,10 @@
 <template>
-  <h1>My ACCOUNT</h1>
+  <transition name="fade" mode="out-in">    
+    <router-view></router-view>    
+  </transition>
 </template>
-
 <script>
-// import ArticleDetail from './components/ArticleDetail'
-
 export default {
-  name: 'editForm'
-  // components: { ArticleDetail }
+  name: 'myAccount'
 }
 </script>

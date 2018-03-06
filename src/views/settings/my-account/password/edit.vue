@@ -1,12 +1,11 @@
 <template>
-  <h1>PASSWORD</h1>
+  <change-password :is-edit='true'></change-password>
 </template>
 
 <script>
-// import ArticleDetail from './components/ArticleDetail'
-
+import ChangePassword from './components/form'
 export default {
-  name: 'editForm'
-  // components: { ArticleDetail }
+  name: 'editForm',
+  components: { ChangePassword }
 }
 </script>

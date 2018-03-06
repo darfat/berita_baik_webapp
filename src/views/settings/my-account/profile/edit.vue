@@ -1,12 +1,11 @@
-<template>
-  <h1>PROFILE</h1>
+<template>  
+  <profile-detail :is-edit='true'></profile-detail>
 </template>
 
 <script>
-// import ArticleDetail from './components/ArticleDetail'
-
+import ProfileDetail from './components/ProfileDetail'
 export default {
-  name: 'editForm'
-  // components: { ArticleDetail }
+  name: 'editForm',
+  components: { ProfileDetail }
 }
 </script>
