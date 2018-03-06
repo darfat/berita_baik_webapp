@@ -27,8 +27,12 @@
           </router-link>
         </template>
       </el-submenu>
-
+      
     </template>
+    <el-menu-item class="logout">
+    <svg-icon icon-class="example" />
+    <span>Logout</span>
+    </el-menu-item>
   </div>
 </template>
 

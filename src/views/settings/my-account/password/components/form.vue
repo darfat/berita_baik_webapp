@@ -2,7 +2,7 @@
     <div class="password-wrapper">
         <h1>Change Password</h1>
         <small>Change Password</small>
-        <el-form class="form-container" ref="profileForm" :model="profile" :rules="rules" label-width="200px">
+        <el-form class="form-container" ref="formPassword" :model="password" label-width="200px">
             <el-row>
                 <el-col :span="21">
                     <el-form-item label="Current Password" prop="currentP">
