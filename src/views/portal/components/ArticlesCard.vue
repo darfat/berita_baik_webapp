@@ -26,7 +26,7 @@
                     </div>
                     <el-row class="ac-title">
                       <div>
-                        <router-link  :to="{ name: 'article-detail-route', params: { editorialSlug, 'slug': article.slug,  'articleID': article.id} }" >
+                        <router-link  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }" >
                           <span>{{ article.title}}</span>
                         </router-link>
                       </div>
@@ -92,7 +92,6 @@ export default {
           }
         })
       } else {
-        console.log('Get From All Channel')
         getLatestNewsAll({ page: 1, per_page: this.limit }).then(response => {
           if (response) {
             this.articles = response

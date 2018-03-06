@@ -190,7 +190,8 @@ export default {
     Events
   },
   props: {
-    articleID: { type: String }
+    articleID: { type: String },
+    slug: { type: String }
   },
   data() {
     return {

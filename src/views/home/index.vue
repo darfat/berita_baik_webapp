@@ -11,7 +11,7 @@
   <div class="container">
     <el-row :gutter="20">
       <el-col :span="16">
-        <articles-card :title="BeritaBaikTerbaru" :limit=9></articles-card>
+        <articles-card :title="'Berita Baik Terbaru'" :limit=9></articles-card>
       </el-col>
       <el-col :span="8">
         <popular-news-side></popular-news-side>
@@ -24,17 +24,8 @@
   </div>  
   
   <div class="container">            
-<<<<<<< HEAD
-    <hr/><events></events><hr/>
-    <el-row :gutter="20" style="background-color: #222; padding: 10px 0;">
-      <el-col :span="16">
-        <galeri></galeri></el-col>
-      <el-col :span="8">ads</el-col>
-    </el-row>      
-=======
     <hr/><events></events>
     <hr/><galeri></galeri>    
->>>>>>> origin/master
   </div>
       
   <div>
