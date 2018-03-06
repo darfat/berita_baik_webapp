@@ -1,7 +1,7 @@
 <template>
 <div class="frontpage-wrapper">
 
-  <div class="slider-wrapper"  style="background-color: #e6e6e6; margin-bottom: 20px;">
+  <div class="slider-wrapper">
     <div class="container">
       <top-slider></top-slider>
       <headline-slider></headline-slider>
@@ -24,12 +24,17 @@
   </div>  
   
   <div class="container">            
+<<<<<<< HEAD
     <hr/><events></events><hr/>
     <el-row :gutter="20" style="background-color: #222; padding: 10px 0;">
       <el-col :span="16">
         <galeri></galeri></el-col>
       <el-col :span="8">ads</el-col>
     </el-row>      
+=======
+    <hr/><events></events>
+    <hr/><galeri></galeri>    
+>>>>>>> origin/master
   </div>
       
   <div>
@@ -65,7 +70,11 @@ export default {
 @import "src/styles/home.scss";
 
 .frontpage-wrapper {
-  padding-top: 150px
-  
+  padding-top: 150px  
+}
+
+.slider-wrapper{
+  background-color: #e6e6e6;
+  margin-bottom: 20px;
 }
 </style>

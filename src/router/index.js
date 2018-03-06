@@ -184,7 +184,34 @@ export const constantRouterMap = [
       }
     ]
   },
-
+  {
+    path: '/settings',
+    component: Layout,
+    redirect: 'noredirect',
+    name: 'Settings',
+    meta: { title: 'Settings', icon: 'example' },
+    children: [
+      {
+        path: '/settings/my-account',
+        component: () => import('@/views/settings/my-account/index'),
+        redirect: 'noredirect',
+        name: 'myAccount',
+        meta: { title: 'My Account', icon: 'user' },
+        children: [
+          { path: 'edit-profile',
+            component: () => import('@/views/settings/my-account/profile/edit'),
+            name: 'editProfile',
+            meta: { title: 'Edit Profile', icon: 'user' }
+          },
+          { path: 'change-password',
+            component: () => import('@/views/settings/my-account/password/edit'),
+            name: 'ChangePassword',
+            meta: { title: 'Change Password', icon: 'password' }
+          }
+        ]
+      }
+    ]
+  },
   { path: '*', redirect: '/404', hidden: true }
 
 ]
