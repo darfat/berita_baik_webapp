@@ -9,7 +9,7 @@
                       <router-link :to="{ path: '/infografis/slug-id' }">
                         <img :src="infografis.image" class="infografis-image" />
                         <div class="infografis-image-title">
-                          <p >{{ infografis.editorial }}</p>
+                          <p >{{ infografis.editorial.name }}</p>
                         </div>
                       </router-link>
                   </div>
@@ -57,91 +57,45 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
+import { getNewsByEditorialSlug } from '@/api/article'
+import { getEditorialLabelBySlug } from '@/api/editorial'
+
 export default {
   name: 'InfografisList',
   components: {
     ArticleSeparator
   },
+  props: {
+    editorialSlug: { type: String },
+    limit: { default: 6, type: Number }
+  },
   data() {
     return {
-      list: [
-        {
-          id: '1',
-          image: 'static/upload/images/sample.jpg',
-          editorial: 'Teknologi',
-          title: 'Title 1',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '2',
-          image: 'static/upload/images/sample.jpg',
-          editorial: 'Melancong',
-          title: 'Title 1',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '3',
-          image: 'static/upload/images/sample.jpg',
-          editorial: 'Indonesia Baik',
-          title: 'Title 1',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '4',
-          image: 'static/upload/images/sample.jpg',
-          editorial: 'Melancong',
-          title: 'Title 1',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '5',
-          image: 'static/upload/images/sample.jpg',
-          editorial: 'Teknologi',
-          title: 'Title 1',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '6',
-          image: 'static/upload/images/sample.jpg',
-          editorial: 'Indonesia Bangga',
-          title: 'Title 1',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        }
-      ]
+      list: [],
+      loading: {
+        list: false
+      }
     }
   },
   created() {
-    console.log('infografis list')
+    this.init()
+  },
+  methods: {
+    init() {
+      this.editorialTitle = getEditorialLabelBySlug(this.editorialSlug)
+      this.getArticles(this.editorialSlug)
+    },
+    getArticles(editorialSlug) {
+      this.loading.list = true
+      if (editorialSlug) {
+        getNewsByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit + 1 }).then(response => {
+          if (response) {
+            this.list = response
+            this.loading.list = false
+          }
+        })
+      }
+    }
   }
 }
 

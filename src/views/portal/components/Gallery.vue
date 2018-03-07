@@ -6,7 +6,7 @@
                   <div class="gallery-thumbnail">
                       <img :src="mainGallery.main_image" class="gallery-image" />
                       <div class="gallery-image-title">
-                        <p >{{ mainGallery.editorial }}</p>
+                        <p >{{ mainGallery.editorial.name }}</p>
                       </div>
                   </div>
                   <div class="gallery-info">
