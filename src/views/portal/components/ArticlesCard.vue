@@ -37,7 +37,7 @@
                     <el-row >
                         <el-col class="footer">
                         <div>
-                          {{ article.reporter.name }} | {{ article.publish_date_counter }}
+                          <!-- {{ article.reporter.name }} | {{ article.publish_date_counter }} -->
                         </div>
                       </el-col>
                     </el-row>
@@ -73,9 +73,6 @@ export default {
     }
   },
   created() {
-    console.log('articles card')
-    console.log(this.editorialSlug)
-    console.log(this.limit)
     this.init()
   },
   methods: {

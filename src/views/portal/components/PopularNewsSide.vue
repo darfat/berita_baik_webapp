@@ -5,17 +5,17 @@
           </el-row>
           
           <div class="popular-news m-t-10">
-            <el-row :gitter="20" v-for="(article) in popular_articles" :key="article.id" class="side-row"  >
+            <el-row :gitter="20" v-for="(popular) in popular_articles" :key="popular.id" class="side-row"  >
               <el-col :span="8" class="side-image">
                 <div>
-                  <img :src="article.main_image" class="card-image"/>
+                  <img :src="popular.article.main_image" class="card-image"/>
                 </div>
               </el-col>
               <el-col :span="16" class="side-content">
                 <div class="content-container">
                    <el-row class="side-title-section">
                       <div>
-                        <span>{{ article.title}}</span>
+                        <span>{{ popular.article.title}}</span>
                       </div>
                     </el-row>
                     <el-row >
@@ -24,7 +24,7 @@
                     <el-row >
                         <el-col  class="footer">
                          <div>
-                          {{ article.reporter.name }} | {{ article.publish_date_counter }}
+                          <!-- {{ popular.article.reporter.name }} | {{ popular.article.publish_date_counter }} -->
                         </div>
                         </el-col>
                     </el-row>
@@ -36,72 +36,43 @@
 </template>
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
+import { getPopularArticles } from '@/api/popular_article'
 
 export default {
   name: 'PopularNewsSide',
+  props: {
+    editorialSlug: { type: String },
+    limit: { default: 9, type: Number },
+    page: { default: 1, type: Number }
+  },
   components: {
     ArticleSeparator
   },
   data() {
     return {
-      popular_articles: [
-        {
-          id: '1',
-          main_image: 'static/upload/images/6.jpg',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title asd asdlkasd',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '2',
-          main_image: 'static/upload/images/1.jpg',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, .</p>',
-          title: 'Lorem Ipsum Title praesent euripidis, sus ',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '3',
-          main_image: 'static/upload/images/2.jpg',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt,</p>',
-          title: 'Lorem Ipsum Title',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        },
-        {
-          id: '4',
-          main_image: 'static/upload/images/3.jpg',
-          teaser: '<p> Lorem ipsum dolor sit amet, <strong>mei cu</strong> praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.</p>',
-          title: 'Lorem Ipsum Title',
-          editorial: 'Indonesia Baik',
-          reporter: {
-            id: '1',
-            name: 'Boim',
-            role: 'reporter'
-          },
-          publish_date_counter: '2 Jam Yang lalu'
-        }
-      ]
+      popular_articles: [],
+      loading: {
+        popular_articles: false
+      }
     }
   },
   created() {
-    console.log('popular side news')
+    this.init()
+  },
+  methods: {
+    init() {
+      this.getPopularArticles(this.editorialSlug)
+    },
+    getPopularArticles() {
+      this.loading.popular_articles = true
+      getPopularArticles({ page: this.page, per_page: this.limit }).then(response => {
+        console.log(response)
+        if (response) {
+          this.popular_articles = response
+          this.loading.popular_articles = false
+        }
+      })
+    }
   }
 }
 </script>
