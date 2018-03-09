@@ -19,7 +19,7 @@
                     <div class="bottom clearfix">
                       <el-row >
                         <el-col :span="4">
-                          <span> <v-icon name="heart" base-class="icon-20"></v-icon> </span>
+                          <span> <bb-love></bb-love> </span>
                           <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
                         </el-col>
                     </el-row>
@@ -52,12 +52,14 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
+import BbLove from '@/views/portal/components/BbLove'
 import { getNewsByEditorialSlug, getLatestNewsAll } from '@/api/article'
 
 export default {
   name: 'ArticlesCard',
   components: {
-    ArticleSeparator
+    ArticleSeparator,
+    BbLove
   },
   props: {
     editorialSlug: { type: String },

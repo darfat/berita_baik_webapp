@@ -65,7 +65,7 @@
               <el-card :body-style="{ padding: '0px' }">
               <img src="" class="image">
               <div class="desc">
-                  <span><v-icon name="heart" base-class="icon-20"></v-icon> </span>
+                  <span><bb-love></bb-love> </span>
                   <span><v-icon name="share-2" base-class="icon-20"></v-icon> </span>
                 <div class="bottom clearfix">
                   <h2><a>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h2>
@@ -94,9 +94,13 @@
 </template>
 
 <script>
+import BbLove from '@/views/portal/components/BbLove'
 
 export default {
   name: 'SearchHome',
+  components: {
+    BbLove
+  },
   data() {
     return {
       input1: '',

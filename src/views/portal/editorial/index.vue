@@ -29,7 +29,7 @@
                   <el-col>
                     <el-row :gutter="20">
                         <el-col :span="4" v-if="latestNews.id">
-                            <span> <v-icon name="heart" base-class="icon-20"></v-icon> </span>
+                            <span> <bb-love></bb-love> </span>
                             <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
                         </el-col>
                     </el-row>
@@ -94,6 +94,7 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
+import BbLove from '@/views/portal/components/BbLove'
 import { PopularNewsSide, ArticlesCard } from '@/views/portal/components'
 import { getEditorialLabelBySlug } from '@/api/editorial'
 import { getLatestNewsByEditorial } from '@/api/article'
@@ -103,7 +104,8 @@ export default {
   components: {
     ArticleSeparator,
     PopularNewsSide,
-    ArticlesCard
+    ArticlesCard,
+    BbLove
   },
   data() {
     return {

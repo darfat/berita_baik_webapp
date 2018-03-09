@@ -2,19 +2,19 @@
   <div class="infografis-detail">      
     <div class="infografis-header"> INFOGRAFIS</div>
     <div class="infografis-content"> 
-        <el-row :gutter="20" >
+        <el-row :gutter="20" v-loading="loading.infografis" >
             <el-col :span="22" class="infografis-col">
                   <div class="infografis-thumbnail">
-                      <img :src="infografis.image" class="infografis-image" />
+                      <img :src="infografis.main_image" class="infografis-image" />
                       <div class="infografis-image-title">
-                        <p >{{ infografis.editorial }}</p>
+                        <p >{{ infografis.editorial.name }}</p>
                       </div>
                   </div>
                   <div class="infografis-info">
                     <div class="bottom clearfix">
                       <el-row >
                         <el-col :span="4">
-                          <span> <v-icon name="heart" base-class="icon-20"></v-icon> </span>
+                          <span> <bb-love></bb-love> </span>
                           <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
                         </el-col>
                     </el-row>
@@ -26,12 +26,16 @@
                     </el-row>
                     <el-row class="infografis-content-teaser">
                       <div>
-                        <span>{{ infografis.teaser}}</span>
+                        <div v-html="infografis.teaser">
+                        
+                        </div>
                       </div>
                     </el-row>
                     <el-row class="infografis-content-content">
                       <div>
-                        <span>{{ infografis.content}}</span>
+                        <div v-html="infografis.content">
+                        
+                        </div>
                       </div>
                     </el-row>
                     <el-row >
@@ -62,31 +66,47 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
+import BbLove from '@/views/portal/components/BbLove'
+
+import { getArticle } from '@/api/article'
+
 export default {
   name: 'Infografis',
   components: {
-    ArticleSeparator
+    ArticleSeparator,
+    BbLove
+  },
+  props: {
+    articleID: { type: String },
+    editorialSlug: { type: String },
+    slug: { type: String }
   },
   data() {
     return {
-      infografis: {
-        id: '1',
-        image: 'static/upload/images/infografis.jpg',
-        editorial: 'Teknologi',
-        title: 'Title 1',
-        reporter: {
-          id: '1',
-          name: 'Boim',
-          role: 'reporter'
-        },
-        publish_date_counter: '2 Jam Yang lalu',
-        teaser: 'This is teaser',
-        content: 'this is content....'
+      infografis: {},
+      loading: {
+        infografis: false
       }
     }
   },
   created() {
-    console.log('infografis')
+    this.init()
+    console.log('get infografis by id')
+  },
+  methods: {
+    init() {
+      this.getMainArticle(this.articleID)
+    },
+    getMainArticle(articleID) {
+      this.loading.infografis = true
+      getArticle({ articleID }).then(response => {
+        if (response) {
+          this.infografis = response
+          console.log(this.infografis.editorial)
+          this.loading.infografis = false
+        }
+      })
+    }
   }
 }
 </script>

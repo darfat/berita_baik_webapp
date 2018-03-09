@@ -7,7 +7,7 @@
                 <el-card  :body-style="{ padding: '0px' }" class="infografis-card">
                   <div class="infografis-thumbnail">
                       <router-link :to="{ path: '/infografis/slug-id' }">
-                        <img :src="infografis.image" class="infografis-image" />
+                        <img :src="infografis.main_image" class="infografis-image" />
                         <div class="infografis-image-title">
                           <p >{{ infografis.editorial.name }}</p>
                         </div>
@@ -18,14 +18,16 @@
                     <div class="bottom clearfix">
                       <el-row >
                         <el-col :span="4">
-                          <span> <v-icon name="heart" base-class="icon-20"></v-icon> </span>
+                          <span> <bb-love></bb-love> </span>
                           <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
                         </el-col>
                     </el-row>
                     </div>
                     <el-row class="infografis-content-title">
                       <div>
-                        <span>{{ infografis.title}}</span>
+                       <router-link  :to="{ name: 'infografis-detail-layout', params: { editorialSlug, 'slug': infografis.slug,  'articleID': infografis.id} }" >
+                          <span>{{ infografis.title}}</span>
+                       </router-link>
                       </div>
                     </el-row>
                     <el-row >
@@ -57,16 +59,18 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
+import BbLove from '@/views/portal/components/BbLove'
 import { getNewsByEditorialSlug } from '@/api/article'
 import { getEditorialLabelBySlug } from '@/api/editorial'
 
 export default {
   name: 'InfografisList',
   components: {
-    ArticleSeparator
+    ArticleSeparator,
+    BbLove
   },
   props: {
-    editorialSlug: { type: String },
+    editorialSlug: { type: String, default: 'infografis' },
     limit: { default: 6, type: Number }
   },
   data() {

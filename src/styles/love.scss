@@ -1,0 +1,22 @@
+@import './variables.scss';
+
+$love-color: #f35858;
+
+
+.love{
+}
+
+.love-me{
+    fill: $love-color;
+    color: $love-color;
+}
+.hate-me{
+    fill: none;
+    color: none;
+}
+
+a:active, a:focus { 
+    outline: none; 
+    //ie-dummy: expression(this.hideFocus=true);
+   }
+   

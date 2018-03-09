@@ -35,14 +35,14 @@ export const constantRouterMap = [
       path: 'home',
       component: () => import('@/views/home/index')
     },
-    {
+    { // integrated
       path: 'editorial/:editorialSlug',
       name: 'editorial-menu',
       props: true,
       component: () => import('@/views/portal/editorial/index')
     },
-    {
-      path: 'article/:editorialSlug/:slug',
+    { // integrated
+      path: 'article/:editorialSlug/:articleID/:slug',
       name: 'article-detail-route',
       props: true,
       component: () => import('@/views/portal/article/index')
@@ -54,12 +54,12 @@ export const constantRouterMap = [
       component: () => import('@/views/portal/infografis/index')
     },
     {
-      path: 'infografis/:slug',
-      name: 'infografis-detail',
+      path: 'infografis/:articleID/:slug',
+      name: 'infografis-detail-layout',
       props: true,
       component: () => import('@/views/portal/infografis-detail/index')
     },
-    {
+    { // integrated
       path: 'gallery',
       name: 'gallery-menu',
       props: true,

@@ -72,7 +72,7 @@
                       </div>
                     </el-col>
                     <el-col :span="7" class="align-right" >
-                      <span> <v-icon name="heart" base-class="icon-20"></v-icon> </span>
+                      <span> <bb-love :articleID="mainArticle.id"></bb-love> </span>
                       <span> <v-icon name="facebook" base-class="icon-20"></v-icon> </span>
                       <span> <v-icon name="mail" base-class="icon-20"></v-icon> </span>
                       <span> <v-icon name="send" base-class="icon-20"></v-icon> </span>
@@ -175,6 +175,8 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav, CommentList, Subscribe, Events } from '@/views/portal/components'
+import BbLove from '@/views/portal/components/BbLove'
+
 import { getArticle } from '@/api/article'
 
 export default {
@@ -187,7 +189,8 @@ export default {
     ArticleNav,
     CommentList,
     Subscribe,
-    Events
+    Events,
+    BbLove
   },
   props: {
     articleID: { type: String },

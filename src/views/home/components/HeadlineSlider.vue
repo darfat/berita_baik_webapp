@@ -6,7 +6,7 @@
         <div class="section-hl">{{item.section_name}}</div>        
       </div>
       <div class="bottom-caption">
-      <span> <v-icon name="heart" base-class="icon-20"></v-icon> </span>
+      <span> <bb-love></bb-love> </span>
       <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
       <h2>{{item.title}}</h2>
       <p>{{item.teaser}}</p>
@@ -18,9 +18,12 @@
 </template>
 
 <script>
-console.log('headline slider main')
+import BbLove from '@/views/portal/components/BbLove'
 export default {
   name: 'HeadlineSlider',
+  components: {
+    BbLove
+  },
   data() {
     return {
       imgpath: 'static/',

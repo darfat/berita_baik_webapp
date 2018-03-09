@@ -1,7 +1,7 @@
 <template>
   <div class="infografis-detail-main">      
     <div class="main-container">
-        <infografis></infografis>
+        <infografis :slug="slug" :articleID="articleID"></infografis>
     </div>
   </div>
 </template>
@@ -11,7 +11,12 @@ import ArticleSeparator from '@/components/ArticleSeparator'
 import { Infografis, PopularNewsSide, ArticlesCard, Subscribe, Events } from '@/views/portal/components'
 
 export default {
-  name: 'InfografisLayout',
+  name: 'InfografisDetailLayout',
+  props: {
+    articleID: { type: String },
+    editorialSlug: { type: String },
+    slug: { type: String }
+  },
   components: {
     ArticleSeparator,
     Infografis, PopularNewsSide, ArticlesCard, Subscribe, Events
@@ -23,6 +28,8 @@ export default {
   },
   created() {
     console.log('infografis main')
+    console.log(this.slug)
+    console.log(this.articleID)
   }
 }
 
