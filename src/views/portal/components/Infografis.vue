@@ -6,9 +6,7 @@
             <el-col :span="22" class="infografis-col">
                   <div class="infografis-thumbnail">
                       <img :src="infografis.main_image" class="infografis-image" />
-                      <div class="infografis-image-title">
-                        <p >{{ infografis.editorial.name }}</p>
-                      </div>
+                      
                   </div>
                   <div class="infografis-info">
                     <div class="bottom clearfix">
@@ -102,7 +100,6 @@ export default {
       getArticle({ articleID }).then(response => {
         if (response) {
           this.infografis = response
-          console.log(this.infografis.editorial)
           this.loading.infografis = false
         }
       })
