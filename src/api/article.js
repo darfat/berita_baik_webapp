@@ -1,6 +1,8 @@
 import request from '@/utils/request'
 
 const NEWS_TYPE = 'news'
+const VIDEO_TYPE = 'video'
+const IMAGE_TYPE = 'image'
 
 export function getListByEditorialSlug(params) {
   console.log(params)
@@ -61,6 +63,44 @@ export function getLatestNewsAll(params) {
   params.type = NEWS_TYPE
   return request({
     url: '/articles-all/latest',
+    method: 'get',
+    params
+  })
+}
+// citra
+export function getLatestImageByEditorial(params) {
+  params.type = IMAGE_TYPE
+  return request({
+    url: '/articles-editorial/latest/' + params.editorialSlug,
+    method: 'get',
+    params
+  })
+}
+
+export function getImagesByEditorialSlug(params) {
+  params.type = IMAGE_TYPE
+  return request({
+    url: '/articles-editorial/' + params.editorialSlug,
+    method: 'get',
+    params
+  })
+}
+
+// video
+
+export function getLatestVideoByEditorial(params) {
+  params.type = VIDEO_TYPE
+  return request({
+    url: '/articles-editorial/latest/' + params.editorialSlug,
+    method: 'get',
+    params
+  })
+}
+
+export function getVideosByEditorialSlug(params) {
+  params.type = VIDEO_TYPE
+  return request({
+    url: '/articles-editorial/' + params.editorialSlug,
     method: 'get',
     params
   })
