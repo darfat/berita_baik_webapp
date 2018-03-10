@@ -17,7 +17,7 @@
         <el-row :gutter="20">
           <el-col :span="8" v-for="(item) in idata" :key="item.id" style="margin-bottom:20px">
             <div class="vid-thumb-wrapper">
-              <youtube :video-id="videoId" :player-vars="{ showinfo: 0 }" @ready="ready" @playing="playing" ></youtube>
+              <youtube :video-id="item.vid" :player-vars="{ showinfo: 0 }" @ready="ready" @playing="playing" ></youtube>
             </div>
           </el-col>
         </el-row>
@@ -39,9 +39,8 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
-import Vue from 'vue'
-import VueYouTubeEmbed from 'vue-youtube-embed'
-Vue.use(VueYouTubeEmbed)
+import { getLatestNewsByEditorial } from '@/api/article'
+
 export default {
   name: 'VideoG',
   components: {
@@ -49,7 +48,11 @@ export default {
   },
   data() {
     return {
-      videoId: 'PHs39R0AbRw',
+      latestVideo: {},
+      loading: {
+        latestVideo: false
+      },
+      videoId: null,
       videoTitle: '5 Destinasi Wisata Terbaik di Jawa Barat',
       idata: [{
         id: 1,
@@ -85,8 +88,23 @@ export default {
   },
   created() {
     console.log('videog')
+    this.init()
+    this.getLatestVideo(this.editorialSlug)
   },
   methods: {
+    init() {
+      this.editorialSlug = this.$route.params.editorialSlug
+      this.videoId = this.$youtube.getIdFromURL('https://www.youtube.com/watch?v=YzKM5g_FwYU')
+    },
+    getLatestVideo(editorialSlug) {
+      this.loading.latestVideo = true
+      getLatestNewsByEditorial({ editorialSlug }).then(response => {
+        if (response) {
+          this.latestVideo = response
+          this.loading.latestVideo = false
+        }
+      })
+    },
     ready(player) {
       this.player = player
     },
@@ -110,57 +128,56 @@ export default {
 }
 </script>
 
-<style >
+<style>
 
 .vid-main {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 0;
-  height: 0;
-  overflow: hidden;    
-}
-
-.vid-main iframe,
-.vid-main object,
-.vid-main embed{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-.vid-main-attr{
-  width: 100%;
-  color: #FFF;
-  line-height: 3em;
-}
-
-.vid-main-attr h2{
-  margin: 0;
-  padding: 0;
-}
-
-.vid-main-attr .share{
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 0;
+    height: 0;
+    overflow: hidden;    
+  }
   
-}
-.vid-thumb{  
-  margin: 10px 0;
-}
-.vid-thumb .vid-thumb-wrapper {
-	position: relative;
-	padding-bottom: 56.25%; /* 16:9 */
-	padding-top: 25px;
-	height: 0;
-}
-.vid-thumb .vid-thumb-wrapper iframe,
-.vid-thumb .vid-thumb-wrapper object,
-.vid-thumb .vid-thumb-wrapper embed {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-  height: 100%;
-}
-
-
+  .vid-main iframe,
+  .vid-main object,
+  .vid-main embed{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+  }
+  .vid-main-attr{
+    width: 100%;
+    color: #FFF;
+    line-height: 3em;
+  }
+  
+  .vid-main-attr h2{
+    margin: 0;
+    padding: 0;
+  }
+  
+  .vid-main-attr .share{
+    
+  }
+  .vid-thumb{  
+    margin: 10px 0;
+  }
+  .vid-thumb .vid-thumb-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      padding-top: 25px;
+      height: 0;
+  }
+  .vid-thumb .vid-thumb-wrapper iframe,
+  .vid-thumb .vid-thumb-wrapper object,
+  .vid-thumb .vid-thumb-wrapper embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    height: 100%;
+  }
+  
 </style>

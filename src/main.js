@@ -17,9 +17,11 @@ import '@/icons' // icon
 
 import VeeValidate from 'vee-validate'
 import feather from 'vue-icon'
+import VueYouTubeEmbed from 'vue-youtube-embed'
 
 Vue.use(ElementUI, { locale })
 Vue.use(feather, 'v-icon')
+Vue.use(VueYouTubeEmbed)
 
 const config = {
   errorBagName: 'errors', // change if property conflicts
