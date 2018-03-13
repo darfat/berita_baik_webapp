@@ -1,5 +1,6 @@
 <template>
-  <sticky className="stickyHeader">
+  
+
     <el-header height="auto" >
       
       <div class="topnav-wrapper">
@@ -116,13 +117,15 @@
       </div>      
        
     </el-header>
-  </sticky>
+  
 </template>
 
 <script>
+
 import img_logo from '@/assets/images/logo_beritabaik.png'
 import img_b_logo from '@/assets/images/logo_beritabaik_b.png'
 export default {
+  name: 'HomeHeader',
   components: '',
   data() {
     return {
@@ -133,7 +136,7 @@ export default {
   }
 }
 
-console.log('Header part')
+// console.log('Header part')
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

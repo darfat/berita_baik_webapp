@@ -1,6 +1,6 @@
 <template>  
   <section class="video-wrapper">    
-    <youtube :video-id="videoId" :player-vars="{ autoplay: 0, showinfo: 0, WMode: transparent }" @ready="ready" @playing="playing" ></youtube>    
+    <youtube :video-id="videoId" @ready="ready" @playing="playing" ></youtube>    
     <div class="container overlay-desc" v-show="ready">       
         <h2>CITRA</h2>
         <h1>Amazing Indonesia</h1>
