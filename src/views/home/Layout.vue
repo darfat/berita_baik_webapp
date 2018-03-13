@@ -1,8 +1,7 @@
 <template>
   <div class="app-wrapper">      
-      <home-header></home-header>
-      <div style="clear: both; padding: 10px 0"></div>
-      <home-main ></home-main>
+      <home-header></home-header>      
+      <home-main></home-main>
       <home-footer></home-footer>
   </div>
 </template>
