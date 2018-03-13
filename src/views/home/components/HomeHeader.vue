@@ -68,7 +68,7 @@
                 <li>
                     <!-- First Tier Drop Down -->
                     <label for="drop-1" class="toggle">Indonesia Bangga &#9660;</label>
-                    <router-link :to="{ path: '/editorial/indonesia-bangga' }">Indonesia Bangga</router-link>
+                    <router-link :to="{ path: '/editorial/indonesia-bangga/p' }">Indonesia Bangga</router-link>
                     <input type="checkbox" id="drop-1"/>
                     <ul>
                         <li><router-link :to="{ path: '/editorial/indonesia-baik/komunitas' }">Komunitas</router-link></li>

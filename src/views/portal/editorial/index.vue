@@ -112,6 +112,8 @@ export default {
       latestNews: {},
       editorialTitle: '',
       editorialSlug: null,
+      editorialType: null,
+      editorialObj: null,
       loading: {
         latestNews: false
       }
@@ -125,10 +127,17 @@ export default {
     init() {
       this.editorialTitle = getEditorialLabelBySlug(this.$route.params.editorialSlug)
       this.editorialSlug = this.$route.params.editorialSlug
+      this.editorialType = this.$route.params.editorialType
+      console.log('editorialType ')
+      console.log(this.editorialType)
     },
     getLatestNews(editorialSlug) {
       this.loading.latestNews = true
-      getLatestNewsByEditorial({ editorialSlug }).then(response => {
+      let params = { editorialSlug }
+      if (this.editorialType && this.editorialType !== null && this.editorialType.length) {
+        params = { editorialSlug, editorialType: this.editorialType, editorialSlugID: '00000000-0000-0000-0000-000000000002' }
+      }
+      getLatestNewsByEditorial(params).then(response => {
         if (response) {
           this.latestNews = response
           this.loading.latestNews = false
