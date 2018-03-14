@@ -68,7 +68,7 @@
                 <li>
                     <!-- First Tier Drop Down -->
                     <label for="drop-1" class="toggle">Indonesia Bangga &#9660;</label>
-                    <router-link :to="{ path: '/editorial/indonesia-bangga/p' }">Indonesia Bangga</router-link>
+                    <router-link :to="{ path: '/editorial/p/indonesia-bangga' }">Indonesia Bangga</router-link>
                     <input type="checkbox" id="drop-1"/>
                     <ul>
                         <li><router-link :to="{ path: '/editorial/indonesia-baik/komunitas' }">Komunitas</router-link></li>
@@ -80,7 +80,7 @@
                 <li>
                 <!-- First Tier Drop Down -->
                 <label for="drop-2" class="toggle">Melancong &#9660;</label>
-                <router-link :to="{ path: '/editorial/melancong' }">Melancong</router-link>
+                <router-link :to="{ path: '/editorial/p/melancong' }">Melancong</router-link>
                 <input type="checkbox" id="drop-2"/>
                 <ul>
                     <li><router-link :to="{ path: '/editorial/melancong/tempat-wisata' }">Tempat Wisata</router-link></li>
@@ -91,7 +91,7 @@
                 <li>
                 <!-- First Tier Drop Down -->
                 <label for="drop-3" class="toggle">Panggung &#9660;</label>
-                <router-link :to="{ path: '/editorial/panggung' }">Panggung</router-link>
+                <router-link :to="{ path: '/editorial/p/panggung' }">Panggung</router-link>
                 <input type="checkbox" id="drop-3"/>
                 <ul>
                     <li><router-link :to="{ path: '/editorial/panggung/musik' }">Musik</router-link></li>
@@ -104,12 +104,12 @@
                 <li>
                 <!-- First Tier Drop Down -->
                 <label for="drop-4" class="toggle">Citra &#9660;</label>
-                <router-link :to="{ path: '/editorial/citra' }">Citra</router-link>
+                <router-link :to="{ path: '/citra/gallery' }">Citra</router-link>
                 <input type="checkbox" id="drop-4"/>
                 <ul>
-                    <li><router-link :to="{ path: '/editorial/citra/galeri-foto' }">Galeri Foto</router-link></li>
-                    <li><router-link :to="{ path: '/editorial/citra/video' }">Video</router-link></li>
-                    <li><router-link :to="{ path: '/editorial/citra/infografis' }">Infografis</router-link></li>
+                    <li><router-link :to="{ path: '/citra/gallery' }">Galeri Foto</router-link></li>
+                    <li><router-link :to="{ path: '/citra/video' }">Video</router-link></li>
+                    <li><router-link :to="{ path: '/citra/infografis' }">Infografis</router-link></li>
                 </ul>
                 </li>                
             </ul>

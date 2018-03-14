@@ -42,7 +42,13 @@ export const constantRouterMap = [
       component: () => import('@/views/portal/editorial/index')
     },
     { // integrated
-      path: 'editorial/:editorialSlug/:editorialType',
+      path: 'editorial/:editorialType/:editorialSlug',
+      name: 'editorial-menu',
+      props: true,
+      component: () => import('@/views/portal/editorial/index')
+    },
+    { // integrated
+      path: 'editorial/:parentSlug/:editorialSlug',
       name: 'editorial-menu-parent',
       props: true,
       component: () => import('@/views/portal/editorial/index')
@@ -54,7 +60,7 @@ export const constantRouterMap = [
       component: () => import('@/views/portal/article/index')
     },
     {
-      path: 'infografis',
+      path: 'citra/infografis',
       name: 'infografis-menu',
       props: true,
       component: () => import('@/views/portal/infografis/index')
@@ -66,13 +72,13 @@ export const constantRouterMap = [
       component: () => import('@/views/portal/infografis-detail/index')
     },
     { // integrated
-      path: 'gallery',
+      path: 'citra/gallery',
       name: 'gallery-menu',
       props: true,
       component: () => import('@/views/portal/gallery/index')
     },
     {
-      path: 'video',
+      path: 'citra/video',
       name: 'video-menu',
       props: true,
       component: () => import('@/views/portal/videog/index')

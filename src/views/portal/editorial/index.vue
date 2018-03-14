@@ -96,7 +96,7 @@
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
 import { PopularNewsSide, ArticlesCard } from '@/views/portal/components'
-import { getEditorialLabelBySlug } from '@/api/editorial'
+import { getEditorialLabelBySlug, getEditorialIdBySlug } from '@/api/editorial'
 import { getLatestNewsByEditorial } from '@/api/article'
 
 export default {
@@ -133,17 +133,39 @@ export default {
     },
     getLatestNews(editorialSlug) {
       this.loading.latestNews = true
-      let params = { editorialSlug }
-      if (this.editorialType && this.editorialType !== null && this.editorialType.length) {
-        params = { editorialSlug, editorialType: this.editorialType, editorialSlugID: '00000000-0000-0000-0000-000000000002' }
+      let params = {
+        editorialSlug
       }
-      getLatestNewsByEditorial(params).then(response => {
-        if (response) {
-          this.latestNews = response
-          this.loading.latestNews = false
-        }
-      })
+      if (this.editorialType && this.editorialType !== null && this.editorialType.length) {
+        getEditorialIdBySlug({
+          slug: editorialSlug
+        }).then(editorialResponse => {
+          if (editorialResponse) {
+            params = {
+              editorialSlug,
+              editorialType: this.editorialType,
+              editorialSlugID: editorialResponse.id
+            }
+            console.log('params')
+            console.log(params)
+            getLatestNewsByEditorial(params).then(response => {
+              if (response) {
+                this.latestNews = response
+                this.loading.latestNews = false
+              }
+            })
+          }
+        })
+      } else {
+        getLatestNewsByEditorial(params).then(response => {
+          if (response) {
+            this.latestNews = response
+            this.loading.latestNews = false
+          }
+        })
+      }
     }
+
   }
 }
 </script>
