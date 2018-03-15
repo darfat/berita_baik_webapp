@@ -54,7 +54,7 @@
                     <el-row :gutter="20">
                         <el-col class="footer">
                           <div>
-                            {{ latestNews.reporter.name }} | {{ latestNews.publish_date_counter }}
+                            {{ latestNews.reporter_name }} | {{ latestNews.publish_date }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
                           </div>
                         </el-col>
                     </el-row>
@@ -70,7 +70,7 @@
 
       <el-col :span="14" class="content">
         <div class="grid-content">
-            <articles-card :editorialSlug="editorialSlug" :limit=6></articles-card>
+            <articles-card :editorialSlug="editorialSlug" :editorialType="editorialType" :limit=6></articles-card>
         </div>
       </el-col>
       <el-col :span="6" class="side-content">

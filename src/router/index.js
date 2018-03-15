@@ -43,13 +43,7 @@ export const constantRouterMap = [
     },
     { // integrated
       path: 'editorial/:editorialType/:editorialSlug',
-      name: 'editorial-menu',
-      props: true,
-      component: () => import('@/views/portal/editorial/index')
-    },
-    { // integrated
-      path: 'editorial/:parentSlug/:editorialSlug',
-      name: 'editorial-menu-parent',
+      name: 'editorial-by-type-menu',
       props: true,
       component: () => import('@/views/portal/editorial/index')
     },

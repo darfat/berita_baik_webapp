@@ -18,6 +18,7 @@ import '@/icons' // icon
 import VeeValidate from 'vee-validate'
 import feather from 'vue-icon'
 import VueYouTubeEmbed from 'vue-youtube-embed'
+import VueTimeago from 'vue-timeago'
 
 Vue.use(ElementUI, { locale })
 Vue.use(feather, 'v-icon')
@@ -47,7 +48,14 @@ const config = {
   i18nRootKey: 'validations' // the nested key under which the validation messsages will be located
 }
 Vue.use(VeeValidate, config)
-
+Vue.use(VueTimeago, {
+  name: 'timeago', // component name, `timeago` by default
+  locale: 'id-ID',
+  locales: {
+    // you will need json-loader in webpack 1
+    'id-ID': require('vue-timeago/locales/id-ID.json')
+  }
+})
 Vue.config.productionTip = false
 
 VeeValidate.Validator.extend('passphrase', {

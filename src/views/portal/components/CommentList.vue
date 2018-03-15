@@ -70,12 +70,13 @@ export default {
       this.loading.comments = true
       if (articleID) {
         getCommentsByArticleID({ articleID }).then(response => {
-          console.log('comment response')
+          console.log(response)
           if (response) {
             this.comments = response
             this.loading.comments = false
+          } else {
+            this.loading.comments = false
           }
-          console.log('end get comment')
         })
       }
     }

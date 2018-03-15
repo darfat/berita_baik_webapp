@@ -36,7 +36,7 @@
                     <el-row >
                         <el-col class="infografis-footer">
                         <div>
-                          {{ infografis.reporter.name }} | {{ infografis.publish_date_counter }}
+                          {{ infografis.reporter.name }} | <timeago :since="infografis.publish_date"></timeago>
                         </div>
                       </el-col>
                     </el-row>

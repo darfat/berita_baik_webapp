@@ -39,7 +39,7 @@
                     <el-row >
                         <el-col class="gallery-footer">
                         <div>
-                          <!-- {{ mainGallery.reporter.name }} | {{ mainGallery.publish_date_counter }} -->
+                          <!-- {{ mainGallery.reporter.name }} | <timeago :since="mainGallery.publish_date"></timeago> -->
                         </div>
                       </el-col>
                     </el-row>
@@ -78,7 +78,7 @@
                     <el-row >
                         <el-col class="gallery-footer">
                         <div>
-                          {{ g.reporter.name }} | {{ g.publish_date_counter }}
+                          {{ g.reporter.name }} | <timeago :since="g.publish_date"></timeago>  
                         </div>
                       </el-col>
                     </el-row>

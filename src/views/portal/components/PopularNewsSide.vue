@@ -24,7 +24,7 @@
                     <el-row >
                         <el-col  class="footer">
                          <div>
-                          <!-- {{ popular.article.reporter.name }} | {{ popular.article.publish_date_counter }} -->
+                          <!-- {{ popular.article.reporter.name }} | <timeago :since="popular.article.publish_date"></timeago> -->
                         </div>
                         </el-col>
                     </el-row>
