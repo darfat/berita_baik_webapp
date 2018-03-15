@@ -61,7 +61,7 @@ export default {
 @import "src/styles/home.scss";
 
 .frontpage-wrapper {
-  padding-top: 150px  
+  padding-top: 160px  
 }
 
 .slider-wrapper{

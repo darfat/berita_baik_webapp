@@ -1,161 +1,167 @@
 <template>
-<div class="slidertop-wrapper">
-  <el-carousel :interval="4000" type="card" height="200px" indicator-position="none">
-    <el-carousel-item v-for="item in idata" :key="item.id">
-      <div class="item-wrapper">
-      <router-link :to="{ path: '/article/indonesia-baik/my-slug' }">
-        <img :src="imgpath+item.img" class="image">
-        <div class="section">{{item.section_name}}</div>
-        <div class="title"><h3>{{item.title}}</h3></div>
-      </router-link>
-      </div>
-    </el-carousel-item>
-  </el-carousel>
+<div class="slidertop-wrapper">  
+  <swiper :options="swiperOption" class="swiper-box">
+    <swiper-slide v-for="item in idata" :key="item.id" class="swiper-item">
+      <img :src="item.img">
+    </swiper-slide>
+    <div class="swiper-button-prev" slot="button-prev"></div>
+    <div class="swiper-button-next" slot="button-next"></div>
+  </swiper>
+  
 </div>
 </template>
 
 <script>
-console.log('top slider main')
+// import 'swiper/dist/css/swiper.css'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   name: 'TopSlider',
+  components: {
+    swiper,
+    swiperSlide
+  },
   data() {
     return {
-      imgpath: 'static/',
+      swiperOption: {
+        slidesPerView: 3,
+        spaceBetween: 20,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        // Responsive breakpoints
+        breakpoints: {
+          // when window width is <= 320px
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 10
+          },
+          // when window width is <= 480px
+          480: {
+            slidesPerView: 2,
+            spaceBetween: 10
+          },
+          // when window width is <= 640px
+          640: {
+            slidesPerView: 3,
+            spaceBetween: 20
+          }
+        }
+      },
       idata: [
         {
           'id': 1,
-          'img': 'images/01.jpg',
+          'img': 'static/upload/images/1.jpg',
           'url': '#',
           'section_name': 'Section 1',
           'title': 'Menikmati Hari Pertama Car Free Day di JLNT Antasari',
-          'teaser': 'Posted by Kevin on Friday',
-          'isActive': true
+          'teaser': 'Posted by Kevin on Friday'
         },
         {
           'id': 2,
-          'img': 'images/02.jpg',
+          'img': 'static/upload/images/2.jpg',
           'url': '#',
           'section_name': 'Section 2',
           'title': 'Muntahkan Lahar, Gunung Mayon Siap Meletus',
-          'teaser': 'Posted by Kevin on Friday',
-          'isActive': false
+          'teaser': 'Posted by Kevin on Friday'
         },
         {
           'id': 3,
-          'img': 'images/03.jpg',
+          'img': 'static/upload/images/2.jpg',
           'url': '#',
           'section_name': 'Section 3',
           'title': 'Ribuan Nelayan Minta Kejelasan Terkait Penggunaan Cantrang',
-          'teaser': 'Posted by Kevin on Friday',
-          'isActive': false
+          'teaser': 'Posted by Kevin on Friday'
         },
         {
           'id': 4,
-          'img': 'images/04.jpg',
+          'img': 'static/upload/images/2.jpg',
           'url': '#',
           'section_name': 'Section 4',
           'title': 'Sepeda Federal Vintage',
-          'teaser': 'Posted by Kevin on Friday',
-          'isActive': false
+          'teaser': 'Posted by Kevin on Friday'
         },
         {
           'id': 5,
-          'img': 'images/05.jpg',
+          'img': 'static/upload/images/2.jpg',
           'url': '#',
           'section_name': 'Section 4',
           'title': 'Timnas Islandia Raih Kemenangan Atas Timnas Indonesia',
-          'teaser': 'Posted by Kevin on Friday',
-          'isActive': false
+          'teaser': 'Posted by Kevin on Friday'
         },
         {
           'id': 6,
-          'img': 'images/06.jpg',
+          'img': 'static/upload/images/2.jpg',
           'url': '#',
           'section_name': 'Section 4',
           'title': 'Saksi Seret Nama SBY dalam Sidang Korupsi e-KTP Setya Novanto',
-          'teaser': 'Saksi Seret Nama SBY dalam Sidang Korupsi e-KTP Setya Novanto',
-          'isActive': false
+          'teaser': 'Saksi Seret Nama SBY dalam Sidang Korupsi e-KTP Setya Novanto'
         },
         {
           'id': 7,
-          'img': 'images/07.jpg',
+          'img': 'static/upload/images/2.jpg',
           'url': '#',
           'section_name': 'Section 4',
           'title': 'SMP Darul Hikam Gelar Try Out Ujian Nasional (UN) SD/MI 2017',
-          'teaser': 'SMP Darul Hikam Gelar Try Out Ujian Nasional (UN) SD/MI 2017',
-          'isActive': false
+          'teaser': 'SMP Darul Hikam Gelar Try Out Ujian Nasional (UN) SD/MI 2017'
         },
         {
           'id': 8,
-          'img': 'images/08.jpg',
+          'img': 'static/upload/images/2.jpg',
           'url': '#',
           'section_name': 'Section 4',
           'title': 'Persela Lamongan Imbangi Bhayangkara FC',
-          'teaser': 'Posted by Kevin on Friday',
-          'isActive': false
+          'teaser': 'Posted by Kevin on Friday'
         },
         {
           'id': 9,
-          'img': 'images/09.jpg',
+          'img': 'static/upload/images/2.jpg',
           'url': '#',
           'section_name': 'Section 4',
           'title': 'Panglima TNI : Pengiriman Satgas Kesehatan TNI Sesuai Konstitusi',
-          'teaser': 'Posted by Kevin on Friday',
-          'isActive': false
+          'teaser': 'Posted by Kevin on Friday'
         }
       ]
     }
   }
 }
+console.log('top slider main')
 </script>
 
-<style>
-.slidertop-wrapper{
+<style rel="stylesheet/scss" lang="scss" scoped>
+.slidertop-wrapper{  
   padding: 20px 0;
-}  
-/*
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;    
-}
-
-.el-carousel__item:nth-child(2n+1) {
-  background-color: #d3dce6;
-}
-*/
-
-
-
-.image{
   width: 100%;
-  min-height: 200px;    
 }
-
-
-.section{
-  position: absolute;
-  top: 3%;
-  left: 3%;
-  text-align: center;
-  color: #FFF;
-  font-weight: bold;
-  background-color: #0a2f88;
-  padding: 5px 15px;
+.swiper-box {
+  width: 100%;
+  height: 130px;
+  margin: 0 auto;
+  
 }
-
-
-.title{
-	position:absolute; /* absolute position (so we can position it where we want)*/
-	bottom:2%; /* position will be on bottom */
-	left:1%;
-	width:98%;
-	/* styling bellow */
-	background-color: rgba(255,255,255, 0.9);
-	color:#0a2f88;
-  font-height:700;  
+.swiper-item {
+  height: 100%;
+  text-align: center;  
+  background: #fff;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+    img{
+      width: 100%;
+      height: auto;      
+    }
 }
-
-.title h3{
-    padding:10px 15px;
-    margin:0;    
+.swiper-button-next, .swiper-container-rtl, .swiper-button-prev{
+  fill: yellow!important;
 }
 </style>
