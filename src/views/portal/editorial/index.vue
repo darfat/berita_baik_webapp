@@ -75,11 +75,15 @@
       </el-col>
       <el-col :span="6" class="side-content">
         <div class="grid-content a-side">
+          <div>
           <popular-news-side> </popular-news-side>
+          </div>
           <div class="side-separator">
             <span> Buka lebih banyak lagi </span>
           </div>
-          <div><router-link :to="{ path: '/infografis' }"> Infografis </router-link></div>
+          <div>
+          <infografis-side :editorialSlug="'infografis'"  > </infografis-side>
+          </div>
           <div class="side-separator">
             <span> Buka lebih banyak lagi </span>
           </div>
@@ -95,7 +99,7 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { PopularNewsSide, ArticlesCard } from '@/views/portal/components'
+import { PopularNewsSide, ArticlesCard, InfografisSide } from '@/views/portal/components'
 import { getEditorialLabelBySlug, getEditorialIdBySlug } from '@/api/editorial'
 import { getLatestNewsByEditorial } from '@/api/article'
 
@@ -105,7 +109,8 @@ export default {
     ArticleSeparator,
     PopularNewsSide,
     ArticlesCard,
-    BbLove
+    BbLove,
+    InfografisSide
   },
   data() {
     return {

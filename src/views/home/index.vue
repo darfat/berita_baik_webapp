@@ -14,7 +14,12 @@
         <articles-card :title="'Berita Baik Terbaru'" :limit=9></articles-card>
       </el-col>
       <el-col :span="8">
-        <popular-news-side></popular-news-side>
+        <div>
+          <popular-news-side></popular-news-side>
+        </div>
+        <div>
+          <infografis-side :editorialSlug="'infografis'"  > </infografis-side>
+        </div>
       </el-col>
     </el-row>
   </div>
@@ -36,7 +41,7 @@
 
 <script>
 import { TopSlider, HeadlineSlider, LatestNews, Citra, Galeri } from '@/views/home/components'
-import { PopularNewsSide, Subscribe, Events, ArticlesCard } from '@/views/portal/components'
+import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide } from '@/views/portal/components'
 
 export default {
   name: 'frontpage',
@@ -49,7 +54,8 @@ export default {
     Subscribe,
     Events,
     Galeri,
-    ArticlesCard
+    ArticlesCard,
+    InfografisSide
   },
   computed: {
   }
