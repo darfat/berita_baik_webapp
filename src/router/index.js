@@ -48,7 +48,7 @@ export const constantRouterMap = [
       component: () => import('@/views/portal/editorial/index')
     },
     { // integrated
-      path: 'article/:editorialSlug/:articleID/:slug',
+      path: 'article/:editorialSlug/:slug',
       name: 'article-detail-route',
       props: true,
       component: () => import('@/views/portal/article/index')
@@ -60,7 +60,7 @@ export const constantRouterMap = [
       component: () => import('@/views/portal/infografis/index')
     },
     {
-      path: 'infografis/:articleID/:slug',
+      path: 'infografis/:slug',
       name: 'infografis-detail-layout',
       props: true,
       component: () => import('@/views/portal/infografis-detail/index')

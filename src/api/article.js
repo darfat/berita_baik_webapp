@@ -28,6 +28,12 @@ export function create(data) {
 }
 export function getArticle(params) {
   return request({
+    url: '/article-by-slug/' + params.slug,
+    method: 'get'
+  })
+}
+export function getArticleByID(params) {
+  return request({
     url: '/articles/' + params.articleID,
     method: 'get'
   })

@@ -238,15 +238,15 @@ export default {
   methods: {
     init() {
       this.editorialSlug = this.$route.params.editorialSlug
-      this.getMainArticle(this.articleID)
-      this.getAuthors(this.articleID)
+      this.getMainArticle(this.slug)
     },
-    getMainArticle(articleID) {
+    getMainArticle(slug) {
       this.loading.mainArticle = true
-      getArticle({ articleID }).then(response => {
+      getArticle({ slug }).then(response => {
         this.loading.mainArticle = false
         if (response) {
           this.mainArticle = response
+          this.getAuthors(this.mainArticle.id)
         }
       })
     },

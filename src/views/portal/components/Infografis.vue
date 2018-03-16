@@ -93,11 +93,11 @@ export default {
   },
   methods: {
     init() {
-      this.getMainArticle(this.articleID)
+      this.getMainArticle(this.slug)
     },
-    getMainArticle(articleID) {
+    getMainArticle(slug) {
       this.loading.infografis = true
-      getArticle({ articleID }).then(response => {
+      getArticle({ slug }).then(response => {
         if (response) {
           this.infografis = response
           this.loading.infografis = false
