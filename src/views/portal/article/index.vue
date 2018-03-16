@@ -74,7 +74,7 @@
                     <el-col :span="9" class="p-tb-5">
                     </el-col>
                     <el-col :span="7" class="align-right" >
-                      <span> <bb-love :articleID="mainArticle.id"></bb-love> </span>
+                      <span> <bb-love :articleID="mainArticle.id" :type="'article'" ></bb-love> </span>
                       <span> <v-icon name="facebook" base-class="icon-20"></v-icon> </span>
                       <span> <v-icon name="mail" base-class="icon-20"></v-icon> </span>
                       <span> <v-icon name="send" base-class="icon-20"></v-icon> </span>
@@ -87,7 +87,7 @@
               </el-row>
               <el-row :gutter="20" class="m-t-10" >
             <el-col>
-              <comment-box></comment-box>
+              <comment-box :articleID="mainArticle.id"></comment-box>
             </el-col>
           </el-row>
         </div>

@@ -11,7 +11,8 @@
 export default {
   name: 'BbLove',
   props: {
-    articleID: { type: String, default: '000' }
+    articleID: { type: String, default: '000' },
+    type: { type: String, default: 'article' }
   },
   data() {
     return {

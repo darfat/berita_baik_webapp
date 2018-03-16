@@ -1,14 +1,14 @@
 <template>
   <div class="comment-list">      
     <div  class="content" v-loading="loading.comments" > 
-        <el-row :gutter="20" v-for="(comment) in comments" :key="comment.id" >
+        <el-row :gutter="20" v-for="(comment) in comments" :key="comment.id" class="data">
             <el-row >
               <el-col :span="1" class="comment-img">
                   <img :src="comment.user.image" class="img-circle img-mini v-align-middle"/>
               </el-col>
               <el-col :span="23" class="comment-info">
                   <div> {{ comment.user.name }}</div>
-                  <div class="comment-date"> {{ comment.created_at }} </div>
+                  <div class="comment-date"> <timeago :auto-update="60" :since="comment.created_at"> </timeago>  </div>
               </el-col>
             </el-row>
             <el-row class="comment-comment">
@@ -23,7 +23,7 @@
             </el-row>          
             <el-row >
               <el-col :span="12" class="comment-option" >
-                <span> <v-icon name="heart" base-class="icon-20 v-align-middle"></v-icon> </span>
+                <span> <bb-love :articleID="comment.id" :type="'comment'" ></bb-love> </span>
                 <span class="opt-label"> {{ comment.likes_count}} </span>
                 <span class="opt-label"> | </span>
                 <span class="opt-label"> Reply </span>
@@ -43,12 +43,17 @@
 
 <script>
 import { getCommentsByArticleID } from '@/api/comment'
+import BbLove from '@/views/portal/components/BbLove'
+import EventBus from '@/utils/event-bus'
 
 export default {
   name: 'CommentList',
   props: {
     articleID: { type: String },
     limit: { default: 12, type: Number }
+  },
+  components: {
+    BbLove
   },
   data() {
     return {
@@ -60,6 +65,12 @@ export default {
   },
   created() {
     this.init()
+  },
+  mounted() {
+    EventBus.$on('UPDATE_COMMENTS_EVENT', event => {
+      console.log('UPDATE_COMMENTS_EVENT')
+      this.getComments(this.articleID)
+    })
   },
   methods: {
     init() {

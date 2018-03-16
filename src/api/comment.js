@@ -7,3 +7,11 @@ export function getCommentsByArticleID(params) {
     params
   })
 }
+
+export function create(data) {
+  return request({
+    url: '/article_comments',
+    method: 'post',
+    data
+  })
+}
