@@ -75,10 +75,31 @@
                     </el-col>
                     <el-col :span="7" class="align-right" >
                       <span> <bb-love :articleID="mainArticle.id" :type="'article'" ></bb-love> </span>
-                      <span> <v-icon name="facebook" base-class="icon-20"></v-icon> </span>
-                      <span> <v-icon name="mail" base-class="icon-20"></v-icon> </span>
-                      <span> <v-icon name="send" base-class="icon-20"></v-icon> </span>
-                      <span> <v-icon name="twitter" base-class="icon-20"></v-icon> </span>
+                      <span>  <social-sharing url="http://beritabaik.id/"
+                      :title="mainArticle.title"
+                      :description="mainArticle.teaser"
+                      :quote="mainArticle.title"
+                      hashtags="beritabaik,news"
+                      inline-template>
+                        <div>
+                            <network network="facebook">
+                              <fa-icon name="facebook-official" scale="2" ></fa-icon>
+                            </network>
+                            <network network="twitter">
+                              <fa-icon name="twitter" scale="2" ></fa-icon>
+                            </network>
+                            <network network="email">
+                              <fa-icon name="envelope" scale="2" ></fa-icon>
+                            </network>
+                            <network network="googleplus">
+                              <fa-icon name="google-plus" scale="2" ></fa-icon>
+                            </network>
+                            <network network="whatsapp">
+                              <fa-icon name="whatsapp" scale="2" ></fa-icon>
+                            </network>
+                        </div>
+                      </social-sharing>   
+                      </span>
                     </el-col>
                     <el-col :span="1">                    
                       <span> <v-icon name="more-horizontal" base-class="icon-20"></v-icon> </span>
