@@ -37,7 +37,7 @@
                 <el-row :gutter="20">
                     <el-col class="footer">
                       <div>
-                        {{ mainArticle.reporter.name }} | {{ mainArticle.publish_date_counter }}
+                       <timeago :auto-update="60" :since="mainArticle.publish_date"> </timeago>
                       </div>
                     </el-col>
                 </el-row>
@@ -59,9 +59,9 @@
                         Editorial <br/> Team
                       </span>
                     </el-col>
-                    <el-col :span="2">
-                      <img :src="mainArticle.reporter.image" class="img-circle img-mini v-align-middle"/>
-                      <span> {{ mainArticle.reporter.name }} </span>
+                    <el-col :span="2" v-loading="loading.authors" >
+                      <img :src="reporter.user.image" class="img-circle img-mini v-align-middle"/>
+                      <span> {{ reporter.user.name }} </span>
                     </el-col>
                     <el-col :span="13" class="p-tb-5">
                       <div class="follow-user">
@@ -178,6 +178,7 @@ import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav, CommentList, Sub
 import BbLove from '@/views/portal/components/BbLove'
 
 import { getArticle } from '@/api/article'
+import { getAuthorsByArticleID } from '@/api/author'
 
 export default {
   name: 'article-detail',
@@ -199,10 +200,12 @@ export default {
   data() {
     return {
       mainArticle: {},
-      articles: [],
+      mainArticleAuthors: [],
+      reporter: {},
       editorialSlug: null,
       loading: {
-        mainArticle: false
+        mainArticle: false,
+        authors: false
       }
     }
   },
@@ -213,13 +216,29 @@ export default {
     init() {
       this.editorialSlug = this.$route.params.editorialSlug
       this.getMainArticle(this.articleID)
+      this.getAuthors(this.articleID)
     },
     getMainArticle(articleID) {
       this.loading.mainArticle = true
       getArticle({ articleID }).then(response => {
+        this.loading.mainArticle = false
         if (response) {
           this.mainArticle = response
-          this.loading.mainArticle = false
+        }
+      })
+    },
+    getAuthors(articleID) {
+      console.log('getAuthors')
+      this.loading.authors = true
+      getAuthorsByArticleID({ articleID }).then(response => {
+        this.loading.authors = false
+        if (response) {
+          this.mainArticleAuthors = response
+          this.mainArticleAuthors.forEach(element => {
+            if (element.notes === 'reporter') {
+              this.reporter = element
+            }
+          })
         }
       })
     }

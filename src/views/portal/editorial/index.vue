@@ -54,7 +54,7 @@
                     <el-row :gutter="20">
                         <el-col class="footer">
                           <div>
-                            {{ latestNews.reporter_name }} | {{ latestNews.publish_date }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
+                            {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
                           </div>
                         </el-col>
                     </el-row>
