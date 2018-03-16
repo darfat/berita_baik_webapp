@@ -94,7 +94,7 @@ export default {
       if (editorialSlug) {
         getImagesByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit + 1 }).then(response => {
           if (response) {
-            this.list = response
+            this.list = response.data
             this.loading.list = false
           }
         })

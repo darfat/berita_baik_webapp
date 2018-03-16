@@ -82,14 +82,14 @@ export default {
     getListByEditorialSlug(editorialSlug) {
       this.listLoading = true
       getListByEditorialSlug({ editorialSlug }).then(response => {
-        this.list = response
+        this.list = response.data
         this.listLoading = false
       })
     },
     getAll() {
       this.listLoading = true
       getAll(this.listQuery).then(response => {
-        this.list = response
+        this.list = response.data
         this.listLoading = false
       })
     },

@@ -68,7 +68,7 @@ export default {
       getPopularArticles({ page: this.page, per_page: this.limit }).then(response => {
         console.log(response)
         if (response) {
-          this.popular_articles = response
+          this.popular_articles = response.data
           this.loading.popular_articles = false
         }
       })

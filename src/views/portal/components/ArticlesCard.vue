@@ -99,7 +99,7 @@ export default {
               params = {
                 editorialSlug,
                 editorialType: this.editorialType,
-                editorialSlugID: editorialResponse.id,
+                editorialSlugID: editorialResponse.data.id,
                 page: 1,
                 per_page: this.limit + 1
               }
@@ -107,7 +107,7 @@ export default {
               console.log(params)
               getNewsByEditorialSlug(params).then(response => {
                 if (response) {
-                  this.articles = response.slice(1)
+                  this.articles = response.data.slice(1)
                   this.loading.articles = false
                 }
               })
@@ -116,7 +116,7 @@ export default {
         } else {
           getNewsByEditorialSlug(params).then(response => {
             if (response) {
-              this.articles = response.slice(1)
+              this.articles = response.data.slice(1)
               this.loading.articles = false
             }
           })
@@ -127,7 +127,7 @@ export default {
           per_page: this.limit
         }).then(response => {
           if (response) {
-            this.articles = response
+            this.articles = response.data
             this.loading.articles = false
           }
         })

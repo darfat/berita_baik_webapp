@@ -99,7 +99,7 @@ export default {
       this.loading.infografis = true
       getArticle({ slug }).then(response => {
         if (response) {
-          this.infografis = response
+          this.infografis = response.data
           this.loading.infografis = false
         }
       })

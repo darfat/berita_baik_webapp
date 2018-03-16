@@ -62,7 +62,7 @@ export default {
     getAll() {
       this.listLoading = true
       getAll(this.listQuery).then(response => {
-        this.list = response
+        this.list = response.data
         this.listLoading = false
       })
     }

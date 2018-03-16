@@ -73,7 +73,7 @@ export default {
       this.loading.latestVideo = true
       getLatestVideoByEditorial({ editorialSlug }).then(response => {
         if (response) {
-          this.latestVideo = response
+          this.latestVideo = response.data
           this.loading.latestVideo = false
         }
       })
@@ -82,7 +82,7 @@ export default {
       this.loading.list = true
       getVideosByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit }).then(response => {
         if (response) {
-          this.list = response
+          this.list = response.data
           this.loading.list = false
         }
       })

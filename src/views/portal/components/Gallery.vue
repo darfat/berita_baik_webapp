@@ -141,7 +141,7 @@ export default {
       getLatestImageByEditorial({ editorialSlug }).then(response => {
         if (response) {
           console.log('latest news')
-          this.mainGallery = response
+          this.mainGallery = response.data
           this.loading.mainGallery = false
         }
       })
@@ -152,7 +152,7 @@ export default {
         getImagesByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit + 1 }).then(response => {
           if (response) {
             console.log('latest article by slug')
-            this.galleries = response.slice(1)
+            this.galleries = response.data.slice(1)
             this.loading.galleries = false
           }
         })

@@ -245,7 +245,7 @@ export default {
       getArticle({ slug }).then(response => {
         this.loading.mainArticle = false
         if (response) {
-          this.mainArticle = response
+          this.mainArticle = response.data
           this.getAuthors(this.mainArticle.id)
         }
       })
@@ -256,7 +256,7 @@ export default {
       getAuthorsByArticleID({ articleID }).then(response => {
         this.loading.authors = false
         if (response) {
-          this.mainArticleAuthors = response
+          this.mainArticleAuthors = response.data
           this.mainArticleAuthors.forEach(element => {
             if (element.notes === 'reporter') {
               this.reporter = element

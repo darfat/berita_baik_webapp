@@ -57,7 +57,7 @@ service.interceptors.response.use(
         console.log('result empty ')
         return undefined
       }
-      return response.data
+      return response
     }
   },
   error => {
