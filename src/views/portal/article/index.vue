@@ -54,22 +54,24 @@
                   </el-col>
                 </el-row>
                 <el-row :gutter="20" class="m-t-10 article-option">
-                    <el-col :span="1">
+                    <el-col :span="2">
                       <span  > 
-                        Editorial <br/> Team
+                        Editorial <br/> Team :
                       </span>
                     </el-col>
-                    <el-col :span="2" v-loading="loading.authors" >
-                      <img :src="reporter.user.image" class="img-circle img-mini v-align-middle"/>
-                      <span> {{ reporter.user.name }} </span>
-                    </el-col>
-                    <el-col :span="13" class="p-tb-5">
-                      <div class="follow-user">
-                        <v-icon name="user" base-class="icon-20 v-align-middle"></v-icon>
-                        <span  > 
-                          Follow
+                    <el-col :span="5" v-loading="loading.authors" >
+                      <div v-for="(author) in mainArticleAuthors" :key="author.id">
+                        <img :src="author.user.image" class="img-circle img-mini v-align-middle"/>
+                        <span> {{ author.user.name }} </span>
+                        <span class="follow-user">
+                          <v-icon name="user" base-class="icon-20 v-align-middle"></v-icon>
+                          <span  > 
+                            Follow
+                          </span>
                         </span>
                       </div>
+                    </el-col>
+                    <el-col :span="9" class="p-tb-5">
                     </el-col>
                     <el-col :span="7" class="align-right" >
                       <span> <bb-love :articleID="mainArticle.id"></bb-love> </span>
