@@ -23,7 +23,7 @@ export default {
     swiperSlide
   },
   props: {
-    limit: { default: 6, type: Number }
+    limit: { default: 9, type: Number }
   },
   data() {
     return {

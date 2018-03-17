@@ -1,115 +1,58 @@
 <template>
-  <el-carousel indicator-position="outside" height="560px">
-    <el-carousel-item v-for="item in headline" :key="item.id">
+  <el-carousel indicator-position="outside" height="560px" v-loading="loading.headlines">
+    <el-carousel-item v-for="item in headlines" :key="item.id">
       <div class="item-wrapper-hl">
-        <img :src="imgpath+item.img" class="image-hl">
-        <div class="section-hl">{{item.section_name}}</div>        
+        <img :src="item.article.main_image" class="image-hl">
+        <div class="section-hl">{{item.editorial.name}}</div>        
       </div>
       <div class="bottom-caption">
       <span> <bb-love></bb-love> </span>
       <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
-      <h2>{{item.title}}</h2>
-      <p>{{item.teaser}}</p>
-      <span class="separator">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-      Boim | 5 menit yang lalu
+      <h2>{{item.article.title}}</h2>
+      <p>{{item.article.teaser}}</p>
+      <div class="separator">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      <div>
+        {{ item.article.reporter_name}} | <timeago :since="item.article.publish_date"></timeago>
+      </div>
       </div>
     </el-carousel-item>
   </el-carousel>
 </template>
 
 <script>
+import { getHeadlineArticles } from '@/api/headline_article'
 import BbLove from '@/views/portal/components/BbLove'
 export default {
   name: 'HeadlineSlider',
   components: {
     BbLove
   },
+  props: {
+    limit: { default: 9, type: Number }
+  },
   data() {
     return {
-      imgpath: 'static/',
-      headline: [
-        {
-          'id': 1,
-          'img': 'images/01.jpg',
-          'url': '#',
-          'section_name': 'Section 1',
-          'title': 'Menikmati Hari Pertama Car Free Day di JLNT Antasari',
-          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
-          'isActive': true
-        },
-        {
-          'id': 2,
-          'img': 'images/02.jpg',
-          'url': '#',
-          'section_name': 'Section 2',
-          'title': 'Muntahkan Lahar, Gunung Mayon Siap Meletus',
-          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
-          'isActive': false
-        },
-        {
-          'id': 3,
-          'img': 'images/03.jpg',
-          'url': '#',
-          'section_name': 'Section 3',
-          'title': 'Ribuan Nelayan Minta Kejelasan Terkait Penggunaan Cantrang',
-          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
-          'isActive': false
-        },
-        {
-          'id': 4,
-          'img': 'images/04.jpg',
-          'url': '#',
-          'section_name': 'Section 4',
-          'title': 'Sepeda Federal Vintage',
-          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
-          'isActive': false
-        },
-        {
-          'id': 5,
-          'img': 'images/05.jpg',
-          'url': '#',
-          'section_name': 'Section 4',
-          'title': 'Timnas Islandia Raih Kemenangan Atas Timnas Indonesia',
-          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
-          'isActive': false
-        },
-        {
-          'id': 6,
-          'img': 'images/06.jpg',
-          'url': '#',
-          'section_name': 'Section 4',
-          'title': 'Saksi Seret Nama SBY dalam Sidang Korupsi e-KTP Setya Novanto',
-          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
-          'isActive': false
-        },
-        {
-          'id': 7,
-          'img': 'images/07.jpg',
-          'url': '#',
-          'section_name': 'Section 4',
-          'title': 'SMP Darul Hikam Gelar Try Out Ujian Nasional (UN) SD/MI 2017',
-          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
-          'isActive': false
-        },
-        {
-          'id': 8,
-          'img': 'images/08.jpg',
-          'url': '#',
-          'section_name': 'Section 4',
-          'title': 'Persela Lamongan Imbangi Bhayangkara FC',
-          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
-          'isActive': false
-        },
-        {
-          'id': 9,
-          'img': 'images/09.jpg',
-          'url': '#',
-          'section_name': 'Section 4',
-          'title': 'Panglima TNI : Pengiriman Satgas Kesehatan TNI Sesuai Konstitusi',
-          'teaser': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
-          'isActive': false
+      headlines: [],
+      loading: {
+        headlines: false
+      }
+    }
+  },
+  created() {
+    this.init()
+  },
+  methods: {
+    init() {
+      this.getHeadlines()
+    },
+    getHeadlines() {
+      this.loading.mainGallery = true
+      getHeadlineArticles({ page: 1, per_page: this.limit }).then(response => {
+        this.loading.headlines = false
+        if (response) {
+          this.headlines = response.data
         }
-      ]
+      })
     }
   }
 }
