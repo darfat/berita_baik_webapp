@@ -28,7 +28,10 @@
     <hr/>
     <home-youtube-video></home-youtube-video> 
   </div>  
-  
+  <div class="container">
+    <hr/>
+    <social-feed></social-feed> 
+  </div>  
   <div class="container">            
     <hr/><events></events>
     <hr/><galeri></galeri>    
@@ -42,7 +45,7 @@
 
 <script>
 import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, Galeri } from '@/views/home/components'
-import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide } from '@/views/portal/components'
+import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide ,SocialFeed} from '@/views/portal/components'
 
 export default {
   name: 'frontpage',
@@ -56,7 +59,8 @@ export default {
     Events,
     Galeri,
     ArticlesCard,
-    InfografisSide
+    InfografisSide,
+    SocialFeed
   },
   computed: {
   }
