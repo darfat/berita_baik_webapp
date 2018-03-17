@@ -25,7 +25,8 @@
   </div>
 
   <div>
-    <hr/><citra></citra> 
+    <hr/>
+    <home-youtube-video></home-youtube-video> 
   </div>  
   
   <div class="container">            
@@ -40,7 +41,7 @@
 </template>
 
 <script>
-import { TopSlider, HeadlineSlider, LatestNews, Citra, Galeri } from '@/views/home/components'
+import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, Galeri } from '@/views/home/components'
 import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide } from '@/views/portal/components'
 
 export default {
@@ -50,7 +51,7 @@ export default {
     HeadlineSlider,
     LatestNews,
     PopularNewsSide,
-    Citra,
+    HomeYoutubeVideo,
     Subscribe,
     Events,
     Galeri,
