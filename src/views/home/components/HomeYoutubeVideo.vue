@@ -24,7 +24,7 @@ export default {
       latestVideo: {},
       loading: {
         latestVideo: false
-      },
+      }
     }
   },
   created() {

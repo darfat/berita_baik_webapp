@@ -45,7 +45,7 @@
 
 <script>
 import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, Galeri } from '@/views/home/components'
-import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide ,SocialFeed} from '@/views/portal/components'
+import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide, SocialFeed } from '@/views/portal/components'
 
 export default {
   name: 'frontpage',
