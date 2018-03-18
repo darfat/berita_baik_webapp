@@ -1,9 +1,10 @@
 <template>
-  <div class="app-wrapper">      
-      <home-header></home-header>      
-      <home-main></home-main>
-      <home-footer></home-footer>
-  </div>
+  <div class="home">
+    <home-header></home-header>
+    <home-main></home-main>
+    <home-footer></home-footer>
+    aaaa
+  </div><!--/.home-->
 </template>
 
 <script>
@@ -25,10 +26,11 @@ export default {
 @import "src/styles/mixin.scss";
 @import "src/styles/home.scss";
 
-.app-wrapper {
-  @include clearfix;
-  position: absolute;
+.home {
   height: 100%;
-  width: 100%;  
+  width: 100%;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
 }
 </style>
