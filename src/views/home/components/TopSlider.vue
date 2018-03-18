@@ -7,6 +7,10 @@
   <swiper :options="swiperOption" class="swiper-box">
     <swiper-slide v-for="item in idata" :key="item.id" class="swiper-item">
       <img :src="item.img">
+<div class="slidertop-wrapper" >  
+  <swiper :options="swiperOption" class="swiper-box" v-loading="loading.topslides">
+    <swiper-slide v-for="item in topslides" :key="item.id" class="swiper-item">
+      <img :src="item.article.main_image">
     </swiper-slide>
     
   </swiper>
@@ -17,6 +21,8 @@
 </template>
 
 <script>
+import { getTopslideArticles } from '@/api/topslide_article'
+
 // import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
@@ -24,6 +30,9 @@ export default {
   components: {
     swiper,
     swiperSlide
+  },
+  props: {
+    limit: { default: 9, type: Number }
   },
   data() {
     return {
@@ -53,84 +62,30 @@ export default {
           }
         }
       },
-      idata: [
-        {
-          'id': 1,
-          'img': 'static/upload/images/1.jpg',
-          'url': '#',
-          'section_name': 'Section 1',
-          'title': 'Menikmati Hari Pertama Car Free Day di JLNT Antasari',
-          'teaser': 'Posted by Kevin on Friday'
-        },
-        {
-          'id': 2,
-          'img': 'static/upload/images/2.jpg',
-          'url': '#',
-          'section_name': 'Section 2',
-          'title': 'Muntahkan Lahar, Gunung Mayon Siap Meletus',
-          'teaser': 'Posted by Kevin on Friday'
-        },
-        {
-          'id': 3,
-          'img': 'static/upload/images/2.jpg',
-          'url': '#',
-          'section_name': 'Section 3',
-          'title': 'Ribuan Nelayan Minta Kejelasan Terkait Penggunaan Cantrang',
-          'teaser': 'Posted by Kevin on Friday'
-        },
-        {
-          'id': 4,
-          'img': 'static/upload/images/2.jpg',
-          'url': '#',
-          'section_name': 'Section 4',
-          'title': 'Sepeda Federal Vintage',
-          'teaser': 'Posted by Kevin on Friday'
-        },
-        {
-          'id': 5,
-          'img': 'static/upload/images/2.jpg',
-          'url': '#',
-          'section_name': 'Section 4',
-          'title': 'Timnas Islandia Raih Kemenangan Atas Timnas Indonesia',
-          'teaser': 'Posted by Kevin on Friday'
-        },
-        {
-          'id': 6,
-          'img': 'static/upload/images/2.jpg',
-          'url': '#',
-          'section_name': 'Section 4',
-          'title': 'Saksi Seret Nama SBY dalam Sidang Korupsi e-KTP Setya Novanto',
-          'teaser': 'Saksi Seret Nama SBY dalam Sidang Korupsi e-KTP Setya Novanto'
-        },
-        {
-          'id': 7,
-          'img': 'static/upload/images/2.jpg',
-          'url': '#',
-          'section_name': 'Section 4',
-          'title': 'SMP Darul Hikam Gelar Try Out Ujian Nasional (UN) SD/MI 2017',
-          'teaser': 'SMP Darul Hikam Gelar Try Out Ujian Nasional (UN) SD/MI 2017'
-        },
-        {
-          'id': 8,
-          'img': 'static/upload/images/2.jpg',
-          'url': '#',
-          'section_name': 'Section 4',
-          'title': 'Persela Lamongan Imbangi Bhayangkara FC',
-          'teaser': 'Posted by Kevin on Friday'
-        },
-        {
-          'id': 9,
-          'img': 'static/upload/images/2.jpg',
-          'url': '#',
-          'section_name': 'Section 4',
-          'title': 'Panglima TNI : Pengiriman Satgas Kesehatan TNI Sesuai Konstitusi',
-          'teaser': 'Posted by Kevin on Friday'
+      topslides: [],
+      loading: {
+        topslides: false
+      }
+    }
+  },
+  created() {
+    this.init()
+  },
+  methods: {
+    init() {
+      this.getTopSlides(this.editorialSlug)
+    },
+    getTopSlides() {
+      this.loading.mainGallery = true
+      getTopslideArticles({ page: 1, per_page: this.limit }).then(response => {
+        this.loading.topslides = false
+        if (response) {
+          this.topslides = response.data
         }
-      ]
+      })
     }
   }
 }
-console.log('top slider main')
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
