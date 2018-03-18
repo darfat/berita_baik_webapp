@@ -1,21 +1,13 @@
 <template>
-<<<<<<< HEAD
 <div class="slidertop-wrapper">  
   <div class="swiper-nav">
     <div class="swiper-button-prev" slot="button-prev"><svg-icon icon-class="arrow_left"></svg-icon></div>  
     <div class="swiper-button-next" slot="button-next"><svg-icon icon-class="arrow_right"></svg-icon></div>
   </div>
   <swiper :options="swiperOption" class="swiper-box">
-    <swiper-slide v-for="item in idata" :key="item.id" class="swiper-item">
-      <img :src="item.img">
-=======
->>>>>>> origin/0.1.darfat
-<div class="slidertop-wrapper" >  
-  <swiper :options="swiperOption" class="swiper-box" v-loading="loading.topslides">
     <swiper-slide v-for="item in topslides" :key="item.id" class="swiper-item">
       <img :src="item.article.main_image">
     </swiper-slide>
-    
   </swiper>
   
   
