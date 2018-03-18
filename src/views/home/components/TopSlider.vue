@@ -1,14 +1,19 @@
 <template>
 <div class="slidertop-wrapper">  
+  <div class="swiper-nav">
+    <div class="swiper-button-prev" slot="button-prev"><svg-icon icon-class="arrow_left"></svg-icon></div>  
+    <div class="swiper-button-next" slot="button-next"><svg-icon icon-class="arrow_right"></svg-icon></div>
+  </div>
   <swiper :options="swiperOption" class="swiper-box">
     <swiper-slide v-for="item in idata" :key="item.id" class="swiper-item">
       <img :src="item.img">
     </swiper-slide>
-    <div class="swiper-button-prev" slot="button-prev"></div>
-    <div class="swiper-button-next" slot="button-next"></div>
+    
   </swiper>
   
+  
 </div>
+
 </template>
 
 <script>
@@ -24,7 +29,7 @@ export default {
     return {
       swiperOption: {
         slidesPerView: 3,
-        spaceBetween: 20,
+        spaceBetween: 30,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
@@ -129,12 +134,14 @@ console.log('top slider main')
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+@import "src/styles/variables.scss";
 .slidertop-wrapper{  
-  padding: 20px 0;
+  // padding: 20px 0;
   width: 100%;
+  margin: 0 auto;
 }
 .swiper-box {
-  width: 100%;
+  width: 86%;
   height: 130px;
   margin: 0 auto;
   
@@ -142,7 +149,7 @@ console.log('top slider main')
 .swiper-item {
   height: 100%;
   text-align: center;  
-  background: #fff;
+  // background: #fff;
   /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
@@ -161,7 +168,31 @@ console.log('top slider main')
       height: auto;      
     }
 }
-.swiper-button-next, .swiper-container-rtl, .swiper-button-prev{
-  fill: yellow!important;
+.swiper-nav{
+  position: relative;  
+  
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
 }
+.swiper-button-next, .swiper-button-prev{  
+  background-image: none;  
+  font-size: 36px;
+  margin-top: 50px; 
+}
+.swiper-button-next{  
+  right: 20px;
+  left: auto; 
+}
+
 </style>

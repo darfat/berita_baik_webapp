@@ -144,16 +144,8 @@ export default {
 @import "src/styles/variables.scss";
 
 .el-header{
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  position: fixed; 
-  transition: background 0.35s ease-out;
-  background: transparent;
-  z-index: 10000;
-  
-  
+  background-color: red;
+  margin: 0; padding: 0;   
 }
 
 /*

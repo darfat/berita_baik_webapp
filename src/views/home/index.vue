@@ -1,9 +1,10 @@
 <template>
-<div class="frontpage-wrapper">
+<div class="main-home">
 
   <div class="slider-wrapper">
     <div class="container">
       <top-slider></top-slider>
+      <div class="spacer"></div>
       <headline-slider></headline-slider>
     </div>
   </div>
@@ -60,12 +61,15 @@ export default {
 @import "src/styles/mixin.scss";
 @import "src/styles/home.scss";
 
-.frontpage-wrapper {
-  padding-top: 160px  
+.main-home {
+  // padding-top: 160px  
 }
 
 .slider-wrapper{
   background-color: #e6e6e6;
-  margin-bottom: 20px;
+  padding: 20px 0;  
+}
+.spacer{
+  margin-top: 20px; 
 }
 </style>
