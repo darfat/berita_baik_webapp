@@ -1,25 +1,48 @@
 <template>  
-  <section class="video-wrapper">    
-    <youtube :video-id="videoId" @ready="ready" @playing="playing" ></youtube>    
-    <div class="container overlay-desc" v-show="ready">       
-        <h2>CITRA</h2>
-        <h1>Amazing Indonesia</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...</p>
+  <section class="video-wrapper" v-loading="loading.latestVideo">    
+    <youtube :video-id="$youtube.getIdFromURL(latestVideo.sources_path)" @ready="ready" @playing="playing" ></youtube>    
+    <div class="container overlay-desc" v-show="ready"  v-loading="loading.latestVideo" >       
+        <h2>{{ latestVideo.editorial.name }}</h2>
+        <h1>{{ latestVideo.title }}</h1>
+        <p>{{ latestVideo.teaser }}</p>
         <hr style="width:30px;height:5px;background-color:#F5DF00; border: none; padding-top:10px; margin-left: 0; clear:both" />
-        <div>Boim | 3 Hari yang lalu</div>
+        <div> {{ latestVideo.reporter_name }} | <timeago :since="latestVideo.publish_date"></timeago> </div>
      </div>
   </section>
 </template>
 
 <script>
+import { getLatestVideoByEditorial } from '@/api/article'
 
 export default {
+  name: 'HomeYoutubeVideo',
+  props: {
+    editorialSlug: { type: String, default: 'video' }
+  },
   data() {
     return {
-      videoId: 'PHs39R0AbRw'
+      latestVideo: {},
+      loading: {
+        latestVideo: false
+      }
     }
   },
+  created() {
+    this.init()
+  },
   methods: {
+    init() {
+      this.getLatestVideo(this.editorialSlug)
+    },
+    getLatestVideo(editorialSlug) {
+      this.loading.latestVideo = true
+      getLatestVideoByEditorial({ editorialSlug }).then(response => {
+        if (response) {
+          this.latestVideo = response.data
+        }
+        this.loading.latestVideo = false
+      })
+    },
     ready(player) {
       this.player = player
     },

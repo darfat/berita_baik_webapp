@@ -39,7 +39,7 @@
                     <el-row >
                         <el-col class="gallery-footer">
                         <div>
-                          <!-- {{ mainGallery.reporter.name }} | {{ mainGallery.publish_date_counter }} -->
+                          {{ mainGallery.reporter_name }} | <timeago :since="mainGallery.publish_date"></timeago>
                         </div>
                       </el-col>
                     </el-row>
@@ -78,7 +78,7 @@
                     <el-row >
                         <el-col class="gallery-footer">
                         <div>
-                          {{ g.reporter.name }} | {{ g.publish_date_counter }}
+                          {{ g.reporter.name }} | <timeago :since="g.publish_date"></timeago>  
                         </div>
                       </el-col>
                     </el-row>
@@ -102,7 +102,7 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { getLatestNewsByEditorial, getNewsByEditorialSlug } from '@/api/article'
+import { getLatestImageByEditorial, getImagesByEditorialSlug } from '@/api/article'
 import { getEditorialLabelBySlug } from '@/api/editorial'
 
 export default {
@@ -138,10 +138,10 @@ export default {
     },
     getLatestNews(editorialSlug) {
       this.loading.mainGallery = true
-      getLatestNewsByEditorial({ editorialSlug }).then(response => {
+      getLatestImageByEditorial({ editorialSlug }).then(response => {
         if (response) {
           console.log('latest news')
-          this.mainGallery = response
+          this.mainGallery = response.data
           this.loading.mainGallery = false
         }
       })
@@ -149,10 +149,10 @@ export default {
     getArticles(editorialSlug) {
       this.loading.galleries = true
       if (editorialSlug) {
-        getNewsByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit + 1 }).then(response => {
+        getImagesByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit + 1 }).then(response => {
           if (response) {
             console.log('latest article by slug')
-            this.galleries = response.slice(1)
+            this.galleries = response.data.slice(1)
             this.loading.galleries = false
           }
         })

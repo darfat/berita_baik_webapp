@@ -2,7 +2,7 @@
   <div class="infografis-list">      
     <div class="infografis-header"> INFOGRAFIS</div>
     <div class="infografis-content"> 
-        <el-row >
+        <el-row  v-loading="loading.list"  >
             <el-col :span="8" v-for="(infografis) in list" :key="infografis.id" class="infografis-col">
                 <el-card  :body-style="{ padding: '0px' }" class="infografis-card">
                   <div class="infografis-thumbnail">
@@ -36,7 +36,7 @@
                     <el-row >
                         <el-col class="infografis-footer">
                         <div>
-                          {{ infografis.reporter.name }} | {{ infografis.publish_date_counter }}
+                          {{ infografis.reporter_name }} | <timeago :since="infografis.publish_date"></timeago>
                         </div>
                       </el-col>
                     </el-row>
@@ -60,7 +60,7 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { getNewsByEditorialSlug } from '@/api/article'
+import { getImagesByEditorialSlug } from '@/api/article'
 import { getEditorialLabelBySlug } from '@/api/editorial'
 
 export default {
@@ -92,9 +92,9 @@ export default {
     getArticles(editorialSlug) {
       this.loading.list = true
       if (editorialSlug) {
-        getNewsByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit + 1 }).then(response => {
+        getImagesByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit + 1 }).then(response => {
           if (response) {
-            this.list = response
+            this.list = response.data
             this.loading.list = false
           }
         })

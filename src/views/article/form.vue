@@ -324,7 +324,7 @@ export default {
       }).then(response => {
         console.log('response get article')
         console.log(response)
-        this.article = response
+        this.article = response.data
         if (this.article.article_tags) {
           this.tagArray = this.article.article_tags.split(',')
         }

@@ -8,14 +8,14 @@
             <el-row :gitter="20" v-for="(popular) in popular_articles" :key="popular.id" class="side-row"  >
               <el-col :span="8" class="side-image">
                 <div>
-                  <img :src="popular.article.main_image" class="card-image"/>
+                  <img :src="popular.main_image" class="card-image"/>
                 </div>
               </el-col>
               <el-col :span="16" class="side-content">
                 <div class="content-container">
                    <el-row class="side-title-section">
                       <div>
-                        <span>{{ popular.article.title}}</span>
+                        <span>{{ popular.title}}</span>
                       </div>
                     </el-row>
                     <el-row >
@@ -24,7 +24,7 @@
                     <el-row >
                         <el-col  class="footer">
                          <div>
-                          <!-- {{ popular.article.reporter.name }} | {{ popular.article.publish_date_counter }} -->
+                          {{ popular.reporter_name }} | <timeago :since="popular.publish_date"></timeago>
                         </div>
                         </el-col>
                     </el-row>
@@ -66,9 +66,8 @@ export default {
     getPopularArticles() {
       this.loading.popular_articles = true
       getPopularArticles({ page: this.page, per_page: this.limit }).then(response => {
-        console.log(response)
         if (response) {
-          this.popular_articles = response
+          this.popular_articles = response.data
           this.loading.popular_articles = false
         }
       })

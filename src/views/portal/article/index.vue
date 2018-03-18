@@ -37,7 +37,7 @@
                 <el-row :gutter="20">
                     <el-col class="footer">
                       <div>
-                        {{ mainArticle.reporter.name }} | {{ mainArticle.publish_date_counter }}
+                       <timeago :auto-update="60" :since="mainArticle.publish_date"> </timeago>
                       </div>
                     </el-col>
                 </el-row>
@@ -54,29 +54,52 @@
                   </el-col>
                 </el-row>
                 <el-row :gutter="20" class="m-t-10 article-option">
-                    <el-col :span="1">
+                    <el-col :span="2">
                       <span  > 
-                        Editorial <br/> Team
+                        Editorial <br/> Team :
                       </span>
                     </el-col>
-                    <el-col :span="2">
-                      <img :src="mainArticle.reporter.image" class="img-circle img-mini v-align-middle"/>
-                      <span> {{ mainArticle.reporter.name }} </span>
-                    </el-col>
-                    <el-col :span="13" class="p-tb-5">
-                      <div class="follow-user">
-                        <v-icon name="user" base-class="icon-20 v-align-middle"></v-icon>
-                        <span  > 
-                          Follow
+                    <el-col :span="5" v-loading="loading.authors" >
+                      <div v-for="(author) in mainArticleAuthors" :key="author.id">
+                        <img :src="author.user.image" class="img-circle img-mini v-align-middle"/>
+                        <span> {{ author.user.name }} </span>
+                        <span class="follow-user">
+                          <v-icon name="user" base-class="icon-20 v-align-middle"></v-icon>
+                          <span  > 
+                            Follow
+                          </span>
                         </span>
                       </div>
                     </el-col>
+                    <el-col :span="9" class="p-tb-5">
+                    </el-col>
                     <el-col :span="7" class="align-right" >
-                      <span> <bb-love :articleID="mainArticle.id"></bb-love> </span>
-                      <span> <v-icon name="facebook" base-class="icon-20"></v-icon> </span>
-                      <span> <v-icon name="mail" base-class="icon-20"></v-icon> </span>
-                      <span> <v-icon name="send" base-class="icon-20"></v-icon> </span>
-                      <span> <v-icon name="twitter" base-class="icon-20"></v-icon> </span>
+                      <span> <bb-love :articleID="mainArticle.id" :type="'article'" ></bb-love> </span>
+                      <span>  <social-sharing url="http://beritabaik.id/"
+                      :title="mainArticle.title"
+                      :description="mainArticle.teaser"
+                      :quote="mainArticle.title"
+                      hashtags="beritabaik,news"
+                      inline-template>
+                        <div>
+                            <network network="facebook">
+                              <fa-icon name="facebook-official" scale="2" ></fa-icon>
+                            </network>
+                            <network network="twitter">
+                              <fa-icon name="twitter" scale="2" ></fa-icon>
+                            </network>
+                            <network network="email">
+                              <fa-icon name="envelope" scale="2" ></fa-icon>
+                            </network>
+                            <network network="googleplus">
+                              <fa-icon name="google-plus" scale="2" ></fa-icon>
+                            </network>
+                            <network network="whatsapp">
+                              <fa-icon name="whatsapp" scale="2" ></fa-icon>
+                            </network>
+                        </div>
+                      </social-sharing>   
+                      </span>
                     </el-col>
                     <el-col :span="1">                    
                       <span> <v-icon name="more-horizontal" base-class="icon-20"></v-icon> </span>
@@ -85,7 +108,7 @@
               </el-row>
               <el-row :gutter="20" class="m-t-10" >
             <el-col>
-              <comment-box></comment-box>
+              <comment-box :articleID="mainArticle.id"></comment-box>
             </el-col>
           </el-row>
         </div>
@@ -104,7 +127,7 @@
       <el-row :gutter="20" >
         <el-col :span="2"><div class="grid-content"></div></el-col>
         <el-col :span="20"  class="comments-content">
-          <comment-list></comment-list>
+          <comment-list :articleID="this.mainArticle.id"></comment-list>
         </el-col>
         <el-col :span="2"><div class="grid-content"></div></el-col>
       </el-row>
@@ -178,6 +201,7 @@ import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav, CommentList, Sub
 import BbLove from '@/views/portal/components/BbLove'
 
 import { getArticle } from '@/api/article'
+import { getAuthorsByArticleID } from '@/api/author'
 
 export default {
   name: 'article-detail',
@@ -199,10 +223,12 @@ export default {
   data() {
     return {
       mainArticle: {},
-      articles: [],
+      mainArticleAuthors: [],
+      reporter: {},
       editorialSlug: null,
       loading: {
-        mainArticle: false
+        mainArticle: false,
+        authors: false
       }
     }
   },
@@ -212,14 +238,30 @@ export default {
   methods: {
     init() {
       this.editorialSlug = this.$route.params.editorialSlug
-      this.getMainArticle(this.articleID)
+      this.getMainArticle(this.slug)
     },
-    getMainArticle(articleID) {
+    getMainArticle(slug) {
       this.loading.mainArticle = true
-      getArticle({ articleID }).then(response => {
+      getArticle({ slug }).then(response => {
+        this.loading.mainArticle = false
         if (response) {
-          this.mainArticle = response
-          this.loading.mainArticle = false
+          this.mainArticle = response.data
+          this.getAuthors(this.mainArticle.id)
+        }
+      })
+    },
+    getAuthors(articleID) {
+      console.log('getAuthors')
+      this.loading.authors = true
+      getAuthorsByArticleID({ articleID }).then(response => {
+        this.loading.authors = false
+        if (response) {
+          this.mainArticleAuthors = response.data
+          this.mainArticleAuthors.forEach(element => {
+            if (element.notes === 'reporter') {
+              this.reporter = element
+            }
+          })
         }
       })
     }

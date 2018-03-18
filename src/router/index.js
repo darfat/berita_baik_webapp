@@ -42,31 +42,37 @@ export const constantRouterMap = [
       component: () => import('@/views/portal/editorial/index')
     },
     { // integrated
-      path: 'article/:editorialSlug/:articleID/:slug',
+      path: 'editorial/:editorialType/:editorialSlug',
+      name: 'editorial-by-type-menu',
+      props: true,
+      component: () => import('@/views/portal/editorial/index')
+    },
+    { // integrated
+      path: 'article/:editorialSlug/:slug',
       name: 'article-detail-route',
       props: true,
       component: () => import('@/views/portal/article/index')
     },
     {
-      path: 'infografis',
+      path: 'citra/infografis',
       name: 'infografis-menu',
       props: true,
       component: () => import('@/views/portal/infografis/index')
     },
     {
-      path: 'infografis/:articleID/:slug',
+      path: 'infografis/:slug',
       name: 'infografis-detail-layout',
       props: true,
       component: () => import('@/views/portal/infografis-detail/index')
     },
     { // integrated
-      path: 'gallery',
+      path: 'citra/gallery',
       name: 'gallery-menu',
       props: true,
       component: () => import('@/views/portal/gallery/index')
     },
     {
-      path: 'video',
+      path: 'citra/video',
       name: 'video-menu',
       props: true,
       component: () => import('@/views/portal/videog/index')

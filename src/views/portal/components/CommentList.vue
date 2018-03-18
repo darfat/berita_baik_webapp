@@ -1,19 +1,19 @@
 <template>
   <div class="comment-list">      
-    <div  class="content">
-        <el-row :gutter="20" v-for="(comment, index) in comments" :key="comment.id" >
+    <div  class="content" v-loading="loading.comments" > 
+        <el-row :gutter="20" v-for="(comment) in comments" :key="comment.id" class="data">
             <el-row >
               <el-col :span="1" class="comment-img">
                   <img :src="comment.user.image" class="img-circle img-mini v-align-middle"/>
               </el-col>
               <el-col :span="23" class="comment-info">
                   <div> {{ comment.user.name }}</div>
-                  <div class="comment-date"> {{ comment.comment_date }} </div>
+                  <div class="comment-date"> <timeago :auto-update="60" :since="comment.created_at"> </timeago>  </div>
               </el-col>
             </el-row>
             <el-row class="comment-comment">
               <el-col >
-                  <p> {{ comment.comment }}</p>
+                  <p> {{ comment.comments }}</p>
               </el-col>
             </el-row>
             <el-row >
@@ -23,7 +23,7 @@
             </el-row>          
             <el-row >
               <el-col :span="12" class="comment-option" >
-                <span> <v-icon name="heart" base-class="icon-20 v-align-middle"></v-icon> </span>
+                <span> <bb-love :articleID="comment.id" :type="'comment'" ></bb-love> </span>
                 <span class="opt-label"> {{ comment.likes_count}} </span>
                 <span class="opt-label"> | </span>
                 <span class="opt-label"> Reply </span>
@@ -42,30 +42,55 @@
 </template>
 
 <script>
+import { getCommentsByArticleID } from '@/api/comment'
+import BbLove from '@/views/portal/components/BbLove'
+import EventBus from '@/utils/event-bus'
 
 export default {
   name: 'CommentList',
+  props: {
+    articleID: { type: String },
+    limit: { default: 12, type: Number }
+  },
+  components: {
+    BbLove
+  },
   data() {
     return {
-      comments: [
-        {
-          id: 1,
-          comment: 'Test komentar',
-          comment_date: 'Sabtu 25 Oktober 2017, 13:20',
-          parent_id: null,
-          user: {
-            id: '1',
-            name: 'Melanie',
-            role: 'user',
-            image: 'static/upload/images/profile-user.jpg'
-          },
-          likes_count: 0
-        }
-      ]
+      comments: [],
+      loading: {
+        comments: false
+      }
     }
   },
   created() {
-    console.log('comment box Detail')
+    this.init()
+  },
+  mounted() {
+    EventBus.$on('UPDATE_COMMENTS_EVENT', event => {
+      console.log('UPDATE_COMMENTS_EVENT')
+      this.getComments(this.articleID)
+    })
+  },
+  methods: {
+    init() {
+      console.log('init comment')
+      this.getComments(this.articleID)
+    },
+    getComments(articleID) {
+      this.loading.comments = true
+      if (articleID) {
+        getCommentsByArticleID({ articleID }).then(response => {
+          console.log(response)
+          if (response) {
+            this.comments = response.data
+            this.loading.comments = false
+          } else {
+            this.loading.comments = false
+          }
+        })
+      }
+    }
   }
 }
 </script>

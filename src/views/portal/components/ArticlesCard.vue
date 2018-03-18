@@ -37,7 +37,7 @@
                     <el-row >
                         <el-col class="footer">
                         <div>
-                          <!-- {{ article.reporter.name }} | {{ article.publish_date_counter }} -->
+                          {{ article.reporter_name }} | <timeago :auto-update="60" :since="article.publish_date"></timeago> 
                         </div>
                       </el-col>
                     </el-row>
@@ -54,6 +54,7 @@
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
 import { getNewsByEditorialSlug, getLatestNewsAll } from '@/api/article'
+import { getEditorialIdBySlug } from '@/api/editorial'
 
 export default {
   name: 'ArticlesCard',
@@ -63,6 +64,7 @@ export default {
   },
   props: {
     editorialSlug: { type: String },
+    editorialType: { type: String },
     title: { type: String, default: 'BACA LAINNYA' },
     limit: { default: 9, type: Number }
   },
@@ -84,22 +86,55 @@ export default {
     getArticles(editorialSlug) {
       this.loading.articles = true
       if (editorialSlug) {
-        getNewsByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit + 1 }).then(response => {
-          if (response) {
-            this.articles = response.slice(1)
-            this.loading.articles = false
-          }
-        })
+        let params = {
+          editorialSlug,
+          page: 1,
+          per_page: this.limit + 1
+        }
+        if (this.editorialType && this.editorialType !== null && this.editorialType.length) {
+          getEditorialIdBySlug({
+            slug: editorialSlug
+          }).then(editorialResponse => {
+            if (editorialResponse) {
+              params = {
+                editorialSlug,
+                editorialType: this.editorialType,
+                editorialSlugID: editorialResponse.data.id,
+                page: 1,
+                per_page: this.limit + 1
+              }
+              console.log('params get by parent')
+              console.log(params)
+              getNewsByEditorialSlug(params).then(response => {
+                if (response) {
+                  this.articles = response.data.slice(1)
+                  this.loading.articles = false
+                }
+              })
+            }
+          })
+        } else {
+          getNewsByEditorialSlug(params).then(response => {
+            if (response) {
+              this.articles = response.data.slice(1)
+              this.loading.articles = false
+            }
+          })
+        }
       } else {
-        getLatestNewsAll({ page: 1, per_page: this.limit }).then(response => {
+        getLatestNewsAll({
+          page: 1,
+          per_page: this.limit
+        }).then(response => {
           if (response) {
-            this.articles = response
+            this.articles = response.data
             this.loading.articles = false
           }
         })
       }
     }
   }
+
 }
 </script>
 

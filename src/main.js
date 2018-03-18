@@ -15,45 +15,30 @@ import store from './store'
 import '@/icons' // icon
 // import '@/permission' // permission control
 
-import VeeValidate from 'vee-validate'
 import feather from 'vue-icon'
 import VueYouTubeEmbed from 'vue-youtube-embed'
+import VueTimeago from 'vue-timeago'
+var SocialSharing = require('vue-social-sharing')
+
+// vue awesome
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon'
 
 Vue.use(ElementUI, { locale })
 Vue.use(feather, 'v-icon')
 Vue.use(VueYouTubeEmbed)
-
-const config = {
-  errorBagName: 'errors', // change if property conflicts
-  fieldsBagName: 'customfields',
-  delay: 0,
-  locale: 'en',
-  dictionary: null,
-  strict: true,
-  classes: false,
-  classNames: {
-    touched: 'touched', // the control has been blurred
-    untouched: 'untouched', // the control hasn't been blurred
-    valid: 'valid', // model is valid
-    invalid: 'invalid', // model is invalid
-    pristine: 'pristine', // control has not been interacted with
-    dirty: 'dirty' // control has been interacted with
-  },
-  events: 'input|blur',
-  inject: true,
-  validity: false,
-  aria: true,
-  i18n: null, // the vue-i18n plugin instance,
-  i18nRootKey: 'validations' // the nested key under which the validation messsages will be located
-}
-Vue.use(VeeValidate, config)
+Vue.use(VueTimeago, {
+  name: 'timeago', // component name, `timeago` by default
+  locale: 'id-ID',
+  locales: {
+    // you will need json-loader in webpack 1
+    'id-ID': require('vue-timeago/locales/id-ID.json')
+  }
+})
+Vue.use(SocialSharing)
+Vue.component('fa-icon', Icon)
 
 Vue.config.productionTip = false
-
-VeeValidate.Validator.extend('passphrase', {
-  getMessage: field => 'Sorry dude, wrong pass phrase.',
-  validate: value => value.toUpperCase() === 'Demogorgon'.toUpperCase()
-})
 
 new Vue({
   el: '#app',

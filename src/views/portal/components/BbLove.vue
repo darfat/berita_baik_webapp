@@ -11,8 +11,8 @@
 export default {
   name: 'BbLove',
   props: {
-    param: { type: String },
-    articleID: { type: String, default: '000' }
+    articleID: { type: String, default: '000' },
+    type: { type: String, default: 'article' }
   },
   data() {
     return {
@@ -29,7 +29,6 @@ export default {
   },
   methods: {
     init() {
-      console.log('Love Component')
     },
     loveUnLove() {
       if (this.state) {

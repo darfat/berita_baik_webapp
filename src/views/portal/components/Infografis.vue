@@ -42,7 +42,7 @@
                     <el-row >
                         <el-col class="infografis-footer">
                         <div>
-                          {{ infografis.reporter.name }} | {{ infografis.publish_date_counter }}
+                          {{ infografis.reporter.name }} | <timeago :since="infografis.publish_date"></timeago> 
                         </div>
                       </el-col>
                     </el-row>
@@ -93,13 +93,13 @@ export default {
   },
   methods: {
     init() {
-      this.getMainArticle(this.articleID)
+      this.getMainArticle(this.slug)
     },
-    getMainArticle(articleID) {
+    getMainArticle(slug) {
       this.loading.infografis = true
-      getArticle({ articleID }).then(response => {
+      getArticle({ slug }).then(response => {
         if (response) {
-          this.infografis = response
+          this.infografis = response.data
           this.loading.infografis = false
         }
       })

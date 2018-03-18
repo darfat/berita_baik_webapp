@@ -54,7 +54,7 @@
                     <el-row :gutter="20">
                         <el-col class="footer">
                           <div>
-                            {{ latestNews.reporter.name }} | {{ latestNews.publish_date_counter }}
+                            {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
                           </div>
                         </el-col>
                     </el-row>
@@ -70,16 +70,20 @@
 
       <el-col :span="14" class="content">
         <div class="grid-content">
-            <articles-card :editorialSlug="editorialSlug" :limit=6></articles-card>
+            <articles-card :editorialSlug="editorialSlug" :editorialType="editorialType" :limit=6></articles-card>
         </div>
       </el-col>
       <el-col :span="6" class="side-content">
         <div class="grid-content a-side">
+          <div>
           <popular-news-side> </popular-news-side>
+          </div>
           <div class="side-separator">
             <span> Buka lebih banyak lagi </span>
           </div>
-          <div><router-link :to="{ path: '/infografis' }"> Infografis </router-link></div>
+          <div>
+          <infografis-side :editorialSlug="'infografis'"  > </infografis-side>
+          </div>
           <div class="side-separator">
             <span> Buka lebih banyak lagi </span>
           </div>
@@ -95,8 +99,8 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { PopularNewsSide, ArticlesCard } from '@/views/portal/components'
-import { getEditorialLabelBySlug } from '@/api/editorial'
+import { PopularNewsSide, ArticlesCard, InfografisSide } from '@/views/portal/components'
+import { getEditorialLabelBySlug, getEditorialIdBySlug } from '@/api/editorial'
 import { getLatestNewsByEditorial } from '@/api/article'
 
 export default {
@@ -105,13 +109,16 @@ export default {
     ArticleSeparator,
     PopularNewsSide,
     ArticlesCard,
-    BbLove
+    BbLove,
+    InfografisSide
   },
   data() {
     return {
       latestNews: {},
       editorialTitle: '',
       editorialSlug: null,
+      editorialType: null,
+      editorialObj: null,
       loading: {
         latestNews: false
       }
@@ -125,16 +132,45 @@ export default {
     init() {
       this.editorialTitle = getEditorialLabelBySlug(this.$route.params.editorialSlug)
       this.editorialSlug = this.$route.params.editorialSlug
+      this.editorialType = this.$route.params.editorialType
+      console.log('editorialType ')
+      console.log(this.editorialType)
     },
     getLatestNews(editorialSlug) {
       this.loading.latestNews = true
-      getLatestNewsByEditorial({ editorialSlug }).then(response => {
-        if (response) {
-          this.latestNews = response
-          this.loading.latestNews = false
-        }
-      })
+      let params = {
+        editorialSlug
+      }
+      if (this.editorialType && this.editorialType !== null && this.editorialType.length) {
+        getEditorialIdBySlug({
+          slug: editorialSlug
+        }).then(editorialResponse => {
+          if (editorialResponse) {
+            params = {
+              editorialSlug,
+              editorialType: this.editorialType,
+              editorialSlugID: editorialResponse.data.id
+            }
+            console.log('params')
+            console.log(params)
+            getLatestNewsByEditorial(params).then(response => {
+              if (response) {
+                this.latestNews = response.data
+                this.loading.latestNews = false
+              }
+            })
+          }
+        })
+      } else {
+        getLatestNewsByEditorial(params).then(response => {
+          if (response) {
+            this.latestNews = response.data
+            this.loading.latestNews = false
+          }
+        })
+      }
     }
+
   }
 }
 </script>

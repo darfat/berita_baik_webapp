@@ -2,7 +2,7 @@
   <div class="video-main">
     <div class="video-main-container">  
       <div class="content-container">
-        <video-g></video-g>
+        <video-g ></video-g>
       </div>
     </div>
     <div class="content-container" >

@@ -1,69 +1,39 @@
 <template>  
-  <div style="height: 500px; background-color: #1a1a1a" >    
-    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" c>
-      <swiper-slide class="slide-1"></swiper-slide>
-      <swiper-slide class="slide-2"></swiper-slide>
-      <swiper-slide class="slide-3"></swiper-slide>
-      <swiper-slide class="slide-4"></swiper-slide>
-      <swiper-slide class="slide-5"></swiper-slide>      
+  <div style="height: 500px; background-color: #1a1a1a"   v-loading="loading.galleries" >    
+    <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" >
+      <swiper-slide :class="'slide-'+index" v-bind:style="{ backgroundImage: 'url(' + g.main_image + ')' }"  v-for="(g,index) in galleries" :key="g.id"></swiper-slide>
       <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
       <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
     </swiper>    
     <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
-      <swiper-slide class="slide-1"></swiper-slide>
-      <swiper-slide class="slide-2"></swiper-slide>
-      <swiper-slide class="slide-3"></swiper-slide>
-      <swiper-slide class="slide-4"></swiper-slide>
-      <swiper-slide class="slide-5"></swiper-slide>
+      <swiper-slide :class="'slide-'+idx" v-bind:style="{ backgroundImage: 'url(' + gt.main_image + ')' }"  v-for="(gt,idx) in galleries" :key="gt.id"></swiper-slide>
     </swiper>
   </div>
 </template>
 <script>
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import { getImagesByEditorialSlug } from '@/api/article'
+
 export default {
   components: {
     swiper,
     swiperSlide
   },
+  props: {
+    editorialSlug: { type: String, default: 'gallery-foto' },
+    limit: { default: 5, type: Number }
+  },
   data() {
     return {
-      idata: [
-        {
-          id: 1,
-          img: '/static/images/01.jpg',
-          title: '',
-          url: ''
-        },
-        {
-          id: 1,
-          img: '/static/images/02.jpg',
-          title: '',
-          url: ''
-        },
-        {
-          id: 1,
-          img: '/static/images/03.jpg',
-          title: '',
-          url: ''
-        },
-        {
-          id: 1,
-          img: '/static/images/04.jpg',
-          title: '',
-          url: ''
-        },
-        {
-          id: 1,
-          img: '/static/images/05.jpg',
-          title: '',
-          url: ''
-        }
-      ],
+      galleries: [],
+      loading: {
+        galleries: false
+      },
       swiperOptionTop: {
         spaceBetween: 10,
         loop: true,
-        loopedSlides: 5,
+        loopedSlides: this.limit,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
@@ -74,18 +44,39 @@ export default {
         slidesPerView: 4,
         touchRatio: 0.2,
         loop: true,
-        loopedSlides: 5, // looped slides should be the same
+        loopedSlides: this.limit, // looped slides should be the same
         slideToClickedSlide: true
       }
     }
   },
+  created() {
+  },
   mounted() {
+    this.init()
+
     this.$nextTick(() => {
       const swiperTop = this.$refs.swiperTop.swiper
       const swiperThumbs = this.$refs.swiperThumbs.swiper
       swiperTop.controller.control = swiperThumbs
       swiperThumbs.controller.control = swiperTop
     })
+  },
+  methods: {
+    init() {
+      this.getImages(this.editorialSlug)
+    },
+    getImages(editorialSlug) {
+      this.loading.galleries = true
+      if (editorialSlug) {
+        getImagesByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit }).then(response => {
+          if (response) {
+            console.log('latest article by slug')
+            this.galleries = response.data
+            this.loading.galleries = false
+          }
+        })
+      }
+    }
   }
 }
 </script>
@@ -100,19 +91,19 @@ export default {
     background-size: cover;
     background-position: center;
     &.slide-1 {
-      background-image:url('/static/images/01.jpg');
+      background-image:url('/static/images/no_image.jpg');
     }
     &.slide-2 {
-      background-image:url('/static/images/02.jpg');
+      background-image:url('/static/images/no_image.jpg');
     }
     &.slide-3 {
-      background-image:url('/static/images/03.jpg');
+      background-image:url('/static/images/no_image.jpg');
     }
     &.slide-4 {
-      background-image:url('/static/images/04.jpg');
+      background-image:url('/static/images/no_image.jpg');
     }
-    &.slide-5 {
-      background-image:url('/static/images/05.jpg');
+    &.slide-0 {
+      background-image:url('/static/images/no_image.jpg');
     }
   }
   .gallery-top {
