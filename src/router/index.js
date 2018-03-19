@@ -54,43 +54,43 @@ export const constantRouterMap = [
       component: () => import('@/views/portal/article/index')
     },
     {
-      path: 'home/infografis',
+      path: 'home-m/infografis',
       name: 'infografis-menu',
       props: true,
       component: () => import('@/views/portal/infografis/index')
     },
     {
-      path: 'home/i/:slug',
+      path: 'home-m/i/:slug',
       name: 'infografis-detail-layout',
       props: true,
       component: () => import('@/views/portal/infografis-detail/index')
     },
     { // integrated
-      path: 'home/gallery',
+      path: 'home-m/gallery',
       name: 'gallery-menu',
       props: true,
       component: () => import('@/views/portal/gallery/index')
     },
     {
-      path: 'home/video',
+      path: 'home-m/video',
       name: 'video-menu',
       props: true,
       component: () => import('@/views/portal/videog/index')
     },
-    {
-      path: 'home/tentang-kami',
+    { // static
+      path: 'home-page/tentang-kami',
       name: 'tentang-kami-menu',
       props: true,
       component: () => import('@/views/portal/aboutus/index')
     },
     {
-      path: 'home/search-home',
+      path: 'home-search/search-home',
       name: 'search-home',
       props: true,
       component: () => import('@/views/portal/search/index')
     },
     {
-      path: 'home/search-advanced',
+      path: 'home-search/search-advanced',
       name: 'search-advanced',
       props: true,
       component: () => import('@/views/portal/search/advanced')

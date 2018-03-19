@@ -10,13 +10,10 @@ const homePattern = '/home'
 const loginPatttern = '/login'
 
 router.beforeEach((to, from, next) => {
-  console.log('1')
   NProgress.start()
   if (getToken()) {
-    console.log('2')
     if (to.path === '/login') {
-      console.log('3')
-      next({ path: '/cms' })
+      next({ path: '/home' })
     } else {
       console.log('4')
       // if (store.getters.roles.length === 0) {
@@ -30,16 +27,13 @@ router.beforeEach((to, from, next) => {
       //     })
       //   })
       // } else {
-      console.log('6')
       next()
       // }
     }
   } else {
     if (to.path && (to.path.startsWith(homePattern) || to.path.startsWith(loginPatttern))) {
-      console.log('7')
       next()
     } else {
-      console.log('8')
       next('/home')
       NProgress.done()
     }
