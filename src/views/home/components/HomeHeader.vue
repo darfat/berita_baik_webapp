@@ -122,15 +122,15 @@
 
 <script>
 
-import img_logo from '@/assets/images/logo_beritabaik.png'
-import img_b_logo from '@/assets/images/logo_beritabaik_b.png'
+import img_logo from '@/assets/images/logo_berita_baik_72.png'
+import img_ikon from '@/assets/images/ikon_berita_baik.png'
 export default {
   name: 'HomeHeader',
   components: '',
   data() {
     return {
       img_logo,
-      img_b_logo,
+      img_ikon,
       search: ''
     }
   }
