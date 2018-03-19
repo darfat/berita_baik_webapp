@@ -5,9 +5,9 @@
       
       <div class="topnav-wrapper">
       <el-menu class="container" mode="horizontal">      
-        <el-menu-item index="1"><a href="#">Kerjasama</a></el-menu-item>
-        <el-menu-item index="2"><a href="#">Mail</a></el-menu-item>
-        <el-menu-item index="3"><a href="#">Tentang Kami</a></el-menu-item>
+        <el-menu-item index="1"><a href="#">{{$t('portal.topbar.collaboration')}}</a></el-menu-item>
+        <el-menu-item index="2"><a href="#">{{$t('portal.topbar.mail')}}</a></el-menu-item>
+        <el-menu-item index="3"><a href="#">{{$t('portal.topbar.aboutUs')}}</a></el-menu-item>
       </el-menu>
     </div>
 
@@ -63,7 +63,7 @@
         <label for="drop" class="toggle">Menu</label>
         <input type="checkbox" id="drop" />
             <ul class="menu">
-                <li><router-link :to="{ path: '/' }" exact>Beranda</router-link></li>
+                <li><router-link :to="{ path: '/' }" exact>{{$t('portal.navbar.home')}}</router-link></li>
                 <li><router-link :to="{ path: '/home/indonesia-baik' }">Indonesia Baik</router-link></li>
                 <li>
                     <!-- First Tier Drop Down -->
