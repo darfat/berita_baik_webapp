@@ -64,52 +64,52 @@
         <input type="checkbox" id="drop" />
             <ul class="menu">
                 <li><router-link :to="{ path: '/' }" exact>Beranda</router-link></li>
-                <li><router-link :to="{ path: '/editorial/indonesia-baik' }">Indonesia Baik</router-link></li>
+                <li><router-link :to="{ path: '/home/indonesia-baik' }">Indonesia Baik</router-link></li>
                 <li>
                     <!-- First Tier Drop Down -->
                     <label for="drop-1" class="toggle">Indonesia Bangga &#9660;</label>
-                    <router-link :to="{ path: '/editorial/p/indonesia-bangga' }">Indonesia Bangga</router-link>
+                    <router-link :to="{ path: '/home/p/indonesia-bangga' }">Indonesia Bangga</router-link>
                     <input type="checkbox" id="drop-1"/>
                     <ul>
-                        <li><router-link :to="{ path: '/editorial/komunitas' }">Komunitas</router-link></li>
-                        <li><router-link :to="{ path: '/editorial/sosok-inspiratif' }">Sosok Inspiratif</router-link></li>
-                        <li><router-link :to="{ path: '/editorial/prestasi' }">Prestasi</router-link></li>
+                        <li><router-link :to="{ path: '/home/komunitas' }">Komunitas</router-link></li>
+                        <li><router-link :to="{ path: '/home/sosok-inspiratif' }">Sosok Inspiratif</router-link></li>
+                        <li><router-link :to="{ path: '/home/prestasi' }">Prestasi</router-link></li>
                     </ul>
                 </li>
-                <li><router-link :to="{ path: '/editorial/indonesia-membangun' }">Indonesia Membangun</router-link></li>
+                <li><router-link :to="{ path: '/home/indonesia-membangun' }">Indonesia Membangun</router-link></li>
                 <li>
                 <!-- First Tier Drop Down -->
                 <label for="drop-2" class="toggle">Melancong &#9660;</label>
-                <router-link :to="{ path: '/editorial/p/melancong' }">Melancong</router-link>
+                <router-link :to="{ path: '/home/p/melancong' }">Melancong</router-link>
                 <input type="checkbox" id="drop-2"/>
                 <ul>
-                    <li><router-link :to="{ path: '/editorial/tempat-wisata' }">Tempat Wisata</router-link></li>
-                    <li><router-link :to="{ path: '/editorial/kuliner' }">Kuliner</router-link></li>                    
+                    <li><router-link :to="{ path: '/home/tempat-wisata' }">Tempat Wisata</router-link></li>
+                    <li><router-link :to="{ path: '/home/kuliner' }">Kuliner</router-link></li>                    
                 </ul>
                 </li>
-                <li><router-link :to="{ path: '/editorial/teknologi' }">Teknologi</router-link></li>
+                <li><router-link :to="{ path: '/home/teknologi' }">Teknologi</router-link></li>
                 <li>
                 <!-- First Tier Drop Down -->
                 <label for="drop-3" class="toggle">Panggung &#9660;</label>
-                <router-link :to="{ path: '/editorial/p/panggung' }">Panggung</router-link>
+                <router-link :to="{ path: '/home/p/panggung' }">Panggung</router-link>
                 <input type="checkbox" id="drop-3"/>
                 <ul>
-                    <li><router-link :to="{ path: '/editorial/musik' }">Musik</router-link></li>
-                    <li><router-link :to="{ path: '/editorial/fashion' }">Fashion</router-link></li>
-                    <li><router-link :to="{ path: '/editorial/film' }">Film</router-link></li>
-                    <li><router-link :to="{ path: '/editorial/seni' }">Seni</router-link></li>
-                    <li><router-link :to="{ path: '/editorial/gaya-hidup' }">Gaya Hidup</router-link></li>
+                    <li><router-link :to="{ path: '/home/musik' }">Musik</router-link></li>
+                    <li><router-link :to="{ path: '/home/fashion' }">Fashion</router-link></li>
+                    <li><router-link :to="{ path: '/home/film' }">Film</router-link></li>
+                    <li><router-link :to="{ path: '/home/seni' }">Seni</router-link></li>
+                    <li><router-link :to="{ path: '/home/gaya-hidup' }">Gaya Hidup</router-link></li>
                 </ul>
                 </li>
                 <li>
                 <!-- First Tier Drop Down -->
                 <label for="drop-4" class="toggle">Citra &#9660;</label>
-                <router-link :to="{ path: '/citra/gallery' }">Citra</router-link>
+                <router-link :to="{ path: '/home/gallery' }">Citra</router-link>
                 <input type="checkbox" id="drop-4"/>
                 <ul>
-                    <li><router-link :to="{ path: '/citra/gallery' }">Galeri Foto</router-link></li>
-                    <li><router-link :to="{ path: '/citra/video' }">Video</router-link></li>
-                    <li><router-link :to="{ path: '/citra/infografis' }">Infografis</router-link></li>
+                    <li><router-link :to="{ path: '/home/gallery' }">Galeri Foto</router-link></li>
+                    <li><router-link :to="{ path: '/home/video' }">Video</router-link></li>
+                    <li><router-link :to="{ path: '/home/infografis' }">Infografis</router-link></li>
                 </ul>
                 </li>                
             </ul>

@@ -36,68 +36,68 @@ export const constantRouterMap = [
       component: () => import('@/views/home/index')
     },
     { // integrated
-      path: 'editorial/:editorialSlug',
+      path: 'home/:editorialSlug',
       name: 'editorial-menu',
       props: true,
       component: () => import('@/views/portal/editorial/index')
     },
     { // integrated
-      path: 'editorial/:editorialType/:editorialSlug',
+      path: 'home/:editorialType/:editorialSlug',
       name: 'editorial-by-type-menu',
       props: true,
       component: () => import('@/views/portal/editorial/index')
     },
     { // integrated
-      path: 'article/:editorialSlug/:slug',
+      path: 'home/a/:editorialSlug/:slug',
       name: 'article-detail-route',
       props: true,
       component: () => import('@/views/portal/article/index')
     },
     {
-      path: 'citra/infografis',
+      path: 'home/infografis',
       name: 'infografis-menu',
       props: true,
       component: () => import('@/views/portal/infografis/index')
     },
     {
-      path: 'infografis/:slug',
+      path: 'home/i/:slug',
       name: 'infografis-detail-layout',
       props: true,
       component: () => import('@/views/portal/infografis-detail/index')
     },
     { // integrated
-      path: 'citra/gallery',
+      path: 'home/gallery',
       name: 'gallery-menu',
       props: true,
       component: () => import('@/views/portal/gallery/index')
     },
     {
-      path: 'citra/video',
+      path: 'home/video',
       name: 'video-menu',
       props: true,
       component: () => import('@/views/portal/videog/index')
     },
     {
-      path: 'tentang-kami',
+      path: 'home/tentang-kami',
       name: 'tentang-kami-menu',
       props: true,
       component: () => import('@/views/portal/aboutus/index')
     },
     {
-      path: 'search-home',
+      path: 'home/search-home',
       name: 'search-home',
       props: true,
       component: () => import('@/views/portal/search/index')
     },
     {
-      path: 'search-advanced',
+      path: 'home/search-advanced',
       name: 'search-advanced',
       props: true,
       component: () => import('@/views/portal/search/advanced')
     }]
   },
-  { path: '/portal/login', component: () => import('@/views/portal/login/index'), hidden: true },
-  { path: '/portal/signup', component: () => import('@/views/portal/signup/index'), hidden: true },
+  { path: '/home/login', component: () => import('@/views/portal/login/index'), hidden: true },
+  { path: '/home/signup', component: () => import('@/views/portal/signup/index'), hidden: true },
 
   // cms part
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
