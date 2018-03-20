@@ -129,7 +129,7 @@
 
 <script>
 
-import img_logo from '@/assets/images/logo_berita_baik_72.png'
+import img_logo from '@/assets/images/logo_berita_baik.png'
 import img_ikon from '@/assets/images/ikon_berita_baik.png'
 export default {
   name: 'HomeHeader',
@@ -187,15 +187,16 @@ export default {
 **********************/
 .head{
   &-wrapper {
-    height: 100px;
+    // height: 100px;
     
   }
   &-item{    
-    height: 100px;
+    //height: 100px;
     &-img{       
-      img{
-      height: 90px;      
-      margin: 5px 0;
+      img{        
+        max-width: 100%;
+        height: auto;
+        margin: 25px 0;
       }
     }
     &-search{
