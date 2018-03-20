@@ -1,46 +1,54 @@
 <template>
 <div class="main-home">
+  <el-row :gutter="10" class="slider-wrapper">
+    <el-col :xs="24" :sm="24">
+      <div class="container">
+        <top-slider></top-slider>
+        <div class="spacer"></div>
+        <headline-slider></headline-slider>
+      </div>
+    </el-col>    
+  </el-row>
 
-  <div class="slider-wrapper">
-    <div class="container">
-      <top-slider></top-slider>
-      <div class="spacer"></div>
-      <headline-slider></headline-slider>
-    </div>
-  </div>
+  <el-row :gutter="10">
+    <el-col :xs="24" :sm="18">
+      <div class="">
+        <!--<articles-card :title="'Berita Baik Terbaru'" :limit=9></articles-card>-->
+      </div>
+    </el-col>
+    <el-col :xs="24" :sm="6">
+      <div class="">
+        <!--<popular-news-side></popular-news-side>-->
+      </div>
+      <div class="">
+        <!-- <infografis-side :editorialSlug="'infografis'"  > </infografis-side> -->
+      </div>
+    </el-col>    
+  </el-row>
 
-  <div class="container">
-    <el-row :gutter="20">
-      <el-col :span="16">
-        <articles-card :title="'Berita Baik Terbaru'" :limit=9></articles-card>
-      </el-col>
-      <el-col :span="8">
-        <div>
-          <popular-news-side></popular-news-side>
-        </div>
-        <div>
-          <infografis-side :editorialSlug="'infografis'"  > </infografis-side>
-        </div>
-      </el-col>
-    </el-row>
-  </div>
+  <el-row :gutter="10">
+    <!-- <el-col :xs="24" :sm="24"><home-youtube-video></home-youtube-video></el-col>-->
+  </el-row>
 
-  <div>
-    <hr/>
-    <home-youtube-video></home-youtube-video> 
-  </div>  
-  <div class="container">
-    <hr/>
-    <social-feed></social-feed> 
-  </div>  
-  <div class="container">            
-    <hr/><events></events>
-    <hr/><galeri></galeri>    
-  </div>
-      
-  <div>
-    <hr/><subscribe></subscribe>
-  </div> 
+  <el-row :gutter="10">
+    <!-- <el-col :xs="24" :sm="24"><social-feed></social-feed></el-col>-->
+  </el-row>
+
+  <el-row :gutter="10">
+    <!-- <el-col :xs="24" :sm="24"><events></events></el-col> -->
+  </el-row>
+
+  <el-row :gutter="10">
+    <el-col :xs="24" :sm="18"><galeri></galeri></el-col>
+    <el-col :xs="24" :sm="6"><div class="grid-content bg-purple-light"></div></el-col>    
+  </el-row>
+
+  <el-row :gutter="10">
+    <!--<el-col :xs="24" :sm="24"><subscribe></subscribe></el-col>-->
+  </el-row>
+
+ 
+
 </div>    
 </template>
 
@@ -78,9 +86,33 @@ export default {
 
 .slider-wrapper{
   background-color: #E6E6E6;
-  padding: 20px 0;  
+  padding-top: 20px;
 }
+
 .spacer{
   margin-top: 20px; 
 }
+.el-row {
+  margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+.el-col {
+    border-radius: 4px;
+  }
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+  .bg-purple {
+    background: #d3dce6;
+  }
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
 </style>
