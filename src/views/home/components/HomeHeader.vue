@@ -1,9 +1,7 @@
 <template>
-  
-
     <el-header height="auto" >
       
-      <div class="topnav-wrapper">
+    <div class="topnav-wrapper">
       <el-menu class="container" mode="horizontal">      
         <el-menu-item index="1"><a href="#">Kerjasama</a></el-menu-item>
         <el-menu-item index="2"><a href="#">Mail</a></el-menu-item>
@@ -11,20 +9,25 @@
       </el-menu>
     </div>
 
-    <div class="head-wrapper">
-      <el-row class="container">
-        <el-col :span="10">
-          <div class="head-logo">
-            <img class="head-logo-img" :src="img_logo" alt="beritabaik.id">
+    <div class="head-wrapper container">      
+      <el-row>
+        <el-col :xs="24" :sm="8">
+          <div class="head-item">
+            <div class="head-item-img">
+              <img class="" :src="img_logo" alt="beritabaik.id">
+            </div>
           </div>
         </el-col>
-        <el-col :span="8" class="hidden-sm-and-down">
-          <div class="head-search">          
-            <el-input placeholder="Search" suffix-icon="el-icon-search" v-model="search"></el-input>
+        <el-col :xs="16" :sm="12">
+          <div class="head-item">
+            <div class="head-item-search">            
+              <el-input placeholder="Search" suffix-icon="el-icon-search" v-model="search"></el-input>
+            </div>
           </div>
         </el-col>
-        <el-col :span="4" class="hidden-sm-and-down">
-          <div class="head-lang">
+        <el-col :xs="4" :sm="2">
+          <div class="head-item">
+            <div class="head-item-lang">
             <el-dropdown>
               <span class="el-dropdown-link">
                 Bahasa<i class="el-icon-arrow-down el-icon--right"></i>
@@ -34,10 +37,12 @@
                 <el-dropdown-item>English</el-dropdown-item>           
               </el-dropdown-menu>
             </el-dropdown>
+            </div>
           </div>
-          </el-col>
-        <el-col :span="2" class="hidden-sm-and-down">
-          <div class="head-user">
+        </el-col>
+        <el-col :xs="4" :sm="2">
+          <div class="head-item">
+            <div class="head-item-user">
             <el-dropdown class="avatar-container" >
               <div class="avatar-wrapper">
               <img class="user-avatar" src="">
@@ -54,13 +59,15 @@
               </el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
+            </div>
           </div>
         </el-col>
       </el-row>
     </div>
+    
     <div class="menu-wrapper">
      <nav class="container">
-        <label for="drop" class="toggle">Menu</label>
+        <label for="drop" class="toggle"><svg-icon icon-class="hamburger-menu"></svg-icon></label>
         <input type="checkbox" id="drop" />
             <ul class="menu">
                 <li><router-link :to="{ path: '/' }" exact>Beranda</router-link></li>
@@ -143,41 +150,33 @@ export default {
 
 @import "src/styles/variables.scss";
 
-.el-header{
-  background-color: red;
+.el-header{  
   margin: 0; padding: 0;   
 }
-
 /*
   top navigation ok
 */
 .topnav-wrapper {
-  background-color : $bb-blue; 
-  
+  background-color : $main-blue;
   .el-menu{
-    background-color: transparent;      
-    border: none; 
-    
+    background-color: transparent;
+    border: none;    
     &-item{
-      color:white;
-      height: 30px;
-      line-height: 30px;       
-      float: right;      
-      text-align: right;
-      
+      color: white;
+      float: right;
+      line-height: 18px;
+      height: 24px;
+      white-space: nowrap;
       @media (min-width: 320px) and (max-width: 480px) {
-        font-size: 12px; 
-      }
-      
-      &:hover{
+        font-size: 12px;
+        line-height: 12px;
+      }      
+      &:hover{        
+        color: $blue-1;
         background-color: transparent;
-        color:gainsboro
       }
-
     }
-
-  }    
-  
+  }
 }
 
 /********************
@@ -186,37 +185,31 @@ export default {
   lang select
   user/member area 
 **********************/
-.head-wrapper {  
-  background-color: #FFF;  
-  .container{
-    display: flex;
-    align-items: center;
-    //background-color: aqua;
-
-    .head-logo{      
-      &-img{
-        height: 80px;
-      }
-    } //.head-logo
-
-    .head-search{
-      text-align: right;
-    }
-
-    .head-lang{
-      text-align: right;
-    }
-
-    .head-user{
-      text-align: right;
-    }
-
+.head{
+  &-wrapper {
+    height: 100px;
+    
   }
-  
+  &-item{    
+    height: 100px;
+    &-img{       
+      img{
+      height: 90px;      
+      margin: 5px 0;
+      }
+    }
+    &-search{
+      padding: 30px 10%;
+    }
+    &-lang{
+      padding: 30px 0;
+    }
+    &-user{
+      padding: 30px 0;
+    }
+  }
 }
-
-.menu-logo{  
-  
+.menu-logo{
   width: 100%; 
   &-img{    
   height: 30px;
@@ -224,9 +217,10 @@ export default {
 }
 
 .menu-wrapper {
-  background-color: $bb-yellow;  
+  background-color: $main-red;  
   padding: 0;
   margin: 0;
+  z-index: 1000;
   
 }
 nav a.router-link-active {
@@ -240,8 +234,8 @@ nav a.router-link-active {
 
 /* Giving a background-color to the nav container. */
 nav { 	
-	background-color: $bb-yellow;
-  
+	background-color: $main-red;
+  font-size: 14px
 }
 
 #logo {
@@ -281,24 +275,24 @@ nav ul li {
 	margin: 0;
 	display: inline-block;
 	float: left;
-	background-color: $bb-yellow;
+	background-color: $main-red;
 	}
 
 /* Styling the links */
 nav a {
 	display: block;
 	padding: 14px 10px;	
-	color: $bb-blue;	
-	text-decoration: none;
+	color: $main-blue;
+  border-bottom: 2px solid $main-red;
 }
 
 
-nav ul li ul li:hover { background: $bb-yellow1;}
+nav ul li ul li:hover { font-weight: 700; }
 
 /* Background color change on Hover */
 nav a:hover { 	 
-  background-color: $bb-yellow1;
-  border-bottom: 2px solid $bb-blue;
+  font-weight: 700;
+  border-bottom: 2px solid $main-blue;
 }
 
 /* Hide Dropdowns by Default
@@ -336,7 +330,7 @@ nav ul ul ul li {
 
 	
 /* Change ' +' in order to change the Dropdown symbol */
-li > a:after { content:  ' \25BC'; color: $bb-yellow2; }
+li > a:after { content:  ' \25BC'; color: $red-1; }
 li > a:only-child:after { content: ''; }
 
 
@@ -367,16 +361,15 @@ li > a:only-child:after { content: ''; }
 	/* Stylinf the toggle lable */
 	.toggle {
 		display: block;
-		background-color: $bb-yellow;
+		//background-color: $red-1;
 		padding: 14px 10px;	
-		color: $bb-blue;
-		font-size: 17px;
+		color: $main-blue;		
 		text-decoration: none;
 		border: none;
 	}
 
 	.toggle:hover {
-		background-color: $bb-yellow;
+		//background-color: $red-1;
 	}
 
 	/* Display Dropdown when clicked on Parent Lable */
@@ -401,21 +394,21 @@ li > a:only-child:after { content: ''; }
 
 	nav a:hover,
  	nav ul ul ul a {
-		background-color: $bb-yellow1;
+		border: none;
+    text-decoration: none;
 	}
   
 	nav ul li ul li .toggle,
 	nav ul ul a,
   nav ul ul ul a{
 		padding: 14px 20px;	
-		color: $bb-blue;
-		font-size: 17px; 
+		color: $main-blue;		
 	}
   
   
 	nav ul li ul li .toggle,
 	nav ul ul a {
-		background-color: $bb-yellow1; 
+		text-decoration: none;
 	}
 
 	/* Hide Dropdowns by Default */
@@ -447,11 +440,14 @@ li > a:only-child:after { content: ''; }
 }
 
 @media all and (max-width : 330px) {
-
+  nav{
+    font-size: 12px;
+  }
 	nav ul li {
 		display: block;
-		width: 94%;
+		width: 94%;    
 	}
 
 }
+
 </style>
