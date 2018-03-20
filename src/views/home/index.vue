@@ -77,7 +77,7 @@ export default {
 }
 
 .slider-wrapper{
-  background-color: #e6e6e6;
+  background-color: #E6E6E6;
   padding: 20px 0;  
 }
 .spacer{

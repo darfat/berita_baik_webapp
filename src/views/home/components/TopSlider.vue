@@ -88,13 +88,14 @@ export default {
 .slidertop-wrapper{  
   // padding: 20px 0;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto;  
+  z-index: -1;
 }
 .swiper-box {
   width: 86%;
   height: 130px;
   margin: 0 auto;
-  
+  z-index: 1;
 }
 .swiper-item {
   height: 100%;

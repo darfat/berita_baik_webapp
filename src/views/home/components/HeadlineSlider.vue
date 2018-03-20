@@ -59,12 +59,15 @@ export default {
 </script>
 
 <style>
+.el-carousel{
+  z-index: 1;
+}
 .el-carousel__item{
-  background-color: #FFF;
+  background-color: #FFF;  
 }
 .image-hl{
   width: 100%;
-  max-height: 400px;    
+  max-height: 400px;  
 }
 
 
