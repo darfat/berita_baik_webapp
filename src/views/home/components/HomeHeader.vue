@@ -220,7 +220,7 @@ export default {
   background-color: $main-red;  
   padding: 0;
   margin: 0;
-  z-index: 1000;
+  z-index: 2;  
   
 }
 nav a.router-link-active {
@@ -267,7 +267,8 @@ nav ul {
 	padding: 0;
 	margin: 0;
 	list-style: none;
-	position: relative;
+  position: relative;
+  z-index: 2;
 	}
 	
 /* Positioning the navigation items inline */
