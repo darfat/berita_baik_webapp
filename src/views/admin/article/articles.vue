@@ -16,7 +16,7 @@
         </el-option>
       </el-select> -->
       <el-button class="filter-item" type="primary"  icon="el-icon-search" @click="handleFilter">Search</el-button>
-      <router-link class="filter-item" :to="{ name: 'article-form', params: { editorialSlug} }" >
+      <router-link class="filter-item" :to="{ name: 'admin-article-form', params: { editorialSlug} }" >
         <el-button type="primary" >Create</el-button>
       </router-link>    
       </div>
@@ -40,7 +40,7 @@
       </el-table-column>
       <el-table-column align="center" label="Actions" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <router-link class="filter-item" :to="{ name: 'article-form', params: { editorialSlug, 'articleId': scope.row.id} }" >
+          <router-link class="filter-item" :to="{ name: 'admin-article-form', params: { editorialSlug, 'articleId': scope.row.id} }" >
             <el-button type="primary" size="mini" >Edit</el-button>
           </router-link>
         </template>

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain } from '@/views/layout/components'
+import { Navbar, Sidebar, AppMain } from '@/views/admin/layout/components'
 
 export default {
   name: 'layout',

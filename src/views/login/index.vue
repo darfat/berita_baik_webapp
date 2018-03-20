@@ -1,37 +1,59 @@
 <template>
-  <div class="login-container">
-    <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px"
-      class="card-box login-form">
-      <h3 class="title">vue-element-admin</h3>
-      <el-form-item prop="username">
-        <span class="svg-container svg-container_login">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username" />
-      </el-form-item>
-      <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password"></svg-icon>
-        </span>
-        <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
-          placeholder="password"></el-input>
-          <span class="show-pwd" @click="showPwd"><svg-icon icon-class="eye" /></span>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
-          Sign in
-        </el-button>
-      </el-form-item>
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: admin</span>
+  <div class="login">      
+      <div class="login-box">
+        <div class="logo">
+            <a href="#/home">
+              <img :src="img_b_logo" alt="beritabaik.id">
+            </a>          
+        </div>
+        <div class="form">
+            <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px"
+                class="card-box login-form">
+                <el-form-item prop="username">
+                  <span class="svg-container svg-container_login">
+                    <svg-icon icon-class="user" />
+                  </span>
+                  <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="Username atau Alamat Surel" />
+                </el-form-item>
+                <el-form-item prop="password">
+                  <span class="svg-container">
+                    <svg-icon icon-class="password"></svg-icon>
+                  </span>
+                  <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
+                    placeholder="password"></el-input>
+                    <span class="show-pwd" @click="showPwd"><svg-icon icon-class="eye" /></span>
+                </el-form-item>
+                <el-row :gutter="20">
+                    <el-col :span="12">
+                        <div> <a> Lupa Sandi ? </a></div>
+                        <div>   <el-checkbox v-model="checked">Ingat Saya</el-checkbox>  </div>
+                    </el-col>
+                    <el-col :span="12" class="align-right">
+                        <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
+                          Masuk
+                        </el-button>
+                    </el-col>
+                </el-row>
+               
+                
+              </el-form>
+        </div>
+        <div class="options">
+            <div class="login-with"> 
+                <v-icon name="facebook" base-class="icon-0dot8em v-align-middle"></v-icon>
+                <v-icon name="mail" base-class="icon-0dot8em v-align-middle"></v-icon>
+            </div>
+            <div class="sign-up"> 
+                <span> Belum Mendaftar ? <a>Daftar Sekarang</a> </span>
+            </div>
+        </div>
       </div>
-    </el-form>
   </div>
 </template>
 
 <script>
 import { isvalidUsername } from '@/utils/validate'
+import img_b_logo from '@/assets/images/logo_beritabaik_b.png'
 
 export default {
   name: 'login',
@@ -52,15 +74,17 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: 'admin'
+        username: '',
+        password: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
         password: [{ required: true, trigger: 'blur', validator: validatePass }]
       },
       loading: false,
-      pwdType: 'password'
+      pwdType: 'password',
+      img_b_logo,
+      checked: false
     }
   },
   methods: {
@@ -77,7 +101,7 @@ export default {
           this.loading = true
           this.$store.dispatch('Login', this.loginForm).then(() => {
             this.loading = false
-            this.$router.push({ path: '/' })
+            this.$router.push({ path: '/cms' })
           }).catch(() => {
             this.loading = false
           })
@@ -92,18 +116,24 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  $bg:#2d3a4b;
-  $dark_gray:#889aa4;
-  $light_gray:#eee;
 
-  .login-container {
-    position: fixed;
-    height: 100%;
-    width:100%;
-    background-color: $bg;
+  $bg:#2d3a4b; @import "src/styles/portal-login.scss";
+
+ 
+.el-row {
+  margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+$dark_gray:#889aa4;
+$light_gray:#000;
+$lightest_gray:#eef5f8;
+
+.form {
     input:-webkit-autofill {
-      -webkit-box-shadow: 0 0 0px 1000px #293444 inset !important;
-      -webkit-text-fill-color: #fff !important;
+      -webkit-box-shadow: 0 0 0px 1000px $lightest_gray inset !important;
+      -webkit-text-fill-color: #2d3a4b !important;
     }
     input {
       background: transparent;
@@ -119,11 +149,7 @@ export default {
       height: 47px;
       width: 85%;
     }
-    .tips {
-      font-size: 14px;
-      color: #fff;
-      margin-bottom: 10px;
-    }
+
     .svg-container {
       padding: 6px 5px 6px 15px;
       color: $dark_gray;
@@ -146,13 +172,13 @@ export default {
       position: absolute;
       left: 0;
       right: 0;
-      width: 400px;
+      // width: 400px;
       padding: 35px 35px 15px 35px;
-      margin: 120px auto;
+      // margin: 120px auto;
     }
     .el-form-item {
       border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(0, 0, 0, 0.1);
+      background: $lightest_gray;// rgba(0, 0, 0, 0.1);
       border-radius: 5px;
       color: #454545;
     }
@@ -171,4 +197,5 @@ export default {
       bottom: 28px;
     }
   }
+  
 </style>

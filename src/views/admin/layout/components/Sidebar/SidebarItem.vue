@@ -31,7 +31,7 @@
     </template>
     <el-menu-item class="logout">
     <svg-icon icon-class="example" />
-    <span>Logout</span>
+    <span @click="logout">Logout</span>
     </el-menu-item>
   </div>
 </template>
@@ -46,6 +46,13 @@ export default {
     isNest: {
       type: Boolean,
       default: false
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('LogOut').then(() => {
+        location.reload() // 为了重新实例化vue-router对象 避免bug
+      })
     }
   }
 }

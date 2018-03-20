@@ -8,7 +8,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 /* Layout */
-import Layout from '../views/layout/Layout'
+import Layout from '../views/admin/layout/Layout'
 import HomeLayout from '../views/home/Layout'
 
 /**
@@ -96,8 +96,8 @@ export const constantRouterMap = [
       component: () => import('@/views/portal/search/advanced')
     }]
   },
-  { path: '/home/login', component: () => import('@/views/portal/login/index'), hidden: true },
-  { path: '/home/signup', component: () => import('@/views/portal/signup/index'), hidden: true },
+  { path: '/plogin', component: () => import('@/views/portal/login/index'), hidden: true },
+  { path: '/signup', component: () => import('@/views/portal/signup/index'), hidden: true },
 
   // cms part
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
@@ -111,60 +111,39 @@ export const constantRouterMap = [
     hidden: true,
     children: [{
       path: 'dashboard',
-      component: () => import('@/views/dashboard/index')
+      component: () => import('@/views/admin/dashboard/index')
     }]
   },
-  // {
-  //   path: '/form',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       name: 'Form',
-  //       component: () => import('@/views/form/index'),
-  //       meta: { title: 'Form', icon: 'form' }
-  //     }
-  //   ]
-  // },
-
   {
     path: '/editorial-articles',
     component: Layout,
     redirect: '/editorial-articles/indonesia-baik',
-    name: 'Editorial',
+    name: 'admin-editorial',
     meta: { title: 'Editorial', icon: 'example' },
     children: [
       {
-        path: 'indonesia-baik',
-        name: 'indonesiaBaik',
-        component: () => import('@/views/article/indonesiaBaik'),
+        path: 'l/indonesia-baik',
+        name: 'admin-indonesia-baik-list',
+        component: () => import('@/views/admin/article/indonesiaBaik'),
         meta: { title: 'Indonesia Baik', icon: 'table' }
       },
       {
-        path: 'indonesia-bangga',
-        name: 'indonesiaBangga',
-        component: () => import('@/views/article/indonesiaBangga'),
+        path: 'l/indonesia-bangga',
+        name: 'admin-indonesia-bangga-list',
+        component: () => import('@/views/admin/article/indonesiaBangga'),
         meta: { title: 'Indonesia Bangga', icon: 'table' }
       },
       {
-        path: 'form',
-        name: 'article-form',
-        props: true,
-        component: () => import('@/views/article/form'),
-        hidden: true
+        path: 'l/sosok-inspiratif',
+        name: 'admin-sosok-inspiratif-list',
+        component: () => import('@/views/admin/article/sosokInspiratif'),
+        meta: { title: 'Sosok Inspiratif', icon: 'table' }
       },
       {
-        path: 'new-article-indonesia-baik',
-        name: 'indonesia-baik-form',
+        path: 'f/:editorialSlug',
+        name: 'admin-article-form',
         props: true,
-        component: () => import('@/views/article/indonesiaBaikForm'),
-        hidden: true
-      },
-      {
-        path: 'new-article-indonesia-bangga',
-        name: 'indonesia-bangga-form',
-        props: true,
-        component: () => import('@/views/article/indonesiaBanggaForm'),
+        component: () => import('@/views/admin/article/form'),
         hidden: true
       }
     ]
@@ -179,13 +158,13 @@ export const constantRouterMap = [
       {
         path: 'tag',
         name: 'Tag',
-        component: () => import('@/views/tag/index'),
+        component: () => import('@/views/admin/tag/index'),
         meta: { title: 'Tag', icon: 'tag' }
       },
       {
         path: 'editorial',
         name: 'EditorialConfig',
-        component: () => import('@/views/editorial/index'),
+        component: () => import('@/views/admin/editorial/index'),
         meta: { title: 'Editorial', icon: 'editorial' }
       }
     ]
@@ -199,18 +178,18 @@ export const constantRouterMap = [
     children: [
       {
         path: '/settings/my-account',
-        component: () => import('@/views/settings/my-account/index'),
+        component: () => import('@/views/admin/settings/my-account/index'),
         redirect: 'noredirect',
         name: 'myAccount',
         meta: { title: 'My Account', icon: 'user' },
         children: [
           { path: 'edit-profile',
-            component: () => import('@/views/settings/my-account/profile/edit'),
+            component: () => import('@/views/admin/settings/my-account/profile/edit'),
             name: 'editProfile',
             meta: { title: 'Edit Profile', icon: 'user' }
           },
           { path: 'change-password',
-            component: () => import('@/views/settings/my-account/password/edit'),
+            component: () => import('@/views/admin/settings/my-account/password/edit'),
             name: 'ChangePassword',
             meta: { title: 'Change Password', icon: 'password' }
           }
