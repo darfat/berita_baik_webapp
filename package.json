@@ -23,6 +23,7 @@
     "vue-awesome": "^2.3.5",
     "vue-awesome-swiper": "^3.1.2",
     "vue-fixed-header": "^1.0.1",
+    "vue-i18n": "^7.6.0",
     "vue-icon": "^2.0.0",
     "vue-router": "3.0.1",
     "vue-social-sharing": "^2.3.3",

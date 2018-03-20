@@ -46,7 +46,7 @@ export default {
       this.getHeadlines()
     },
     getHeadlines() {
-      this.loading.mainGallery = true
+      this.loading.headlines = true
       getHeadlineArticles({ page: 1, per_page: this.limit }).then(response => {
         this.loading.headlines = false
         if (response) {

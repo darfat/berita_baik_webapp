@@ -1,5 +1,5 @@
 <template>
-<div class="slidertop-wrapper">  
+<div class="slidertop-wrapper" v-loading="loading.topslides">  
   <div class="swiper-nav">
     <div class="swiper-button-prev" slot="button-prev"><svg-icon icon-class="arrow_left"></svg-icon></div>  
     <div class="swiper-button-next" slot="button-next"><svg-icon icon-class="arrow_right"></svg-icon></div>
@@ -71,7 +71,7 @@ export default {
       this.getTopSlides(this.editorialSlug)
     },
     getTopSlides() {
-      this.loading.mainGallery = true
+      this.loading.topslides = true
       getTopslideArticles({ page: 1, per_page: this.limit }).then(response => {
         this.loading.topslides = false
         if (response) {

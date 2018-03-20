@@ -21,6 +21,9 @@ const user = {
     },
     SET_ROLES: (state, roles) => {
       state.roles = roles
+    },
+    SET_USER_ID: (state, user_id) => {
+      state.user_id = user_id
     }
   },
 
@@ -33,6 +36,7 @@ const user = {
           const data = response.data
           setToken(data.token)
           commit('SET_TOKEN', data.token)
+          commit('SET_USER_ID', data.id)
           resolve()
         }).catch(error => {
           reject(error)
@@ -43,7 +47,7 @@ const user = {
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
-        getInfo(state.token).then(response => {
+        getInfo(state.token, state.user_id).then(response => {
           const data = response.data
           commit('SET_ROLES', data.roles)
           commit('SET_NAME', data.name)
