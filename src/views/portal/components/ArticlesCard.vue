@@ -1,51 +1,53 @@
 <template>
 <div class="card-content">
   <el-row>
-        <div class="section-title"> {{title}}</div>
-    </el-row>
+    <div class="section-title"> {{title}}</div>
+  </el-row>
+  
+    <el-row :gutter="10">
+      <el-col :xs="24" :sm="12" v-for="(article) in articles" :key="article.id" >
+        <div class="news-col">
+        <el-card :body-style="{ padding: '0px' }" class="news-card">
           <div>
-            <el-row>
-              <el-col :span="11" v-for="(article) in articles" :key="article.id" class="news-col">
-                <el-card :body-style="{ padding: '0px' }" class="news-card">
-                  <div>
-                      <div class="mini-thumbnail">
-                        <img :src="article.main_image" class="card-image" />
-                        <div class="editorial-type-img">
-                            <p style="font-size:10px;">{{ article.editorial.name }}</p>
-                        </div>
-                      </div>
-                  </div>
-                  <div style="padding: 14px;">
-                    <div class="bottom clearfix">
-                      <el-row >
-                        <el-col :span="4">
-                          <span> <bb-love></bb-love> </span>
-                          <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
-                        </el-col>
-                    </el-row>
-                    </div>
-                    <el-row class="ac-title">
-                      <div>
-                        <router-link  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }" >
-                          <span>{{ article.title}}</span>
-                        </router-link>
-                      </div>
-                    </el-row>
-                    <el-row >
-                        <el-col :span="2"><article-separator></article-separator></el-col>
-                    </el-row>
-                    <el-row >
-                        <el-col class="footer">
-                        <div>
-                          {{ article.reporter_name }} | <timeago :auto-update="60" :since="article.publish_date"></timeago> 
-                        </div>
-                      </el-col>
-                    </el-row>
-                  </div>
-                </el-card>
+              <div class="mini-thumbnail">
+                <img :src="article.main_image" class="card-image" />
+                <div class="editorial-type-img">
+                    <h3>{{ article.editorial.name }}</h3>
+                </div>
+              </div>
+          </div>
+          <div style="padding: 14px;">
+            <div class="bottom clearfix">
+              <el-row >
+                <el-col :span="4">
+                  <span> <bb-love></bb-love> </span>
+                  <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
+                </el-col>
+            </el-row>
+            </div>
+            <el-row class="ac-title">
+              <div>
+                <router-link  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }" >
+                  <h2>{{ article.title}}</h2>
+                </router-link>
+              </div>
+            </el-row>
+            <el-row >
+                <el-col :span="2"><article-separator></article-separator></el-col>
+            </el-row>
+            <el-row >
+                <el-col class="footer">
+                <div>
+                  {{ article.reporter_name }} | <timeago :auto-update="60" :since="article.publish_date"></timeago> 
+                </div>
               </el-col>
             </el-row>
           </div>
+        </el-card>
+        </div>
+      </el-col>
+    </el-row>
+  
 </div>
 </template>
 
