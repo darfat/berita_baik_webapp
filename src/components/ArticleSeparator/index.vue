@@ -16,7 +16,7 @@ export default {
 
 <style scoped>
 .separator {
-  background-color: #fbdd01;
+  background-color: #EB0029;
   width:1.5em; 
   height: 0.8em;
   margin-top: 5px;
