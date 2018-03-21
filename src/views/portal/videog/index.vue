@@ -59,7 +59,7 @@ export default {
   background-color: #FFF;
 }
 .video-main{
-  padding-top: 150px
+  // padding-top: 150px
  
 }
 .video-main-container{
