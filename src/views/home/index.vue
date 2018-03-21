@@ -1,50 +1,55 @@
 <template>
-<div class="main-home">
-  <el-row :gutter="10" class="slider-wrapper">
-    <el-col :xs="24" :sm="24">
-      <div class="container">
-        <top-slider></top-slider>
+<div class="app-wrapper">
+  <el-row :gutter="10" class="slider-wrapper">    
+    <div class="container">
+      <top-slider></top-slider>
+      <div class="spacer"></div>
+      <headline-slider></headline-slider>
+    </div>    
+  </el-row>
+
+  <el-row :gutter="10">
+    <div class="container">
+    <el-col :xs="24" :sm="16">      
+        <articles-card :title="'Berita Baik Terbaru'" :limit=9></articles-card>      
+    </el-col>    
+    <el-col :xs="24" :sm="8">      
+        <popular-news-side></popular-news-side>
         <div class="spacer"></div>
-        <headline-slider></headline-slider>
-      </div>
-    </el-col>    
-  </el-row>
-
-  <el-row :gutter="10">
-    <el-col :xs="24" :sm="18">
-      <div class="">
-        <!--<articles-card :title="'Berita Baik Terbaru'" :limit=9></articles-card>-->
-      </div>
+        <infografis-side :editorialSlug="'infografis'"  > </infografis-side>      
     </el-col>
-    <el-col :xs="24" :sm="6">
-      <div class="">
-        <!--<popular-news-side></popular-news-side>-->
-      </div>
-      <div class="">
-        <!-- <infografis-side :editorialSlug="'infografis'"  > </infografis-side> -->
-      </div>
-    </el-col>    
+    </div>    
   </el-row>
 
   <el-row :gutter="10">
-    <!-- <el-col :xs="24" :sm="24"><home-youtube-video></home-youtube-video></el-col>-->
+    <el-col :xs="24" :sm="24"><home-youtube-video></home-youtube-video></el-col>
   </el-row>
 
   <el-row :gutter="10">
-    <!-- <el-col :xs="24" :sm="24"><social-feed></social-feed></el-col>-->
+    <div class="container">
+    <el-col :xs="24" :sm="24"><social-feed></social-feed></el-col>
+    </div>
   </el-row>
 
   <el-row :gutter="10">
-    <!-- <el-col :xs="24" :sm="24"><events></events></el-col> -->
+    <div class="container">
+    <el-col :xs="24" :sm="24"><events></events></el-col>
+    </div>
+  </el-row>
+
+  <el-row>
+    <div class="container">
+    <el-col :xs="24" :sm="16"><galeri></galeri></el-col>
+    <el-col :xs="24" :sm="8">
+      <div class="ads"><small>advertisement</small></div>
+    </el-col>
+    </div>
   </el-row>
 
   <el-row :gutter="10">
-    <el-col :xs="24" :sm="18"><galeri></galeri></el-col>
-    <el-col :xs="24" :sm="6"><div class="grid-content bg-purple-light"></div></el-col>    
-  </el-row>
-
-  <el-row :gutter="10">
-    <!--<el-col :xs="24" :sm="24"><subscribe></subscribe></el-col>-->
+    <div class="container">
+    <el-col :xs="24" :sm="24"><subscribe></subscribe></el-col>
+    </div>
   </el-row>
 
  
@@ -78,41 +83,37 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/styles/mixin.scss";
+@import "src/styles/variables.scss";
 @import "src/styles/home.scss";
-
-.main-home {
-  // padding-top: 160px  
-}
+.app-wrapper { @include clearfix; position: relative; height: 100%; width: 100%; }
 
 .slider-wrapper{
   background-color: #E6E6E6;
-  padding-top: 20px;
+  padding: 20px 0;
 }
 
 .spacer{
   margin-top: 20px; 
 }
+
 .el-row {
   margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
+  &:last-child {
+    margin-bottom: 0;
   }
+}
 
 .el-col {
-    border-radius: 4px;
+  // background-color: red;
+}
+
+.ads{
+  background-color: $black-2;
+  height: 500px;
+  text-align: center;
+  padding: 10px;
+  small{
+    color: #666;
   }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
+}
 </style>
