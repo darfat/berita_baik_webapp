@@ -4,8 +4,8 @@
     <div class="container overlay-desc" v-show="ready"  v-loading="loading.latestVideo" >       
         <h2>{{ latestVideo.editorial.name }}</h2>
         <h1>{{ latestVideo.title }}</h1>
-        <p>{{ latestVideo.teaser }}</p>
-        <hr style="width:30px;height:5px;background-color:#F5DF00; border: none; padding-top:10px; margin-left: 0; clear:both" />
+        <p>{{ latestVideo.teaser }}</p>        
+        <hr style="width:30px;height:5px;background-color:#EB0029; border: none; padding-top:10px; margin-left: 0; clear:both" />
         <div> {{ latestVideo.reporter_name }} | <timeago :since="latestVideo.publish_date"></timeago> </div>
      </div>
   </section>
