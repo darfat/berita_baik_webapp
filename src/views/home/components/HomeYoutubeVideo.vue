@@ -68,9 +68,10 @@ export default {
 
 <style>
 
+
 .video-wrapper {
 position: relative;
-padding-bottom: 56.25%;
+padding-bottom: 35%;
 padding-top: 0; height: 0; overflow: hidden;
 }
 
@@ -87,13 +88,13 @@ height: 100%;
 .video-wrapper .overlay-desc {
   background-color: rgba(0,0,0,0.3);
   position: absolute;
-  right: 30%; bottom: 5%; left: 5%;
+  right: 60%; left: 5%; top: 30%;
   display: flex;
   //align-items: flex-end;
-  justify-content: flex-end;
+  // justify-content: flex-end;
   color: white;  
   flex-direction: column;
-  padding: 10px;
+  padding: 10px;  
 }
 .video-wrapper .overlay-desc h1,
 .video-wrapper .overlay-desc p {   
