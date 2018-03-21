@@ -11,7 +11,8 @@
   <el-row :gutter="10">
     <div class="container">
     <el-col :xs="24" :sm="16">      
-        <articles-card :title="'Berita Baik Terbaru'" :limit=9></articles-card>      
+        <articles-card :title="'Berita Baik Terbaru'" :limit=9></articles-card>
+        <hr>
     </el-col>    
     <el-col :xs="24" :sm="8">      
         <popular-news-side></popular-news-side>
@@ -24,16 +25,19 @@
   <el-row :gutter="10">
     <el-col :xs="24" :sm="24"><home-youtube-video></home-youtube-video></el-col>
   </el-row>
-
+  
   <el-row :gutter="10">
-    <div class="container">
-    <el-col :xs="24" :sm="24"><social-feed></social-feed></el-col>
+    <div class="container">    
+      <el-col :xs="24" :sm="24">
+        <social-feed></social-feed>
+        <hr>
+      </el-col>
     </div>
   </el-row>
 
   <el-row :gutter="10">
     <div class="container">
-    <el-col :xs="24" :sm="24"><events></events></el-col>
+    <el-col :xs="24" :sm="24"><events></events><hr></el-col>
     </div>
   </el-row>
 
@@ -115,5 +119,12 @@ export default {
   small{
     color: #666;
   }
+}
+
+hr{
+  border: 0;
+  height: 1px;
+  background: #656565;
+  margin-top: 10px;
 }
 </style>
