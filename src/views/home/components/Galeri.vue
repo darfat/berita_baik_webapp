@@ -1,5 +1,5 @@
 <template>  
-  <div style="height: 500px; background-color: #1a1a1a"   v-loading="loading.galleries" >    
+  <div style="height: 500px; background-color: #323232"   v-loading="loading.galleries" >    
     <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" >
       <swiper-slide :class="'slide-'+index" v-bind:style="{ backgroundImage: 'url(' + g.main_image + ')' }"  v-for="(g,index) in galleries" :key="g.id"></swiper-slide>
       <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
@@ -83,7 +83,7 @@ export default {
 
 <style lang="scss" scoped>
   .swiper-container {
-    background-color: #222;
+    background-color: #323232;
     height: 300px;
     width: 100%;
   }

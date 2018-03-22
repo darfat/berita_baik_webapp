@@ -4,8 +4,8 @@
     <div class="container overlay-desc" v-show="ready"  v-loading="loading.latestVideo" >       
         <h2>{{ latestVideo.editorial.name }}</h2>
         <h1>{{ latestVideo.title }}</h1>
-        <p>{{ latestVideo.teaser }}</p>
-        <hr style="width:30px;height:5px;background-color:#F5DF00; border: none; padding-top:10px; margin-left: 0; clear:both" />
+        <p>{{ latestVideo.teaser }}</p>        
+        <hr style="width:30px;height:5px;background-color:#EB0029; border: none; padding-top:10px; margin-left: 0; clear:both" />
         <div> {{ latestVideo.reporter_name }} | <timeago :since="latestVideo.publish_date"></timeago> </div>
      </div>
   </section>
@@ -68,9 +68,10 @@ export default {
 
 <style>
 
+
 .video-wrapper {
 position: relative;
-padding-bottom: 56.25%;
+padding-bottom: 35%;
 padding-top: 0; height: 0; overflow: hidden;
 }
 
@@ -87,13 +88,13 @@ height: 100%;
 .video-wrapper .overlay-desc {
   background-color: rgba(0,0,0,0.3);
   position: absolute;
-  right: 30%; bottom: 5%; left: 5%;
+  right: 60%; left: 5%; top: 30%;
   display: flex;
   //align-items: flex-end;
-  justify-content: flex-end;
+  // justify-content: flex-end;
   color: white;  
   flex-direction: column;
-  padding: 10px;
+  padding: 10px;  
 }
 .video-wrapper .overlay-desc h1,
 .video-wrapper .overlay-desc p {   

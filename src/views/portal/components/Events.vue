@@ -1,7 +1,7 @@
 <template>
   <div class="events">      
     <el-row :gutter="20" class="events-title">
-        <el-col :span="8"  >
+        <el-col :xs="24" :sm="8"  >
             <span class="font-black">ACARA </span> <span class="font-blue" >BULAN INI 
               <v-icon name="chevron-left" base-class="icon-20 v-align-middle"></v-icon>
               <v-icon name="chevron-right" base-class="icon-20 v-align-middle"></v-icon>
@@ -11,7 +11,7 @@
     <el-row >
     </el-row>
     <el-row :gutter="20" class="events-content" >
-      <el-col :span="6">
+      <el-col :xs="24" :sm="6">
         <el-row >
           <el-col >
             <div class="events-month" >DESEMBER</div>
@@ -19,7 +19,7 @@
           </el-col>
         </el-row>
       </el-col>
-      <el-col :span="6" class="events-separator">
+      <el-col :xs="24" :sm="6" class="events-separator">
          <el-row :gutter="20" >
           <el-col :span="8" class="align-center" >
              <div class="event-text-circle "> <span class="events-date"> 01 </span> </div>
@@ -35,7 +35,7 @@
           </el-col>
         </el-row>
       </el-col>
-      <el-col :span="6" class="events-separator">
+      <el-col :xs="24" :sm="6" class="events-separator">
         <el-row :gutter="20" >
           <el-col :span="8" class="align-center" >
              <div class="event-text-circle "> <span class="events-date"> 03 </span> </div>
@@ -51,7 +51,7 @@
           </el-col>
         </el-row>
       </el-col>
-      <el-col :span="6" class="events-separator">
+      <el-col :xs="24" :sm="6" class="events-separator">
         <el-row :gutter="20" >
           <el-col :span="8" class="align-center" >
              <div class="event-text-circle "> <span class="events-date"> 18 </span> </div>
