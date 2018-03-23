@@ -50,7 +50,6 @@
 </template>
 
 <script>
-import { getAll } from '@/api/article'
 import { getListByEditorialSlug } from '@/api/article'
 
 export default {
@@ -82,14 +81,9 @@ export default {
     getListByEditorialSlug(editorialSlug) {
       this.listLoading = true
       getListByEditorialSlug({ editorialSlug }).then(response => {
-        this.list = response.data
-        this.listLoading = false
-      })
-    },
-    getAll() {
-      this.listLoading = true
-      getAll(this.listQuery).then(response => {
-        this.list = response.data
+        if (response) {
+          this.list = response.data
+        }
         this.listLoading = false
       })
     },

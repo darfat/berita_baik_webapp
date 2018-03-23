@@ -199,28 +199,29 @@ export default {
       article: {
         title: 'Test',
         editorial_id: null,
-        slug: 'selug',
+        slug: 'selug-1',
         publish_date: new Date(),
-        published: false,
-        teaser: '',
-        content: '',
-        status: 'draft',
+        published: true,
+        teaser: null,
+        content: '<p>content</p>',
+        main_image: null,
+        section: null,
         article_tags: null,
         is_can_comment: true,
-        article_type: 'news',
-        article_authors: [
-          {
-            role_id: null,
-            user_id: null,
-            social_media_id: '@test1'
-          }
-        ]
+        active: true,
+        article_type: null,
+        article_authors: null,
+        lock_by_id: null,
+        city_id: null,
+        reporter_id: null,
+        editor_id: null,
+        editorial: null
+
       },
       section_opts: [],
       article_type_opts: [],
       city_opts: [],
       role_opts: [],
-      editorial_id: '',
       tagArray: [],
       inputVisible: false,
       inputValue: '',
@@ -238,7 +239,7 @@ export default {
 
   created() {
     console.log('created')
-    console.log(this.articleId)
+    console.log(this.editorialSlug)
     this.init()
   },
 
@@ -297,25 +298,27 @@ export default {
     },
     getCityOptions() {
       getCities().then(response => {
-        this.city_opts = response
+        if (response) {
+          this.city_opts = response.data
+        }
       })
     },
     getRoleOptions() {
       getRoles().then(response => {
-        this.role_opts = response
+        this.role_opts = response.data
       })
     },
     getUserOptions() {
       getUsers().then(response => {
-        this.author_opts = response
+        this.author_opts = response.data
       })
     },
     setEditorialId(slug) {
       getEditorialIdBySlug({
         slug
       }).then(response => {
-        this.editorial_id = response.id
-        this.article.editorial_id = this.editorial_id
+        this.article.editorial_id = response.data.id
+        console.log(response.data)
       })
     },
     getArticleById(articleId) {

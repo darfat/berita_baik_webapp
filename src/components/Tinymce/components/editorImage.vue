@@ -1,20 +1,21 @@
 <template>
   <div class="upload-container">
-    <el-button icon='el-icon-upload' size="mini" :style="{background:color,borderColor:color}" @click=" dialogVisible=true" type="primary">上传图片
+    <el-button icon='el-icon-upload' size="mini" :style="{background:color,borderColor:color}" @click=" dialogVisible=true" type="primary">Upload
     </el-button>
     <el-dialog :visible.sync="dialogVisible">
-      <el-upload class="editor-slide-upload" action="https://httpbin.org/post" :multiple="true" :file-list="fileList" :show-file-list="true"
-        list-type="picture-card" :on-remove="handleRemove" :on-success="handleSuccess" :before-upload="beforeUpload">
-        <el-button size="small" type="primary">点击上传</el-button>
+      <el-upload class="editor-slide-upload" action="http://localhost:9528/"  :multiple="true" :file-list="fileList" :show-file-list="true"
+        list-type="picture-card" :on-remove="handleRemove" :on-success="handleSuccess" :before-upload="beforeUpload" :auto-upload="false">
+        <el-button size="small" type="primary">Upload</el-button>
       </el-upload>
-      <el-button @click="dialogVisible = false">取 消</el-button>
-      <el-button type="primary" @click="handleSubmit">确 定</el-button>
+      <el-button @click="dialogVisible = false">Cancel</el-button>
+      <el-button type="primary" @click="handleSubmit">Upload</el-button>
     </el-dialog>
   </div>
 </template>
 
 <script>
 // import { getToken } from 'api/qiniu'
+import { upload } from '@/api/image_upload'
 
 export default {
   name: 'editorSlideUpload',
@@ -36,17 +37,25 @@ export default {
       return Object.keys(this.listObj).every(item => this.listObj[item].hasSuccess)
     },
     handleSubmit() {
-      const arr = Object.keys(this.listObj).map(v => this.listObj[v])
-      if (!this.checkAllSuccess()) {
-        this.$message('请等待所有图片上传成功 或 出现了网络问题，请刷新页面重新上传！')
-        return
-      }
+      const arr = Object.keys(this.fileList).map(v => this.listObj[v])
+      // if (!this.checkAllSuccess()) {
+      //   this.$message('Please wait for all pictures to upload successfully or there is a network problem. Please refresh the page and upload again!')
+      //   return
+      // }
       console.log(arr)
+      upload({
+        'imageAttachment': arr
+      }).then(response => {
+        if (response) {
+          console.log(response)
+        }
+      })
       this.$emit('successCBK', arr)
       this.listObj = {}
       this.fileList = []
       this.dialogVisible = false
     },
+
     handleSuccess(response, file) {
       const uid = file.uid
       const objKeyArr = Object.keys(this.listObj)
@@ -77,13 +86,19 @@ export default {
         const img = new Image()
         img.src = _URL.createObjectURL(file)
         img.onload = function() {
-          _self.listObj[fileName] = { hasSuccess: false, uid: file.uid, width: this.width, height: this.height }
+          _self.listObj[fileName] = {
+            hasSuccess: false,
+            uid: file.uid,
+            width: this.width,
+            height: this.height
+          }
         }
         resolve(true)
       })
     }
   }
 }
+
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
