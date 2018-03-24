@@ -277,7 +277,7 @@ nav:after {
 /* Removing padding, margin and "list-style" from the "ul",
  * and adding "position:reltive" */
 nav ul {
-	float: right;
+	// float: right;
 	padding: 0;
 	margin: 0;
 	list-style: none;
