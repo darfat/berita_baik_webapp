@@ -139,7 +139,8 @@ export default {
 .swiper-button-next, .swiper-button-prev{  
   background-image: none;  
   font-size: 36px;
-  margin-top: 50px; 
+  margin-top: 50px;
+  z-index: 1;
 }
 .swiper-button-next{  
   right: 20px;

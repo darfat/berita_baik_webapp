@@ -64,76 +64,77 @@
         </el-col>
       </el-row>
     </div>
-    
-    <div class="menu-wrapper">
-     <nav class="container">
-        <label for="drop" class="toggle"><svg-icon icon-class="hamburger-menu"></svg-icon></label>
-        <input type="checkbox" id="drop" />
-            <ul class="menu">
-                <li><router-link :to="{ path: '/' }" exact>{{$t('portal.navbar.home')}}</router-link></li>
-                <li><router-link :to="{ path: '/home/indonesia-baik' }">Indonesia Baik</router-link></li>
-                <li>
-                    <!-- First Tier Drop Down -->
-                    <label for="drop-1" class="toggle">Indonesia Bangga &#9660;</label>
-                    <router-link :to="{ path: '/home/p/indonesia-bangga' }">Indonesia Bangga</router-link>
-                    <input type="checkbox" id="drop-1"/>
-                    <ul>
-                        <li><router-link :to="{ path: '/home/komunitas' }">Komunitas</router-link></li>
-                        <li><router-link :to="{ path: '/home/sosok-inspiratif' }">Sosok Inspiratif</router-link></li>
-                        <li><router-link :to="{ path: '/home/prestasi' }">Prestasi</router-link></li>
-                    </ul>
-                </li>
-                <li><router-link :to="{ path: '/home/indonesia-membangun' }">Indonesia Membangun</router-link></li>
-                <li>
-                <!-- First Tier Drop Down -->
-                <label for="drop-2" class="toggle">Melancong &#9660;</label>
-                <router-link :to="{ path: '/home/p/melancong' }">Melancong</router-link>
-                <input type="checkbox" id="drop-2"/>
-                <ul>
-                    <li><router-link :to="{ path: '/home/tempat-wisata' }">Tempat Wisata</router-link></li>
-                    <li><router-link :to="{ path: '/home/kuliner' }">Kuliner</router-link></li>                    
-                </ul>
-                </li>
-                <li><router-link :to="{ path: '/home/teknologi' }">Teknologi</router-link></li>
-                <li>
-                <!-- First Tier Drop Down -->
-                <label for="drop-3" class="toggle">Panggung &#9660;</label>
-                <router-link :to="{ path: '/home/p/panggung' }">Panggung</router-link>
-                <input type="checkbox" id="drop-3"/>
-                <ul>
-                    <li><router-link :to="{ path: '/home/musik' }">Musik</router-link></li>
-                    <li><router-link :to="{ path: '/home/fashion' }">Fashion</router-link></li>
-                    <li><router-link :to="{ path: '/home/film' }">Film</router-link></li>
-                    <li><router-link :to="{ path: '/home/seni' }">Seni</router-link></li>
-                    <li><router-link :to="{ path: '/home/gaya-hidup' }">Gaya Hidup</router-link></li>
-                </ul>
-                </li>
-                <li>
-                <!-- First Tier Drop Down -->
-                <label for="drop-4" class="toggle">Citra &#9660;</label>
-                <router-link :to="{ path: '/home-m/gallery' }">Citra</router-link>
-                <input type="checkbox" id="drop-4"/>
-                <ul>
-                    <li><router-link :to="{ path: '/home-m/gallery' }">Galeri Foto</router-link></li>
-                    <li><router-link :to="{ path: '/home-m/video' }">Video</router-link></li>
-                    <li><router-link :to="{ path: '/home-m/infografis' }">Infografis</router-link></li>
-                </ul>
-                </li>                
-            </ul>
-        </nav>    
-      </div>      
-       
+
+    <sticky className="sub-navbar">
+      <div class="menu-wrapper">
+      <nav class="container">
+          <label for="drop" class="toggle"><svg-icon icon-class="hamburger-menu"></svg-icon></label>
+          <input type="checkbox" id="drop" />
+              <ul class="menu">
+                  <li><router-link :to="{ path: '/' }" exact>{{$t('portal.navbar.home')}}</router-link></li>
+                  <li><router-link :to="{ path: '/home/indonesia-baik' }">Indonesia Baik</router-link></li>
+                  <li>
+                      <!-- First Tier Drop Down -->
+                      <label for="drop-1" class="toggle">Indonesia Bangga &#9660;</label>
+                      <router-link :to="{ path: '/home/p/indonesia-bangga' }">Indonesia Bangga</router-link>
+                      <input type="checkbox" id="drop-1"/>
+                      <ul>
+                          <li><router-link :to="{ path: '/home/komunitas' }">Komunitas</router-link></li>
+                          <li><router-link :to="{ path: '/home/sosok-inspiratif' }">Sosok Inspiratif</router-link></li>
+                          <li><router-link :to="{ path: '/home/prestasi' }">Prestasi</router-link></li>
+                      </ul>
+                  </li>
+                  <li><router-link :to="{ path: '/home/indonesia-membangun' }">Indonesia Membangun</router-link></li>
+                  <li>
+                  <!-- First Tier Drop Down -->
+                  <label for="drop-2" class="toggle">Melancong &#9660;</label>
+                  <router-link :to="{ path: '/home/p/melancong' }">Melancong</router-link>
+                  <input type="checkbox" id="drop-2"/>
+                  <ul>
+                      <li><router-link :to="{ path: '/home/tempat-wisata' }">Tempat Wisata</router-link></li>
+                      <li><router-link :to="{ path: '/home/kuliner' }">Kuliner</router-link></li>                    
+                  </ul>
+                  </li>
+                  <li><router-link :to="{ path: '/home/teknologi' }">Teknologi</router-link></li>
+                  <li>
+                  <!-- First Tier Drop Down -->
+                  <label for="drop-3" class="toggle">Panggung &#9660;</label>
+                  <router-link :to="{ path: '/home/p/panggung' }">Panggung</router-link>
+                  <input type="checkbox" id="drop-3"/>
+                  <ul>
+                      <li><router-link :to="{ path: '/home/musik' }">Musik</router-link></li>
+                      <li><router-link :to="{ path: '/home/fashion' }">Fashion</router-link></li>
+                      <li><router-link :to="{ path: '/home/film' }">Film</router-link></li>
+                      <li><router-link :to="{ path: '/home/seni' }">Seni</router-link></li>
+                      <li><router-link :to="{ path: '/home/gaya-hidup' }">Gaya Hidup</router-link></li>
+                  </ul>
+                  </li>
+                  <li>
+                  <!-- First Tier Drop Down -->
+                  <label for="drop-4" class="toggle">Citra &#9660;</label>
+                  <router-link :to="{ path: '/home-m/gallery' }">Citra</router-link>
+                  <input type="checkbox" id="drop-4"/>
+                  <ul>
+                      <li><router-link :to="{ path: '/home-m/gallery' }">Galeri Foto</router-link></li>
+                      <li><router-link :to="{ path: '/home-m/video' }">Video</router-link></li>
+                      <li><router-link :to="{ path: '/home-m/infografis' }">Infografis</router-link></li>
+                  </ul>
+                  </li>                
+              </ul>
+          </nav>    
+        </div>
+      </sticky> 
     </el-header>
   
 </template>
 
 <script>
-
+import Sticky from '@/components/Sticky'
 import img_logo from '@/assets/images/logo_berita_baik.png'
 import img_ikon from '@/assets/images/ikon_berita_baik.png'
 export default {
   name: 'HomeHeader',
-  components: '',
+  components: { Sticky },
   data() {
     return {
       img_logo,
@@ -443,6 +444,9 @@ li > a:only-child:after { content: ''; }
 }
 
 @media all and (max-width : 330px) {
+  .container{
+    // margin: 0; padding: 0;
+  }
   nav{
     font-size: 12px;
   }
@@ -451,6 +455,10 @@ li > a:only-child:after { content: ''; }
 		width: 94%;    
 	}
 
+}
+
+.svg-icon{
+  font-size: 30px;
 }
 
 </style>
