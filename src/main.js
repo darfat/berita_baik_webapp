@@ -20,6 +20,8 @@ import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
 // i18n
 import i18n from './lang' // Internationalization
+// moment date
+import moment from 'moment'
 
 Vue.use(ElementUI, { locale })
 Vue.use(feather, 'v-icon')
@@ -35,7 +37,11 @@ Vue.use(VueTimeago, {
 })
 Vue.use(SocialSharing)
 Vue.component('fa-icon', Icon)
-
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('DD MMMM YYYY hh:mm')
+  }
+})
 Vue.config.productionTip = false
 
 new Vue({

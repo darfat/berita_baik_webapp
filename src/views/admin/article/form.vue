@@ -9,13 +9,13 @@
           </el-alert>   -->
         </div>
         
-        <el-form  class="form-container"  ref="articleForm" :model="article" :rules="rules" label-width="120px">
+        <el-form  class="form-container"  ref="articleForm" :model="article" :rules="rules" label-width="150px">
             <el-form-item label="Tanggal Publish">
                 <el-col :span="11">
                 <el-date-picker type="datetime" placeholder="Pick a date" v-model="article.publish_date" style="width: 100%;"></el-date-picker>
                 </el-col>
             </el-form-item>
-            <el-form-item label="Type">
+            <el-form-item label="Type" hidden="true">
                 <el-radio-group v-model="article.article_type">
                 <el-radio v-for="item in article_type_opts"
                     :key="item.value"
@@ -34,9 +34,9 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="Judul" prop="title">
-                <el-input v-model="article.title"></el-input>
+                <el-input v-model="article.title"  v-on:change="generateSlug"></el-input>
             </el-form-item>
-            <el-form-item label="Slug">
+            <el-form-item label="Slug" hidden="true">
                 <el-input v-model="article.slug"></el-input>
             </el-form-item>
             <el-form-item label="Tags">
@@ -89,31 +89,27 @@
             </el-row>
             <el-row :gutter="20">
               <el-col :span="12">
+                  <el-form-item label="Published">
+                      <el-switch v-model="article.published"></el-switch>
+                  </el-form-item>
+              </el-col>
+              <el-col :span="12">
                   <el-form-item label="Komentar Pembaca">
                     <el-switch v-model="article.is_can_comment"></el-switch>
                   </el-form-item>
               </el-col>
-              <el-col :span="12">
-                  <!-- <el-form-item label="Keyword Non Content">
-                      
-                  </el-form-item> -->
-              </el-col>
             </el-row>
-            <el-form-item label="Published">
-                <el-switch v-model="article.published"></el-switch>
-            </el-form-item>
+            <div class="gray-horizontal"></div>
             <el-row :gutter="20">
-              <el-col :span="6">
-                <div></div>
-              </el-col>
-              <el-col :span="6">
+              <el-col :span="6" style="padding-left:63px">
                 <div>
-                  <span><strong> News : </strong> </span>
+                  <span><strong> News </strong> </span>
                 </div>
               </el-col>
             </el-row>
             <el-form-item label="Related News">
             </el-form-item>
+            <div class="gray-horizontal"></div>
             <el-form-item label="Author">
                 <div>
                   <el-table
@@ -139,12 +135,13 @@
                       label="Author"
                       width="180">
                       <template slot-scope="scope">
-                        <el-select v-model="scope.row.user_id" placeholder="Please select author">
+                        <el-select v-model="scope.row.user" v-on:change="setAuthor(scope.row)" placeholder="Please select author">
                           <el-option
                               v-for="item in author_opts"
                               :key="item.id"
                               :label="item.name"
-                              :value="item.id" >
+                              :value="item"
+                              >
                           </el-option>
                         </el-select>
                       </template>
@@ -152,6 +149,9 @@
                     <el-table-column
                       prop="social_media_id"
                       label="Sosial Media">
+                      <template slot-scope="scope">
+                        {{ scope.row.social_media_id }}
+                      </template>
                     </el-table-column>
                   </el-table>
                 </div>
@@ -159,6 +159,7 @@
                   <el-button>Add More Author</el-button>
               </el-form-item>
             </el-form-item>
+            <div class="gray-horizontal"></div>
             <el-row :gutter="20">
             </el-row>
             <el-form-item>
@@ -175,13 +176,14 @@
 // eslint-disable-next-line
 // eslint-disable-indent
 
-import { create, getArticle, update } from '@/api/article'
+import { create, getArticleByID, update } from '@/api/article'
 import { getSections } from '@/api/section'
 import { getArticleTypes } from '@/api/article_type'
 import { getEditorialIdBySlug } from '@/api/editorial'
 import { getCities } from '@/api/city'
 import { getRoles } from '@/api/role'
 import { getUsers } from '@/api/user'
+import { getAuthorsByArticleID } from '@/api/author'
 
 import Tinymce from '@/components/Tinymce'
 
@@ -189,6 +191,7 @@ export default {
   name: 'ArticleForm',
   props: {
     editorialSlug: { type: String },
+    articleType: { type: String },
     articleId: { type: String }
   },
   components: {
@@ -197,20 +200,29 @@ export default {
   data() {
     return {
       article: {
-        title: 'Test',
+        title: '',
         editorial_id: null,
-        slug: 'selug-1',
+        slug: '',
         publish_date: new Date(),
         published: true,
         teaser: null,
         content: '<p>content</p>',
-        main_image: null,
+        main_image: 'static/upload/images/2.jpg',
         section: null,
         article_tags: null,
         is_can_comment: true,
         active: true,
         article_type: null,
-        article_authors: null,
+        article_authors: [
+          {
+            role_id: null,
+            notes: 'reporter'
+          },
+          {
+            role_id: null,
+            notes: 'editor'
+          }
+        ],
         lock_by_id: null,
         city_id: null,
         reporter_id: null,
@@ -238,8 +250,6 @@ export default {
   },
 
   created() {
-    console.log('created')
-    console.log(this.editorialSlug)
     this.init()
   },
 
@@ -254,7 +264,7 @@ export default {
             create(this.article)
               .then(response => {
                 console.log('create success')
-                this.$router.push({ path: '/editorial-articles/' + this.editorialSlug })
+                this.$router.push({ path: '/editorial-articles/l/' + this.editorialSlug })
               })
               .catch(error => {
                 console.log(error)
@@ -263,7 +273,7 @@ export default {
             update(this.article)
               .then(response => {
                 console.log('update success')
-                this.$router.push({ path: '/editorial-articles/' + this.editorialSlug })
+                this.$router.push({ path: '/editorial-articles/l/' + this.editorialSlug })
               })
               .catch(error => {
                 console.log(error)
@@ -276,6 +286,7 @@ export default {
       })
     },
     init() {
+      this.article.article_type = this.articleType
       this.getSectionOptions()
       this.getArticleTypeOptions()
       this.setEditorialId(this.editorialSlug)
@@ -286,7 +297,7 @@ export default {
         this.tagArray = this.article.article_tags.split(',')
       }
       if (this.articleId && this.articleId !== null) {
-        this.getArticleById(this.articleId)
+        this.getById(this.articleId)
         this.action = 'edit'
       }
     },
@@ -305,9 +316,31 @@ export default {
     },
     getRoleOptions() {
       getRoles().then(response => {
-        this.role_opts = response.data
+        if (response) {
+          this.role_opts = response.data
+          if (this.action === 'add') {
+            this.article.article_authors.forEach(element => {
+              console.log(element.notes)
+              if (element.notes === 'reporter') {
+                for (let i = 0; i < response.data.length; i++) {
+                  if (response.data[i].code === 'reporter') {
+                    element.role_id = response.data[i].id
+                  }
+                }
+              }
+              if (element.notes === 'editor') {
+                for (let i = 0; i < response.data.length; i++) {
+                  if (response.data[i].code === 'editor') {
+                    element.role_id = response.data[i].id
+                  }
+                }
+              }
+            })
+          }
+        }
       })
     },
+
     getUserOptions() {
       getUsers().then(response => {
         this.author_opts = response.data
@@ -321,15 +354,26 @@ export default {
         console.log(response.data)
       })
     },
-    getArticleById(articleId) {
-      getArticle({
-        articleId
+    getById(articleID) {
+      getArticleByID({
+        articleID
       }).then(response => {
         console.log('response get article')
-        console.log(response)
-        this.article = response.data
-        if (this.article.article_tags) {
-          this.tagArray = this.article.article_tags.split(',')
+        if (response) {
+          this.article = response.data
+          if (this.article.article_tags) {
+            this.tagArray = this.article.article_tags.split(',')
+          }
+          // get authors
+          this.getAuthors(this.article.id)
+        }
+      })
+    },
+    getAuthors(articleID) {
+      getAuthorsByArticleID({ articleID }).then(response => {
+        if (response) {
+          console.log(this.article.article_authors)
+          this.article.article_authors = response.data
         }
       })
     },
@@ -352,6 +396,27 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields()
+    },
+    generateSlug() {
+      const a = 'àáäâèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;'
+      const b = 'aaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------'
+      const p = new RegExp(a.split('').join('|'), 'g')
+
+      this.article.slug = this.article.title.toString().toLowerCase()
+        .replace(/\s+/g, '-') // Replace spaces with -
+        .replace(p, c => b.charAt(a.indexOf(c))) // Replace special chars
+        .replace(/&/g, '-and-') // Replace & with 'and'
+        .replace(/[^\w\-]+/g, '') // Remove all non-word chars
+        .replace(/\-\-+/g, '-') // Replace multiple - with single -
+        .replace(/^-+/, '') // Trim - from start of text
+        .replace(/-+$/, '') // Trim - from end of text
+    },
+    setAuthor(row) {
+      console.log(row.user.id)
+      console.log(row.user.username)
+      row.user_id = row.user.id
+      row.social_media_id = row.user.username
+      row.social_media_type = 'instagram  '
     }
   }
 }
@@ -361,6 +426,9 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
   @import "src/styles/mixin.scss";
 
+  .longer-item-label {
+    width: 180px;
+  }
   .el-tag + .el-tag {
     margin-left: 10px;
   }
@@ -406,5 +474,8 @@ export default {
       right: -10px;
       top: 0px;
     }
+  }
+  .gray-horizontal {
+    border-bottom: solid 1px #e6e6e6;
   }
 </style>
