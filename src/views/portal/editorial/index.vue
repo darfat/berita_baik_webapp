@@ -10,8 +10,8 @@
           </el-col>
       </el-row>
       <el-row :gutter="20">
-        <el-col :span="2"><div class="grid-content"></div></el-col>
-        <el-col :span="20">
+        <div class="container">
+        <el-col :xs="24">
           <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">
                 <el-row :gutter="20" >
                   <el-col >
@@ -62,18 +62,18 @@
                 </el-row>
           </div>
         </el-col>
-        <el-col :span="2"><div class="grid-content"></div></el-col>
+        </div>
       </el-row>
     </el-row>
     <el-row :gutter="20" class="list-container">
-      <el-col :span="2"><div class="grid-content"></div></el-col>
-
-      <el-col :span="14" class="content">
+      
+      <div class="container">
+      <el-col :xs="24" :sm="16" class="content">
         <div class="grid-content">
             <articles-card :editorialSlug="editorialSlug" :editorialType="editorialType" :limit=6></articles-card>
         </div>
       </el-col>
-      <el-col :span="6" class="side-content">
+      <el-col :xs="24" :sm="8" class="side-content">
         <div class="grid-content a-side">
           <div>
           <popular-news-side> </popular-news-side>
@@ -90,8 +90,8 @@
           <div>iklan</div>
         </div>
       </el-col>
+      </div>
       
-      <el-col :span="2"><div class="grid-content"></div></el-col>
     </el-row>
   </div>
 </template>
