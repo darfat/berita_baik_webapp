@@ -65,11 +65,12 @@
       </el-row>
     </div>
 
-    <sticky className="sub-navbar">
+    <sticky className="sticky">
       <div class="menu-wrapper">
       <nav class="container">
-          <label for="drop" class="toggle"><svg-icon icon-class="hamburger-menu"></svg-icon></label>
-          <input type="checkbox" id="drop" />
+          <div id="logo" v-if="scrolled > 100"><img class="" :src="img_ikon_mono" alt="beritabaik.id"></div>
+          <label for="drop" class="toggle"><svg-icon icon-class="hamburger-menu" class="hamburger-menu"></svg-icon></label>
+          <input type="checkbox" id="drop" />          
               <ul class="menu">
                   <li><router-link :to="{ path: '/' }" exact>{{$t('portal.navbar.home')}}</router-link></li>
                   <li><router-link :to="{ path: '/home/indonesia-baik' }">Indonesia Baik</router-link></li>
@@ -132,15 +133,31 @@
 import Sticky from '@/components/Sticky'
 import img_logo from '@/assets/images/logo_berita_baik.png'
 import img_ikon from '@/assets/images/ikon_berita_baik.png'
+import img_ikon_mono from '@/assets/images/ikon_berita_baik_monocrome.png'
+import img_logo_mono from '@/assets/images/logo_berita_baik_white.png'
 export default {
   name: 'HomeHeader',
   components: { Sticky },
   data() {
     return {
       img_logo,
+      img_logo_mono,
       img_ikon,
-      search: ''
+      img_ikon_mono,
+      search: '',
+      scrolled: null
     }
+  },
+  methods: {
+    handleScroll() {
+      this.scrolled = window.scrollY
+    }
+  },
+  created() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 
@@ -188,9 +205,7 @@ export default {
 **********************/
 .head{  
   &-wrapper {
-    // height: 100px;
-    
-    
+    // height: 100px;    
   }
   &-item{    
     //height: 100px;
@@ -236,22 +251,18 @@ nav a.router-link-active {
 }
 
 /* Giving a background-color to the nav container. */
-nav { 	
-	background-color: $main-red;
+nav {
   font-size: 14px
 }
 
 #logo {
 	display: block;
-	padding: 0 30px;
+	padding: 7px 20px;
 	float: left;
-	font-size: 20px;
-  // line-height: 60px;
-  background-color: #FFF;
 }
 
 #logo img{
-  height: 44px;
+  height: 30px;
 }
 
 /* Since we'll have the "ul li" "float:left"
@@ -266,7 +277,7 @@ nav:after {
 /* Removing padding, margin and "list-style" from the "ul",
  * and adding "position:reltive" */
 nav ul {
-	// float: right;
+	float: right;
 	padding: 0;
 	margin: 0;
 	list-style: none;
@@ -280,6 +291,7 @@ nav ul li {
 	display: inline-block;
 	float: left;
 	background-color: $main-red;
+  font-weight: 700;
 	}
 
 /* Styling the links */
@@ -287,16 +299,14 @@ nav a {
 	display: block;
 	padding: 14px 10px;	
 	color: $main-blue;
-  border-bottom: 2px solid $main-red;
+  border-bottom: 2px solid $main-red;  
 }
-
-
-nav ul li ul li:hover { font-weight: 700; }
+nav ul li ul li:hover { color: white; }
 
 /* Background color change on Hover */
-nav a:hover { 	 
-  font-weight: 700;
+nav a:hover {
   border-bottom: 2px solid $main-blue;
+  color: $blue-1;
 }
 
 /* Hide Dropdowns by Default
@@ -334,7 +344,7 @@ nav ul ul ul li {
 
 	
 /* Change ' +' in order to change the Dropdown symbol */
-li > a:after { content:  ' \25BC'; color: $red-1; }
+li > a:after { content:  ' \25BC'; color: $main-blue; }
 li > a:only-child:after { content: ''; }
 
 
@@ -344,15 +354,21 @@ li > a:only-child:after { content: ''; }
 @media all and (max-width : 768px) {
 
 	#logo {
-		display: block;
-		padding: 0;
-		width: 100%;
-		text-align: center;
-		float: none;
+		//display: block;
+		padding: 12px 5px;
+		//width: 100%;
+		//text-align: center;
+		// float: none;
 	}
+
+.hamburger-menu{
+    float: right;
+    text-align: right;
+  }
 
 	nav {
 		margin: 0;
+    padding-top: 10px;
 	}
 
 	/* Hide the navigation menu by default */
@@ -449,6 +465,7 @@ li > a:only-child:after { content: ''; }
   }
   nav{
     font-size: 12px;
+    padding-top: 10px;
   }
 	nav ul li {
 		display: block;
