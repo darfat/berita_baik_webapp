@@ -151,7 +151,7 @@ export default {
 @import "src/styles/variables.scss";
 
 .el-header{  
-  margin: 0; padding: 0;   
+  margin: 0; padding: 0;  background-color: #FFF; 
 }
 /*
   top navigation ok
@@ -185,9 +185,10 @@ export default {
   lang select
   user/member area 
 **********************/
-.head{
+.head{  
   &-wrapper {
     // height: 100px;
+    
     
   }
   &-item{    
