@@ -122,7 +122,14 @@
                   </ul>
                   </li>                
               </ul>
+              <div class="social-media-container">
+                <span ><fa-icon name="facebook" scale="1" class="icon" ></fa-icon></span>
+                <span ><fa-icon name="twitter" scale="1" class="icon" ></fa-icon></span>
+                <span ><fa-icon name="instagram" scale="1" class="icon" ></fa-icon></span>
+                <span ><fa-icon name="youtube-square" scale="1" class="icon" ></fa-icon></span>
+              </div>
           </nav>    
+          
         </div>
       </sticky> 
     </el-header>
@@ -298,15 +305,15 @@ nav ul li {
 nav a {
 	display: block;
 	padding: 14px 10px;	
-	color: $main-blue;
+	color: $bb-white-menu;
   border-bottom: 2px solid $main-red;  
 }
 nav ul li ul li:hover { color: white; }
 
 /* Background color change on Hover */
 nav a:hover {
-  border-bottom: 2px solid $main-blue;
-  color: $blue-1;
+  border-bottom: 2px solid $bb-white-menu;
+  color: $bb-white;
 }
 
 /* Hide Dropdowns by Default
@@ -344,7 +351,7 @@ nav ul ul ul li {
 
 	
 /* Change ' +' in order to change the Dropdown symbol */
-li > a:after { content:  ' \25BC'; color: $main-blue; }
+li > a:after { content:  ' \25BC'; color: $bb-white-menu; }
 li > a:only-child:after { content: ''; }
 
 
@@ -476,6 +483,20 @@ li > a:only-child:after { content: ''; }
 
 .svg-icon{
   font-size: 30px;
+}
+
+.social-media-container{
+  color: $bb-white-menu;
+  padding-top: 10px;
+  margin-left: 50px;
+}
+
+.social-media-container .icon{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  padding: 3px;
+  border: solid 1.5px $bb-white-menu
 }
 
 </style>

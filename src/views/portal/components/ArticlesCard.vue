@@ -21,7 +21,7 @@
               <el-row >
                 <el-col :span="4">
                   <span> <bb-love></bb-love> </span>
-                  <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
+                  <span  @click="centerDialogVisible = true"> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
                 </el-col>
             </el-row>
             </div>
@@ -47,7 +47,18 @@
         </div>
       </el-col>
     </el-row>
-  
+    <el-dialog
+      title="Warning"
+      :visible.sync="centerDialogVisible"
+      width="30%"
+      center>
+      <span>It should be noted that the content will not be aligned in center by default</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="centerDialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="centerDialogVisible = false">Confirm</el-button>
+      </span>
+    </el-dialog>
+
 </div>
 </template>
 
@@ -75,7 +86,8 @@ export default {
       articles: [],
       loading: {
         articles: false
-      }
+      },
+      centerDialogVisible: false
     }
   },
   created() {
