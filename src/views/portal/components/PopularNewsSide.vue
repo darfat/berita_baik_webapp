@@ -42,7 +42,7 @@ export default {
   name: 'PopularNewsSide',
   props: {
     editorialSlug: { type: String },
-    limit: { default: 9, type: Number },
+    limit: { default: 7, type: Number },
     page: { default: 1, type: Number }
   },
   components: {

@@ -3,7 +3,8 @@ export default {
     topbar: {
       aboutUs: 'About Us',
       mail: 'Mail',
-      collaboration: 'Collaboration'
+      collaboration: 'Collaboration',
+      beritabaik_mail_account: 'redaksi@beritabaik.id'
     },
     navbar: {
       home: 'Home'

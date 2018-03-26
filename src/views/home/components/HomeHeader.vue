@@ -4,24 +4,31 @@
     <div class="topnav-wrapper">
       <el-menu class="container" mode="horizontal">      
         <el-menu-item index="1"><a href="#">{{$t('portal.topbar.collaboration')}}</a></el-menu-item>
-        <el-menu-item index="2"><a href="#">{{$t('portal.topbar.mail')}}</a></el-menu-item>
+        <el-menu-item index="2"><fa-icon name="envelope" scale="1" ></fa-icon><span>&nbsp;{{$t('portal.topbar.beritabaik_mail_account')}}</span></el-menu-item>
         <el-menu-item index="3"><a href="#">{{$t('portal.topbar.aboutUs')}}</a></el-menu-item>
       </el-menu>
     </div>
 
     <div class="head-wrapper container">      
       <el-row>
-        <el-col :xs="24" :sm="8">
+        <el-col :xs="24" :sm="10">
           <div class="head-item">
             <div class="head-item-img">
               <img class="" :src="img_logo" alt="beritabaik.id">
             </div>
           </div>
         </el-col>
-        <el-col :xs="16" :sm="12">
+        <el-col :xs="16" :sm="6">
           <div class="head-item">
             <div class="head-item-search">            
               <el-input placeholder="Search" suffix-icon="el-icon-search" v-model="search"></el-input>
+            </div>
+          </div>
+        </el-col>
+        <el-col :xs="4" :sm="4">
+          <div class="head-item">
+            <div class="head-item-contribute">
+                  <el-button icon="el-icon-edit" class="main-button" >Tulis Berita Baik</el-button>
             </div>
           </div>
         </el-col>
@@ -43,7 +50,7 @@
         <el-col :xs="4" :sm="2">
           <div class="head-item">
             <div class="head-item-user">
-            <el-dropdown class="avatar-container" >
+            <!-- <el-dropdown class="avatar-container" >
               <div class="avatar-wrapper">
               <img class="user-avatar" src="">
               <i class="el-icon-caret-bottom"></i>
@@ -58,7 +65,7 @@
               <span style="display:block;">LogOut</span>
               </el-dropdown-item>
               </el-dropdown-menu>
-            </el-dropdown>
+            </el-dropdown> -->
             </div>
           </div>
         </el-col>
@@ -227,6 +234,9 @@ export default {
       padding: 30px 10%;
     }
     &-lang{
+      padding: 30px 0;
+    }
+    &-contribute{
       padding: 30px 0;
     }
     &-user{
@@ -499,4 +509,8 @@ li > a:only-child:after { content: ''; }
   border: solid 1.5px $bb-white-menu
 }
 
+.main-button{
+  background-color: $main-blue;
+  color: $bb-white-menu;
+}
 </style>

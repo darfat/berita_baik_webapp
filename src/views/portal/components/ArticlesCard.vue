@@ -91,6 +91,8 @@ export default {
     }
   },
   created() {
+    console.log('crd limit')
+    console.log(this.limit)
     this.init()
   },
   methods: {
@@ -155,5 +157,9 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/styles/articles-card.scss";
 
+// remove shadow
+.el-card {
+  -webkit-box-shadow: 0 0px 0px 0 #fff;
+}
 
 </style>

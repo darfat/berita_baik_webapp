@@ -8,20 +8,37 @@
     </div>    
   </el-row>
 
-  <el-row :gutter="10">
+  <el-row :gutter="12">
     <div class="container">
     <el-col :xs="24" :sm="16">      
-        <articles-card :title="'Berita Baik Terbaru'" :limit=9></articles-card>
-        <hr>
+        <articles-card :title="'Berita Baik Terbaru'" :limit="4"></articles-card>
+        <div class="side-separator">
+            <span> Buka lebih banyak lagi </span>
+        </div>
+        <articles-card :title="'Indonesia Bangga'" :editorialSlug="'indonesia-bangga'" :editorialType="'p'" :limit=2 ></articles-card>
+        <div class="side-separator">
+            <span> Buka lebih banyak lagi </span>
+        </div>
+        <articles-card :title="'Indonesia Membangun'" :editorialSlug="'indonesia-membangun'" :limit=2 ></articles-card>
+        <div class="side-separator">
+            <span> Buka lebih banyak lagi </span>
+        </div>
     </el-col>    
     <el-col :xs="24" :sm="8">      
         <popular-news-side></popular-news-side>
         <div class="spacer"></div>
+        <div class="side-separator">
+            <span> Buka lebih banyak lagi </span>
+        </div>
         <infografis-side :editorialSlug="'infografis'"  > </infografis-side>      
+        <div class="spacer m-t-10"></div>
+        <div class="side-separator">
+            <span> Buka lebih banyak lagi </span>
+        </div>
     </el-col>
     </div>    
   </el-row>
-
+  
   <el-row :gutter="10">
     <el-col :xs="24" :sm="24"><home-youtube-video></home-youtube-video></el-col>
   </el-row>
@@ -52,6 +69,7 @@
 
   <el-row :gutter="10">
     <div class="container">
+      <hr/>
     <el-col :xs="24" :sm="24"><subscribe></subscribe></el-col>
     </div>
   </el-row>

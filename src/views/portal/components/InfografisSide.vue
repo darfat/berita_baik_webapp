@@ -1,5 +1,6 @@
 <template>
-<div >
+<div >    
+        <div class="section-title"> INFOGRAFIS</div>
           <div class="infografis-news m-t-10">
             <el-row :gutter="20" v-for="(infografis) in infografis_list" :key="infografis.id" class="side-row"  >
               <el-col :span="24" class="side-image">
