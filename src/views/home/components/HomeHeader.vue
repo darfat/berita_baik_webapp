@@ -72,14 +72,14 @@
       </el-row>
     </div>
 
-    <sticky className="sticky">
+    <sticky className="sticky" height="100">
       <div class="menu-wrapper">
       <nav class="container">
-          <div id="logo" v-if="scrolled > 100"><img class="" :src="img_ikon_mono" alt="beritabaik.id"></div>
-          <label for="drop" class="toggle"><svg-icon icon-class="hamburger-menu" class="hamburger-menu"></svg-icon></label>
+          <div id="logo" v-if="scrolled > 50"><img class="" :src="img_logo_mono" alt="beritabaik.id"></div>
+          <label for="drop" class="toggle"><svg-icon icon-class="Hamburger" class="hamburger-menu"></svg-icon></label>
           <input type="checkbox" id="drop" />          
               <ul class="menu">
-                  <li><router-link :to="{ path: '/' }" exact>{{$t('portal.navbar.home')}}</router-link></li>
+                  <li :class="scrolled > 100 ? 'home-hide': 'home'"><router-link :to="{ path: '/' }" exact>{{$t('portal.navbar.home')}}</router-link></li>
                   <li><router-link :to="{ path: '/home/indonesia-baik' }">Indonesia Baik</router-link></li>
                   <li>
                       <!-- First Tier Drop Down -->
@@ -127,14 +127,17 @@
                       <li><router-link :to="{ path: '/home-m/video' }">Video</router-link></li>
                       <li><router-link :to="{ path: '/home-m/infografis' }">Infografis</router-link></li>
                   </ul>
-                  </li>                
+                  </li>
+                  <li>
+                    <div class="social-media-container">
+                    <span ><fa-icon name="facebook" scale="1" class="icon" ></fa-icon></span>
+                    <span ><fa-icon name="twitter" scale="1" class="icon" ></fa-icon></span>
+                    <span ><fa-icon name="instagram" scale="1" class="icon" ></fa-icon></span>
+                    <span ><fa-icon name="youtube-square" scale="1" class="icon" ></fa-icon></span>
+                  </div> 
+                  </li>               
               </ul>
-              <div class="social-media-container">
-                <span ><fa-icon name="facebook" scale="1" class="icon" ></fa-icon></span>
-                <span ><fa-icon name="twitter" scale="1" class="icon" ></fa-icon></span>
-                <span ><fa-icon name="instagram" scale="1" class="icon" ></fa-icon></span>
-                <span ><fa-icon name="youtube-square" scale="1" class="icon" ></fa-icon></span>
-              </div>
+                           
           </nav>    
           
         </div>
@@ -244,22 +247,14 @@ export default {
     }
   }
 }
-.menu-logo{
-  width: 100%; 
-  &-img{    
-  height: 30px;
-  }
-}
 
 .menu-wrapper {
   background-color: $main-red;  
   padding: 0;
   margin: 0;
-  z-index: 2;  
-  
-}
-nav a.router-link-active {
-    font-weight: 700; // Bolds the text.    
+  z-index: 2;
+  //border-bottom: 2px solid $main-red;
+  position: relative;
 }
 
 .toggle,
@@ -267,20 +262,46 @@ nav a.router-link-active {
 	display: none;
 }
 
+nav a.router-link-active {  
+  color: $bb-white;
+  border-bottom: 2px solid $bb-white-menu;
+  // background-color: rgba($color: $bb-white, $alpha: 0.1)
+}
+
 /* Giving a background-color to the nav container. */
 nav {
-  font-size: 14px
+  font-size: 14px;
+  position: relative; 
 }
 
 #logo {
-	display: block;
-	padding: 7px 20px;
+	display: block;	
 	float: left;
+  padding-top: 9px;
+  padding-right: 9px;  
 }
 
 #logo img{
-  height: 30px;
+  height: 30px;  
 }
+
+.social-media-container{
+  color: $bb-white-menu;
+  padding-top: 10px;
+  padding-right: 10px;
+  float: right;
+  span{
+    padding-left: 5px;
+    .icon{
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      padding: 3px;
+      border: 2px solid $bb-white-menu;  
+    }
+  }  
+}
+
 
 /* Since we'll have the "ul li" "float:left"
  * we need to add a clear after the container. */
@@ -314,9 +335,9 @@ nav ul li {
 /* Styling the links */
 nav a {
 	display: block;
-	padding: 14px 10px;	
+	padding: 14px 8px;	
 	color: $bb-white-menu;
-  border-bottom: 2px solid $main-red;  
+  // border-bottom: 2px solid $main-red;  
 }
 nav ul li ul li:hover { color: white; }
 
@@ -332,7 +353,7 @@ nav ul ul {
 	display: none;
 	position: absolute; 
 	/* has to be the same number as the "line-height" of "nav a" */
-	top: 48px; 
+	top: 46px; 
 }
 	
 /* Display Dropdowns on Hover */
@@ -364,28 +385,29 @@ nav ul ul ul li {
 li > a:after { content:  ' \25BC'; color: $bb-white-menu; }
 li > a:only-child:after { content: ''; }
 
-
 /* Media Queries
 --------------------------------------------- */
 
 @media all and (max-width : 768px) {
 
 	#logo {
-		//display: block;
-		padding: 12px 5px;
-		//width: 100%;
-		//text-align: center;
+		// display: block;
+		// padding: 0;
+		// width: 100%;
+		// text-align: center;
 		// float: none;
 	}
 
 .hamburger-menu{
     float: right;
-    text-align: right;
+    text-align: right;    
   }
 
 	nav {
 		margin: 0;
-    padding-top: 10px;
+    padding-top: 0;
+    padding-bottom: 3px;
+    min-height: 44px;
 	}
 
 	/* Hide the navigation menu by default */
@@ -399,8 +421,8 @@ li > a:only-child:after { content: ''; }
 	.toggle {
 		display: block;
 		//background-color: $red-1;
-		padding: 14px 10px;	
-		color: $main-blue;		
+		padding: 8px 10px;	
+		color: $bb-white-menu;
 		text-decoration: none;
 		border: none;
 	}
@@ -438,8 +460,8 @@ li > a:only-child:after { content: ''; }
 	nav ul li ul li .toggle,
 	nav ul ul a,
   nav ul ul ul a{
-		padding: 14px 20px;	
-		color: $main-blue;		
+		padding: 8px 20px;	
+		color: $bb-white-menu;
 	}
   
   
@@ -474,6 +496,8 @@ li > a:only-child:after { content: ''; }
 
 	}
 
+  
+
 }
 
 @media all and (max-width : 330px) {
@@ -492,25 +516,16 @@ li > a:only-child:after { content: ''; }
 }
 
 .svg-icon{
-  font-size: 30px;
-}
-
-.social-media-container{
-  color: $bb-white-menu;
-  padding-top: 10px;
-  margin-left: 50px;
-}
-
-.social-media-container .icon{
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  padding: 3px;
-  border: solid 1.5px $bb-white-menu
+  font-size: 20px;
+  font-weight: 700;  
 }
 
 .main-button{
   background-color: $main-blue;
   color: $bb-white-menu;
+}
+
+.home-hide{
+  display: none;
 }
 </style>
