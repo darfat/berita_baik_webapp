@@ -73,9 +73,12 @@
                     </el-col>
                     <el-col :span="9" class="p-tb-5">
                     </el-col>
-                    <el-col :span="7" class="align-right" >
-                      <span> <bb-love :articleID="mainArticle.id" :type="'article'" ></bb-love> </span>
-                      <span>  <social-sharing url="http://beritabaik.id/"
+                     <el-col :span="8" class="align-right" >
+                          <bb-love :articleID="mainArticle.id" :type="'article'" :scale="2"></bb-love>
+                     </el-col>
+                    <el-col :span="4"  class="align-left" >
+                      <span>  
+                        <social-sharing url="http://beritabaik.id/"
                       :title="mainArticle.title"
                       :description="mainArticle.teaser"
                       :quote="mainArticle.title"
@@ -99,10 +102,11 @@
                             </network>
                         </div>
                       </social-sharing>   
+                      
                       </span>
                     </el-col>
                     <el-col :span="1">                    
-                      <span> <v-icon name="more-horizontal" base-class="icon-20"></v-icon> </span>
+                      <span> <v-icon name="more-horizontal" base-class="icon-30"></v-icon> </span>
                   </el-col>
                 </el-row>
               </el-row>
