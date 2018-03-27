@@ -291,7 +291,8 @@ nav {
   padding-right: 10px;
   float: right;
   a{
-    padding-left: 5px;
+    padding: 0 5px 0 0;
+    display: inline;
     .icon{
       width: 25px;
       height: 25px;
