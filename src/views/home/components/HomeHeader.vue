@@ -75,7 +75,7 @@
     <sticky className="sticky" height="100">
       <div class="menu-wrapper">
       <nav class="container">
-          <div id="logo" v-if="scrolled > 50"><img class="" :src="img_logo_mono" alt="beritabaik.id"></div>
+          <div id="logo" v-if="scrolled > 50"><img class="" :src="img_ikon_mono" alt="beritabaik.id"></div>
           <label for="drop" class="toggle"><svg-icon icon-class="Hamburger" class="hamburger-menu"></svg-icon></label>
           <input type="checkbox" id="drop" />          
               <ul class="menu">
@@ -130,11 +130,11 @@
                   </li>
                   <li>
                     <div class="social-media-container">
-                    <span ><fa-icon name="facebook" scale="1" class="icon" ></fa-icon></span>
-                    <span ><fa-icon name="twitter" scale="1" class="icon" ></fa-icon></span>
-                    <span ><fa-icon name="instagram" scale="1" class="icon" ></fa-icon></span>
-                    <span ><fa-icon name="youtube-square" scale="1" class="icon" ></fa-icon></span>
-                  </div> 
+                      <span ><fa-icon name="facebook" scale="1" class="icon" ></fa-icon></span>
+                      <span ><fa-icon name="twitter" scale="1" class="icon" ></fa-icon></span>
+                      <span ><fa-icon name="instagram" scale="1" class="icon" ></fa-icon></span>
+                      <span ><fa-icon name="youtube-square" scale="1" class="icon" ></fa-icon></span>
+                    </div> 
                   </li>               
               </ul>
                            
@@ -150,7 +150,7 @@
 import Sticky from '@/components/Sticky'
 import img_logo from '@/assets/images/logo_berita_baik.png'
 import img_ikon from '@/assets/images/ikon_berita_baik.png'
-import img_ikon_mono from '@/assets/images/ikon_berita_baik_monocrome.png'
+import img_ikon_mono from '@/assets/images/ikon_berita_baik_white.png'
 import img_logo_mono from '@/assets/images/logo_berita_baik_white.png'
 export default {
   name: 'HomeHeader',
@@ -385,6 +385,9 @@ nav ul ul ul li {
 li > a:after { content:  ' \25BC'; color: $bb-white-menu; }
 li > a:only-child:after { content: ''; }
 
+.menu >li:last-child{
+  float:right;
+}
 /* Media Queries
 --------------------------------------------- */
 
