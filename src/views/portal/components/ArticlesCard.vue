@@ -4,7 +4,7 @@
     <div class="section-title"> {{title}}</div>
   </el-row>
   
-    <el-row :gutter="10">
+    <el-row :gutter="20">
       <el-col :xs="24" :sm="12" v-for="(article) in articles" :key="article.id" >
         <div class="news-col">
         <el-card :body-style="{ padding: '0px' }" class="news-card">
