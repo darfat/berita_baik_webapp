@@ -1,13 +1,14 @@
 <template>
   <div class="editoral-container">
     <el-row :gutter="20" class="headline-container">
-      <el-row :gutter="20">
-          <el-col :span="2"><div class="grid-content"></div></el-col>
-          <el-col :span="16">
+      <el-row :gutter="20"> 
+        <div class="container">         
+          <el-col :xs="24">
             <div class="grid-content title-container">
                 <span class="main-article-title"> {{ editorialTitle }} </span> 
             </div>
           </el-col>
+        </div>  
       </el-row>
       <el-row :gutter="20">
         <div class="container">
