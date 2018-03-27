@@ -86,7 +86,7 @@ height: 100%;
 }
 
 .video-wrapper .overlay-desc {
-  background-color: rgba(0,0,0,0.3);
+  // background-color: rgba(0,0,0,0.3);
   position: absolute;
   right: 60%; left: 5%; top: 30%;
   display: flex;
