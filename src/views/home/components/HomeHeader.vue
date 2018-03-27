@@ -130,10 +130,10 @@
                   </li>
                   <li>
                     <div class="social-media-container">
-                      <span ><fa-icon name="facebook" scale="1" class="icon" ></fa-icon></span>
-                      <span ><fa-icon name="twitter" scale="1" class="icon" ></fa-icon></span>
-                      <span ><fa-icon name="instagram" scale="1" class="icon" ></fa-icon></span>
-                      <span ><fa-icon name="youtube-square" scale="1" class="icon" ></fa-icon></span>
+                      <a href="https://www.facebook.com/beritabaik.id/" target="_blank"><fa-icon name="facebook" scale="1" class="icon" ></fa-icon></a>
+                      <a href="https://twitter.com/beritabaik_id" target="_blank"><fa-icon name="twitter" scale="1" class="icon" ></fa-icon></a>
+                      <a href="https://www.instagram.com/beritabaik.id/" target="_blank"><fa-icon name="instagram" scale="1" class="icon" ></fa-icon></a>
+                      <a href="" target="_blank"><fa-icon name="youtube-square" scale="1" class="icon" ></fa-icon></a>
                     </div> 
                   </li>               
               </ul>
@@ -290,7 +290,7 @@ nav {
   padding-top: 10px;
   padding-right: 10px;
   float: right;
-  span{
+  a{
     padding-left: 5px;
     .icon{
       width: 25px;
