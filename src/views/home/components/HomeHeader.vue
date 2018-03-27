@@ -225,7 +225,7 @@ export default {
     // height: 100px;    
   }
   &-item{    
-    //height: 100px;
+    height: 108px;
     &-img{       
       img{        
         max-width: 100%;
@@ -270,7 +270,7 @@ nav a.router-link-active {
 
 /* Giving a background-color to the nav container. */
 nav {
-  font-size: 14px;
+  font-size: 11px;
   position: relative; 
 }
 
@@ -287,7 +287,7 @@ nav {
 
 .social-media-container{
   color: $bb-white-menu;
-  padding-top: 10px;
+  padding-top: 12px;
   padding-right: 10px;
   float: right;
   a{
@@ -300,6 +300,9 @@ nav {
       padding: 3px;
       border: 2px solid $bb-white-menu;  
     }
+  }
+  a:hover{
+    border: none;
   }  
 }
 
@@ -330,15 +333,16 @@ nav ul li {
 	display: inline-block;
 	float: left;
 	background-color: $main-red;
-  font-weight: 700;
+  font-weight: 900;
+  text-transform: uppercase;
 	}
 
 /* Styling the links */
 nav a {
 	display: block;
-	padding: 14px 8px;	
+	padding: 18px 10px;	
 	color: $bb-white-menu;
-  // border-bottom: 2px solid $main-red;  
+  //border-bottom: 2px solid $main-red;  
 }
 nav ul li ul li:hover { color: white; }
 
@@ -354,7 +358,7 @@ nav ul ul {
 	display: none;
 	position: absolute; 
 	/* has to be the same number as the "line-height" of "nav a" */
-	top: 46px; 
+	top: 50px; 
 }
 	
 /* Display Dropdowns on Hover */
@@ -409,9 +413,8 @@ li > a:only-child:after { content: ''; }
 
 	nav {
 		margin: 0;
-    padding-top: 0;
-    padding-bottom: 3px;
-    min-height: 44px;
+    padding-top: 0;    
+    min-height: 50px;
 	}
 
 	/* Hide the navigation menu by default */
@@ -425,7 +428,7 @@ li > a:only-child:after { content: ''; }
 	.toggle {
 		display: block;
 		//background-color: $red-1;
-		padding: 8px 10px;	
+		padding: 10px 10px;	
 		color: $bb-white-menu;
 		text-decoration: none;
 		border: none;
@@ -464,7 +467,7 @@ li > a:only-child:after { content: ''; }
 	nav ul li ul li .toggle,
 	nav ul ul a,
   nav ul ul ul a{
-		padding: 8px 20px;	
+		padding: 10px 20px;	
 		color: $bb-white-menu;
 	}
   
@@ -509,7 +512,7 @@ li > a:only-child:after { content: ''; }
     // margin: 0; padding: 0;
   }
   nav{
-    font-size: 12px;
+    //font-size: 12px;
     padding-top: 10px;
   }
 	nav ul li {
