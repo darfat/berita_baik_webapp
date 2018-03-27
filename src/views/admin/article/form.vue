@@ -24,7 +24,7 @@
                 </el-radio-group>
             </el-form-item>
             <el-form-item label="Section">
-                <el-select v-model="article.section" placeholder="Please select section">
+                <el-select v-model="article.section" placeholder="Pilih section">
                 <el-option
                     v-for="item in section_opts"
                     :key="item.value"
@@ -36,7 +36,7 @@
             <el-form-item label="Judul" prop="title">
                 <el-input v-model="article.title"  v-on:change="generateSlug"></el-input>
             </el-form-item>
-            <el-form-item label="Slug" hidden="true">
+            <el-form-item label="Judul Atas" >
                 <el-input v-model="article.slug"></el-input>
             </el-form-item>
             <el-form-item label="Tags">
@@ -71,7 +71,7 @@
             <el-row :gutter="20">
               <el-col :span="12">
                   <el-form-item label="Kota">
-                      <el-select v-model="article.city_id" placeholder="Please select kota">
+                      <el-select v-model="article.city_id" placeholder="Pilih kota">
                         <el-option
                             v-for="item in city_opts"
                             :key="item.id"
@@ -89,14 +89,42 @@
             </el-row>
             <el-row :gutter="20">
               <el-col :span="12">
-                  <el-form-item label="Published">
-                      <el-switch v-model="article.published"></el-switch>
+                  <el-form-item label="Komentar Pembaca">
+                    <el-switch v-model="article.is_can_comment" active-text="Iya" inactive-text="Tidak"></el-switch>
                   </el-form-item>
               </el-col>
               <el-col :span="12">
-                  <el-form-item label="Komentar Pembaca">
-                    <el-switch v-model="article.is_can_comment"></el-switch>
+                  <el-form-item label="Keyword non Content">
+                    <el-tag
+                    :key="keyword"
+                    v-for="keyword in keywordArray"
+                    closable
+                    :disable-transitions="false"
+                    @close="handleCloseKeyword(keyword)">
+                    {{keyword}}
+                    </el-tag>
+                    <el-input
+                    class="input-new-tag"
+                    v-if="keywordNonContentVisible"
+                    v-model="keywordNonContent"
+                    ref="saveKeywordInput"
+                    size="mini"
+                    @keyup.enter.native="handleInputKeywordConfirm"
+                    @blur="handleInputKeywordConfirm"
+                    >
+                    </el-input>
+                    <el-button v-else class="button-new-tag" size="small" @click="showInputKeyword">+ New Keyword</el-button>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :span="12">
+                  <el-form-item label="Published">
+                      <el-switch v-model="article.published" active-text="Publish" inactive-text="Draft" ></el-switch>
                   </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                 
               </el-col>
             </el-row>
             <div class="gray-horizontal"></div>
@@ -108,19 +136,38 @@
               </el-col>
             </el-row>
             <el-form-item label="Related News">
+                <div>
+                  <el-table
+                    :data="article.article_relates"
+                    style="width: 90%">
+                    <el-table-column
+                      label="Article"
+                      prop="article_id"
+                      >
+                      <template slot-scope="scope">
+                        <div>
+                          {{ scope.row.article_id }}
+                        </div>
+                      </template>
+                    </el-table-column>
+                  </el-table>
+                </div>
+                <el-form-item class="m-t-10">
+                  <el-button>Add Related News</el-button>
+              </el-form-item>
             </el-form-item>
             <div class="gray-horizontal"></div>
             <el-form-item label="Author">
                 <div>
                   <el-table
                     :data="article.article_authors"
-                    style="width: 100%">
+                    style="width: 90%">
                     <el-table-column
                       label="Role"
                       prop="role_id"
-                      width="180">
+                      width="300">
                       <template slot-scope="scope">
-                        <el-select v-model="scope.row.role_id" placeholder="Please select role">
+                        <el-select v-model="scope.row.role_id" placeholder="Pilih role">
                           <el-option
                               v-for="item in role_opts"
                               :key="item.id"
@@ -131,28 +178,28 @@
                       </template>
                     </el-table-column>
                     <el-table-column
-                      prop="use_id"
+                      prop="user_id"
                       label="Author"
-                      width="180">
+                      width="500">
                       <template slot-scope="scope">
-                        <el-select v-model="scope.row.user" v-on:change="setAuthor(scope.row)" placeholder="Please select author">
+                        <el-select v-model="scope.row.user_id"  placeholder="Pilih author" style="width: 90%">
                           <el-option
                               v-for="item in author_opts"
                               :key="item.id"
-                              :label="item.name"
-                              :value="item"
+                              :label="item.name +' - '+ item.username"
+                              :value="item.id"
                               >
                           </el-option>
                         </el-select>
                       </template>
                     </el-table-column>
-                    <el-table-column
+                    <!-- <el-table-column
                       prop="social_media_id"
                       label="Sosial Media">
                       <template slot-scope="scope">
                         {{ scope.row.social_media_id }}
                       </template>
-                    </el-table-column>
+                    </el-table-column> -->
                   </el-table>
                 </div>
                 <el-form-item class="m-t-10">
@@ -160,12 +207,11 @@
               </el-form-item>
             </el-form-item>
             <div class="gray-horizontal"></div>
-            <el-row :gutter="20">
-            </el-row>
+            <div class="spacer"></div>
             <el-form-item>
                 <el-button type="primary" @click="onSubmit('articleForm')" v-if="action === 'add'">Create</el-button>
                 <el-button type="primary" @click="onSubmit('articleForm')" v-if="action === 'edit'">Update</el-button>
-                <el-button>Cancel</el-button>
+                <el-button  @click="back()" >Cancel</el-button>
             </el-form-item>
         </el-form>
     
@@ -184,6 +230,7 @@ import { getCities } from '@/api/city'
 import { getRoles } from '@/api/role'
 import { getUsers } from '@/api/user'
 import { getAuthorsByArticleID } from '@/api/author'
+import { getRelatesByArticleID } from '@/api/relate'
 
 import Tinymce from '@/components/Tinymce'
 
@@ -223,6 +270,7 @@ export default {
             notes: 'editor'
           }
         ],
+        article_relates: [{ article_id: '00000000-0000-0000-0000-000000000013' }],
         lock_by_id: null,
         city_id: null,
         reporter_id: null,
@@ -237,6 +285,9 @@ export default {
       tagArray: [],
       inputVisible: false,
       inputValue: '',
+      keywordArray: [],
+      keywordNonContentVisible: false,
+      keywordNonContent: '',
       author_opts: [],
       author_social_id_opts: [],
       valute: '',
@@ -260,6 +311,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.article.article_tags = this.tagArray.toString()
+          this.article.keyword_non_content = this.keywordArray.toString()
           if (this.action === 'add') {
             create(this.article)
               .then(response => {
@@ -295,6 +347,9 @@ export default {
       this.getUserOptions()
       if (this.article.article_tags) {
         this.tagArray = this.article.article_tags.split(',')
+      }
+      if (this.article.keyword_non_content) {
+        this.keywordArray = this.article.keyword_non_content.split(',')
       }
       if (this.articleId && this.articleId !== null) {
         this.getById(this.articleId)
@@ -358,22 +413,33 @@ export default {
       getArticleByID({
         articleID
       }).then(response => {
-        console.log('response get article')
         if (response) {
           this.article = response.data
           if (this.article.article_tags) {
             this.tagArray = this.article.article_tags.split(',')
           }
+          if (this.article.keyword_non_content) {
+            this.keywordArray = this.article.keyword_non_content.split(',')
+          }
           // get authors
           this.getAuthors(this.article.id)
+          // get relates
+          this.getRelates(this.article.id)
         }
       })
     },
     getAuthors(articleID) {
       getAuthorsByArticleID({ articleID }).then(response => {
         if (response) {
-          console.log(this.article.article_authors)
           this.article.article_authors = response.data
+        }
+      })
+    },
+    getRelates(articleID) {
+      getRelatesByArticleID({ articleID }).then(response => {
+        if (response) {
+          console.log(this.article.article_relates)
+          this.article.article_relates = response.data
         }
       })
     },
@@ -394,6 +460,23 @@ export default {
       this.inputVisible = false
       this.inputValue = ''
     },
+    handleCloseKeyword(tag) {
+      this.keywordArray.splice(this.keywordArray.indexOf(tag), 1)
+    },
+    showInputKeyword() {
+      this.keywordNonContentVisible = true
+      this.$nextTick(_ => {
+        this.$refs.saveKeywordInput.$refs.input.focus()
+      })
+    },
+    handleInputKeywordConfirm() {
+      const inputValue = this.keywordNonContent
+      if (inputValue) {
+        this.keywordArray.push(inputValue)
+      }
+      this.keywordNonContentVisible = false
+      this.keywordNonContent = ''
+    },
     resetForm(formName) {
       this.$refs[formName].resetFields()
     },
@@ -412,11 +495,13 @@ export default {
         .replace(/-+$/, '') // Trim - from end of text
     },
     setAuthor(row) {
-      console.log(row.user.id)
-      console.log(row.user.username)
+      console.log('row ', row.user.username)
       row.user_id = row.user.id
       row.social_media_id = row.user.username
-      row.social_media_type = 'instagram  '
+      row.social_media_type = 'instagram'
+    },
+    back() {
+      this.$router.push({ path: '/editorial-articles/l/' + this.editorialSlug })
     }
   }
 }

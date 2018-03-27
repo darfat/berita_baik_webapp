@@ -17,8 +17,8 @@ export default {
 <style scoped>
 .separator {
   background-color: #EB0029;
-  width:1.5em; 
-  height: 0.8em;
+  width:1em; 
+  height: 0.6em;
   margin-top: 5px;
   margin-bottom: 5px;
 }
