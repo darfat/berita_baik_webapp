@@ -1,11 +1,13 @@
-import request from '@/utils/request'
+import request_auth from '@/utils/request_auth'
 
-export function upload({ imageAttachment }) {
-  return request({
+export function upload(data) {
+  return request_auth({
     url: '/image/upload',
     method: 'post',
-    data: { imageAttachment
-    }
+    // headers: {
+    //   'Content-Type': `multipart/form-data; boundary=${data._boundary}`
+    // },
+    data
   })
 }
 

@@ -39,27 +39,7 @@
             <el-form-item label="Judul Atas" >
                 <el-input v-model="article.slug"></el-input>
             </el-form-item>
-            <el-form-item label="Tags">
-                <el-tag
-                :key="tag"
-                v-for="tag in tagArray"
-                closable
-                :disable-transitions="false"
-                @close="handleCloseTag(tag)">
-                {{tag}}
-                </el-tag>
-                <el-input
-                class="input-new-tag"
-                v-if="inputVisible"
-                v-model="inputValue"
-                ref="saveTagInput"
-                size="mini"
-                @keyup.enter.native="handleInputTagConfirm"
-                @blur="handleInputTagConfirm"
-                >
-                </el-input>
-                <el-button v-else class="button-new-tag" size="small" @click="showInputTag">+ New Tag</el-button>
-            </el-form-item>
+            
             <el-form-item label="Ringkasan Utama">
               <div class="editor-container">
                 <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser'></tinymce>
@@ -67,6 +47,9 @@
             </el-form-item>
             <el-form-item label="Isi">
               <tinymce :height="400" v-model="article.content" ref="editor"  id='content'></tinymce>
+            </el-form-item>
+            <el-form-item label="Citra" >
+              <image-uploader :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
             </el-form-item>
             <el-row :gutter="20">
               <el-col :span="12">
@@ -124,7 +107,27 @@
                   </el-form-item>
               </el-col>
               <el-col :span="12">
-                 
+                 <el-form-item label="Tags">
+                    <el-tag
+                    :key="tag"
+                    v-for="tag in tagArray"
+                    closable
+                    :disable-transitions="false"
+                    @close="handleCloseTag(tag)">
+                    {{tag}}
+                    </el-tag>
+                    <el-input
+                    class="input-new-tag"
+                    v-if="inputVisible"
+                    v-model="inputValue"
+                    ref="saveTagInput"
+                    size="mini"
+                    @keyup.enter.native="handleInputTagConfirm"
+                    @blur="handleInputTagConfirm"
+                    >
+                    </el-input>
+                    <el-button v-else class="button-new-tag" size="small" @click="showInputTag">+ New Tag</el-button>
+                </el-form-item>
               </el-col>
             </el-row>
             <div class="gray-horizontal"></div>
@@ -139,21 +142,43 @@
                 <div>
                   <el-table
                     :data="article.article_relates"
-                    style="width: 90%">
+                    style="width: 98%">
                     <el-table-column
                       label="Article"
                       prop="article_id"
                       >
                       <template slot-scope="scope">
                         <div>
-                          {{ scope.row.article_id }}
+                          <el-select 
+                            v-model="scope.row.article_id"
+                            filterable
+                            placeholder="Cari berdasar judul"
+                            :loading="loading.article_relates_filter"
+                            style="width: 100%">
+                            <el-option
+                              v-for="item in article_opts"
+                              :key="item.id"
+                              :label="item.title"
+                              :value="item.id">
+                              <span style="float: left">{{ item.title }}</span>
+                              <span style="float: right; color: #8492a6;">{{ item.editorial.name }} | {{ item.reporter_name }}</span>
+                            </el-option>
+                          </el-select>
                         </div>
+                      </template>
+                    </el-table-column>
+                    <el-table-column
+                      label="Delete"
+                      width="100"
+                      >
+                      <template slot-scope="scope">
+                        <el-button icon='el-icon-remove' size="mini" type="danger" v-on:click="removeArticleRelateItem(scope.$index)">  </el-button>
                       </template>
                     </el-table-column>
                   </el-table>
                 </div>
                 <el-form-item class="m-t-10">
-                  <el-button>Add Related News</el-button>
+                  <el-button v-on:click="addArticleRelateItem">Add Related News</el-button>
               </el-form-item>
             </el-form-item>
             <div class="gray-horizontal"></div>
@@ -202,9 +227,9 @@
                     </el-table-column> -->
                   </el-table>
                 </div>
-                <el-form-item class="m-t-10">
+                <!-- <el-form-item class="m-t-10">
                   <el-button>Add More Author</el-button>
-              </el-form-item>
+                </el-form-item> -->
             </el-form-item>
             <div class="gray-horizontal"></div>
             <div class="spacer"></div>
@@ -222,7 +247,7 @@
 // eslint-disable-next-line
 // eslint-disable-indent
 
-import { create, getArticleByID, update } from '@/api/article'
+import { create, getArticleByID, update, getLatestNewsAll } from '@/api/article'
 import { getSections } from '@/api/section'
 import { getArticleTypes } from '@/api/article_type'
 import { getEditorialIdBySlug } from '@/api/editorial'
@@ -233,6 +258,7 @@ import { getAuthorsByArticleID } from '@/api/author'
 import { getRelatesByArticleID } from '@/api/relate'
 
 import Tinymce from '@/components/Tinymce'
+import ImageUploader from '@/components/ImageUploader'
 
 export default {
   name: 'ArticleForm',
@@ -242,7 +268,8 @@ export default {
     articleId: { type: String }
   },
   components: {
-    Tinymce
+    Tinymce,
+    ImageUploader
   },
   data() {
     return {
@@ -253,7 +280,7 @@ export default {
         publish_date: new Date(),
         published: true,
         teaser: null,
-        content: '<p>content</p>',
+        content: null,
         main_image: 'static/upload/images/2.jpg',
         section: null,
         article_tags: null,
@@ -270,18 +297,21 @@ export default {
             notes: 'editor'
           }
         ],
-        article_relates: [{ article_id: '00000000-0000-0000-0000-000000000013' }],
+        article_relates: [],
         lock_by_id: null,
         city_id: null,
         reporter_id: null,
         editor_id: null,
         editorial: null
-
+      },
+      loading: {
+        city: false
       },
       section_opts: [],
       article_type_opts: [],
       city_opts: [],
       role_opts: [],
+      article_opts: [],
       tagArray: [],
       inputVisible: false,
       inputValue: '',
@@ -345,6 +375,7 @@ export default {
       this.getCityOptions()
       this.getRoleOptions()
       this.getUserOptions()
+      this.getArticleOptions()
       if (this.article.article_tags) {
         this.tagArray = this.article.article_tags.split(',')
       }
@@ -375,7 +406,6 @@ export default {
           this.role_opts = response.data
           if (this.action === 'add') {
             this.article.article_authors.forEach(element => {
-              console.log(element.notes)
               if (element.notes === 'reporter') {
                 for (let i = 0; i < response.data.length; i++) {
                   if (response.data[i].code === 'reporter') {
@@ -395,7 +425,14 @@ export default {
         }
       })
     },
-
+    getArticleOptions() {
+      const params = {}
+      getLatestNewsAll(params).then(response => {
+        if (response) {
+          this.article_opts = response.data
+        }
+      })
+    },
     getUserOptions() {
       getUsers().then(response => {
         this.author_opts = response.data
@@ -406,7 +443,6 @@ export default {
         slug
       }).then(response => {
         this.article.editorial_id = response.data.id
-        console.log(response.data)
       })
     },
     getById(articleID) {
@@ -438,7 +474,6 @@ export default {
     getRelates(articleID) {
       getRelatesByArticleID({ articleID }).then(response => {
         if (response) {
-          console.log(this.article.article_relates)
           this.article.article_relates = response.data
         }
       })
@@ -494,14 +529,35 @@ export default {
         .replace(/^-+/, '') // Trim - from start of text
         .replace(/-+$/, '') // Trim - from end of text
     },
-    setAuthor(row) {
-      console.log('row ', row.user.username)
-      row.user_id = row.user.id
-      row.social_media_id = row.user.username
-      row.social_media_type = 'instagram'
-    },
     back() {
       this.$router.push({ path: '/editorial-articles/l/' + this.editorialSlug })
+    },
+    addArticleRelateItem() {
+      const article = {
+        article_id: null,
+        sequence: this.article.article_relates.length + 1
+      }
+      this.article.article_relates.push(article)
+    },
+    removeArticleRelateItem(idx) {
+      this.article.article_relates.splice(idx, 1)
+    },
+    addArticleAuthorItem() {
+      const author = {
+        role_id: null,
+        user_id: null,
+        notes: 'reporter'
+      }
+      this.article.article_authors.push(author)
+    },
+    removeArticleAuthirtem(idx) {
+      this.article.article_authors.splice(idx, 1)
+      return
+    },
+    mainImageSuccessCallback(arr) {
+      arr.forEach(v => {
+        console.log(v.url)
+      })
     }
   }
 }
@@ -562,5 +618,8 @@ export default {
   }
   .gray-horizontal {
     border-bottom: solid 1px #e6e6e6;
+  }
+  .image-uploader-btn {
+  display: inline-block;
   }
 </style>

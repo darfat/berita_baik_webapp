@@ -5,7 +5,6 @@ const VIDEO_TYPE = 'video'
 const IMAGE_TYPE = 'image'
 
 export function getListByEditorialSlug(params) {
-  console.log(params)
   return request({
     url: '/articles-editorial/' + params.editorialSlug,
     method: 'get',
