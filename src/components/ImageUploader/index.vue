@@ -42,8 +42,8 @@ export default {
     },
     handleSubmit() {
       // console.log(this.formData)
-      const fileItem= this.fileList[0]
-      upload({fileItem}).then(response => {
+      const fileItem = this.fileList[0]
+      upload({ fileItem }).then(response => {
         if (response) {
           console.log(response)
         }
