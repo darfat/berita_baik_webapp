@@ -49,6 +49,7 @@
               <tinymce :height="400" v-model="article.content" ref="editor"  id='content'></tinymce>
             </el-form-item>
             <el-form-item label="Citra" >
+              <span> {{ main_image_name }}</span>
               <image-uploader :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
             </el-form-item>
             <el-row :gutter="20">
@@ -281,7 +282,7 @@ export default {
         published: true,
         teaser: null,
         content: null,
-        main_image: 'static/upload/images/2.jpg',
+        main_image: null,
         section: null,
         article_tags: null,
         is_can_comment: true,
@@ -326,7 +327,8 @@ export default {
           { required: true, message: 'Silahkan isi judul', trigger: 'blur' }
         ]
       },
-      action: 'add'
+      action: 'add',
+      main_image_name: ''
     }
   },
 
@@ -342,6 +344,7 @@ export default {
         if (valid) {
           this.article.article_tags = this.tagArray.toString()
           this.article.keyword_non_content = this.keywordArray.toString()
+          this.reporterNameCheck()
           if (this.action === 'add') {
             create(this.article)
               .then(response => {
@@ -554,10 +557,20 @@ export default {
       this.article.article_authors.splice(idx, 1)
       return
     },
-    mainImageSuccessCallback(arr) {
-      arr.forEach(v => {
-        console.log(v.url)
-      })
+    mainImageSuccessCallback(res) {
+      console.log('mainImageSuccessCallback')
+      console.log(res)
+      this.article.main_image = res.url
+      this.main_image_name = res.filename
+    },
+    reporterNameCheck(){
+      console.log('check name')
+      for (let a in this.article.article_authors){
+        console.log(a)
+        if (a.notes === 'reporter') {
+          this.article.reporter_name = a.user.name
+        }
+      }
     }
   }
 }

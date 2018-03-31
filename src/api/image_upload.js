@@ -4,9 +4,9 @@ export function upload(data) {
   return request_auth({
     url: '/image/upload',
     method: 'post',
-    // headers: {
-    //   'Content-Type': `multipart/form-data; boundary=${data._boundary}`
-    // },
+    headers: {
+      'Content-Type': `multipart/form-data; boundary=${data._boundary}`
+    },
     data
   })
 }

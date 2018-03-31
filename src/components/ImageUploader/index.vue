@@ -41,17 +41,15 @@ export default {
       return Object.keys(this.listObj).every(item => this.listObj[item].hasSuccess)
     },
     handleSubmit() {
-      // console.log(this.formData)
-      const fileItem = this.fileList[0]
-      upload({ fileItem }).then(response => {
+      upload(this.formData).then(response => {
         if (response) {
-          console.log(response)
+          this.$emit('successCBK', response.data)
         }
       })
-      this.$emit('successCBK', this.formData)
       this.listObj = {}
       this.fileList = []
       this.dialogVisible = false
+      this.formData = new FormData()
     },
 
     handleSuccess(response, file) {
@@ -75,11 +73,11 @@ export default {
         }
       }
     },
-    onChange(file, fileList) {
+    onChange(file) {
       console.log('invoke onChange upload')
       console.log(file)
-      console.log(fileList.length)
-      this.fileList = fileList
+      // console.log(fileList.length)
+      // this.fileList = fileList
 
       // append the files to FormData
       // Array
@@ -87,7 +85,7 @@ export default {
       //   .map(x => {
       //     this.formData.append("imageAttachment", fileList[x], fileList[x].name)
       //   })
-      this.formData.append('file', file)
+      this.formData.append('file', file.raw, file.name)
     },
 
     beforeUpload(file) {
@@ -110,6 +108,7 @@ export default {
       })
     }
   }
+
 }
 
 </script>
