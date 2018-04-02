@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import request_auth from '@/utils/request_auth'
 
 const NEWS_TYPE = 'news'
 const VIDEO_TYPE = 'video'
@@ -37,8 +38,8 @@ export function getArticleByID(params) {
     method: 'get'
   })
 }
+
 export function update(data) {
-  console.log(data)
   return request({
     url: '/articles/' + data.id,
     method: 'put',
@@ -108,5 +109,13 @@ export function getVideosByEditorialSlug(params) {
     url: '/articles-editorial/' + params.editorialSlug,
     method: 'get',
     params
+  })
+}
+
+export function updatePublished(data) {
+  return request_auth({
+    url: '/article-update-published/' + data.article_id,
+    method: 'put',
+    data
   })
 }

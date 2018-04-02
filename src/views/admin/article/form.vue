@@ -563,14 +563,18 @@ export default {
       this.article.main_image = res.url
       this.main_image_name = res.filename
     },
-    reporterNameCheck(){
+    reporterNameCheck() { // need to optimize
       console.log('check name')
-      for (let a in this.article.article_authors){
-        console.log(a)
-        if (a.notes === 'reporter') {
-          this.article.reporter_name = a.user.name
+      this.article.article_authors.forEach(element => {
+        if (element.notes === 'reporter') {
+          this.author_opts.forEach(author => {
+            console.log(author)
+            if (author.id === element.user_id) {
+              this.article.reporter_name = author.name
+            }
+          })
         }
-      }
+      })
     }
   }
 }
