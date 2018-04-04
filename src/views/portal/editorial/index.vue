@@ -156,7 +156,7 @@ export default {
             console.log(params)
             getLatestNewsByEditorial(params).then(response => {
               if (response) {
-                this.latestNews = response.data
+                this.latestNews = response.data.data
                 this.loading.latestNews = false
               }
             })
@@ -165,7 +165,7 @@ export default {
       } else {
         getLatestNewsByEditorial(params).then(response => {
           if (response) {
-            this.latestNews = response.data
+            this.latestNews = response.data.data
             this.loading.latestNews = false
           }
         })

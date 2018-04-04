@@ -212,7 +212,7 @@
                           <el-option
                               v-for="item in author_opts"
                               :key="item.id"
-                              :label="item.name +' - '+ item.username"
+                              :label="item.name +' - '+ item.instagram_username"
                               :value="item.id"
                               >
                           </el-option>
@@ -464,6 +464,10 @@ export default {
           this.getAuthors(this.article.id)
           // get relates
           this.getRelates(this.article.id)
+          if (this.article.main_image) {
+            const aarName = this.article.main_image.split('/')
+            this.main_image_name = aarName[aarName.length - 1]
+          }
         }
       })
     },
@@ -559,7 +563,6 @@ export default {
     },
     mainImageSuccessCallback(res) {
       console.log('mainImageSuccessCallback')
-      console.log(res)
       this.article.main_image = res.url
       this.main_image_name = res.filename
     },

@@ -100,10 +100,10 @@ export default {
     }
   },
   created() {
-    this.getListByEditorialSlug(this.editorialSlug, this.page)
+    this.getArticlesByEditorialSlug(this.editorialSlug, this.page)
   },
   methods: {
-    getListByEditorialSlug(editorialSlug, page) {
+    getArticlesByEditorialSlug(editorialSlug, page) {
       this.listLoading = true
       getListByEditorialSlug({
         editorialSlug,
@@ -133,7 +133,7 @@ export default {
     },
     handleCurrentChange(page) {
       console.log(`current page: ${page}`)
-      this.getListByEditorialSlug(this.editorialSlug, page)
+      this.getArticlesByEditorialSlug(this.editorialSlug, page)
     },
     handleUpdate(row) {
       const data = Object.assign({}, row) // copy obj
