@@ -84,8 +84,7 @@ export default {
       if (editorialSlug) {
         getImagesByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit }).then(response => {
           if (response) {
-            console.log('latest article by slug')
-            this.galleries = response.data
+            this.galleries = response.data.data
             this.loading.galleries = false
           }
         })

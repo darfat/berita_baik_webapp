@@ -150,13 +150,11 @@ export default {
             params = {
               editorialSlug,
               editorialType: this.editorialType,
-              editorialSlugID: editorialResponse.data.id
+              editorialSlugID: editorialResponse.data.data.id
             }
-            console.log('params')
-            console.log(params)
             getLatestNewsByEditorial(params).then(response => {
               if (response) {
-                this.latestNews = response.data.data
+                this.latestNews = response.data
                 this.loading.latestNews = false
               }
             })
@@ -165,7 +163,7 @@ export default {
       } else {
         getLatestNewsByEditorial(params).then(response => {
           if (response) {
-            this.latestNews = response.data.data
+            this.latestNews = response.data
             this.loading.latestNews = false
           }
         })
@@ -181,7 +179,7 @@ export default {
 .el-row {
   margin-bottom: 3px;
   &:last-child {
-    margin-bottom: 0;
+    margin-bottom: 3px;
   }
 }
 .el-col {

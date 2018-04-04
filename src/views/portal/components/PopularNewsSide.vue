@@ -22,7 +22,7 @@
                         <el-col :span="2"><article-separator></article-separator></el-col>
                     </el-row>
                     <el-row >
-                        <el-col  class="footer">
+                        <el-col  class="side-footer">
                          <div>
                           {{ popular.reporter_name }} | <timeago :since="popular.publish_date"></timeago>
                         </div>

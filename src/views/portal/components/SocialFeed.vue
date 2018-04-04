@@ -48,7 +48,18 @@
                 </el-col>
             </el-row>
             <el-row :gutter="20" class="feed-content" >
-                <el-col :span="24" class="feed-box">
+                <el-col :span="8" class="feed-box">
+                    <div class="feed-logo">
+                        <v-icon name="instagram" base-class="icon-20 v-align-middle"> </v-icon>
+                        <span>beritabaik.id</span>
+                    </div>
+                    <div class="feed-date">
+                        2 Hari Yang Lalu
+                    </div>
+                    <div class="feed-stream">
+                    </div>
+                </el-col>
+                <el-col :span="16" class="feed-box">
                     <div class="feed-logo">
                         <v-icon name="twitter" base-class="icon-20 v-align-middle"> </v-icon>
                         <span>beritabaik.id</span>

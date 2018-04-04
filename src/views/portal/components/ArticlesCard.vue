@@ -10,13 +10,15 @@
         <el-card :body-style="{ padding: '0px' }" class="news-card">
           <div>
               <div class="mini-thumbnail">
-                <img :src="article.main_image" class="card-image" />
-                <div class="editorial-type-img">
-                    <h3>{{ article.editorial.name }}</h3>
-                </div>
+                <router-link  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }" >
+                  <img :src="article.main_image" class="card-image" />
+                  <div class="editorial-type-img">
+                      <h3>{{ article.editorial.name }}</h3>
+                  </div>
+                </router-link>
               </div>
           </div>
-          <div style="padding: 14px;">
+          <div class="ac-bottom-content">
             <div class="bottom clearfix">
               <el-row >
                 <el-col :span="4">
@@ -28,7 +30,7 @@
             <el-row class="ac-title">
               <div>
                 <router-link  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }" >
-                  <h2>{{ article.title}}</h2>
+                  <span>{{ article.title}}</span>
                 </router-link>
               </div>
             </el-row>
@@ -36,7 +38,7 @@
                 <el-col :span="2"><article-separator></article-separator></el-col>
             </el-row>
             <el-row >
-                <el-col class="footer">
+              <el-col class="ac-footer">
                 <div>
                   {{ article.reporter_name }} | <timeago :auto-update="60" :since="article.publish_date"></timeago> 
                 </div>
@@ -162,4 +164,14 @@ export default {
   -webkit-box-shadow: 0 0px 0px 0 #fff;
 }
 
+
+.el-row {
+  margin-bottom: 2px;
+  &:last-child {
+    margin-bottom: 5px;
+  }
+}
+.el-col {
+    border-radius: 0px;
+}
 </style>
