@@ -85,21 +85,21 @@
                       hashtags="beritabaik,news"
                       inline-template>
                         <div>
-                            <network network="facebook">
-                              <fa-icon name="facebook-official" scale="2" ></fa-icon>
+                            <network network="facebook" >
+                              <fa-icon name="facebook-f" scale="1.8" class="network-icon" ></fa-icon>
                             </network>
-                            <network network="twitter">
-                              <fa-icon name="twitter" scale="2" ></fa-icon>
+                            <network network="twitter" class="network-icon">
+                              <fa-icon name="twitter" scale="1.8" ></fa-icon>
                             </network>
                             <network network="email">
-                              <fa-icon name="envelope" scale="2" ></fa-icon>
+                              <fa-icon name="envelope" scale="1.8" ></fa-icon>
                             </network>
                             <network network="googleplus">
-                              <fa-icon name="google-plus" scale="2" ></fa-icon>
+                              <fa-icon name="google-plus" scale="1.8" ></fa-icon>
                             </network>
-                            <network network="whatsapp">
+                            <!-- <network network="whatsapp">
                               <fa-icon name="whatsapp" scale="2" ></fa-icon>
-                            </network>
+                            </network> -->
                         </div>
                       </social-sharing>   
                       
@@ -283,5 +283,8 @@ export default {
 }
 .el-col {
     border-radius: 4px;
+}
+.fa-icon{
+    fill:red;
 }
 </style>

@@ -4,7 +4,7 @@
       <el-row :gutter="20"> 
         <div class="container">         
           <el-col :xs="24">
-            <div class="grid-content title-container">
+            <div class="grid-content title-container" v-if="editorialSlug !== latestNews.editorial.slug">
                 <span class="main-article-title"> {{ editorialTitle }} </span> 
             </div>
           </el-col>
@@ -31,7 +31,7 @@
                     <el-row :gutter="20">
                         <el-col :span="4" v-if="latestNews.id">
                             <span> <bb-love></bb-love> </span>
-                            <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
+                            <span> <fa-icon name="share-alt" scale="1.3"  ></fa-icon>  </span>
                         </el-col>
                     </el-row>
                     <el-row :gutter="20" class="ln-title">
@@ -150,7 +150,7 @@ export default {
             params = {
               editorialSlug,
               editorialType: this.editorialType,
-              editorialSlugID: editorialResponse.data.data.id
+              editorialSlugID: editorialResponse.data.id
             }
             getLatestNewsByEditorial(params).then(response => {
               if (response) {

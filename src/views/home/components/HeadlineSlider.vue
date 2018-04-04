@@ -8,7 +8,9 @@
       </div>
       <div class="title">
       <span><bb-love></bb-love></span>
-      <span><v-icon name="share-2" base-class="icon-20"></v-icon></span>
+      <span>
+           <fa-icon name="share-alt" scale="1.3"  ></fa-icon> 
+        </span>
       <h2>{{item.article.title}}</h2>
       <p>{{item.article.teaser}}</p>
       <div class="separator">&nbsp;&nbsp;&nbsp;&nbsp;</div>

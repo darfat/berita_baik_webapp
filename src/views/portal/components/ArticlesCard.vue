@@ -23,7 +23,9 @@
               <el-row >
                 <el-col :span="4">
                   <span> <bb-love></bb-love> </span>
-                  <span  @click="centerDialogVisible = true"> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
+                  <a  @click="centerDialogVisible = true"> 
+                    <fa-icon name="share-alt" scale="1.3"  ></fa-icon> 
+                  </a>
                 </el-col>
             </el-row>
             </div>

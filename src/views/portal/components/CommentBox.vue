@@ -38,8 +38,8 @@ export default {
     return {
       comment: '',
       userLogin: {
-        id: '00000000-0000-0000-0000-000000000003',
-        name: 'Melanie',
+        id: '00000000-0000-0000-0000-000000000001',
+        name: 'Anonymous',
         role: 'user',
         image: 'static/upload/images/profile-user.jpg'
       }
@@ -63,8 +63,8 @@ export default {
       console.log(data)
       create(data)
         .then(response => {
-          console.log('comment created!')
           EventBus.$emit('UPDATE_COMMENTS_EVENT', data)
+          this.comment = ''
         })
         .catch(error => {
           console.log(error)

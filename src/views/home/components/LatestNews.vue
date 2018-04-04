@@ -20,7 +20,8 @@
                       <el-row >
                         <el-col :span="4">
                           <span> <bb-love></bb-love> </span>
-                          <span> <v-icon name="share-2" base-class="icon-20"></v-icon> </span>
+                          <span> <fa-icon name="share-alt" scale="1"  ></fa-icon> </span>
+                          
                         </el-col>
                     </el-row>
                     </div>

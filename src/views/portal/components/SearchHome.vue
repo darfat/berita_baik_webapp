@@ -66,7 +66,7 @@
               <img src="" class="image">
               <div class="desc">
                   <span><bb-love></bb-love> </span>
-                  <span><v-icon name="share-2" base-class="icon-20"></v-icon> </span>
+                  <span><fa-icon name="share-alt" scale="1.3"  ></fa-icon>  </span>
                 <div class="bottom clearfix">
                   <h2><a>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h2>
                 </div>
