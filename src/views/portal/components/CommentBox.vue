@@ -2,10 +2,10 @@
 <div class="comment-box">
     <div class="content">
         <el-row :gutter="20" >
-            <el-col :span="1" >
+            <el-col :xs="2" :sm="2">
                 <img :src="userLogin.image" class="img-circle img-mini v-align-middle"/>
             </el-col>
-            <el-col :span="23" >
+            <el-col :xs="22" :sm="22">
                 <el-input
                     type="textarea"
                     :rows="5"
