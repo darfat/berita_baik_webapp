@@ -13,15 +13,21 @@
     <el-col :xs="24" :sm="16">      
         <articles-card :title="'Berita Baik Terbaru'" :limit="4"></articles-card>
         <div class="side-separator">
+          <router-link  :to="{ name: 'editorial-menu', params: { 'editorialSlug':'indonesia-baik'} }" >
             <span> Buka lebih banyak lagi </span>
+          </router-link>
         </div>
         <articles-card :title="'Indonesia Bangga'" :editorialSlug="'indonesia-bangga'" :editorialType="'p'" :limit=2 ></articles-card>
         <div class="side-separator">
+          <router-link  :to="{ name: 'editorial-by-type-menu', params: { 'editorialType': 'p', 'editorialSlug':'indonesia-membangun'} }" >
             <span> Buka lebih banyak lagi </span>
+          </router-link>
         </div>
         <articles-card :title="'Indonesia Membangun'" :editorialSlug="'indonesia-membangun'" :limit=2 ></articles-card>
         <div class="side-separator">
+          <router-link  :to="{ name: 'editorial-menu', params: { 'editorialSlug':'indonesia-membangun'} }" >
             <span> Buka lebih banyak lagi </span>
+          </router-link>
         </div>
     </el-col>    
     <el-col :xs="24" :sm="8">      
@@ -74,14 +80,20 @@
     </div>
   </el-row>
 
- 
+  <el-row :gutter="10">
+    <div class="container">
+      <hr/>
+    <el-col :xs="24" :sm="24">
+    </el-col>
+    </div>
+  </el-row>
 
 </div>    
 </template>
 
 <script>
 import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, Galeri } from '@/views/home/components'
-import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide, SocialFeed } from '@/views/portal/components'
+import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide, SocialFeed, InstagramFeed } from '@/views/portal/components'
 
 export default {
   name: 'frontpage',
@@ -96,7 +108,8 @@ export default {
     Galeri,
     ArticlesCard,
     InfografisSide,
-    SocialFeed
+    SocialFeed,
+    InstagramFeed
   },
   computed: {
   }

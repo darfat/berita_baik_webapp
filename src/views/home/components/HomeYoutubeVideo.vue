@@ -1,12 +1,11 @@
 <template>  
   <section class="video-wrapper" v-loading="loading.latestVideo">    
-    <youtube :video-id="$youtube.getIdFromURL(latestVideo.sources_path)" @ready="ready" @playing="playing" ></youtube>    
-    <div class="container overlay-desc" v-show="ready"  v-loading="loading.latestVideo" >       
-        <h2>{{ latestVideo.editorial.name }}</h2>
+    <youtube :video-id="videoId" @ready="ready" @playing="playing" v-if="latestVideo" ></youtube>    
+    <div class="container overlay-desc" v-show="ready"  >       
+        <h2 v-if="latestVideo.editorial" >{{ latestVideo.editorial.name }}</h2>
         <h1>{{ latestVideo.title }}</h1>
         <p>{{ latestVideo.teaser }}</p>        
         <hr style="width:30px;height:5px;background-color:#EB0029; border: none; padding-top:10px; margin-left: 0; clear:both" />
-        <div> {{ latestVideo.reporter_name }} | <timeago :since="latestVideo.publish_date"></timeago> </div>
      </div>
   </section>
 </template>
@@ -24,12 +23,14 @@ export default {
       latestVideo: {},
       loading: {
         latestVideo: false
-      }
+      },
+      videoId: ''
     }
   },
   created() {
     this.init()
   },
+  mounted() {},
   methods: {
     init() {
       this.getLatestVideo(this.editorialSlug)
@@ -39,6 +40,7 @@ export default {
       getLatestVideoByEditorial({ editorialSlug }).then(response => {
         if (response) {
           this.latestVideo = response.data
+          this.videoId = this.$youtube.getIdFromURL(this.latestVideo.sources_path)
         }
         this.loading.latestVideo = false
       })
@@ -54,7 +56,7 @@ export default {
       // If you would like to change `playerVars`, please change it before you change `videoId`.
       // If `playerVars.autoplay` is 1, `loadVideoById` will be called.
       // If `playerVars.autoplay` is 0, `cueVideoById` will be called.
-      this.videoId = 'another video id'
+      this.videoId = '-'
     },
     stop() {
       this.player.stopVideo()

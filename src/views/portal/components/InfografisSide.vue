@@ -41,7 +41,7 @@ export default {
       this.loading.infografis_list = true
       getImagesByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit }).then(response => {
         if (response) {
-          this.infografis_list = response.data
+          this.infografis_list = response.data.data
           this.loading.infografis_list = false
         }
       })

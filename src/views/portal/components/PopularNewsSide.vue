@@ -67,9 +67,9 @@ export default {
       this.loading.popular_articles = true
       getPopularArticles({ page: this.page, per_page: this.limit }).then(response => {
         if (response) {
-          this.popular_articles = response.data
-          this.loading.popular_articles = false
+          this.popular_articles = response.data.data
         }
+        this.loading.popular_articles = false
       })
     }
   }

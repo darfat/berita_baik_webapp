@@ -18,39 +18,25 @@
         <el-col :span="18" class="feed-list">
             <el-row :gutter="20" class="feed-content">
                 <el-col :span="8" class="feed-box">
-                    <div class="feed-logo">
-                        <v-icon name="instagram" base-class="icon-20 v-align-middle"> </v-icon>
-                        <span>beritabaik.id</span>
-                    </div>
-                    <div class="feed-date">
-                        2 Hari Yang Lalu
-                    </div>
                     <div class="feed-stream">
+                        <div id="fb-root"></div>
+                        <div class="fb-page" data-href="https://www.facebook.com/beritabaik.id/" data-tabs="timeline" data-height="350" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/beritabaik.id/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/beritabaik.id/">beritabaik.id</a></blockquote></div>
                     </div>
                 </el-col>
                 <el-col :span="16" class="feed-box">
                     <div class="feed-logo">
-                        <v-icon name="facebook" base-class="icon-20 v-align-middle"> </v-icon>
-                        <span>beritabaik.id</span>
-                        <span class="feed-date">
-                            2 Hari Yang Lalu
-                        </span>
+                        <a href="https://twitter.com/beritabaik_id" target="_blank"><fa-icon name="twitter" scale="1" class="icon" ></fa-icon></a>
+                        <span>beritabaik_id</span>
                     </div>
                     <div class="feed-stream">
-                        <p>
-                            At the end of a storm
-                            There's a golden sky
-                            And the sweet silver song of a lark
-                            Walk on through the wind
-                            
-                        </p>
+                        <v-timeline :id="'beritabaik_id'" :sourceType="'profile'" :options="{ tweetLimit: '1',height: '100px'  }"/>
                     </div>
                 </el-col>
             </el-row>
             <el-row :gutter="20" class="feed-content" >
                 <el-col :span="8" class="feed-box">
                     <div class="feed-logo">
-                        <v-icon name="instagram" base-class="icon-20 v-align-middle"> </v-icon>
+                        <a href="https://www.instagram.com/beritabaik.id/" target="_blank"><fa-icon name="instagram" scale="1" class="icon" ></fa-icon></a>
                         <span>beritabaik.id</span>
                     </div>
                     <div class="feed-date">
@@ -61,22 +47,14 @@
                 </el-col>
                 <el-col :span="16" class="feed-box">
                     <div class="feed-logo">
-                        <v-icon name="twitter" base-class="icon-20 v-align-middle"> </v-icon>
+                         <a href="https://www.instagram.com/beritabaik.id/" target="_blank"><fa-icon name="instagram" scale="1" class="icon" ></fa-icon></a>
                         <span>beritabaik.id</span>
-                        <span class="feed-date">
-                            2 Jam Yang Lalu
-                        </span>
-                    </div>
-                    <div class="feed-stream">
-                        <p>
-                            RT@infobts Hi we are BTS, Walk on through the rain
-                            Though your dreams be tossed and blown
-                        </p>
-                    </div>
+                    </div>                    
                 </el-col>
             </el-row>
         </el-col>
     </el-row>
+    
   </div>
 </template>
 
@@ -89,9 +67,17 @@ export default {
     ArticleSeparator
   }
 }
+
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/styles/social-feed.scss";
-
+.timeline-Header .timeline-InformationCircle-widgetParent {
+    font-size: 1em;
+    line-height: 1em;
+}
+.timeline-Header-title .u-inlineBlock{
+font-size: 1em;
+    line-height: 1em;
+}
 </style>

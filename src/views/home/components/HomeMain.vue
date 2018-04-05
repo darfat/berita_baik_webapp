@@ -7,8 +7,6 @@
 </template>
 
 <script>
-console.log('home main')
-
 export default {
   name: 'HomeMain',
   computed: {
