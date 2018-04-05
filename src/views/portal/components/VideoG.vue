@@ -82,7 +82,7 @@ export default {
       this.loading.list = true
       getVideosByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit }).then(response => {
         if (response) {
-          this.list = response.data
+          this.list = response.data.data
           this.loading.list = false
         }
       })
