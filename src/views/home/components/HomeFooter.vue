@@ -40,7 +40,12 @@
 
 <script>
 export default {
-  data() {}
+  name: 'HomeFooter',
+  data() {
+    return {
+      state: false
+    }
+  }
 }
 
 </script>
