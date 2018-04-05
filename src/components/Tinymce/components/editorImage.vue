@@ -47,7 +47,7 @@ export default {
         'imageAttachment': arr
       }).then(response => {
         if (response) {
-          console.log(response)
+          // console.log(response)
         }
       })
       this.$emit('successCBK', arr)

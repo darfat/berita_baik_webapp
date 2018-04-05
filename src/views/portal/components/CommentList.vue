@@ -81,7 +81,6 @@ export default {
       this.loading.comments = true
       if (articleID) {
         getCommentsByArticleID({ articleID }).then(response => {
-          console.log(response)
           if (response) {
             this.comments = response.data
             this.loading.comments = false
