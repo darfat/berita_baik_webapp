@@ -111,7 +111,8 @@
             <div class="side-separator">
               <span> Buka lebih banyak lagi </span>
             </div>
-            <div>iklan</div>
+            <div class="spacer m-t-10"></div>
+            <advertisement-side></advertisement-side>
           </div>
         </el-col>
       </div>
@@ -122,7 +123,7 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { PopularNewsSide, ArticlesCard, InfografisSide } from '@/views/portal/components'
+import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide } from '@/views/portal/components'
 import { getEditorialLabelBySlug, getEditorialIdBySlug } from '@/api/editorial'
 import { getLatestNewsByEditorial } from '@/api/article'
 
@@ -133,7 +134,8 @@ export default {
     PopularNewsSide,
     ArticlesCard,
     BbLove,
-    InfografisSide
+    InfografisSide,
+    AdvertisementSide
   },
   data() {
     return {

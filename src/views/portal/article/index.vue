@@ -163,7 +163,8 @@
           <div class="side-separator">
             <span> Buka lebih banyak lagi </span>
           </div>
-          <div>iklan</div>
+          <div class="spacer m-t-10"></div>
+          <advertisement-side></advertisement-side>
           <div class="side-separator">
             <span>  </span>
           </div>
@@ -173,13 +174,9 @@
       
       </div>
     </el-row>
-    <el-row :gutter="20">
-      <div class="container">
-          <el-col :xs="24" :sm="24" class="content">
-              <div class="h-divider m-tb-10"></div>
-          </el-col>
-      </div>
-    </el-row>
+    <div class="container">
+      <div class="gray-separator"> <span> </span>  </div>
+    </div>
     <el-row :gutter="20" class="events-container">
       <div class="container">
       <el-col :xs="24" :sm="24" class="content">
@@ -187,26 +184,25 @@
       </el-col>
       </div>
     </el-row>  
-    <el-row :gutter="20">
-      <div class="container">
-          <el-col :xs="24" :sm="24" class="content">
-              <div class="h-divider m-tb-10"></div>
-          </el-col>
-      </div>
-    </el-row>
+    <div class="content-container">
+      <div class="gray-separator"> <span> </span>  </div>
+    </div>
+    
     <el-row :gutter="20" class="subscriber-container">
+      <div class="m-t-10"></div>
       <div class="container">
           <el-col :xs="24" :sm="24" class="content">
               <subscribe></subscribe>
           </el-col>
-      </div>
+      </div>      
     </el-row>
+    <div class="m-t-10"></div>
   </div>
 </template>
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
-import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav, CommentList, Subscribe, Events } from '@/views/portal/components'
+import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav, CommentList, Subscribe, Events, AdvertisementSide } from '@/views/portal/components'
 import BbLove from '@/views/portal/components/BbLove'
 
 import { getArticle } from '@/api/article'
@@ -223,7 +219,8 @@ export default {
     CommentList,
     Subscribe,
     Events,
-    BbLove
+    BbLove,
+    AdvertisementSide
   },
   props: {
     articleID: { type: String },

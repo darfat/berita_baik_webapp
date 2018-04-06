@@ -24,14 +24,28 @@
         </el-col>
       </div>
     </el-row>
-    <div class="sub-content-container" >
-      <hr style="margin:20px 0" />
-       <events></events>
+    <div class="container m-t-20">
+      <div class="gray-separator"> <span> </span>  </div>
     </div>
-    <div class="sub-content-container" >
-      <hr style="margin:20px 0" />
-        <subscribe></subscribe>
+    <el-row :gutter="20" class="events-container">
+      <div class="container">
+      <el-col :xs="24" :sm="24" class="content">
+            <events></events>
+      </el-col>
+      </div>
+    </el-row>  
+    <div class="content-container">
+      <div class="gray-separator"> <span> </span>  </div>
     </div>
+    <el-row :gutter="20" class="subscriber-container">
+      <div class="m-t-10"></div>
+      <div class="container">
+          <el-col :xs="24" :sm="24" class="content">
+              <subscribe></subscribe>
+          </el-col>
+      </div>      
+    </el-row>
+    <div class="m-t-10"></div>
   </div>
     
 </template>

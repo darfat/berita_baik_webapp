@@ -41,6 +41,8 @@
         <div class="side-separator">
             <span> Buka lebih banyak lagi </span>
         </div>
+        <div class="spacer m-t-10"></div>
+        <advertisement-side></advertisement-side>
     </el-col>
     </div>    
   </el-row>
@@ -96,7 +98,7 @@
 
 <script>
 import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, Galeri } from '@/views/home/components'
-import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide, SocialFeed, InstagramFeed } from '@/views/portal/components'
+import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide, SocialFeed, InstagramFeed, AdvertisementSide } from '@/views/portal/components'
 
 export default {
   name: 'frontpage',
@@ -112,7 +114,8 @@ export default {
     ArticlesCard,
     InfografisSide,
     SocialFeed,
-    InstagramFeed
+    InstagramFeed,
+    AdvertisementSide
   },
   computed: {
   }

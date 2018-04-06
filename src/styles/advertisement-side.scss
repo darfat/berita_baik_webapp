@@ -1,0 +1,23 @@
+.advertisement-news {
+    border: solid 1px;
+    padding: 15px;
+    border-color: #e6e6e6;
+    font-size: 0.8em;
+}
+.advertisement-news .side-row{
+}
+
+.advertisement-news .side-row .side-image {
+    // margin-bottom: 0.8em;
+}
+.advertisement-news .side-row .side-image .card-image{
+    // width: 310px;
+    // height: 100%;
+    width: 100%;
+    height: auto;
+}
+
+.advertisement-news .side-row .side-content  .footer{
+    font-weight: bold;
+    font-size: 0.8em;
+}
