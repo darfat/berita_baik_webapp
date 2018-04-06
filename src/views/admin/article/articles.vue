@@ -116,7 +116,6 @@ export default {
           this.total_pages = response.data.total_pages
           this.total_entries_size = response.data.total_entries_size
           this.page = response.data.page
-          console.log(this.total_pages)
         }
         this.listLoading = false
       })

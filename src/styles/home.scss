@@ -49,5 +49,43 @@ body{
     color: $main-red;    
   }
 
-  
+}
+
+.ac-paging{
+  .el-pagination.is-background .btn-next,
+  .el-pagination.is-background .btn-prev,
+  .el-pagination.is-background .el-pager li {    
+    background-color: transparent;
+    color: $black-2;
+    font-family: DINPro-Regular, Neosans-Medium-Italic, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    &:hover { 
+      color: $main-red;
+    }
+    span{
+      font-size: 16px;
+    }
+  }
+
+  .el-pagination.is-background .btn-next.disabled,
+  .el-pagination.is-background .btn-prev.disabled {
+    color: #c0c4cc;
+    &:hover{
+      color: none;
+    }
+  }
+
+  .el-pagination.is-background .el-pager li {    
+    min-width: 30px;
+    height: 30px;
+    line-height: 28px;
+    vertical-align: top;
+  }
+  .el-pagination.is-background .el-pager li.active { 
+    border: 2px solid $main-red;
+    border-radius: 50%;
+    color: $main-red;    
+  }
+
 }

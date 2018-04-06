@@ -80,6 +80,20 @@
         </el-dialog>
       </el-col>
     </el-row>
+
+    <div class="ac-paging">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        prev-text="Pertama" next-text="Terakhir"
+        @current-change="handleCurrentChange"
+        :current-page.sync="page"
+        :page-size="per_page"
+        :total="total_entries_size"  
+      >
+      </el-pagination>
+    </div>
+
   </div>
 </template>
 
@@ -123,7 +137,11 @@
         loading: {
           articles: false
         },
-        centerDialogVisible: false
+        centerDialogVisible: false,
+        per_page: 10,
+        page: 1,
+        total_pages: 1,
+        total_entries_size: 0
       }
     },
     created() {
@@ -131,15 +149,16 @@
     },
     methods: {
       init() {
-        this.getArticles(this.editorialSlug)
+        this.per_page = this.limit
+        this.getArticles(this.editorialSlug, this.page)
       },
-      getArticles(editorialSlug) {
+      getArticles(editorialSlug, page) {
         this.loading.articles = true
         if (editorialSlug) {
           let params = {
             editorialSlug,
-            page: 1,
-            per_page: this.limit + 1
+            page,
+            per_page: this.per_page
           }
           if (this.editorialType && this.editorialType !== null && this.editorialType.length) {
             getEditorialIdBySlug({
@@ -150,38 +169,54 @@
                   editorialSlug,
                   editorialType: this.editorialType,
                   editorialSlugID: editorialResponse.data.id,
-                  page: 1,
-                  per_page: this.limit + 1
+                  page,
+                  per_page: this.per_page
                 }
                 getNewsByEditorialSlug(params).then(response => {
                   if (response) {
-                    this.articles = response.data.data.slice(1)
-                    this.loading.articles = false
+                    this.articles = response.data.data
+                    this.per_page = response.data.per_page
+                    this.total_pages = response.data.total_pages
+                    this.total_entries_size = response.data.total_entries_size
+                    this.page = response.data.page
                   }
+                  this.loading.articles = false
                 })
               }
             })
           } else {
             getNewsByEditorialSlug(params).then(response => {
               if (response) {
-                this.articles = response.data.data.slice(1)
-                this.loading.articles = false
+                this.articles = response.data.data
+                this.per_page = response.data.per_page
+                this.total_pages = response.data.total_pages
+                this.total_entries_size = response.data.total_entries_size
+                this.page = response.data.page
               }
+              this.loading.articles = false
             })
           }
         } else {
           getLatestNewsAll({
-            page: 1,
-            per_page: this.limit
+            page,
+            per_page: this.per_page
           }).then(response => {
             if (response) {
               this.articles = response.data.data
-              this.loading.articles = false
+              this.per_page = response.data.per_page
+              this.total_pages = response.data.total_pages
+              this.total_entries_size = response.data.total_entries_size
+              this.page = response.data.page
             }
+            this.loading.articles = false
           })
         }
+      },
+      handleCurrentChange(page) {
+        console.log(`${page} page`)
+        this.getArticles(this.editorialSlug, page)
       }
-    }
+    } // end method
   }
 </script>
 
