@@ -7,7 +7,7 @@
     </div>
     <el-row :gutter="20" class="list-container">
       <div class="container">
-        <el-col :xs="24" :sm="16" class="content">
+        <el-col :xs="24" :sm="16" clzzass="content">
           <div class="grid-content">
             <articles-card></articles-card>
           </div>

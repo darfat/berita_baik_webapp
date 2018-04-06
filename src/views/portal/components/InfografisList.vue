@@ -1,6 +1,7 @@
 <template>
   <div class="infografis-list">      
     <div class="infografis-header"> INFOGRAFIS</div>
+    <!--
     <div class="infografis-content"> 
         <el-row  v-loading="loading.list"  >
             <el-col :span="8" v-for="(infografis) in list" :key="infografis.id" class="infografis-col">
@@ -44,14 +45,14 @@
                 </el-card>
             </el-col>
         </el-row>    
-    </div>
+    </div>-->
     <div class="infografis-paging">
-        <el-pagination
+      <el-pagination
         background
         layout="prev, pager, next"
         :total="20"
         prev-text="Pertama" next-text="Terakhir"
-        >
+      >
       </el-pagination>
     </div>
   </div>
@@ -107,11 +108,6 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/styles/infografis-list.scss";
-
-.el-pager {
-    border-radius: 50%;
-    background-color: green;
-}
 
 .el-row {
   margin-bottom: 3px;

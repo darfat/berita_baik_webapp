@@ -22,7 +22,7 @@
           </el-col>
         </el-row>
       </div>
-      <div class="videopaging align-center">
+      <div class="video-paging align-center">
           <el-pagination
           background
           layout="prev, pager, next"

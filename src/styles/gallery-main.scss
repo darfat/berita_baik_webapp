@@ -5,9 +5,14 @@
 }
 .gallery-main .gallery-main-container{
     background-color: #000;
-    
+    padding: 20px 0;    
 }
 .gallery-main .gallery-main-container .gallery-main-list{
     width: 80%;
     margin: 0 auto;
+}
+
+.gallery-main .spacer,
+.gallery-main .content-container{
+    padding: 20px 0;
 }

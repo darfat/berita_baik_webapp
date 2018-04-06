@@ -7,10 +7,9 @@
   <swiper :options="swiperOption" class="swiper-box">
     <swiper-slide v-for="item in topslides" :key="item.id" class="swiper-item">
       <img :src="item.article.main_image">
-      <div class="editorial-type-img">
-        <div >{{ item.editorial.name }}</div>
-      </div>
+      <h3>{{item.editorial.name}}</h3>
     </swiper-slide>
+    
   </swiper>
   
   
@@ -151,22 +150,16 @@ export default {
   left: auto; 
 }
 
-.editorial-type-img {
-    position: absolute;
-    top: 5%;
-    left: 3%;
-    // transform: translate( -50%, -50% );
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    background-color: #051D49;
-    padding-left: 15px;
-    padding-right: 15px;
-    font-size: 0.8em;
-}
-
-.editorial-type-img div{
-  margin: 3px;
+h3{
+  position: absolute;
+  top: 1%;
+  left: 1%;
+  text-align: center;
+  color: #FFF;
+  font-weight: bold;
+  background-color: $main-blue;
+  padding: 5px 15px;
+  font-size: 0.9em;
 }
 
 </style>
