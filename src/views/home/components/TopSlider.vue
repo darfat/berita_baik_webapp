@@ -7,7 +7,9 @@
   <swiper :options="swiperOption" class="swiper-box">
     <swiper-slide v-for="item in topslides" :key="item.id" class="swiper-item">
       <img :src="item.article.main_image">
+      <h3>{{item.editorial.name}}</h3>
     </swiper-slide>
+    
   </swiper>
   
   
@@ -145,6 +147,18 @@ export default {
 .swiper-button-next{  
   right: 20px;
   left: auto; 
+}
+
+h3{
+  position: absolute;
+  top: 1%;
+  left: 1%;
+  text-align: center;
+  color: #FFF;
+  font-weight: bold;
+  background-color: $main-blue;
+  padding: 5px 15px;
+  font-size: 0.9em;
 }
 
 </style>
