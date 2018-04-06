@@ -73,6 +73,16 @@
     line-height: 1.5em;
     font-size: 1.1em;
 }
+.article-container .headline-container .main .content .team{
+    padding-bottom: 10px;
+}
+
+.article-container .headline-container .main .content .icons{
+    float: right;    
+    .fa-icon{
+        
+    }
+}
 .article-container .headline-container .main .content .article-option{
     color: #696968
 }
@@ -125,3 +135,5 @@
     border-bottom: 1px solid #e6e6e6;
     margin: auto;
 }
+
+

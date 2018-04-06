@@ -43,13 +43,35 @@
                     </el-col>
                   </el-row>
                   <el-row :gutter="20" class="m-t-10 article-option">
-                      <el-col :span="2">
+                      <el-col :xs="24" :sm="2">
                         <span  > 
-                          Editorial <br/> Team :
+                          Editorial Team :
                         </span>
                       </el-col>
-                      <el-col :span="5" v-loading="loading.authors" >
-                        <div v-for="(author) in mainArticleAuthors" :key="author.id">
+                      <el-col :xs="24" :sm="16" v-loading="loading.authors">
+                        <!--
+                          <div class="team">
+                          <img src="static/upload/images/profile.jpg" class="img-circle img-mini v-align-middle"/>
+                          <span> Boim </span>
+                          <span class="follow-user">
+                            <v-icon name="user" base-class="icon-20 v-align-middle"></v-icon>
+                            <span  > 
+                              Follow
+                            </span>
+                          </span>
+                        </div>
+                        <div class="team">
+                          <img src="static/upload/images/profile.jpg" class="img-circle img-mini v-align-middle"/>
+                          <span> Boim </span>
+                          <span class="follow-user">
+                            <v-icon name="user" base-class="icon-20 v-align-middle"></v-icon>
+                            <span  > 
+                              Follow
+                            </span>
+                          </span>
+                        </div>
+                        -->                        
+                        <div v-for="(author) in mainArticleAuthors" :key="author.id" class="team">
                           <img :src="author.user.image" class="img-circle img-mini v-align-middle"/>
                           <span> {{ author.user.name }} </span>
                           <span class="follow-user">
@@ -59,21 +81,18 @@
                             </span>
                           </span>
                         </div>
-                      </el-col>
-                      <el-col :span="9" class="p-tb-5">
-                      </el-col>
-                      <el-col :span="8" class="align-right" >
-                            <bb-love :articleID="mainArticle.id" :type="'article'" :scale="2"></bb-love>
-                      </el-col>
-                      <el-col :span="4"  class="align-left" >
-                        <span>  
-                          <social-sharing url="http://beritabaik.id/"
+                        
+                      </el-col>                      
+                      <el-col :xs="24" :sm="6">
+                        <div class="icons">
+                        <span><bb-love :articleID="mainArticle.id" :type="'article'" :scale="2"></bb-love></span>
+                        <social-sharing url="http://beritabaik.id/"
                         :title="mainArticle.title"
                         :description="mainArticle.teaser"
                         :quote="mainArticle.title"
                         hashtags="beritabaik,news"
                         inline-template>
-                          <div>
+                          <span>
                               <network network="facebook" >
                                 <fa-icon name="facebook-f" scale="1.8" class="network-icon" ></fa-icon>
                               </network>
@@ -89,14 +108,11 @@
                               <!-- <network network="whatsapp">
                                 <fa-icon name="whatsapp" scale="2" ></fa-icon>
                               </network> -->
-                          </div>
-                        </social-sharing>   
-                        
-                        </span>
-                      </el-col>
-                      <el-col :span="1">                    
-                        <span> <v-icon name="more-horizontal" base-class="icon-30"></v-icon> </span>
-                    </el-col>
+                          </span>
+                        </social-sharing>                        
+                        <span><v-icon name="more-horizontal" base-class="icon-30"></v-icon></span>
+                        </div>
+                      </el-col>                      
                   </el-row>
                 </el-row>
                 <el-row :gutter="20" class="m-t-10" >
@@ -271,7 +287,11 @@ export default {
   }
 }
 .el-col {
-    border-radius: 4px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 .fa-icon{
     fill:red;
