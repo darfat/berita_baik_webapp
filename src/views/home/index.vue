@@ -39,7 +39,9 @@
         <infografis-side :editorialSlug="'infografis'"  > </infografis-side>      
         <div class="spacer m-t-10"></div>
         <div class="side-separator">
+          <router-link  :to="{ name: 'infografis-menu', params: {} }" >
             <span> Buka lebih banyak lagi </span>
+          </router-link>
         </div>
         <div class="spacer m-t-10"></div>
         <advertisement-side></advertisement-side>

@@ -26,8 +26,11 @@
           <el-pagination
           background
           layout="prev, pager, next"
-          :total="20"
           prev-text="Pertama" next-text="Terakhir"
+          @current-change="handleCurrentChange"
+          :current-page.sync="page"
+          :page-size="per_page"
+          :total="total_entries_size" 
           >
         </el-pagination>
       </div>
@@ -57,17 +60,21 @@ export default {
         latestVideo: false,
         list: false
       },
-      list: []
+      list: [],
+      per_page: 6,
+      page: 1,
+      total_pages: 1,
+      total_entries_size: 0
     }
   },
   created() {
-    console.log('videog')
     this.init()
   },
   methods: {
     init() {
       this.getLatestVideo(this.editorialSlug)
-      this.getVideos(this.editorialSlug)
+      this.per_page = this.limit
+      this.getVideos(this.editorialSlug, this.page)
     },
     getLatestVideo(editorialSlug) {
       this.loading.latestVideo = true
@@ -78,14 +85,21 @@ export default {
         this.loading.latestVideo = false
       })
     },
-    getVideos(editorialSlug) {
+    getVideos(editorialSlug, page) {
       this.loading.list = true
-      getVideosByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit }).then(response => {
+      getVideosByEditorialSlug({ editorialSlug, page, per_page: this.per_page }).then(response => {
         if (response) {
           this.list = response.data.data
+          this.per_page = response.data.per_page
+          this.total_pages = response.data.total_pages
+          this.total_entries_size = response.data.total_entries_size
+          this.page = response.data.page
         }
         this.loading.list = false
       })
+    },
+    handleCurrentChange(page) {
+      this.getVideos(this.editorialSlug, this.page)
     },
     ready(player) {
       this.player = player

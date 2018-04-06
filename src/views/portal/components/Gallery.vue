@@ -91,8 +91,11 @@
         <el-pagination
         background
         layout="prev, pager, next"
-        :total="20"
         prev-text="Pertama" next-text="Terakhir"
+        @current-change="handleCurrentChange"
+          :current-page.sync="page"
+          :page-size="per_page"
+          :total="total_entries_size" 
         >
       </el-pagination>
     </div>
@@ -122,7 +125,11 @@ export default {
       loading: {
         mainGallery: false,
         galleries: false
-      }
+      },
+      per_page: 6,
+      page: 1,
+      total_pages: 1,
+      total_entries_size: 0
     }
   },
   created() {
@@ -130,9 +137,10 @@ export default {
   },
   methods: {
     init() {
+      this.per_page = this.limit
       this.editorialTitle = getEditorialLabelBySlug(this.editorialSlug)
       this.getLatestNews(this.editorialSlug)
-      this.getArticles(this.editorialSlug)
+      this.getArticles(this.editorialSlug, this.page)
     },
     getLatestNews(editorialSlug) {
       this.loading.mainGallery = true
@@ -143,16 +151,23 @@ export default {
         }
       })
     },
-    getArticles(editorialSlug) {
+    getArticles(editorialSlug, page) {
       this.loading.galleries = true
       if (editorialSlug) {
-        getImagesByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit + 1 }).then(response => {
+        getImagesByEditorialSlug({ editorialSlug, page, per_page: this.per_page }).then(response => {
           if (response) {
-            this.galleries = response.data.data.slice(1)
-            this.loading.galleries = false
+            this.galleries = response.data.data
+            this.per_page = response.data.per_page
+            this.total_pages = response.data.total_pages
+            this.total_entries_size = response.data.total_entries_size
+            this.page = response.data.page
           }
+          this.loading.galleries = false
         })
       }
+    },
+    handleCurrentChange(page) {
+      this.getArticles(this.editorialSlug, this.page)
     }
   }
 }
