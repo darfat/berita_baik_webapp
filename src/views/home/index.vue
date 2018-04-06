@@ -8,7 +8,7 @@
     </div>    
   </el-row>
 
-  <el-row :gutter="12">
+  <el-row :gutter="20">
     <div class="container">
     <el-col :xs="24" :sm="16">      
         <articles-card :title="'Berita Baik Terbaru'" :limit="4"></articles-card>
