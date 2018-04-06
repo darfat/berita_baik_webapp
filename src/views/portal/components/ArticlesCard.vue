@@ -127,7 +127,7 @@
         default: 'BACA LAINNYA'
       },
       limit: {
-        default: 9,
+        default: 8,
         type: Number
       }
     },

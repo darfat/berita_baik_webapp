@@ -8,14 +8,18 @@
             <el-row :gitter="20" v-for="(popular) in popular_articles" :key="popular.id" class="side-row"  >
               <el-col :span="8" class="side-image">
                 <div>
-                  <img :src="popular.main_image" class="card-image"/>
+                  <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
+                    <img :src="popular.main_image" class="card-image"/>
+                  </router-link>
                 </div>
               </el-col>
               <el-col :span="16" class="side-content">
                 <div class="content-container">
                    <el-row class="side-title-section">
                       <div>
-                        <span>{{ popular.title}}</span>
+                        <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
+                          <span>{{ popular.title}}</span>
+                        </router-link>
                       </div>
                     </el-row>
                     <el-row >

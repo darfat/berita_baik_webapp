@@ -18,10 +18,12 @@
                   <el-col >
                     <div>
                         <div class="background">
+                          <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
                             <img :src="latestNews.main_image" />
-                          <div class="editorial-type-img" v-if="latestNews.id">
-                              <p>{{ latestNews.editorial.name }}</p>
-                          </div>
+                            <div class="editorial-type-img" v-if="latestNews.id">
+                                <p>{{ latestNews.editorial.name }}</p>
+                            </div>
+                          </router-link>
                         </div>
                     </div>
                   </el-col>
@@ -37,7 +39,7 @@
                     <el-row :gutter="20" class="ln-title">
                       <el-col >
                         <div > 
-                          <router-link  :to="{ name: 'article-detail-route', params: { editorialSlug, 'slug': latestNews.slug,  'articleID': latestNews.id} }" >
+                          <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
                             {{ latestNews.title }}
                           </router-link>
                         </div>

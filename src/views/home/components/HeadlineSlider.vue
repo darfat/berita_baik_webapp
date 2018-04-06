@@ -3,16 +3,20 @@
   <el-carousel indicator-position="outside" height="560px" v-loading="loading.headlines">
     <el-carousel-item v-for="item in headlines" :key="item.id">
       <div class="item-wrapper-hl">
-        <img :src="item.article.main_image" class="image-hl">
-        <h3>{{item.editorial.name}}</h3>
+        <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">
+          <img :src="item.article.main_image" class="image-hl">
+          <h3>{{item.editorial.name}}</h3>
+        </router-link>
       </div>
       <div class="title">
       <span><bb-love></bb-love></span>
       <span>
            <fa-icon name="share-alt" scale="1.3"  ></fa-icon> 
         </span>
-      <h2>{{item.article.title}}</h2>
-      <p>{{item.article.teaser}}</p>
+      <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">
+        <h2>{{item.article.title}}</h2>
+      </router-link>
+      <div v-html="item.article.teaser" ></div>
       <div class="separator">&nbsp;&nbsp;&nbsp;&nbsp;</div>
       <div class="author">
         {{ item.article.reporter_name}} | <timeago :since="item.article.publish_date"></timeago>
