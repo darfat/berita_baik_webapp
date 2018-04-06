@@ -5,7 +5,9 @@
             <el-row :gutter="20" v-for="(infografis) in infografis_list" :key="infografis.id" class="side-row"  >
               <el-col :span="24" class="side-image">
                 <div>
+                <router-link :to="{ name: 'infografis-detail-layout', params: { 'slug': infografis.slug} }">
                   <img :src="infografis.main_image" class="card-image"/>
+                </router-link>
                 </div>
               </el-col>
             </el-row>            
