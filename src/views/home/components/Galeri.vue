@@ -36,7 +36,7 @@ export default {
   },
   props: {
     editorialSlug: { type: String, default: 'gallery-foto' },
-    limit: { default: 5, type: Number }
+    limit: { default: 6, type: Number }
   },
   data() {
     return {
@@ -46,8 +46,6 @@ export default {
       },
       swiperOptionTop: {
         spaceBetween: 10,
-        loop: true,
-        loopedSlides: this.limit,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
@@ -55,10 +53,9 @@ export default {
       },
       swiperOptionThumbs: {
         spaceBetween: 10,
-        slidesPerView: 4,
+        centeredSlides: true,
+        slidesPerView: 'auto',
         touchRatio: 0.2,
-        loop: true,
-        loopedSlides: this.limit, // looped slides should be the same
         slideToClickedSlide: true
       }
     }
