@@ -166,6 +166,24 @@ a:hover {
   margin: auto;
 }
 
+
+.gray-separator {
+  margin-top: 5px;
+  text-align: right;
+  margin-bottom: 10px;
+}
+.gray-separator span{
+  display: flex;
+  flex-direction: row;
+  color: #b0b0b0;
+}
+.gray-separator span:before{
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid #e6e6e6;
+  margin: auto;
+}
+
 .black-separator {
   margin-top: 10px;
   text-align: right;

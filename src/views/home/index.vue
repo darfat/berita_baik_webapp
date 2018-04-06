@@ -53,14 +53,22 @@
     <div class="container">    
       <el-col :xs="24" :sm="24">
         <social-feed></social-feed>
-        <hr>
       </el-col>
     </div>
   </el-row>
 
+
   <el-row :gutter="10">
     <div class="container">
-    <el-col :xs="24" :sm="24"><events></events><hr></el-col>
+      <div class="gray-separator"> <span> </span>  </div>
+            <div class="spacer"></div>
+        <el-col :xs="24" :sm="24">
+          
+              <events></events>
+            <div class="spacer"></div>
+            <div class="gray-separator"> <span> </span>  </div>
+        </el-col>
+      
     </div>
   </el-row>
 
@@ -72,21 +80,16 @@
     </el-col>
     </div>
   </el-row>
-
+  <div class="content-container">
+    <div class="gray-separator"> <span> </span>  </div>
+  </div>
   <el-row :gutter="10">
     <div class="container">
-      <hr/>
-    <el-col :xs="24" :sm="24"><subscribe></subscribe></el-col>
+      <el-col :xs="24" :sm="24"><subscribe></subscribe></el-col>
     </div>
   </el-row>
 
-  <el-row :gutter="10">
-    <div class="container">
-      <hr/>
-    <el-col :xs="24" :sm="24">
-    </el-col>
-    </div>
-  </el-row>
+ <div class="spacer"></div>
 
 </div>    
 </template>

@@ -2,10 +2,14 @@
   <section class="video-wrapper" v-loading="loading.latestVideo">    
     <youtube :video-id="videoId" @ready="ready" @playing="playing" v-if="latestVideo" ></youtube>    
     <div class="container overlay-desc" v-show="ready"  >       
-        <h2 v-if="latestVideo.editorial" >{{ latestVideo.editorial.name }}</h2>
+        
+          <div class="align-center"> <h2 v-if="latestVideo.editorial" >{{ latestVideo.editorial.name }}</h2> </div>
         <h1>{{ latestVideo.title }}</h1>
         <p>{{ latestVideo.teaser }}</p>        
         <hr style="width:30px;height:5px;background-color:#EB0029; border: none; padding-top:10px; margin-left: 0; clear:both" />
+        <p>{{ latestVideo.reporter_name }} |
+          <timeago :auto-update="60" :since="latestVideo.publish_date"></timeago>
+        </p>     
      </div>
   </section>
 </template>
@@ -102,5 +106,5 @@ height: 100%;
 .video-wrapper .overlay-desc p {   
   margin:0;  
 }
-.video-wrapper .overlay-desc h2{ background-color: #0A2F88; display:table; padding:.25em;}
+.video-wrapper .overlay-desc h2{ background-color: #0A2F88; display:table; padding:.25em; width: 20%;}
 </style>
