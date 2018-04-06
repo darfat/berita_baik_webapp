@@ -112,6 +112,9 @@ export default {
           this.loading.list = false
         })
       }
+    },
+    handleCurrentChange(page) {
+      this.getArticles(this.editorialSlug, this.page)
     }
   }
 }
