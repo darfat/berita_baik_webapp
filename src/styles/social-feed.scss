@@ -36,7 +36,11 @@
 }
 .social-feed .feed-list .feed-content .feed-box .feed-logo{
     color: $bb-blue;
-} 
+    .icon{
+        vertical-align: middle;
+    }
+}
+ 
 .social-feed .feed-list .feed-content .feed-box .feed-logo span{
     color: #000000;
 } 
