@@ -7,20 +7,20 @@
     </div>
     <div class="content-container">
       <el-row :gutter="20">
-        <el-col :span="16">
+        <el-col :xs="24" :sm="16">
           <articles-card :editorialSlug="editorialSlug"></articles-card>
         </el-col>
-        <el-col :span="8">
+        <el-col :xs="24" :sm="8">
           <popular-news-side></popular-news-side>
         </el-col>
       </el-row>
       <hr/>
-      <events></events>
+      <div class="spacer"><events></events></div>
        
     </div>
     <div class="sub-content-container" >
       <hr/>
-       <subscribe></subscribe>
+       <div class="spacer"><subscribe></subscribe></div>
     </div>
   </div>
 </template>
