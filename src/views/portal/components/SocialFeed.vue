@@ -8,9 +8,9 @@
                 </div>
                 <article-separator></article-separator>
                 <div class="feed-logo"> 
-                    <v-icon name="facebook" base-class="icon-20 v-align-middle"></v-icon>
-                    <v-icon name="twitter" base-class="icon-20 v-align-middle"></v-icon>
-                    <v-icon name="instagram" base-class="icon-20 v-align-middle"></v-icon>
+                    <a href="https://www.facebook.com/beritabaik.id/" target="_blank"><fa-icon name="facebook" scale="1" class="circle-white-icon" ></fa-icon></a>
+                    <a href="https://twitter.com/beritabaik_id" target="_blank"><fa-icon name="twitter" scale="1" class="circle-white-icon" ></fa-icon></a>
+                    <a href="https://www.instagram.com/beritabaik.id/" target="_blank"><fa-icon name="instagram" scale="1" class="circle-white-icon" ></fa-icon></a>                    
                 </div>
             </div>
         
