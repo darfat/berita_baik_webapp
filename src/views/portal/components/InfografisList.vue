@@ -1,7 +1,7 @@
 <template>
   <div class="infografis-list">      
     <div class="infografis-header"> INFOGRAFIS</div>
-    <!--
+    
     <div class="infografis-content"> 
         <el-row  v-loading="loading.list"  >
             <el-col :span="8" v-for="(infografis) in list" :key="infografis.id" class="infografis-col">
@@ -45,7 +45,7 @@
                 </el-card>
             </el-col>
         </el-row>    
-    </div>-->
+    </div>
     <div class="infografis-paging">
       <el-pagination
         background
