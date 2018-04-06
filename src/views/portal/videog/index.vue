@@ -1,22 +1,32 @@
 <template>
   <div class="video-main">
     <div class="video-main-container">  
-      <div class="content-container">
+      <div class="container">
         <video-g ></video-g>
       </div>
     </div>
-    <div class="content-container" >
-        <el-row>
-          <el-col :span="18">
-            <articles-card></articles-card>
-          </el-col>
-          <el-col :span="6">
-            <popular-news-side></popular-news-side>
-          </el-col>
-        </el-row>
-        <hr style="margin:20px 0" />
-        <events></events>
-        
+    <el-row :gutter="20" class="list-container">
+      <div class="container">
+        <el-col :xs="24" :sm="16" class="content">
+          <div class="grid-content">
+          <articles-card ></articles-card>
+          </div>
+        </el-col>
+        <el-col :xs="24" :sm="8" class="side-content">
+          <div class="grid-content a-side">
+            <div>
+            <popular-news-side> </popular-news-side>
+            </div>
+            <div class="side-separator">
+              <span> Buka lebih banyak lagi </span>
+            </div>
+          </div>
+        </el-col>
+      </div>
+    </el-row>
+    <div class="sub-content-container" >
+      <hr style="margin:20px 0" />
+       <events></events>
     </div>
     <div class="sub-content-container" >
       <hr style="margin:20px 0" />

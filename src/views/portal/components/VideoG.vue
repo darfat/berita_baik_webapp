@@ -74,8 +74,8 @@ export default {
       getLatestVideoByEditorial({ editorialSlug }).then(response => {
         if (response) {
           this.latestVideo = response.data
-          this.loading.latestVideo = false
         }
+        this.loading.latestVideo = false
       })
     },
     getVideos(editorialSlug) {
@@ -83,8 +83,8 @@ export default {
       getVideosByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit }).then(response => {
         if (response) {
           this.list = response.data.data
-          this.loading.list = false
         }
+        this.loading.list = false
       })
     },
     ready(player) {

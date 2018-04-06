@@ -33,7 +33,6 @@
               <a>Contact Us</a>
             </el-col>
           </el-row>
-          </div>
         </div>
     </el-footer>
 </template>

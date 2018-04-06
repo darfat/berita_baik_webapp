@@ -7,6 +7,9 @@
   <swiper :options="swiperOption" class="swiper-box">
     <swiper-slide v-for="item in topslides" :key="item.id" class="swiper-item">
       <img :src="item.article.main_image">
+      <div class="editorial-type-img">
+        <div >{{ item.editorial.name }}</div>
+      </div>
     </swiper-slide>
   </swiper>
   
@@ -64,6 +67,7 @@ export default {
     }
   },
   created() {
+    console.log('top slide........')
     this.init()
   },
   methods: {
@@ -145,6 +149,24 @@ export default {
 .swiper-button-next{  
   right: 20px;
   left: auto; 
+}
+
+.editorial-type-img {
+    position: absolute;
+    top: 5%;
+    left: 3%;
+    // transform: translate( -50%, -50% );
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    background-color: #051D49;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 0.8em;
+}
+
+.editorial-type-img div{
+  margin: 3px;
 }
 
 </style>

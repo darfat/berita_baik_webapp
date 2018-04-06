@@ -1,26 +1,36 @@
 <template>
   <div class="gallery-main">  
     <div class="gallery-main-container">    
-      <div class="content-container">
+      <div class="container">
           <gallery :editorialSlug="editorialSlug" ></gallery>
       </div>
     </div>
-    <div class="content-container">
-      <el-row :gutter="20">
-        <el-col :span="16">
-          <articles-card :editorialSlug="editorialSlug"></articles-card>
+    <el-row :gutter="20" class="list-container">
+      <div class="container">
+        <el-col :xs="24" :sm="16" class="content">
+          <div class="grid-content">
+          <articles-card ></articles-card>
+          </div>
         </el-col>
-        <el-col :span="8">
-          <popular-news-side></popular-news-side>
+        <el-col :xs="24" :sm="8" class="side-content">
+          <div class="grid-content a-side">
+            <div>
+            <popular-news-side> </popular-news-side>
+            </div>
+            <div class="side-separator">
+              <span> Buka lebih banyak lagi </span>
+            </div>
+          </div>
         </el-col>
-      </el-row>
-      <hr/>
-      <events></events>
-       
+      </div>
+    </el-row>
+    <div class="sub-content-container" >
+      <hr style="margin:20px 0" />
+       <events></events>
     </div>
     <div class="sub-content-container" >
-      <hr/>
-       <subscribe></subscribe>
+      <hr style="margin:20px 0" />
+        <subscribe></subscribe>
     </div>
   </div>
 </template>

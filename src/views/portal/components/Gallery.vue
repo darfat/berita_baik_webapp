@@ -126,8 +126,6 @@ export default {
     }
   },
   created() {
-    console.log('gallery')
-    console.log(this.editorialSlug)
     this.init()
   },
   methods: {
@@ -140,7 +138,6 @@ export default {
       this.loading.mainGallery = true
       getLatestImageByEditorial({ editorialSlug }).then(response => {
         if (response) {
-          console.log('latest news')
           this.mainGallery = response.data
           this.loading.mainGallery = false
         }
@@ -151,8 +148,7 @@ export default {
       if (editorialSlug) {
         getImagesByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit + 1 }).then(response => {
           if (response) {
-            console.log('latest article by slug')
-            this.galleries = response.data.slice(1)
+            this.galleries = response.data.data.slice(1)
             this.loading.galleries = false
           }
         })
