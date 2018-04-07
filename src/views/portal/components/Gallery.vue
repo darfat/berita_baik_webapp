@@ -6,7 +6,7 @@
                   <div class="gallery-thumbnail">
                       <img :src="mainGallery.main_image" class="gallery-image" />
                       <div class="gallery-image-title">
-                        <p >{{ mainGallery.editorial.name }}</p>
+                        <p v-if="mainGallery.editorial" >{{ mainGallery.editorial.name }}</p>
                       </div>
                   </div>
                   <div class="gallery-info">

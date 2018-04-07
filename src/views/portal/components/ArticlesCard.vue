@@ -149,7 +149,6 @@
       }
     },
     created() {
-      console.log(this.showPaging)
       this.init()
     },
     methods: {
