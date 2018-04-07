@@ -95,5 +95,15 @@ body{
     border-radius: 50%;
     color: $main-red;    
   }
+}
 
+.icon-network{
+  .network-icon {
+    border-radius: 50px;
+    // box-shadow: 0px 0px 2px #0a0a0a;
+    padding: 5px 5px;
+    border: 2px solid #515151;
+    width: 36px;
+    height: 36px;
+  }
 }

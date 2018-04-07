@@ -78,10 +78,11 @@
 }
 
 .article-container .headline-container .main .content .icons{
-    float: right;    
-    .fa-icon{
-        
+    float: right;
+    .icon-network{
+        display: inline;        
     }
+    
 }
 .article-container .headline-container .main .content .article-option{
     color: #696968

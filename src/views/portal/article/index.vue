@@ -85,32 +85,32 @@
                       </el-col>                      
                       <el-col :xs="24" :sm="6">
                         <div class="icons">
-                        <span><bb-love :articleID="mainArticle.id" :type="'article'" :scale="2"></bb-love></span>
+                        <bb-love :articleID="mainArticle.id" :type="'article'" :scale="2"></bb-love>
                         <social-sharing url="http://beritabaik.id/"
                         :title="mainArticle.title"
                         :description="mainArticle.teaser"
                         :quote="mainArticle.title"
                         hashtags="beritabaik,news"
                         inline-template>
-                          <span>
-                              <network network="facebook" >
-                                <fa-icon name="facebook-f" scale="1.8" class="network-icon" ></fa-icon>
+                          <div class="icon-network">                          
+                              <network network="facebook">
+                                <fa-icon name="facebook-f" scale="1.8" class="network-icon"></fa-icon>
                               </network>
-                              <network network="twitter" class="network-icon">
-                                <fa-icon name="twitter" scale="1.8" ></fa-icon>
+                              <network network="twitter">
+                                <fa-icon name="twitter" scale="1.8" class="network-icon"></fa-icon>
                               </network>
                               <network network="email">
-                                <fa-icon name="envelope" scale="1.8" ></fa-icon>
+                                <fa-icon name="envelope" scale="1.8" class="network-icon"></fa-icon>
                               </network>
                               <network network="googleplus">
-                                <fa-icon name="google-plus" scale="1.8" ></fa-icon>
+                                <fa-icon name="google-plus" scale="1.8" class="network-icon"></fa-icon>
                               </network>
                               <!-- <network network="whatsapp">
-                                <fa-icon name="whatsapp" scale="2" ></fa-icon>
+                                <fa-icon name="whatsapp" scale="2" class="network-icon"></fa-icon>
                               </network> -->
-                          </span>
+                          </div>
                         </social-sharing>                        
-                        <span><v-icon name="more-horizontal" base-class="icon-30"></v-icon></span>
+                        <v-icon name="more-horizontal" base-class="icon-30"></v-icon>
                         </div>
                       </el-col>                      
                   </el-row>
@@ -291,6 +291,6 @@ export default {
   }
 }
 .fa-icon{
-    fill:red;
+    fill: red;
 }
 </style>
