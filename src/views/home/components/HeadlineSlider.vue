@@ -100,6 +100,7 @@ h3{
 .title h2{    
   line-height: 0.03em;
   color: $black-1;
+  font-family: 'Neosans-Black';
 }
 
 .separator {
