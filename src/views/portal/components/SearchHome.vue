@@ -120,21 +120,21 @@ export default {
   background-color: #e6e6e6;
   &-box{
     &-label{
-      color: $bb-blue;
+      color: $main-blue;
       font-size: 1.5em;
       line-height: 1.6em;
       font-weight: 700;
       text-align: center;        
     }
     &-advanced{
-      color: $bb-blue;
+      color: $main-blue;
       text-align: right;
     }
   }
   &-advanced{
     margin: 40px 0;
     padding: 20px;
-    border: 2px solid $bb-blue;
+    border: 2px solid $main-blue;
     background-color: #fff;
     min-height: 300px;
     &-info{
@@ -146,7 +146,7 @@ export default {
       padding: 40px 0;
       span{
         display: inline-block;
-        color: $bb-blue;
+        color: $main-blue;
         font-weight: 700;
         padding-right: 10px;
       }      
@@ -154,7 +154,7 @@ export default {
         width: 70%;
       }
       .el-button{
-        background-color: $bb-blue;
+        background-color: $main-blue;
         color: #fff;
       }
     }
@@ -194,7 +194,7 @@ export default {
 
   hr{
     height: 10px;
-    background-color: $bb-yellow;
+    background-color: $main-red;
     border: none;
     width: 10%;    
   }
