@@ -230,7 +230,7 @@
 
 
   .el-row {
-    margin-bottom: 10px;
+    margin-bottom: 1px;
     &:last-child {
       margin-bottom: 5px;
     }

@@ -14,11 +14,11 @@
 }
 
 .events .events-content .events-separator {
-  border-left: 2px solid $bb-grayWhite;
+  border-left: 2px solid $bb-gray;
   height: 100%;
 }
 .events .events-content .events-month{
-  color: $bb-blue;
+  color: $main-blue;
   font-weight: bold;
   font-size: 2.0em;
   margin-top: 0.5em;
@@ -37,7 +37,7 @@
   width: 100px;
   min-height:100px;
   border-radius: 50%;
-  color: $bb-grayWhite;
+  color: $bb-gray;
   line-height: 2px;
   text-align: center;
   border-style: solid;

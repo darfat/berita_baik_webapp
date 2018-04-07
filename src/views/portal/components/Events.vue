@@ -1,5 +1,9 @@
 <template>
   <div class="events">      
+    <div class="m-b-20"> 
+      <div class="gray-separator"> <span> </span>  </div>
+    </div>
+
     <el-row :gutter="20" class="events-title">
         <el-col :xs="24" :sm="8"  >
             <span class="font-black">ACARA </span> <span class="font-blue" >BULAN INI 
@@ -8,12 +12,11 @@
             </span>
         </el-col>
     </el-row>
-    <el-row >
-    </el-row>
     <el-row :gutter="20" class="events-content" >
       <el-col :xs="24" :sm="6">
         <el-row >
           <el-col >
+            <hr style="width:30px;height:5px;background-color:#EB0029; border: none; padding-top:10px; margin-left: 0; clear:both" />
             <div class="events-month" >DESEMBER</div>
             <div>Cicero famously orated against his political opponent Lucius Sergius Catilina.</div>
           </el-col>
@@ -68,6 +71,9 @@
         </el-row>
       </el-col>
     </el-row>
+    <div class="m-t-20"> 
+      <div class="gray-separator"> <span> &nbsp; </span>  </div>
+    </div>
   </div>
 </template>
 

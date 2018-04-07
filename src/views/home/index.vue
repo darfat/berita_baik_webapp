@@ -52,6 +52,10 @@
   <el-row :gutter="10">
     <el-col :xs="24" :sm="24"><home-youtube-video></home-youtube-video></el-col>
   </el-row>
+
+  <div class="container">
+    <div class="gray-separator"> <span> </span>  </div>
+  </div>
   
   <el-row :gutter="10">
     <div class="container">    
@@ -61,20 +65,15 @@
     </div>
   </el-row>
 
-
+  <div class="spacer"></div>
   <el-row :gutter="10">
     <div class="container">
-      <div class="gray-separator"> <span> </span>  </div>
-            <div class="spacer"></div>
         <el-col :xs="24" :sm="24">
-          
               <events></events>
-            <div class="spacer"></div>
-            <div class="gray-separator"> <span> </span>  </div>
         </el-col>
-      
     </div>
   </el-row>
+  <div class="spacer"></div>
 
   <el-row>
     <div class="container">

@@ -84,7 +84,7 @@ a:hover {
 }
 
 .m-b-20 {
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .p-tb-5 {
   padding-top: 5px;
@@ -123,6 +123,13 @@ a:hover {
   border-bottom: 1px solid #000;
   margin: auto;
 }
+.h-gray-divider{
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid #b0b0b0;
+  margin: auto;
+}
+
 
 .v-icon,
   .icon-20 {
