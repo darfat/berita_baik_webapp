@@ -1,8 +1,6 @@
 <template>
   <div class="events">      
-    <div class="m-b-20"> 
-      <div class="gray-separator"> <span> </span>  </div>
-    </div>
+    
 
     <el-row :gutter="20" class="events-title">
         <el-col :xs="24" :sm="8"  >
@@ -71,9 +69,7 @@
         </el-row>
       </el-col>
     </el-row>
-    <div class="m-t-20"> 
-      <div class="gray-separator"> <span> &nbsp; </span>  </div>
-    </div>
+    
   </div>
 </template>
 

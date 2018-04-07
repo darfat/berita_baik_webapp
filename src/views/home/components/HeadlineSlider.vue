@@ -14,9 +14,9 @@
            <fa-icon name="share-alt" scale="1.3"  ></fa-icon> 
         </span>
       <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">
-        <h2>{{item.article.title}}</h2>
+        <h2 class="headline" >{{item.article.title}}</h2>
       </router-link>
-      <div v-html="item.article.teaser" ></div>
+      <div v-html="item.article.teaser"  class="sub-headline" ></div>
       <div class="separator">&nbsp;&nbsp;&nbsp;&nbsp;</div>
       <div class="author">
         {{ item.article.reporter_name}} | <timeago :since="item.article.publish_date"></timeago>
@@ -100,9 +100,6 @@ h3{
 .title h2{    
   line-height: 0.03em;
   color: $black-1;
-}
-.author{
-  color: $black-2;
 }
 
 .separator {

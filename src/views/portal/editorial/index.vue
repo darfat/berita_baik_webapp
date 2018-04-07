@@ -38,7 +38,7 @@
                     </el-row>
                     <el-row :gutter="20" class="ln-title">
                       <el-col >
-                        <div > 
+                        <div class="headline"> 
                           <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
                             {{ latestNews.title }}
                           </router-link>
@@ -46,7 +46,7 @@
                       </el-col>
                     </el-row>
                     <el-row :gutter="20">
-                        <el-col >
+                        <el-col class="sub-headline">
                           <div v-html="latestNews.teaser" class="article-content">
                           </div>
                         </el-col>
@@ -56,7 +56,7 @@
                     </el-row>
                     <el-row :gutter="20">
                         <el-col class="footer">
-                          <div>
+                          <div class="author">
                             {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
                           </div>
                         </el-col>
@@ -96,7 +96,7 @@
       <div class="container">
         <el-col :xs="24" :sm="16" class="content">
           <div class="grid-content">
-              <articles-card :editorialSlug="editorialSlug" :editorialType="editorialType" :limit=6></articles-card>
+              <articles-card :editorialSlug="editorialSlug" :editorialType="editorialType" :limit=6 :showPaging="false"></articles-card>
           </div>
         </el-col>
         <el-col :xs="24" :sm="8" class="side-content">

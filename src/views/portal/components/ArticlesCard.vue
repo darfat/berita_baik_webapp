@@ -3,7 +3,7 @@
     <el-row>
       <div class="section-title"> {{title}}</div>
     </el-row>
-
+    <div class="m-t-10">
     <el-row :gutter="20">
       <el-col :xs="24" :sm="12" v-for="(article) in articles" :key="article.id">
         <div class="news-col">
@@ -34,7 +34,7 @@
               <el-row class="ac-title">
                 <div>
                   <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
-                    <span>{{ article.title}}</span>
+                    <span class="headline">{{ article.title}}</span>
                   </router-link>
                 </div>
               </el-row>
@@ -45,7 +45,7 @@
               </el-row>
               <el-row>
                 <el-col class="ac-footer">
-                  <div>
+                  <div class="author">
                     {{ article.reporter_name }} |
                     <timeago :auto-update="60" :since="article.publish_date"></timeago>
                   </div>
@@ -80,8 +80,8 @@
         </el-dialog>
       </el-col>
     </el-row>
-
-    <div class="ac-paging">
+    </div>
+    <div class="ac-paging" v-if="showPaging">
       <el-pagination
         background
         layout="prev, pager, next"
@@ -129,6 +129,10 @@
       limit: {
         default: 8,
         type: Number
+      },
+      showPaging: {
+        default: true,
+        type: Boolean
       }
     },
     data() {
@@ -145,6 +149,7 @@
       }
     },
     created() {
+      console.log(this.showPaging)
       this.init()
     },
     methods: {

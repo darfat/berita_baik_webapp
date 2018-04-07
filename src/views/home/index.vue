@@ -64,7 +64,9 @@
       </el-col>
     </div>
   </el-row>
-
+  <div class=" container m-b-20"> 
+      <div class="gray-separator"> <span> </span>  </div>
+  </div>
   <div class="spacer"></div>
   <el-row :gutter="10">
     <div class="container">
@@ -74,7 +76,9 @@
     </div>
   </el-row>
   <div class="spacer"></div>
-
+  <div class="container m-t-20"> 
+      <div class="gray-separator"> <span> &nbsp; </span>  </div>
+  </div>
   <el-row>
     <div class="container">
     <el-col :xs="24" :sm="16"><galeri></galeri></el-col>

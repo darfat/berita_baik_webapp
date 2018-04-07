@@ -19,7 +19,7 @@
                 <el-row class="content">
                   <el-row :gutter="20" class="a-title">
                     <el-col >
-                      <h1>{{ mainArticle.title }}</h1>
+                      <h1 class="headline">{{ mainArticle.title }}</h1>
                     </el-col>
                   </el-row>
                   <el-row :gutter="20">
@@ -27,14 +27,14 @@
                   </el-row>
                   <el-row :gutter="20">
                       <el-col class="footer">
-                        <div>
+                        <div class="author">
                         <timeago :auto-update="60" :since="mainArticle.publish_date"> </timeago>
                         </div>
                       </el-col>
                   </el-row>
                   <el-row :gutter="20">
                       <el-col class="teks">
-                        <div v-html="mainArticle.content" ></div>
+                        <div v-html="mainArticle.content" class="content" ></div>
                       </el-col>
                   </el-row>
                   <el-row >

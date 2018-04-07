@@ -18,7 +18,7 @@
                    <el-row class="side-title-section">
                       <div>
                         <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
-                          <span>{{ popular.title}}</span>
+                          <span class="headline">{{ popular.title}}</span>
                         </router-link>
                       </div>
                     </el-row>
@@ -27,7 +27,7 @@
                     </el-row>
                     <el-row >
                         <el-col  class="side-footer">
-                         <div>
+                         <div class="author">
                           {{ popular.reporter_name }} | <timeago :since="popular.publish_date"></timeago>
                         </div>
                         </el-col>
