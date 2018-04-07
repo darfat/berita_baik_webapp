@@ -86,9 +86,9 @@ h3{
   left: 3%;
   text-align: center;
   color: #FFF;
-  font-weight: bold;
   background-color: $main-blue;
-  padding: 5px 15px;
+  padding: 8px 10px 5px 10px;
+  text-transform: uppercase;
 }
 
 .title{	
