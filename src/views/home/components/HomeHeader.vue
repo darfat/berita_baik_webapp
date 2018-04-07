@@ -271,8 +271,9 @@ nav a.router-link-active {
 
 /* Giving a background-color to the nav container. */
 nav {
-  font-size: 11px;
-  position: relative; 
+  font-size: 12px;
+  position: relative;
+  font-family: 'Neosans-Black';
 }
 
 #logo {
@@ -334,7 +335,6 @@ nav ul li {
 	display: inline-block;
 	float: left;
 	background-color: $main-red;
-  font-weight: 900;
   text-transform: uppercase;
 	}
 
