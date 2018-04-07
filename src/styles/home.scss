@@ -10,6 +10,14 @@ body{
   padding-right: 10px;  
     
 }
+.container-black {  
+  position: relative;
+  max-width: 1170px;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;  
+  background-color: $bb-black;    
+}
 .video-paging,
 .gallery-paging,
 .infografis-paging{

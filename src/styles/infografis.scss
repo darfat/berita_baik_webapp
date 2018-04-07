@@ -1,30 +1,28 @@
 @import './variables.scss';
 
 .infografis-detail{
-
+    
 }
 .infografis-detail .infografis-header{
     padding-top: 10px;
     padding-bottom: 5px;
     font-style: bold;
-    // color: #fff;
+    color: #fff;
     font-size: 1.6em;
 }
 .infografis-detail .infografis-content{
-
+    justify-content: center;
+    align-items: center;    
 }
 .infografis-detail .infografis-content .infografis-col {
-}
-.infografis-detail .infografis-content .infografis-col {
-    margin-top: 5px;
-    margin-bottom: 5px;
     padding: 0px;
-
 }
 .infografis-detail .infografis-content .infografis-col .infografis-info{
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    background-color: #fff;
 }
 .infografis-detail .infografis-content .infografis-col .infografis-info .infografis-content-title{
     font-weight: bold;
@@ -35,12 +33,14 @@
 }
 
 .infografis-detail .infografis-content .infografis-col .infografis-thumbnail {
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
 }
-.infografis-detail .infografis-content .infografis-col .infografis-thumbnail .infografis-image{
-    width: 100%;
-    height: auto;
-   // max-height: 235px;
+.infografis-detail .infografis-content .infografis-col .infografis-thumbnail .img{
+    
+    object-fit: cover;
 }
 
 .infografis-detail .infografis-content .infografis-col .infografis-thumbnail .infografis-image-title {

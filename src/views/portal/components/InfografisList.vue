@@ -7,7 +7,7 @@
             <el-col :span="8" v-for="(infografis) in list" :key="infografis.id" class="infografis-col">
                 <el-card  :body-style="{ padding: '0px' }" class="infografis-card">
                   <div class="infografis-thumbnail">
-                      <router-link :to="{ path: '/infografis/slug-id' }">
+                      <router-link :to="{ name: 'infografis-detail-layout', params: { 'slug': infografis.slug} }">
                         <img :src="infografis.main_image" class="infografis-image" />
                         <div class="infografis-image-title">
                           <p >{{ infografis.editorial.name }}</p>
@@ -26,7 +26,7 @@
                     </div>
                     <el-row class="infografis-content-title">
                       <div>
-                       <router-link  :to="{ name: 'infografis-detail-layout', params: { editorialSlug, 'slug': infografis.slug,  'articleID': infografis.id} }" >
+                       <router-link  :to="{ name: 'infografis-detail-layout', params: { editorialSlug, 'slug': infografis.slug} }" >
                           <span>{{ infografis.title}}</span>
                        </router-link>
                       </div>

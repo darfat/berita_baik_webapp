@@ -6,7 +6,6 @@
             <el-col :span="22" class="infografis-col">
                   <div class="infografis-thumbnail">
                       <img :src="infografis.main_image" class="infografis-image" />
-                      
                   </div>
                   <div class="infografis-info">
                     <div class="bottom clearfix">
