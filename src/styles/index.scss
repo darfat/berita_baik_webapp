@@ -11,8 +11,16 @@
   src: url('../assets/fonts/dinpro/DINPro-Regular_13937.ttf'); 
 }
 @font-face {
+  font-family: 'DINPro-Bold';
+  src: url('../assets/fonts/dinpro/DINPRO-BOLD.ttf'); 
+}
+@font-face {
   font-family: 'Neosans-Medium-Italic';
   src: url('../assets/fonts/neosans/NeoSans Medium Italic.otf'); 
+}
+@font-face {
+  font-family: 'Neosans-Black';
+  src: url('../assets/fonts/neosans/NeoSans Black.otf'); 
 }
 body {
   -moz-osx-font-smoothing: grayscale;
