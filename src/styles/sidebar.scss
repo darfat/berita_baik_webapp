@@ -36,7 +36,7 @@
           }
           &:hover{
             background-color: $menuHover;
-            color: $bb-blue;
+            color: $main-blue;
           }
         }        
       }
@@ -109,11 +109,11 @@
     color: white!important;
     &:hover {
       background-color: $menuHover!important;
-      color: $bb-blue!important;
+      color: $main-blue!important;
     }
     &.is-active {
       background-color: $menuHover!important;
-      color: $bb-blue!important;
+      color: $main-blue!important;
     }
   }
   .el-menu--collapse .el-menu .el-submenu{

@@ -11,8 +11,20 @@
   src: url('../assets/fonts/dinpro/DINPro-Regular_13937.ttf'); 
 }
 @font-face {
+  font-family: 'DINPro-Bold';
+  src: url('../assets/fonts/dinpro/DINPRO-BOLD.ttf'); 
+}
+@font-face {
+  font-family: 'Neosans';
+  src: url('../assets/fonts/neosans/NEOSANS.otf'); 
+}
+@font-face {
   font-family: 'Neosans-Medium-Italic';
   src: url('../assets/fonts/neosans/NeoSans Medium Italic.otf'); 
+}
+@font-face {
+  font-family: 'Neosans-Black';
+  src: url('../assets/fonts/neosans/NeoSans Black.otf'); 
 }
 body {
   -moz-osx-font-smoothing: grayscale;
@@ -233,7 +245,7 @@ a:hover {
 
 }
 .font-blue {
-  color: $bb-blue;
+  color: $main-blue;
 }
 .font-black {
   color: $bb-black;
@@ -257,7 +269,8 @@ a:hover {
     border: 2px solid $bb-white-menu;
 }
 .headline {
-  color: $headline
+  color: $headline;
+  font-family: 'Neosans-Black';
 }
 .sub-headline {
   color: $subHeadline

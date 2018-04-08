@@ -126,7 +126,7 @@ export default {
   .email{
     padding: 20px 0;
     .el-button{
-      background-color: $bb-blue;
+      background-color: $main-blue;
       color: #fff;
       border: 1px solid #eee;
     }    
@@ -140,7 +140,7 @@ export default {
     }
   }
   h1{
-    color: $bb-blue;
+    color: $main-blue;
   }
   h2{
     margin: 0;

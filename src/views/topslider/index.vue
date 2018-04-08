@@ -148,7 +148,7 @@ export default {
 .tsc .carousel-control {	
     height: 40px;
 	width: 40px;
-    background: none repeat scroll 0 0 #0A2F88;
+    background: none repeat scroll 0 0 #051D49;
     border: 4px solid #FFFFFF;
     border-radius: 23px 23px 23px 23px;
     margin-top: auto;
@@ -163,7 +163,7 @@ export default {
 
 .tsc .carousel-control.left span,
 .tsc .carousel-control.right span {
-	background-color: #0A2F88;
+	background-color: #051D49;
 }
 .tsc .carousel-control.left span:hover,
 .tsc .carousel-control.right span:hover {

@@ -35,7 +35,7 @@
     text-align: center;
     color: white;
     font-weight: bold;
-    background-color: #0a2f88;
+    background-color: $main-blue;
     padding-left: 16px;
     padding-right: 16px;
     h2{
@@ -59,7 +59,7 @@
     h1{
         font-size: 3em;
         margin-bottom: 0;
-        color: $black-1;
+        color: $headline;
     }
 }
 
@@ -78,10 +78,11 @@
 }
 
 .article-container .headline-container .main .content .icons{
-    float: right;    
-    .fa-icon{
-        
+    float: right;
+    .icon-network{
+        display: inline;        
     }
+    
 }
 .article-container .headline-container .main .content .article-option{
     color: #696968

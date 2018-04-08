@@ -106,5 +106,5 @@ height: 100%;
 .video-wrapper .overlay-desc p {   
   margin:0;  
 }
-.video-wrapper .overlay-desc h2{ background-color: #0A2F88; display:table; padding:.25em; width: 20%;}
+.video-wrapper .overlay-desc h2{ background-color: #051D49; display:table; padding:.25em; width: 20%; text-transform: uppercase;}
 </style>

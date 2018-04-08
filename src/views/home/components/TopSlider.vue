@@ -154,14 +154,14 @@ export default {
 
 h3{
   position: absolute;
-  top: 1%;
-  left: 1%;
+  top: 0;
+  left: 10px;
   text-align: center;
-  color: #FFF;
-  font-weight: bold;
+  color: #FFF;  
   background-color: $main-blue;
-  padding: 5px 15px;
-  font-size: 0.9em;
+  padding: 8px 10px 5px 10px;
+  font-size: 0.7em;
+  text-transform: uppercase;
 }
 
 </style>
