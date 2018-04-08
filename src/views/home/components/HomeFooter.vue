@@ -12,7 +12,7 @@
           <el-row type="flex" class="container">
             <el-col :span="24" class="footer-nav">
             <a href="">Beranda</a>
-            <a href="">Tentang Kami</a>
+            <a href=""><router-link :to="{ name: 'tentang-kami-menu' }">Tentang Kami</router-link></a>
             <a href="">Kontak</a>
             <a href="">Aturan</a>
             <a href="">Privasi</a>

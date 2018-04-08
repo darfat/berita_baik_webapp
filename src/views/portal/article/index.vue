@@ -9,7 +9,7 @@
                     <div>
                         <div class="thumbnail">
                             <img :src="mainArticle.main_image" />
-                          <div class="editorial-type-img">
+                          <div class="editorial-type-img" v-if="mainArticle.editorial">
                               <h2>{{ mainArticle.editorial.name }}</h2>
                           </div>
                         </div>
@@ -19,7 +19,7 @@
                 <el-row class="content">
                   <el-row :gutter="20" class="a-title">
                     <el-col >
-                      <h1 class="headline">{{ mainArticle.title }}</h1>
+                      <h2 class="headline">{{ mainArticle.title }}</h2>
                     </el-col>
                   </el-row>
                   <el-row :gutter="20">
@@ -93,11 +93,11 @@
                         hashtags="beritabaik,news"
                         inline-template>
                           <span>
-                              <network network="facebook" >
-                                <fa-icon name="facebook-f" scale="1.8" class="network-icon" ></fa-icon>
+                              <network network="facebook" class="share-icon">
+                                <fa-icon name="facebook-f" scale="1.8" class="share-icon" ></fa-icon>
                               </network>
-                              <network network="twitter" class="network-icon">
-                                <fa-icon name="twitter" scale="1.8" ></fa-icon>
+                              <network network="twitter" class="share-icon">
+                                <fa-icon name="twitter" scale="1.8" class="share-icon" ></fa-icon>
                               </network>
                               <network network="email">
                                 <fa-icon name="envelope" scale="1.8" ></fa-icon>
@@ -290,7 +290,15 @@ export default {
     margin-bottom: 0;
   }
 }
-.fa-icon{
+
+.share-icon fa-icon {
     fill:red;
+    color:red;
 }
+
+.share-icon network {
+    fill:red;
+    color:red;
+}
+
 </style>

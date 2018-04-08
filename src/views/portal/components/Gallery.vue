@@ -20,17 +20,17 @@
                     </div>
                     <el-row class="gallery-content-title">
                       <div>
-                        <span>{{ mainGallery.title}}</span>
+                        <span class="headline">{{ mainGallery.title}}</span>
                       </div>
                     </el-row>
                     <el-row class="gallery-content-teaser">
-                      <div>
-                        <span>{{ mainGallery.subtitle}}</span>
+                      <div class="sub-headline">
+                        <div v-html="mainGallery.content"> </div>
                       </div>
                     </el-row>
                     <el-row class="gallery-content-content">
-                      <div>
-                        <span>{{ mainGallery.content}}</span>
+                      <div class="content" >
+                        <div v-html="mainGallery.content" ></div>
                       </div>
                     </el-row>
                     <el-row >
@@ -38,7 +38,7 @@
                     </el-row>
                     <el-row >
                         <el-col class="gallery-footer">
-                        <div>
+                        <div class="author" >
                           {{ mainGallery.reporter_name }} | <timeago :since="mainGallery.publish_date"></timeago>
                         </div>
                       </el-col>
@@ -68,7 +68,7 @@
                     </el-row>
                     </div>
                     <el-row class="gallery-content-title">
-                      <div>
+                      <div class="headline">
                         <span>{{ g.title}}</span>
                       </div>
                     </el-row>
@@ -77,8 +77,8 @@
                     </el-row>
                     <el-row >
                         <el-col class="gallery-footer">
-                        <div>
-                          {{ g.reporter.name }} | <timeago :since="g.publish_date"></timeago>  
+                        <div class="author">
+                          {{ g.reporter_name }} | <timeago :since="g.publish_date"></timeago>  
                         </div>
                       </el-col>
                     </el-row>

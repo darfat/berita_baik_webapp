@@ -74,19 +74,18 @@ export default {
   },
   methods: {
     init() {
-      console.log('init comment')
+      console.log(this.articleID)
       this.getComments(this.articleID)
     },
     getComments(articleID) {
       this.loading.comments = true
       if (articleID) {
         getCommentsByArticleID({ articleID }).then(response => {
+          console.log('get comments')
           if (response) {
             this.comments = response.data
-            this.loading.comments = false
-          } else {
-            this.loading.comments = false
           }
+          this.loading.comments = false
         })
       }
     }
