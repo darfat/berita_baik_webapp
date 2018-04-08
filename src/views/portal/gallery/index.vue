@@ -6,7 +6,7 @@
       </div>
     </div>
     <el-row :gutter="20" class="list-container">
-      <div class="container">
+      <div class="container spacer">
         <el-col :xs="24" :sm="16" class="content">
           <div class="grid-content">
           <articles-card ></articles-card>

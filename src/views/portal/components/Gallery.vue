@@ -49,7 +49,7 @@
     </div>
     <div class="gallery-card-container" v-loading="loading.galleries">    
         <el-row :gutter="20" >
-            <el-col :span="8" v-for="(g) in galleries" :key="g.id" class="gallery-col">
+            <el-col :xs="24" :sm="8" v-for="(g) in galleries" :key="g.id" class="gallery-col">
                 <el-card  :body-style="{ padding: '0px' }" class="gallery-card">
                   <div class="gallery-thumbnail">
                       <img :src="g.main_image" class="gallery-image" />
