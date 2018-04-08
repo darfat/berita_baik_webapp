@@ -34,7 +34,7 @@
               <el-row class="ac-title">
                 <div>
                   <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
-                    <span class="headline">{{ article.title}}</span>
+                    <h2 class="headline">{{ article.title}}</h2>
                   </router-link>
                 </div>
               </el-row>
