@@ -120,13 +120,14 @@ a:hover {
 
 .main-article-title {
   font-size: 25px;
-  color: #042f7f;
+  color: $main-blue;
   font-weight: bold;
 }
 .section-title {
-  font-size: 20px;
-  color: #042f7f;
+  font-size: 16px;
+  color: $main-blue;
   font-weight: bold;
+  font-family: 'Neosans';
 }
 
 .h-divider{

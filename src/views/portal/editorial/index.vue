@@ -5,7 +5,7 @@
         <div class="container">         
           <el-col :xs="24" v-if="latestNews.editorial">
             <div class="grid-content title-container" v-if="editorialSlug !== latestNews.editorial.slug">
-                <span class="main-article-title"> {{ editorialTitle }} </span> 
+                <h1 class="main-article-title"> {{ editorialTitle }} </h1> 
             </div>
           </el-col>
         </div>  
@@ -21,7 +21,7 @@
                           <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
                             <img :src="latestNews.main_image" />
                             <div class="editorial-type-img" v-if="latestNews.id">
-                                <p>{{ latestNews.editorial.name }}</p>
+                                <h2>{{ latestNews.editorial.name }}</h2>
                             </div>
                           </router-link>
                         </div>

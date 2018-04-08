@@ -77,7 +77,8 @@ export default {
 }
 .image-hl{
   width: 100%;
-  max-height: 400px;  
+  max-height: 400px;
+  object-fit: cover;  
 }
 
 h3{

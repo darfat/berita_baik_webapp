@@ -1,3 +1,4 @@
+@import './variables.scss';
 .card-content{
     // background-color: violet;
 }
@@ -37,9 +38,9 @@
     // transform: translate( -50%, -50% );
     text-align: center;
     color: white;
-    background-color: #051D49;
-    padding-left: 15px;
-    padding-right: 15px;
+    background-color: $main-blue;
+    padding-left: 10px;
+    padding-right: 10px;
     text-transform: uppercase;
 }
 .mini-thumbnail img{
@@ -49,8 +50,9 @@
 }
 
 .mini-thumbnail h3{
-    font-size: 0.9em;
+    font-size: 0.6em;
 }
+
 .el-row {
     margin-bottom: 20px;
    &:last-child {
@@ -78,4 +80,7 @@
 .ac-paging{
     text-align: center;
     margin-top: 10px;
+}
+.ac-title h2{
+    font-size: 1em;
 }
