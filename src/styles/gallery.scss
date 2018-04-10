@@ -1,7 +1,9 @@
 @import './variables.scss';
 
 .gallery-detail{
-
+    hr{
+        margin: 1px;
+    }
 }
 .gallery-detail .gallery-header{
     padding-top: 10px;
@@ -51,7 +53,7 @@
     font-weight: bold;
     background-color: $main-blue;
     padding-left: 10px;
-    padding-right: 10px;
+    padding-right: 10px;    
     font-size: 0.8em;
 }
 .gallery-detail .gallery-content .gallery-col .gallery-thumbnail img{
@@ -59,15 +61,13 @@
     height: auto;
     display: block;
 }
-
-
 .gallery-detail .gallery-card-container .gallery-col {
     padding: 15px;
 }
 .gallery-detail .gallery-card-container .gallery-col .gallery-card{
     margin-top: 5px;
     margin-bottom: 5px;
-    padding: 0px;
+    padding-bottom: 10px;
 
 }
 .gallery-detail .gallery-card-container .gallery-col .gallery-info{
