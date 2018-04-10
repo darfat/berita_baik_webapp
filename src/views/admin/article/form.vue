@@ -34,19 +34,19 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="Judul" prop="title">
-                <el-input v-model="article.title"  v-on:change="generateSlug"></el-input>
+                <el-input v-model="article.title"  v-on:change="generateSlug" :maxlength="70" ></el-input>
             </el-form-item>
-            <el-form-item label="Judul Atas" >
-                <el-input v-model="article.slug"></el-input>
+            <el-form-item label="Sub Judul" >
+                <el-input v-model="article.subtitle" :maxlength="25" ></el-input>
             </el-form-item>
             
-            <el-form-item label="Ringkasan Utama">
+            <el-form-item label="Ringkasan Utama" prop="teaser">
               <div class="editor-container">
-                <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser'></tinymce>
+                <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser' ></tinymce>
               </div>
             </el-form-item>
-            <el-form-item label="Isi">
-              <tinymce :height="400" v-model="article.content" ref="editor"  id='content'></tinymce>
+            <el-form-item label="Isi" prop="content">
+              <tinymce :height="400" v-model="article.content" ref="editor"  id='content'   ></tinymce>
             </el-form-item>
             <el-form-item label="Citra" >
               <span> {{ main_image_name }}</span>
@@ -67,7 +67,16 @@
               </el-col>
               <el-col :span="12">
                   <el-form-item label="Lokasi">
-                    <el-input v-model="article.place"></el-input>
+                    <el-input ></el-input>
+                    <!-- <vue-google-autocomplete
+                        ref="place"
+                        id="map"
+                        classname="form-control"
+                        placeholder="Cari Lokasi..."
+                        v-on:placechanged="getAddressData"
+                        country="id"
+                    >
+                    </vue-google-autocomplete> -->
                   </el-form-item>
               </el-col>
             </el-row>
@@ -260,6 +269,7 @@ import { getRelatesByArticleID } from '@/api/relate'
 
 import Tinymce from '@/components/Tinymce'
 import ImageUploader from '@/components/ImageUploader'
+// import VueGoogleAutocomplete from 'vue-google-autocomplete'
 
 export default {
   name: 'ArticleForm',
@@ -324,7 +334,9 @@ export default {
       valute: '',
       rules: {
         title: [
-          { required: true, message: 'Silahkan isi judul', trigger: 'blur' }
+          { required: true, message: 'Silahkan Isi judul', trigger: 'blur' },
+          { teaser: true, message: 'Silahkan isi Ringkasan Utama', trigger: 'blur' },
+          { content: true, message: 'Silahkan isi Isi Berita', trigger: 'blur' }
         ]
       },
       action: 'add',
@@ -579,6 +591,9 @@ export default {
         }
       })
     }
+    // getAddressData(addressData, placeResultData, id) {
+    //   this.article.place = addressData
+    // }
   }
 }
 
