@@ -96,7 +96,7 @@
       <div class="container">
         <el-col :xs="24" :sm="16" class="content">
           <div class="grid-content">
-              <articles-card :editorialSlug="editorialSlug" :editorialType="editorialType" :limit=6 :showPaging="false"></articles-card>
+              <articles-card :editorialSlug="editorialSlug" :editorialType="editorialType" :limit=4 :showPaging="false"></articles-card>
           </div>
         </el-col>
         <el-col :xs="24" :sm="8" class="side-content">

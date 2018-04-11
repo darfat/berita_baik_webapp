@@ -24,6 +24,8 @@ import i18n from './lang' // Internationalization
 import moment from 'moment'
 // tweet
 import { Tweet, Timeline } from 'vue-tweet-embed'
+// infinit
+import InfiniteLoading from 'vue-infinite-loading'
 
 Vue.use(ElementUI, { locale })
 Vue.use(feather, 'v-icon')
@@ -47,6 +49,7 @@ Vue.filter('formatDate', function(value) {
 Vue.config.productionTip = false
 Vue.component('v-tweet', Tweet)
 Vue.component('v-timeline', Timeline)
+Vue.component('infinite-loading', InfiniteLoading)
 
 new Vue({
   el: '#app',

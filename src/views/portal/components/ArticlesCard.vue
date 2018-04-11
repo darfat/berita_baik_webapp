@@ -10,7 +10,7 @@
           <el-card :body-style="{ padding: '0px' }" class="news-card">
             <div>
               <div class="mini-thumbnail">
-                <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
+                <router-link v-if="article.editorial"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
                   <img :src="article.main_image" class="card-image" />
                   <div class="editorial-type-img">
                     <h3>{{ article.editorial.name }}</h3>
@@ -33,7 +33,7 @@
               </div>
               <el-row class="ac-title">
                 <div>
-                  <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
+                  <router-link v-if="article.editorial" :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
                     <h2 class="headline">{{ article.title}}</h2>
                   </router-link>
                 </div>
@@ -93,7 +93,11 @@
       >
       </el-pagination>
     </div>
+    <div class="ac-paging" v-if="!showPaging">
+      <h3>infinit stone</h3>
+      <infinite-loading @infinite="infiniteHandler"></infinite-loading>
 
+    </div>
   </div>
 </template>
 
@@ -154,7 +158,9 @@
     methods: {
       init() {
         this.per_page = this.limit
-        this.getArticles(this.editorialSlug, this.page)
+        if (this.showPaging === true) {
+          this.getArticles(this.editorialSlug, this.page)
+        }
       },
       getArticles(editorialSlug, page) {
         this.loading.articles = true
@@ -219,6 +225,78 @@
       handleCurrentChange(page) {
         console.log(`${page} page`)
         this.getArticles(this.editorialSlug, page)
+      },
+      infiniteHandler($state) {
+        const editorialSlug = this.editorialSlug
+        console.log(`${this.per_page} per_page`)
+        const page = this.articles.length / this.per_page + 1
+        console.log(`${page} page`)
+        if (editorialSlug) {
+          let params = {
+            editorialSlug,
+            page,
+            per_page: this.per_page
+          }
+          if (this.editorialType && this.editorialType !== null && this.editorialType.length) {
+            getEditorialIdBySlug({
+              slug: editorialSlug
+            }).then(editorialResponse => {
+              if (editorialResponse) {
+                params = {
+                  editorialSlug,
+                  editorialType: this.editorialType,
+                  editorialSlugID: editorialResponse.data.id,
+                  page,
+                  per_page: this.per_page
+                }
+                getNewsByEditorialSlug(params).then(response => {
+                  if (response) {
+                    // this.articles = response.data.data
+                    this.per_page = response.data.per_page
+                    this.total_pages = response.data.total_pages
+                    this.total_entries_size = response.data.total_entries_size
+                    this.page = response.data.page
+                    if (response.data.data && response.data.data.length) {
+                      this.articles = this.articles.concat(response.data.data)
+                      $state.loaded()
+                      if (this.articles.length / this.per_page === 3) {
+                        $state.complete()
+                      }
+                    } else {
+                      $state.complete()
+                    }
+                  }
+                  // this.loading.articles = false
+                })
+              }
+            })
+          } else {
+            console.log('get editorial by slug!!!')
+            console.log(params)
+            getNewsByEditorialSlug(params).then(response => {
+              if (response) {
+                // this.articles = response.data.data
+                this.per_page = response.data.per_page
+                this.total_pages = response.data.total_pages
+                this.total_entries_size = response.data.total_entries_size
+                this.page = response.data.page
+                console.log(response.data.data.length)
+                if (response.data.data && response.data.data.length) {
+                  console.log(`${this.articles.length} l before`)
+                  this.articles = this.articles.concat(response.data.data)
+                  console.log(`${this.articles.length} l after`)
+                  $state.loaded()
+                  if (this.articles.length / this.per_page === 3) {
+                    $state.complete()
+                  }
+                } else {
+                  $state.complete()
+                }
+              }
+              // this.loading.articles = false
+            })
+          }
+        } // end if editorial slug
       }
     } // end method
   }
