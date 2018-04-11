@@ -94,9 +94,7 @@
       </el-pagination>
     </div>
     <div class="ac-paging" v-if="!showPaging">
-      <h3>infinit stone</h3>
       <infinite-loading @infinite="infiniteHandler"></infinite-loading>
-
     </div>
   </div>
 </template>
@@ -228,8 +226,8 @@
       },
       infiniteHandler($state) {
         const editorialSlug = this.editorialSlug
-        console.log(`${this.per_page} per_page`)
-        const page = this.articles.length / this.per_page + 1
+        console.log(`${this.total_entries_size} this.total_entries_size`)
+        const page = Math.floor(this.articles.length / this.per_page) + 1
         console.log(`${page} page`)
         if (editorialSlug) {
           let params = {
@@ -256,22 +254,27 @@
                     this.total_pages = response.data.total_pages
                     this.total_entries_size = response.data.total_entries_size
                     this.page = response.data.page
+                    console.log(`${this.total_pages} total_pages`)
+                    console.log(`${this.total_entries_size} total entries size`)
                     if (response.data.data && response.data.data.length) {
+                      console.log(`${this.articles.length} l before`)
                       this.articles = this.articles.concat(response.data.data)
+                      console.log(`${this.articles.length} l after`)
                       $state.loaded()
-                      if (this.articles.length / this.per_page === 3) {
+                      console.log(`${Math.ceil(this.articles.length / this.per_page)} is completed`)
+                      if (Math.ceil(this.articles.length / this.per_page) === this.total_pages) {
                         $state.complete()
                       }
                     } else {
                       $state.complete()
                     }
                   }
+
                   // this.loading.articles = false
                 })
               }
             })
           } else {
-            console.log('get editorial by slug!!!')
             console.log(params)
             getNewsByEditorialSlug(params).then(response => {
               if (response) {
@@ -280,23 +283,51 @@
                 this.total_pages = response.data.total_pages
                 this.total_entries_size = response.data.total_entries_size
                 this.page = response.data.page
-                console.log(response.data.data.length)
+                console.log(`${this.total_pages} total_pages`)
+                console.log(`${this.total_entries_size} total entries size`)
                 if (response.data.data && response.data.data.length) {
                   console.log(`${this.articles.length} l before`)
                   this.articles = this.articles.concat(response.data.data)
                   console.log(`${this.articles.length} l after`)
                   $state.loaded()
-                  if (this.articles.length / this.per_page === 3) {
+                  console.log(`${Math.ceil(this.articles.length / this.per_page)} is completed`)
+                  if (Math.ceil(this.articles.length / this.per_page) === this.total_pages) {
                     $state.complete()
                   }
                 } else {
                   $state.complete()
                 }
               }
-              // this.loading.articles = false
             })
           }
-        } // end if editorial slug
+        } else {
+          getLatestNewsAll({
+            page,
+            per_page: this.per_page
+          }).then(response => {
+            if (response) {
+              this.articles = response.data.data
+              this.per_page = response.data.per_page
+              this.total_pages = response.data.total_pages
+              this.total_entries_size = response.data.total_entries_size
+              this.page = response.data.page
+              console.log(`${this.total_pages} total_pages`)
+              console.log(`${this.total_entries_size} total entries size`)
+              if (response.data.data && response.data.data.length) {
+                console.log(`${this.articles.length} l before`)
+                this.articles = this.articles.concat(response.data.data)
+                console.log(`${this.articles.length} l after`)
+                $state.loaded()
+                console.log(`${Math.ceil(this.articles.length / this.per_page)} is completed`)
+                if (Math.ceil(this.articles.length / this.per_page) === this.total_pages) {
+                  $state.complete()
+                }
+              } else {
+                $state.complete()
+              }
+            }
+          })
+        }
       }
     } // end method
   }
