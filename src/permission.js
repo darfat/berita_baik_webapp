@@ -8,7 +8,7 @@ import { getToken } from '@/utils/auth' // 验权
 // const whiteList = ['/home', '/login'] // 不重定向白名单
 const homePattern = '/home'
 const loginPatttern = '/login'
-
+const signupPattern = '/signup'
 router.beforeEach((to, from, next) => {
   NProgress.start()
   if (getToken()) {
@@ -31,7 +31,7 @@ router.beforeEach((to, from, next) => {
       // }
     }
   } else {
-    if (to.path && (to.path.startsWith(homePattern) || to.path.startsWith(loginPatttern))) {
+    if (to.path && (to.path.startsWith(homePattern) || to.path.startsWith(loginPatttern) || to.path.startsWith(signupPattern))) {
       next()
     } else {
       next('/home')
