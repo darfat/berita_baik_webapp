@@ -100,7 +100,8 @@ export default {
       img_b_logo,
       checked: false,
       fbSignInParams: {
-        scope: 'email,user_likes',
+        // scope: 'email,user_likes',
+        scope: 'email',
         return_scopes: true
       },
       /**
