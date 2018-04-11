@@ -40,9 +40,23 @@
         </div>
         <div class="options">
             <div class="login-with"> 
-                <v-icon name="facebook" base-class="icon-0dot8em v-align-middle"></v-icon>
-                <v-icon name="mail" base-class="icon-0dot8em v-align-middle"></v-icon>
-            </div>
+              <!--
+              <v-icon name="facebook" base-class="icon-0dot8em v-align-middle"></v-icon>
+              <v-icon name="mail" base-class="icon-0dot8em v-align-middle"></v-icon>
+              -->
+              <fb-signin-button
+                :params="fbSignInParams"
+                @success="onSignInSuccess"
+                @error="onSignInError">
+                <fa-icon name="facebook" class="icon" ></fa-icon>
+              </fb-signin-button>
+              <g-signin-button
+                :params="googleSignInParams"
+                @success="onSignInSuccess"
+                @error="onSignInError">
+                <fa-icon name="google-plus" class="icon" ></fa-icon>
+              </g-signin-button>
+            </div>            
             <div class="sign-up"> 
                 <span> Belum Mendaftar ? <a>Daftar Sekarang</a> </span>
             </div>
@@ -54,9 +68,11 @@
 <script>
 import { isvalidUsername } from '@/utils/validate'
 import img_b_logo from '@/assets/images/logo_beritabaik_b.png'
-
+import FBSignInButton from 'vue-facebook-signin-button'
+import GSignInButton from 'vue-google-signin-button'
 export default {
   name: 'login',
+  component: { FBSignInButton, GSignInButton },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!isvalidUsername(value)) {
@@ -84,7 +100,20 @@ export default {
       loading: false,
       pwdType: 'password',
       img_b_logo,
-      checked: false
+      checked: false,
+      fbSignInParams: {
+        scope: 'email,user_likes',
+        return_scopes: true
+      },
+      /**
+       * The Auth2 parameters, as seen on
+       * https://developers.google.com/identity/sign-in/web/reference#gapiauth2initparams.
+       * As the very least, a valid client_id must present.
+       * @type {Object}
+       */
+      googleSignInParams: {
+        client_id: 'YOUR_APP_CLIENT_ID.apps.googleusercontent.com'
+      }
     }
   },
   methods: {
@@ -110,6 +139,20 @@ export default {
           return false
         }
       })
+    },
+    onSignInSuccess(response, googleUser) {
+      /*
+      FB.api('/me', dude => {
+        console.log(`Good to see you, ${dude.name}.`)
+      })
+      */
+      // `googleUser` is the GoogleUser object that represents the just-signed-in user.
+      // See https://developers.google.com/identity/sign-in/web/reference#users
+      // const profile = googleUser.getBasicProfile() // etc etc
+    },
+    onSignInError(error) {
+      // `error` contains any error occurred.
+      console.log('OH NOES', error)
     }
   }
 }

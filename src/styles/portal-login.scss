@@ -41,7 +41,32 @@
     position:absolute;
     left: 35%;
     bottom:40px;
-    font-size: 4em;
+    // font-size: 3em;    
+    fb-signin-button {
+        /* This is where you control how the button looks. Be creative! */
+        display: inline-block;
+        padding: 8px 10px;
+        background-color: #4267b2;
+        color: #fff;
+        border-radius: 50%;
+        .icon{
+            width: 22px;
+            height: 22px
+        }
+    }
+    g-signin-button {
+        /* This is where you control how the button looks. Be creative! */
+        display: inline-block;
+        padding: 8px 10px;
+        background-color: #dd4b39;
+        color: #fff;
+        // box-shadow: 0 3px 0 #0f69ff;
+        border-radius: 50%;
+        .icon{
+            width: 22px;
+            height: 22px
+        }
+    }
 }
 .login .login-box .options .sign-up{
     position:absolute;

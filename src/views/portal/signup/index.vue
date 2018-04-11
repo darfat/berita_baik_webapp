@@ -30,8 +30,22 @@
               <span>Atau Daftar Dengan</span>
             </div>
             <div class="signup-with"> 
+                <!--
                 <v-icon name="facebook" base-class="icon-0dot8em v-align-middle"></v-icon>
                 <v-icon name="mail" base-class="icon-0dot8em v-align-middle"></v-icon>
+                -->
+            <fb-signin-button
+                :params="fbSignInParams"
+                @success="onSignInSuccess"
+                @error="onSignInError">
+                <fa-icon name="facebook" class="icon" ></fa-icon>
+              </fb-signin-button>
+              <g-signin-button
+                :params="googleSignInParams"
+                @success="onSignInSuccess"
+                @error="onSignInError">
+                <fa-icon name="google-plus" class="icon" ></fa-icon>
+              </g-signin-button>
             </div>
             <div class="login"> 
                 <span> Sudah Punya Akun? <a>Masuk Sekarang</a> </span>
@@ -43,9 +57,11 @@
 
 <script>
 import img_b_logo from '@/assets/images/logo_beritabaik_b.png'
-
+import FBSignInButton from 'vue-facebook-signin-button'
+import GSignInButton from 'vue-google-signin-button'
 export default {
   name: 'PortalSignup',
+  component: { FBSignInButton, GSignInButton },
   data() {
     return {
       title: '',
