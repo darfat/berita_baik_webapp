@@ -183,7 +183,7 @@ $lightest_gray:#eef5f8;
       -webkit-appearance: none;
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
-      color: $light_gray;
+      color: $dark_gray;
       height: 47px;
     }
     .el-input {
@@ -219,8 +219,9 @@ $lightest_gray:#eef5f8;
       // margin: 120px auto;
     }
     .el-form-item {
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: $lightest_gray;// rgba(0, 0, 0, 0.1);
+      //border: 1px solid rgba(255, 255, 255, 0.1);
+      // background: $lightest_gray;// rgba(0, 0, 0, 0.1);
+      border: 1px solid $dark_gray;
       border-radius: 5px;
       color: #454545;
     }
