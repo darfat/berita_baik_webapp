@@ -111,7 +111,7 @@ export default {
        * @type {Object}
        */
       googleSignInParams: {
-        client_id: 'YOUR_APP_CLIENT_ID.apps.googleusercontent.com'
+        client_id: '945256359753-38gpkeqcipc5nn3kts9f3frark3ut5pr.apps.googleusercontent.com'
       }
     }
   },
