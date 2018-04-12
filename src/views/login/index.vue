@@ -158,19 +158,19 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
+@import "src/styles/portal-login.scss";
+$bg: #2d3a4b;
+$dark_gray: #889aa4;
+$light_gray: #000;
+$lightest_gray: #eef5f8;
 
-  $bg:#2d3a4b; @import "src/styles/portal-login.scss";
-
- 
 .el-row {
   margin-bottom: 20px;
     &:last-child {
       margin-bottom: 0;
     }
   }
-$dark_gray:#889aa4;
-$light_gray:#000;
-$lightest_gray:#eef5f8;
+
 
 .form {
     input:-webkit-autofill {

@@ -1,48 +1,58 @@
 @import './variables.scss';
+$bg: #2d3a4b;
+$dark_gray: #889aa4;
+$light_gray: #000;
+$lightest_gray: #eef5f8;
 
 .signup{
     background-image: url("/static/images/signup-bg.jpg");
-   background-color: #fff;
-   position:absolute;
+    background-color: #fff;
+    position:absolute;
     top:0;
     bottom:0;
     left:0;
     right:0;
     overflow:hidden;
     z-index:-1; /* Remove this line if it's not going to be a background! */
+    background-size: cover;
+    width: 100%;
+    height: 100%;
 }
 .signup .signup-box{
     position: absolute;
     background-color: #fff;
-    height: 380px;
-    width: 320px;
+    width: 390px;
     border-radius: 10px;
-    padding: 5px;
-    top: 30%;
-    left: 70%;
+    top: 20%;
+    right: 10%;
     font-size: 0.8em;
+    padding: 20px 40px;
+    color: $dark_gray;
+    @media all and (max-width : 768px) {
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        margin: 40px auto;        
+    }
 }
 .signup .signup-box .logo{
     text-align: center;
+    margin-bottom: 20px;
 }
 .signup .signup-box img{
-    max-width: 50px;
+    max-width: 60px;
     height: auto;
 }
 .signup .signup-box .form{
-    padding-top: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
+    margin-bottom: 20px;
 }
 .signup .signup-box .options{
     text-align: center;
-    margin-top:20px;
 }
 .signup .signup-box .options .signup-label{
 }
 .signup .signup-box .options .signup-with{
-    margin-top: -10px;
-    // font-size: 4em;
+    margin-bottom: 20px;
+    // font-size: 3em;    
     .fb-signin-button {
         /* This is where you control how the button looks. Be creative! */
         display: inline-block;
@@ -70,5 +80,30 @@
     }
 }
 .signup .signup-box .options .login{
- margin-top: 20px;
+    color: $dark_gray;
+}
+
+a{
+    color: $main-red;
+}
+span{
+    line-height: 1.8em;
+}
+.el-form{    
+    .el-input__inner {
+        border: 1px solid $dark_gray;
+        color: $dark_gray;        
+        width: 100%;        
+    }
+    .el-input__inner:hover,
+    .el-input__inner:focus {        
+        border: 1px solid $main-blue;
+    }
+    .el-button{
+        background-color: $main-blue;
+        color: #fff;
+        border: none;
+        border-radius : 20px; 
+        width: 100%;
+    }    
 }

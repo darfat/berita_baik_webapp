@@ -13,7 +13,10 @@
             </div>
             <el-form ref="signup-form" :model="form" >
                 <el-form-item label="">
-                    <el-input v-model="signupVM.username" placeholder="Username atau Alamat Surel"></el-input>
+                    <el-input v-model="signupVM.username" placeholder="Nama"></el-input>
+                </el-form-item>
+                <el-form-item label="">
+                    <el-input v-model="signupVM.email" placeholder="Alamat Surel"></el-input>
                 </el-form-item>
                 <el-form-item label="">
                     <el-input v-model="signupVM.password" type="password" placeholder="Password" ></el-input>
@@ -56,19 +59,26 @@
 </template>
 
 <script>
-import img_b_logo from '@/assets/images/logo_beritabaik_b.png'
-import FBSignInButton from 'vue-facebook-signin-button'
-import GSignInButton from 'vue-google-signin-button'
+import img_b_logo from '@/assets/images/ikon_berita_baik.png'
+
 export default {
   name: 'PortalSignup',
-  component: { FBSignInButton, GSignInButton },
   data() {
     return {
       title: '',
       img_b_logo,
       signupVM: {
         username: '',
+        email: '',
         password: ''
+      },
+      fbSignInParams: {
+        // scope: 'email,user_likes',
+        scope: 'email',
+        return_scopes: true
+      },
+      googleSignInParams: {
+        client_id: '945256359753-38gpkeqcipc5nn3kts9f3frark3ut5pr.apps.googleusercontent.com'
       }
     }
   },
@@ -81,6 +91,4 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
     @import "src/styles/portal-signup.scss";
-
-
 </style>
