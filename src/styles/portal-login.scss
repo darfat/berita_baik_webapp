@@ -2,47 +2,51 @@
 
 .login{
     background-image: url("/static/images/login-bg.jpg");
-   background-color: #fff;
-   position:absolute;
+    background-color: #fff;
+    position:absolute;
     top:0;
     bottom:0;
     left:0;
     right:0;
     overflow:hidden;
     z-index:-1; /* Remove this line if it's not going to be a background! */
+    background-size: cover;
+    width: 100%;
+    height: 100%;
 }
 .login .login-box{
     position: absolute;
     background-color: #fff;
-    height: 400px;
     width: 390px;
     border-radius: 10px;
-    padding: 5px;
     top: 30%;
-    left: 70%;
+    right: 10%;
     font-size: 0.8em;
+    padding: 20px 40px;
+    @media all and (max-width : 768px) {
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        margin: 40px auto;        
+    }
 }
 .login .login-box .logo{
     text-align: center;
+    margin-bottom: 20px;
 }
 .login .login-box img{
-    max-width: 50px;
+    max-width: 60px;
     height: auto;
 }
 .login .login-box .form{
-    padding-top: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
+    margin-bottom: 20px;
 }
 .login .login-box .options{
-    text-align: center;
+    text-align: center;    
 }
 .login .login-box .options .login-with{
-    position:absolute;
-    left: 35%;
-    bottom:40px;
+    margin-bottom: 20px;
     // font-size: 3em;    
-    fb-signin-button {
+    .fb-signin-button {
         /* This is where you control how the button looks. Be creative! */
         display: inline-block;
         padding: 8px 10px;
@@ -54,7 +58,7 @@
             height: 22px
         }
     }
-    g-signin-button {
+    .g-signin-button {
         /* This is where you control how the button looks. Be creative! */
         display: inline-block;
         padding: 8px 10px;
@@ -69,7 +73,9 @@
     }
 }
 .login .login-box .options .sign-up{
-    position:absolute;
-    left: 18%;
-    bottom:15px;
+    color: #889aa4;    
+}
+
+a{
+    color: $main-red;
 }

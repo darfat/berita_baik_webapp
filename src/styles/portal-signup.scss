@@ -43,7 +43,7 @@
 .signup .signup-box .options .signup-with{
     margin-top: -10px;
     // font-size: 4em;
-    fb-signin-button {
+    .fb-signin-button {
         /* This is where you control how the button looks. Be creative! */
         display: inline-block;
         padding: 8px 10px;
@@ -55,7 +55,7 @@
             height: 22px
         }
     }
-    g-signin-button {
+    .g-signin-button {
         /* This is where you control how the button looks. Be creative! */
         display: inline-block;
         padding: 8px 10px;

@@ -26,6 +26,10 @@ import moment from 'moment'
 import { Tweet, Timeline } from 'vue-tweet-embed'
 // infinit
 import InfiniteLoading from 'vue-infinite-loading'
+// fb connect
+import FBSignInButton from 'vue-facebook-signin-button'
+// google connect
+import GSignInButton from 'vue-google-signin-button'
 
 Vue.use(ElementUI, { locale })
 Vue.use(feather, 'v-icon')
@@ -50,7 +54,8 @@ Vue.config.productionTip = false
 Vue.component('v-tweet', Tweet)
 Vue.component('v-timeline', Timeline)
 Vue.component('infinite-loading', InfiniteLoading)
-
+Vue.use(FBSignInButton)
+Vue.use(GSignInButton)
 new Vue({
   el: '#app',
   router,
@@ -70,3 +75,11 @@ var fbFeedHandler = (function (d, s, id) {
   js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=104551552924338&autoLogAppEvents=1'
   fjs.parentNode.insertBefore(js, fjs)
 }(document, 'script', 'facebook-jssdk'))
+window.fbAsyncInit = function() {
+  window.FB.init({
+    appId: '238377760235448',
+    cookie: true, // enable cookies to allow the server to access the session
+    xfbml: true, // parse social plugins on this page
+    version: 'v2.8' // use graph api version 2.8
+  })
+}
