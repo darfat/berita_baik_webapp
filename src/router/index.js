@@ -140,6 +140,12 @@ export const constantRouterMap = [
         meta: { title: 'Sosok Inspiratif', icon: 'table' }
       },
       {
+        path: 'l/gallery-foto',
+        name: 'admin-gallery-foto-list',
+        component: () => import('@/views/admin/article/citra'),
+        meta: { title: 'Citra', icon: 'table' }
+      },
+      {
         path: 'f/:editorialSlug',
         name: 'admin-article-form',
         props: true,

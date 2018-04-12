@@ -52,6 +52,11 @@
               <span> {{ main_image_name }}</span>
               <image-uploader :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
             </el-form-item>
+            <el-form-item label="Gallery" v-if="article.article_type === 'image'">
+              <div class="gray-horizontal"></div>
+              <image-uploader :isMultiple="true" class="image-uploader-btn" @successCBK="gallerySuccessCallback"></image-uploader>
+              <div class="gray-horizontal"></div>
+            </el-form-item>
             <el-row :gutter="20">
               <el-col :span="12">
                   <el-form-item label="Kota">
@@ -309,6 +314,7 @@ export default {
           }
         ],
         article_relates: [],
+        article_images: [],
         lock_by_id: null,
         city_id: null,
         reporter_id: null,
@@ -574,9 +580,20 @@ export default {
       return
     },
     mainImageSuccessCallback(res) {
-      console.log('mainImageSuccessCallback')
-      this.article.main_image = res.url
-      this.main_image_name = res.filename
+      console.log('mainImageSuccessCallback : ', res)
+      if (res) {
+        this.article.main_image = res[0].url
+        this.main_image_name = res[0].filename
+      }
+    },
+    gallerySuccessCallback(res) {
+      console.log('gallerySuccessCallback ', res)
+      if (res) {
+        res.forEach(item => {
+          console.log(item.url)
+          this.article.article_images.push({ title: item.filename, url: item.url, content: '-', active: true })
+        })
+      }
     },
     reporterNameCheck() { // need to optimize
       console.log('check name')
