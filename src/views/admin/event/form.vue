@@ -10,8 +10,20 @@
                 </el-col>
                 <el-col :span="21">
                   <el-form-item label="Tanggal">
-                      <el-date-picker type="datetime" placeholder="Pick a date" v-model="event.event_date" style="width: 100%;"></el-date-picker>
+                    <el-row :gutter="20">
+                      <el-col :span="6">
+                        <el-date-picker type="datetime" placeholder="Awal" v-model="event.event_date" style="width: 100%;"></el-date-picker>
+                      </el-col>
+                      <el-col :span="6">
+                        <el-date-picker type="datetime" placeholder="Akhir" v-model="event.event_end_date" style="width: 100%;"></el-date-picker>
+                      </el-col>
+                    </el-row>
                   </el-form-item>
+                </el-col>
+                <el-col :span="21">
+                    <el-form-item label="Lokasi" prop="place">
+                        <el-input v-model="event.place"></el-input>
+                    </el-form-item>
                 </el-col>
                 <el-col :span="21">
                     <el-form-item label="Deskripsi" prop="description">
