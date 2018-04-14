@@ -155,6 +155,28 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/events',
+    component: Layout,
+    redirect: '/events/list',
+    name: 'Events',
+    meta: { title: 'Events', icon: 'calendar' },
+    children: [
+      {
+        path: 'list',
+        name: 'event-list',
+        component: () => import('@/views/admin/event/list'),
+        meta: { title: 'Events', icon: 'calendar' }
+      },
+      {
+        path: 'form',
+        name: 'event-form',
+        component: () => import('@/views/admin/event/form'),
+        props: true,
+        hidden: true
+      }
+    ]
+  },
+  {
     path: '/configuration',
     component: Layout,
     redirect: '/configuration/tag',

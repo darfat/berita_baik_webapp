@@ -20,7 +20,7 @@
                 <el-col :span="8" class="feed-box">
                     <div class="feed-stream">
                         <div id="fb-root"></div>
-                        <div class="fb-page" data-href="https://www.facebook.com/beritabaik.id/" data-tabs="timeline" data-height="350" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/beritabaik.id/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/beritabaik.id/">beritabaik.id</a></blockquote></div>
+                        <!-- <div class="fb-page" data-href="https://www.facebook.com/beritabaik.id/" data-tabs="timeline" data-height="350" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/beritabaik.id/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/beritabaik.id/">beritabaik.id</a></blockquote></div> -->
                     </div>
                 </el-col>
                 <el-col :span="16" class="feed-box">
@@ -29,7 +29,7 @@
                         <span>beritabaik_id</span>
                     </div>
                     <div class="feed-stream">
-                        <v-timeline :id="'beritabaik_id'" :sourceType="'profile'" :options="{ tweetLimit: '1',height: '100px'  }"/>
+                        <!-- <v-timeline :id="'beritabaik_id'" :sourceType="'profile'" :options="{ tweetLimit: '1',height: '100px'  }"/> -->
                     </div>
                 </el-col>
             </el-row>
