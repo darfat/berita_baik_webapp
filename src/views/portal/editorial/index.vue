@@ -107,12 +107,12 @@
             <div class="side-separator">
               <span> Buka lebih banyak lagi </span>
             </div>
-            <div>
+            <!-- <div>
             <infografis-side :editorialSlug="'infografis'"  > </infografis-side>
             </div>
             <div class="side-separator">
               <span> Buka lebih banyak lagi </span>
-            </div>
+            </div> -->
             <div class="spacer m-t-10"></div>
             <advertisement-side></advertisement-side>
           </div>
