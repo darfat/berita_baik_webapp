@@ -68,12 +68,17 @@ export default {
   },
   mounted() {
     EventBus.$on('UPDATE_COMMENTS_EVENT', event => {
-      console.log('UPDATE_COMMENTS_EVENT')
       this.getComments(this.articleID)
+    })
+    EventBus.$on('SET_ARTICLE_ID_COMMENTS_EVENT', event => {
+      if (!this.articleID) {
+        this.getComments(event.articleID)
+      }
     })
   },
   methods: {
     init() {
+      console.log('init comment list')
       console.log(this.articleID)
       this.getComments(this.articleID)
     },

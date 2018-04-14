@@ -116,7 +116,7 @@
                   </el-row>
                 </el-row>
                 <el-row :gutter="20" class="m-t-10" >
-              <el-col>
+              <el-col v-if="mainArticle">
                 <comment-box :articleID="mainArticle.id"></comment-box>
               </el-col>
             </el-row>
@@ -204,7 +204,7 @@
 import ArticleSeparator from '@/components/ArticleSeparator'
 import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav, CommentList, Subscribe, Events, AdvertisementSide } from '@/views/portal/components'
 import BbLove from '@/views/portal/components/BbLove'
-
+import EventBus from '@/utils/event-bus'
 import { getArticle } from '@/api/article'
 import { getAuthorsByArticleID } from '@/api/author'
 
@@ -241,9 +241,14 @@ export default {
   created() {
     this.init()
   },
+  mounted() {
+    this.initMounted()
+  },
   methods: {
     init() {
       this.editorialSlug = this.$route.params.editorialSlug
+    },
+    initMounted() {
       this.getMainArticle(this.slug)
     },
     getMainArticle(slug) {
@@ -252,6 +257,7 @@ export default {
         this.loading.mainArticle = false
         if (response) {
           this.mainArticle = response.data
+          EventBus.$emit('SET_ARTICLE_ID_COMMENTS_EVENT', { 'articleID': this.mainArticle.id })
           this.getAuthors(this.mainArticle.id)
         }
       })

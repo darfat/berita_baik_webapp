@@ -450,7 +450,7 @@ export default {
       const params = {}
       getLatestNewsAll(params).then(response => {
         if (response) {
-          this.article_opts = response.data
+          this.article_opts = response.data.data
         }
       })
     },
@@ -559,10 +559,16 @@ export default {
     },
     addArticleRelateItem() {
       const article = {
-        article_id: null,
-        sequence: this.article.article_relates.length + 1
+        article_id: null
       }
-      this.article.article_relates.push(article)
+      if (this.article.article_relates) {
+        article.sequence = this.article.article_relates.length + 1
+        this.article.article_relates.push(article)
+      } else {
+        this.article.article_relates = []
+        article.sequence = this.article.article_relates.length + 1
+        this.article.article_relates.push(article)
+      }
     },
     removeArticleRelateItem(idx) {
       this.article.article_relates.splice(idx, 1)
