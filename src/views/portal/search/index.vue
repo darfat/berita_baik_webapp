@@ -1,33 +1,29 @@
 <template>
   <div class="search-wrapper">
-    <search-home></search-home>
+    <search-home :keyword="keyword"></search-home>
     <div class="container">
-      <SocialFeed></SocialFeed>
-      <hr />
-      <Events></Events>
-      <hr />
-      <Subscribe></Subscribe>
+     
     </div>
   </div>
 </template>
 
 <script>
-import ArticleSeparator from '@/components/ArticleSeparator'
-import { SearchHome, Subscribe, Events, SocialFeed } from '@/views/portal/components'
+import { SearchHome } from '@/views/portal/components'
 
 export default {
   name: 'SEARCHLayout',
   components: {
-    ArticleSeparator,
-    SearchHome, Subscribe, Events, SocialFeed
+    SearchHome
   },
   data() {
     return {
-      title: ''
+      keyword: ''
     }
   },
   created() {
-    console.log('videog main')
+    this.keyword = this.$route.params.keyword
+    console.log('seach layout main : ')
+    console.log(this.keyword)
   }
 }
 </script>

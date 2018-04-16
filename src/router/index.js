@@ -84,7 +84,7 @@ export const constantRouterMap = [
       component: () => import('@/views/portal/aboutus/index')
     },
     {
-      path: 'home-search/search-home',
+      path: 'home-search/s/:keyword',
       name: 'search-home',
       props: true,
       component: () => import('@/views/portal/search/index')

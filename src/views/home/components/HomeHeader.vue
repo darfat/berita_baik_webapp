@@ -22,7 +22,8 @@
         <el-col :xs="16" :sm="6">
           <div class="head-item">
             <div class="head-item-search">            
-              <el-input placeholder="Search" suffix-icon="el-icon-search" v-model="search"></el-input>
+              <!-- <el-input placeholder="Search" suffix-icon="el-icon-search" v-model="search" v-on:keyup.enter="onEnterClick" ></el-input> -->
+              <search-box></search-box>
             </div>
           </div>
         </el-col>
@@ -149,13 +150,15 @@
 
 <script>
 import Sticky from '@/components/Sticky'
+import SearchBox from '@/views/portal/components/SearchBox'
+
 import img_logo from '@/assets/images/logo_berita_baik.png'
 import img_ikon from '@/assets/images/ikon_berita_baik.png'
 import img_ikon_mono from '@/assets/images/ikon_berita_baik_white.png'
 import img_logo_mono from '@/assets/images/logo_berita_baik_white.png'
 export default {
   name: 'HomeHeader',
-  components: { Sticky },
+  components: { Sticky, SearchBox },
   data() {
     return {
       img_logo,

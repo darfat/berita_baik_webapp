@@ -119,3 +119,10 @@ export function updatePublished(data) {
     data
   })
 }
+export function SearchArticles(params) {
+  return request({
+    url: '/articles-search/',
+    method: 'get',
+    params
+  })
+}

@@ -7,8 +7,8 @@
               Pencarian
             </el-col>
             <el-col :span="20" class="search-box-input">
-              <el-input placeholder="Pencarian" v-model="input1" class="">
-              <el-button slot="append" icon="el-icon-search"></el-button>
+              <el-input placeholder="Pencarian" v-model="searchAny" class="" @keyup.enter.native="onEnterClick">
+              <el-button slot="append" icon="el-icon-search" @click="onEnterClick"></el-button>
               </el-input>
             </el-col>
           </el-row>
@@ -60,19 +60,26 @@
         </div>
         <div class="search-result">
           <el-row :gutter="20" >
-            <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" v-for="n in 9" :key="n">
+            <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" v-for="(article) in articles" :key="article.id">
               
               <el-card :body-style="{ padding: '0px' }">
-              <img src="" class="image">
+              <img :src="article.main_image" class="image">
+              <div class="editorial-type-img" v-if="article.editorial">
+                  <h3>{{ article.editorial.name }}</h3>
+                </div>
               <div class="desc">
                   <span><bb-love></bb-love> </span>
                   <span><fa-icon name="share-alt" scale="1.3"  ></fa-icon>  </span>
                 <div class="bottom clearfix">
-                  <h2><a>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h2>
+                  <router-link v-if="article.editorial" :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
+                    <h2 class="headline">{{ article.title}}</h2>
+                  </router-link>
                 </div>
+               
                 <div class="bottom clearfix">
-                  <hr align="left" />
-                  <span>author</span> | <span>time</span>
+                  <article-separator></article-separator>
+                  {{ article.reporter_name }} |
+                    <timeago :auto-update="60" :since="article.publish_date"></timeago>
                 </div>
               </div>
             </el-card>
@@ -80,14 +87,8 @@
             </el-col>
           </el-row>
         </div>
-        <div class="search-pagination">
-          <el-pagination
-            background
-            layout="prev, pager, next"
-            :total="20"
-            prev-text="Pertama" next-text="Terakhir"
-            >
-          </el-pagination>
+        <div class="ac-paging">
+          <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading"></infinite-loading>
         </div>
       </div>    
   </div>
@@ -95,20 +96,99 @@
 
 <script>
 import BbLove from '@/views/portal/components/BbLove'
+import ArticleSeparator from '@/components/ArticleSeparator'
+import { SearchArticles } from '@/api/article'
 
 export default {
   name: 'SearchHome',
   components: {
-    BbLove
+    BbLove,
+    ArticleSeparator
+  },
+  props: {
+    keyword: { type: String }
   },
   data() {
     return {
-      input1: '',
-      isShow: false
+      searchAny: '',
+      input2: '',
+      input: '',
+      isShow: false,
+      articles: [],
+      per_page: 3,
+      page: 1,
+      total_pages: 1,
+      total_entries_size: 0,
+      distance: -Infinity
     }
   },
   created() {
-    console.log('searchhome')
+    console.log('Search Component')
+    console.log(this.keyword)
+    if (this.keyword) {
+      this.changeFilter()
+    }
+  },
+  methods: {
+    onEnterClick() {
+      console.log('enter....')
+      this.changeFilter()
+    },
+    doSearch(titleParam) {
+      SearchArticles({ article_type: 'news', title: titleParam, page: this.page, per_page: this.per_page }).then(response => {
+        if (response) {
+          this.articles = response.data.data
+          this.per_page = response.data.per_page
+          this.total_pages = response.data.total_pages
+          this.total_entries_size = response.data.total_entries_size
+          this.page = response.data.page
+        }
+      })
+    },
+    doManualSearch() {
+      this.distance = 100
+      this.$nextTick(() => {
+        this.$refs.infiniteLoading.attemptLoad()
+      })
+    },
+    changeFilter() {
+      this.articles = []
+      this.$nextTick(() => {
+        this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset')
+      })
+    },
+    infiniteHandler($state) {
+      console.log(`${this.total_entries_size} this.total_entries_size`)
+      const page = Math.floor(this.articles.length / this.per_page) + 1
+      SearchArticles({
+        article_type: 'news',
+        title: this.searchAny,
+        page,
+        per_page: this.per_page
+      }).then(response => {
+        if (response) {
+          this.per_page = response.data.per_page
+          this.total_pages = response.data.total_pages
+          this.total_entries_size = response.data.total_entries_size
+          this.page = response.data.page
+          console.log(`${this.total_pages} total_pages`)
+          console.log(`${this.total_entries_size} total entries size`)
+          if (response.data.data && response.data.data.length) {
+            console.log(`${this.articles.length} l before`)
+            this.articles = this.articles.concat(response.data.data)
+            console.log(`${this.articles.length} l after`)
+            $state.loaded()
+            console.log(`${Math.ceil(this.articles.length / this.per_page)} is completed`)
+            if (Math.ceil(this.articles.length / this.per_page) === this.total_pages) {
+              $state.complete()
+            }
+          } else {
+            $state.complete()
+          }
+        }
+      })
+    }
+
   }
 }
 </script>
