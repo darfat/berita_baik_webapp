@@ -138,3 +138,28 @@
 }
 
 
+.bacajuga{
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    margin: 20px 0;
+    h4{
+
+    }
+    ul li {
+        color: $main-blue;
+        list-style: none;
+        font-weight: 700;        
+        padding-left: 0.8em; 
+        text-indent: -1.6em;
+          
+    }
+  
+   ul li::before {
+       color: $main-blue;
+       content: "\2022";
+       font-size: 1em;
+       padding-right: 1.1225em;
+       position: relative;
+       top: 0em;  
+    }
+}

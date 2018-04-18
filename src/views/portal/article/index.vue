@@ -35,6 +35,14 @@
                   <el-row :gutter="20">
                       <el-col class="teks">
                         <div v-html="mainArticle.content" class="content" ></div>
+                        <div class="bacajuga">
+                          <h4>Baca Juga</h4>
+                          <ul>
+                            <li><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vestibulum ullamcorper ex, ut pharetra nisi.</a></li>
+                            <li><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                            <li><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec mattis elit. In hac habitasse platea dictumst. Suspendisse eget luctus quam, et suscipit elit. Ut.</a></li>
+                          </ul>
+                        </div>
                       </el-col>
                   </el-row>
                   <el-row >
