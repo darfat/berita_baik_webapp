@@ -4,11 +4,11 @@
       <swiper-slide :class="'slide-'+index" v-bind:style="{ backgroundImage: 'url(' + g.main_image + ')' }"  v-for="(g,index) in galleries" :key="g.id">
         <div class="icon">
           <svg-icon icon-class="camera" class="camera"></svg-icon>
-          <span>{{index}}</span>
+          <span>{{getCount(g.id)}}</span>
         </div>
         <div class="title">
-          <h2><a>Anyone can steal your idea, but no one can steal your execution.</a></h2>
-          <p>Nadiem Makarim | Start-up Founder -  CEO Gojek</p>
+          <h2><a>{{g.title}}</a></h2>
+          <p>{{g.subtitle}}</p>
         </div>
       </swiper-slide>
       <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
@@ -18,7 +18,7 @@
       <swiper-slide :class="'slide-'+idx" v-bind:style="{ backgroundImage: 'url(' + gt.main_image + ')' }"  v-for="(gt,idx) in galleries" :key="gt.id">
         <div class="icon">
           <svg-icon icon-class="camera" class="camera"></svg-icon>
-          <span>{{idx}}</span>
+          <span>{{getCount(gt.id)}}</span>
         </div>
       </swiper-slide>  
     </swiper>
@@ -27,7 +27,7 @@
 <script>
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import { getImagesByEditorialSlug } from '@/api/article'
+import { getImagesByEditorialSlug, getCountImage } from '@/api/article'
 
 export default {
   components: {
@@ -42,7 +42,8 @@ export default {
     return {
       galleries: [],
       loading: {
-        galleries: false
+        galleries: false,
+        count: false
       },
       swiperOptionTop: {
         spaceBetween: 10,
@@ -82,11 +83,29 @@ export default {
         getImagesByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit }).then(response => {
           if (response) {
             this.galleries = response.data.data
-            this.loading.galleries = false
           }
+          this.loading.galleries = false
         })
       }
+    },
+    getCount(article_id) {
+      this.loading.count = true
+      if (article_id) {
+        getCountImage({
+          article_id
+        }).then(response => {
+          this.loading.count = false
+          if (response) {
+            return response.data.count
+          } else {
+            return -1
+          }
+        })
+      } else {
+        return -1
+      }
     }
+
   }
 }
 </script>

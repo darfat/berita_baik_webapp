@@ -126,3 +126,9 @@ export function SearchArticles(params) {
     params
   })
 }
+export function getCountImage(data) {
+  return request({
+    url: '/article-image-count/' + data.article_id,
+    method: 'get'
+  })
+}
