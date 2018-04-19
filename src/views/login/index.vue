@@ -174,7 +174,7 @@ $lightest_gray: #eef5f8;
 
 .form {
     input:-webkit-autofill {
-      -webkit-box-shadow: 0 0 0px 1000px $lightest_gray inset !important;
+      -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
       -webkit-text-fill-color: #2d3a4b !important;
     }
     input {
