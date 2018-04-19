@@ -22,7 +22,7 @@
           </el-col>
         </el-row>
       </div>
-      <div class="video-paging align-center">
+      <div class="video-paging align-center" v-if="showPaging">
           <el-pagination
           background
           layout="prev, pager, next"
@@ -34,7 +34,9 @@
           >
         </el-pagination>
       </div>
-
+      <div class="video-paging align-center" v-if="!showPaging">
+          <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+      </div>
   </div>
   
   
@@ -51,7 +53,11 @@ export default {
   },
   props: {
     editorialSlug: { type: String, default: 'video' },
-    limit: { default: 6, type: Number }
+    limit: { default: 6, type: Number },
+    showPaging: {
+      default: false,
+      type: Boolean
+    }
   },
   data() {
     return {
@@ -74,7 +80,9 @@ export default {
     init() {
       this.getLatestVideo(this.editorialSlug)
       this.per_page = this.limit
-      this.getVideos(this.editorialSlug, this.page)
+      if (this.showPaging === true) {
+        this.getVideos(this.editorialSlug, this.page)
+      }
     },
     getLatestVideo(editorialSlug) {
       this.loading.latestVideo = true
@@ -100,6 +108,30 @@ export default {
     },
     handleCurrentChange(page) {
       this.getVideos(this.editorialSlug, this.page)
+    },
+    infiniteHandler($state) {
+      const editorialSlug = this.editorialSlug
+      const page = Math.floor(this.list.length / this.per_page) + 1
+      if (editorialSlug) {
+        getVideosByEditorialSlug({ editorialSlug, page, per_page: this.per_page }).then(response => {
+          if (response) {
+            // this.list = response.data.data
+            this.per_page = response.data.per_page
+            this.total_pages = response.data.total_pages
+            this.total_entries_size = response.data.total_entries_size
+            this.page = response.data.page
+            if (response.data.data && response.data.data.length) {
+              this.list = this.list.concat(response.data.data)
+              $state.loaded()
+              if (Math.ceil(this.list.length / this.per_page) === this.total_pages) {
+                $state.complete()
+              }
+            } else {
+              $state.complete()
+            }
+          }
+        })
+      }
     },
     ready(player) {
       this.player = player

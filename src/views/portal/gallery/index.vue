@@ -2,7 +2,7 @@
   <div class="gallery-main">  
     <div class="gallery-main-container">    
       <div class="container">
-          <gallery :editorialSlug="editorialSlug" ></gallery>
+          <gallery :editorialSlug="editorialSlug"  :showPaging="false"></gallery>
       </div>
     </div>
     <el-row :gutter="20" class="list-container">
@@ -24,7 +24,7 @@
         </el-col>
       </div>
     </el-row>
-    <div class="container m-t-20">
+    <!-- <div class="container m-t-20">
       <div class="gray-separator"> <span> </span>  </div>
     </div>
     <el-row :gutter="20" class="events-container">
@@ -33,7 +33,7 @@
             <events></events>
       </el-col>
       </div>
-    </el-row>  
+    </el-row>   -->
     <div class="content-container">
       <div class="gray-separator"> <span> </span>  </div>
     </div>

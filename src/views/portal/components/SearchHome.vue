@@ -171,12 +171,8 @@ export default {
           this.total_pages = response.data.total_pages
           this.total_entries_size = response.data.total_entries_size
           this.page = response.data.page
-          console.log(`${this.total_pages} total_pages`)
-          console.log(`${this.total_entries_size} total entries size`)
           if (response.data.data && response.data.data.length) {
-            console.log(`${this.articles.length} l before`)
             this.articles = this.articles.concat(response.data.data)
-            console.log(`${this.articles.length} l after`)
             $state.loaded()
             console.log(`${Math.ceil(this.articles.length / this.per_page)} is completed`)
             if (Math.ceil(this.articles.length / this.per_page) === this.total_pages) {
