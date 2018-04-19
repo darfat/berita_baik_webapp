@@ -21,6 +21,7 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 .article-nav{
   font-weight: bold;
+  color: #696968;
 }
 
 </style>
