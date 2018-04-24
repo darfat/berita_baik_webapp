@@ -20,6 +20,12 @@
             <div class="side-separator">
               <span> Buka lebih banyak lagi </span>
             </div>
+            <div>
+            <infografis-side> </infografis-side>
+            </div>
+            <div class="side-separator">
+              <span> Buka lebih banyak lagi </span>
+            </div>
           </div>
         </el-col>
       </div>
@@ -42,13 +48,13 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
-import { VideoG, PopularNewsSide, VideosCard, Subscribe, Events } from '@/views/portal/components'
+import { VideoG, PopularNewsSide, VideosCard, Subscribe, InfografisSide } from '@/views/portal/components'
 
 export default {
   name: 'VideoLayout',
   components: {
     ArticleSeparator,
-    VideoG, PopularNewsSide, VideosCard, Subscribe, Events
+    VideoG, PopularNewsSide, VideosCard, Subscribe, InfografisSide
   },
   data() {
     return {

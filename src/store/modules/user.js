@@ -1,5 +1,5 @@
 import { login, logout, getInfo } from '@/api/login'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getToken, setToken, setUserId, removeToken } from '@/utils/auth'
 
 const user = {
   state: {
@@ -34,9 +34,11 @@ const user = {
       return new Promise((resolve, reject) => {
         login(username, userInfo.password).then(response => {
           const data = response.data
+          console.log(data)
           setToken(data.token)
+          setUserId(data.user_id)
           commit('SET_TOKEN', data.token)
-          commit('SET_USER_ID', data.id)
+          commit('SET_USER_ID', data.user_id)
           resolve()
         }).catch(error => {
           reject(error)
@@ -46,9 +48,11 @@ const user = {
 
     // 获取用户信息
     GetInfo({ commit, state }) {
+      console.log(state)
       return new Promise((resolve, reject) => {
         getInfo(state.token, state.user_id).then(response => {
           const data = response.data
+          console.log(data)
           commit('SET_ROLES', data.roles)
           commit('SET_NAME', data.name)
           commit('SET_AVATAR', data.avatar)

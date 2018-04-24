@@ -13,6 +13,7 @@
 
 <script>
 // import { getArticle } from '@/api/article'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'BbLove',
@@ -20,6 +21,12 @@ export default {
     articleID: { type: String, default: '000' },
     type: { type: String, default: 'article' },
     scale: { type: Number, default: 1 }
+  },
+  computed: {
+    ...mapGetters([
+      'name',
+      'roles'
+    ])
   },
   data() {
     return {
@@ -36,17 +43,23 @@ export default {
   },
   methods: {
     init() {
+
     },
     loveUnLove() {
-      if (this.state) {
-        this.state = false
-        this.loveClass = 'love-red'
+      if (this.name) {
+        if (this.state) {
+          this.state = false
+          this.loveClass = 'love-red'
+        } else {
+          this.state = true
+          this.loveClass = 'icon-20'
+        }
       } else {
-        this.state = true
-        this.loveClass = 'icon-20'
+        this.$router.push({
+          path: '/login'
+        })
       }
     }
-
   }
 }
 </script>
