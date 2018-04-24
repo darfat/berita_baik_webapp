@@ -9,7 +9,7 @@
       <div class="container">
         <el-col :xs="24" :sm="16" class="content">
           <div class="grid-content">
-          <articles-card ></articles-card>
+          <videos-card :editorialSlug="'video'"></videos-card>
           </div>
         </el-col>
         <el-col :xs="24" :sm="8" class="side-content">
@@ -23,18 +23,8 @@
           </div>
         </el-col>
       </div>
-    </el-row>
-    <div class="container m-t-20">
-      <div class="gray-separator"> <span> </span>  </div>
-    </div>
-    <el-row :gutter="20" class="events-container">
-      <div class="container">
-      <el-col :xs="24" :sm="24" class="content">
-            <events></events>
-      </el-col>
-      </div>
-    </el-row>  
-    <div class="content-container">
+    </el-row> 
+    <!-- <div class="content-container">
       <div class="gray-separator"> <span> </span>  </div>
     </div>
     <el-row :gutter="20" class="subscriber-container">
@@ -44,7 +34,7 @@
               <subscribe></subscribe>
           </el-col>
       </div>      
-    </el-row>
+    </el-row> -->
     <div class="m-t-10"></div>
   </div>
     
@@ -52,13 +42,13 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
-import { VideoG, PopularNewsSide, ArticlesCard, Subscribe, Events } from '@/views/portal/components'
+import { VideoG, PopularNewsSide, VideosCard, Subscribe, Events } from '@/views/portal/components'
 
 export default {
   name: 'VideoLayout',
   components: {
     ArticleSeparator,
-    VideoG, PopularNewsSide, ArticlesCard, Subscribe, Events
+    VideoG, PopularNewsSide, VideosCard, Subscribe, Events
   },
   data() {
     return {

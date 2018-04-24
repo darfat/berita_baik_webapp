@@ -122,12 +122,12 @@
                   <li>
                   <!-- First Tier Drop Down -->
                   <label for="drop-4" class="toggle">Citra &#9660;</label>
-                  <router-link :to="{ path: '/home-m/gallery' }">Citra</router-link>
+                  <router-link :to="{ path: '/home/gallery-foto' }">Citra</router-link>
                   <input type="checkbox" id="drop-4"/>
                   <ul>
-                      <li><router-link :to="{ path: '/home-m/gallery' }">Galeri Foto</router-link></li>
+                      <li><router-link :to="{ path: '/home/gallery-foto' }">Galeri Foto</router-link></li>
                       <li><router-link :to="{ path: '/home-m/video' }">Video</router-link></li>
-                      <li><router-link :to="{ path: '/home-m/infografis' }">Infografis</router-link></li>
+                      <li><router-link :to="{ path: '/home/infografis' }">Infografis</router-link></li>
                   </ul>
                   </li>
                   <li>

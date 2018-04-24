@@ -13,7 +13,7 @@
           <a href=""><v-icon name="play" base-class="icon-20"></v-icon></a>
         </el-col>
       </el-row>
-      <div class="vid-thumb">
+      <!-- <div class="vid-thumb">
         <el-row :gutter="20" v-loading="loading.list"  >
           <el-col :span="8" v-for="(item) in list" :key="item.id" style="margin-bottom:20px">
             <div class="vid-thumb-wrapper">
@@ -36,9 +36,8 @@
       </div>
       <div class="video-paging align-center" v-if="!showPaging">
           <infinite-loading @infinite="infiniteHandler"></infinite-loading>
-      </div>
+      </div> -->
   </div>
-  
   
 </template>
 
