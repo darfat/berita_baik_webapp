@@ -24,10 +24,8 @@
                   <el-col :span="4">
                     <span>
                       <bb-love></bb-love>
-                    </span>
-                    <a @click="centerDialogVisible = true">
-                      <fa-icon name="share-alt" scale="1.3"></fa-icon>
-                    </a>
+                      <share-pop :article="article"></share-pop>
+                    </span>                    
                   </el-col>
                 </el-row>
               </div>
@@ -54,30 +52,7 @@
             </div>
           </el-card>
         </div>
-        <el-dialog title="" :visible.sync="centerDialogVisible" width="30%" center>
-          <span @click="centerDialogVisible = false" v-if="article">
-            <social-sharing  v-if="article.editorial"  :url="'http://beritabaik.id/#/home/a/'+article.editorial.slug+'/'+article.slug" :title="article.title" :description="article.teaser" :quote="article.title"
-              :hashtags="'beritabaik,'+article.article_tags" inline-template>
-              <div>
-                <network network="facebook">
-                  <fa-icon name="facebook-f" scale="1.8" class="network-icon"></fa-icon>
-                </network>
-                <network network="twitter" class="network-icon">
-                  <fa-icon name="twitter" scale="1.8"></fa-icon>
-                </network>
-                <network network="email">
-                  <fa-icon name="envelope" scale="1.8"></fa-icon>
-                </network>
-                <network network="googleplus">
-                  <fa-icon name="google-plus" scale="1.8"></fa-icon>
-                </network>
-                <!-- <network network="whatsapp">
-                                  <fa-icon name="whatsapp" scale="2" ></fa-icon>
-                                </network> -->
-              </div>
-            </social-sharing>
-          </span>
-        </el-dialog>
+        
       </el-col>
     </el-row>
     </div>
@@ -103,6 +78,7 @@
 <script>
   import ArticleSeparator from '@/components/ArticleSeparator'
   import BbLove from '@/views/portal/components/BbLove'
+  import SharePop from '@/views/portal/components/SharePop'
   import {
     getNewsByEditorialSlug,
     getLatestNewsAll
@@ -115,7 +91,8 @@
     name: 'ArticlesCard',
     components: {
       ArticleSeparator,
-      BbLove
+      BbLove,
+      SharePop
     },
     props: {
       editorialSlug: {

@@ -8,13 +8,14 @@
           <h3>{{item.editorial.name}}</h3>
         </router-link>
       </div>
-      <div class="title">
-      <span><bb-love></bb-love></span>
-      <span>
-           <fa-icon name="share-alt" scale="1.3"  ></fa-icon> 
-        </span>
+      <div class="loveshare">
+        <bb-love></bb-love>
+        <!-- <fa-icon name="share-alt" scale="1.3"  ></fa-icon> -->
+        <share-pop :article="item.article"></share-pop>
+      </div>
+      <div class="title">      
       <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">
-        <h2 class="headline" >{{item.article.title}}</h2>
+        <h2 class="headline" >{{item.article.title}}{{item.article.id}}</h2>
       </router-link>
       <div v-html="item.article.teaser"  class="sub-headline" ></div>
       <div class="separator">&nbsp;&nbsp;&nbsp;&nbsp;</div>
@@ -30,10 +31,12 @@
 <script>
 import { getHeadlineArticles } from '@/api/headline_article'
 import BbLove from '@/views/portal/components/BbLove'
+import SharePop from '@/views/portal/components/SharePop'
 export default {
   name: 'HeadlineSlider',
   components: {
-    BbLove
+    BbLove,
+    SharePop
   },
   props: {
     limit: { default: 9, type: Number }
@@ -93,15 +96,16 @@ h3{
 }
 
 .title{	
-	width:100%;
-  padding:10px 15px;
+	width: 100%;
+  padding: 0 15px 15px 15px;
   color: $black-2;
 }
 
 .title h2{    
   line-height: 0.03em;
   color: $black-1;
-  font-family: 'Neosans-Black';
+  font-family: 'Neosans-Black';  
+  line-height: 1.2em;
 }
 
 .separator {
@@ -110,5 +114,9 @@ h3{
     height: 0.8em;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.loveshare{
+  padding: 10px 15px 0 15px;
 }
 </style>
