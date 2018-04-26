@@ -53,6 +53,18 @@ export const constantRouterMap = [
       props: true,
       component: () => import('@/views/portal/article/index')
     },
+    { // integrated
+      path: 'home-c/:editorialSlug',
+      name: 'editorial-image',
+      props: true,
+      component: () => import('@/views/portal/editorial-image/index')
+    },
+    { // integrated
+      path: 'home-g/:editorialSlug',
+      name: 'editorial-video',
+      props: true,
+      component: () => import('@/views/portal/editorial-video/index')
+    },
     {
       path: 'home-m/infografis',
       name: 'infografis-menu',

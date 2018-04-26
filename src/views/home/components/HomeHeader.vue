@@ -125,9 +125,9 @@
                   <router-link :to="{ path: '/home/gallery-foto' }">Citra</router-link>
                   <input type="checkbox" id="drop-4"/>
                   <ul>
-                      <li><router-link :to="{ path: '/home/gallery-foto' }">Galeri Foto</router-link></li>
-                      <li><router-link :to="{ path: '/home-m/video' }">Video</router-link></li>
-                      <li><router-link :to="{ path: '/home/infografis' }">Infografis</router-link></li>
+                      <li><router-link :to="{ path: '/home-c/gallery-foto' }">Galeri Foto</router-link></li>
+                      <li><router-link :to="{ path: '/home-g/video' }">Video</router-link></li>
+                      <li><router-link :to="{ path: '/home-c/infografis' }">Infografis</router-link></li>
                   </ul>
                   </li>
                   <li>

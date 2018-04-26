@@ -13,42 +13,25 @@
           <a href=""><v-icon name="play" base-class="icon-20"></v-icon></a>
         </el-col>
       </el-row>
-      <!-- <div class="vid-thumb">
-        <el-row :gutter="20" v-loading="loading.list"  >
-          <el-col :span="8" v-for="(item) in list" :key="item.id" style="margin-bottom:20px">
-            <div class="vid-thumb-wrapper">
-              <youtube :video-id="$youtube.getIdFromURL(item.sources_path)" :player-vars="{ showinfo: 0 }" @ready="ready" @playing="playing" ></youtube>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
-      <div class="video-paging align-center" v-if="showPaging">
-          <el-pagination
-          background
-          layout="prev, pager, next"
-          prev-text="Pertama" next-text="Terakhir"
-          @current-change="handleCurrentChange"
-          :current-page.sync="page"
-          :page-size="per_page"
-          :total="total_entries_size" 
-          >
-        </el-pagination>
-      </div>
-      <div class="video-paging align-center" v-if="!showPaging">
-          <infinite-loading @infinite="infiniteHandler"></infinite-loading>
-      </div> -->
+      <el-row :gutter="20" class="m-t-10" v-if="latestVideo" >
+        <el-col >
+          <comment-box :articleID="latestVideo.id"></comment-box>
+        </el-col>
+      </el-row>
   </div>
   
 </template>
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
+import { CommentBox } from '@/views/portal/components'
 import { getLatestVideoByEditorial, getVideosByEditorialSlug } from '@/api/article'
 
 export default {
   name: 'VideoG',
   components: {
-    ArticleSeparator
+    ArticleSeparator,
+    CommentBox
   },
   props: {
     editorialSlug: { type: String, default: 'video' },

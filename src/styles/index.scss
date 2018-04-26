@@ -282,4 +282,15 @@ a:hover {
 .author {
   color: $author
 }
+
+//comment 
+.comments-container{
+  margin-top:10px;
+  background-color: #fff;
+  padding-left: 20px;
+  padding-right: 20px;}
+.comments-container .comments-content{
+  background-color: #e6e6e6;
+}
+
 //END start

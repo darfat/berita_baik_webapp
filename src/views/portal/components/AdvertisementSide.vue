@@ -1,6 +1,6 @@
 <template>
 <div >    
-        <div class="section-title"> IKLAN </div>
+        <div class="section-title" v-if="showTitle"> IKLAN </div>
           <div class="advertisement-news m-t-10">
             <el-row :gutter="20" v-for="(advertisement) in advertisement_list" :key="advertisement.id" class="side-row"  >
               <el-col :span="24" class="side-image">
@@ -18,7 +18,8 @@ export default {
   name: 'AdvertisementSide',
   props: {
     limit: { default: 1, type: Number },
-    page: { default: 1, type: Number }
+    page: { default: 1, type: Number },
+    showTitle: { default: true, type: Boolean }
   },
   data() {
     return {
