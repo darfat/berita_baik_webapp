@@ -23,9 +23,7 @@
                       <el-row :gutter="20" class="ln-title">
                         <el-col >
                           <div class="headline"> 
-                            <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
                               {{ latestNews.title }}
-                            </router-link>
                           </div>
                         </el-col>
                       </el-row>
@@ -57,7 +55,8 @@
           <el-col :xs="24" :sm="8" class="side-content">
             <div class="grid-content a-side">
               <div class="spacer m-t-10"></div>
-              <advertisement-side :showTitle="false"></advertisement-side>
+                <advertisement-side :showTitle="false"></advertisement-side>
+                <editor-pick-videos-side ></editor-pick-videos-side>
             </div>
         </el-col>
         </div>
@@ -105,7 +104,7 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { PopularNewsSide, VideosCard, InfografisSide, AdvertisementSide, CommentBox, CommentList } from '@/views/portal/components'
+import { PopularNewsSide, VideosCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, EditorPickVideosSide } from '@/views/portal/components'
 import { getEditorialLabelBySlug } from '@/api/editorial'
 import { getLatestVideoByEditorial } from '@/api/article'
 import EventBus from '@/utils/event-bus'
@@ -120,7 +119,8 @@ export default {
     InfografisSide,
     AdvertisementSide,
     CommentBox,
-    CommentList
+    CommentList,
+    EditorPickVideosSide
   },
   data() {
     return {
