@@ -94,6 +94,12 @@ export const constantRouterMap = [
       name: 'search-advanced',
       props: true,
       component: () => import('@/views/portal/search/advanced')
+    },
+    {
+      path: 'home-m/event-calendar',
+      name: 'event-calendar',
+      props: true,
+      component: () => import('@/views/portal/eventcalendar/index')
     }]
   },
   { path: '/plogin', component: () => import('@/views/portal/login/index'), hidden: true },
