@@ -30,6 +30,10 @@ import InfiniteLoading from 'vue-infinite-loading'
 import FBSignInButton from 'vue-facebook-signin-button'
 // google connect
 import GSignInButton from 'vue-google-signin-button'
+// vue event calendar
+// import 'vue-event-calendar/dist/style.css' // ^1.1.10, CSS has been extracted as one file, so you can easily update it.
+import '@/styles/event-calendar.scss' // global css
+import vueEventCalendar from 'vue-event-calendar'
 
 Vue.use(ElementUI, { locale })
 Vue.use(feather, 'v-icon')
@@ -56,6 +60,7 @@ Vue.config.productionTip = false
 Vue.component('infinite-loading', InfiniteLoading)
 Vue.use(FBSignInButton)
 Vue.use(GSignInButton)
+Vue.use(vueEventCalendar, { locale: 'en' }) // locale can be 'zh','en','es','pt-br','ja','ko','fr','it','ru','de','vi','ua'
 new Vue({
   el: '#app',
   router,
