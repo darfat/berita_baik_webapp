@@ -37,12 +37,21 @@
       </swiper>
     </div>
     <div class="cld">
-      <h2>Acara Bulan Ini</h2>
-      aaa
+      <h2>Acara Bulan Ini</h2>      
+      <vue-event-calendar :events="demoEvents">
+        <template slot-scope="props">
+          <div v-for="(event, index) in props.showEvents" class="event-item">
+            <!-- In here do whatever you want, make you owner event template -->
+            {{ event.title }}
+          </div>
+        </template>
+      </vue-event-calendar>
       <hr />
     </div>
     <div class="lst">
       <h2>05 Des</h2>
+      
+    
       <el-collapse accordion v-model="activeName">
         <el-collapse-item name="1">
           <template slot="title">
@@ -88,7 +97,30 @@ export default {
           prevEl: '.swiper-button-prev'
         }
       },
-      activeName: '1'
+      activeName: '1',
+      demoEvents: [{
+        date: '2018/05/15',
+        title: 'Title-1',
+        desc: 'longlonglong description'
+      },
+      {
+        date: '2018/05/24',
+        title: 'Title-2',
+        desc: 'longlonglong1 description'
+      },
+      {
+        date: '2018/05/06',
+        title: 'Title-3',
+        desc: 'description'
+      }]
+    }
+  },
+  methods: {
+    handleDayChanged(data) {
+      console.log('date-changed', data)
+    },
+    handleMonthChanged(data) {
+      console.log('month-changed', data)
     }
   },
   created() {
@@ -98,7 +130,7 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-@import "src/styles/variables.scss";
+@import "src/styles/event-calendar.scss";
 .ec{
   background-color: #e6e6e6;
   padding: 20px 0;
@@ -135,6 +167,9 @@ export default {
     h2{
       color: $main-blue;
       margin: 0;
+      position: absolute;
+      width: 50%;
+
     }
     hr{
       border: 0;
@@ -156,6 +191,8 @@ export default {
       width: 200px;
     }
   }
+
+  
 }
 
 .el-row {
