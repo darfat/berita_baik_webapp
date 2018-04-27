@@ -43,6 +43,8 @@
           <div v-for="(event, index) in props.showEvents" class="event-item">
             <!-- In here do whatever you want, make you owner event template -->
             {{ event.title }}
+            <fa-icon name="clock-o"></fa-icon>
+            <fa-icon name="map-marker"></fa-icon>
           </div>
         </template>
       </vue-event-calendar>
@@ -99,19 +101,31 @@ export default {
       },
       activeName: '1',
       demoEvents: [{
-        date: '2018/05/15',
         title: 'Title-1',
-        desc: 'longlonglong description'
+        img: '/static/upload/images/5.jpg',
+        details: 'longlonglong description',
+        date: '2018/05/15',
+        venue: '',
+        address: '',
+        ticket: ''
       },
       {
+        title: 'Title-1',
+        img: '/static/upload/images/5.jpg',
+        details: 'longlonglong description',
         date: '2018/05/24',
-        title: 'Title-2',
-        desc: 'longlonglong1 description'
+        venue: 'Bandung Convention Center',
+        address: '',
+        ticket: ''
       },
       {
-        date: '2018/05/06',
-        title: 'Title-3',
-        desc: 'description'
+        title: 'Title-1',
+        img: '/static/upload/images/5.jpg',
+        details: 'longlonglong description',
+        date: '2018/05/15',
+        venue: '',
+        address: '',
+        ticket: ''
       }]
     }
   },
