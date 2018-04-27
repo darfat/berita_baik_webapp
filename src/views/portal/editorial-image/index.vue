@@ -1,28 +1,26 @@
 <template>
   <div class="editoral-container">
     <el-row :gutter="20" class="headline-container" v-if="latestNews">
-      <el-row :gutter="20"> 
-        <div class="container">         
-          <el-col :xs="24" v-if="latestNews.editorial">
-            <div class="grid-content title-container" v-if="editorialSlug !== latestNews.editorial.slug">
-                <h1 class="main-article-title"> {{ editorialTitle }} </h1> 
-            </div>
-          </el-col>
-        </div>  
-      </el-row>
-      <el-row :gutter="20">
+      <el-row :gutter="20" >
         <div class="container">
         <el-col :xs="24">
           <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">
-                <el-row :gutter="20" >
+                <el-row :gutter="20" v-if="editorialSlug === 'infografis'">
                   <el-col >
                     <div>
                         <div class="background">
                             <img :src="latestNews.main_image" />
-                            <div class="editorial-type-img" v-if="latestNews.id">
+                            <!-- <div class="editorial-type-img" v-if="latestNews.id">
                                 <h2>{{ latestNews.editorial.name }}</h2>
-                            </div>
+                            </div> -->
                         </div>
+                    </div>
+                  </el-col>
+                </el-row>
+                <el-row :gutter="20" v-if="editorialSlug !== 'infografis'">
+                  <el-col >
+                    <div>
+                        <h1>Images</h1>
                     </div>
                   </el-col>
                 </el-row>
@@ -65,34 +63,9 @@
                   </el-col>
                 </el-row>
           </div>
-          <el-dialog title="" :visible.sync="centerDialogVisible" width="30%" center>
-              <span @click="centerDialogVisible = false" v-if="latestNews">
-                <social-sharing  v-if="latestNews.editorial"  :url="'http://beritabaik.id/#/home/a/'+latestNews.editorial.slug+'/'+latestNews.slug" :title="latestNews.title" :description="latestNews.teaser" :quote="latestNews.title"
-                  :hashtags="'beritabaik,'+latestNews.article_tags" inline-template>
-                  <div>
-                    <network network="facebook">
-                      <fa-icon name="facebook-f" scale="1.8" class="network-icon"></fa-icon>
-                    </network>
-                    <network network="twitter" class="network-icon">
-                      <fa-icon name="twitter" scale="1.8"></fa-icon>
-                    </network>
-                    <network network="email">
-                      <fa-icon name="envelope" scale="1.8"></fa-icon>
-                    </network>
-                    <network network="googleplus">
-                      <fa-icon name="google-plus" scale="1.8"></fa-icon>
-                    </network>
-                    <!-- <network network="whatsapp">
-                                      <fa-icon name="whatsapp" scale="2" ></fa-icon>
-                                    </network> -->
-                  </div>
-                </social-sharing>
-              </span>
-            </el-dialog>
         </el-col>
         </div>
       </el-row>
-      
     </el-row>
     <el-row :gutter="20" class="comments-container" v-if="latestNews" >
       <el-row :gutter="20" >
@@ -138,7 +111,7 @@ import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
 import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide, CommentBox, CommentList } from '@/views/portal/components'
 import { getEditorialLabelBySlug, getEditorialIdBySlug } from '@/api/editorial'
-import { getLatestNewsByEditorial } from '@/api/article'
+import { getLatestNewsByEditorial, getArticleImages } from '@/api/article'
 import EventBus from '@/utils/event-bus'
 
 export default {
@@ -156,6 +129,7 @@ export default {
   data() {
     return {
       latestNews: {},
+      articleImages: [],
       editorialTitle: '',
       editorialSlug: null,
       editorialType: null,
@@ -211,6 +185,15 @@ export default {
             this.latestNews = response.data
             EventBus.$emit('SET_ARTICLE_ID_COMMENTS_EVENT', { 'articleID': this.latestNews.id })
             this.loading.latestNews = false
+
+            if (editorialSlug !== 'infografis') {
+              getArticleImages({ article_id: this.latestNews.id }).then(responseImages => {
+                if (responseImages) {
+                  this.articleImages = responseImages.data
+                  console.log(responseImages)
+                }
+              })
+            }
           }
         })
       }

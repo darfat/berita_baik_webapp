@@ -132,3 +132,9 @@ export function getCountImage(data) {
     method: 'get'
   })
 }
+export function getArticleImages(data) {
+  return request({
+    url: '/article-image-by-article/' + data.article_id,
+    method: 'get'
+  })
+}
