@@ -1,69 +1,68 @@
 <template>
   <div class="infografis-detail">      
-    <div class="infografis-header"> INFOGRAFIS</div>
-    <div class="infografis-content"> 
-        <el-row :gutter="20" v-loading="loading.infografis" >
-            <el-col :span="22" class="infografis-col">
-                  <div class="infografis-thumbnail">
-                      <img :src="infografis.main_image" class="infografis-image" />
-                  </div>
-                  <div class="infografis-info">
-                    <div class="bottom clearfix">
-                      <el-row >
-                        <el-col :span="4">
-                          <span> <bb-love></bb-love> </span>
-                          <span> <fa-icon name="share-alt" scale="1.3"  ></fa-icon>  </span>
+    <el-row :gutter="20" class="content" >
+      <div class="container">
+        <el-col :xs="24">
+          <div class="grid-content infografis" v-loading="loading.infografis" v-if="infografis.id">
+                <el-row :gutter="20">
+                  <el-col >
+                    <div>
+                        <div class="background">
+                            <img :src="infografis.main_image" />                           
+                        </div>
+                    </div>
+                  </el-col>
+                </el-row>
+                <el-row :gutter="20" class="content"> 
+                  <el-col>
+                    <el-row :gutter="20">
+                        <el-col :span="4" v-if="infografis.id">
+                            <span> <bb-love></bb-love> </span>
+                            <span><share-pop :article="infografis"></share-pop>  </span>
                         </el-col>
                     </el-row>
-                    </div>
-                    <el-row class="infografis-content-title">
-                      <div>
-                        <span>{{ infografis.title}}</span>
-                      </div>
-                    </el-row>
-                    <el-row class="infografis-content-teaser">
-                      <div>
-                        <div v-html="infografis.teaser">
-                        
-                        </div>
-                      </div>
-                    </el-row>
-                    <el-row class="infografis-content-content">
-                      <div>
-                        <div v-html="infografis.content">
-                        
-                        </div>
-                      </div>
-                    </el-row>
-                    <el-row >
-                        <el-col :span="2"><article-separator></article-separator></el-col>
-                    </el-row>
-                    <el-row >
-                        <el-col class="infografis-footer">
-                        <div>
-                          {{ infografis.reporter.name }} | <timeago :since="infografis.publish_date"></timeago> 
+                    <el-row :gutter="20" class="ln-title">
+                      <el-col >
+                        <div class="headline"> 
+                            {{ infografis.title }}
                         </div>
                       </el-col>
                     </el-row>
-                  </div>
-            </el-col>
-        </el-row>    
-    </div>
-    <div class="infografis-paging">
-        <el-pagination
-        background
-        layout="prev, pager, next"
-        :total="20"
-        prev-text="Pertama" next-text="Terakhir"
-        >
-      </el-pagination>
-    </div>
+                    <el-row :gutter="20">
+                        <el-col class="sub-headline">
+                          <div v-html="infografis.teaser" class="article-content">
+                          </div>
+                        </el-col>
+                    </el-row>
+                    <el-row :gutter="20">
+                        <el-col :span="1"><article-separator></article-separator></el-col>
+                    </el-row>
+                    <el-row :gutter="20">
+                        <el-col class="footer">
+                          <div class="author">
+                            {{ infografis.reporter_name }} | <timeago :auto-update="60" :since="infografis.publish_date"></timeago>
+                          </div>
+                        </el-col>
+                    </el-row>
+                  </el-col>
+                </el-row>
+                <el-row :gutter="20" class="m-t-10" v-if="infografis" >
+                  <el-col >
+                    <comment-box :articleID="infografis.id"></comment-box>
+                  </el-col>
+                </el-row>
+          </div>
+        </el-col>
+      </div>
+    </el-row>
   </div>
 </template>
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
+import SharePop from '@/views/portal/components/SharePop'
+import CommentBox from '@/views/portal/components/CommentBox'
 
 import { getArticle } from '@/api/article'
 
@@ -71,7 +70,9 @@ export default {
   name: 'Infografis',
   components: {
     ArticleSeparator,
-    BbLove
+    BbLove,
+    SharePop,
+    CommentBox
   },
   props: {
     articleID: { type: String },
@@ -88,7 +89,6 @@ export default {
   },
   created() {
     this.init()
-    console.log('get infografis by id')
   },
   methods: {
     init() {

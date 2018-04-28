@@ -57,7 +57,9 @@ export function getLatestNewsByEditorial(params) {
 }
 
 export function getNewsByEditorialSlug(params) {
-  params.type = NEWS_TYPE
+  if (!params.type) {
+    params.type = NEWS_TYPE
+  }
   return request({
     url: '/articles-editorial/' + params.editorialSlug,
     method: 'get',

@@ -10,7 +10,13 @@
           <el-card :body-style="{ padding: '0px' }" class="news-card">
             <div>
               <div class="mini-thumbnail">
-                <router-link v-if="article.editorial"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
+                <router-link  v-if="article.article_type === 'news'"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
+                  <img :src="article.main_image" class="card-image" />
+                  <div class="editorial-type-img">
+                    <h3>{{ article.editorial.name }}</h3>
+                  </div>
+                </router-link>
+                <router-link   v-if="article.editorial.slug === 'infografis'" :to="{ name: 'infografis-detail-layout', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug} }" >                      
                   <img :src="article.main_image" class="card-image" />
                   <div class="editorial-type-img">
                     <h3>{{ article.editorial.name }}</h3>
@@ -30,8 +36,14 @@
                 </el-row>
               </div>
               <el-row class="ac-title">
-                <div>
-                  <router-link v-if="article.editorial" :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
+                <div v-if="article.editorial">
+                  <router-link v-if="article.article_type === 'news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
+                    <h2 class="headline">{{ article.title}}</h2>
+                  </router-link>
+                  <router-link   v-if="article.editorial.slug === 'infografis'" :to="{ name: 'infografis-detail-layout', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug ,  'articleID': article.id} }" >                      
+                    <h2 class="headline">{{ article.title}}</h2>
+                  </router-link>
+                  <router-link   v-if="article.article_type === 'image' && article.editorial.slug  !== 'infografis'" :to="{ name: 'infografis-detail-layout', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug ,  'articleID': article.id} }" >                      
                     <h2 class="headline">{{ article.title}}</h2>
                   </router-link>
                 </div>
@@ -101,6 +113,9 @@
       editorialType: {
         type: String
       },
+      articleType: {
+        type: String
+      },
       title: {
         type: String,
         default: 'BACA LAINNYA'
@@ -143,7 +158,8 @@
           let params = {
             editorialSlug,
             page,
-            per_page: this.per_page
+            per_page: this.per_page,
+            type: this.articleType
           }
           if (this.editorialType && this.editorialType !== null && this.editorialType.length) {
             getEditorialIdBySlug({
@@ -155,7 +171,8 @@
                   editorialType: this.editorialType,
                   editorialSlugID: editorialResponse.data.id,
                   page,
-                  per_page: this.per_page
+                  per_page: this.per_page,
+                  type: this.articleType
                 }
                 getNewsByEditorialSlug(params).then(response => {
                   if (response) {
@@ -198,19 +215,17 @@
         }
       },
       handleCurrentChange(page) {
-        console.log(`${page} page`)
         this.getArticles(this.editorialSlug, page)
       },
       infiniteHandler($state) {
         const editorialSlug = this.editorialSlug
-        console.log(`${this.total_entries_size} this.total_entries_size`)
         const page = Math.floor(this.articles.length / this.per_page) + 1
-        console.log(`${page} page`)
         if (editorialSlug) {
           let params = {
             editorialSlug,
             page,
-            per_page: this.per_page
+            per_page: this.per_page,
+            type: this.articleType
           }
           if (this.editorialType && this.editorialType !== null && this.editorialType.length) {
             getEditorialIdBySlug({
@@ -222,7 +237,8 @@
                   editorialType: this.editorialType,
                   editorialSlugID: editorialResponse.data.id,
                   page,
-                  per_page: this.per_page
+                  per_page: this.per_page,
+                  type: this.articleType
                 }
                 getNewsByEditorialSlug(params).then(response => {
                   if (response) {
@@ -231,14 +247,9 @@
                     this.total_pages = response.data.total_pages
                     this.total_entries_size = response.data.total_entries_size
                     this.page = response.data.page
-                    console.log(`${this.total_pages} total_pages`)
-                    console.log(`${this.total_entries_size} total entries size`)
                     if (response.data.data && response.data.data.length) {
-                      console.log(`${this.articles.length} l before`)
                       this.articles = this.articles.concat(response.data.data)
-                      console.log(`${this.articles.length} l after`)
                       $state.loaded()
-                      console.log(`${Math.ceil(this.articles.length / this.per_page)} is completed`)
                       if (Math.ceil(this.articles.length / this.per_page) === this.total_pages) {
                         $state.complete()
                       }
@@ -252,7 +263,6 @@
               }
             })
           } else {
-            console.log(params)
             getNewsByEditorialSlug(params).then(response => {
               if (response) {
                 // this.articles = response.data.data
@@ -260,14 +270,9 @@
                 this.total_pages = response.data.total_pages
                 this.total_entries_size = response.data.total_entries_size
                 this.page = response.data.page
-                console.log(`${this.total_pages} total_pages`)
-                console.log(`${this.total_entries_size} total entries size`)
                 if (response.data.data && response.data.data.length) {
-                  console.log(`${this.articles.length} l before`)
                   this.articles = this.articles.concat(response.data.data)
-                  console.log(`${this.articles.length} l after`)
                   $state.loaded()
-                  console.log(`${Math.ceil(this.articles.length / this.per_page)} is completed`)
                   if (Math.ceil(this.articles.length / this.per_page) === this.total_pages) {
                     $state.complete()
                   }
@@ -288,14 +293,9 @@
               this.total_pages = response.data.total_pages
               this.total_entries_size = response.data.total_entries_size
               this.page = response.data.page
-              console.log(`${this.total_pages} total_pages`)
-              console.log(`${this.total_entries_size} total entries size`)
               if (response.data.data && response.data.data.length) {
-                console.log(`${this.articles.length} l before`)
                 this.articles = this.articles.concat(response.data.data)
-                console.log(`${this.articles.length} l after`)
                 $state.loaded()
-                console.log(`${Math.ceil(this.articles.length / this.per_page)} is completed`)
                 if (Math.ceil(this.articles.length / this.per_page) === this.total_pages) {
                   $state.complete()
                 }

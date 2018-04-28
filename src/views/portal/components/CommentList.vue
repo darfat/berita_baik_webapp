@@ -78,7 +78,6 @@ export default {
   },
   methods: {
     init() {
-      console.log('init comment list')
       console.log(this.articleID)
       this.getComments(this.articleID)
     },

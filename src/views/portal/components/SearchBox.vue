@@ -22,11 +22,8 @@ export default {
     this.init()
   },
   methods: {
-    init() {
-      console.log('init search')
-    },
+    init() {},
     onEnterClick() {
-      console.log('enter....')
       this.$router.push({ name: 'search-home', params: { 'keyword': this.searchKeyword }})
     }
   }

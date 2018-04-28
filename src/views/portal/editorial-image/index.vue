@@ -19,8 +19,8 @@
                 </el-row>
                 <el-row :gutter="20" v-if="editorialSlug !== 'infografis'">
                   <el-col >
-                    <div>
-                        <h1>Images</h1>
+                    <div v-if="latestNews">
+                        <images-slider :articleID="latestNews.id" :article="latestNews"></images-slider>
                     </div>
                   </el-col>
                 </el-row>
@@ -29,7 +29,7 @@
                     <el-row :gutter="20">
                         <el-col :span="4" v-if="latestNews.id">
                             <span> <bb-love></bb-love> </span>
-                            <span><a @click="centerDialogVisible = true"> <fa-icon name="share-alt" scale="1.3"  ></fa-icon> </a>  </span>
+                            <span><share-pop :article="latestNews"></share-pop>  </span>
                         </el-col>
                     </el-row>
                     <el-row :gutter="20" class="ln-title">
@@ -80,7 +80,7 @@
       <div class="container">
         <el-col :xs="24" :sm="16" class="content">
           <div class="grid-content">
-              <articles-card :editorialSlug="editorialSlug" :editorialType="editorialType" :limit=10 :showPaging="false"></articles-card>
+              <articles-card :editorialSlug="editorialSlug" :editorialType="editorialType" :limit=10 :showPaging="false" :articleType="'image'"></articles-card>
           </div>
         </el-col>
         <el-col :xs="24" :sm="8" class="side-content">
@@ -109,10 +109,11 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide, CommentBox, CommentList } from '@/views/portal/components'
-import { getEditorialLabelBySlug, getEditorialIdBySlug } from '@/api/editorial'
-import { getLatestNewsByEditorial, getArticleImages } from '@/api/article'
+import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, SharePop } from '@/views/portal/components'
+import { getEditorialLabelBySlug } from '@/api/editorial'
+import { getLatestImageByEditorial } from '@/api/article'
 import EventBus from '@/utils/event-bus'
+import ImagesSlider from './ImagesSlider'
 
 export default {
   name: 'editorialImage',
@@ -124,12 +125,13 @@ export default {
     InfografisSide,
     AdvertisementSide,
     CommentBox,
-    CommentList
+    CommentList,
+    ImagesSlider,
+    SharePop
   },
   data() {
     return {
       latestNews: {},
-      articleImages: [],
       editorialTitle: '',
       editorialSlug: null,
       editorialType: null,
@@ -153,47 +155,19 @@ export default {
       this.editorialType = this.$route.params.editorialType
     },
     initMounted() {
-      this.getLatestNews(this.editorialSlug)
+      this.getLatestImage(this.editorialSlug)
     },
-    getLatestNews(editorialSlug) {
+    getLatestImage(editorialSlug) {
       this.loading.latestNews = true
-      let params = {
+      const params = {
         editorialSlug
       }
-      if (this.editorialType && this.editorialType !== null && this.editorialType.length) {
-        getEditorialIdBySlug({
-          slug: editorialSlug
-        }).then(editorialResponse => {
-          if (editorialResponse) {
-            params = {
-              editorialSlug,
-              editorialType: this.editorialType,
-              editorialSlugID: editorialResponse.data.id
-            }
-            getLatestNewsByEditorial(params).then(response => {
-              if (response) {
-                this.latestNews = response.data
-                EventBus.$emit('SET_ARTICLE_ID_COMMENTS_EVENT', { 'articleID': this.latestNews.id })
-                this.loading.latestNews = false
-              }
-            })
-          }
-        })
-      } else {
-        getLatestNewsByEditorial(params).then(response => {
+      if (editorialSlug) {
+        getLatestImageByEditorial(params).then(response => {
           if (response) {
             this.latestNews = response.data
             EventBus.$emit('SET_ARTICLE_ID_COMMENTS_EVENT', { 'articleID': this.latestNews.id })
             this.loading.latestNews = false
-
-            if (editorialSlug !== 'infografis') {
-              getArticleImages({ article_id: this.latestNews.id }).then(responseImages => {
-                if (responseImages) {
-                  this.articleImages = responseImages.data
-                  console.log(responseImages)
-                }
-              })
-            }
           }
         })
       }

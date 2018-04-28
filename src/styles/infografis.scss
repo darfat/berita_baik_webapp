@@ -1,67 +1,75 @@
 @import './variables.scss';
 
 .infografis-detail{
-    
+   
 }
-.infografis-detail .infografis-header{
-    padding-top: 10px;
-    padding-bottom: 5px;
-    font-style: bold;
-    color: #fff;
-    font-size: 1.6em;
-}
-.infografis-detail .infografis-content{
-    justify-content: center;
-    align-items: center;    
-}
-.infografis-detail .infografis-content .infografis-col {
-    padding: 0px;
-}
-.infografis-detail .infografis-content .infografis-col .infografis-info{
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 20px;
+.infografis-detail .content {
     background-color: #fff;
 }
-.infografis-detail .infografis-content .infografis-col .infografis-info .infografis-content-title{
-    font-weight: bold;
-    font-size: 1.0em;
-}.infografis-detail .infografis-content .infografis-col .infografis-info .infografis-footer{
-    font-weight: bold;
-    font-size: 0.8em;
+.grid-content {
+    border-radius: 4px;
+    min-height: 36px;    
+}
+.infografis-detail .content .title-container{    
+    h1{
+        color: $main-blue;
+        font-size: 2em;
+        margin: 20px 0 0 0;
+    }
+}
+.infografis-detail .content .infografis{
+    background-color: #fff;
+    min-height: 300px;
+    margin-bottom: 40px;
+    margin-top: 20px;
 }
 
-.infografis-detail .infografis-content .infografis-col .infografis-thumbnail {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden
+.infografis-detail .content .infografis .background {
+    position: relative;
 }
-.infografis-detail .infografis-content .infografis-col .infografis-thumbnail .img{
-    
+.infografis-detail .content .infografis .backgroundx {
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    left: 0px; 
+    top: 0px; 
+    z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
+}
+.infografis-detail .content .infografis .background img{
+    width:100%;
+    // max-height: 500px;
     object-fit: cover;
 }
 
-.infografis-detail .infografis-content .infografis-col .infografis-thumbnail .infografis-image-title {
+.infografis-detail .content .infografis .background .editorial-type-img {
     position: absolute;
-    top: 3%;
-    left: 3%;
+    top: 5%;
+    left: 2%;
     // transform: translate( -50%, -50% );
     text-align: center;
     color: white;
     font-weight: bold;
     background-color: $main-blue;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 0.8em;
+    padding: 10px 10px 8px 10px;
+        h2{
+            text-transform: uppercase;
+            font-size: 1em;
+            margin: 0;
+        }
+    
 }
-.infografis-detail .infografis-content .infografis-col .infografis-thumbnail img{
-    width: 100%;
-    height: auto;
-    display: block;
+.infografis-detail .content .infografis .content{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
 }
-.infografis-detail .infografis-paging{
-    text-align: center;
 
+.infografis-detail .content .infografis .content .ln-title{
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.infografis-detail .content .infografis .content  .footer{
+    font-weight: bold;
+    font-size: 0.8em;
 }
