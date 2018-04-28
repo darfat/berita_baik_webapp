@@ -111,7 +111,7 @@ import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
 import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, SharePop } from '@/views/portal/components'
 import { getEditorialLabelBySlug } from '@/api/editorial'
-import { getLatestImageByEditorial } from '@/api/article'
+import { getLatestImageByEditorial, getArticle } from '@/api/article'
 import EventBus from '@/utils/event-bus'
 import ImagesSlider from './ImagesSlider'
 
@@ -135,6 +135,7 @@ export default {
       editorialTitle: '',
       editorialSlug: null,
       editorialType: null,
+      slug: null,
       editorialObj: null,
       loading: {
         latestNews: false
@@ -152,10 +153,14 @@ export default {
     init() {
       this.editorialTitle = getEditorialLabelBySlug(this.$route.params.editorialSlug)
       this.editorialSlug = this.$route.params.editorialSlug
-      this.editorialType = this.$route.params.editorialType
+      this.slug = this.$route.params.slug
     },
     initMounted() {
-      this.getLatestImage(this.editorialSlug)
+      if (this.slug) {
+        this.getImage(this.slug)
+      } else {
+        this.getLatestImage(this.editorialSlug)
+      }
     },
     getLatestImage(editorialSlug) {
       this.loading.latestNews = true
@@ -171,8 +176,22 @@ export default {
           }
         })
       }
+    },
+    getImage(slug) {
+      this.loading.latestNews = true
+      const params = {
+        slug
+      }
+      if (slug) {
+        getArticle(params).then(response => {
+          if (response) {
+            this.latestNews = response.data
+            EventBus.$emit('SET_ARTICLE_ID_COMMENTS_EVENT', { 'articleID': this.latestNews.id })
+            this.loading.latestNews = false
+          }
+        })
+      }
     }
-
   }
 }
 </script>

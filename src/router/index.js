@@ -60,6 +60,12 @@ export const constantRouterMap = [
       component: () => import('@/views/portal/editorial-image/index')
     },
     { // integrated
+      path: 'home-c/:editorialSlug/:slug',
+      name: 'editorial-image-detail',
+      props: true,
+      component: () => import('@/views/portal/editorial-image/index')
+    },
+    { // integrated
       path: 'home-g/:editorialSlug',
       name: 'editorial-video',
       props: true,

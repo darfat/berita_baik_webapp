@@ -16,7 +16,13 @@
                     <h3>{{ article.editorial.name }}</h3>
                   </div>
                 </router-link>
-                <router-link   v-if="article.editorial.slug === 'infografis'" :to="{ name: 'infografis-detail-layout', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug} }" >                      
+                <!-- <router-link   v-if="article.editorial.slug === 'infografis'" :to="{ name: 'infografis-detail-layout', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug} }" >                      
+                  <img :src="article.main_image" class="card-image" />
+                  <div class="editorial-type-img">
+                    <h3>{{ article.editorial.name }}</h3>
+                  </div>
+                </router-link> -->
+                <router-link   v-if="article.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug } }" >                      
                   <img :src="article.main_image" class="card-image" />
                   <div class="editorial-type-img">
                     <h3>{{ article.editorial.name }}</h3>
@@ -40,10 +46,10 @@
                   <router-link v-if="article.article_type === 'news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
                     <h2 class="headline">{{ article.title}}</h2>
                   </router-link>
-                  <router-link   v-if="article.editorial.slug === 'infografis'" :to="{ name: 'infografis-detail-layout', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug ,  'articleID': article.id} }" >                      
+                  <!-- <router-link   v-if="article.editorial.slug === 'infografis'" :to="{ name: 'infografis-detail-layout', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug ,  'articleID': article.id} }" >                      
                     <h2 class="headline">{{ article.title}}</h2>
-                  </router-link>
-                  <router-link   v-if="article.article_type === 'image' && article.editorial.slug  !== 'infografis'" :to="{ name: 'infografis-detail-layout', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug ,  'articleID': article.id} }" >                      
+                  </router-link> -->
+                  <router-link   v-if="article.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug } }" >                      
                     <h2 class="headline">{{ article.title}}</h2>
                   </router-link>
                 </div>
