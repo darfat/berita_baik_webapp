@@ -141,7 +141,6 @@
         loading: {
           articles: false
         },
-        centerDialogVisible: false,
         per_page: 10,
         page: 1,
         total_pages: 1,

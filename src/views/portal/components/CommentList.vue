@@ -25,8 +25,8 @@
               <el-col :span="12" class="comment-option" >
                 <span> <bb-love :articleID="comment.id" :type="'comment'" ></bb-love> </span>
                 <span class="opt-label"> {{ comment.likes_count}} </span>
-                <span class="opt-label"> | </span>
-                <span class="opt-label"> Reply </span>
+                <!-- <span class="opt-label"> | </span>
+                <span class="opt-label"> Reply </span> -->
               </el-col>
               <el-col :span="12" class="align-right">
                   <span> <v-icon name="more-horizontal" base-class="icon-20"></v-icon> </span>
@@ -37,6 +37,18 @@
             <el-col class="align-right">
             </el-col>
         </el-row>
+    </div>
+    <div class="comments-paging" >
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        prev-text="Sebelumnya" next-text="Selanjutnya"
+        @current-change="handleCurrentChange"
+        :current-page.sync="page"
+        :page-size="per_page"
+        :total="total_entries_size"  
+      >
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -60,7 +72,11 @@ export default {
       comments: [],
       loading: {
         comments: false
-      }
+      },
+      per_page: 5,
+      page: 1,
+      total_pages: 1,
+      total_entries_size: 0
     }
   },
   created() {
@@ -68,30 +84,42 @@ export default {
   },
   mounted() {
     EventBus.$on('UPDATE_COMMENTS_EVENT', event => {
-      this.getComments(this.articleID)
+      this.getComments(this.articleID, this.page)
     })
     EventBus.$on('SET_ARTICLE_ID_COMMENTS_EVENT', event => {
       if (!this.articleID) {
-        this.getComments(event.articleID)
+        this.getComments(event.articleID, this.page)
       }
     })
   },
   methods: {
     init() {
       console.log(this.articleID)
-      this.getComments(this.articleID)
+      this.getComments(this.articleID, this.page)
     },
-    getComments(articleID) {
+    getComments(articleID, page) {
       this.loading.comments = true
       if (articleID) {
-        getCommentsByArticleID({ articleID }).then(response => {
+        const params = {
+          articleID,
+          page,
+          per_page: this.per_page
+        }
+        getCommentsByArticleID(params).then(response => {
           console.log('get comments')
           if (response) {
-            this.comments = response.data
+            this.comments = response.data.data
+            this.per_page = response.data.per_page
+            this.total_pages = response.data.total_pages
+            this.total_entries_size = response.data.total_entries_size
+            this.page = response.data.page
           }
           this.loading.comments = false
         })
       }
+    },
+    handleCurrentChange(page) {
+      this.getComments(this.articleID, page)
     }
   }
 }
