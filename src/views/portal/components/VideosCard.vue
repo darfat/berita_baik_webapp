@@ -17,7 +17,7 @@
               </div>
               <el-row class="ac-title">
                 <div>
-                  <router-link v-if="video.editorial" :to="{ name: 'article-detail-route', params: { 'editorialSlug':video.editorial.slug, 'slug': video.slug,  'articleID': video.id} }">
+                  <router-link v-if="video.editorial" :to="{ name: 'editorial-video-detail', params: { 'editorialSlug':video.editorial.slug, 'slug': video.slug} }">
                     <h2 class="headline">{{ video.title}}</h2>
                   </router-link>
                 </div>

@@ -106,7 +106,7 @@ import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
 import { PopularNewsSide, VideosCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, EditorPickVideosSide } from '@/views/portal/components'
 import { getEditorialLabelBySlug } from '@/api/editorial'
-import { getLatestVideoByEditorial } from '@/api/article'
+import { getLatestVideoByEditorial, getArticle } from '@/api/article'
 import EventBus from '@/utils/event-bus'
 
 export default {
@@ -129,6 +129,7 @@ export default {
       editorialSlug: null,
       editorialType: null,
       editorialObj: null,
+      slug: null,
       loading: {
         latestNews: false
       },
@@ -145,10 +146,14 @@ export default {
     init() {
       this.editorialTitle = getEditorialLabelBySlug(this.$route.params.editorialSlug)
       this.editorialSlug = this.$route.params.editorialSlug
-      this.editorialType = this.$route.params.editorialType
+      this.slug = this.$route.params.slug
     },
     initMounted() {
-      this.getLatestVideo(this.editorialSlug)
+      if (this.slug) {
+        this.getVideo(this.slug)
+      } else {
+        this.getLatestVideo(this.editorialSlug)
+      }
     },
     getLatestVideo(editorialSlug) {
       this.loading.latestNews = true
@@ -159,6 +164,21 @@ export default {
         }
         this.loading.latestNews = false
       })
+    },
+    getVideo(slug) {
+      this.loading.latestNews = true
+      const params = {
+        slug
+      }
+      if (slug) {
+        getArticle(params).then(response => {
+          if (response) {
+            this.latestNews = response.data
+            EventBus.$emit('SET_ARTICLE_ID_COMMENTS_EVENT', { 'articleID': this.latestNews.id })
+            this.loading.latestNews = false
+          }
+        })
+      }
     },
     ready(player) {
       this.player = player

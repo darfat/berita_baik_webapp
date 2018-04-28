@@ -72,6 +72,12 @@ export const constantRouterMap = [
       component: () => import('@/views/portal/editorial-video/index')
     },
     {
+      path: 'home-g/:editorialSlug/:slug',
+      name: 'editorial-video-detail',
+      props: true,
+      component: () => import('@/views/portal/editorial-video/index')
+    },
+    {
       path: 'home-m/infografis',
       name: 'infografis-menu',
       props: true,
