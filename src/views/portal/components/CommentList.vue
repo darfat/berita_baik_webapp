@@ -98,8 +98,8 @@ export default {
       this.getComments(this.articleID, this.page)
     },
     getComments(articleID, page) {
-      this.loading.comments = true
       if (articleID) {
+        this.loading.comments = true
         const params = {
           articleID,
           page,

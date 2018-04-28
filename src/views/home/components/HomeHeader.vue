@@ -131,6 +131,16 @@
                   </ul>
                   </li>
                   <li>
+                    <label for="drop-4" class="toggle">More &#9660;</label>
+                    <router-link :to="{ path: '/home-m/event-calendar' }">More</router-link>
+                    <input type="checkbox" id="drop-4"/>
+                    <ul>
+                        <li><router-link :to="{ path: '/home-m/event-calendar' }">Acara</router-link></li>
+                        <li><router-link :to="{ path: '/home-c/gallery-foto-kamu' }">Foto Kamu</router-link></li>
+                        <li><router-link :to="{ path: '/home/berita-kamu' }">Berita Kamu</router-link></li>
+                    </ul>
+                  </li>
+                  <li>
                     <div class="social-media-container">
                       <a href="https://www.facebook.com/beritabaik.id/" target="_blank"><fa-icon name="facebook" scale="1" class="icon" ></fa-icon></a>
                       <a href="https://twitter.com/beritabaik_id" target="_blank"><fa-icon name="twitter" scale="1" class="icon" ></fa-icon></a>

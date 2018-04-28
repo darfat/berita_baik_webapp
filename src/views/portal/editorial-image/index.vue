@@ -67,7 +67,7 @@
         </div>
       </el-row>
     </el-row>
-    <el-row :gutter="20" class="comments-container" v-if="latestNews" >
+    <el-row :gutter="20" class="comments-container" v-if="latestNews.id" >
       <el-row :gutter="20" >
         <div class="container">
         <el-col :xs="24" :sm="24"  class="comments-content">
@@ -172,8 +172,8 @@ export default {
           if (response) {
             this.latestNews = response.data
             EventBus.$emit('SET_ARTICLE_ID_COMMENTS_EVENT', { 'articleID': this.latestNews.id })
-            this.loading.latestNews = false
           }
+          this.loading.latestNews = false
         })
       }
     },
@@ -187,8 +187,8 @@ export default {
           if (response) {
             this.latestNews = response.data
             EventBus.$emit('SET_ARTICLE_ID_COMMENTS_EVENT', { 'articleID': this.latestNews.id })
-            this.loading.latestNews = false
           }
+          this.loading.latestNews = false
         })
       }
     }
