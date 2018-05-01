@@ -1,83 +1,82 @@
 <template>
   <div class="editoral-container">
-    <el-row :gutter="20" class="headline-container" v-if="latestNews">
-      <el-row :gutter="20">
-        <div class="container">
-          <el-col :xs="24" :sm="16">
-            <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">
-                  <el-row :gutter="20" >
-                    <el-col >
-                      <div  v-loading="loading.latestNews" >
-                        <youtube :video-id="$youtube.getIdFromURL(latestNews.sources_path)" :player-vars="{ showinfo: 0 }" @ready="ready" @playing="playing" ></youtube>
+    <el-row :gutter="20" class="headline-container" v-if="latestNews">      
+      <div class="container">
+        <el-col :xs="24" :sm="16">
+          <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">
+            <el-row >
+              <el-col >
+                <div  v-loading="loading.latestNews" class="videoWrapper">
+                  <!--<youtube :video-id="$youtube.getIdFromURL(latestNews.sources_path)" :player-vars="{ showinfo: 0 }" @ready="ready" @playing="playing" ></youtube>-->
+                  <iframe 
+                    width="640"
+                    height="390"
+                    :src="'http://www.youtube.com/embed/'+$youtube.getIdFromURL(latestNews.sources_path)+'?rel=0&amp;fs=0&amp;showinfo=0'"
+                    frameborder="0"
+                    allowfullscreen></iframe>
+                </div>
+              </el-col>
+            </el-row>
+            <el-row  class="content"> 
+              <el-col>
+                <el-row >
+                    <el-col :span="4" v-if="latestNews.id">
+                        <span> <bb-love></bb-love> </span>
+                        <span><a @click="centerDialogVisible = true"> <fa-icon name="share-alt" scale="1.3"  ></fa-icon> </a>  </span>
+                    </el-col>
+                </el-row>
+                <el-row class="ln-title">
+                  <el-col >
+                    <div class="headline"> 
+                        {{ latestNews.title }}
+                    </div>
+                  </el-col>
+                </el-row>
+                <el-row >
+                    <el-col class="sub-headline">
+                      <div v-html="latestNews.teaser" class="article-content">
                       </div>
                     </el-col>
-                  </el-row>
-                  <el-row :gutter="20" class="content"> 
-                    <el-col>
-                      <el-row :gutter="20">
-                          <el-col :span="4" v-if="latestNews.id">
-                              <span> <bb-love></bb-love> </span>
-                              <span><a @click="centerDialogVisible = true"> <fa-icon name="share-alt" scale="1.3"  ></fa-icon> </a>  </span>
-                          </el-col>
-                      </el-row>
-                      <el-row :gutter="20" class="ln-title">
-                        <el-col >
-                          <div class="headline"> 
-                              {{ latestNews.title }}
-                          </div>
-                        </el-col>
-                      </el-row>
-                      <el-row :gutter="20">
-                          <el-col class="sub-headline">
-                            <div v-html="latestNews.teaser" class="article-content">
-                            </div>
-                          </el-col>
-                      </el-row>
-                      <el-row :gutter="20">
-                          <el-col :span="1"><article-separator></article-separator></el-col>
-                      </el-row>
-                      <el-row :gutter="20">
-                          <el-col class="footer">
-                            <div class="author">
-                              {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
-                            </div>
-                          </el-col>
-                      </el-row>
+                </el-row>
+                <el-row >
+                    <el-col :span="1"><article-separator></article-separator></el-col>
+                </el-row>
+                <el-row >
+                    <el-col class="footer">
+                      <div class="author">
+                        {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
+                      </div>
                     </el-col>
-                  </el-row>
-                  <el-row :gutter="20" class="m-t-10" v-if="latestNews" >
-                    <el-col >
-                      <comment-box :articleID="latestNews.id"></comment-box>
-                    </el-col>
-                  </el-row>
-            </div>
-          </el-col>
-          <el-col :xs="24" :sm="8" class="side-content">
-            <div class="grid-content a-side">
-              <div class="spacer m-t-10"></div>
-                <advertisement-side :showTitle="false"></advertisement-side>
-                <editor-pick-videos-side ></editor-pick-videos-side>
-            </div>
-        </el-col>
-        </div>
-      </el-row>
-    </el-row>
-    <el-row :gutter="20" class="comments-container" v-if="latestNews" >
-      <el-row :gutter="20" >
-        <div class="container">
-        <el-col :xs="24" :sm="24"  class="comments-content">
-          <comment-list :articleID="this.latestNews.id"></comment-list>
-        </el-col>
-        </div>
-      </el-row>
-    </el-row>
-    <el-row :gutter="20" class="list-container">
-      <div class="container">
-        <el-col :xs="24" :sm="16" class="content">
-          <div class="grid-content">
-              <videos-card :editorialSlug="editorialSlug" :editorialType="editorialType" :limit=10 :showPaging="false"></videos-card>
+                </el-row>
+              </el-col>
+            </el-row>
+            <el-row class="m-t-10" v-if="latestNews" >
+              <el-col >
+                <comment-box :articleID="latestNews.id"></comment-box>
+              </el-col>
+            </el-row>
           </div>
         </el-col>
+        <el-col :xs="24" :sm="8" class="side-content">
+          <div class="grid-content a-side">
+            <div class="spacer m-t-10"></div>
+              <advertisement-side :showTitle="false"></advertisement-side>
+              <editor-pick-videos-side ></editor-pick-videos-side>
+          </div>
+      </el-col>
+      </div>      
+    </el-row>
+    <el-row :gutter="20" class="list-container" v-if="latestNews" >
+      <div class="container">
+      <el-row :gutter="20" >        
+        <el-col :xs="24" :sm="16"  >
+          <div class="comments-content">
+            <comment-list :articleID="this.latestNews.id"></comment-list>
+          </div>  
+          <div class="grid-content video-content">
+              <videos-card :editorialSlug="editorialSlug" :editorialType="editorialType" :limit=10 :showPaging="false"></videos-card>
+          </div>
+        </el-col>        
         <el-col :xs="24" :sm="8" class="side-content">
           <div class="grid-content a-side">
             <div>
@@ -96,8 +95,11 @@
             <advertisement-side></advertisement-side>
           </div>
         </el-col>
-      </div>
+      </el-row>
+
+      </div>  
     </el-row>
+    
   </div>
 </template>
 

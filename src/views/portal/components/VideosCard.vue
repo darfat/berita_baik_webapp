@@ -8,8 +8,14 @@
       <el-col :xs="24" :sm="12" v-for="(video) in videos" :key="video.id">
         <div class="vid-thumb">
           <el-card :body-style="{ padding: '0px' }" class="news-card">
-            <div class="vid-thumb-wrapper">
-              <youtube :video-id="$youtube.getIdFromURL(video.sources_path)" :player-vars="{ showinfo: 0 }" @ready="ready" @playing="playing" ></youtube>
+            <div class="videoWrapper">
+              <!--<youtube :video-id="$youtube.getIdFromURL(video.sources_path)" :player-vars="{ showinfo: 0 }" @ready="ready" @playing="playing" ></youtube>-->
+              <iframe 
+                  width="640"
+                  height="390"
+                  :src="'http://www.youtube.com/embed/'+$youtube.getIdFromURL(video.sources_path)+'?rel=0&amp;fs=0&amp;showinfo=0'"
+                  frameborder="0"
+                  allowfullscreen></iframe>
             </div>
             <div class="ac-bottom-content">
               <div class="bottom clearfix">
