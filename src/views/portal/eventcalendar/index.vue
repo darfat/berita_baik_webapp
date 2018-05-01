@@ -36,35 +36,35 @@
         <div class="swiper-button-next" slot="button-next"></div>
       </swiper>
     </div>
-    <div class="cld">
+    <div class="cld" >
       <h2>Acara Bulan Ini</h2>      
-      <vue-event-calendar :events="demoEvents">
+      <vue-event-calendar :events="events"  @month-changed="handleMonthChanged" >
         <template slot-scope="props">
-          <el-collapse accordion v-model="activeName" v-for="(event, index) in props.showEvents" :key="index">
+          <el-collapse accordion v-model="activeName" v-for="(event, index) in props.showEvents" :key="index" v-loading="loading.events">
             <el-collapse-item :name=index>
               <template slot="title">            
                 <div v-if="activeName === index" >
                   <h2>{{event.title}}</h2>              
                 </div>
                 <div v-else>              
-                  <img :src="event.img" :alt="event.title" ><h2>{{event.title}}</h2>           
+                  <img :src="event.image" :alt="event.title" ><h2>{{event.title}}</h2>           
                 </div>
               </template>
-              <img src="/static/upload/images/5.jpg" >
+              <img :src="event.image" >
               <h3>Details:</h3>
-              <p>{{event.details}}</p>
+              <p>{{event.description}}</p>
               <div class="edate">
                 <fa-icon name="clock-o" ></fa-icon>
-                {{event.date}}
+                {{event.event_date}}
               </div>
               <div class="venue">
                 <fa-icon name="map-marker"></fa-icon>
-                {{event.venue}}
+                {{event.place}}
                 <small>{{event.address}}</small>
               </div>
               <div class="venue">
-                <fa-icon name="tag"></fa-icon>Ticketing <a>[Registration Here]</a>
-                {{event.venue}}
+                <fa-icon name="tag"></fa-icon>Ticketing <a :href="event.ticketing_url" target="_blank"  >[Registration Here]</a>
+                {{event.place}}
               </div>              
             </el-collapse-item>
           </el-collapse>
@@ -73,19 +73,26 @@
       </vue-event-calendar>
       <hr />
     </div>
-    
   </div>  
 </div>
     
 </template>
 
 <script>
+import { getEventsByPeriod } from '@/api/event'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import moment from 'moment'
+
 export default {
   name: 'EventCalendar',
   components: { swiper, swiperSlide },
   data() {
     return {
+      period: null,
+      loading: {
+        events: false
+      },
+      events: [],
       title: 'Event Calendar',
       swiperOption: {
         navigation: {
@@ -93,46 +100,47 @@ export default {
           prevEl: '.swiper-button-prev'
         }
       },
-      activeName: '1',
-      demoEvents: [{
-        title: 'Title-1',
-        img: '/static/upload/images/3.jpg',
-        details: 'longlonglong description',
-        date: '2018/05/15',
-        venue: 'Bandung Convention Center',
-        address: 'Jl. Seokarno Hatta No.215 Bandung',
-        ticket: ''
-      },
-      {
-        title: 'Title-2',
-        img: '/static/upload/images/4.jpg',
-        details: 'longlonglong description',
-        date: '2018/05/24',
-        venue: 'Bandung Convention Center',
-        address: 'Jl. Seokarno Hatta No.215 Bandung',
-        ticket: ''
-      },
-      {
-        title: 'Title-3',
-        img: '/static/upload/images/5.jpg',
-        details: 'longlonglong description',
-        date: '2018/05/06',
-        venue: 'Bandung Convention Center',
-        address: 'Jl. Seokarno Hatta No.215 Bandung',
-        ticket: ''
-      }]
-    }
-  },
-  methods: {
-    handleDayChanged(data) {
-      console.log('date-changed', data)
-    },
-    handleMonthChanged(data) {
-      console.log('month-changed', data)
+      activeName: '1'
     }
   },
   created() {
-    console.log('event calendar')
+    this.init()
+  },
+  mounted() {
+    this.initMounted()
+  },
+  methods: {
+    init() {
+      this.period = moment(new Date()).format('YYYYMM')
+    },
+    initMounted() {
+      this.$EventCalendar.toDate(moment(new Date()).format('YYYY/MM/DD'))
+      this.getEventsByPeriod(this.period)
+    },
+    handleDayChanged(data) {
+      // console.log('date-changed', data)
+    },
+    handleMonthChanged(data) {
+      // console.log('month-changed', data)
+      const datas = data.split('/')
+      this.period = datas[1] + datas[0]
+      this.getEventsByPeriod(this.period)
+    },
+    getEventsByPeriod(period) {
+      this.loading.events = true
+      this.events = []
+      getEventsByPeriod({
+        period
+      }).then(response => {
+        if (response && response.data) {
+          response.data.forEach(item => {
+            item.date = moment(item.date).format('YYYY/MM/DD')
+            this.events.push(item)
+          })
+        }
+        this.loading.events = false
+      })
+    }
   }
 }
 </script>

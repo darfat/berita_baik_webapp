@@ -1,4 +1,5 @@
 import request_auth from '@/utils/request_auth'
+import request from '@/utils/request'
 
 export function getAll(params) {
   return request_auth({
@@ -34,3 +35,9 @@ export function destroy(data) {
   })
 }
 
+export function getEventsByPeriod(params) {
+  return request({
+    url: '/events-by-period/' + params.period,
+    method: 'get'
+  })
+}
