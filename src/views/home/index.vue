@@ -10,7 +10,11 @@
 
   <el-row :gutter="20">
     <div class="container">
-    <el-col :xs="24" :sm="16">      
+    <el-col :xs="24" :sm="24">
+      <ads-banner :showTitle=true :id="1"></ads-banner>
+      <div class="spacer"></div>
+    </el-col>
+    <el-col :xs="24" :sm="16">        
         <articles-card :title="'Berita Baik Terbaru'" :limit="4"></articles-card>
         <div class="side-separator">
           <router-link  :to="{ name: 'editorial-menu', params: { 'editorialSlug':'indonesia-baik'} }" >
@@ -104,7 +108,7 @@
 </template>
 
 <script>
-import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, Galeri } from '@/views/home/components'
+import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, Galeri, AdsBanner } from '@/views/home/components'
 import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide, SocialFeed, InstagramFeed, AdvertisementSide } from '@/views/portal/components'
 
 export default {
@@ -122,7 +126,8 @@ export default {
     InfografisSide,
     SocialFeed,
     InstagramFeed,
-    AdvertisementSide
+    AdvertisementSide,
+    AdsBanner
   },
   computed: {
   }
