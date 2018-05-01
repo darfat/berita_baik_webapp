@@ -29,8 +29,12 @@ export default {
           id: 2,
           name: 'home-2',
           main_image: 'static/images/music-03.png'
+        },
+        {
+          id: 3,
+          name: 'home-3',
+          main_image: 'static/images/ads1.jpg'
         }
-
       ],
       loading: {
         advertisement_list: false
