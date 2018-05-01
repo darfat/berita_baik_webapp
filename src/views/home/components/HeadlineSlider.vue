@@ -15,7 +15,7 @@
       </div>
       <div class="title">      
       <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">
-        <h2 class="headline" >{{item.article.title}}{{item.article.id}}</h2>
+        <h2 class="headline" >{{item.article.title}}</h2>
       </router-link>
       <div v-html="item.article.teaser"  class="sub-headline" ></div>
       <div class="separator">&nbsp;&nbsp;&nbsp;&nbsp;</div>
