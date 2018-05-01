@@ -154,7 +154,7 @@
       <div class="container">
       <el-col :xs="24" :sm="16" class="content">
         <div class="grid-content a-content">
-            <articles-card></articles-card>
+              <articles-card :editorialSlug="editorialSlug" :limit=10 :showPaging="false" ></articles-card>
             <el-row >
               <el-col>
               </el-col>
