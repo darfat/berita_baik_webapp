@@ -18,7 +18,7 @@
                    <el-row class="side-title-section">
                       <div>
                         <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
-                          <span class="headline">{{ popular.title}}</span>
+                          <span class="headline" v-html="subString(popular.title,70)"  ></span>
                         </router-link>
                       </div>
                     </el-row>
@@ -66,6 +66,13 @@ export default {
   methods: {
     init() {
       this.getPopularArticles(this.editorialSlug)
+    },
+    subString(str, len) {
+      if (str.length < len) {
+        return str
+      } else {
+        return str.substring(0, (len - 3)) + '...'
+      }
     },
     getPopularArticles() {
       this.loading.popular_articles = true

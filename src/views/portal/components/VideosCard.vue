@@ -30,7 +30,7 @@
               <el-row class="ac-title">
                 <div>
                   <router-link v-if="video.editorial" :to="{ name: 'editorial-video-detail', params: { 'editorialSlug':video.editorial.slug, 'slug': video.slug} }">
-                    <h2 class="headline">{{ video.title}}</h2>
+                    <h2 class="headline" v-html="subString(video.title,80)" ></h2>
                   </router-link>
                 </div>
               </el-row>
@@ -128,6 +128,13 @@
         this.per_page = this.limit
         if (this.showPaging === true) {
           this.getVideos(this.editorialSlug, this.page)
+        }
+      },
+      subString(str, len) {
+        if (str.length < len) {
+          return str
+        } else {
+          return str.substring(0, (len - 3)) + '...'
         }
       },
       getVideos(editorialSlug, page) {
