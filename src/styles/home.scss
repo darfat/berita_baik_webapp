@@ -70,12 +70,12 @@ h1, h2, h3, h4, h5, h6{
     color: $black-2;
     font-family: DINPro-Regular, Neosans-Medium-Italic, Arial, sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 12px;    
     &:hover { 
       color: $main-red;
     }
     span{
-      font-size: 16px;
+      font-size: 12px;
     }
   }
 
@@ -88,15 +88,15 @@ h1, h2, h3, h4, h5, h6{
   }
 
   .el-pagination.is-background .el-pager li {    
-    min-width: 30px;
-    height: 30px;
-    line-height: 28px;
-    vertical-align: top;
+    min-width: 24px;
+    height: 24px;
+    line-height: 24px;
   }
   .el-pagination.is-background .el-pager li.active { 
     border: 2px solid $main-red;
     border-radius: 50%;
-    color: $main-red;    
+    color: $main-red;
+    line-height: 20px;   
   }
 }
 

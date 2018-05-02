@@ -183,12 +183,14 @@ a:hover {
   display: flex;
   flex-direction: row;
   color: #b0b0b0;
+  font-size: 0.7em;  
 }
 .side-separator span:before{
   content: "";
   flex: 1 1;
   border-bottom: 1px solid #e6e6e6;
-  margin: auto;
+  margin: auto 10px auto auto;
+
 }
 
 .gray-separator {
