@@ -157,6 +157,13 @@
           this.getArticles(this.editorialSlug, this.page)
         }
       },
+      subString(str, len){
+        if (str.length <= len) {
+          return str
+        } else {
+          return str.subString(0,len-3)+"..."
+        }
+      },
       getArticles(editorialSlug, page) {
         this.loading.articles = true
         if (editorialSlug) {

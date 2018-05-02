@@ -1,6 +1,6 @@
 <template>
 <div class="comment-box">
-    <div class="content" v-if="name">
+    <div class="content">
         <el-row :gutter="20" >
             <el-col :xs="2" :sm="2">
                 <img :src="userLogin.image" class="img-circle img-mini v-align-middle"/>
@@ -21,9 +21,9 @@
             </el-col>
         </el-row>
     </div>
-    <div class="content" v-if="!name">
+    <!-- <div class="content" v-if="!name">
       <div class="disabled-lbl"> <i> Silahkan login terlebih dahulu untuk memberikan komentar </i></div>
-    </div>
+    </div> -->
 </div>
 </template>
 

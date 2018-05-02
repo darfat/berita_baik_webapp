@@ -1,7 +1,7 @@
 <template>
   <div class="editor-pick-news">
     <div class="section-title" v-if="showTitle"> {{title}} </div>
-    <div class="m-t-10">
+    <div>
       <el-row :gutter="20" v-for="(item) in list" :key="item.id" class="side-row">
         <el-col :span="8" class="side-image">
                 <div v-if="item.editorial"> 

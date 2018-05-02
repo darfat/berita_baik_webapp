@@ -4,7 +4,7 @@
       <div class="container">
         <el-col :xs="24" :sm="16">
           <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">
-            <el-row >
+            <el-row class="">
               <el-col >
                 <div  v-loading="loading.latestNews" class="videoWrapper">
                   <!--<youtube :video-id="$youtube.getIdFromURL(latestNews.sources_path)" :player-vars="{ showinfo: 0 }" @ready="ready" @playing="playing" ></youtube>-->
@@ -57,11 +57,15 @@
             </el-row>
           </div>
         </el-col>
-        <el-col :xs="24" :sm="8" class="side-content">
+        <el-col :xs="24" :sm="8" class="side-content  m-t-10">
           <div class="grid-content a-side">
-            <div class="spacer m-t-10"></div>
+            <div class="spacer"></div>
+            <div >
               <advertisement-side :showTitle="false"></advertisement-side>
+            </div>
+            <div >
               <editor-pick-videos-side ></editor-pick-videos-side>
+            </div>
           </div>
       </el-col>
       </div>      
