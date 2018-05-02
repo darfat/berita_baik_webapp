@@ -37,8 +37,11 @@
             <el-col class="align-right">
             </el-col>
         </el-row>
+        <div  v-if="comments && comments.length === 0">
+          <div class="comments-no"> <i> Belum ada komentar </i></div>
+        </div>
     </div>
-    <div class="comments-paging" >
+    <div class="comments-paging" v-if="comments && comments.length  > 0">
       <el-pagination
         background
         layout="prev, pager, next"
@@ -50,6 +53,7 @@
       >
       </el-pagination>
     </div>
+    
   </div>
 </template>
 
