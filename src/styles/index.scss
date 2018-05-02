@@ -94,7 +94,17 @@ a:hover {
 .m-t-10 {
   margin-top: 10px;
 }
-
+.m-t-20 {
+  margin-top: 20px;
+}
+.m-tb-10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.m-tb-20 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 .m-b-20 {
   margin-bottom: 20px;
 }
@@ -105,26 +115,17 @@ a:hover {
 .p-r-20 {
   padding-right: 20px;
 }
-.m-t-20 {
-  margin-top: 20px;
-}
 .p-b-20 {
   padding-bottom: 20px;
 }
-
-
-.m-tb-10 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
 .main-article-title {
   font-size: 25px;
   color: $main-blue;
   font-weight: bold;
 }
 .section-title {
-  font-size: 16px;
+  font-size: 14px;
+  text-transform: uppercase;
   color: $main-blue;
   font-weight: bold;
   font-family: 'Neosans';
@@ -185,7 +186,6 @@ a:hover {
   border-bottom: 1px solid #e6e6e6;
   margin: auto;
 }
-
 
 .gray-separator {
   margin-top: 5px;
@@ -260,8 +260,6 @@ a:hover {
 .grid-content {
   min-height: 36px;
 }
-
-
 .circle-white-icon{
     width: 34px;
     height: 34px;
