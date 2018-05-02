@@ -4,7 +4,7 @@
               <div class="section-title"> BERITA BAIK TERPOPULAR</div>
           </el-row>
           
-          <div class="popular-news m-t-10">
+          <div class="popular-news m-t-20">
             <el-row :gitter="20" v-for="(popular) in popular_articles" :key="popular.id" class="side-row"  >
               <el-col :span="8" class="side-image">
                 <div>

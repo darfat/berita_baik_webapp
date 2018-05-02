@@ -1,45 +1,37 @@
 <template>
   <div class="card-content">
-    <el-row>
-      <div class="section-title"> {{title}}</div>
+    <el-row >
+      <div class="section-title">{{title}}</div>
     </el-row>
-    <div class="m-t-10">
+    <div class="m-t-20">
     <el-row :gutter="20">
       <el-col :xs="24" :sm="12" v-for="(article) in articles" :key="article.id">
         <div class="news-col">
-          <el-card :body-style="{ padding: '0px' }" class="news-card">
-            <div>
-              <div class="mini-thumbnail">
-                <router-link  v-if="article.article_type === 'news'"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
-                  <img :src="article.main_image" class="card-image" />
-                  <div class="editorial-type-img">
-                    <h3>{{ article.editorial.name }}</h3>
-                  </div>
-                </router-link>
-                <!-- <router-link   v-if="article.editorial.slug === 'infografis'" :to="{ name: 'infografis-detail-layout', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug} }" >                      
-                  <img :src="article.main_image" class="card-image" />
-                  <div class="editorial-type-img">
-                    <h3>{{ article.editorial.name }}</h3>
-                  </div>
-                </router-link> -->
-                <router-link   v-if="article.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug } }" >                      
-                  <img :src="article.main_image" class="card-image" />
-                  <div class="editorial-type-img">
-                    <h3>{{ article.editorial.name }}</h3>
-                  </div>
-                </router-link>
-              </div>
-            </div>
+          <el-card :body-style="{ padding: '0px' }" class="news-card">            
+            <div class="mini-thumbnail">
+              <router-link  v-if="article.article_type === 'news'"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
+                <img :src="article.main_image" class="card-image" />
+                <div class="editorial-type-img">
+                  <h3>{{ article.editorial.name }}</h3>
+                </div>
+              </router-link>
+              <!-- <router-link v-if="article.editorial.slug === 'infografis'" :to="{ name: 'infografis-detail-layout', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug} }" >                      
+                <img :src="article.main_image" class="card-image" />
+                <div class="editorial-type-img">
+                  <h3>{{ article.editorial.name }}</h3>
+                </div>
+              </router-link> -->
+              <router-link   v-if="article.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug } }" >                      
+                <img :src="article.main_image" class="card-image" />
+                <div class="editorial-type-img">
+                  <h3>{{ article.editorial.name }}</h3>
+                </div>
+              </router-link>
+            </div>            
             <div class="ac-bottom-content">
-              <div class="bottom clearfix">
-                <el-row>
-                  <el-col :span="4">
-                    <span>
-                      <bb-love></bb-love>
-                      <share-pop :article="article"></share-pop>
-                    </span>                    
-                  </el-col>
-                </el-row>
+              <div class="share">
+                <bb-love></bb-love>
+                <share-pop :article="article"></share-pop>              
               </div>
               <el-row class="ac-title">
                 <div v-if="article.editorial">
@@ -54,23 +46,14 @@
                   </router-link>
                 </div>
               </el-row>
-              <el-row>
-                <el-col :span="2">
-                  <article-separator></article-separator>
-                </el-col>
-              </el-row>
-              <el-row>
-                <el-col class="ac-footer">
-                  <div class="author">
+              <p class="red-line"></p>
+              <p class="author">
                     {{ article.reporter_name }} |
                     <timeago :auto-update="60" :since="article.publish_date"></timeago>
-                  </div>
-                </el-col>
-              </el-row>
+              </p>             
             </div>
           </el-card>
-        </div>
-        
+        </div>        
       </el-col>
     </el-row>
     </div>
