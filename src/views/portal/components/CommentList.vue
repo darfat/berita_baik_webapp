@@ -94,7 +94,6 @@ export default {
   },
   methods: {
     init() {
-      console.log(this.articleID)
       this.getComments(this.articleID, this.page)
     },
     getComments(articleID, page) {
@@ -106,7 +105,6 @@ export default {
           per_page: this.per_page
         }
         getCommentsByArticleID(params).then(response => {
-          console.log('get comments')
           if (response) {
             this.comments = response.data.data
             this.per_page = response.data.per_page

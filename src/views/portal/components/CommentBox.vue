@@ -1,6 +1,6 @@
 <template>
 <div class="comment-box">
-    <div class="content">
+    <div class="content" v-if="name">
         <el-row :gutter="20" >
             <el-col :xs="2" :sm="2">
                 <img :src="userLogin.image" class="img-circle img-mini v-align-middle"/>
@@ -21,6 +21,9 @@
             </el-col>
         </el-row>
     </div>
+    <div class="content" v-if="!name">
+      <div class="disabled-lbl"> <i> Silahkan login terlebih dahulu untuk memberikan komentar </i></div>
+    </div>
 </div>
 </template>
 
@@ -28,11 +31,18 @@
 <script>
 import EventBus from '@/utils/event-bus'
 import { create } from '@/api/comment'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'CommentBox',
   props: {
     articleID: { type: String }
+  },
+  computed: {
+    ...mapGetters([
+      'name',
+      'roles'
+    ])
   },
   data() {
     return {

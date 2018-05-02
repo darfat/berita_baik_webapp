@@ -46,7 +46,7 @@ export default {
 
     },
     loveUnLove() {
-      if (this.name) {
+      if (this.name) { // login name
         if (this.state) {
           this.state = false
           this.loveClass = 'love-red'

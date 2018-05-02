@@ -75,6 +75,16 @@ export function getLatestNewsAll(params) {
     params
   })
 }
+
+export function getEditorsPickNewss(params) {
+  params.type = NEWS_TYPE
+  return request({
+    url: '/article-by-editor-pick',
+    method: 'get',
+    params
+  })
+}
+
 // citra
 export function getLatestImageByEditorial(params) {
   params.type = IMAGE_TYPE
@@ -109,6 +119,15 @@ export function getVideosByEditorialSlug(params) {
   params.type = VIDEO_TYPE
   return request({
     url: '/articles-editorial/' + params.editorialSlug,
+    method: 'get',
+    params
+  })
+}
+
+export function getEditorsPickVideos(params) {
+  params.type = VIDEO_TYPE
+  return request({
+    url: '/article-by-editor-pick',
     method: 'get',
     params
   })

@@ -167,31 +167,25 @@
           <div class="side-separator">
             <span> Buka lebih banyak lagi </span>
           </div>
-          <div>Infografis</div>
+          <!-- <div>Infografis</div>
           <div class="side-separator">
             <span> Buka lebih banyak lagi </span>
-          </div>
+          </div> -->
           <div class="spacer m-t-10"></div>
           <advertisement-side></advertisement-side>
           <div class="side-separator">
             <span>  </span>
           </div>
-          <div>pilihan editor</div>
+          <editor-pick-news-side> </editor-pick-news-side>
+          <div class="side-separator">
+            <span>  </span>
+          </div>
         </div>
       </el-col>
       
       </div>
     </el-row>
-    <div class="container">
-      <div class="gray-separator"> <span> </span>  </div>
-    </div>
-    <el-row :gutter="20" class="events-container">
-      <div class="container">
-      <el-col :xs="24" :sm="24" class="content">
-            <events></events>
-      </el-col>
-      </div>
-    </el-row>  
+    
     <div class="content-container">
       <div class="gray-separator"> <span> </span>  </div>
     </div>
@@ -210,7 +204,7 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
-import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav, CommentList, Subscribe, Events, AdvertisementSide } from '@/views/portal/components'
+import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav, CommentList, Subscribe, Events, AdvertisementSide, EditorPickNewsSide } from '@/views/portal/components'
 import BbLove from '@/views/portal/components/BbLove'
 import EventBus from '@/utils/event-bus'
 import { getArticle } from '@/api/article'
@@ -228,7 +222,8 @@ export default {
     Subscribe,
     Events,
     BbLove,
-    AdvertisementSide
+    AdvertisementSide,
+    EditorPickNewsSide
   },
   props: {
     articleID: { type: String },
