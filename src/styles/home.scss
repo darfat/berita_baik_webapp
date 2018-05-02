@@ -2,7 +2,7 @@ body{
   margin: 0 auto; padding: 0;
 }
 h1, h2, h3, h4, h5, h6{
-  font-family: 'Neosans-Black';
+  font-family: 'Neosans';
 }
 .container {  
   position: relative;
@@ -111,9 +111,16 @@ h1, h2, h3, h4, h5, h6{
   }
 }
 
-disabled-label{
-  color: #ccc;
-  text-align: center;
-  font-size: 10px;
-  line-height: 18px;
+/*
+  home-headline-slider indicator
+*/
+.hl-slider{
+  .el-carousel__container{
+    height: 650px;
+  }
+  .el-carousel__button{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
 }
