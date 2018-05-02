@@ -21,6 +21,12 @@
               <div class="bottom clearfix">
                 
               </div>
+              <el-row >
+                  <el-col :span="4" v-if="video.id">
+                      <span> <bb-love></bb-love> </span>
+                      <span> <share-pop :article="video"></share-pop>   </span>
+                  </el-col>
+              </el-row>
               <el-row class="ac-title">
                 <div>
                   <router-link v-if="video.editorial" :to="{ name: 'editorial-video-detail', params: { 'editorialSlug':video.editorial.slug, 'slug': video.slug} }">
@@ -69,6 +75,8 @@
 <script>
   import ArticleSeparator from '@/components/ArticleSeparator'
   import BbLove from '@/views/portal/components/BbLove'
+  import { SharePop } from '@/views/portal/components'
+
   import {
     getVideosByEditorialSlug
   } from '@/api/article'
@@ -77,7 +85,8 @@
     name: 'ArticlesCard',
     components: {
       ArticleSeparator,
-      BbLove
+      BbLove,
+      SharePop
     },
     props: {
       editorialSlug: {

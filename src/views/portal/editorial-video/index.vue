@@ -22,7 +22,7 @@
                 <el-row >
                     <el-col :span="4" v-if="latestNews.id">
                         <span> <bb-love></bb-love> </span>
-                        <span><a @click="centerDialogVisible = true"> <fa-icon name="share-alt" scale="1.3"  ></fa-icon> </a>  </span>
+                        <span> <share-pop :article="latestNews"></share-pop>   </span>
                     </el-col>
                 </el-row>
                 <el-row class="ln-title">
@@ -106,7 +106,7 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { PopularNewsSide, VideosCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, EditorPickVideosSide } from '@/views/portal/components'
+import { PopularNewsSide, VideosCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, EditorPickVideosSide, SharePop } from '@/views/portal/components'
 import { getEditorialLabelBySlug } from '@/api/editorial'
 import { getLatestVideoByEditorial, getArticle } from '@/api/article'
 import EventBus from '@/utils/event-bus'
@@ -122,7 +122,8 @@ export default {
     AdvertisementSide,
     CommentBox,
     CommentList,
-    EditorPickVideosSide
+    EditorPickVideosSide,
+    SharePop
   },
   data() {
     return {
