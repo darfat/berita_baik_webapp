@@ -41,3 +41,11 @@ export function getEventsByPeriod(params) {
     method: 'get'
   })
 }
+
+export function getPremiumEvents(params) {
+  return request({
+    url: '/events-premium',
+    method: 'get',
+    params
+  })
+}

@@ -54,6 +54,11 @@ Vue.filter('formatDate', function(value) {
     return moment(String(value)).format('DD MMMM YYYY hh:mm')
   }
 })
+Vue.filter('formatDateOnly', function(value) {
+  if (value) {
+    return moment(String(value)).format('DD MMMM YYYY')
+  }
+})
 Vue.config.productionTip = false
 // Vue.component('v-tweet', Tweet)
 // Vue.component('v-timeline', Timeline)

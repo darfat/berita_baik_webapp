@@ -5,34 +5,19 @@
       <div class="sld">
         <!-- swiper -->
         <swiper :options="swiperOption">
-          <swiper-slide>
-            <img src="/static/upload/images/5.jpg">
-            <h2>Pinnacle of Sail Indonesia 2018 annual Yacht Rally, Sabang</h2>
-            <div class="desc">Continuing of tradition of annual sailing accros the vast Indonesian seas, the Sail Indonesia 2017 Rally will again take place this year starting from the month of August to December.</div>
+          <swiper-slide v-for="item in premiumEvents" :key="item.id" >
+            <img :src="item.image">
+            <h2>{{item.title}}</h2>
+            <div class="desc">{{item.description}}</div>
             <div class="edate">
               <fa-icon name="clock-o"></fa-icon>
-              25-28 Desember 2018
+               {{item.date | formatDateOnly }} -  {{item.end_date | formatDateOnly }}
             </div>
             <div class="venue">
               <fa-icon name="map-marker"></fa-icon>
-              Sabang, Banda Aceh
-            </div>
-          </swiper-slide>
-
-          <swiper-slide>
-            <img src="/static/upload/images/5.jpg">
-            <h2>Pinnacle of Sail Indonesia 2018 annual Yacht Rally, Sabang</h2>
-            <div class="desc">Continuing of tradition of annual sailing accros the vast Indonesian seas, the Sail Indonesia 2017 Rally will again take place this year starting from the month of August to December.</div>
-            <div class="edate">
-              <fa-icon name="clock-o" fa-6></fa-icon>
-              25-28 Desember 2018
-            </div>
-            <div class="venue">
-              <fa-icon name="map-marker"></fa-icon>
-              Sabang, Banda Aceh
-            </div>
-          </swiper-slide>
-          
+              {{item.place}} , <small>{{item.address}}</small>
+            </div>            
+          </swiper-slide>          
           <div class="swiper-button-prev" slot="button-prev"></div>
           <div class="swiper-button-next" slot="button-next"></div>
         </swiper>
@@ -56,7 +41,7 @@
                 <p>{{event.description}}</p>
                 <div class="edate">
                   <fa-icon name="clock-o" ></fa-icon>
-                  {{event.event_date}}
+                    {{event.date | formatDateOnly }} -  {{event.end_date | formatDateOnly }}
                 </div>
                 <div class="venue">
                   <fa-icon name="map-marker"></fa-icon>
@@ -85,7 +70,7 @@
 </template>
 
 <script>
-import { getEventsByPeriod } from '@/api/event'
+import { getEventsByPeriod, getPremiumEvents } from '@/api/event'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import moment from 'moment'
 import Subscribe from '@/views/portal/components/Subscribe'
@@ -97,9 +82,11 @@ export default {
     return {
       period: null,
       loading: {
-        events: false
+        events: false,
+        premiumEvents: false
       },
       events: [],
+      premiumEvents: [],
       title: 'Event Calendar',
       swiperOption: {
         navigation: {
@@ -107,7 +94,9 @@ export default {
           prevEl: '.swiper-button-prev'
         }
       },
-      activeName: '1'
+      activeName: '1',
+      page: 1,
+      per_page: 5
     }
   },
   created() {
@@ -123,6 +112,7 @@ export default {
     initMounted() {
       this.$EventCalendar.toDate(moment(new Date()).format('YYYY/MM/DD'))
       this.getEventsByPeriod(this.period)
+      this.getPremiumEvents()
     },
     handleDayChanged(data) {
       // console.log('date-changed', data)
@@ -146,6 +136,19 @@ export default {
           })
         }
         this.loading.events = false
+      })
+    },
+    getPremiumEvents(period) {
+      this.loading.premiumEvents = true
+      this.premiumEvents = []
+      getPremiumEvents({
+        page: this.page,
+        per_page: this.per_page
+      }).then(response => {
+        if (response && response.data) {
+          this.premiumEvents = response.data
+        }
+        this.loading.premiumEvents = false
       })
     }
   }
