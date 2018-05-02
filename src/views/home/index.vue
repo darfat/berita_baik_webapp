@@ -52,31 +52,8 @@
     </el-col>
     </div>    
   </el-row>
-  
-  <el-row :gutter="10">
-    <el-col :xs="24" :sm="24"><home-youtube-video></home-youtube-video></el-col>
-  </el-row>
 
-  <div class=" container m-b-20"> 
-      <div class="gray-separator"> <span> </span>  </div>
-  </div>
-  <div class="spacer"></div>
-  <el-row :gutter="10">
-    <div class="container">
-      <el-col :xs="24" :sm="24">
-        <ads-banner :showTitle=true :id="2"></ads-banner>
-        <div class="spacer"></div>
-      </el-col>
-      <el-col :xs="24" :sm="24">
-        <events></events>
-      </el-col>
-    </div>
-  </el-row>
   
-  <div class="spacer"></div>
-  <div class="container m-t-20"> 
-      <div class="gray-separator"> <span> &nbsp; </span>  </div>
-  </div>
   <el-row>
     <div class="container">
     <el-col :xs="24" :sm="16"><galeri></galeri></el-col>
@@ -87,18 +64,39 @@
     </el-col>
     </div>
   </el-row>
+
+  <div class="container m-b-20"> 
+      <div class="gray-separator"> <span> </span>  </div>
+  </div>
+  <div class="spacer"></div>
+
+  <el-row :gutter="10">
+    <el-col :xs="24" :sm="24"><home-youtube-video></home-youtube-video></el-col>
+  </el-row>
   
-  <!-- <el-row :gutter="10">
-    <div class="container">    
+  <div class="container m-b-20"> 
+      <div class="gray-separator"> <span> </span>  </div>
+  </div>
+  <div class="spacer"></div>
+
+  <el-row :gutter="10">
+    <div class="container">
       <el-col :xs="24" :sm="24">
-        <social-feed></social-feed>
+        <ads-banner :showTitle=true :id="2"></ads-banner>
       </el-col>
     </div>
-  </el-row> -->
-  
-   <!-- <div class="container">
-    <div class="gray-separator"> <span> </span>  </div>
-  </div> -->
+  </el-row>
+  <div class="container m-b-20"> 
+      <div class="gray-separator"> <span> </span>  </div>
+  </div>
+  <div class="spacer"></div>
+  <el-row :gutter="10">
+    <div class="container">
+      <el-col :xs="24" :sm="24">
+        <events></events>
+      </el-col>
+    </div>
+  </el-row>
   <div class="content-container">
     <div class="gray-separator"> <span> </span>  </div>
   </div>
