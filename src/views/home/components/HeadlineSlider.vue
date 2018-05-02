@@ -1,6 +1,6 @@
 <template>
-<div>
-  <el-carousel indicator-position="outside" height="560px" v-loading="loading.headlines">
+<div class="hl-slider">
+  <el-carousel v-loading="loading.headlines">
     <el-carousel-item v-for="item in headlines" :key="item.id">
       <div class="item-wrapper-hl">
         <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">
@@ -8,20 +8,18 @@
           <h3>{{item.editorial.name}}</h3>
         </router-link>
       </div>
-      <div class="loveshare">
-        <bb-love></bb-love>
-        <!-- <fa-icon name="share-alt" scale="1.3"  ></fa-icon> -->
+      <div class="share">
+        <bb-love></bb-love>        
         <share-pop :article="item.article"></share-pop>
       </div>
-      <div class="title">      
-      <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">
+      <div class="text">      
+        <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">
         <h2 class="headline" >{{item.article.title}}</h2>
-      </router-link>
-      <div v-html="item.article.teaser"  class="sub-headline" ></div>
-      <div class="separator">&nbsp;&nbsp;&nbsp;&nbsp;</div>
-      <div class="author">
-        {{ item.article.reporter_name}} | <timeago :since="item.article.publish_date"></timeago>
-      </div>
+        </router-link>
+        <p v-html="item.article.teaser" class="sub-headline" ></p>
+        <p class="red-line"></p>
+        <p class="author">{{ item.article.reporter_name}} | <timeago :since="item.article.publish_date"></timeago>
+        </p>
       </div>
     </el-carousel-item>
   </el-carousel>
@@ -70,53 +68,5 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-@import "src/styles/variables.scss";
-.el-carousel{
-  z-index: 1;
-}
-.el-carousel__item{
-  background-color: #FFF;
-  height: auto;
-}
-.image-hl{
-  width: 100%;
-  max-height: 400px;
-  object-fit: cover;  
-}
-
-h3{
-  position: absolute;
-  top: 3%;
-  left: 3%;
-  text-align: center;
-  color: #FFF;
-  background-color: $main-blue;
-  padding: 8px 10px 5px 10px;
-  text-transform: uppercase;
-}
-
-.title{	
-	width: 100%;
-  padding: 0 15px 15px 15px;
-  color: $black-2;
-}
-
-.title h2{    
-  line-height: 0.03em;
-  color: $black-1;
-  font-family: 'Neosans-Black';  
-  line-height: 1.2em;
-}
-
-.separator {
-    background-color: $main-red;
-    width: 1.5em;
-    height: 0.8em;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.loveshare{
-  padding: 10px 15px 0 15px;
-}
+@import "src/styles/home-headline-slider.scss";
 </style>
