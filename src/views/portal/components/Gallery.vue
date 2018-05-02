@@ -101,7 +101,11 @@
     </div>
     <div class="gallery-paging" v-if="!showPaging">
       <div class="ac-paging" v-if="!showPaging">
-        <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+        <infinite-loading @infinite="infiniteHandler">
+          <span slot="no-more">
+          
+          </span>
+        </infinite-loading>
       </div>
     </div>
   </div>

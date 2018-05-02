@@ -88,7 +88,11 @@
           </el-row>
         </div>
         <div class="ac-paging">
-          <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading"></infinite-loading>
+          <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading">
+            <span slot="no-more">
+          
+            </span>
+          </infinite-loading>
         </div>
       </div>    
   </div>
