@@ -3,7 +3,6 @@
       
     <div class="topnav-wrapper">
       <el-menu class="container" mode="horizontal">   
-        <span style="color:white"><i>v.0.1-development version</i></span>
         <el-menu-item index="1"><a href="#">{{$t('portal.topbar.collaboration')}}</a></el-menu-item>
         <el-menu-item index="2"><fa-icon name="envelope" scale="1" ></fa-icon><span>&nbsp;{{$t('portal.topbar.beritabaik_mail_account')}}</span></el-menu-item>
         <el-menu-item index="3"><a href="#">{{$t('portal.topbar.aboutUs')}}</a></el-menu-item>
