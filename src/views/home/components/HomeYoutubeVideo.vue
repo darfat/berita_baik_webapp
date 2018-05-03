@@ -1,16 +1,24 @@
 <template>  
-  <section class="video-wrapper" v-loading="loading.latestVideo">    
-    <youtube :video-id="videoId" @ready="ready" @playing="playing" v-if="latestVideo" ></youtube>    
-    <div class="container overlay-desc" v-show="ready"  >       
-        
-          <div class="align-center"> <h2 v-if="latestVideo.editorial" >{{ latestVideo.editorial.name }}</h2> </div>
+  <section class="video-container" v-loading="loading.latestVideo">    
+    <div class="video-wrapper">
+      <!--<youtube :video-id="videoId" @ready="ready" @playing="playing" v-if="latestVideo" ></youtube>-->
+      <iframe 
+        width="640"
+        height="390"
+        :src="'http://www.youtube.com/embed/'+videoId+'?rel=0&amp;fs=0&amp;showinfo=0'"
+        frameborder="0"
+        allowfullscreen></iframe>
+
+      <div class="overlay-desc" v-show="ready"  >        
+        <div class="align-center"> <h2 v-if="latestVideo.editorial" >{{ latestVideo.editorial.name }}</h2> </div>
         <h1>{{ latestVideo.title }}</h1>
-        <p>{{ latestVideo.teaser }}</p>        
-        <hr style="width:30px;height:5px;background-color:#EB0029; border: none; padding-top:10px; margin-left: 0; clear:both" />
-        <p>{{ latestVideo.reporter_name }} |
+        <p class="teaser-v">{{ latestVideo.teaser }}</p>        
+        <p class="red-line"></p>
+        <p class="author-v" >{{ latestVideo.reporter_name }} |
           <timeago :auto-update="60" :since="latestVideo.publish_date"></timeago>
         </p>     
-     </div>
+      </div>
+    </div>    
   </section>
 </template>
 
@@ -71,40 +79,6 @@ export default {
   }
 }
 </script>
-
-<style>
-
-
-.video-wrapper {
-position: relative;
-padding-bottom: 35%;
-padding-top: 0; height: 0; overflow: hidden;
-}
-
-.video-wrapper iframe,
-.video-wrapper object,
-.video-wrapper embed {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-}
-
-.video-wrapper .overlay-desc {
-  // background-color: rgba(0,0,0,0.3);
-  position: absolute;
-  right: 60%; left: 5%; top: 30%;
-  display: flex;
-  //align-items: flex-end;
-  // justify-content: flex-end;
-  color: white;  
-  flex-direction: column;
-  padding: 10px;  
-}
-.video-wrapper .overlay-desc h1,
-.video-wrapper .overlay-desc p {   
-  margin:0;  
-}
-.video-wrapper .overlay-desc h2{ background-color: #051D49; display:table; padding:.25em; width: 20%; text-transform: uppercase;}
+<style rel="stylesheet/scss" lang="scss" scoped>
+  @import "src/styles/home-youtube-video.scss";
 </style>
