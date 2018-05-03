@@ -4,45 +4,49 @@
 
     <el-row :gutter="20" class="events-title">
         <el-col :xs="24" :sm="8"  >
-            <span class="font-black">ACARA </span> <span class="font-blue" >BULAN INI 
+            <h3>ACARA BULAN INI</h3>
+            <span class="btn-control"> 
               <v-icon name="chevron-left" base-class="icon-20 v-align-middle"></v-icon>
               <v-icon name="chevron-right" base-class="icon-20 v-align-middle"></v-icon>
-            </span>
+            </span>            
         </el-col>
     </el-row>
     <el-row :gutter="20" class="events-content" >
       <el-col :xs="24" :sm="6">
         <el-row >
           <el-col >
-            <hr style="width:30px;height:5px;background-color:#EB0029; border: none; padding-top:10px; margin-left: 0; clear:both" />
+            <p class="red-line"></p>            
             <div class="events-month" >DESEMBER</div>
-            <div>Cicero famously orated against his political opponent Lucius Sergius Catilina.</div>
+            <p class="desc">Cicero famously orated against his political opponent Lucius Sergius Catilina.</p>
           </el-col>
         </el-row>
       </el-col>
-      <el-col :xs="24" :sm="6" class="events-separator">
+      <el-col :xs="24" :sm="6" class="events-separator">       
          <el-row :gutter="20" >
-          <el-col :span="8" class="align-center" >
-             <div class="event-text-circle "> <span class="events-date"> 01 </span> </div>
+          <el-col :span="8" class="mc">
+            <div class="mc-content">
+              <div class="event-text-circle "> <span class="events-date"> 01 </span> </div>
+            </div>  
           </el-col>
-          <el-col :span="16" >
-             <div > 
+          <el-col :span="16" class="mc">
+             <div class="mc-content"> 
                <ul>
                  <li> Event 1</li>
                  <li> Event 2</li>
-               </ul>
-                
+               </ul>                
               </div>
           </el-col>
-        </el-row>
+        </el-row>        
       </el-col>
       <el-col :xs="24" :sm="6" class="events-separator">
         <el-row :gutter="20" >
-          <el-col :span="8" class="align-center" >
+          <el-col :span="8" class="mc" >
+            <div class="mc-content">
              <div class="event-text-circle "> <span class="events-date"> 03 </span> </div>
+             </div>
           </el-col>
-          <el-col :span="16" >
-             <div > 
+          <el-col :span="16" class="mc">
+             <div class="mc-content">
                <ul>
                  <li> Event number 1</li>
                  <li> Event number 2</li>
@@ -54,11 +58,13 @@
       </el-col>
       <el-col :xs="24" :sm="6" class="events-separator">
         <el-row :gutter="20" >
-          <el-col :span="8" class="align-center" >
+          <el-col :span="8" class="mc" >
+            <div class="mc-content">
              <div class="event-text-circle "> <span class="events-date"> 18 </span> </div>
+             </div>
           </el-col>
-          <el-col :span="16" class="" >
-             <div > 
+          <el-col :span="16" class="mc" >
+             <div class="mc-content">
                <ul>
                  <li> Event part 1</li>
                  <li> Event part 2</li>

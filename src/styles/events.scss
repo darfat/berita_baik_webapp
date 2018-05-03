@@ -5,42 +5,66 @@
 }
 
 .events .events-title{
-  font-size: 1.2em;
+  h3{
+    font-size: 22px;
+    font-family: 'DINPro-Bold';
+    margin: 0;
+    display: inline;
+  }
+  .btn-control{
+    display: inline;
+  }
 }
 .events .events-content{
   color: $bb-grayWhite;
   font-size: 0.8em;
-  min-height: 120px;
+  min-height: 134px;
 }
 
 .events .events-content .events-separator {
   border-left: 2px solid $bb-gray;
   height: 100%;
+  .mc{
+    display: table;
+    height: 134px;
+    .mc-content{
+      vertical-align:middle;
+      display: table-cell;
+    }
+  }
 }
 .events .events-content .events-month{
+  font-family: 'Neosans';
   color: $main-blue;
   font-weight: bold;
-  font-size: 2.0em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  font-size: 36px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.events .events-content .desc{
+  font-size: 12px;
 }
 .events .events-content .events-date{
-  font-size: 3em;
+  font-size: 36px;
+  line-height: 70px;
   font-weight: bold;
-}
-
-.events .events-title{
-  font-size: 1.2em;
 }
 
 .event-text-circle {
-  width: 100px;
-  min-height:100px;
+  width: 70px;
+  min-height:70px;
   border-radius: 50%;
   color: $bb-gray;
-  line-height: 2px;
   text-align: center;
   border-style: solid;
   border-width: 2px;
-  padding-top: 45px;
+  vertical-align:middle;
+  display: table-cell;
+}
+
+.red-line {
+  background-color: $main-red;
+  width: 55px;
+  height: 5px;
+  margin: 0;    
 }
