@@ -35,12 +35,12 @@
                   <el-row :gutter="20">
                       <el-col class="teks">
                         <div v-html="mainArticle.content" class="content" ></div>
-                        <div class="bacajuga">
+                        <div class="bacajuga" v-if="mainArticle.article_relates">
                           <h4>Baca Juga</h4>
-                          <ul>
-                            <li><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vestibulum ullamcorper ex, ut pharetra nisi.</a></li>
-                            <li><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                            <li><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec mattis elit. In hac habitasse platea dictumst. Suspendisse eget luctus quam, et suscipit elit. Ut.</a></li>
+                          <ul> 
+                            <li v-for="(relate) in mainArticle.article_relates" :key="relate.id" ><a href="">{{ relate.title}}</a></li>
+                            <!-- <li><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                            <li><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec mattis elit. In hac habitasse platea dictumst. Suspendisse eget luctus quam, et suscipit elit. Ut.</a></li> -->
                           </ul>
                         </div>
                       </el-col>
@@ -57,28 +57,6 @@
                         </span>
                       </el-col>
                       <el-col :xs="24" :sm="16" v-loading="loading.authors">
-                        <!--
-                          <div class="team">
-                          <img src="static/upload/images/profile.jpg" class="img-circle img-mini v-align-middle"/>
-                          <span> Boim </span>
-                          <span class="follow-user">
-                            <v-icon name="user" base-class="icon-20 v-align-middle"></v-icon>
-                            <span  > 
-                              Follow
-                            </span>
-                          </span>
-                        </div>
-                        <div class="team">
-                          <img src="static/upload/images/profile.jpg" class="img-circle img-mini v-align-middle"/>
-                          <span> Boim </span>
-                          <span class="follow-user">
-                            <v-icon name="user" base-class="icon-20 v-align-middle"></v-icon>
-                            <span  > 
-                              Follow
-                            </span>
-                          </span>
-                        </div>
-                        -->                        
                         <div v-for="(author) in mainArticleAuthors" :key="author.id" class="team">
                           <img :src="author.user.image" class="img-circle img-mini v-align-middle"/>
                           <span> {{ author.user.name }} </span>
@@ -131,8 +109,8 @@
           </div>
           <div>
             <el-row :gutter="20">
-              <el-col>
-                <article-nav></article-nav>
+              <el-col v-if="mainArticle">
+                <article-nav :editorialSlug="editorialSlug" :articleID="mainArticle.id" type="news"></article-nav>
               </el-col>
             </el-row>
           </div>
@@ -144,7 +122,7 @@
       <el-row :gutter="20" >
         <div class="container">
         <el-col :xs="24" :sm="24"  class="comments-content">
-          <comment-list :articleID="this.mainArticle.id"></comment-list>
+          <comment-list :articleID="mainArticle.id"></comment-list>
         </el-col>
         </div>
       </el-row>
@@ -249,6 +227,11 @@ export default {
     },
     initMounted() {
       this.getMainArticle(this.slug)
+      EventBus.$on('SET_NEWS_ARTICLE', event => {
+        if (event) {
+          this.getMainArticle(event.slug)
+        }
+      })
     },
     getMainArticle(slug) {
       this.loading.mainArticle = true

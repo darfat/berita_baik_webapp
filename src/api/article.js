@@ -159,3 +159,17 @@ export function getArticleImages(data) {
     method: 'get'
   })
 }
+export function getNextArticle(params) {
+  return request({
+    url: '/article-next/' + params.editorialSlug + '/' + params.articleID,
+    method: 'get',
+    params
+  })
+}
+export function getPreviousArticle(params) {
+  return request({
+    url: '/article-previous/' + params.editorialSlug + '/' + params.articleID,
+    method: 'get',
+    params
+  })
+}
