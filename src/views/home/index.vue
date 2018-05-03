@@ -21,12 +21,14 @@
             <span> Buka lebih banyak lagi </span>
           </router-link>
         </div>
+        <div class="m-t-20"></div>
         <articles-card :title="'Indonesia Bangga'" :editorialSlug="'indonesia-bangga'" :editorialType="'p'" :limit=2 ></articles-card>
         <div class="side-separator">
           <router-link  :to="{ name: 'editorial-by-type-menu', params: { 'editorialType': 'p', 'editorialSlug':'indonesia-membangun'} }" >
             <span> Buka lebih banyak lagi </span>
           </router-link>
         </div>
+        <div class="m-t-20"></div>
         <articles-card :title="'Indonesia Membangun'" :editorialSlug="'indonesia-membangun'" :limit=2 ></articles-card>
         <div class="side-separator">
           <router-link  :to="{ name: 'editorial-menu', params: { 'editorialSlug':'indonesia-membangun'} }" >
