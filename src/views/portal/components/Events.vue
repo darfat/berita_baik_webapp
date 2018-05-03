@@ -18,48 +18,64 @@
       <el-col :xs="24" :sm="6">
         <el-row >
           <el-col >
-            <hr style="width:30px;height:5px;background-color:#EB0029; border: none; padding-top:10px; margin-left: 0; clear:both" />
+            <p class="red-line"></p>            
             <div class="events-month" >{{periodMonth}}</div>
-            <div>Cicero famously orated against his political opponent Lucius Sergius Catilina.</div>
+            <p class="desc">Cicero famously orated against his political opponent Lucius Sergius Catilina.</p>
           </el-col>
         </el-row>
       </el-col>
-      <el-col :xs="24" :sm="6" class="events-separator">
-         <el-row :gutter="20"  >
-          <el-col :span="8" class="align-center" >
-             <div class="event-text-circle" > <span class="events-date" v-if="groupedEvents && groupedEvents[0]" > {{groupedEvents[0].date.split("-")[2]}} </span> </div>
+      <el-col :xs="24" :sm="6" class="events-separator">       
+         <el-row :gutter="20" >
+          <el-col :span="8" class="mc">
+            <div class="mc-content">
+              <div class="event-text-circle "> 
+                  <span class="events-date" v-if="groupedEvents && groupedEvents[0]" > {{groupedEvents[0].date.split("-")[2]}} </span> 
+                  <span class="events-date" v-else> - </span>
+              </div>
+            </div>  
           </el-col>
-          <el-col :span="16" >
-             <div > 
+          <el-col :span="16" class="mc">
+             <div class="mc-content"> 
                <ul v-if="groupedEvents && groupedEvents[0]" >
                  <li v-for="(event) in groupedEvents[0].events" :key="event.id">{{event.title}}</li>
                </ul>                
               </div>
           </el-col>
-        </el-row>
+        </el-row>        
       </el-col>
       <el-col :xs="24" :sm="6" class="events-separator">
-         <el-row :gutter="20"  >
-          <el-col :span="8" class="align-center" >
-             <div class="event-text-circle "> <span class="events-date" v-if="groupedEvents && groupedEvents[1]"> {{groupedEvents[1].date.split("-")[2]}} </span> </div>
+        <el-row :gutter="20" >
+          <el-col :span="8" class="mc" >
+            <div class="mc-content">
+              <div class="event-text-circle "> 
+                <span class="events-date" v-if="groupedEvents && groupedEvents[1]" > {{groupedEvents[1].date.split("-")[2]}} </span> 
+                <span class="events-date" v-else> - </span>
+              </div>
+            </div>
           </el-col>
-          <el-col :span="16" >
-             <div > 
-               <ul v-if="groupedEvents && groupedEvents[1]">
+          <el-col :span="16" class="mc">
+             <div class="mc-content">
+               <ul v-if="groupedEvents && groupedEvents[1]" >
                  <li v-for="(event) in groupedEvents[1].events" :key="event.id">{{event.title}}</li>
-               </ul>                
+               </ul>
+                
               </div>
           </el-col>
         </el-row>
       </el-col>
       <el-col :xs="24" :sm="6" class="events-separator">
-         <el-row :gutter="20"  >
-          <el-col :span="8" class="align-center" >
-             <div class="event-text-circle "> <span class="events-date" v-if="groupedEvents && groupedEvents[2]"> {{groupedEvents[2].date.split("-")[2]}} </span> </div>
+        <el-row :gutter="20" >
+          <el-col :span="8" class="mc" >
+            <div class="mc-content">
+             <div class="event-text-circle "> 
+                <span class="events-date" v-if="groupedEvents && groupedEvents[2]" > {{groupedEvents[2].date.split("-")[2]}} </span> 
+                <span class="events-date" v-else> - </span>
+              </div>
+             </div>
           </el-col>
-          <el-col :span="16" >
-             <div > 
-               <ul v-if="groupedEvents && groupedEvents[2]">
+          <el-col :span="16" class="mc" >
+             <div class="mc-content">
+               <ul v-if="groupedEvents && groupedEvents[2]" >
                  <li v-for="(event) in groupedEvents[2].events" :key="event.id">{{event.title}}</li>
                </ul>                
               </div>
