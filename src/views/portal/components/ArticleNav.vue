@@ -14,7 +14,6 @@
 
 <script>
 import { getNextArticle, getPreviousArticle } from '@/api/article'
-import EventBus from '@/utils/event-bus'
 
 export default {
   name: 'ArticleNav',
@@ -35,13 +34,13 @@ export default {
   },
   methods: {
     init() {
-      console.log('init article nav')
-      console.log(this.articleID)
-      console.log(this.type)
     },
     next() {
       console.log('next....')
-      getNextArticle({ editorialSlug: this.editorialSlug, articleID: this.articleID }).then(response => {
+      getNextArticle({
+        editorialSlug: this.editorialSlug,
+        articleID: this.articleID
+      }).then(response => {
         console.log(response)
         if (response && response.data) {
           const article = response.data
@@ -49,21 +48,32 @@ export default {
             // EventBus.$emit('SET_NEWS_ARTICLE', { 'slug': article.slug, 'article_id': article.id })
             this.$router.push({
               name: 'article-detail-route',
-              params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} 
+              params: {
+                'editorialSlug': article.editorial.slug,
+                'slug': article.slug,
+                'articleID': article.id
+              }
             })
           }
         }
       })
     },
     prev() {
-      getPreviousArticle({ editorialSlug: this.editorialSlug, articleID: this.articleID }).then(response => {
+      getPreviousArticle({
+        editorialSlug: this.editorialSlug,
+        articleID: this.articleID
+      }).then(response => {
         if (response && response.data) {
           const article = response.data
           if (this.type === 'news') {
             // EventBus.$emit('SET_NEWS_ARTICLE', { 'slug': article.slug, 'article_id': article.id })
             this.$router.push({
               name: 'article-detail-route',
-              params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} 
+              params: {
+                'editorialSlug': article.editorial.slug,
+                'slug': article.slug,
+                'articleID': article.id
+              }
             })
           }
         }
