@@ -2,12 +2,12 @@
 <div class="comment-box">
     <div class="content">
         <el-row :gutter="20" >
-            <el-col :xs="2" :sm="2">
+            <el-col :xs="3" :sm="3">
               <div class="img-mini">
                 <img :src="userLogin.image" class="img-circle v-align-middle"/>
               </div>
             </el-col>
-            <el-col :xs="22" :sm="22">
+            <el-col :xs="21" :sm="21">
                 <el-input
                     type="textarea"
                     :rows="5"
