@@ -38,10 +38,8 @@
                         <div class="bacajuga" v-if="mainArticle.article_relates">
                           <h4>Baca Juga</h4>
                           <ul> 
-                            <li v-for="(relate) in mainArticle.article_relates" :key="relate.id" ><a href="">{{ relate.title}}</a></li>
-                            <!-- <li><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                            <li><a href="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec mattis elit. In hac habitasse platea dictumst. Suspendisse eget luctus quam, et suscipit elit. Ut.</a></li> -->
-                          </ul>
+                            <li v-for="(relate) in mainArticle.article_relates" :key="relate.id" ><a href="">{{relate.title}}</a></li>
+                         </ul>
                         </div>
                       </el-col>
                   </el-row>

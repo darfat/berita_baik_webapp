@@ -56,6 +56,13 @@
               </el-col>
             </el-row>
           </div>
+          <div>
+            <el-row :gutter="20">
+              <el-col v-if="latestNews">
+                <article-nav :editorialSlug="editorialSlug" :articleID="latestNews.id" type="video"></article-nav>
+              </el-col>
+            </el-row>
+          </div>
         </el-col>
         <el-col :xs="24" :sm="8" class="side-content  m-t-10">
           <div class="grid-content a-side">
@@ -110,7 +117,7 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { PopularNewsSide, VideosCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, EditorPickVideosSide, SharePop } from '@/views/portal/components'
+import { PopularNewsSide, VideosCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, EditorPickVideosSide, SharePop, ArticleNav } from '@/views/portal/components'
 import { getEditorialLabelBySlug } from '@/api/editorial'
 import { getLatestVideoByEditorial, getArticle } from '@/api/article'
 import EventBus from '@/utils/event-bus'
@@ -127,7 +134,8 @@ export default {
     CommentBox,
     CommentList,
     EditorPickVideosSide,
-    SharePop
+    SharePop,
+    ArticleNav
   },
   data() {
     return {

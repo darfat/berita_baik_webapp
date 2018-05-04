@@ -36,7 +36,6 @@ export default {
     init() {
     },
     next() {
-      console.log('next....')
       getNextArticle({
         editorialSlug: this.editorialSlug,
         articleID: this.articleID
@@ -52,6 +51,22 @@ export default {
                 'editorialSlug': article.editorial.slug,
                 'slug': article.slug,
                 'articleID': article.id
+              }
+            })
+          } else if (this.type === 'image') {
+            this.$router.push({
+              name: 'editorial-image-detail',
+              params: {
+                'editorialSlug': article.editorial.slug,
+                'slug': article.slug
+              }
+            })
+          } else if (this.type === 'video') {
+            this.$router.push({
+              name: 'editorial-video-detail',
+              params: {
+                'editorialSlug': article.editorial.slug,
+                'slug': article.slug
               }
             })
           }
@@ -73,6 +88,22 @@ export default {
                 'editorialSlug': article.editorial.slug,
                 'slug': article.slug,
                 'articleID': article.id
+              }
+            })
+          } else if (this.type === 'image') {
+            this.$router.push({
+              name: 'editorial-image-detail',
+              params: {
+                'editorialSlug': article.editorial.slug,
+                'slug': article.slug
+              }
+            })
+          } else if (this.type === 'video') {
+            this.$router.push({
+              name: 'editorial-video-detail',
+              params: {
+                'editorialSlug': article.editorial.slug,
+                'slug': article.slug
               }
             })
           }

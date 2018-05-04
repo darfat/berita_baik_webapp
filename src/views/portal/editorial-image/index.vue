@@ -63,6 +63,13 @@
                   </el-col>
                 </el-row>
           </div>
+          <div>
+            <el-row :gutter="20">
+              <el-col v-if="latestNews">
+                <article-nav :editorialSlug="editorialSlug" :articleID="latestNews.id" type="image"></article-nav>
+              </el-col>
+            </el-row>
+          </div>
         </el-col>
         </div>
       </el-row>
@@ -109,7 +116,7 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, SharePop } from '@/views/portal/components'
+import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, SharePop, ArticleNav } from '@/views/portal/components'
 import { getEditorialLabelBySlug } from '@/api/editorial'
 import { getLatestImageByEditorial, getArticle } from '@/api/article'
 import EventBus from '@/utils/event-bus'
@@ -127,7 +134,8 @@ export default {
     CommentBox,
     CommentList,
     ImagesSlider,
-    SharePop
+    SharePop,
+    ArticleNav
   },
   data() {
     return {
