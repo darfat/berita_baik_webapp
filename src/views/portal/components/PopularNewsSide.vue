@@ -45,7 +45,7 @@ import { getPopularArticles } from '@/api/popular_article'
 export default {
   name: 'PopularNewsSide',
   props: {
-    editorialSlug: { type: String },
+    editorialSlug: { type: String, default: null },
     limit: { default: 6, type: Number },
     page: { default: 1, type: Number }
   },
@@ -74,9 +74,9 @@ export default {
         return str.substring(0, (len - 3)) + '...'
       }
     },
-    getPopularArticles() {
+    getPopularArticles(editorialSlug) {
       this.loading.popular_articles = true
-      getPopularArticles({ page: this.page, per_page: this.limit }).then(response => {
+      getPopularArticles({ editorialSlug, page: this.page, per_page: this.limit }).then(response => {
         if (response) {
           this.popular_articles = response.data.data
         }

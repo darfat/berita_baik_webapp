@@ -2,10 +2,10 @@
 <div class="article-nav p-b-20">
   <el-row :gutter="20" >
     <el-col :span="12">
-      <el-button type="text" @click="prev()"> <span class="article-nav"> &lt; Berita Sebelumnya </span> </el-button>
+      <el-button type="text" @click="prev()"> <span class="article-nav"> &lt; {{navTitle}} Sebelumnya </span> </el-button>
     </el-col>
     <el-col :span="12" class="align-right">
-      <el-button type="text" @click="next()"> <span class="article-nav"> Berita Selanjutnya &gt; </span> </el-button>
+      <el-button type="text" @click="next()"> <span class="article-nav"> {{navTitle}} Selanjutnya &gt; </span> </el-button>
     </el-col>
   </el-row>
 </div>
@@ -20,7 +20,8 @@ export default {
   props: {
     articleID: { type: String },
     editorialSlug: { type: String },
-    type: { type: String }
+    type: { type: String },
+    navTitle: { type: String, default: 'Berita' }
   },
   data() {
     return {

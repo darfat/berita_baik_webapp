@@ -59,7 +59,7 @@
           <div>
             <el-row :gutter="20">
               <el-col v-if="latestNews">
-                <article-nav :editorialSlug="editorialSlug" :articleID="latestNews.id" type="video"></article-nav>
+                <article-nav :editorialSlug="editorialSlug" :articleID="latestNews.id" type="video" navTitle="Video"></article-nav>
               </el-col>
             </el-row>
           </div>
@@ -91,7 +91,7 @@
         <el-col :xs="24" :sm="8" class="side-content">
           <div class="grid-content a-side">
             <div>
-            <popular-news-side> </popular-news-side>
+            <popular-news-side > </popular-news-side>
             </div>
             <div class="side-separator">
               <span> Buka lebih banyak lagi </span>

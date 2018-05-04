@@ -139,7 +139,7 @@
       </el-col>
       <el-col :xs="24" :sm="8" class="side-content">
         <div class="grid-content a-side">
-          <popular-news-side> </popular-news-side>
+          <popular-news-side :editorialSlug="editorialSlug"> </popular-news-side>
           <div class="side-separator">
             <span> Buka lebih banyak lagi </span>
           </div>
