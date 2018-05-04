@@ -26,7 +26,7 @@
   height: 100%;
   .mc{
     display: table;
-    height: 134px;
+    min-height: 134px;
     .mc-content{
       vertical-align:middle;
       display: table-cell;
