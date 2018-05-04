@@ -2,22 +2,23 @@
   <div class="subscribe">      
     <el-form class="form-container" ref="subscribeForm" :model="userSubscribe" :rules="rules">
       <el-row :gutter="20" class="subscribe-content">
-          <el-col :span="8"  >
+          <el-col :xs="24" :sm="6"  class="mc">
+              <div class="mc-content">
               <span>  <v-icon name="mail" base-class="icon-1dot8em v-align-middle"></v-icon>  </span>
               <span>SELALU UPDATE</span>
-              <span class="font-blue"> BERITA BAIK</span>
-              
+              <span class="main-blue"> BERITA BAIK</span>
+              </div>
           </el-col>
-          <el-col :span="5"  >
+          <el-col :xs="24" :sm="6"  >
               <el-form-item prop="name">
                   <el-input placeholder="Nama Anda" required v-model="userSubscribe.name" ></el-input> 
               </el-form-item>
           </el-col>
-          <el-col :span="5"  >
+          <el-col :xs="24" :sm="6"  >
               <el-form-item prop="email"> <el-input type="email"  required placeholder="Surel Anda" v-model="userSubscribe.email" prop="email" ></el-input>
               </el-form-item>
           </el-col>
-           <el-col :span="2"  >
+           <el-col :xs="24" :sm="6"  >
               <el-button  @click="onSubmit('subscribeForm')" >Subscribe</el-button>
            </el-col>
       </el-row>
@@ -85,5 +86,4 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/styles/subscribe.scss";
-
 </style>

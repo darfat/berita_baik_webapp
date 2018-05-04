@@ -1,11 +1,26 @@
 @import './variables.scss';
 
 .subscribe {
-    margin-bottom: 10px;
+    margin: 20px 0;   
 }
 
-.subscribe .subscribe-content{
-    text-align: center;
-    color: $bb-gray;
-    font-size: 1.4em;
+.subscribe .subscribe-content{    
+    color: #9a9a9a;
+    font-size: 1em;    
+    span{
+        font-weight: 900;
+    }
+    .el-input__inner{
+        color: #9a9a9a;
+        font-size: 0.8px;
+    }
+}
+
+.mc{
+    display: table;
+    min-height: 63px;    
+    .mc-content{
+        vertical-align:middle;
+        display: table-cell;
+    }
 }
