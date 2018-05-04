@@ -78,6 +78,7 @@ export default {
       }
     }
     &-s2{
+      text-align: left;
       background-color: #1A1A1A;
       padding: 16px 0;
       color: #666;
