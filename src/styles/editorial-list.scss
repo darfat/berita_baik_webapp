@@ -13,8 +13,10 @@
 .editoral-container .headline-container .title-container{    
     h1{
         color: $main-blue;
-        font-size: 2em;
+        font-size: 34px;
+        font-family: 'Neosans-Black';
         margin: 20px 0 0 0;
+
     }
 }
 .editoral-container .headline-container .latest-news{
@@ -37,7 +39,7 @@
 }
 .editoral-container .headline-container .latest-news .background img{
     width:100%;
-    max-height: 500px;
+    max-height: 436px;
     object-fit: cover;
 }
 
@@ -65,12 +67,18 @@
     padding-right: 20px;
     padding-bottom: 20px;
 }
-
+.editoral-container .headline-container .latest-news .content .ln-share{
+    margin: 10px 0;
+}
 .editoral-container .headline-container .latest-news .content .ln-title{
     font-weight: bold;
     font-size: 1.1em;
+    margin-bottom: 10px;
 }
-
+.editoral-container .headline-container .latest-news .content .ln-teaser{    
+    font-size: 0.75em;
+    margin-bottom: 10px;
+}
 .editoral-container .headline-container .latest-news .content  .footer{
     font-weight: bold;
     font-size: 0.8em;

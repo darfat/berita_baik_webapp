@@ -1,5 +1,5 @@
 <template>
-  <div class="editoral-container">
+  <div class="editoral-container">  
     <el-row :gutter="20" class="headline-container" v-if="latestNews">
       <el-row :gutter="20"> 
         <div class="container">         
@@ -30,7 +30,7 @@
                 </el-row>
                 <el-row :gutter="20" class="content"> 
                   <el-col>
-                    <el-row :gutter="20">
+                    <el-row :gutter="20" class="ln-share">
                         <el-col :span="4" v-if="latestNews.id">
                             <span> <bb-love></bb-love> </span>
                             <span><a @click="centerDialogVisible = true"> <fa-icon name="share-alt" scale="1.3"  ></fa-icon> </a>  </span>
@@ -45,17 +45,15 @@
                         </div>
                       </el-col>
                     </el-row>
-                    <el-row :gutter="20">
+                    <el-row :gutter="20" class="ln-teaser">
                         <el-col class="sub-headline">
                           <div v-html="latestNews.teaser" class="article-content">
                           </div>
                         </el-col>
-                    </el-row>
-                    <el-row :gutter="20">
-                        <el-col :span="1"><article-separator></article-separator></el-col>
-                    </el-row>
+                    </el-row>                    
                     <el-row :gutter="20">
                         <el-col class="footer">
+                          <p class="red-line"></p>
                           <div class="author">
                             {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
                           </div>
