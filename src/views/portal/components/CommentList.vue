@@ -4,7 +4,9 @@
         <el-row :gutter="20" v-for="(comment) in comments" :key="comment.id" class="data">
             <el-row >
               <el-col :span="1" class="comment-img">
-                  <img :src="comment.user.image" class="img-circle img-mini v-align-middle"/>
+                  <div class="img-mini">
+                    <img :src="comment.user.image" class="img-circle v-align-middle"/>
+                  </div>
               </el-col>
               <el-col :span="23" class="comment-info">
                   <div> {{ comment.user.name }}</div>

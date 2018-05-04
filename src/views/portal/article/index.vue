@@ -58,7 +58,9 @@
                       </el-col>
                       <el-col :xs="24" :sm="16" v-loading="loading.authors">
                         <div v-for="(author) in mainArticleAuthors" :key="author.id" class="team">
-                          <img :src="author.user.image" class="img-circle img-mini v-align-middle"/>
+                          <div class="img-mini">
+                            <img :src="author.user.image" class="img-circle v-align-middle"/>
+                          </div>
                           <span> {{ author.user.name }} </span>
                           <span class="follow-user">                            
                             <v-icon name="user" base-class="icon-20 v-align-middle"></v-icon>
