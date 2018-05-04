@@ -102,7 +102,7 @@
         <el-col :xs="24" :sm="8" class="side-content">
           <div class="grid-content a-side">
             <div>
-            <popular-news-side :editorialSlug="editorialSlug"> </popular-news-side>
+            <popular-news-side :editorialSlug="editorialSlug" :editorialType="editorialType"> </popular-news-side>
             </div>
             <div class="side-separator">
               <span> Buka lebih banyak lagi </span>

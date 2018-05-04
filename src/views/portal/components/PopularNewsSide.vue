@@ -41,11 +41,12 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import { getPopularArticles } from '@/api/popular_article'
-
+import { getEditorialIdBySlug } from '@/api/editorial'
 export default {
   name: 'PopularNewsSide',
   props: {
     editorialSlug: { type: String, default: null },
+    editorialType: { type: String },
     limit: { default: 6, type: Number },
     page: { default: 1, type: Number }
   },
@@ -76,12 +77,37 @@ export default {
     },
     getPopularArticles(editorialSlug) {
       this.loading.popular_articles = true
-      getPopularArticles({ editorialSlug, page: this.page, per_page: this.limit }).then(response => {
-        if (response) {
-          this.popular_articles = response.data.data
-        }
-        this.loading.popular_articles = false
-      })
+      if (this.editorialType && this.editorialType !== null && this.editorialType.length) {
+        getEditorialIdBySlug({
+          slug: editorialSlug
+        }).then(editorialResponse => {
+          if (editorialResponse) {
+            getPopularArticles({
+              editorialType: this.editorialType,
+              editorialSlugID: editorialResponse.data.id,
+              editorialSlug,
+              page: this.page,
+              per_page: this.limit
+            }).then(response => {
+              if (response) {
+                this.popular_articles = response.data.data
+              }
+              this.loading.popular_articles = false
+            })
+          }
+        })
+      } else {
+        getPopularArticles({
+          editorialSlug,
+          page: this.page,
+          per_page: this.limit
+        }).then(response => {
+          if (response) {
+            this.popular_articles = response.data.data
+          }
+          this.loading.popular_articles = false
+        })
+      }
     }
   }
 }
