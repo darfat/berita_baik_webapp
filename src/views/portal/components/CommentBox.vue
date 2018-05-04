@@ -3,7 +3,9 @@
     <div class="content">
         <el-row :gutter="20" >
             <el-col :xs="2" :sm="2">
-                <img :src="userLogin.image" class="img-circle img-mini v-align-middle"/>
+              <div class="img-mini">
+                <img :src="userLogin.image" class="img-circle v-align-middle"/>
+              </div>
             </el-col>
             <el-col :xs="22" :sm="22">
                 <el-input
