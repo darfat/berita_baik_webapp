@@ -17,7 +17,7 @@
                     </el-input>
             </el-col>
         </el-row>
-        <el-row :gutter="20" class="m-t-10 p-r-20">
+        <el-row :gutter="0" class="m-t-10">
             <el-col class="align-right">
                   <el-button type="primary" plain @click="postComment">Post</el-button>
             </el-col>
