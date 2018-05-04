@@ -21,12 +21,10 @@
                           <span class="headline" v-html="subString(popular.title,70)"  ></span>
                         </router-link>
                       </div>
-                    </el-row>
-                    <el-row >
-                        <el-col :span="2"><article-separator></article-separator></el-col>
-                    </el-row>
+                    </el-row>                    
                     <el-row >
                         <el-col  class="side-footer">
+                         <p class="red-line"></p>
                          <div class="author">
                           {{ popular.reporter_name }} | <timeago :since="popular.publish_date"></timeago>
                         </div>
