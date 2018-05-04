@@ -2,10 +2,12 @@
 <div class="comment-box">
     <div class="content">
         <el-row :gutter="20" >
-            <el-col :xs="2" :sm="2">
-                <img :src="userLogin.image" class="img-circle img-mini v-align-middle"/>
+            <el-col :xs="3" :sm="3">
+              <div class="img-mini">
+                <img :src="userLogin.image" class="img-circle v-align-middle"/>
+              </div>
             </el-col>
-            <el-col :xs="22" :sm="22">
+            <el-col :xs="21" :sm="21">
                 <el-input
                     type="textarea"
                     :rows="5"
@@ -15,7 +17,7 @@
                     </el-input>
             </el-col>
         </el-row>
-        <el-row :gutter="20" class="m-t-10 p-r-20">
+        <el-row :gutter="0" class="m-t-10">
             <el-col class="align-right">
                   <el-button type="primary" plain @click="postComment">Post</el-button>
             </el-col>

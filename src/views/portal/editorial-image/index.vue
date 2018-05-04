@@ -1,78 +1,77 @@
 <template>
   <div class="editoral-container">
     <el-row :gutter="20" class="headline-container" v-if="latestNews">
-      <el-row :gutter="20" >
-        <div class="container">
-        <el-col :xs="24">
-          <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">
-                <el-row :gutter="20" v-if="editorialSlug === 'infografis'">
-                  <el-col >
-                    <div>
-                        <div class="background">
-                            <img :src="latestNews.main_image" />
-                            <!-- <div class="editorial-type-img" v-if="latestNews.id">
-                                <h2>{{ latestNews.editorial.name }}</h2>
-                            </div> -->
-                        </div>
-                    </div>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="20" v-if="editorialSlug !== 'infografis'">
-                  <el-col >
-                    <div v-if="latestNews">
-                        <images-slider :articleID="latestNews.id" :article="latestNews"></images-slider>
-                    </div>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="20" class="content"> 
-                  <el-col>
-                    <el-row :gutter="20">
-                        <el-col :span="4" v-if="latestNews.id">
-                            <span> <bb-love></bb-love> </span>
-                            <span><share-pop :article="latestNews"></share-pop>  </span>
-                        </el-col>
-                    </el-row>
-                    <el-row :gutter="20" class="ln-title">
-                      <el-col >
-                        <div class="headline"> 
-                            {{ latestNews.title }}
-                        </div>
-                      </el-col>
-                    </el-row>
-                    <el-row :gutter="20">
-                        <el-col class="sub-headline">
-                          <div v-html="latestNews.teaser" class="article-content">
+      <div class="container">
+        <el-row :gutter="20" >
+          
+          <el-col :xs="24">
+            <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">
+                  <el-row :gutter="20" v-if="editorialSlug === 'infografis'">
+                    <el-col >
+                      <div>
+                          <div class="background">
+                              <img :src="latestNews.main_image" />
+                              <!-- <div class="editorial-type-img" v-if="latestNews.id">
+                                  <h2>{{ latestNews.editorial.name }}</h2>
+                              </div> -->
+                          </div>
+                      </div>
+                    </el-col>
+                  </el-row>
+                  <el-row :gutter="20" v-if="editorialSlug !== 'infografis'">
+                    <el-col >
+                      <div v-if="latestNews">
+                          <images-slider :articleID="latestNews.id" :article="latestNews"></images-slider>
+                      </div>
+                    </el-col>
+                  </el-row>
+                  <el-row :gutter="20" class="content"> 
+                    <el-col>
+                      <el-row :gutter="20" class="ln-share">
+                          <el-col :span="4" v-if="latestNews.id">
+                              <span> <bb-love></bb-love> </span>
+                              <span><share-pop :article="latestNews"></share-pop>  </span>
+                          </el-col>
+                      </el-row>
+                      <el-row :gutter="20" class="ln-title">
+                        <el-col >
+                          <div class="headline"> 
+                              {{ latestNews.title }}
                           </div>
                         </el-col>
-                    </el-row>
-                    <el-row :gutter="20">
-                        <el-col :span="1"><article-separator></article-separator></el-col>
-                    </el-row>
-                    <el-row :gutter="20">
-                        <el-col class="footer">
-                          <div class="author">
-                            {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
-                          </div>
-                        </el-col>
-                    </el-row>
-                  </el-col>
-                </el-row>
-                <el-row :gutter="20" class="m-t-10" v-if="latestNews" >
-                  <el-col >
-                    <comment-box :articleID="latestNews.id"></comment-box>
-                  </el-col>
-                </el-row>
-          </div>
-          <div>
-            <el-row :gutter="20">
-              <el-col v-if="latestNews">
-                <article-nav :editorialSlug="editorialSlug" :articleID="latestNews.id" type="image" navTitle="Gallery"></article-nav>
-              </el-col>
-            </el-row>
-          </div>
-        </el-col>
-        </div>
-      </el-row>
+                      </el-row>
+                      <el-row :gutter="20" class="ln-teaser">
+                          <el-col class="sub-headline">
+                            <div v-html="latestNews.teaser" class="article-content">
+                            </div>
+                          </el-col>
+                      </el-row>                      
+                      <el-row :gutter="20">
+                          <el-col class="footer">
+                            <p class="red-line"></p>
+                            <div class="author">
+                              {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
+                            </div>
+                          </el-col>
+                      </el-row>
+                    </el-col>
+                  </el-row>
+                  <el-row :gutter="20" class="m-t-10" v-if="latestNews" >
+                    <el-col >
+                      <comment-box :articleID="latestNews.id"></comment-box>
+                    </el-col>
+                  </el-row>
+            </div>
+            <div>
+              <el-row :gutter="20">
+                <el-col v-if="latestNews">
+                  <article-nav :editorialSlug="editorialSlug" :articleID="latestNews.id" type="image" navTitle="Gallery"></article-nav>
+                </el-col>
+              </el-row>
+            </div>
+          </el-col>          
+        </el-row>
+      </div>  
     </el-row>
     <el-row :gutter="20" class="comments-container" v-if="latestNews.id" >
       <el-row :gutter="20" >
@@ -207,9 +206,9 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/styles/editorial-image-list.scss";
 .el-row {
-  margin-bottom: 3px;
+  margin-bottom: 0;
   &:last-child {
-    margin-bottom: 3px;
+    margin-bottom: 20px;
   }
 }
 .el-col {

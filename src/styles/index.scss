@@ -236,12 +236,25 @@ a:hover {
   vertical-align: middle;
 }
 .img-mini {
-  max-height: 50px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;  
 }
 .img-circle {
-  border-radius: 50%;
-  border: 1px solid #696968;
-
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  width: auto;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 .follow-user {
   border: solid 1px #696968;
