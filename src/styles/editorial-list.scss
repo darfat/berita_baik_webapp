@@ -1,29 +1,29 @@
 @import './variables.scss';
 
 .editoral-container {
-    // padding-top: 150px
+    // padding-top: 150px    
 }
 .editoral-container .headline-container {
     background-color: #e6e6e6;
 }
 .grid-content {
     border-radius: 4px;
-    min-height: 36px;    
+    min-height: 36px;
 }
 .editoral-container .headline-container .title-container{    
     h1{
         color: $main-blue;
         font-size: 34px;
         font-family: 'Neosans-Black';
-        margin: 20px 0 0 0;
+        margin: 20px 0;
 
     }
 }
 .editoral-container .headline-container .latest-news{
     background-color: #fff;
-    min-height: 300px;
-    margin-bottom: 40px;
-    margin-top: 20px;
+    // min-height: 300px;
+    // margin-bottom: 40px;
+    // margin-top: 20px;
 }
 
 .editoral-container .headline-container .latest-news .background {
@@ -63,12 +63,10 @@
 
 
 .editoral-container .headline-container .latest-news .content{
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
+    padding: 20px 20px 0 20px;
 }
 .editoral-container .headline-container .latest-news .content .ln-share{
-    margin: 10px 0;
+    margin-bottom: 10px;
 }
 .editoral-container .headline-container .latest-news .content .ln-title{
     font-weight: bold;
@@ -84,7 +82,7 @@
     font-size: 0.8em;
 }
 .editoral-container .list-container{
-    margin-top:30px;
+    padding-top:30px;
     background-color: #fff;
 }
 
