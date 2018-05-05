@@ -25,7 +25,12 @@ export function getInfo(token, user_id) {
     params: { token, user_id }
   })
 }
-
+export function getUserByEmail(email) {
+  return request_no_auth({
+    url: '/user-by-email/' + email,
+    method: 'get'
+  })
+}
 export function logout() {
   return request_no_auth({
     url: '/user/logout',

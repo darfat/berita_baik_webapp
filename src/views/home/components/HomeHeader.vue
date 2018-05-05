@@ -52,6 +52,7 @@
           <div class="head-item mc">            
             <div class="head-item-user mc-content">
             <a href="#/login" alt="Log In / Sign Up" title="Log In / Sign Up"><fa-icon name="user-circle" scale="1.8"></fa-icon></a>
+            <span v-if="name"> Hi, {{name}} </span>
             <!--<el-dropdown class="avatar-container" >
               <div class="avatar-wrapper">
               <img class="user-avatar" src="">
@@ -168,6 +169,8 @@ import img_logo from '@/assets/images/logo_berita_baik.png'
 import img_ikon from '@/assets/images/ikon_berita_baik.png'
 import img_ikon_mono from '@/assets/images/ikon_berita_baik_white.png'
 import img_logo_mono from '@/assets/images/logo_berita_baik_white.png'
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'HomeHeader',
   components: { Sticky, SearchBox },
@@ -180,6 +183,12 @@ export default {
       search: '',
       scrolled: null
     }
+  },
+  computed: {
+    ...mapGetters([
+      'name',
+      'roles'
+    ])
   },
   methods: {
     handleScroll() {

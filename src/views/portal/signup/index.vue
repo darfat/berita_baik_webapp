@@ -62,6 +62,8 @@
 </template>
 
 <script>
+import { getUserByEmail } from '@/api/login'
+
 import img_b_logo from '@/assets/images/ikon_berita_baik.png'
 
 export default {
@@ -86,6 +88,24 @@ export default {
         callback()
       }
     }
+    const validateEmailExists = (rule, value, callback) => {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      if (value === '') {
+        callback(new Error('Silakan Isi Email'))
+      } else if (!re.test(String(value).toLowerCase())) {
+        callback(new Error('Silakan Isi Dengan Format Email Yang Sesuai'))
+      } else {
+        getUserByEmail(value).then(response => {
+          if (response && response.data && response.data.status === 'ok') {
+            callback()
+          }
+        })
+          .catch(error => {
+            console.error(error)
+            callback(new Error('Email Sudah Digunakan'))
+          })
+      }
+    }
     return {
       title: '',
       loading: false,
@@ -94,7 +114,12 @@ export default {
         name: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        username: null,
+        active: true,
+        id_number: '-',
+        id_number_type: 'ktp',
+        status: 'inactive'
       },
       rules: {
         name: [
@@ -102,7 +127,8 @@ export default {
         ],
         email: [
           { required: true, message: 'Silahkan Isi Email', trigger: 'blur' },
-          { type: 'email', message: 'Silakan Isi Sesuai Dengan Format Email', trigger: ['blur', 'change'] }
+          // { type: 'email', message: 'Silakan Isi Sesuai Dengan Format Email', trigger: ['blur', 'change'] },
+          { validator: validateEmailExists, trigger: ['change'] }
         ],
         password: [
           { trigger: 'blur', validator: validatePass }
@@ -128,6 +154,7 @@ export default {
     handleSignup() {
       this.$refs.signupVM.validate(valid => {
         if (valid) {
+          this.signupVM.username = this.signupVM.email
           this.loading = true
           this.$store.dispatch('Signup', this.signupVM).then(() => {
             this.loading = false
