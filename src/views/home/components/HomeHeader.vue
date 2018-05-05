@@ -10,15 +10,15 @@
     </div>
 
     <div class="head-wrapper container">      
-      <el-row>
-        <el-col :xs="24" :sm="10">
+      <el-row :gutter="10">
+        <el-col :xs="24" :sm="8">
           <div class="head-item mc">
             <div class="head-item-img mc-content">
               <img class="" :src="img_logo" alt="beritabaik.id">
             </div>
           </div>
         </el-col>
-        <el-col :xs="24" :sm="6">
+        <el-col :xs="16" :sm="8">
           <div class="head-item mc">
             <div class="head-item-search mc-content">
               <!-- <el-input placeholder="Search" suffix-icon="el-icon-search" v-model="search" v-on:keyup.enter="onEnterClick" ></el-input> -->
@@ -26,14 +26,14 @@
             </div>
           </div>
         </el-col>
-        <el-col :xs="16" :sm="4">
+        <el-col :xs="6" :sm="5">
           <div class="head-item mc">
             <div class="head-item-contribute mc-content">
                   <el-button icon="el-icon-edit" class="main-button" >Tulis Berita Baik</el-button>
             </div>
           </div>
         </el-col>
-        <!-- <el-col :xs="4" :sm="2">
+        <!-- <el-col :xs="2" :sm="2">
           <div class="head-item mc">
             <div class="head-item-lang mc-content">
             <el-dropdown>
@@ -48,10 +48,11 @@
             </div>
           </div>
         </el-col> -->
-        <el-col :xs="4" :sm="2">
-          <div class="head-item mc">
+        <el-col :xs="4" :sm="3">
+          <div class="head-item mc">            
             <div class="head-item-user mc-content">
-            <el-dropdown class="avatar-container" >
+            <a href="#/login">Log In / Sign Up</a>
+            <!--<el-dropdown class="avatar-container" >
               <div class="avatar-wrapper">
               <img class="user-avatar" src="">
               <i class="el-icon-caret-bottom"></i>
@@ -66,7 +67,7 @@
               <span style="display:block;">LogOut</span>
               </el-dropdown-item>
               </el-dropdown-menu>
-            </el-dropdown>
+            </el-dropdown>-->
             </div>
           </div>
         </el-col>
