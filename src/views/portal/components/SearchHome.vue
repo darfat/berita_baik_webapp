@@ -73,7 +73,7 @@
                   <share-pop :article="article"></share-pop>
                 <div class="bottom clearfix">
                   <router-link v-if="article.editorial" :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
-                    <h2 class="headline">{{ article.title}}</h2>
+                    <h2 class="headline" v-html="subString(article.title,80)"  ></h2>
                   </router-link>
                 </div>
                
@@ -192,8 +192,14 @@ export default {
           }
         }
       })
+    },
+    subString(str, len) {
+      if (str.length < len) {
+        return str
+      } else {
+        return str.substring(0, (len - 3)) + '...'
+      }
     }
-
   }
 }
 </script>
