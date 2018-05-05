@@ -60,16 +60,17 @@
         </div>
         <div class="search-result">
           <el-row :gutter="20" >
-            <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" v-for="(article) in articles" :key="article.id">
-              
+            <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" v-for="(article) in articles" :key="article.id">              
               <el-card :body-style="{ padding: '0px' }">
-              <img :src="article.main_image" class="image">
-              <div class="editorial-type-img" v-if="article.editorial">
+              <div class="mini-thumbnail">
+                <img :src="article.main_image" class="image">
+                <div class="editorial-type-img" v-if="article.editorial">
                   <h3>{{ article.editorial.name }}</h3>
                 </div>
-              <div class="desc">
-                  <span><bb-love></bb-love> </span>
-                  <span><fa-icon name="share-alt" scale="1.3"  ></fa-icon>  </span>
+              </div>
+              <div class="info">
+                  <bb-love></bb-love>
+                  <share-pop :article="article"></share-pop>
                 <div class="bottom clearfix">
                   <router-link v-if="article.editorial" :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
                     <h2 class="headline">{{ article.title}}</h2>
@@ -77,9 +78,11 @@
                 </div>
                
                 <div class="bottom clearfix">
-                  <article-separator></article-separator>
+                  <p class="red-line"></p>
+                  <p class="author">
                   {{ article.reporter_name }} |
                     <timeago :auto-update="60" :since="article.publish_date"></timeago>
+                  </p>  
                 </div>
               </div>
             </el-card>
@@ -100,6 +103,7 @@
 
 <script>
 import BbLove from '@/views/portal/components/BbLove'
+import SharePop from '@/views/portal/components/SharePop'
 import ArticleSeparator from '@/components/ArticleSeparator'
 import { SearchArticles } from '@/api/article'
 
@@ -107,7 +111,8 @@ export default {
   name: 'SearchHome',
   components: {
     BbLove,
-    ArticleSeparator
+    ArticleSeparator,
+    SharePop
   },
   props: {
     keyword: { type: String }
@@ -194,90 +199,5 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-@import "src/styles/variables.scss";
-.search{
-  padding: 40px 0;
-  background-color: #e6e6e6;
-  &-box{
-    &-label{
-      color: $main-blue;
-      font-size: 1.5em;
-      line-height: 1.6em;
-      font-weight: 700;
-      text-align: center;        
-    }
-    &-advanced{
-      color: $main-blue;
-      text-align: right;
-    }
-  }
-  &-advanced{
-    margin: 40px 0;
-    padding: 20px;
-    border: 2px solid $main-blue;
-    background-color: #fff;
-    min-height: 300px;
-    &-info{
-      background-color: #BFE2F5;
-      padding: 20px 10px;
-      width: 100%
-    }
-    &-input{
-      padding: 40px 0;
-      span{
-        display: inline-block;
-        color: $main-blue;
-        font-weight: 700;
-        padding-right: 10px;
-      }      
-      .el-input{
-        width: 70%;
-      }
-      .el-button{
-        background-color: $main-blue;
-        color: #fff;
-      }
-    }
-  }
-  &-result{
-    width: 100%;    
-    margin: 40px 0;
-  }
-
-  &-pagination{
-    text-align: center;
-  }
-}
-
-.el-card{
-  margin-bottom: 20px;
-  background-color: #fff;  
-  border: 1px solid #1a1a1a;
-  border-radius: none;
-  box-shadow: none;
-  
-  .image{
-    display: block;
-    width: 100%;
-    padding: 10px;    
-    min-height: 250px;    
-  }
-
-  .desc{
-    padding: 14px;    
-    border-top: 1px solid #1a1a1a;
-  }
-
-  h2{
-    margin: 0;    
-  }
-
-  hr{
-    height: 10px;
-    background-color: $main-red;
-    border: none;
-    width: 10%;    
-  }
-
-}
+@import "src/styles/search-home.scss";
 </style>

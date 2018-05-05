@@ -1,0 +1,118 @@
+@import "src/styles/variables.scss";
+.search{
+  padding: 40px 0;
+  background-color: #e6e6e6;
+  &-box{
+    &-label{
+      color: $main-blue;
+      font-size: 1.5em;
+      line-height: 1.6em;
+      font-weight: 700;
+      text-align: center;        
+    }
+    &-result{
+      font-size: 0.75em;
+      
+    }
+    &-advanced{
+      font-size: 0.9em;
+      font-weight: 900;
+      color: $main-blue;
+      text-align: right;
+    }
+  }
+  &-advanced{
+    margin: 40px 0;
+    padding: 20px;
+    border: 2px solid $main-blue;
+    background-color: #fff;
+    min-height: 300px;
+    &-info{
+      background-color: #BFE2F5;
+      padding: 20px 10px;
+      width: 100%
+    }
+    &-input{
+      padding: 40px 0;
+      span{
+        display: inline-block;
+        color: $main-blue;
+        font-weight: 700;
+        padding-right: 10px;
+      }      
+      .el-input{
+        width: 70%;
+      }
+      .el-button{
+        background-color: $main-blue;
+        color: #fff;
+      }
+    }
+  }
+  &-result{
+    width: 100%;    
+    margin: 40px 0;
+  }
+
+  &-pagination{
+    text-align: center;
+  }
+}
+
+.el-card{
+  margin-bottom: 20px;
+  // background-color: #fff;  
+  // border: 1px solid #1a1a1a;
+  // border-radius: none;
+  // box-shadow: none;
+  -webkit-box-shadow: 0 0 0 0 #9a9a9a;
+  .mini-thumbnail {
+    position: relative;
+    .image{
+        width: 100%;
+        max-height: 163px;
+        object-fit: cover;    
+    }
+    .editorial-type-img{
+        position: absolute;
+        top: 10%;
+        left: 5%;
+        color: white;
+        background-color: $main-blue;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-transform: uppercase;
+        h3{
+            font-size: 0.7em;
+            font-weight: 900;
+            margin: 5px 0;
+        }
+    }
+
+  }
+  .info{
+    padding: 14px 20px;
+    h2{
+        font-weight: bold;
+        font-size: 0.9em;
+        line-height: 1.3em;
+        margin: 10px 0;        
+    }
+    .author{
+        font-size: 0.75em;
+        font-weight: 900;
+        margin: 0;
+    }
+    
+  }
+
+ 
+
+  hr{
+    height: 10px;
+    background-color: $main-red;
+    border: none;
+    width: 10%;    
+  }
+
+}
