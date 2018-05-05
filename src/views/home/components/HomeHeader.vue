@@ -51,7 +51,7 @@
         <el-col :xs="4" :sm="3">
           <div class="head-item mc">            
             <div class="head-item-user mc-content">
-            <a href="#/login">Log In / Sign Up</a>
+            <a href="#/login" alt="Log In / Sign Up" title="Log In / Sign Up"><fa-icon name="user-circle" scale="1.8"></fa-icon></a>
             <!--<el-dropdown class="avatar-container" >
               <div class="avatar-wrapper">
               <img class="user-avatar" src="">
