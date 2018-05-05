@@ -91,7 +91,7 @@
         <el-col :xs="24" :sm="8" class="side-content">
           <div class="grid-content a-side">
             <div>
-            <popular-news-side > </popular-news-side>
+            <popular-video-side :editorialSlug="editorialSlug"> </popular-video-side>
             </div>
             <div class="side-separator">
               <span> Buka lebih banyak lagi </span>
@@ -117,7 +117,7 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { PopularNewsSide, VideosCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, EditorPickVideosSide, SharePop, ArticleNav } from '@/views/portal/components'
+import { PopularNewsSide, VideosCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, EditorPickVideosSide, SharePop, ArticleNav, PopularVideoSide } from '@/views/portal/components'
 import { getEditorialLabelBySlug } from '@/api/editorial'
 import { getLatestVideoByEditorial, getArticle } from '@/api/article'
 import EventBus from '@/utils/event-bus'
@@ -135,7 +135,8 @@ export default {
     CommentList,
     EditorPickVideosSide,
     SharePop,
-    ArticleNav
+    ArticleNav,
+    PopularVideoSide
   },
   data() {
     return {

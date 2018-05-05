@@ -1,0 +1,106 @@
+@import './variables.scss';
+
+.popular-video {
+    border: solid 1px;
+    padding: 15px;
+    border-color: #e6e6e6;
+    font-size: 0.8em;
+    background-color: $bb-pure-white;
+}
+.popular-video .side-row{
+    margin-bottom: 10px;
+}
+
+.popular-video .side-row .side-video {
+    // margin-bottom: 0.8em;
+}
+.popular-video .side-row .side-video .card-video{
+    // width: 310px;
+    // height: 100%;
+    width: 100%;
+    height: auto;
+}
+
+.popular-video .side-row .side-content {
+    padding-left: 1em;
+    height: 100%;
+
+}
+.popular-video .side-row .side-content .content-container{
+    height: auto;
+}
+.popular-video .side-row .side-content .content-container .side-title-section{
+    min-height: 30px;
+    max-height: 55px;
+
+}
+.popular-video .side-row .side-image {
+    margin-bottom: 0.8em;
+}
+.popular-video .side-row .side-image .card-image{
+    width: 100%;
+    height: 90px;
+}
+
+.popular-video .side-row .side-content  .side-footer{
+    font-weight: bold;
+    font-size: 0.8em;
+    margin-left: -3px;
+}
+.popular-video .side-row .side-content  .footer{
+    font-weight: bold;
+    font-size: 0.8em;
+}
+.popular-video{
+    // background-color: violet;
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 0;
+        height: 0;
+        overflow: hidden;    
+    }
+    .videoWrapper iframe,
+    .videoWrapper object,
+    .videoWrapper embed{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+.vid-thumb {
+    margin: 3px 0;
+  }
+  
+  .vid-thumb .vid-thumb-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+  }
+  
+  .vid-thumb .vid-thumb-wrapper iframe,
+  .vid-thumb .vid-thumb-wrapper object,
+  .vid-thumb .vid-thumb-wrapper embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  
+.ac-bottom-content{
+    padding-top: 10px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-bottom: 10px;
+}
+.ac-footer{
+    font-weight: bold;
+    font-size: 0.8em;   
+    margin-left: -3px;
+}  

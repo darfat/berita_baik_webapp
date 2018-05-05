@@ -79,7 +79,7 @@
 <script>
   import ArticleSeparator from '@/components/ArticleSeparator'
   import BbLove from '@/views/portal/components/BbLove'
-  import { SharePop } from '@/views/portal/components'
+  import SharePop from '@/views/portal/components/SharePop'
 
   import {
     getVideosByEditorialSlug

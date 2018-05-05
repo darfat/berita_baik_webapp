@@ -4,13 +4,19 @@
               <div class="section-title"> {{title}}</div>
           </el-row>
           
-          <div class="popular-news m-t-20">
+          <div class="popular-video m-t-20">
             <el-row :gitter="20" v-for="(popular) in popular_articles" :key="popular.id" class="side-row"  >
-              <el-col :span="8" class="side-image">
-                <div>
-                  <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
-                    <img :src="popular.main_image" class="card-image"/>
-                  </router-link>
+              <el-col :span="8" class="side-video">
+                <div class="vid-thumb">
+                  <div class="videoWrapper" v-if="popular">
+                    <!-- <youtube :popular-id="$youtube.getIdFromURL(popular.sources_path)" :player-vars="{ showinfo: 0 }" @ready="ready" @playing="playing" ></youtube> -->
+                    <iframe 
+                        width="540"
+                        height="290"
+                        :src="'http://www.youtube.com/embed/'+$youtube.getIdFromURL(popular.sources_path)+'?rel=0&amp;fs=0&amp;showinfo=0'"
+                        frameborder="0"
+                        allowfullscreen></iframe>
+                  </div>
                 </div>
               </el-col>
               <el-col :span="16" class="side-content">
@@ -18,7 +24,7 @@
                    <el-row class="side-title-section">
                       <div>
                         <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
-                          <span class="headline" v-html="subString(popular.title,70)"  ></span>
+                          <span class="headline" v-html="subString(popular.title,30)"  ></span>
                         </router-link>
                       </div>
                     </el-row>                    
@@ -45,7 +51,7 @@ export default {
   props: {
     editorialSlug: { type: String, default: null },
     editorialType: { type: String },
-    title: { type: String, default: 'BERITA BAIK TERPOPULAR' },
+    title: { type: String, default: 'VIDEO TERPOPULAR' },
     limit: { default: 6, type: Number },
     page: { default: 1, type: Number }
   },
@@ -113,6 +119,6 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-@import "src/styles/popular-news-side.scss";
+@import "src/styles/popular-video-side.scss";
 
 </style>
