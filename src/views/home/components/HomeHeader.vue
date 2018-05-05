@@ -33,7 +33,7 @@
             </div>
           </div>
         </el-col>
-        <el-col :xs="4" :sm="2">
+        <!-- <el-col :xs="4" :sm="2">
           <div class="head-item mc">
             <div class="head-item-lang mc-content">
             <el-dropdown>
@@ -47,7 +47,7 @@
             </el-dropdown>
             </div>
           </div>
-        </el-col>
+        </el-col> -->
         <el-col :xs="4" :sm="2">
           <div class="head-item mc">
             <div class="head-item-user mc-content">

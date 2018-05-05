@@ -91,7 +91,7 @@
         <el-pagination
         background
         layout="prev, pager, next"
-        prev-text="Pertama" next-text="Terakhir"
+        prev-text="Sebelumnya" next-text="Selanjutnya"
         @current-change="handleCurrentChange"
           :current-page.sync="page"
           :page-size="per_page"

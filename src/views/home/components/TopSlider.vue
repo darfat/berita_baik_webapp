@@ -68,7 +68,6 @@ export default {
     }
   },
   created() {
-    console.log('top slide........')
     this.init()
   },
   methods: {

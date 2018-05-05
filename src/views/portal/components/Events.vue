@@ -112,6 +112,7 @@ export default {
   },
   methods: {
     init() {
+      moment.locale('id')
       this.aDate = new Date()
       this.period = moment(this.aDate).format('YYYYMM')
       this.periodMonth = moment(this.aDate).format('MMMM')
