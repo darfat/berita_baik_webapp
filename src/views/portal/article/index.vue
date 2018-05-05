@@ -17,11 +17,17 @@
                   </el-col>
                 </el-row>
                 <el-row class="content">
+                  <el-row :gutter="20" v-if="mainArticle.subtitle" class="m-t-20">
+                    <el-col >
+                      <span >{{ mainArticle.subtitle }}</span>
+                    </el-col>
+                  </el-row>
                   <el-row :gutter="20" class="a-title">
                     <el-col >
                       <h2 class="headline">{{ mainArticle.title }}</h2>
                     </el-col>
                   </el-row>
+                  
                   <el-row :gutter="20">
                       <el-col :span="1"><article-separator></article-separator></el-col>
                   </el-row>
