@@ -147,6 +147,13 @@ export function SearchArticles(params) {
     params
   })
 }
+export function SearchArticlesByDateAndReporter(params) {
+  return request({
+    url: '/articles-search-advanced',
+    method: 'get',
+    params
+  })
+}
 export function getCountImage(data) {
   return request({
     url: '/article-image-count/' + data.article_id,
