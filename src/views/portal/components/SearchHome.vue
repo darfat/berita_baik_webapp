@@ -17,7 +17,7 @@
               &nbsp;  
             </el-col>
             <el-col :span="14" class="search-box-result">
-              117 Artikel | Halaman 1 dari 6                
+              {{ total_entries_size }} Artikel                 
             </el-col>
             <el-col :span="6" class="search-box-advanced">
               <a v-on:click="isShow = !isShow" >Opsi Lanjutan +</a>
@@ -32,14 +32,14 @@
           <el-row type="flex"  justify="space-between" class="search-advanced-input">
             <el-col :span="6">
               <span>Penulis</span>
-              <el-input v-model="input"></el-input>
+              <el-input v-model="reporterName"></el-input>
             </el-col>
             <el-col :span="6">
               <span>Mulai</span>
               <el-input
                 placeholder="Pick a date"
                 suffix-icon="el-icon-date"
-                v-model="input2">
+                v-model="startDate">
               </el-input>
             </el-col>
             <el-col :span="6">  
@@ -47,7 +47,7 @@
               <el-input
                 placeholder="Pick a date"
                 suffix-icon="el-icon-date"
-                v-model="input2">
+                v-model="endDate">
               </el-input>
             </el-col>            
           </el-row>
@@ -120,8 +120,9 @@ export default {
   data() {
     return {
       searchAny: '',
-      input2: '',
-      input: '',
+      reporterName: null,
+      startDate: null,
+      endDate: null,
       isShow: false,
       articles: [],
       per_page: 3,
@@ -132,15 +133,13 @@ export default {
     }
   },
   created() {
-    console.log('Search Component')
-    console.log(this.keyword)
     if (this.keyword) {
+      this.searchAny = this.keyword
       this.changeFilter()
     }
   },
   methods: {
     onEnterClick() {
-      console.log('enter....')
       this.changeFilter()
     },
     doSearch(titleParam) {
