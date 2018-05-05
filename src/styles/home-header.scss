@@ -69,7 +69,15 @@
     }
     &-user{
       // padding: 30px 0;
+      text-align: right;   
+      .vertical-line{
+        width: 0px; /* Use only border style */
+        height: 100%;
+        float: left; 
+        border: 1px inset; /* This is default border style for <hr> tag */
+      }
       a{
+        
         font-family: 'Neosans-black'; 
         font-size: 0.75em;        
         color: $main-blue;
@@ -78,6 +86,12 @@
       a:hover{
         color: $main-red;
 
+      }
+      .avatar-wrapper{
+        img{
+          width: 40px;
+          height: 40px;
+        }
       }
     }
   }

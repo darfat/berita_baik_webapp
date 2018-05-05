@@ -18,7 +18,7 @@
             </div>
           </div>
         </el-col>
-        <el-col :xs="16" :sm="8">
+        <el-col :xs="24" :sm="9">
           <div class="head-item mc">
             <div class="head-item-search mc-content">
               <!-- <el-input placeholder="Search" suffix-icon="el-icon-search" v-model="search" v-on:keyup.enter="onEnterClick" ></el-input> -->
@@ -26,37 +26,23 @@
             </div>
           </div>
         </el-col>
-        <el-col :xs="6" :sm="5">
+        <el-col :xs="12" :sm="4">
           <div class="head-item mc">
             <div class="head-item-contribute mc-content">
                   <el-button icon="el-icon-edit" class="main-button" >Tulis Berita Baik</el-button>
             </div>
           </div>
-        </el-col>
-        <!-- <el-col :xs="2" :sm="2">
-          <div class="head-item mc">
-            <div class="head-item-lang mc-content">
-            <el-dropdown>
-              <span class="el-dropdown-link">
-                Bahasa<i class="el-icon-arrow-down el-icon--right"></i>
-              </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>Indonesia</el-dropdown-item>
-                <el-dropdown-item>English</el-dropdown-item>           
-              </el-dropdown-menu>
-            </el-dropdown>
-            </div>
-          </div>
-        </el-col> -->
-        <el-col :xs="4" :sm="3">
+        </el-col>        
+        <el-col :xs="12" :sm="3">
+          
           <div class="head-item mc">            
-            <div class="head-item-user mc-content">
-            <a href="#/login" alt="Log In / Sign Up" title="Log In / Sign Up"><fa-icon name="user-circle" scale="1.8"></fa-icon></a>
-            <!--<el-dropdown class="avatar-container" >
-              <div class="avatar-wrapper">
-              <img class="user-avatar" src="">
-              <i class="el-icon-caret-bottom"></i>
-              </div>
+            <div class="head-item-user mc-content">              
+              <a href="#/login" v-if="!status">Log In / Sign Up</a>              
+              <el-dropdown class="avatar-container" v-else>
+                <div class="avatar-wrapper">
+                  <img class="user-avatar" src="static/images/avatar/f01.png">
+                  <i class="el-icon-arrow-down el-icon--right"></i>
+                </div>
               <el-dropdown-menu class="user-dropdown" slot="dropdown">
               <router-link class="inlineBlock" to="/">
               <el-dropdown-item>
@@ -67,7 +53,7 @@
               <span style="display:block;">LogOut</span>
               </el-dropdown-item>
               </el-dropdown-menu>
-            </el-dropdown>-->
+            </el-dropdown>
             </div>
           </div>
         </el-col>
@@ -161,7 +147,6 @@
 <script>
 import Sticky from '@/components/Sticky'
 import SearchBox from '@/views/portal/components/SearchBox'
-
 import img_logo from '@/assets/images/logo_berita_baik.png'
 import img_ikon from '@/assets/images/ikon_berita_baik.png'
 import img_ikon_mono from '@/assets/images/ikon_berita_baik_white.png'
@@ -176,7 +161,8 @@ export default {
       img_ikon,
       img_ikon_mono,
       search: '',
-      scrolled: null
+      scrolled: null,
+      status: false
     }
   },
   methods: {
