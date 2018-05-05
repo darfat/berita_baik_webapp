@@ -126,11 +126,11 @@ export const constantRouterMap = [
       component: () => import('@/views/portal/eventcalendar/index')
     }]
   },
-  { path: '/plogin', component: () => import('@/views/portal/login/index'), hidden: true },
-  { path: '/signup', component: () => import('@/views/portal/signup/index'), hidden: true },
-
   // cms part
-  { path: '/login', component: () => import('@/views/login/index'), hidden: true },
+  { path: '/plogin', component: () => import('@/views/portal/login/index'), hidden: true },
+  // public
+  { path: '/login', name: 'public-login', component: () => import('@/views/login/index'), hidden: true },
+  { path: '/signup', name: 'public-signup', component: () => import('@/views/portal/signup/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
 
   {

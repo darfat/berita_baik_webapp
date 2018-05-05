@@ -11,6 +11,13 @@ export function login(username, password) {
   })
 }
 
+export function signup(data) {
+  return request_no_auth({
+    url: '/user/signup',
+    method: 'post',
+    data
+  })
+}
 export function getInfo(token, user_id) {
   return request({
     url: '/user/info',

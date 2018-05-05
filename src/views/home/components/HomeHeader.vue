@@ -77,7 +77,9 @@
     <sticky className="sticky" height="100">
       <div class="menu-wrapper">
       <nav class="container">
-          <div id="logo" v-if="scrolled > 50"><img class="" :src="img_ikon_mono" alt="beritabaik.id"></div>
+          <div id="logo" v-if="scrolled > 50">
+                <img class="" :src="img_ikon_mono" alt="beritabaik.id">
+          </div>
           <label for="drop" class="toggle"><svg-icon icon-class="Hamburger" class="hamburger-menu"></svg-icon></label>
           <input type="checkbox" id="drop" />          
               <ul class="menu">

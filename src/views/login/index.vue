@@ -58,7 +58,11 @@
               </g-signin-button>
             </div>            
             <div class="sign-up"> 
-                <span> Belum Mendaftar ? <a>Daftar Sekarang</a> </span>
+                <span> Belum Mendaftar ? 
+                  <router-link :to="{ name: 'public-signup' }">
+                    <a>Daftar Sekarang</a> 
+                  </router-link>
+                </span>
             </div>
         </div>
       </div>
@@ -129,7 +133,7 @@ export default {
           this.loading = true
           this.$store.dispatch('Login', this.loginForm).then(() => {
             this.loading = false
-            this.$router.push({ path: '/cms' })
+            this.$router.push({ path: '/home' })
           }).catch(() => {
             this.loading = false
           })

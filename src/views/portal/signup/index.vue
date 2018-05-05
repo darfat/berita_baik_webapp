@@ -11,19 +11,22 @@
             <div>
               <span>Buat Akun Kamu Sekarang!</span>
             </div>
-            <el-form ref="signup-form" :model="form" >
-                <el-form-item label="">
-                    <el-input v-model="signupVM.username" placeholder="Nama"></el-input>
+            <el-form ref="signupVM" :model="signupVM" :rules="rules"  >
+                <el-form-item label="" prop="name">
+                    <el-input v-model="signupVM.name" placeholder="Nama" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="">
-                    <el-input v-model="signupVM.email" placeholder="Alamat Surel"></el-input>
+                <el-form-item label="" prop="email">
+                    <el-input v-model="signupVM.email" placeholder="Alamat Surel" auto-complete="off"></el-input>
                 </el-form-item>
-                <el-form-item label="">
-                    <el-input v-model="signupVM.password" type="password" placeholder="Password" ></el-input>
+                <el-form-item label="" prop="password">
+                    <el-input v-model="signupVM.password" type="password" placeholder="Password" auto-complete="off" ></el-input>
+                </el-form-item>
+                <el-form-item label="" prop="confirmPassword">
+                    <el-input v-model="signupVM.confirmPassword" type="password" placeholder="Konfirmasi Password" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-row :gutter="20" class="align-center">
                     <el-col :span="24">
-                        <el-button type="primary" round>Daftar</el-button>
+                        <el-button type="primary" round :loading="loading" @click.native.prevent="handleSignup">Daftar</el-button>
                     </el-col>                  
                 </el-row>
             </el-form>
@@ -33,10 +36,6 @@
               <span>Atau Daftar Dengan</span>
             </div>
             <div class="signup-with"> 
-                <!--
-                <v-icon name="facebook" base-class="icon-0dot8em v-align-middle"></v-icon>
-                <v-icon name="mail" base-class="icon-0dot8em v-align-middle"></v-icon>
-                -->
             <fb-signin-button
                 :params="fbSignInParams"
                 @success="onSignInSuccess"
@@ -51,7 +50,11 @@
               </g-signin-button>
             </div>
             <div class="login"> 
-                <span> Sudah Punya Akun? <a>Masuk Sekarang</a> </span>
+                <span> Sudah Punya Akun? 
+                  <router-link :to="{ name: 'public-login' }">
+                    <a>Masuk Sekarang</a> 
+                  </router-link>
+                </span>
             </div>
         </div>
       </div>
@@ -64,13 +67,49 @@ import img_b_logo from '@/assets/images/ikon_berita_baik.png'
 export default {
   name: 'PortalSignup',
   data() {
+    const validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('Silakan Isi Password'))
+      } else {
+        if (this.signupVM.confirmPassword !== '') {
+          this.$refs.signupVM.validateField('confirmPassword')
+        }
+        callback()
+      }
+    }
+    const validatePass2 = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('Silakan Ulangi Password anda'))
+      } else if (value !== this.signupVM.password) {
+        callback(new Error('Password tidak sama'))
+      } else {
+        callback()
+      }
+    }
     return {
       title: '',
+      loading: false,
       img_b_logo,
       signupVM: {
-        username: '',
+        name: '',
         email: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
+      },
+      rules: {
+        name: [
+          { required: true, message: 'Silahkan Isi Nama', trigger: 'blur' }
+        ],
+        email: [
+          { required: true, message: 'Silahkan Isi Email', trigger: 'blur' },
+          { type: 'email', message: 'Silakan Isi Sesuai Dengan Format Email', trigger: ['blur', 'change'] }
+        ],
+        password: [
+          { trigger: 'blur', validator: validatePass }
+        ],
+        confirmPassword: [
+          { trigger: 'blur', validator: validatePass2 }
+        ]
       },
       fbSignInParams: {
         // scope: 'email,user_likes',
@@ -84,6 +123,38 @@ export default {
   },
   created() {
     console.log('PortalSignup')
+  },
+  methods: {
+    handleSignup() {
+      this.$refs.signupVM.validate(valid => {
+        if (valid) {
+          this.loading = true
+          this.$store.dispatch('Signup', this.signupVM).then(() => {
+            this.loading = false
+            this.$router.push({ path: '/home' })
+          }).catch(() => {
+            this.loading = false
+          })
+        } else {
+          console.error('error submit!!')
+          return false
+        }
+      })
+    },
+    onSignInSuccess(response, googleUser) {
+      /*
+      FB.api('/me', dude => {
+        console.log(`Good to see you, ${dude.name}.`)
+      })
+      */
+      // `googleUser` is the GoogleUser object that represents the just-signed-in user.
+      // See https://developers.google.com/identity/sign-in/web/reference#users
+      // const profile = googleUser.getBasicProfile() // etc etc
+    },
+    onSignInError(error) {
+      // `error` contains any error occurred.
+      console.log('OH NOES', error)
+    }
   }
 }
 

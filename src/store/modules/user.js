@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/login'
+import { login, logout, getInfo, signup } from '@/api/login'
 import { getToken, setToken, setUserId, removeToken } from '@/utils/auth'
 
 const user = {
@@ -45,7 +45,21 @@ const user = {
         })
       })
     },
-
+    Signup({ commit }, userInfo) {
+      return new Promise((resolve, reject) => {
+        signup(userInfo).then(response => {
+          const data = response.data
+          console.log(data)
+          setToken(data.token)
+          setUserId(data.user_id)
+          commit('SET_TOKEN', data.token)
+          commit('SET_USER_ID', data.user_id)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
     // 获取用户信息
     GetInfo({ commit, state }) {
       console.log(state)
