@@ -112,7 +112,7 @@
                   <li>
                   <!-- First Tier Drop Down -->
                   <label for="drop-4" class="toggle">Citra &#9660;</label>
-                  <router-link :to="{ path: '/home/gallery-foto' }">Citra</router-link>
+                  <router-link :to="{ path: '/home-c/gallery-foto' }">Citra</router-link>
                   <input type="checkbox" id="drop-4"/>
                   <ul>
                       <li><router-link :to="{ path: '/home-c/gallery-foto' }">Galeri Foto</router-link></li>
