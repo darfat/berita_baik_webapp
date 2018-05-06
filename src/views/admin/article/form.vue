@@ -360,6 +360,7 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          this.article.article_type = this.articleType
           this.article.article_tags = this.tagArray.toString()
           this.article.keyword_non_content = this.keywordArray.toString()
           this.reporterNameCheck()

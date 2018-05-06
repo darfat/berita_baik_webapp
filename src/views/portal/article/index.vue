@@ -9,9 +9,9 @@
                     <div>
                         <div class="thumbnail">
                             <img :src="mainArticle.main_image" />
-                          <div class="editorial-type-img" v-if="mainArticle.editorial">
+                          <!-- <div class="editorial-type-img" v-if="mainArticle.editorial">
                               <h2>{{ mainArticle.editorial.name }}</h2>
-                          </div>
+                          </div> -->
                         </div>
                     </div>
                   </el-col>
@@ -40,12 +40,20 @@
                   </el-row>
                   <el-row :gutter="20">
                       <el-col class="teks">
-                        <div v-html="mainArticle.content" class="content" ></div>
-                        <div class="bacajuga" v-if="mainArticle.article_relates">
-                          <h4>Baca Juga</h4>
-                          <ul> 
-                            <li v-for="(relate) in mainArticle.article_relates" :key="relate.id" ><a href="">{{relate.title}}</a></li>
-                         </ul>
+                        <div v-if="!isHaveRelatedArticles" v-html="mainArticle.content" class="content" ></div>
+                        <div v-else class="content" >
+                          <span v-html="content1" ></span>
+                          <div class="bacajuga" v-if="mainArticle.article_relates">
+                            <h4>Baca Juga</h4>
+                            <ul> 
+                              <li v-for="(relate) in mainArticle.article_relates" :key="relate.id" > 
+                                <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug': editorialSlug, 'slug': relate.Article.slug,  'articleID': relate.Article.id} }">
+                                  <a >{{relate.Article.title}}</a>
+                                </router-link>
+                              </li>
+                            </ul>
+                          </div>
+                          <span v-html="content2" class="content" ></span>
                         </div>
                       </el-col>
                   </el-row>
@@ -189,6 +197,7 @@ import BbLove from '@/views/portal/components/BbLove'
 import EventBus from '@/utils/event-bus'
 import { getArticle } from '@/api/article'
 import { getAuthorsByArticleID } from '@/api/author'
+import { getRelatesByArticleID } from '@/api/relate'
 
 export default {
   name: 'ArticleDetail',
@@ -217,8 +226,12 @@ export default {
       editorialSlug: null,
       loading: {
         mainArticle: false,
-        authors: false
-      }
+        authors: false,
+        relates: false
+      },
+      content1: null,
+      content2: null,
+      isHaveRelatedArticles: false
     }
   },
   created() {
@@ -245,13 +258,23 @@ export default {
         this.loading.mainArticle = false
         if (response) {
           this.mainArticle = response.data
+          const relatedKey = '&lt;related/&gt;'
+          const idx = this.mainArticle.content.indexOf(relatedKey)
+          if (idx > -1) {
+            const contents = this.mainArticle.content.split(relatedKey)
+            this.content1 = contents[0]
+            this.content2 = contents[1]
+            this.isHaveRelatedArticles = true
+            this.getRelated(this.mainArticle.id)
+          } else {
+            this.isHaveRelatedArticles = false
+          }
           EventBus.$emit('SET_ARTICLE_ID_COMMENTS_EVENT', { 'articleID': this.mainArticle.id })
           this.getAuthors(this.mainArticle.id)
         }
       })
     },
     getAuthors(articleID) {
-      console.log('getAuthors')
       this.loading.authors = true
       getAuthorsByArticleID({ articleID }).then(response => {
         this.loading.authors = false
@@ -262,6 +285,15 @@ export default {
               this.reporter = element
             }
           })
+        }
+      })
+    },
+    getRelated(articleID) {
+      this.loading.relates = true
+      getRelatesByArticleID({ articleID }).then(response => {
+        this.loading.relates = false
+        if (response) {
+          this.mainArticle.article_relates = response.data
         }
       })
     }
