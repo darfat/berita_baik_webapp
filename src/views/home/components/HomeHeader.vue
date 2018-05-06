@@ -39,10 +39,11 @@
             <div class="head-item-user mc-content">              
               <a href="#/login" v-if="!name">Log In / Sign Up</a>              
               <el-dropdown class="avatar-container" v-else>
+                <!-- <small v-if="name"> Hi, {{name}} </small> -->
                 <div class="avatar-wrapper">
-                  <img class="user-avatar" src="static/images/avatar/f01.png">
+                  <img class="user-avatar" src="static/images/avatar/no_avatar.png">
                   <i class="el-icon-arrow-down el-icon--right"></i>
-                  <span v-if="name"> Hi, {{name}} </span>
+                  
                 </div>
               <el-dropdown-menu class="user-dropdown" slot="dropdown">
               <router-link class="inlineBlock" to="/">

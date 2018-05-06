@@ -4,7 +4,8 @@
         <el-row :gutter="20" >
             <el-col :xs="3" :sm="3">
               <div class="img-mini">
-                <img :src="userLogin.image" class="img-circle v-align-middle"/>
+                <img v-if="name" :src="userLogin.image" class="img-circle v-align-middle"/>
+                <img v-else src="static/images/avatar/no_avatar.png" class="img-circle v-align-middle"/>
               </div>
             </el-col>
             <el-col :xs="21" :sm="21">
@@ -53,7 +54,7 @@ export default {
         id: '00000000-0000-0000-0000-000000000001',
         name: 'Anonymous',
         role: 'user',
-        image: 'static/upload/images/profile-user.jpg'
+        image: 'static/images/avatar/no_avatar.png'
       }
     }
   },
