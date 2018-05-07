@@ -32,6 +32,8 @@ h3{
 	width: 100%;
     padding: 0 22px;
     color: $black-2;
+    min-height: 143px;
+    background-color: #FFF;
     .headline{
         font-size: 18px;
         line-height: 22px;
@@ -46,7 +48,7 @@ h3{
         margin: 0; padding: 0;
         font-family: 'Neosans';
         font-size: 12px;
-        font-weight: 700;
+        font-weight: 900;
     }
 }
 
