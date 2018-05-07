@@ -120,23 +120,6 @@
     padding: 15px;
     border-color: #e6e6e6;
 }
-.side-separator {
-    margin-top: 10px;
-    text-align: right;
-    
-}
-.side-separator span{
-    display: flex;
-    flex-direction: row;
-    color: #b0b0b0;
-}
-.side-separator span:before{
-    content: "";
-    flex: 1 1;
-    border-bottom: 1px solid #e6e6e6;
-    margin: auto;
-}
-
 
 .bacajuga{
     border-top: 1px solid #353535;
