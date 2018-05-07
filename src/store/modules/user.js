@@ -1,11 +1,12 @@
 import { login, logout, getInfo, signup } from '@/api/login'
-import { getToken, setToken, setUserId, removeToken } from '@/utils/auth'
+import { getToken, setToken, setUserId, removeToken, getUserId } from '@/utils/auth'
 
 const user = {
   state: {
     token: getToken(),
     name: '',
     avatar: '',
+    user_id: getUserId(),
     roles: []
   },
 
@@ -63,6 +64,7 @@ const user = {
     // 获取用户信息
     GetInfo({ commit, state }) {
       console.log(state)
+      console.log('get user info')
       return new Promise((resolve, reject) => {
         getInfo(state.token, state.user_id).then(response => {
           const data = response.data
@@ -72,6 +74,7 @@ const user = {
           commit('SET_AVATAR', data.avatar)
           resolve(response)
         }).catch(error => {
+          console.log(error)
           reject(error)
         })
       })

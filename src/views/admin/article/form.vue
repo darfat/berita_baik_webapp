@@ -23,7 +23,7 @@
                 > {{ item.label }} </el-radio>
                 </el-radio-group>
             </el-form-item>
-            <el-form-item label="Section">
+            <el-form-item label="Section" hidden="true">
                 <el-select v-model="article.section" placeholder="Pilih section">
                 <el-option
                     v-for="item in section_opts"
@@ -48,7 +48,7 @@
             <el-form-item label="Isi" prop="content">
               <tinymce :height="400" v-model="article.content" ref="editor"  id='content'   ></tinymce>
             </el-form-item>
-            <el-form-item label="Citra" >
+            <el-form-item label="Gambar Utama"  prop="main_image" >
               <span> {{ main_image_name }}</span>
               <image-uploader :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
             </el-form-item>
@@ -340,9 +340,16 @@ export default {
       valute: '',
       rules: {
         title: [
-          { required: true, message: 'Silahkan Isi judul', trigger: 'blur' },
-          { teaser: true, message: 'Silahkan isi Ringkasan Utama', trigger: 'blur' },
-          { content: true, message: 'Silahkan isi Isi Berita', trigger: 'blur' }
+          { required: true, message: 'Silahkan Isi judul', trigger: 'blur' }
+        ],
+        teaser: [
+          { required: true, message: 'Silahkan Isi Ringkasan Utama', trigger: 'blur' }
+        ],
+        content: [
+          { required: true, message: 'Silahkan Isi Berita', trigger: 'blur' }
+        ],
+        main_image: [
+          { required: true, message: 'Silahkan Upload Gambar Utama', trigger: 'blur' }
         ]
       },
       action: 'add',

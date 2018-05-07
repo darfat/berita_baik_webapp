@@ -23,3 +23,8 @@ export function setUserId(userId) {
 export function removeUserId() {
   return Cookies.remove(UserIdKey)
 }
+
+export function getUserId() {
+  const user_id = Cookies.get(UserIdKey)
+  return user_id
+}

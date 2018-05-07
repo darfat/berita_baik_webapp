@@ -127,7 +127,7 @@ export const constantRouterMap = [
     }]
   },
   // cms part
-  { path: '/plogin', component: () => import('@/views/portal/login/index'), hidden: true },
+  { path: '/cms-login', component: () => import('@/views/admin/login/index'), hidden: true },
   // public
   { path: '/login', name: 'public-login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/signup', name: 'public-signup', component: () => import('@/views/portal/signup/index'), hidden: true },

@@ -36,22 +36,22 @@
           {{scope.row.reporter_name}}
         </template>
       </el-table-column>
-      <!-- <el-table-column class-name="status-col" label="Status" width="110" align="center">
+      <el-table-column class-name="status-col" label="Status" width="110" align="center">
         <template slot-scope="scope">
           <el-tag :type="scope.row.published | statusFilter"> {{getPublishedStatus(scope.row.published)}}</el-tag>
         </template>
-      </el-table-column> -->
+      </el-table-column>
       <el-table-column align="center" prop="publish_date" label="Created Date" width="200">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
           <span>{{scope.row.created_at | formatDate }}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="Status" width="230" class-name="small-padding fixed-width">
+      <!-- <el-table-column align="center" label="Status" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-switch v-model="scope.row.published" @change="updatePublished(scope.row.id,scope.row.published)" active-text="Publish" inactive-text="Draft" active-color="#13ce66" inactive-color="#ff4949" ></el-switch>
         </template>
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column align="center" label="Actions" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <router-link class="filter-item" :to="{ name: 'admin-article-form', params: { editorialSlug, articleType, 'articleId': scope.row.id} }" >
