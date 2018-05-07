@@ -14,7 +14,7 @@
         <el-col :xs="24" :sm="8">
           <div class="head-item mc">
             <div class="head-item-img mc-content">
-              <img class="" :src="img_logo" alt="beritabaik.id">
+              <a href="#/home" title="beritabaik.id" ><img class="" :src="img_logo" alt="beritabaik.id"></a>
             </div>
           </div>
         </el-col>
