@@ -66,7 +66,7 @@
       <div class="menu-wrapper">
       <nav class="container">
           <div id="logo" v-if="scrolled > 50">
-                <img class="" :src="img_ikon_mono" alt="beritabaik.id">
+                <router-link :to="{ path: '/' }" exact><img class="" :src="img_ikon_mono" alt="beritabaik.id"></router-link>
           </div>
           <label for="drop" class="toggle"><svg-icon icon-class="Hamburger" class="hamburger-menu"></svg-icon></label>
           <input type="checkbox" id="drop" />          
