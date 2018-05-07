@@ -119,5 +119,6 @@ export default {
 .article-nav{
   // font-weight: bold;
   color: #696968;
+  font-family: 'Neosans';
 }
 </style>
