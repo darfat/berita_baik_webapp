@@ -40,7 +40,8 @@
                   </el-row>
                   <el-row :gutter="20">
                       <el-col class="teks">
-                        <div v-if="!isHaveRelatedArticles" v-html="mainArticle.content" class="content" ></div>
+                        <!-- <div v-if="!isHaveRelatedArticles" v-html="mainArticle.content" class="content" ></div> -->
+                        <froalaView v-if="!isHaveRelatedArticles" v-model="mainArticle.content" class="content"></froalaView>
                         <div v-else class="content" >
                           <span v-html="content1" ></span>
                           <div class="bacajuga" v-if="mainArticle.article_relates">

@@ -34,23 +34,30 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="Judul" prop="title">
-                <el-input v-model="article.title"  v-on:change="generateSlug" :maxlength="70" ></el-input>
+                <el-input v-model="article.title"  v-on:change="generateSlug" :maxlength="100" ></el-input>
             </el-form-item>
             <el-form-item label="Sub Judul" >
-                <el-input v-model="article.subtitle" :maxlength="25" ></el-input>
+                <el-input v-model="article.subtitle" :maxlength="50" ></el-input>
             </el-form-item>
             
             <el-form-item label="Ringkasan Utama" prop="teaser">
               <div class="editor-container">
-                <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser' ></tinymce>
+                 <el-input type="textarea" :rows="4" v-model="article.teaser" :maxlength="500" ></el-input>
+                <!-- <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser' ></tinymce> -->
               </div>
             </el-form-item>
             <el-form-item label="Isi" prop="content">
-              <tinymce :height="400" v-model="article.content" ref="editor"  id='content'   ></tinymce>
+              <!-- <tinymce :height="400" v-model="article.content" ref="editor"  id='content'   ></tinymce> -->
+              <froala :tag="'textarea'" :config="froalaConfig" v-model="article.content"></froala>
             </el-form-item>
             <el-form-item label="Gambar Utama"  prop="main_image" >
-              <span> {{ main_image_name }}</span>
-              <image-uploader :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
+              <div>
+                <span> {{ main_image_name }}</span>
+                <image-uploader :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
+              </div>
+              <div>
+                <small>Nama File Gambar Utama Harus Tanpa Spasi</small>
+              </div>
             </el-form-item>
             <el-form-item label="Gallery" v-if="article.article_type === 'image'">
               <div class="gray-horizontal"></div>
@@ -353,7 +360,15 @@ export default {
         ]
       },
       action: 'add',
-      main_image_name: ''
+      main_image_name: '',
+      froalaConfig: {
+        events: {
+          'froalaEditor.initialized': function() {
+            console.log('initialized')
+          }
+        },
+        imageManagerLoadURL: 'http://beritabaik.id/dev/static/upload/content/images/'
+      }
     }
   },
 

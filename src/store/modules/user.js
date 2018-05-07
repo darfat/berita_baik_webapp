@@ -35,7 +35,6 @@ const user = {
       return new Promise((resolve, reject) => {
         login(username, userInfo.password).then(response => {
           const data = response.data
-          console.log(data)
           setToken(data.token)
           setUserId(data.user_id)
           commit('SET_TOKEN', data.token)
@@ -50,7 +49,6 @@ const user = {
       return new Promise((resolve, reject) => {
         signup(userInfo).then(response => {
           const data = response.data
-          console.log(data)
           setToken(data.token)
           setUserId(data.user_id)
           commit('SET_TOKEN', data.token)
@@ -68,7 +66,6 @@ const user = {
       return new Promise((resolve, reject) => {
         getInfo(state.token, state.user_id).then(response => {
           const data = response.data
-          console.log(data)
           commit('SET_ROLES', data.roles)
           commit('SET_NAME', data.name)
           commit('SET_AVATAR', data.avatar)
