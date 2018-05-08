@@ -129,8 +129,8 @@ export const constantRouterMap = [
   // cms part
   { path: '/cms-login', component: () => import('@/views/admin/login/index'), hidden: true },
   // public
-  { path: '/login', name: 'public-login', component: () => import('@/views/login/index'), hidden: true },
-  { path: '/signup', name: 'public-signup', component: () => import('@/views/portal/signup/index'), hidden: true },
+  // { path: '/login', name: 'public-login', component: () => import('@/views/login/index'), hidden: true },
+  // { path: '/signup', name: 'public-signup', component: () => import('@/views/portal/signup/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
 
   {
@@ -182,10 +182,64 @@ export const constantRouterMap = [
         meta: { title: 'Prestasi', icon: 'table' }
       },
       {
+        path: 'l/indonesia-membangun',
+        name: 'admin-indonesia-membangun-list',
+        component: () => import('@/views/admin/article/indonesiaMembangun'),
+        meta: { title: 'Indonesia Membangun', icon: 'table' }
+      },
+      {
+        path: 'l/tempat-wisata',
+        name: 'admin-tempat-wisata-list',
+        component: () => import('@/views/admin/article/tempatWisata'),
+        meta: { title: 'Tempat Wisata', icon: 'table' }
+      },
+      {
+        path: 'l/kuliner',
+        name: 'admin-kuliner-list',
+        component: () => import('@/views/admin/article/kuliner'),
+        meta: { title: 'Kuliner', icon: 'table' }
+      },
+      {
         path: 'l/gallery-foto',
         name: 'admin-gallery-foto-list',
         component: () => import('@/views/admin/article/citra'),
         meta: { title: 'Citra', icon: 'table' }
+      },
+      {
+        path: 'l/teknologi',
+        name: 'admin-teknologi-list',
+        component: () => import('@/views/admin/article/teknologi'),
+        meta: { title: 'Terknologi', icon: 'table' }
+      },
+      {
+        path: 'l/musik',
+        name: 'admin-musik-list',
+        component: () => import('@/views/admin/article/musik'),
+        meta: { title: 'Musik', icon: 'table' }
+      },
+      {
+        path: 'l/fashion',
+        name: 'admin-fashion-list',
+        component: () => import('@/views/admin/article/fashion'),
+        meta: { title: 'Fashion', icon: 'table' }
+      },
+      {
+        path: 'l/film',
+        name: 'admin-film-list',
+        component: () => import('@/views/admin/article/film'),
+        meta: { title: 'Film', icon: 'table' }
+      },
+      {
+        path: 'l/seni',
+        name: 'admin-seni-list',
+        component: () => import('@/views/admin/article/seni'),
+        meta: { title: 'Seni', icon: 'table' }
+      },
+      {
+        path: 'l/gaya-hidup',
+        name: 'admin-gaya-hidup-list',
+        component: () => import('@/views/admin/article/gayaHidup'),
+        meta: { title: 'Gaya Hidup', icon: 'table' }
       },
       {
         path: 'f/:editorialSlug',

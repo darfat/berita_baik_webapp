@@ -7,6 +7,7 @@
             description=""
             show-icon>
           </el-alert>   -->
+          <h2>Form {{editorialSlug}} </h2>
         </div>
         
         <el-form  class="form-container"  ref="articleForm" :model="article" :rules="rules" label-width="150px">
@@ -230,7 +231,7 @@
                       width="500">
                       <template slot-scope="scope">
                         <el-select v-model="scope.row.user_id"  placeholder="Pilih author" style="width: 90%">
-                          <el-option
+                          <el-option v-if='scope.row.notes === item.role'
                               v-for="item in author_opts"
                               :key="item.id"
                               :label="item.name +' - '+ item.instagram_username"
@@ -255,7 +256,7 @@
             </el-form-item>
             <div class="gray-horizontal"></div>
             <div class="spacer"></div>
-            <el-form-item>
+            <el-form-item class="m-t-20">
                 <el-button type="primary" @click="onSubmit('articleForm')" v-if="action === 'add'">Create</el-button>
                 <el-button type="primary" @click="onSubmit('articleForm')" v-if="action === 'edit'">Update</el-button>
                 <el-button  @click="back()" >Cancel</el-button>
@@ -318,6 +319,10 @@ export default {
           {
             role_id: null,
             notes: 'editor'
+          },
+          {
+            role_id: null,
+            notes: 'writer'
           }
         ],
         article_relates: [],
@@ -460,6 +465,13 @@ export default {
               if (element.notes === 'editor') {
                 for (let i = 0; i < response.data.length; i++) {
                   if (response.data[i].code === 'editor') {
+                    element.role_id = response.data[i].id
+                  }
+                }
+              }
+              if (element.notes === 'writer') {
+                for (let i = 0; i < response.data.length; i++) {
+                  if (response.data[i].code === 'writer') {
                     element.role_id = response.data[i].id
                   }
                 }
