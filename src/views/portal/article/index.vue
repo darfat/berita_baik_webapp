@@ -68,12 +68,8 @@
                       <span> {{ author.user.name }} </span>
                       <span class="follow-user">                            
                         <v-icon name="user" base-class="icon-20 v-align-middle"></v-icon>
-                        <span  > 
-                          <a title="" href="http://instagram.com/beritabaik.id">Follow</a>
-                        </span>
                       </span>
-                    </div>
-                    
+                    </div>  
                   </el-col>                      
                   <el-col :xs="24" :sm="6">
                     <div class="icons">
@@ -108,7 +104,7 @@
               </el-row>
             </el-row>
                 
-                <el-row :gutter="20" >
+            <el-row :gutter="20" >
               <el-col v-if="mainArticle">
                 <comment-box :articleID="mainArticle.id"></comment-box>
               </el-col>
