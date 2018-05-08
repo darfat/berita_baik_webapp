@@ -7,7 +7,7 @@
             description=""
             show-icon>
           </el-alert>   -->
-          <h2>Form {{editorialSlug}} </h2>
+          <h2>Form {{editorialSlug}}</h2>
         </div>
         
         <el-form  class="form-container"  ref="articleForm" :model="article" :rules="rules" label-width="150px">
@@ -280,7 +280,7 @@ import { getUsers } from '@/api/user'
 import { getAuthorsByArticleID } from '@/api/author'
 import { getRelatesByArticleID } from '@/api/relate'
 
-import Tinymce from '@/components/Tinymce'
+import { mapGetters } from 'vuex'
 import ImageUploader from '@/components/ImageUploader'
 // import VueGoogleAutocomplete from 'vue-google-autocomplete'
 
@@ -292,8 +292,16 @@ export default {
     articleId: { type: String }
   },
   components: {
-    Tinymce,
     ImageUploader
+  },
+  computed: {
+    ...mapGetters([
+      'name',
+      'role',
+      'email',
+      'username',
+      'user_id'
+    ])
   },
   data() {
     return {
@@ -319,11 +327,11 @@ export default {
           {
             role_id: null,
             notes: 'editor'
-          },
-          {
-            role_id: null,
-            notes: 'writer'
           }
+          // {
+          //   role_id: null,
+          //   notes: 'writer'
+          // }
         ],
         article_relates: [],
         article_images: [],
@@ -468,6 +476,8 @@ export default {
                     element.role_id = response.data[i].id
                   }
                 }
+                element.user_id = this.user_id
+                console.log(element)
               }
               if (element.notes === 'writer') {
                 for (let i = 0; i < response.data.length; i++) {

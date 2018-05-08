@@ -7,7 +7,10 @@ const user = {
     name: '',
     avatar: '',
     user_id: getUserId(),
-    roles: []
+    roles: [],
+    role: '',
+    username: null,
+    email: null
   },
 
   mutations: {
@@ -25,6 +28,15 @@ const user = {
     },
     SET_USER_ID: (state, user_id) => {
       state.user_id = user_id
+    },
+    SET_ROLE: (state, role) => {
+      state.role = role
+    },
+    SET_USERNAME: (state, username) => {
+      state.username = username
+    },
+    SET_EMAIL: (state, email) => {
+      state.email = email
     }
   },
 
@@ -66,9 +78,12 @@ const user = {
       return new Promise((resolve, reject) => {
         getInfo(state.token, state.user_id).then(response => {
           const data = response.data
-          commit('SET_ROLES', data.roles)
+          console.log(data)
+          commit('SET_ROLE', data.role)
           commit('SET_NAME', data.name)
-          commit('SET_AVATAR', data.avatar)
+          commit('SET_USERNAME', data.username)
+          commit('SET_EMAIL', data.email)
+          // commit('SET_AVATAR', data.avatar)
           resolve(response)
         }).catch(error => {
           console.log(error)

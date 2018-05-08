@@ -1,7 +1,8 @@
 <template>
   <div class="dashboard-container">
     <h1> Dashboard Page </h1>
-    <div class="dashboard-text">Hi {{name}}</div>
+    <div class="dashboard-text">Hi {{name}} </div>
+    <div class="dashboard-text">Role :  {{role}}</div>
     <!-- <div class="dashboard-text">roles:<span v-for='role in roles' :key='role'>{{role}}</span></div> -->
   </div>
 </template>
@@ -14,7 +15,9 @@ export default {
   computed: {
     ...mapGetters([
       'name',
-      'roles'
+      'role',
+      'email',
+      'user_id'
     ])
   }
 }
