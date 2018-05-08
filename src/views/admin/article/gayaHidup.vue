@@ -1,6 +1,6 @@
 <template>
   <div class="articles-container">
-    <articles editorialSlug="gayaHidup" articleType="news"></articles>
+    <articles editorialSlug="gaya-hidup" articleType="news"></articles>
   </div>
 </template>
 

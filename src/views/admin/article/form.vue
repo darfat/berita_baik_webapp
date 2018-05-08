@@ -11,11 +11,6 @@
         </div>
         
         <el-form  class="form-container"  ref="articleForm" :model="article" :rules="rules" label-width="150px">
-            <el-form-item label="Tanggal Publish">
-                <el-col :span="11">
-                <el-date-picker type="datetime" placeholder="Pick a date" v-model="article.publish_date" style="width: 100%;"></el-date-picker>
-                </el-col>
-            </el-form-item>
             <el-form-item label="Type" hidden="true">
                 <el-radio-group v-model="article.article_type">
                 <el-radio v-for="item in article_type_opts"
@@ -254,6 +249,13 @@
                   <el-button>Add More Author</el-button>
                 </el-form-item> -->
             </el-form-item>
+            
+            <el-form-item label="Tanggal Publish">
+                <el-col :span="11">
+                <el-date-picker type="datetime" placeholder="Pick a date" v-model="article.publish_date" style="width: 100%;"></el-date-picker>
+                </el-col>
+            </el-form-item>
+
             <div class="gray-horizontal"></div>
             <div class="spacer"></div>
             <el-form-item class="m-t-20">
@@ -477,7 +479,6 @@ export default {
                   }
                 }
                 element.user_id = this.user_id
-                console.log(element)
               }
               if (element.notes === 'writer') {
                 for (let i = 0; i < response.data.length; i++) {

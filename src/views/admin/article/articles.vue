@@ -26,12 +26,12 @@
         type="index"
         width="50" :index="indexMethod">
       </el-table-column>
-      <el-table-column label="Title" >
+      <el-table-column label="Judul" >
         <template slot-scope="scope">
           {{scope.row.title}}
         </template>
       </el-table-column>
-      <el-table-column label="Author / Published By"   width="150" >
+      <el-table-column label="Reporter"   width="150" >
         <template slot-scope="scope">
           {{scope.row.reporter_name}}
         </template>
@@ -41,10 +41,10 @@
           <el-tag :type="scope.row.published | statusFilter"> {{getPublishedStatus(scope.row.published)}}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column align="center" prop="publish_date" label="Created Date" width="200">
+      <el-table-column align="center" prop="publish_date" label="Tanggal Publish" width="200">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
-          <span>{{scope.row.created_at | formatDate }}</span>
+          <span>{{scope.row.publish_date | formatDate }}</span>
         </template>
       </el-table-column>
       <!-- <el-table-column align="center" label="Status" width="230" class-name="small-padding fixed-width">
