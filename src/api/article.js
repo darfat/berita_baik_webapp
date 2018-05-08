@@ -7,7 +7,7 @@ const IMAGE_TYPE = 'image'
 
 export function getListByEditorialSlug(params) {
   return request({
-    url: '/articles-editorial/' + params.editorialSlug,
+    url: '/admin-articles-editorial/' + params.editorialSlug,
     method: 'get',
     params
   })
@@ -47,6 +47,13 @@ export function update(data) {
   })
 }
 
+export function softDelete(data) {
+  return request_auth({
+    url: '/article-delete/' + data.article_id,
+    method: 'put',
+    data
+  })
+}
 export function getLatestNewsByEditorial(params) {
   params.type = NEWS_TYPE
   return request({
@@ -178,5 +185,20 @@ export function getPreviousArticle(params) {
     url: '/article-previous/' + params.editorialSlug + '/' + params.articleID,
     method: 'get',
     params
+  })
+}
+// top slider
+export function setAsBeritaUtama(data) {
+  return request_auth({
+    url: '/article-set-as-berita-utama/' + data.editorial_id + '/' + data.article_id,
+    method: 'put',
+    data
+  })
+}
+export function setAsHeadline(data) {
+  return request_auth({
+    url: '/article-set-as-headline/' + data.editorial_id + '/' + data.article_id,
+    method: 'put',
+    data
   })
 }

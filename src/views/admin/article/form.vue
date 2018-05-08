@@ -63,28 +63,39 @@
             <el-row :gutter="20">
               <el-col :span="12">
                   <el-form-item label="Kota">
-                      <el-select v-model="article.city_id" placeholder="Pilih kota">
+                      <!-- <el-select v-model="article.city_id" placeholder="Pilih kota">
                         <el-option
                             v-for="item in city_opts"
                             :key="item.id"
                             :label="item.name"
                             :value="item.id" >
                         </el-option>
-                      </el-select>
+                      </el-select> -->
+                      <vue-google-autocomplete
+                          id="map2"
+                          ref="city"
+                          classname="el-input"
+                          placeholder="Cari Kota"
+                          v-on:placechanged="getCityData"
+                          types="(cities)"
+                          country="id"
+                          :value="article.city"
+                      >
+                      </vue-google-autocomplete>
                   </el-form-item>
               </el-col>
               <el-col :span="12">
                   <el-form-item label="Lokasi">
-                    <el-input ></el-input>
-                    <!-- <vue-google-autocomplete
+                    <vue-google-autocomplete 
                         ref="place"
                         id="map"
-                        classname="form-control"
+                        classname="el-input"
                         placeholder="Cari Lokasi..."
                         v-on:placechanged="getAddressData"
                         country="id"
+                        :value="article.place"
                     >
-                    </vue-google-autocomplete> -->
+                    </vue-google-autocomplete>
                   </el-form-item>
               </el-col>
             </el-row>
@@ -225,7 +236,7 @@
                       label="Author"
                       width="500">
                       <template slot-scope="scope">
-                        <el-select v-model="scope.row.user_id"  placeholder="Pilih author" style="width: 90%">
+                        <el-select v-model="scope.row.user_id"  placeholder="Pilih User" style="width: 90%">
                           <el-option v-if='scope.row.notes === item.role'
                               v-for="item in author_opts"
                               :key="item.id"
@@ -248,6 +259,13 @@
                 <!-- <el-form-item class="m-t-10">
                   <el-button>Add More Author</el-button>
                 </el-form-item> -->
+                <el-alert
+                  v-if="!validAuthor"
+                  title="error alert"
+                  type="error"
+                  center
+                  show-icon>
+                </el-alert>
             </el-form-item>
             
             <el-form-item label="Tanggal Publish">
@@ -284,7 +302,7 @@ import { getRelatesByArticleID } from '@/api/relate'
 
 import { mapGetters } from 'vuex'
 import ImageUploader from '@/components/ImageUploader'
-// import VueGoogleAutocomplete from 'vue-google-autocomplete'
+import VueGoogleAutocomplete from 'vue-google-autocomplete'
 
 export default {
   name: 'ArticleForm',
@@ -294,7 +312,8 @@ export default {
     articleId: { type: String }
   },
   components: {
-    ImageUploader
+    ImageUploader,
+    VueGoogleAutocomplete
   },
   computed: {
     ...mapGetters([
@@ -374,6 +393,7 @@ export default {
           { required: true, message: 'Silahkan Upload Gambar Utama', trigger: 'blur' }
         ]
       },
+      validAuthor: true,
       action: 'add',
       main_image_name: '',
       froalaConfig: {
@@ -396,7 +416,7 @@ export default {
   methods: {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
-        if (valid) {
+        if (valid && this.isValidateAuthor()) {
           this.article.article_type = this.articleType
           this.article.article_tags = this.tagArray.toString()
           this.article.keyword_non_content = this.keywordArray.toString()
@@ -404,8 +424,9 @@ export default {
           if (this.action === 'add') {
             create(this.article)
               .then(response => {
-                console.log('create success')
-                this.$router.push({ path: '/editorial-articles/l/' + this.editorialSlug })
+                if (response.status === 201) {
+                  this.$router.push({ path: '/editorial-articles/l/' + this.editorialSlug })
+                }
               })
               .catch(error => {
                 console.log(error)
@@ -413,8 +434,11 @@ export default {
           } else {
             update(this.article)
               .then(response => {
-                console.log('update success')
-                this.$router.push({ path: '/editorial-articles/l/' + this.editorialSlug })
+                console.log(response)
+                if (response.status === 200) {
+                  console.log('update success')
+                  this.$router.push({ path: '/editorial-articles/l/' + this.editorialSlug })
+                }
               })
               .catch(error => {
                 console.log(error)
@@ -425,6 +449,17 @@ export default {
           return false
         }
       })
+    },
+    isValidateAuthor() {
+      const isValid = true
+      this.article.article_authors.forEach(element => {
+        if (element.user_id === null) {
+          this.validAuthor = false
+          return false
+        }
+      })
+      this.validAuthor = true
+      return isValid
     },
     init() {
       this.article.article_type = this.articleType
@@ -648,21 +683,30 @@ export default {
       }
     },
     reporterNameCheck() { // need to optimize
-      console.log('check name')
       this.article.article_authors.forEach(element => {
         if (element.notes === 'reporter') {
           this.author_opts.forEach(author => {
-            console.log(author)
             if (author.id === element.user_id) {
               this.article.reporter_name = author.name
             }
           })
         }
       })
+    },
+    getAddressData(addressData, placeResultData, id) {
+      const long_lat = addressData.longitude + ',' + addressData.latitude
+      this.article.place = placeResultData.formatted_address
+      this.article.place_long_lat = long_lat
+      console.log(this.article.place)
+      console.log(this.article.place_long_lat)
+    },
+    getCityData(cityData, cityResultData, id) {
+      this.article.city = cityResultData.formatted_address
+      const long_lat = cityData.longitude + ',' + cityData.latitude
+      this.article.city_long_lat = long_lat
+      console.log(this.article.city_long_lat)
+      console.log(this.article.city)
     }
-    // getAddressData(addressData, placeResultData, id) {
-    //   this.article.place = addressData
-    // }
   }
 }
 

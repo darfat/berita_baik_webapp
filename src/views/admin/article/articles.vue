@@ -28,7 +28,7 @@
       </el-table-column>
       <el-table-column label="Judul" >
         <template slot-scope="scope">
-          {{scope.row.title}}
+          <span v-html="scope.row.title">  </span>
         </template>
       </el-table-column>
       <el-table-column label="Reporter"   width="150" >
@@ -39,6 +39,9 @@
       <el-table-column class-name="status-col" label="Status" width="110" align="center">
         <template slot-scope="scope">
           <el-tag :type="scope.row.published | statusFilter"> {{getPublishedStatus(scope.row.published)}}</el-tag>
+          <el-tag v-if="scope.row.is_topslide" size="mini" type=""> Berita Utama</el-tag>
+          <el-tag v-if="scope.row.is_headline" size="mini" type=""> Headline</el-tag>
+          <el-tag v-if="scope.row.is_editor_pick" size="mini" type=""> Pilihan Editor</el-tag>
         </template>
       </el-table-column>
       <el-table-column align="center" prop="publish_date" label="Tanggal Publish" width="200">
@@ -52,12 +55,20 @@
           <el-switch v-model="scope.row.published" @change="updatePublished(scope.row.id,scope.row.published)" active-text="Publish" inactive-text="Draft" active-color="#13ce66" inactive-color="#ff4949" ></el-switch>
         </template>
       </el-table-column> -->
-      <el-table-column align="center" label="Actions" width="230" class-name="small-padding fixed-width">
+      <el-table-column align="center" label="Actions" width="300" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <router-link class="filter-item" :to="{ name: 'admin-article-form', params: { editorialSlug, articleType, 'articleId': scope.row.id} }" >
             <el-button type="primary" size="mini" >Edit</el-button>
           </router-link>
-          <el-button type="danger" size="mini" >Delete</el-button>
+          <el-button type="danger" size="mini" @click="deleteHandler(scope.row.id)">Delete</el-button>
+          <el-dropdown size="mini" split-button type="info">
+            Lainnya
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item v-if="scope.row.editorial && !scope.row.is_topslide" ><el-button type="text" size="mini"  @click="setAsBeritaUtamaHandler(scope.row.id,scope.row.editorial.id)" >  Set as Berita Utama </el-button> </el-dropdown-item>
+              <el-dropdown-item v-if="scope.row.editorial && !scope.row.is_headline"> <el-button type="text" size="mini"  @click="setAsHeadlineHandler(scope.row.id,scope.row.editorial.id)" >Set as Headline </el-button></el-dropdown-item>
+              <el-dropdown-item>Set as Pilihan Editor</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </template>
       </el-table-column>
     </el-table>
@@ -72,7 +83,7 @@
 </template>
 
 <script>
-import { getListByEditorialSlug, updatePublished } from '@/api/article'
+import { getListByEditorialSlug, updatePublished, softDelete, setAsBeritaUtama, setAsHeadline } from '@/api/article'
 
 export default {
   name: 'articles',
@@ -150,6 +161,80 @@ export default {
         if (response) {
           console.log(response.data)
         }
+      })
+    },
+    deleteHandler(article_id) {
+      this.$confirm('Anda yakin akan menghapus data ini?', 'Warning', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      }).then(() => {
+        softDelete({
+          article_id
+        }).then(response => {
+          if (response) {
+            this.getArticlesByEditorialSlug(this.editorialSlug, this.page)
+          }
+        })
+        this.$message({
+          type: 'success',
+          message: 'Data Berhasil Dihapus'
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: 'Batalkan'
+        })
+      })
+    },
+    setAsBeritaUtamaHandler(article_id, editorial_id) {
+      this.$confirm('Anda yakin akan memilih berita ini sebagai Berita Utama?', 'Warning', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      }).then(() => {
+        setAsBeritaUtama({
+          article_id,
+          editorial_id
+        }).then(response => {
+          if (response) {
+            this.getArticlesByEditorialSlug(this.editorialSlug, this.page)
+          }
+        })
+        this.$message({
+          type: 'success',
+          message: 'Data Berhasil Di Update'
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: 'Batalkan'
+        })
+      })
+    },
+    setAsHeadlineHandler(article_id, editorial_id) {
+      this.$confirm('Anda yakin akan memilih berita ini sebagai Headline?', 'Warning', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      }).then(() => {
+        setAsHeadline({
+          article_id,
+          editorial_id
+        }).then(response => {
+          if (response) {
+            this.getArticlesByEditorialSlug(this.editorialSlug, this.page)
+          }
+        })
+        this.$message({
+          type: 'success',
+          message: 'Data Berhasil Di Update'
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: 'Batalkan'
+        })
       })
     },
     indexMethod(index) {

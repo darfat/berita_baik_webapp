@@ -28,6 +28,7 @@
     "vue-facebook-signin-button": "^1.0.1",
     "vue-fixed-header": "^1.0.1",
     "vue-froala-wysiwyg": "^2.8.1",
+    "vue-google-autocomplete": "^1.1.0",
     "vue-google-signin-button": "^1.0.2",
     "vue-i18n": "^7.6.0",
     "vue-icon": "^2.0.0",

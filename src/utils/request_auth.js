@@ -14,7 +14,6 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(config => {
   if (store.getters.token) {
-    console.log('have token')
     config.headers['Authorization'] = getToken()
   }
   config.headers['ApplicationID'] = process.env.APP_ID
