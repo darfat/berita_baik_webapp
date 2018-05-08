@@ -57,7 +57,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       favicon: resolve('favicon.ico'),
       title: 'berita-baik-admin'
     }),
-     // Jquery loader plugin.
+    // Jquery loader plugin.
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery"

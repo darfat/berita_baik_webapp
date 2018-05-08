@@ -13,13 +13,10 @@ const cmsLoginPattern = '/cms-login'
 router.beforeEach((to, from, next) => {
   NProgress.start()
   if (getToken()) {
-    console.log('have token')
     if (to.path === '/login') {
       next({ path: '/home' })
     } else {
-      console.log('4')
       if (!store.getters.name) {
-        console.log('5')
         store.dispatch('GetInfo').then(res => { // 拉取用户信息
           next()
         }).catch(() => {
@@ -33,7 +30,6 @@ router.beforeEach((to, from, next) => {
       }
     }
   } else {
-    console.log('dont have token')
     if (to.path && (to.path.startsWith(homePattern) || to.path.startsWith(loginPatttern) || to.path.startsWith(signupPattern) || to.path.startsWith(cmsLoginPattern))) {
       next()
     } else {

@@ -73,12 +73,9 @@ const user = {
     },
     // 获取用户信息
     GetInfo({ commit, state }) {
-      console.log(state)
-      console.log('get user info')
       return new Promise((resolve, reject) => {
         getInfo(state.token, state.user_id).then(response => {
           const data = response.data
-          console.log(data)
           commit('SET_ROLE', data.role)
           commit('SET_NAME', data.name)
           commit('SET_USERNAME', data.username)
