@@ -9,9 +9,11 @@ import { getToken } from '@/utils/auth' // 验权
 const homePattern = '/home'
 const loginPatttern = '/login'
 const signupPattern = '/signup'
+const cmsLoginPattern = '/cms-login'
 router.beforeEach((to, from, next) => {
   NProgress.start()
   if (getToken()) {
+    console.log('have token')
     if (to.path === '/login') {
       next({ path: '/home' })
     } else {
@@ -31,7 +33,8 @@ router.beforeEach((to, from, next) => {
       }
     }
   } else {
-    if (to.path && (to.path.startsWith(homePattern) || to.path.startsWith(loginPatttern) || to.path.startsWith(signupPattern))) {
+    console.log('dont have token')
+    if (to.path && (to.path.startsWith(homePattern) || to.path.startsWith(loginPatttern) || to.path.startsWith(signupPattern) || to.path.startsWith(cmsLoginPattern))) {
       next()
     } else {
       next('/home')

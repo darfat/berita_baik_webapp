@@ -1,8 +1,8 @@
 <template>
   <div class="dashboard-container">
     <h1> Dashboard Page </h1>
-    <div class="dashboard-text">name:{{name}}</div>
-    <div class="dashboard-text">roles:<span v-for='role in roles' :key='role'>{{role}}</span></div>
+    <div class="dashboard-text">Hi {{name}}</div>
+    <!-- <div class="dashboard-text">roles:<span v-for='role in roles' :key='role'>{{role}}</span></div> -->
   </div>
 </template>
 

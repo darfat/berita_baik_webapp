@@ -127,7 +127,7 @@ export const constantRouterMap = [
     }]
   },
   // cms part
-  { path: '/plogin', component: () => import('@/views/portal/login/index'), hidden: true },
+  { path: '/cms-login', component: () => import('@/views/admin/login/index'), hidden: true },
   // public
   { path: '/login', name: 'public-login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/signup', name: 'public-signup', component: () => import('@/views/portal/signup/index'), hidden: true },
@@ -157,17 +157,29 @@ export const constantRouterMap = [
         component: () => import('@/views/admin/article/indonesiaBaik'),
         meta: { title: 'Indonesia Baik', icon: 'table' }
       },
+      // {
+      //   path: 'l/indonesia-bangga',
+      //   name: 'admin-indonesia-bangga-list',
+      //   // component: () => import('@/views/admin/article/indonesiaBangga'),
+      //   meta: { title: 'Indonesia Bangga', icon: 'table' }
+      // },
       {
-        path: 'l/indonesia-bangga',
-        name: 'admin-indonesia-bangga-list',
-        component: () => import('@/views/admin/article/indonesiaBangga'),
-        meta: { title: 'Indonesia Bangga', icon: 'table' }
+        path: 'l/komunitas',
+        name: 'admin-komunitas-list',
+        component: () => import('@/views/admin/article/komunitas'),
+        meta: { title: 'Komunitas', icon: 'table' }
       },
       {
         path: 'l/sosok-inspiratif',
         name: 'admin-sosok-inspiratif-list',
         component: () => import('@/views/admin/article/sosokInspiratif'),
         meta: { title: 'Sosok Inspiratif', icon: 'table' }
+      },
+      {
+        path: 'l/prestasi',
+        name: 'admin-prestasi-list',
+        component: () => import('@/views/admin/article/prestasi'),
+        meta: { title: 'Prestasi', icon: 'table' }
       },
       {
         path: 'l/gallery-foto',
@@ -189,7 +201,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/events/list',
     name: 'Events',
-    meta: { title: 'Events', icon: 'calendar' },
+    meta: { title: 'Events', icon: 'example' },
     children: [
       {
         path: 'list',
