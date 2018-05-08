@@ -1,5 +1,5 @@
 <template>
-<div class="article-nav p-b-20">
+<div class="article-nav">
   <el-row :gutter="20" >
     <el-col :span="12">
       <el-button type="text" @click="prev()"> <span class="article-nav"> &lt; {{navTitle}} Sebelumnya </span> </el-button>
@@ -119,5 +119,6 @@ export default {
 .article-nav{
   // font-weight: bold;
   color: #696968;
+  font-family: 'Neosans';
 }
 </style>

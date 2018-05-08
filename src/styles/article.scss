@@ -1,11 +1,13 @@
 @import './variables.scss';
 
 .article-container {
-    //padding-top: 150px
+    //padding-top: 150px 
+    margin: 0;
+    padding: 0;
 }
 .article-container .headline-container {
     background-color: $bb-gray;
-    padding: 40px 0 20px 0;
+    padding: 20px 0 20px 0;
 }
 .grid-content {
     border-radius: 4px;
@@ -21,7 +23,7 @@
 .article-container .headline-container .main{
     background-color: #fff;
     min-height: 300px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 .article-container .headline-container .main .thumbnail {
     position: relative;
@@ -45,34 +47,43 @@
 }
 .article-container .headline-container .main .thumbnail img{
     width: 100%;
-    height: auto;
-    display: block;
+    max-height: 445px;
+    object-fit: cover;
 }
-.article-container .headline-container .main .content{
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-}
-.article-container .headline-container .main .content .a-title{
-    // font-weight: bold;
-    // font-size: 1.1em;
-    h1{
-        font-size: 3em;
-        margin-bottom: 0;
-        color: $headline;
+.article-container .headline-container .main .content{    
+    padding: 20px 40px;
+
+    // TITLE
+    h2{
+        margin: 0;
+        font-size: 18px;
+        line-height: 22px;
+        padding-bottom: 10px;
     }
+    // SUBTITLE
+    h3{
+        margin: 0;
+        font-size: 0.8em;
+    }
+    .author{
+        font-weight: bold;
+        font-size: 0.75em;
+        margin: 0;
+    }
+    .teks{
+        color: $black-2;
+        line-height: 1.5em;
+        font-size: 1em;
+        word-wrap: break-word;
+    }
+    .article-option{
+        color: #696968;
+        padding: 20px 0;        
+        font-size: 0.8em;
+    }
+
 }
 
-.article-container .headline-container .main .content .footer{
-    font-weight: bold;
-    font-size: 0.8em;
-}
-
-.article-container .headline-container .main .content .teks{
-    color: $black-2;
-    line-height: 1.5em;
-    font-size: 1.1em;
-}
 .article-container .headline-container .main .content .team{
     padding-bottom: 10px;
 }
@@ -84,9 +95,7 @@
     }
     
 }
-.article-container .headline-container .main .content .article-option{
-    color: #696968
-}
+
 .article-container .list-container{
     margin-top:30px;
     background-color: #fff;
