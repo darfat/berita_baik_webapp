@@ -52,7 +52,7 @@
                 <image-uploader :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
               </div>
               <div>
-                <small>Nama File Gambar Utama Harus Tanpa Spasi</small>
+              <div slot="tip" class="el-upload__tip">Maks 2MB dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
               </div>
             </el-form-item>
             <el-form-item label="Gallery" v-if="article.article_type === 'image'">
@@ -669,8 +669,12 @@ export default {
     mainImageSuccessCallback(res) {
       console.log('mainImageSuccessCallback : ', res)
       if (res) {
-        this.article.main_image = res[0].url
-        this.main_image_name = res[0].filename
+        this.article.main_image = res[res.length - 1].url
+        this.main_image_name = res[res.length - 1].filename
+        this.$message({
+          type: 'success',
+          message: 'Foto Berhasil Diupload'
+        })
       }
     },
     gallerySuccessCallback(res) {
