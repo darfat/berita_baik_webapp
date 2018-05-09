@@ -9,7 +9,8 @@
               <el-col :span="8" class="side-image">
                 <div>
                   <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
-                    <img :src="popular.main_image" class="card-image"/>
+                    <img v-if="popular.thumb_image" :src="popular.main_image" class="card-image" />
+                    <img v-else :src="popular.main_image" class="card-image" />
                   </router-link>
                 </div>
               </el-col>
@@ -45,7 +46,7 @@ export default {
   props: {
     editorialSlug: { type: String, default: null },
     editorialType: { type: String },
-    title: { type: String, default: 'BERITA BAIK TERPOPULAR' },
+    title: { type: String, default: 'BERITA BAIK TERPOPULER' },
     limit: { default: 6, type: Number },
     page: { default: 1, type: Number }
   },

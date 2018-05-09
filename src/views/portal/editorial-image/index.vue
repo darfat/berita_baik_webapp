@@ -93,8 +93,8 @@
           <div class="grid-content a-side">
             <div>
 
-            <popular-news-side v-if="editorialSlug === 'infografis'" :editorialSlug="editorialSlug" title="INFOGRAFIS TERPOPULAR"> </popular-news-side>
-            <popular-news-side v-else :editorialSlug="editorialSlug" title="GALLERY TERPOPULAR"> </popular-news-side>
+            <popular-news-side v-if="editorialSlug === 'infografis'" :editorialSlug="editorialSlug" title="INFOGRAFIS TERPOPULER"> </popular-news-side>
+            <popular-news-side v-else :editorialSlug="editorialSlug" title="GALLERY TERPOPULER"> </popular-news-side>
             </div>
             <div class="side-separator">
               <span> Buka lebih banyak lagi </span>
