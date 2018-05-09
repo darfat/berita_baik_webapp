@@ -28,7 +28,9 @@
       </el-table-column>
       <el-table-column label="Judul" >
         <template slot-scope="scope">
-          <span v-html="scope.row.title">  </span>
+          <router-link v-if="scope.row.article_type === 'news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':scope.row.editorial.slug, 'slug': scope.row.slug,  'articleID': scope.row.id} }">                  
+            <span v-html="scope.row.title">  </span>
+          </router-link>
         </template>
       </el-table-column>
       <el-table-column label="Reporter"   width="150" >
@@ -60,7 +62,9 @@
           <router-link class="filter-item" :to="{ name: 'admin-article-form', params: { editorialSlug, articleType, 'articleId': scope.row.id} }" >
             <el-button type="primary" size="mini" >Edit</el-button>
           </router-link>
+          
           <el-button type="danger" size="mini" @click="deleteHandler(scope.row.id)">Delete</el-button>
+          
           <el-dropdown size="mini" split-button type="info">
             Lainnya
             <el-dropdown-menu slot="dropdown">
