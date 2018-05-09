@@ -1,6 +1,6 @@
 <template>
   <div class="upload-container">
-    <el-button icon='el-icon-upload' size="mini" :style="{background:color,borderColor:color}" @click=" dialogVisible=true" type="primary">Upload
+    <el-button icon='el-icon-upload' size="mini" :style="{background:color,borderColor:color}" @click=" dialogVisible=true" type="primary">Browse File
     </el-button>
     <el-dialog :visible.sync="dialogVisible">
       <el-upload :limit="1" class="editor-slide-upload" action="http://localhost:9528/"  :multiple="true" :file-list="fileList" :show-file-list="true"

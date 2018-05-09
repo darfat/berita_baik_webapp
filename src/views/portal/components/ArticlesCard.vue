@@ -10,7 +10,7 @@
           <el-card :body-style="{ padding: '0px' }" class="news-card">            
             <div class="mini-thumbnail">
               <router-link  v-if="article.article_type === 'news'"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
-                <img v-if="article.thumb_image" :src="article.main_image" class="card-image" />
+                <img v-if="article.thumb_image" :src="article.thumb_image" class="card-image" />
                 <img v-else :src="article.main_image" class="card-image" />
                 <div class="editorial-type-img">
                   <h3>{{ article.editorial.name }}</h3>

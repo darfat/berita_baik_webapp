@@ -9,7 +9,7 @@
               <el-col :span="8" class="side-image">
                 <div>
                   <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
-                    <img v-if="popular.thumb_image" :src="popular.main_image" class="card-image" />
+                    <img v-if="popular.thumb_image" :src="popular.thumb_image" class="card-image" />
                     <img v-else :src="popular.main_image" class="card-image" />
                   </router-link>
                 </div>
