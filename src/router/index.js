@@ -200,12 +200,6 @@ export const constantRouterMap = [
         meta: { title: 'Kuliner', icon: 'table' }
       },
       {
-        path: 'l/gallery-foto',
-        name: 'admin-gallery-foto-list',
-        component: () => import('@/views/admin/article/citra'),
-        meta: { title: 'Citra', icon: 'table' }
-      },
-      {
         path: 'l/teknologi',
         name: 'admin-teknologi-list',
         component: () => import('@/views/admin/article/teknologi'),
@@ -240,6 +234,12 @@ export const constantRouterMap = [
         name: 'admin-gaya-hidup-list',
         component: () => import('@/views/admin/article/gayaHidup'),
         meta: { title: 'Gaya Hidup', icon: 'table' }
+      },
+      {
+        path: 'l/gallery-foto',
+        name: 'admin-gallery-foto-list',
+        component: () => import('@/views/admin/article/citra'),
+        meta: { title: 'Citra', icon: 'table' }
       },
       {
         path: 'f/:editorialSlug',

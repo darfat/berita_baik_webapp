@@ -3,13 +3,13 @@
     <el-row :gutter="20" class="headline-container" v-if="latestNews">
       <div class="container">
         
-        <el-row :gutter="20">                 
+        <!-- <el-row :gutter="20">                 
             <el-col :xs="24" v-if="latestNews.editorial">
               <div class="grid-content title-container" v-if="editorialSlug !== latestNews.editorial.slug">
                   <h1 class="main-article-title"> {{ editorialTitle }} </h1> 
               </div>
             </el-col>          
-        </el-row>
+        </el-row> -->
 
         <el-row :gutter="20">        
           <el-col :xs="24">
@@ -40,7 +40,7 @@
                         <el-col >
                           <div class="headline"> 
                             <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
-                              {{ latestNews.title }}
+                              <span v-html="latestNews.title">  </span>
                             </router-link>
                           </div>
                         </el-col>

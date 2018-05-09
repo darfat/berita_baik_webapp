@@ -18,10 +18,10 @@
 
             <el-row class="content">
               <el-row :gutter="20" v-if="mainArticle.subtitle">
-                <el-col ><h3 >{{ mainArticle.subtitle }}</h3></el-col>
+                <el-col ><h3 v-html="mainArticle.subtitle"></h3></el-col>
               </el-row>              
               <el-row :gutter="20">
-                <el-col ><h2 class="headline">{{ mainArticle.title }}</h2></el-col>
+                <el-col ><h2 class="headline" v-html="mainArticle.title"></h2></el-col>
               </el-row>              
               <el-row :gutter="20">
                   <el-col>
@@ -93,9 +93,9 @@
                           <network network="googleplus">
                             <fa-icon name="google-plus" scale="1" class="network-icon"></fa-icon>
                           </network>
-                          <!-- <network network="whatsapp">
-                            <fa-icon name="whatsapp" scale="2" class="network-icon"></fa-icon>
-                          </network> -->
+                          <network network="whatsapp">
+                            <fa-icon name="whatsapp" scale="1" class="network-icon"></fa-icon>
+                          </network>
                       </div>
                     </social-sharing>                        
                     <v-icon name="more-horizontal" base-class="icon-30"></v-icon>
@@ -104,8 +104,8 @@
               </el-row>
             </el-row>
                 
-            <el-row :gutter="20" >
-              <el-col v-if="mainArticle">
+            <el-row :gutter="20" v-if="mainArticle.is_can_comment" >
+              <el-col >
                 <comment-box :articleID="mainArticle.id"></comment-box>
               </el-col>
             </el-row>
