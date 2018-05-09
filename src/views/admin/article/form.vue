@@ -39,12 +39,12 @@
             <el-form-item label="Ringkasan Utama" prop="teaser">
               <div class="editor-container">
                  <el-input type="textarea" :rows="4" v-model="article.teaser" :maxlength="500" ></el-input>
-                <!-- <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser' ></tinymce> -->
+                 <!-- <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser' ></tinymce> -->
               </div>
             </el-form-item>
             <el-form-item label="Isi" prop="content">
-              <!-- <tinymce :height="400" v-model="article.content" ref="editor"  id='content'   ></tinymce> -->
-              <froala :tag="'textarea'" :config="froalaConfig" v-model="article.content"></froala>
+              <tinymce :height="400" v-model="article.content" ref="editor"  id='content'   ></tinymce>
+              <!-- <froala :tag="'textarea'" :config="froalaConfig" v-model="article.content"></froala> -->
             </el-form-item>
             <el-form-item label="Gambar Utama"  prop="main_image" >
               <div>
@@ -303,6 +303,7 @@ import { getRelatesByArticleID } from '@/api/relate'
 import { mapGetters } from 'vuex'
 import ImageUploader from '@/components/ImageUploader'
 import VueGoogleAutocomplete from 'vue-google-autocomplete'
+import Tinymce from '@/components/Tinymce/index'
 
 export default {
   name: 'ArticleForm',
@@ -313,7 +314,8 @@ export default {
   },
   components: {
     ImageUploader,
-    VueGoogleAutocomplete
+    VueGoogleAutocomplete,
+    Tinymce
   },
   computed: {
     ...mapGetters([
