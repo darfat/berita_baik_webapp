@@ -31,6 +31,12 @@
           <router-link v-if="scope.row.article_type === 'news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':scope.row.editorial.slug, 'slug': scope.row.slug,  'articleID': scope.row.id} }">                  
             <span v-html="scope.row.title">  </span>
           </router-link>
+          <router-link   v-if="scope.row.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':scope.row.editorial.slug, 'slug': scope.row.slug } }" >                      
+            <span v-html="scope.row.title">  </span>
+          </router-link>
+          <router-link v-if="scope.row.article_type === 'video'" :to="{ name: 'editorial-video-detail', params: { 'editorialSlug':scope.row.editorial.slug, 'slug': scope.row.slug} }">
+            <span v-html="scope.row.title">  </span>
+          </router-link>
         </template>
       </el-table-column>
       <el-table-column label="Reporter"   width="150" >

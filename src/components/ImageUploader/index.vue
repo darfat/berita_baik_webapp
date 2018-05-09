@@ -3,9 +3,9 @@
     <el-button icon='el-icon-upload' size="mini" :style="{background:color,borderColor:color}" @click=" dialogVisible=true" type="primary">Browse File
     </el-button>
     <el-dialog :visible.sync="dialogVisible">
-      <el-upload :limit="1" class="editor-slide-upload" action="http://localhost:9528/"  :multiple="true" :file-list="fileList" :show-file-list="true"
+      <el-upload :limit="limit" class="editor-slide-upload" action="http://localhost:9528/"  :multiple="true" :file-list="fileList" :show-file-list="true"
         list-type="picture-card" accept="image/*" :on-preview="handlePreview" :on-remove="handleRemove" :on-exceed="handleExceed" :on-success="handleSuccess" :on-change="onChange" :before-upload="beforeUpload" :auto-upload="false">
-        <el-button size="small" type="primary">Upload</el-button>
+        <el-button size="small" type="primary">Browse File</el-button>
       </el-upload>      
       <el-button @click="dialogVisible = false">Cancel</el-button>
       <el-button type="primary" @click="handleSubmit">Upload</el-button>
@@ -22,6 +22,10 @@ export default {
     color: {
       type: String,
       default: '#1890ff'
+    },
+    limit: {
+      type: Number,
+      default: 1
     },
     isMultiple: {
       type: Boolean,
@@ -89,7 +93,7 @@ export default {
       }
     },
     handleExceed(files, fileList) {
-      this.$message.warning('Maksimal upload hanya bisa 1 foto')
+      this.$message.warning('Melebihi Batas Maksimal Upload Foto')
     },
     handlePreview(file) {
       console.log('handlePreview')

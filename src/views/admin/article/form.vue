@@ -32,21 +32,24 @@
             <el-form-item label="Judul" prop="title">
                 <el-input v-model="article.title"  v-on:change="generateSlug" :maxlength="100" ></el-input>
             </el-form-item>
-            <el-form-item label="Sub Judul" >
+            <el-form-item label="Sub Judul" v-if="article.article_type === 'news'" >
                 <el-input v-model="article.subtitle" :maxlength="50" ></el-input>
             </el-form-item>
             
-            <el-form-item label="Ringkasan Utama" prop="teaser">
+            <el-form-item label="Ringkasan Utama" prop="teaser" v-if="article.article_type === 'news'" >
               <div class="editor-container">
                  <el-input type="textarea" :rows="4" v-model="article.teaser" :maxlength="500" ></el-input>
                  <!-- <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser' ></tinymce> -->
               </div>
             </el-form-item>
             <el-form-item label="Isi" prop="content">
+              <div>
               <tinymce :height="400" v-model="article.content" ref="editor"  id='content'   ></tinymce>
               <!-- <froala :tag="'textarea'" :config="froalaConfig" v-model="article.content"></froala> -->
+              <div slot="tip" class="el-upload__tip"> Tag &lt;related/&gt; : untuk menambahkan Berita Terkait di dalam konten </div>
+              </div>
             </el-form-item>
-            <el-form-item label="Gambar Utama"  prop="main_image" >
+            <el-form-item label="Gambar Utama"  prop="main_image" v-if="!article.article_type === 'video'" >
               <div>
                 <span> {{ main_image_name }}</span>
                 <image-uploader :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
@@ -56,10 +59,23 @@
               <div slot="tip" class="el-upload__tip">Maks 2MB dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
               </div>
             </el-form-item>
-            <el-form-item label="Gallery" v-if="article.article_type === 'image'">
+            <el-form-item label="Gallery" v-if="article.article_type === 'image' && editorialSlug === 'gallery-foto'">
               <div class="gray-horizontal"></div>
-              <image-uploader :isMultiple="true" class="image-uploader-btn" @successCBK="gallerySuccessCallback"></image-uploader>
+              <div>
+                <span v-if="article.article_images && article.article_images.length > 0">
+                  {{article.article_images.length}} Foto Berhasil Diupload
+                </span>
+                <image-uploader :isMultiple="true" :limit=5 class="image-uploader-btn" @successCBK="gallerySuccessCallback"></image-uploader>
+                <div slot="tip" class="el-upload__tip">Jumlah Maksimal Upload 5 Foto, Maks 2MB Per Foto dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
+
+              </div>
               <div class="gray-horizontal"></div>
+            </el-form-item>
+            <el-form-item label="Youtube Embed"  prop="sources_path" v-if="article.article_type === 'video'" >
+              <div>
+                <el-input v-model="article.sources_path"  :maxlength="100" ></el-input>
+                <div slot="tip" class="el-upload__tip">Copy seluruh link contoh : <i>https://www.youtube.com/watch?v=FlsCjmMhFmw</i></div>
+              </div>
             </el-form-item>
             <el-row :gutter="20">
               <el-col :span="12">
@@ -161,14 +177,14 @@
               </el-col>
             </el-row>
             <div class="gray-horizontal"></div>
-            <el-row :gutter="20">
+            <el-row :gutter="20" v-if="article.article_type === 'news'">
               <el-col :span="6" style="padding-left:63px">
                 <div>
                   <span><strong> News </strong> </span>
                 </div>
               </el-col>
             </el-row>
-            <el-form-item label="Related News">
+            <el-form-item label="Related News" v-if="article.article_type === 'news'">
                 <div>
                   <el-table
                     :data="article.article_relates"
@@ -670,7 +686,6 @@ export default {
       return
     },
     mainImageSuccessCallback(res) {
-      console.log('mainImageSuccessCallback : ', res)
       if (res) {
         this.article.main_image = res[res.length - 1].url
         this.article.thumb_image = res[res.length - 1].url_thumb
@@ -687,6 +702,10 @@ export default {
         res.forEach(item => {
           console.log(item.url)
           this.article.article_images.push({ title: item.filename, url: item.url, content: '-', active: true })
+        })
+        this.$message({
+          type: 'success',
+          message: 'Foto Berhasil Diupload'
         })
       }
     },

@@ -242,6 +242,18 @@ export const constantRouterMap = [
         meta: { title: 'Citra', icon: 'table' }
       },
       {
+        path: 'l/video',
+        name: 'admin-video-list',
+        component: () => import('@/views/admin/article/video'),
+        meta: { title: 'Video', icon: 'table' }
+      },
+      {
+        path: 'l/infografis',
+        name: 'admin-infografis-list',
+        component: () => import('@/views/admin/article/infografis'),
+        meta: { title: 'Infografis', icon: 'table' }
+      },
+      {
         path: 'f/:editorialSlug',
         name: 'admin-article-form',
         props: true,
