@@ -672,6 +672,7 @@ export default {
       console.log('mainImageSuccessCallback : ', res)
       if (res) {
         this.article.main_image = res[res.length - 1].url
+        this.article.thumb_image = res[res.length - 1].url_thumb
         this.main_image_name = res[res.length - 1].filename
         this.$message({
           type: 'success',
