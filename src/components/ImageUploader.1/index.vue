@@ -7,22 +7,6 @@
         list-type="picture-card" accept="image/*" :on-preview="handlePreview" :on-remove="handleRemove" :on-exceed="handleExceed" :on-success="handleSuccess" :on-change="onChange" :before-upload="beforeUpload" :auto-upload="false">
         <el-button size="small" type="primary">Upload</el-button>
       </el-upload>
-      <!-- <div>
-        <a class="btn" @click="toggleShow">set avatar</a>
-                  <my-upload field="img"
-                        @crop-success="cropSuccess"
-                        @crop-upload-success="cropUploadSuccess"
-                        @crop-upload-fail="cropUploadFail"
-                        v-model="show"
-                        lang-type="en"
-                        :width="300"
-                        :height="300"
-                        url=""
-                        :params="params"
-                        :headers="headers"
-                        img-format="png"></my-upload>
-                  <img :src="imgDataUrl">
-      </div> -->
       <el-button @click="dialogVisible = false">Cancel</el-button>
       <el-button type="primary" @click="handleSubmit">Upload</el-button>
     </el-dialog>
@@ -30,8 +14,7 @@
 </template>
 
 <script>
-import { upload, uploadDataURI } from '@/api/image_upload'
-import myUpload from 'vue-image-crop-upload'
+import { upload } from '@/api/image_upload'
 
 export default {
   name: 'imageUploader',
@@ -45,24 +28,12 @@ export default {
       default: true
     }
   },
-  components: {
-    myUpload
-  },
   data() {
     return {
       dialogVisible: false,
       listObj: {},
       fileList: [],
-      formData: new FormData(),
-      show: false,
-      params: {
-        token: '123456798',
-        name: 'avatar'
-      },
-      headers: {
-        smail: '*_~'
-      },
-      imgDataUrl: ''
+      formData: new FormData()
     }
   },
   methods: {
@@ -106,6 +77,7 @@ export default {
     },
     onChange(file) {
       console.log('onChange')
+      console.log(file)
       const isGt2MB = file.size > 2000000
       if (isGt2MB) {
         this.$message.warning('Ukuran file foto tidak boleh lebih dari 2MB')
@@ -142,43 +114,6 @@ export default {
         }
         resolve(true)
       })
-    },
-    toggleShow() {
-      this.show = !this.show
-    },
-    cropSuccess(imgDataUrl, field) {
-      console.log('-------- crop success --------')
-      this.imgDataUrl = imgDataUrl
-      console.log('do something with this image')
-      uploadDataURI({ imgDataUrl }).then(response => {
-        if (response) {
-          this.$emit('successCBK', response.data)
-          this.listObj = {}
-          this.fileList = []
-          this.formData = new FormData()
-          this.dialogVisible = false
-        }
-      })
-    },
-    dataURItoBlob(dataURI) {
-      var binary = atob(dataURI.split(',')[1])
-      var array = []
-      for (var i = 0; i < binary.length; i++) {
-        array.push(binary.charCodeAt(i))
-      }
-      return new Blob([new Uint8Array(array)], {
-        type: 'image/jpeg'
-      })
-    },
-    cropUploadSuccess(jsonData, field) {
-      console.log('-------- upload success --------')
-      console.log(jsonData)
-      console.log('field: ' + field)
-    },
-    cropUploadFail(status, field) {
-      console.log('-------- upload fail --------')
-      console.log(status)
-      console.log('field: ' + field)
     }
   }
 

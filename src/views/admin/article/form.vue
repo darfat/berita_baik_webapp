@@ -50,6 +50,7 @@
               <div>
                 <span> {{ main_image_name }}</span>
                 <image-uploader :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
+                
               </div>
               <div>
               <div slot="tip" class="el-upload__tip">Maks 2MB dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
@@ -397,15 +398,15 @@ export default {
       },
       validAuthor: true,
       action: 'add',
-      main_image_name: '',
-      froalaConfig: {
-        events: {
-          'froalaEditor.initialized': function() {
-            console.log('initialized')
-          }
-        },
-        imageManagerLoadURL: 'http://beritabaik.id/dev/static/upload/content/images/'
-      }
+      main_image_name: ''
+      // froalaConfig: {
+      //   events: {
+      //     'froalaEditor.initialized': function() {
+      //       console.log('initialized')
+      //     }
+      //   },
+      //   imageManagerLoadURL: 'http://beritabaik.id/dev/static/upload/content/images/'
+      // }
     }
   },
 
