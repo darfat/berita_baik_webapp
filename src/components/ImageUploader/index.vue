@@ -67,20 +67,16 @@ export default {
       }
     },
     handleRemove(file) {
-      console.log('handleRemove')
       const uid = file.uid
       const objKeyArr = Object.keys(this.listObj)
-      console.log(objKeyArr.length)
       for (let i = 0, len = objKeyArr.length; i < len; i++) {
         if (this.listObj[objKeyArr[i]].uid === uid) {
-          console.log('delete')
           delete this.listObj[objKeyArr[i]]
           return
         }
       }
     },
     onChange(file) {
-      console.log('onChange')
       const isGt2MB = file.size > 2000000
       if (isGt2MB) {
         this.$message.warning('Ukuran file foto tidak boleh lebih dari 2MB')
@@ -96,8 +92,6 @@ export default {
       this.$message.warning('Melebihi Batas Maksimal Upload Foto')
     },
     handlePreview(file) {
-      console.log('handlePreview')
-      console.log(file)
     },
     beforeUpload(file) {
       const _self = this

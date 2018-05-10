@@ -5,7 +5,7 @@
     </el-row>
     <div class="m-t-10">
     <el-row :gutter="20">
-      <el-col :xs="24" :sm="12" v-for="(video) in videos" :key="video.id">
+      <el-col :xs="24" :sm="12" v-for="(video, index) in videos" :key="video.id">
         <div class="vid-thumb">
           <el-card :body-style="{ padding: '0px' }" class="news-card">
             <div class="videoWrapper">
@@ -145,7 +145,6 @@
         this.loading.list = true
         getVideosByEditorialSlug({ editorialSlug, page, per_page: this.per_page }).then(response => {
           if (response) {
-            console.log(response)
             this.videos = response.data.data
             this.per_page = response.data.per_page
             this.total_pages = response.data.total_pages
@@ -156,7 +155,6 @@
         })
       },
       handleCurrentChange(page) {
-        console.log(`${page} page`)
         this.getArticles(this.editorialSlug, page)
       },
       infiniteHandler($state) {

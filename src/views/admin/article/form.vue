@@ -42,7 +42,7 @@
                  <!-- <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser' ></tinymce> -->
               </div>
             </el-form-item>
-            <el-form-item label="Isi" prop="content">
+            <el-form-item label="Isi" prop="content" v-if="article.article_type !== 'video' && editorialSlug !== 'infografis'">
               <div>
               <tinymce :height="400" v-model="article.content" ref="editor"  id='content'   ></tinymce>
               <!-- <froala :tag="'textarea'" :config="froalaConfig" v-model="article.content"></froala> -->
@@ -77,6 +77,7 @@
                 <div slot="tip" class="el-upload__tip">Copy seluruh link contoh : <i>https://www.youtube.com/watch?v=FlsCjmMhFmw</i></div>
               </div>
             </el-form-item>
+            <div class="gray-horizontal"></div>
             <el-row :gutter="20">
               <el-col :span="12">
                   <el-form-item label="Kota">
@@ -435,11 +436,14 @@ export default {
   methods: {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
-        if (valid && this.isValidateAuthor()) {
+        if (valid && this.isValidateAuthor() && this.isValidateYoutubeLinkAuthor()) {
           this.article.article_type = this.articleType
           this.article.article_tags = this.tagArray.toString()
           this.article.keyword_non_content = this.keywordArray.toString()
           this.reporterNameCheck()
+          if (this.article.article_type === 'video' || this.editorialSlug === 'infografis') {
+            this.article.content = '-'
+          }
           if (this.action === 'add') {
             create(this.article)
               .then(response => {
@@ -465,6 +469,7 @@ export default {
           }
         } else {
           console.error('failed to submit!!')
+          this.$message.warning('Terjadi kesalahan pada pengisian form')
           return false
         }
       })
@@ -478,6 +483,16 @@ export default {
         }
       })
       this.validAuthor = true
+      return isValid
+    },
+    isValidateYoutubeLinkAuthor() {
+      const isValid = true
+      console.log('validate youtube link')
+      console.log(this.article.sources_path)
+      if (this.article.article_type === 'video' && !this.article.sources_path) {
+        this.$message.warning('Silakan Isi Link Video Youtube Terlebih Dahulu')
+        return false
+      }
       return isValid
     },
     init() {
@@ -644,8 +659,9 @@ export default {
       const a = 'àáäâèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;'
       const b = 'aaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------'
       const p = new RegExp(a.split('').join('|'), 'g')
-
-      this.article.slug = this.article.title.toString().toLowerCase()
+      const d = new Date()
+      const time = d.getTime()
+      this.article.slug = time + '-' + this.article.title.toString().toLowerCase()
         .replace(/\s+/g, '-') // Replace spaces with -
         .replace(p, c => b.charAt(a.indexOf(c))) // Replace special chars
         .replace(/&/g, '-and-') // Replace & with 'and'
@@ -697,7 +713,6 @@ export default {
       }
     },
     gallerySuccessCallback(res) {
-      console.log('gallerySuccessCallback ', res)
       if (res) {
         res.forEach(item => {
           console.log(item.url)
@@ -724,15 +739,11 @@ export default {
       const long_lat = addressData.longitude + ',' + addressData.latitude
       this.article.place = placeResultData.formatted_address
       this.article.place_long_lat = long_lat
-      console.log(this.article.place)
-      console.log(this.article.place_long_lat)
     },
     getCityData(cityData, cityResultData, id) {
       this.article.city = cityResultData.formatted_address
       const long_lat = cityData.longitude + ',' + cityData.latitude
       this.article.city_long_lat = long_lat
-      console.log(this.article.city_long_lat)
-      console.log(this.article.city)
     }
   }
 }
