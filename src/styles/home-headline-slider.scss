@@ -1,4 +1,7 @@
 @import "src/styles/variables.scss";
+.el-carousel{
+    z-index: 1;
+}
 .el-carousel__item{
   background-color: #fff;
   height: auto;
@@ -35,12 +38,12 @@ h3{
     min-height: 143px;
     background-color: #FFF;
     .headline{
-        font-size: 18px;
-        line-height: 22px;
+        font-size: 24px;
+        line-height: 32px;
         margin: 0; padding-bottom: 10px;
     }
     .sub-headline{
-        font-size: 12px;
+        font-size: 16px;
         line-height: 16px;
         margin: 0; padding-bottom: 5px;
     }
