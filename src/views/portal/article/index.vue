@@ -21,12 +21,14 @@
                 <el-col ><h3 v-html="mainArticle.subtitle"></h3></el-col>
               </el-row>              
               <el-row :gutter="20">
-                <el-col ><h2 class="headline" v-html="mainArticle.title"></h2></el-col>
+                <el-col ><h1 class="headline" v-html="mainArticle.title"></h1></el-col>
               </el-row>              
               <el-row :gutter="20">
                   <el-col>
                     <p class="red-line"></p>
-                    <p class="author"><timeago :auto-update="60" :since="mainArticle.publish_date"> </timeago></p>
+                    <p class="author">
+                      {{ mainArticle.reporter_name }} |
+                      <timeago :auto-update="60" :since="mainArticle.publish_date"> </timeago></p>
                   </el-col>
               </el-row>
               <el-row :gutter="20">
@@ -36,11 +38,11 @@
                     <div v-else class="teks-content" >
                       <span v-html="content1" ></span>
                       <div class="bacajuga" v-if="mainArticle.article_relates">
-                        <h4>Baca Juga</h4>
+                        <h4>Baca Juga :</h4>
                         <ul> 
                           <li v-for="(relate) in mainArticle.article_relates" :key="relate.id" > 
                             <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug': editorialSlug, 'slug': relate.Article.slug,  'articleID': relate.Article.id} }">
-                              <a >{{relate.Article.title}}</a>
+                              <a >{{relate.Article.title}}</a>11
                             </router-link>
                           </li>
                         </ul>
@@ -55,24 +57,26 @@
                 </el-col>
               </el-row>
               <el-row :gutter="20" class="article-option">
-                  <el-col :xs="24" :sm="2">
-                    <span  > 
-                      Editorial Team :
-                    </span>
+                  <el-col :xs="24" :sm="2" class="e-lbl mc">
+                    <span class="mc-content">Editor :</span>
                   </el-col>
-                  <el-col :xs="24" :sm="16" v-loading="loading.authors">
-                    <div v-for="(author) in mainArticleAuthors" :key="author.id" class="team">
+                  <el-col :xs="24" :sm="14" v-loading="loading.authors" class="e-img mc">
+                    <div v-for="(author) in mainArticleAuthors" :key="author.id" class="mc-content">
                       <div class="img-mini">
-                        <img :src="author.user.image" class="img-circle v-align-middle"/>
+                        <img :src="author.user.image_path" class="img-circle"/>                        
                       </div>
+                      <div class="e-name">
                       <span> {{ author.user.name }} </span>
                       <span class="follow-user">                            
-                        <v-icon name="user" base-class="icon-20 v-align-middle"></v-icon>
+                        <v-icon name="user" base-class="icon-20"></v-icon> Follow
                       </span>
+                      </div>
                     </div>  
                   </el-col>                      
-                  <el-col :xs="24" :sm="6">
-                    <div class="icons">
+                  <el-col :xs="24" :sm="8" class="e-icn">
+                    
+                    <div class="icons mc">
+                      <div class="mc-content">
                     <bb-love :articleID="mainArticle.id" :type="'article'" :scale="2"></bb-love>
                     <social-sharing url="http://beritabaik.id/"
                     :title="mainArticle.title"
@@ -99,6 +103,7 @@
                       </div>
                     </social-sharing>                        
                     <v-icon name="more-horizontal" base-class="icon-30"></v-icon>
+                    </div>
                     </div>
                   </el-col>                      
               </el-row>
@@ -130,8 +135,7 @@
         </div>
       </el-row>
     </el-row>
-    <el-row :gutter="20" class="list-container">
-      
+    <el-row :gutter="20" class="list-container">      
       <div class="container">
       <el-col :xs="24" :sm="16" class="content">
         <div class="grid-content a-content">
