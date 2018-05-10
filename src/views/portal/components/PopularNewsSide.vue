@@ -19,7 +19,7 @@
                    <el-row class="side-title-section">
                       <div>
                         <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
-                          <span class="headline" v-html="subString(popular.title,70)"  ></span>
+                          <span class="headline" v-html="subString(popular.title,50)"  ></span>
                         </router-link>
                       </div>
                     </el-row>                    
