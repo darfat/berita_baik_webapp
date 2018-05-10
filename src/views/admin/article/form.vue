@@ -49,7 +49,7 @@
               <div slot="tip" class="el-upload__tip"> Tag &lt;related/&gt; : untuk menambahkan Berita Terkait di dalam konten </div>
               </div>
             </el-form-item>
-            <el-form-item label="Gambar Utama"  prop="main_image" v-if="!article.article_type === 'video'" >
+            <el-form-item label="Gambar Utama"  prop="main_image" v-if="article.article_type !== 'video'" >
               <div>
                 <span> {{ main_image_name }}</span>
                 <image-uploader :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
