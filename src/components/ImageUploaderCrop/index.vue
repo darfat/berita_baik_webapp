@@ -4,7 +4,9 @@
     </el-button>
     <el-dialog :visible.sync="dialogVisible">
       <div>
+        
         <a class="btn" @click="toggleShow">set avatar</a>
+        <el-button @click="toggleShow = false">Browse File</el-button>
                   <my-upload field="img"
                         @crop-success="cropSuccess"
                         @crop-upload-success="cropUploadSuccess"
@@ -19,13 +21,15 @@
                         img-format="png"></my-upload>
                   <img :src="imgDataUrl">
       </div>
+      <div>
       <el-button @click="dialogVisible = false">Cancel</el-button>
+      </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { upload, uploadDataURI } from '@/api/image_upload'
+import { uploadDataURI } from '@/api/image_upload'
 import myUpload from 'vue-image-crop-upload'
 
 export default {
@@ -68,21 +72,8 @@ export default {
       uploadDataURI({ imgDataUrl }).then(response => {
         if (response) {
           this.$emit('successCBK', response.data)
-          this.listObj = {}
-          this.fileList = []
-          this.formData = new FormData()
           this.dialogVisible = false
         }
-      })
-    },
-    dataURItoBlob(dataURI) {
-      var binary = atob(dataURI.split(',')[1])
-      var array = []
-      for (var i = 0; i < binary.length; i++) {
-        array.push(binary.charCodeAt(i))
-      }
-      return new Blob([new Uint8Array(array)], {
-        type: 'image/jpeg'
       })
     },
     cropUploadSuccess(jsonData, field) {

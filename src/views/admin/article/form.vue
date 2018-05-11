@@ -53,7 +53,8 @@
               <div>
                 <span> {{ main_image_name }}</span>
                 <image-uploader :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
-                
+                <!-- <image-uploader-crop :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader-crop> -->
+
               </div>
               <div>
               <div slot="tip" class="el-upload__tip">Maks 2MB dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
@@ -320,6 +321,7 @@ import { getRelatesByArticleID } from '@/api/relate'
 
 import { mapGetters } from 'vuex'
 import ImageUploader from '@/components/ImageUploader'
+import ImageUploaderCrop from '@/components/ImageUploaderCrop'
 import VueGoogleAutocomplete from 'vue-google-autocomplete'
 import Tinymce from '@/components/Tinymce/index'
 
@@ -332,6 +334,7 @@ export default {
   },
   components: {
     ImageUploader,
+    ImageUploaderCrop,
     VueGoogleAutocomplete,
     Tinymce
   },
