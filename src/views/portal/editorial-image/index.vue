@@ -35,9 +35,9 @@
                       </el-row>
                       <el-row :gutter="20" class="ln-title">
                         <el-col >
-                          <div class="headline"> 
+                          <h1 class="headline"> 
                               {{ latestNews.title }}
-                          </div>
+                          </h1>
                         </el-col>
                       </el-row>
                       <el-row :gutter="20" class="ln-teaser">

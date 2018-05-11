@@ -37,12 +37,10 @@
                           </el-col>
                       </el-row>
                       <el-row :gutter="20" class="ln-title">
-                        <el-col >
-                          <div class="headline"> 
+                        <el-col >                          
                             <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
-                              <span v-html="latestNews.title">  </span>
-                            </router-link>
-                          </div>
+                              <h1 class="headline" v-html="latestNews.title"></h1>
+                            </router-link>                         
                         </el-col>
                       </el-row>
                       <el-row :gutter="20" class="ln-teaser">

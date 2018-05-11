@@ -71,7 +71,7 @@
           <label for="drop" class="toggle"><svg-icon icon-class="Hamburger" class="hamburger-menu"></svg-icon></label>
           <input type="checkbox" id="drop" />          
               <ul class="menu">
-                  <li :class="scrolled > 100 ? 'home-hide': 'home'"><router-link :to="{ path: '/' }" exact>{{$t('portal.navbar.home')}}</router-link></li>
+                  <!--<li :class="scrolled > 100 ? 'home-hide': 'home'"><router-link :to="{ path: '/' }" exact>{{$t('portal.navbar.home')}}</router-link></li>-->
                   <li><router-link :to="{ path: '/home/indonesia-baik' }">Indonesia Baik</router-link></li>
                   <li>
                       <!-- First Tier Drop Down -->
@@ -131,7 +131,7 @@
                     </ul>
                   </li>
                   <li>
-                    <div class="social-media-container">
+                    <div class="social-media-container" :class="scrolled > 50 ? 'home-hide': 'home'">
                       <a href="https://www.facebook.com/beritabaik.id/" target="_blank"><fa-icon name="facebook" scale="1" class="icon" ></fa-icon></a>
                       <a href="https://twitter.com/beritabaik_id" target="_blank"><fa-icon name="twitter" scale="1" class="icon" ></fa-icon></a>
                       <a href="https://www.instagram.com/beritabaik.id/" target="_blank"><fa-icon name="instagram" scale="1" class="icon" ></fa-icon></a>

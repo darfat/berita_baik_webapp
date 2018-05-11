@@ -21,7 +21,9 @@
                 <el-col ><h3 v-html="mainArticle.subtitle"></h3></el-col>
               </el-row>              
               <el-row :gutter="20">
-                <el-col ><h1 class="headline" v-html="mainArticle.title"></h1></el-col>
+                <el-col >
+                  <h1 class="headline" v-html="mainArticle.title"></h1>
+                </el-col>
               </el-row>              
               <el-row :gutter="20">
                   <el-col>

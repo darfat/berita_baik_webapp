@@ -41,7 +41,7 @@
     // height: 100px;
   }
   &-item{    
-    // height: 108px;    
+    height: 108px;    
     &-img{       
       img{        
         max-width: 100%;
@@ -143,10 +143,10 @@ nav {
 .social-media-container{
   color: $bb-white-menu;
   padding-top: 12px;
-  padding-right: 10px;
+  padding-right: 0;
   float: right;
   a{
-    padding: 0 5px 0 0;
+    padding: 0 0 0 0;
     display: inline;
     .icon{
       width: 25px;

@@ -6,7 +6,7 @@
           
   <div class="popular-news m-t-20">
     <el-row :gutter="20" v-for="(popular) in popular_articles" :key="popular.id" >
-      <el-col :span="8">
+      <el-col :span="10">
         <div>
           <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
             <img v-if="popular.thumb_image" :src="popular.thumb_image" class="card-image" />
@@ -14,7 +14,7 @@
           </router-link>
         </div>
       </el-col>
-      <el-col :span="16" class="side-content">                
+      <el-col :span="14" class="side-content">                
         <el-row class="side-title-section">              
           <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
             <span class="headline" v-html="subString(popular.title,60)"  ></span>
