@@ -31,7 +31,7 @@
                       <timeago :auto-update="60" :since="mainArticle.publish_date"> </timeago></p>
                   </el-col>
               </el-row>
-              <el-row :gutter="20">
+              <el-row :gutter="20" class="m-t-20">
                   <el-col class="teks">
                     <div v-if="!isHaveRelatedArticles" v-html="mainArticle.content" class="teks-content" ></div>
                     <!-- <froalaView v-if="!isHaveRelatedArticles" v-model="mainArticle.content" class="teks-content"></froalaView> -->
@@ -42,13 +42,14 @@
                         <ul> 
                           <li v-for="(relate) in mainArticle.article_relates" :key="relate.id" > 
                             <router-link v-if="relate.Article.article_type === 'news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':relate.Article.editorial.slug, 'slug': relate.Article.slug,  'articleID': relate.Article.id} }">                  
-                              <a > <span v-html="relate.Article.title">  </span> </a>
+                               <span v-html="relate.Article.title">  </span> 
                             </router-link>
                             <router-link   v-if="relate.Article.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':relate.Article.editorial.slug, 'slug': relate.Article.slug } }" >                      
-                              <a > <span v-html="relate.Article.title">  </span> </a>
+                               <span v-html="relate.Article.title">  </span> 
                             </router-link>
                             <router-link v-if="relate.Article.article_type === 'video'" :to="{ name: 'editorial-video-detail', params: { 'editorialSlug':relate.Article.editorial.slug, 'slug': relate.Article.slug} }">
-                              <a > <span v-html="relate.Article.title">  </span> </a>                            
+                               <span v-html="relate.Article.title">  </span>   
+                            </router-link>                          
                           </li>
                         </ul>
                       </div>
@@ -62,15 +63,15 @@
                 </el-col>
               </el-row>
               <el-row :gutter="20" class="article-option">
-                  <el-col :xs="24" :sm="2" class="e-lbl mc">
-                    <span class="mc-content">Editor :</span>
+                  <el-col :xs="24" :sm="1" class="e-lbl mc">
+                    <span class="mc-content">Editor:</span>
                   </el-col>
                   <el-col :xs="24" :sm="14" v-loading="loading.authors" class="e-img mc">
                     <div v-for="(author) in mainArticleAuthors" :key="author.id" class="mc-content">
-                      <div class="img-mini">
-                        <img :src="author.user.image_path" class="img-circle"/>                        
+                      <div class="img-mini" v-if="author.notes === 'editor'">
+                        <img :src="author.user.image" class="img-circle"/>                        
                       </div>
-                      <div class="e-name">
+                      <div class="e-name" v-if="author.notes === 'editor'">
                       <span> {{ author.user.name }} </span>
                       <span class="follow-user">                            
                         <v-icon name="user" base-class="icon-20"></v-icon> Follow

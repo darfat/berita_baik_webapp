@@ -74,8 +74,8 @@
           <el-dropdown size="mini" split-button type="info">
             Lainnya
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item v-if="scope.row.article_type !== 'video' && scope.row.editorial && scope.row.editorial.name !== 'infografis' && !scope.row.is_topslide" ><el-button type="text" size="mini"  @click="setAsBeritaUtamaHandler(scope.row.id,scope.row.editorial.id)" >  Set as Berita Utama </el-button> </el-dropdown-item>
-              <el-dropdown-item v-if="scope.row.article_type !== 'video' && scope.row.editorial && scope.row.editorial.name !== 'infografis' && !scope.row.is_headline"> <el-button type="text" size="mini"  @click="setAsHeadlineHandler(scope.row.id,scope.row.editorial.id)" >Set as Headline </el-button></el-dropdown-item>
+              <el-dropdown-item v-if="(scope.row.article_type === 'news' || scope.row.article_type === 'image') &&  editorialSlug !== 'infografis' && !scope.row.is_topslide" ><el-button type="text" size="mini"  @click="setAsBeritaUtamaHandler(scope.row.id,scope.row.editorial.id)" >  Set as Berita Utama </el-button> </el-dropdown-item>
+              <el-dropdown-item v-if="(scope.row.article_type === 'news' || scope.row.article_type === 'image') &&  editorialSlug !== 'infografis'   && !scope.row.is_headline"> <el-button type="text" size="mini"  @click="setAsHeadlineHandler(scope.row.id,scope.row.editorial.id)" >Set as Headline </el-button></el-dropdown-item>
               <el-dropdown-item v-if="scope.row.editorial && !scope.row.is_editor_pick" ><el-button type="text" size="mini"  @click="setAsPilihanEditorHandler(scope.row.id,scope.row.editorial.id)" >Set as Pilihan Editor</el-button></el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
