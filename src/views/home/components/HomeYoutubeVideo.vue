@@ -15,7 +15,7 @@
         <p class="teaser-v">{{ latestVideo.teaser }}</p>        
         <p class="red-line"></p>
         <p class="author-v" >{{ latestVideo.reporter_name }} |
-          <timeago :auto-update="60" :since="latestVideo.publish_date | formatDate"></timeago>
+          <timeago :auto-update="60" :since="latestVideo.publish_date"></timeago>
         </p>     
       </div>
     </div>    

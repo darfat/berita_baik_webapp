@@ -41,7 +41,7 @@
                       <el-row :gutter="20">
                           <el-col class="footer">
                             <div class="author">
-                              {{ infografis.reporter_name }} | <timeago :auto-update="60" :since="infografis.publish_date | formatDate"></timeago>
+                              {{ infografis.reporter_name }} | <timeago :auto-update="60" :since="infografis.publish_date"></timeago>
                             </div>
                           </el-col>
                       </el-row>
