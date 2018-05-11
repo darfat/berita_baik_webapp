@@ -18,7 +18,7 @@
         </router-link>
         <p v-html="item.article.teaser" class="sub-headline" ></p>
         <p class="red-line"></p>
-        <p class="author">{{ item.article.reporter_name}} | <timeago :since="item.article.publish_date"></timeago>
+        <p class="author">{{ item.article.reporter_name}} | <timeago :since="item.article.publish_date | formatDate"></timeago>
         </p>
       </div>
     </el-carousel-item>

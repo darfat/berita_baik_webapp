@@ -28,7 +28,7 @@
                     <p class="red-line"></p>
                     <p class="author">
                       {{ mainArticle.reporter_name }} |
-                      <timeago :auto-update="60" :since="mainArticle.publish_date"> </timeago></p>
+                      <timeago :auto-update="60" :since="mainArticle.publish_date | formatDate"> </timeago></p>
                   </el-col>
               </el-row>
               <el-row :gutter="20" class="m-t-20">

@@ -43,7 +43,7 @@
                 <el-col class="ac-footer">
                   <div class="author">
                     {{ video.reporter_name }} |
-                    <timeago :auto-update="60" :since="video.publish_date"></timeago>
+                    <timeago :auto-update="60" :since="video.publish_date | formatDate"></timeago>
                   </div>
                 </el-col>
               </el-row>

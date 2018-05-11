@@ -4,7 +4,7 @@ import 'normalize.css/normalize.css'// A modern alternative to CSS resets
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import locale from 'element-ui/lib/locale/lang/en'
+import locale from 'element-ui/lib/locale/lang/id'
 import '@/styles/index.scss' // global css
 import App from './App'
 import router from './router'
@@ -65,12 +65,12 @@ Vue.use(SocialSharing)
 Vue.component('fa-icon', Icon)
 Vue.filter('formatDate', function(value) {
   if (value) {
-    return moment(String(value)).format('DD MMMM YYYY hh:mm')
+    return moment.utc(String(value)).format('DD MMMM YYYY HH:mm:ss')
   }
 })
 Vue.filter('formatDateOnly', function(value) {
   if (value) {
-    return moment(String(value)).format('DD MMMM YYYY')
+    return moment.utc(String(value)).format('DD MMMM YYYY')
   }
 })
 Vue.config.productionTip = false

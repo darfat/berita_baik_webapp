@@ -55,7 +55,7 @@
                           <el-col class="footer">
                             <p class="red-line"></p>
                             <div class="author">
-                              {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
+                              {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date | formatDate"></timeago>
                             </div>
                           </el-col>
                       </el-row>

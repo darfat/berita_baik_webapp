@@ -10,7 +10,7 @@
               </el-col>
               <el-col :xs="21" :sm="21" class="comment-info">
                   <div> {{ comment.user.name }}</div>
-                  <div class="comment-date"> <timeago :auto-update="60" :since="comment.created_at"> </timeago>  </div>
+                  <div class="comment-date"> <timeago :auto-update="60" :since="comment.created_at | formatDate"> </timeago>  </div>
               </el-col>
             </el-row>
             <el-row class="comment-comment">
