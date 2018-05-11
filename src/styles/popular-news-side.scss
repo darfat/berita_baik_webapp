@@ -3,34 +3,22 @@
     padding: 15px;
     border-color: #e6e6e6;
     font-size: 0.8em;
-}
-.popular-news .side-row{
-    height: 95px;
-}
-.popular-news .side-row .side-content {
-    padding-left: 1em;
-    height: 100%;
+    img{
+        width: 100%;
+        max-height: 80px;
+        object-fit: cover;   
+    }
 
-}
-.popular-news .side-row .side-content .content-container{
-    height: auto;
-}
-.popular-news .side-row .side-content .content-container .side-title-section{
-    min-height: 40px;
-    max-height: 40px;
-
-}
-.popular-news .side-row .side-image {
-    margin-bottom: 0.8em;
-}
-.popular-news .side-row .side-image .card-image{    
-    width: 100%;
-    max-height: 90px;
-    object-fit: cover;
-}
-
-.popular-news .side-row .side-content  .side-footer{
-    font-weight: bold;
-    font-size: 0.8em;
-    margin-left: -3px;
+    .side-content{        
+        .side-title-section{
+            min-height: 35px;
+        }
+        .side-footer{
+            font-weight: bold;
+            font-size: 0.8em;
+            p{
+                margin: 0; padding: 0;
+            }
+        }
+    }
 }
