@@ -1,6 +1,6 @@
 <template>
-<div>
-  <el-carousel indicator-position="outside" height="560px" v-loading="loading.images">
+<div class="gf-slider">
+  <el-carousel :interval=9000 v-loading="loading.images">
     <el-carousel-item v-for="item in images" :key="item.id">
       <div class="item-wrapper-hl">
           <img :src="item.url" class="image-hl">
