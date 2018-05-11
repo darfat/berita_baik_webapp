@@ -54,16 +54,15 @@
     padding: 20px 40px;
 
     // TITLE
-    h2{
-        margin: 0;
-        font-size: 18px;
-        line-height: 22px;
-        padding-bottom: 10px;
+    h1{
+        margin: 0 0 10px 0;
+        font-size: 2em;
+        line-height: 22px;        
     }
     // SUBTITLE
     h3{
-        margin: 0;
-        font-size: 0.8em;
+        margin: 0 0 10px 0;
+        font-size: 1.1em;
     }
     .author{
         font-weight: bold;
@@ -79,21 +78,40 @@
     .article-option{
         color: #696968;
         padding: 20px 0;        
-        font-size: 0.8em;
+        font-size: 0.8em;        
+        .e-lbl{
+
+        }
+        .e-img{
+            .img-mini {
+                width: 50px;
+                height: 50px;
+                float: left;
+                img{
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+            .e-name{
+                padding-top: 14px;
+                .follow-user{
+                    margin-left: 20xp;
+                    padding: 10px 10px 5px 10px;
+                }
+            }
+
+        }
+        .e-icn{            
+            .icons{
+                float: right;
+                height: 52px;
+                .icon-network{
+                    display: inline;        
+                }
+            }    
+        }
     }
 
-}
-
-.article-container .headline-container .main .content .team{
-    padding-bottom: 10px;
-}
-
-.article-container .headline-container .main .content .icons{
-    float: right;
-    .icon-network{
-        display: inline;        
-    }
-    
 }
 
 .article-container .list-container{
@@ -131,27 +149,46 @@
 }
 
 .bacajuga{
-    border-top: 1px solid #353535;
-    border-bottom: 1px solid #353535;
-    margin: 20px 0;
+    border-top: 1px solid $bb-grayWhite;
+    border-bottom: 1px solid $bb-grayWhite;
+    margin: 20px 0 0 0;
+    padding: 0;
     h4{
-
+        color: $main-red;
+        margin: 10px 0 0 0;
+    }
+    ul{         
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 1.6em; 
     }
     ul li {
-        color: $main-blue;
+        color: $main-red;
         list-style: none;
         font-weight: 700;        
-        padding-left: 0.8em; 
-        text-indent: -1.6em;
-          
+        padding-left: 0;         
+        text-indent: -1.6em;        
     }
   
    ul li::before {
-       color: $main-blue;
+       color: $main-red;
        content: "\2022";
        font-size: 1em;
-       padding-right: 1.1225em;
+       padding-right: .4em;
+       padding-left: 0;       
        position: relative;
-       top: 0em;  
+       top: 0;       
     }
 }
+
+.mc{
+    // width: 100%;  
+    display: table;
+      min-height: 52px;    
+      .mc-content{
+          vertical-align:middle;
+          display: table-cell;
+      }
+  }

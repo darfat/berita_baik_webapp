@@ -72,9 +72,10 @@
   </div>
   <div class="spacer"></div>
 
-  <el-row :gutter="10">
-    <el-col :xs="24" :sm="24"><home-youtube-video></home-youtube-video></el-col>
-  </el-row>
+  <div class="container m-b-20">
+    <home-youtube-video></home-youtube-video>
+  </div>
+  <div class="spacer"></div>
   
   <div class="container m-b-20"> 
       <div class="gray-separator"> <span> </span>  </div>
