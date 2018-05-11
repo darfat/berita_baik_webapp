@@ -52,6 +52,7 @@ export default {
       return Object.keys(this.listObj).every(item => this.listObj[item].hasSuccess)
     },
     handleSubmit() {
+      this.formData = new FormData()
       for (let i = 0, len = this.uploadedFiles.length; i < len; i++) {
         const file = this.uploadedFiles[i]
         this.formData.append('file', file.raw, file.name)
@@ -64,6 +65,9 @@ export default {
           this.formData = new FormData()
           this.dialogVisible = false
         }
+      }).catch(error => {
+        console.log(error)
+        this.$message.warning('Terjadi Kesalahan \n' + error)
       })
     },
     handleSuccess(response, file) {

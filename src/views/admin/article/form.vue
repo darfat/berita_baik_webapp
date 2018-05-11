@@ -309,7 +309,7 @@
 // eslint-disable-next-line
 // eslint-disable-indent
 
-import { create, getArticleByID, update, getLatestArticleAll } from '@/api/article'
+import { create, getArticleByID, update, getLatestArticleAll, getArticleImages } from '@/api/article'
 import { getSections } from '@/api/section'
 import { getArticleTypes } from '@/api/article_type'
 import { getEditorialIdBySlug } from '@/api/editorial'
@@ -463,6 +463,8 @@ export default {
                 console.log(error)
               })
           } else {
+            this.article.content = this.article.content.replace('&lt;!DOCTYPE html&gt;&lt;br /&gt;&lt;html&gt;&lt;br /&gt;&lt;head&gt;&lt;br /&gt;&lt;/head&gt;&lt;br /&gt;&lt;body&gt;', '&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;')
+            this.article.content = this.article.content.replace('&lt;/body&gt;&lt;br /&gt;&lt;/html&gt;', '&lt;/body&gt;&lt;/html&gt;')
             update(this.article)
               .then(response => {
                 if (response.status === 200) {
@@ -510,7 +512,9 @@ export default {
       this.getCityOptions()
       this.getRoleOptions()
       this.getUserOptions()
-      this.getArticleOptions()
+      if (this.articleType === 'news') {
+        this.getArticleOptions()
+      }
       if (this.article.article_tags) {
         this.tagArray = this.article.article_tags.split(',')
       }
@@ -609,6 +613,9 @@ export default {
             const aarName = this.article.main_image.split('/')
             this.main_image_name = aarName[aarName.length - 1]
           }
+          if (this.article.article_type === 'image') {
+            this.getImages(this.article.id)
+          }
         }
       })
     },
@@ -623,6 +630,14 @@ export default {
       getRelatesByArticleID({ articleID }).then(response => {
         if (response) {
           this.article.article_relates = response.data
+        }
+      })
+    },
+    getImages(article_id) {
+      getArticleImages({ article_id }).then(response => {
+        console.log(response)
+        if (response) {
+          this.article.article_images = response.data
         }
       })
     },
