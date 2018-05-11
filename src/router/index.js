@@ -130,7 +130,7 @@ export const constantRouterMap = [
   { path: '/cms-login', component: () => import('@/views/admin/login/index'), hidden: true },
   // public
   // { path: '/login', name: 'public-login', component: () => import('@/views/login/index'), hidden: true },
-  // { path: '/signup', name: 'public-signup', component: () => import('@/views/portal/signup/index'), hidden: true },
+  { path: '/signup', name: 'public-signup', component: () => import('@/views/portal/signup/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
 
   {

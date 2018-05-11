@@ -1,7 +1,7 @@
-import request from '@/utils/request'
+import request_auth from '@/utils/request_auth'
 
 export function getUsers(params) {
-  return request({
+  return request_auth({
     url: '/users',
     method: 'get',
     params
