@@ -37,14 +37,25 @@ export default {
       dialogVisible: false,
       listObj: {},
       fileList: [],
-      formData: new FormData()
+      formData: new FormData(),
+      uploadedFiles: []
     }
+  },
+  created() {
+    this.listObj = {}
+    this.fileList = []
+    this.formData = new FormData()
+    this.uploadedFiles = []
   },
   methods: {
     checkAllSuccess() {
       return Object.keys(this.listObj).every(item => this.listObj[item].hasSuccess)
     },
     handleSubmit() {
+      for (let i = 0, len = this.uploadedFiles.length; i < len; i++) {
+        const file = this.uploadedFiles[i]
+        this.formData.append('file', file.raw, file.name)
+      }
       upload(this.formData).then(response => {
         if (response) {
           this.$emit('successCBK', response.data)
@@ -75,6 +86,12 @@ export default {
           return
         }
       }
+      for (let i = 0, len = this.uploadedFiles.length; i < len; i++) {
+        if (this.uploadedFiles[i].uid === uid) {
+          this.uploadedFiles.splice(i)
+          return
+        }
+      }
     },
     onChange(file) {
       const isGt2MB = file.size > 2000000
@@ -85,7 +102,7 @@ export default {
         this.formData = new FormData()
         return false
       } else {
-        this.formData.append('file', file.raw, file.name)
+        this.uploadedFiles.push(file)
       }
     },
     handleExceed(files, fileList) {

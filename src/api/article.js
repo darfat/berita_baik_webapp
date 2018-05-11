@@ -6,7 +6,7 @@ const VIDEO_TYPE = 'video'
 const IMAGE_TYPE = 'image'
 
 export function getListByEditorialSlug(params) {
-  return request({
+  return request_auth({
     url: '/admin-articles-editorial/' + params.editorialSlug,
     method: 'get',
     params
@@ -82,7 +82,13 @@ export function getLatestNewsAll(params) {
     params
   })
 }
-
+export function getLatestArticleAll(params) {
+  return request_auth({
+    url: '/articles-all/opts',
+    method: 'get',
+    params
+  })
+}
 export function getEditorsPickNewss(params) {
   params.type = NEWS_TYPE
   return request({
