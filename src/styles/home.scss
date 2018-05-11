@@ -6,8 +6,8 @@ h1, h2, h3, h4, h5, h6{
 }
 .container {  
   position: relative;
-  max-width: 1170px;
-  // max-width: 900px;
+  //max-width: 1170px;
+  max-width: 1000px;
   margin: 0 auto;
   padding-left: 10px;
   padding-right: 10px;  
@@ -15,8 +15,8 @@ h1, h2, h3, h4, h5, h6{
 }
 .container-black {  
   position: relative;
-  max-width: 1170px;
-  // max-width: 900px;
+  //max-width: 1170px;
+  max-width: 1000px;
   margin: 0 auto;
   padding-left: 10px;
   padding-right: 10px;  
@@ -121,7 +121,7 @@ h1, h2, h3, h4, h5, h6{
     height: 650px;    
   }
   .el-carousel__indicators{
-    
+    // padding: 0;
   }
   .el-carousel__button{
     width: 12px;
