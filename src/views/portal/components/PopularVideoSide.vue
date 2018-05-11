@@ -51,7 +51,7 @@ export default {
   props: {
     editorialSlug: { type: String, default: null },
     editorialType: { type: String },
-    title: { type: String, default: 'VIDEO TERPOPULAR' },
+    title: { type: String, default: 'VIDEO TERPOPULER' },
     limit: { default: 6, type: Number },
     page: { default: 1, type: Number }
   },

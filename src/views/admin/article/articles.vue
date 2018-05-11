@@ -31,6 +31,12 @@
           <router-link v-if="scope.row.article_type === 'news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':scope.row.editorial.slug, 'slug': scope.row.slug,  'articleID': scope.row.id} }">                  
             <span v-html="scope.row.title">  </span>
           </router-link>
+          <router-link   v-if="scope.row.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':scope.row.editorial.slug, 'slug': scope.row.slug } }" >                      
+            <span v-html="scope.row.title">  </span>
+          </router-link>
+          <router-link v-if="scope.row.article_type === 'video'" :to="{ name: 'editorial-video-detail', params: { 'editorialSlug':scope.row.editorial.slug, 'slug': scope.row.slug} }">
+            <span v-html="scope.row.title">  </span>
+          </router-link>
         </template>
       </el-table-column>
       <el-table-column label="Reporter"   width="150" >
@@ -68,9 +74,9 @@
           <el-dropdown size="mini" split-button type="info">
             Lainnya
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item v-if="scope.row.editorial && !scope.row.is_topslide" ><el-button type="text" size="mini"  @click="setAsBeritaUtamaHandler(scope.row.id,scope.row.editorial.id)" >  Set as Berita Utama </el-button> </el-dropdown-item>
-              <el-dropdown-item v-if="scope.row.editorial && !scope.row.is_headline"> <el-button type="text" size="mini"  @click="setAsHeadlineHandler(scope.row.id,scope.row.editorial.id)" >Set as Headline </el-button></el-dropdown-item>
-              <el-dropdown-item>Set as Pilihan Editor</el-dropdown-item>
+              <el-dropdown-item v-if="(scope.row.article_type === 'news' || scope.row.article_type === 'image') &&  editorialSlug !== 'infografis' && !scope.row.is_topslide" ><el-button type="text" size="mini"  @click="setAsBeritaUtamaHandler(scope.row.id,scope.row.editorial.id)" >  Set as Berita Utama </el-button> </el-dropdown-item>
+              <el-dropdown-item v-if="(scope.row.article_type === 'news' || scope.row.article_type === 'image') &&  editorialSlug !== 'infografis'   && !scope.row.is_headline"> <el-button type="text" size="mini"  @click="setAsHeadlineHandler(scope.row.id,scope.row.editorial.id)" >Set as Headline </el-button></el-dropdown-item>
+              <el-dropdown-item v-if="scope.row.editorial && !scope.row.is_editor_pick" ><el-button type="text" size="mini"  @click="setAsPilihanEditorHandler(scope.row.id,scope.row.editorial.id)" >Set as Pilihan Editor</el-button></el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </template>
@@ -87,7 +93,7 @@
 </template>
 
 <script>
-import { getListByEditorialSlug, updatePublished, softDelete, setAsBeritaUtama, setAsHeadline } from '@/api/article'
+import { getListByEditorialSlug, updatePublished, softDelete, setAsBeritaUtama, setAsHeadline, setAsPilihanEditor } from '@/api/article'
 
 export default {
   name: 'articles',
@@ -223,6 +229,31 @@ export default {
         type: 'warning'
       }).then(() => {
         setAsHeadline({
+          article_id,
+          editorial_id
+        }).then(response => {
+          if (response) {
+            this.getArticlesByEditorialSlug(this.editorialSlug, this.page)
+          }
+        })
+        this.$message({
+          type: 'success',
+          message: 'Data Berhasil Di Update'
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: 'Batalkan'
+        })
+      })
+    },
+    setAsPilihanEditorHandler(article_id, editorial_id) {
+      this.$confirm('Anda yakin akan memilih berita ini sebagai Plihan Editor?', 'Warning', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      }).then(() => {
+        setAsPilihanEditor({
           article_id,
           editorial_id
         }).then(response => {

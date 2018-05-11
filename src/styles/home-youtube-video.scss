@@ -1,11 +1,9 @@
 @import "src/styles/variables.scss";
 .video-wrapper {
     position: relative;
-    padding-bottom: 35%;
-    // padding-bottom: 56.25%;
-    padding-top: 0;
-    height: 0;
-    overflow: hidden;
+    padding-bottom: 56.25%; /* 16:9 */
+    // padding-top: 25px;
+    height: 0;    
     iframe,
     object,
     embed {

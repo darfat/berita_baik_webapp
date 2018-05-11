@@ -64,6 +64,13 @@
     .cld{
       background-color: #fff;
       padding: 20px 20px 0 20px;
+      &-title{
+        margin-left: 20px;
+        h2{
+          color: $main-blue;
+          margin: 0;
+        }
+      }
       
       /*
         vue-event-calendar
@@ -96,7 +103,7 @@
       .__vev_calendar-wrapper .cal-wrapper .cal-body .weeks .item{line-height:50px;float:left;width:14.285%}
       .__vev_calendar-wrapper .cal-wrapper .cal-body .dates{width:100%;overflow:hidden;text-align:center;font-size:1rem}
       .__vev_calendar-wrapper .cal-wrapper .cal-body .dates .item{position:relative;float:left;display:block;width:14.285%;cursor:default;-webkit-tap-highlight-color:rgba(0,0,0,0)}
-      .__vev_calendar-wrapper .cal-wrapper .cal-body .dates .item .date-num{font-size:1rem;position:relative;z-index:3;color: #000!important}
+      .__vev_calendar-wrapper .cal-wrapper .cal-body .dates .item .date-num{font-size:1.5em;position:relative;z-index:3;color: #000!important}
       .__vev_calendar-wrapper .cal-wrapper .cal-body .dates .item.event{cursor:pointer}
       .__vev_calendar-wrapper .cal-wrapper .cal-body .dates .item.selected-day .is-event{background-color:$main-red!important;border: 2px solid $main-red!important;color: $main-blue!important;}
       .__vev_calendar-wrapper .cal-wrapper .cal-body .dates .item.selected-day .is-event .date-num{color: #fff!important;}
@@ -194,6 +201,8 @@
 
     }
     */
-    
+  .red-line{
+    width: 56px;
+  }  
     
 }

@@ -23,7 +23,10 @@
         </swiper>
       </div>
       <div class="cld" >
-        <h2>Acara Bulan Ini</h2>      
+        <div class="cld-title">
+        <h2>Acara Bulan Ini</h2>
+        <p class="red-line"></p>
+        </div>
         <vue-event-calendar :events="events"  @month-changed="handleMonthChanged" >
           <template slot-scope="props">
             <el-collapse accordion v-model="activeName" v-for="(event, index) in props.showEvents" :key="index" v-loading="loading.events">

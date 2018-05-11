@@ -5,7 +5,7 @@
     font-size: 0.8em;
 }
 .popular-news .side-row{
-    height: 110px;
+    height: 95px;
 }
 .popular-news .side-row .side-content {
     padding-left: 1em;
@@ -16,16 +16,17 @@
     height: auto;
 }
 .popular-news .side-row .side-content .content-container .side-title-section{
-    min-height: 55px;
-    max-height: 55px;
+    min-height: 40px;
+    max-height: 40px;
 
 }
 .popular-news .side-row .side-image {
     margin-bottom: 0.8em;
 }
-.popular-news .side-row .side-image .card-image{
+.popular-news .side-row .side-image .card-image{    
     width: 100%;
-    height: 90px;
+    max-height: 90px;
+    object-fit: cover;
 }
 
 .popular-news .side-row .side-content  .side-footer{

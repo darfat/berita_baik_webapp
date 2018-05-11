@@ -202,3 +202,10 @@ export function setAsHeadline(data) {
     data
   })
 }
+export function setAsPilihanEditor(data) {
+  return request_auth({
+    url: '/article-set-as-pilihan-editor/' + data.editorial_id + '/' + data.article_id,
+    method: 'put',
+    data
+  })
+}

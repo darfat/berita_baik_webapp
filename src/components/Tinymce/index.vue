@@ -2,19 +2,20 @@
   <div class="tinymce-container editor-container">
     <textarea class="tinymce-textarea" :id="tinymceId"></textarea>
     <div class="editor-custom-btn-container">
-      <editorImage color="#1890ff" class="editor-upload-btn" @successCBK="imageSuccessCBK"></editorImage>
+      <!-- <editorImage color="#1890ff" class="editor-upload-btn" @successCBK="imageSuccessCBK"></editorImage> -->
+      <image-uploader :isMultiple="false" class="editor-upload-btn" @successCBK="imageSuccessCBK"></image-uploader>
     </div>
   </div>
 </template>
 
 <script>
-import editorImage from './components/editorImage'
+// import editorImage from './components/editorImage'
 import plugins from './plugins'
 import toolbar from './toolbar'
-
+import ImageUploader from '@/components/ImageUploader'
 export default {
   name: 'tinymce',
-  components: { editorImage },
+  components: { ImageUploader },
   props: {
     id: {
       type: String
@@ -141,6 +142,7 @@ export default {
     imageSuccessCBK(arr) {
       const _this = this
       arr.forEach(v => {
+        console.log(v.url)
         window.tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`)
       })
     }

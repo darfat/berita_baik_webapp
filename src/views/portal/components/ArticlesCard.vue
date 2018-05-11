@@ -10,7 +10,8 @@
           <el-card :body-style="{ padding: '0px' }" class="news-card">            
             <div class="mini-thumbnail">
               <router-link  v-if="article.article_type === 'news'"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
-                <img :src="article.main_image" class="card-image" />
+                <img v-if="article.thumb_image" :src="article.thumb_image" class="card-image" />
+                <img v-else :src="article.main_image" class="card-image" />
                 <div class="editorial-type-img">
                   <h3>{{ article.editorial.name }}</h3>
                 </div>
@@ -36,10 +37,10 @@
               <el-row class="ac-title">
                 <div v-if="article.editorial">
                   <router-link v-if="article.article_type === 'news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
-                    <h2 class="headline" v-html="subString(article.title,80)" ></h2>
+                    <h2 class="headline" v-html="subString(article.title,78)" ></h2>
                   </router-link>
                   <router-link   v-if="article.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug } }" >                      
-                    <h2 class="headline" v-html="subString(article.title,80)" ></h2>
+                    <h2 class="headline" v-html="subString(article.title,78)" ></h2>
                   </router-link>
                 </div>
               </el-row>

@@ -10,4 +10,10 @@ export function upload(data) {
     data
   })
 }
-
+export function uploadDataURI(data) {
+  return request_auth({
+    url: '/image/upload-v2',
+    method: 'post',
+    data
+  })
+}

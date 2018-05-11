@@ -1,12 +1,12 @@
 <template>
   <div class="upload-container">
-    <el-button icon='el-icon-upload' size="mini" :style="{background:color,borderColor:color}" @click=" dialogVisible=true" type="primary">Upload
+    <el-button icon='el-icon-upload' size="mini" :style="{background:color,borderColor:color}" @click=" dialogVisible=true" type="primary">Browse File
     </el-button>
     <el-dialog :visible.sync="dialogVisible">
-      <el-upload class="editor-slide-upload" action="http://localhost:9528/"  :multiple="true" :file-list="fileList" :show-file-list="true"
-        list-type="picture-card" :on-remove="handleRemove" :on-success="handleSuccess" :on-change="onChange" :before-upload="beforeUpload" :auto-upload="false">
-        <el-button size="small" type="primary">Upload</el-button>
-      </el-upload>
+      <el-upload :limit="limit" class="editor-slide-upload" action="http://localhost:9528/"  :multiple="true" :file-list="fileList" :show-file-list="true"
+        list-type="picture-card" accept="image/*" :on-preview="handlePreview" :on-remove="handleRemove" :on-exceed="handleExceed" :on-success="handleSuccess" :on-change="onChange" :before-upload="beforeUpload" :auto-upload="false">
+        <el-button size="small" type="primary">Browse File</el-button>
+      </el-upload>      
       <el-button @click="dialogVisible = false">Cancel</el-button>
       <el-button type="primary" @click="handleSubmit">Upload</el-button>
     </el-dialog>
@@ -22,6 +22,10 @@ export default {
     color: {
       type: String,
       default: '#1890ff'
+    },
+    limit: {
+      type: Number,
+      default: 1
     },
     isMultiple: {
       type: Boolean,
@@ -44,14 +48,13 @@ export default {
       upload(this.formData).then(response => {
         if (response) {
           this.$emit('successCBK', response.data)
+          this.listObj = {}
+          this.fileList = []
+          this.formData = new FormData()
+          this.dialogVisible = false
         }
       })
-      this.listObj = {}
-      this.fileList = []
-      this.dialogVisible = false
-      this.formData = new FormData()
     },
-
     handleSuccess(response, file) {
       const uid = file.uid
       const objKeyArr = Object.keys(this.listObj)
@@ -74,20 +77,22 @@ export default {
       }
     },
     onChange(file) {
-      console.log('invoke onChange upload')
-      console.log(file)
-      // console.log(fileList.length)
-      // this.fileList = fileList
-
-      // append the files to FormData
-      // Array
-      //   .from(Array(fileList.length).keys())
-      //   .map(x => {
-      //     this.formData.append("imageAttachment", fileList[x], fileList[x].name)
-      //   })
-      this.formData.append('file', file.raw, file.name)
+      const isGt2MB = file.size > 2000000
+      if (isGt2MB) {
+        this.$message.warning('Ukuran file foto tidak boleh lebih dari 2MB')
+        this.listObj = {}
+        this.fileList = []
+        this.formData = new FormData()
+        return false
+      } else {
+        this.formData.append('file', file.raw, file.name)
+      }
     },
-
+    handleExceed(files, fileList) {
+      this.$message.warning('Melebihi Batas Maksimal Upload Foto')
+    },
+    handlePreview(file) {
+    },
     beforeUpload(file) {
       const _self = this
       const _URL = window.URL || window.webkitURL
@@ -108,7 +113,6 @@ export default {
       })
     }
   }
-
 }
 
 </script>
