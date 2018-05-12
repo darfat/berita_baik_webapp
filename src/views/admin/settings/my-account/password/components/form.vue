@@ -1,22 +1,25 @@
 <template>
     <div class="password-wrapper">
-        <h1>Change Password</h1>
+        <!-- <h1>Change Password</h1> -->
         <!-- <small>Change Password</small> -->
         <el-form class="form-container" ref="passwordVM" :model="passwordVM" :rules="rules"  label-width="200px">
             <el-row>
                 <el-col :span="21">
                     <el-form-item label="Current Password" prop="currentPassword">
-                        <el-input type="password" v-model="passwordVM.currentPassword"></el-input>
+                        <el-input :type="currentPasswordType" v-model="passwordVM.currentPassword"></el-input>
+                        <!-- <span class="show-pwd" @click="showCurrentPassword"><svg-icon icon-class="eye" /></span> -->
                     </el-form-item>
                 </el-col>
                 <el-col :span="21">
                     <el-form-item label="Password" prop="password">
-                        <el-input type="password" v-model="passwordVM.password"></el-input>
+                        <el-input :type="passwordType" v-model="passwordVM.password"></el-input>
+                        <!-- <span class="show-pwd" @click="showPassword"><svg-icon icon-class="eye" /></span> -->
                     </el-form-item>
                 </el-col>
                 <el-col :span="21">
                     <el-form-item label="Confirm Password" prop="confirmPassword">
-                        <el-input type="password" v-model="passwordVM.confirmPassword"></el-input>
+                        <el-input :type="confirmPasswordType" v-model="passwordVM.confirmPassword"></el-input>
+                        <!-- <span class="show-pwd" @click="showConfirmPassword"><svg-icon icon-class="eye" /></span> -->
                     </el-form-item>
                 </el-col>
                 <el-col :span="21">
@@ -30,7 +33,7 @@
     </div>
 </template>
 <script>
-import { validatePassword } from '@/api/profile'
+import { validatePassword, changePassword } from '@/api/profile'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -52,6 +55,9 @@ export default {
       if (value === '') {
         callback(new Error('Silakan Isi Password'))
       } else {
+        if (value && value.length < 8) {
+          callback(new Error('Password kurang dari 8 digit'))
+        }
         if (this.passwordVM.confirmPassword !== '') {
           this.$refs.passwordVM.validateField('confirmPassword')
         }
@@ -84,6 +90,9 @@ export default {
     }
     return {
       passwordVM: {},
+      passwordType: 'password',
+      confirmPasswordType: 'password',
+      currentPasswordType: 'password',
       rules: {
         currentPassword: [
           { trigger: 'blur', validator: validateCurrentPassword }
@@ -103,12 +112,48 @@ export default {
       this.$refs.passwordVM.validate(valid => {
         if (valid) {
           this.loading = true
+          let user = {}
+          user = this.passwordVM
+          user.id = this.user_id
+          changePassword(user)
+            .then(response => {
+              this.$message({
+                type: 'success',
+                message: 'Password Berhasil Di Ubah'
+              })
+              this.$router.push({ path: '/cms' })
+            })
+            .catch(error => {
+              console.log(error)
+              this.$message.warning('Terjadi kesalahan')
+            })
         } else {
           console.error('error submit!!')
           return false
         }
         this.loading = false
       })
+    },
+    showPassword() {
+      if (this.passwordType === 'password') {
+        this.passwordType = ''
+      } else {
+        this.passwordType = 'password'
+      }
+    },
+    showConfirmPassword() {
+      if (this.confirmPasswordType === 'password') {
+        this.confirmPasswordType = ''
+      } else {
+        this.confirmPasswordType = 'password'
+      }
+    },
+    showCurrentPassword() {
+      if (this.currentPasswordType === 'password') {
+        this.currentPasswordType = ''
+      } else {
+        this.currentPasswordType = 'password'
+      }
     }
   }
 }

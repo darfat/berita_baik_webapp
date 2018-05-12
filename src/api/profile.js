@@ -39,3 +39,10 @@ export function validatePassword(userID, password) {
     method: 'get'
   })
 }
+export function changePassword(data) {
+  return request_auth({
+    url: '/user-change-password/' + data.id,
+    method: 'put',
+    data
+  })
+}
