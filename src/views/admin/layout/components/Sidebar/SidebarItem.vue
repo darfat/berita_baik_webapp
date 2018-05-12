@@ -29,10 +29,10 @@
       </el-submenu>
       
     </template>
-    <el-menu-item class="logout">
+    <!-- <el-menu-item class="logout">
     <svg-icon icon-class="example" />
     <span @click="logout">Logout</span>
-    </el-menu-item>
+    </el-menu-item> -->
   </div>
 </template>
 
