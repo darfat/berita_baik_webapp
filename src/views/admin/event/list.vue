@@ -6,11 +6,11 @@
       </router-link>    
     </div>
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
-      <el-table-column align="center" label='ID' width="95">
+      <!-- <el-table-column align="center" label='ID' width="95">
         <template slot-scope="scope">
           {{scope.$index + 1}}
         </template>
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column label="Title" width="150">
         <template slot-scope="scope">
           {{scope.row.title}}
@@ -21,11 +21,15 @@
           <span>{{scope.row.description}}</span>
         </template>
       </el-table-column>
-      
-      <el-table-column align="center" prop="event_date" label="Date" width="200">
+      <el-table-column align="center" prop="event_date" label="Date" width="210">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
-          <span>{{scope.row.event_date}}</span>
+          <span>{{scope.row.date | formatDateOnly}} - {{scope.row.end_date | formatDateOnly}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column class-name="status-col" label="Status" width="110" align="center">
+        <template slot-scope="scope">
+          <el-tag :type="scope.row.is_premium | statusFilter"> {{getPremiumStatus(scope.row.is_premium)}}</el-tag>
         </template>
       </el-table-column>
       <el-table-column align="center" label="Actions" width="230" class-name="small-padding fixed-width">
@@ -37,6 +41,13 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      @current-change="handleCurrentChange"
+      :current-page.sync="page"
+      layout="prev, pager, next"
+      :page-size="per_page"
+      :total="total_entries_size">
+    </el-pagination>
   </div>
 </template>
 
@@ -47,7 +58,11 @@ export default {
   data() {
     return {
       list: null,
-      listLoading: true
+      listLoading: true,
+      per_page: 15,
+      page: 1,
+      total_pages: 1,
+      total_entries_size: 0
     }
   },
   filters: {
@@ -60,17 +75,31 @@ export default {
     }
   },
   created() {
-    this.getAll()
+    this.getAll(1)
   },
   methods: {
-    getAll() {
+    getAll(page) {
       this.listLoading = true
-      getAll(this.listQuery).then(response => {
+      getAll({
+        page: page,
+        per_page: this.per_page
+      }).then(response => {
         if (response) {
           this.list = response.data.data
+          this.per_page = response.data.per_page
+          this.total_pages = response.data.total_pages
+          this.total_entries_size = response.data.total_entries_size
+          this.page = response.data.page
         }
         this.listLoading = false
       })
+    },
+    getPremiumStatus(isPremium) {
+      if (isPremium === true) {
+        return 'Premium'
+      } else {
+        return 'Standar'
+      }
     },
     deleteRow(eventID) {
       this.$confirm('Apakah anda yakin akan menghapus data ini?', 'Warning', {
@@ -91,6 +120,11 @@ export default {
           message: 'Hapus data dibatalkan'
         })
       })
+    },
+    handleSizeChange(val) {
+    },
+    handleCurrentChange(page) {
+      this.getAll(page)
     }
   }
 }
