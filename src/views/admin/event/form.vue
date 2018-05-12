@@ -67,7 +67,6 @@ export default {
   },
   methods: {
     init() {
-      console.log(this.eventId)
       if (this.eventId && this.eventId !== null) {
         this.getById(this.eventId)
         this.action = 'edit'

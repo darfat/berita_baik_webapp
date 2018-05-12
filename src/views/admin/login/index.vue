@@ -48,7 +48,7 @@
 <script>
 import { isvalidUsername } from '@/utils/validate'
 import img_b_logo from '@/assets/images/ikon_berita_baik.png'
-
+/* eslint-disable */
 export default {
   name: 'cmsLogin',
   data() {
@@ -110,11 +110,14 @@ export default {
           this.$store.dispatch('Login', this.loginForm).then(() => {
             this.loading = false
             this.$router.push({ path: '/cms' })
-          }).catch(() => {
+          })
+          .catch(error => {
+            this.$message.warning('Login Tidak Berhasil')
             this.loading = false
           })
         } else {
           console.error('error submit!!')
+          this.$message.warning('Terjadi kesalahan')
           return false
         }
       })

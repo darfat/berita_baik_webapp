@@ -289,7 +289,7 @@
             
             <el-form-item label="Tanggal Publish">
                 <el-col :span="11">
-                <el-date-picker type="datetime" placeholder="Pick a date" v-model="article.publish_date" style="width: 100%;"></el-date-picker>
+                <el-date-picker type="datetime" placeholder="Pick a date" v-model="article.publish_date" style="width: 100%;" format="yyyy-MM-dd HH:mm:ss"></el-date-picker>
                 </el-col>
             </el-form-item>
 
@@ -309,7 +309,7 @@
 // eslint-disable-next-line
 // eslint-disable-indent
 
-import { create, getArticleByID, update, getLatestNewsAll } from '@/api/article'
+import { create, getArticleByID, update, getLatestArticleAll, getArticleImages } from '@/api/article'
 import { getSections } from '@/api/section'
 import { getArticleTypes } from '@/api/article_type'
 import { getEditorialIdBySlug } from '@/api/editorial'
@@ -324,6 +324,7 @@ import ImageUploader from '@/components/ImageUploader'
 import ImageUploaderCrop from '@/components/ImageUploaderCrop'
 import VueGoogleAutocomplete from 'vue-google-autocomplete'
 import Tinymce from '@/components/Tinymce/index'
+import moment from 'moment'
 
 export default {
   name: 'ArticleForm',
@@ -353,7 +354,7 @@ export default {
         title: '',
         editorial_id: null,
         slug: '',
-        publish_date: new Date(),
+        publish_date: null,
         published: true,
         teaser: null,
         content: null,
@@ -439,6 +440,8 @@ export default {
   methods: {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
+        console.log(this.article.publish_date)
+        console.log(this.article)
         if (valid && this.isValidateAuthor() && this.isValidateYoutubeLinkAuthor()) {
           this.article.article_type = this.articleType
           this.article.article_tags = this.tagArray.toString()
@@ -448,8 +451,10 @@ export default {
             this.article.content = '-'
           }
           if (this.action === 'add') {
+            console.log(this.article)
             create(this.article)
               .then(response => {
+                console.log(response)
                 if (response.status === 201) {
                   this.$router.push({ path: '/editorial-articles/l/' + this.editorialSlug })
                 }
@@ -458,9 +463,10 @@ export default {
                 console.log(error)
               })
           } else {
+            this.article.content = this.article.content.replace('&lt;!DOCTYPE html&gt;&lt;br /&gt;&lt;html&gt;&lt;br /&gt;&lt;head&gt;&lt;br /&gt;&lt;/head&gt;&lt;br /&gt;&lt;body&gt;', '&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;')
+            this.article.content = this.article.content.replace('&lt;/body&gt;&lt;br /&gt;&lt;/html&gt;', '&lt;/body&gt;&lt;/html&gt;')
             update(this.article)
               .then(response => {
-                console.log(response)
                 if (response.status === 200) {
                   console.log('update success')
                   this.$router.push({ path: '/editorial-articles/l/' + this.editorialSlug })
@@ -490,8 +496,6 @@ export default {
     },
     isValidateYoutubeLinkAuthor() {
       const isValid = true
-      console.log('validate youtube link')
-      console.log(this.article.sources_path)
       if (this.article.article_type === 'video' && !this.article.sources_path) {
         this.$message.warning('Silakan Isi Link Video Youtube Terlebih Dahulu')
         return false
@@ -499,6 +503,8 @@ export default {
       return isValid
     },
     init() {
+      moment.locale('id')
+      this.article.publish_date = new Date()
       this.article.article_type = this.articleType
       this.getSectionOptions()
       this.getArticleTypeOptions()
@@ -506,7 +512,9 @@ export default {
       this.getCityOptions()
       this.getRoleOptions()
       this.getUserOptions()
-      this.getArticleOptions()
+      if (this.articleType === 'news') {
+        this.getArticleOptions()
+      }
       if (this.article.article_tags) {
         this.tagArray = this.article.article_tags.split(',')
       }
@@ -566,9 +574,10 @@ export default {
     },
     getArticleOptions() {
       const params = {}
-      getLatestNewsAll(params).then(response => {
+      getLatestArticleAll(params).then(response => {
         if (response) {
           this.article_opts = response.data.data
+          console.log(this.article_opts.length)
         }
       })
     },
@@ -604,6 +613,9 @@ export default {
             const aarName = this.article.main_image.split('/')
             this.main_image_name = aarName[aarName.length - 1]
           }
+          if (this.article.article_type === 'image') {
+            this.getImages(this.article.id)
+          }
         }
       })
     },
@@ -618,6 +630,14 @@ export default {
       getRelatesByArticleID({ articleID }).then(response => {
         if (response) {
           this.article.article_relates = response.data
+        }
+      })
+    },
+    getImages(article_id) {
+      getArticleImages({ article_id }).then(response => {
+        console.log(response)
+        if (response) {
+          this.article.article_images = response.data
         }
       })
     },
@@ -718,7 +738,6 @@ export default {
     gallerySuccessCallback(res) {
       if (res) {
         res.forEach(item => {
-          console.log(item.url)
           this.article.article_images.push({ title: item.filename, url: item.url, content: '-', active: true })
         })
         this.$message({

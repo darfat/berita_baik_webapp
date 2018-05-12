@@ -5,54 +5,49 @@
         <el-form class="form-container" ref="profileForm" :model="profile" label-width="120px">
             <el-row>
                 <el-col :span="21">
-                    <el-form-item label="Full Name" prop="fullname">
-                        <el-input v-model="profile.fullname"></el-input>
-                    </el-form-item>
-                </el-col>
-                <el-col :span="21">
                     <el-form-item label="Email" prop="email">
-                        <el-input v-model="profile.email"></el-input>
+                        <el-input v-model="profile.email" disabled></el-input>
                     </el-form-item>
                 </el-col>
                 <el-col :span="21">
-                    <el-form-item label="Profile" prop="Profile">
+                    <el-form-item label="Full Name" prop="name">
+                        <el-input v-model="profile.name"></el-input>
+                    </el-form-item>
+                </el-col>                
+                <el-col :span="21">
+                    <el-form-item label="Bio" prop="bio">
                         <el-input v-model="profile.bio"></el-input>
                     </el-form-item>
                 </el-col>
-                <el-col :span="21">
-                    <el-form-item label="Photo Path" prop="Photo Path">
-                        <el-input v-model="profile.photopath"></el-input>
-                    </el-form-item>
-                </el-col>
-                <el-col :span="21">
+                <el-col :span="21" hidden>
                     <el-form-item label="Introduction" prop="Introduction">
                         <el-input v-model="profile.introduction"></el-input>
                     </el-form-item>
                 </el-col>
                 <el-col :span="21">
                     <el-form-item label="Inisial" prop="Inisial">
-                        <el-input v-model="profile.inisial"></el-input>
+                        <el-input v-model="profile.initial"></el-input>
                     </el-form-item>
                 </el-col>
-                <el-col :span="21">
+                <el-col :span="21" hidden>
                     <el-form-item label="NIK" prop="NIK">
                         <el-input v-model="profile.nik"></el-input>
                     </el-form-item>
                 </el-col>
-                <el-col :span="21">
+                <el-col :span="21" hidden>
                     <el-form-item label="Rekening" prop="Rekening">
                         <el-input v-model="profile.rekening"></el-input>
                     </el-form-item>
                 </el-col>
-                <el-col :span="21">
+                <el-col :span="21" hidden>
                     <el-form-item label="Bank" prop="Bank">
                         <el-input v-model="profile.bank"></el-input>
                     </el-form-item>
                 </el-col>
                 <el-col :span="21">
                     <el-form-item>
-                        <el-button>Cancel</el-button>
-                        <el-button type="primary" @click="onSubmit('')" >Update</el-button>
+                        <el-button @click="reset">Cancel</el-button>
+                        <el-button type="primary" @click="onSubmit('profileForm')" >Update</el-button>
                     </el-form-item>
                 </el-col>
             </el-row>
@@ -60,6 +55,8 @@
     </div>
 </template>
 <script>
+import { update, getProfileById } from '@/api/profile'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'profileDetail',
@@ -69,19 +66,65 @@ export default {
       default: false
     }
   },
+  computed: {
+    ...mapGetters([
+      'role',
+      'user_id'
+    ])
+  },
   data() {
     return {
       profile: {
-        fullname: 'Full Name',
-        email: 'email@gmail.com',
-        bio: 'Lorem ipsum dolor sit amet, mei cu praesent euripidis, veri nobis eripuit eum id. An sea suscipit similique assueverit, ad consul sententiae sadipscing eos. Vis id verear perfecto, audire accusata ea quo. Mea ex magna deserunt, cu eruditi indoctum omittantur qui. Eos ex electram maiestatis reprimique, sed partem eloquentiam cu.',
-        photopath: '',
-        introsuction: '',
-        inisial: '',
-        nik: '',
-        rekening: '',
-        bank: ''
+        name: '',
+        email: ''
       }
+    }
+  },
+  created() {
+    this.init()
+  },
+  methods: {
+    init() {
+      if (this.user_id && this.user_id !== null) {
+        this.getById(this.user_id)
+        this.action = 'edit'
+      }
+    },
+    onSubmit(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          if (this.action === 'edit') {
+            update(this.profile)
+              .then(response => {
+                this.$message({
+                  type: 'success',
+                  message: 'Data Berhasil Di Ubah'
+                })
+              })
+              .catch(error => {
+                console.log(error)
+                this.$message.warning('Terjadi kesalahan pada pengisian form')
+              })
+          }
+        } else {
+          console.error('failed to submit!!')
+          return false
+        }
+      })
+    },
+    getById(userID) {
+      getProfileById({
+        userID
+      }).then(response => {
+        console.log(response)
+        if (response) {
+          this.profile = response.data
+        }
+      })
+    },
+    reset() {
+      this.getById(this.user_id)
+      this.action = 'edit'
     }
   }
 }
