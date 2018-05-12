@@ -1,5 +1,6 @@
 <template>
-  <scroll-bar>
+  <!--<scroll-bar>-->
+  <el-scrollbar wrapClass="scrollbar-wrapper">      
     <div class="logo">      
       <img src="static/images/logo_beritabaik.png" v-if="!isCollapse">
       <img src="static/images/logo_beritabaik_b_.png" v-else>
@@ -11,7 +12,8 @@
     <el-menu mode="vertical" unique-opened :default-active="$route.path" :collapse="isCollapse" >
       <sidebar-item :routes="routes"></sidebar-item>
     </el-menu>
-  </scroll-bar>
+  </el-scrollbar>
+  <!--</scroll-bar>-->
 </template>
 
 <script>
