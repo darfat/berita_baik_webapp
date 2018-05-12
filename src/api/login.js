@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 import request_no_auth from '@/utils/request_no_auth'
+
 export function login(username, password) {
   return request_no_auth({
     url: '/user/login',

@@ -33,3 +33,9 @@ export function destroy(data) {
     method: 'delete'
   })
 }
+export function validatePassword(userID, password) {
+  return request_auth({
+    url: '/user-validate-password/' + userID + '/' + password,
+    method: 'get'
+  })
+}
