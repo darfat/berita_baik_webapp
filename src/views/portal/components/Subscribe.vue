@@ -2,7 +2,7 @@
   <div class="subscribe">      
     <el-form class="form-container" ref="subscribeForm" :model="userSubscribe" :rules="rules">
       <el-row :gutter="20" class="subscribe-content">
-          <el-col :xs="24" :sm="6"  class="mc">
+          <el-col :xs="24" :sm="8"  class="mc">
               <div class="mc-content">
               <span>  <v-icon name="mail" base-class="icon-1dot8em v-align-middle"></v-icon>  </span>
               <span>SELALU UPDATE</span>
@@ -18,7 +18,7 @@
               <el-form-item prop="email"> <el-input type="email"  required placeholder="Surel Anda" v-model="userSubscribe.email" prop="email" ></el-input>
               </el-form-item>
           </el-col>
-           <el-col :xs="24" :sm="6"  >
+           <el-col :xs="24" :sm="4"  >
               <el-button  @click="onSubmit('subscribeForm')" >Subscribe</el-button>
            </el-col>
       </el-row>
