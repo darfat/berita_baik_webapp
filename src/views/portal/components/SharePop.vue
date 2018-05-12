@@ -12,20 +12,22 @@
           :quote="article.title"
           :hashtags="'beritabaik,'+article.article_tags"
           inline-template>
-          <div>
+          <div class="share-pop">
             <network network="facebook">
-              <fa-icon name="facebook-f" scale="1.8" class="network-icon"></fa-icon>
+              <fa-icon name="facebook-f" scale="1" class="network-icon"></fa-icon>
             </network>
-            <network network="twitter" class="network-icon">
-              <fa-icon name="twitter" scale="1.8"></fa-icon>
+            <network network="twitter">
+              <fa-icon name="twitter" scale="1" class="network-icon"></fa-icon>
             </network>
             <network network="email">
-              <fa-icon name="envelope" scale="1.8"></fa-icon>
+              <fa-icon name="envelope" scale="1" class="network-icon"></fa-icon>
             </network>
             <network network="googleplus">
-              <fa-icon name="google-plus" scale="1.8"></fa-icon>
+              <fa-icon name="google-plus" scale="1" class="network-icon"></fa-icon>
             </network>
-            <!-- <network network="whatsapp"><fa-icon name="whatsapp" scale="2" ></fa-icon></network> -->
+            <network network="whatsapp">
+              <fa-icon name="whatsapp" scale="1" class="network-icon" title="Whatsapp"></fa-icon>
+            </network>
             </div>
         </social-sharing>      
     </el-popover>
