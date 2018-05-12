@@ -330,6 +330,12 @@ export const constantRouterMap = [
             meta: { title: 'Change Password', icon: 'password' }
           }
         ]
+      },
+      {
+        path: 'logout',
+        name: 'admin-logout',
+        component: () => import('@/views/admin/logout/index'),
+        meta: { title: 'Logout', icon: 'example' }
       }
     ]
   },
