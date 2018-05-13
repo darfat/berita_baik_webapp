@@ -6,6 +6,7 @@
               <el-col :xs="3" :sm="3" class="comment-img">
                   <div class="img-mini">
                     <img :src="comment.user.image" class="img-circle v-align-middle"/>
+                    <!--<img src="static/images/avatar/f08.png" class="img-circle v-align-middle"/>-->
                   </div>
               </el-col>
               <el-col :xs="21" :sm="21" class="comment-info">
