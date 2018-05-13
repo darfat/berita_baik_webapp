@@ -4,7 +4,7 @@
       <swiper-slide :class="'slide-'+index" v-bind:style="{ backgroundImage: 'url(' + g.main_image + ')' }"  v-for="(g,index) in galleries" :key="g.id">
         <div class="icon">
           <svg-icon icon-class="camera" class="camera"></svg-icon>
-          <span>{{getCount(g.id)}}</span>
+          <span v-if="g.images_count" >{{g.images_count}}</span>
         </div>
         <div class="title">
           <h2><a>{{g.title}}</a></h2>
@@ -18,7 +18,7 @@
       <swiper-slide :class="'slide-'+idx" v-bind:style="{ backgroundImage: 'url(' + gt.main_image + ')' }"  v-for="(gt,idx) in galleries" :key="gt.id">
         <div class="icon">
           <svg-icon icon-class="camera" class="camera"></svg-icon>
-          <span>{{getCount(gt.id)}}</span>
+          <span v-if="gt.images_count" >{{gt.images_count}}</span>
         </div>
       </swiper-slide>  
     </swiper>
@@ -27,7 +27,7 @@
 <script>
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import { getImagesByEditorialSlug, getCountImage } from '@/api/article'
+import { getImagesByEditorialSlug } from '@/api/article'
 
 export default {
   components: {
@@ -87,25 +87,7 @@ export default {
           this.loading.galleries = false
         })
       }
-    },
-    getCount(article_id) {
-      this.loading.count = true
-      if (article_id) {
-        getCountImage({
-          article_id
-        }).then(response => {
-          this.loading.count = false
-          if (response) {
-            return response.data.count
-          } else {
-            return -1
-          }
-        })
-      } else {
-        return -1
-      }
     }
-
   }
 }
 </script>

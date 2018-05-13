@@ -215,3 +215,24 @@ export function setAsPilihanEditor(data) {
     data
   })
 }
+export function updateArticleSharedCount(data) {
+  return request({
+    url: '/article-update-shared-count/' + data.articleID,
+    method: 'put',
+    data
+  })
+}
+export function updateArticleLoveCount(data) {
+  return request({
+    url: '/article-update-love-count/' + data.articleID,
+    method: 'put',
+    data
+  })
+}
+export function updateArticleCommentCount(data) {
+  return request({
+    url: '/article-update-comment-count/' + data.articleID,
+    method: 'put',
+    data
+  })
+}

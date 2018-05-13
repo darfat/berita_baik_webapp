@@ -11,6 +11,7 @@
           :description="article.teaser"
           :quote="article.title"
           :hashtags="'beritabaik,'+article.article_tags"
+          @open="openShare(article.id)"
           inline-template>
           <div class="share-pop">
             <network network="facebook">
@@ -36,10 +37,21 @@
   </div>
 </template>
 <script>
+import { updateArticleSharedCount } from '@/api/article'
+
 export default {
   name: 'dynamic',
   props: {
     article: ''
+  },
+  methods: {
+    openShare(articleID) {
+      updateArticleSharedCount({ articleID }).then(response => {
+        if (response) {
+          console.log('shared success')
+        }
+      })
+    }
   }
 }
 </script>

@@ -364,6 +364,7 @@ export default {
         is_can_comment: true,
         active: true,
         article_type: null,
+        images_count: 0,
         article_authors: [
           {
             role_id: null,
@@ -440,13 +441,14 @@ export default {
   methods: {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
-        console.log(this.article.publish_date)
-        console.log(this.article)
         if (valid && this.isValidateAuthor() && this.isValidateYoutubeLinkAuthor()) {
           this.article.article_type = this.articleType
           this.article.article_tags = this.tagArray.toString()
           this.article.keyword_non_content = this.keywordArray.toString()
           this.reporterNameCheck()
+          if (this.article.article_images) {
+            this.article.images_count = this.article.article_images.length
+          }
           if (this.article.article_type === 'video' || this.editorialSlug === 'infografis') {
             this.article.content = '-'
           }

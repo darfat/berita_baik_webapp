@@ -89,6 +89,7 @@
                         :title="mainArticle.title"
                         :description="mainArticle.teaser"
                         :quote="mainArticle.title"
+                        @open="openShare(mainArticle.id)"
                         hashtags="beritabaik,news"
                         inline-template>
                           <div class="icon-network">                          
@@ -195,7 +196,7 @@ import ArticleSeparator from '@/components/ArticleSeparator'
 import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav, CommentList, Subscribe, Events, AdvertisementSide, InfografisSide } from '@/views/portal/components'
 import BbLove from '@/views/portal/components/BbLove'
 import EventBus from '@/utils/event-bus'
-import { getArticle } from '@/api/article'
+import { getArticle, updateArticleSharedCount } from '@/api/article'
 import { getAuthorsByArticleID } from '@/api/author'
 import { getRelatesByArticleID } from '@/api/relate'
 
@@ -294,6 +295,13 @@ export default {
         this.loading.relates = false
         if (response) {
           this.mainArticle.article_relates = response.data
+        }
+      })
+    },
+    openShare(articleID) {
+      updateArticleSharedCount({ articleID }).then(response => {
+        if (response) {
+          console.log('shared success')
         }
       })
     }
