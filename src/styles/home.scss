@@ -101,20 +101,35 @@ h1, h2, h3, h4, h5, h6{
     line-height: 20px;   
   }
 }
-
+.share-pop,
 .icon-network{
+  cursor: pointer;
   .network-icon {
+    cursor: pointer;
     border-radius: 50px;
     // box-shadow: 0px 0px 2px #0a0a0a;
-    padding: 5px 5px;
+    padding: 3px;
     border: 2px solid #515151;
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
+    margin-right: 3px;
+  }
+}
+.ed-share{
+  text-align: center;
+  .el-dialog__header{
+    padding: 10px 10px 15px 10px;
+  }
+  .el-dialog__body{
+    text-align: center;
+    padding: 10px;
   }
 }
 
 /*
   home-headline-slider indicator
+  set height
+  set indicator
 */
 .hl-slider{  
   .el-carousel__container{
@@ -129,6 +144,11 @@ h1, h2, h3, h4, h5, h6{
     border-radius: 50%;
   }
 }
+/* 
+  carousel galeri-foto
+  set height
+  set indicator
+*/
 .gf-slider{  
   .el-carousel__container{
     height: 563px;

@@ -22,7 +22,7 @@
               </el-row>              
               <el-row :gutter="20">
                 <el-col >
-                  <h1 class="headline" v-html="mainArticle.title"></h1>
+                  <h1 class="headline" v-html="mainArticle.title"></h1>                  
                 </el-col>
               </el-row>              
               <el-row :gutter="20">
@@ -76,42 +76,41 @@
                       <div class="e-name" v-if="author.notes === 'editor'">
                       <span> {{ author.user.name }} </span>
                       <span class="follow-user">                            
-                        <v-icon name="user" base-class="icon-20"></v-icon> Follow
+                        <v-icon name="user" base-class="icon-follow"></v-icon> Follow
                       </span>
                       </div>
                     </div>  
                   </el-col>                      
-                  <el-col :xs="24" :sm="8" class="e-icn">
-                    
+                  <el-col :xs="24" :sm="8" class="e-icn">                    
                     <div class="icons mc">
                       <div class="mc-content">
-                    <bb-love :articleID="mainArticle.id" :type="'article'" :scale="2"></bb-love>
-                    <social-sharing url="http://beritabaik.id/"
-                    :title="mainArticle.title"
-                    :description="mainArticle.teaser"
-                    :quote="mainArticle.title"
-                    hashtags="beritabaik,news"
-                    inline-template>
-                      <div class="icon-network">                          
-                          <network network="facebook">
-                            <fa-icon name="facebook-f" scale="1" class="network-icon"></fa-icon>
-                          </network>
-                          <network network="twitter">
-                            <fa-icon name="twitter" scale="1" class="network-icon"></fa-icon>
-                          </network>
-                          <network network="email">
-                            <fa-icon name="envelope" scale="1" class="network-icon"></fa-icon>
-                          </network>
-                          <network network="googleplus">
-                            <fa-icon name="google-plus" scale="1" class="network-icon"></fa-icon>
-                          </network>
-                          <network network="whatsapp">
-                            <fa-icon name="whatsapp" scale="1" class="network-icon"></fa-icon>
-                          </network>
+                        <bb-love :articleID="mainArticle.id" :type="'article'" :scale="2"></bb-love>
+                        <social-sharing url="http://beritabaik.id/"
+                        :title="mainArticle.title"
+                        :description="mainArticle.teaser"
+                        :quote="mainArticle.title"
+                        hashtags="beritabaik,news"
+                        inline-template>
+                          <div class="icon-network">                          
+                              <network network="facebook">
+                                <fa-icon name="facebook-f" scale="1" class="network-icon"></fa-icon>
+                              </network>
+                              <network network="twitter">
+                                <fa-icon name="twitter" scale="1" class="network-icon"></fa-icon>
+                              </network>
+                              <network network="email">
+                                <fa-icon name="envelope" scale="1" class="network-icon"></fa-icon>
+                              </network>
+                              <network network="googleplus">
+                                <fa-icon name="google-plus" scale="1" class="network-icon"></fa-icon>
+                              </network>
+                              <network network="whatsapp">
+                                <fa-icon name="whatsapp" scale="1" class="network-icon"></fa-icon>
+                              </network>
+                          </div>
+                        </social-sharing>                        
+                        <v-icon name="more-horizontal" base-class="icon-30"></v-icon>
                       </div>
-                    </social-sharing>                        
-                    <v-icon name="more-horizontal" base-class="icon-30"></v-icon>
-                    </div>
                     </div>
                   </el-col>                      
               </el-row>
