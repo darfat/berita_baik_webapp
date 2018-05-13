@@ -57,3 +57,8 @@ export default {
   }
 }
 </script>
+
+<style rel="stylesheet/scss" lang="scss" scoped>
+@import "src/styles/variables.scss";
+
+</style>

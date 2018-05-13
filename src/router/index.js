@@ -149,109 +149,109 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/editorial-articles/indonesia-baik',
     name: 'admin-editorial',
-    meta: { title: 'Editorial', icon: 'example' },
+    meta: { title: 'Editorial', icon: 'news' },
     children: [
       {
         path: 'l/indonesia-baik',
         name: 'admin-indonesia-baik-list',
         component: () => import('@/views/admin/article/indonesiaBaik'),
-        meta: { title: 'Indonesia Baik', icon: 'table' }
+        meta: { title: 'Indonesia Baik', icon: 'ic_bullet - circle - o' }
       },
       // {
       //   path: 'l/indonesia-bangga',
       //   name: 'admin-indonesia-bangga-list',
       //   // component: () => import('@/views/admin/article/indonesiaBangga'),
-      //   meta: { title: 'Indonesia Bangga', icon: 'table' }
+      //   meta: { title: 'Indonesia Bangga', icon: 'ic_bullet - circle - o' }
       // },
       {
         path: 'l/komunitas',
         name: 'admin-komunitas-list',
         component: () => import('@/views/admin/article/komunitas'),
-        meta: { title: 'Komunitas', icon: 'table' }
+        meta: { title: 'Komunitas', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/sosok-inspiratif',
         name: 'admin-sosok-inspiratif-list',
         component: () => import('@/views/admin/article/sosokInspiratif'),
-        meta: { title: 'Sosok Inspiratif', icon: 'table' }
+        meta: { title: 'Sosok Inspiratif', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/prestasi',
         name: 'admin-prestasi-list',
         component: () => import('@/views/admin/article/prestasi'),
-        meta: { title: 'Prestasi', icon: 'table' }
+        meta: { title: 'Prestasi', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/indonesia-membangun',
         name: 'admin-indonesia-membangun-list',
         component: () => import('@/views/admin/article/indonesiaMembangun'),
-        meta: { title: 'Indonesia Membangun', icon: 'table' }
+        meta: { title: 'Indonesia Membangun', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/tempat-wisata',
         name: 'admin-tempat-wisata-list',
         component: () => import('@/views/admin/article/tempatWisata'),
-        meta: { title: 'Tempat Wisata', icon: 'table' }
+        meta: { title: 'Tempat Wisata', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/kuliner',
         name: 'admin-kuliner-list',
         component: () => import('@/views/admin/article/kuliner'),
-        meta: { title: 'Kuliner', icon: 'table' }
+        meta: { title: 'Kuliner', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/teknologi',
         name: 'admin-teknologi-list',
         component: () => import('@/views/admin/article/teknologi'),
-        meta: { title: 'Terknologi', icon: 'table' }
+        meta: { title: 'Terknologi', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/musik',
         name: 'admin-musik-list',
         component: () => import('@/views/admin/article/musik'),
-        meta: { title: 'Musik', icon: 'table' }
+        meta: { title: 'Musik', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/fashion',
         name: 'admin-fashion-list',
         component: () => import('@/views/admin/article/fashion'),
-        meta: { title: 'Fashion', icon: 'table' }
+        meta: { title: 'Fashion', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/film',
         name: 'admin-film-list',
         component: () => import('@/views/admin/article/film'),
-        meta: { title: 'Film', icon: 'table' }
+        meta: { title: 'Film', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/seni',
         name: 'admin-seni-list',
         component: () => import('@/views/admin/article/seni'),
-        meta: { title: 'Seni', icon: 'table' }
+        meta: { title: 'Seni', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/gaya-hidup',
         name: 'admin-gaya-hidup-list',
         component: () => import('@/views/admin/article/gayaHidup'),
-        meta: { title: 'Gaya Hidup', icon: 'table' }
+        meta: { title: 'Gaya Hidup', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/gallery-foto',
         name: 'admin-gallery-foto-list',
         component: () => import('@/views/admin/article/citra'),
-        meta: { title: 'Citra', icon: 'table' }
+        meta: { title: 'Citra', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/video',
         name: 'admin-video-list',
         component: () => import('@/views/admin/article/video'),
-        meta: { title: 'Video', icon: 'table' }
+        meta: { title: 'Video', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/infografis',
         name: 'admin-infografis-list',
         component: () => import('@/views/admin/article/infografis'),
-        meta: { title: 'Infografis', icon: 'table' }
+        meta: { title: 'Infografis', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'f/:editorialSlug',
@@ -267,7 +267,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/events/list',
     name: 'Events',
-    meta: { title: 'Events', icon: 'example' },
+    meta: { title: 'Events', icon: 'calendar' },
     children: [
       {
         path: 'list',
@@ -289,7 +289,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/configuration/tag',
     name: 'Configuration',
-    meta: { title: 'Configuration', icon: 'example' },
+    meta: { title: 'Configuration', icon: 'gear' },
     children: [
       {
         path: 'tag',
@@ -301,7 +301,7 @@ export const constantRouterMap = [
         path: 'editorial',
         name: 'EditorialConfig',
         component: () => import('@/views/admin/editorial/index'),
-        meta: { title: 'Editorial', icon: 'editorial' }
+        meta: { title: 'Editorial', icon: 'work_order_item' }
       }
     ]
   },
@@ -310,7 +310,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: 'noredirect',
     name: 'Settings',
-    meta: { title: 'Settings', icon: 'example' },
+    meta: { title: 'Settings', icon: 'manager' },
     children: [
       {
         path: '/settings/my-account',
@@ -335,7 +335,7 @@ export const constantRouterMap = [
         path: 'logout',
         name: 'admin-logout',
         component: () => import('@/views/admin/logout/index'),
-        meta: { title: 'Logout', icon: 'example' }
+        meta: { title: 'Logout', icon: 'shutdown' }
       }
     ]
   },
