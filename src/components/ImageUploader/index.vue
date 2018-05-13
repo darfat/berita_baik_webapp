@@ -7,7 +7,7 @@
         list-type="picture-card" accept="image/*" :on-preview="handlePreview" :on-remove="handleRemove" :on-exceed="handleExceed" :on-success="handleSuccess" :on-change="onChange" :before-upload="beforeUpload" :auto-upload="false">
         <el-button size="small" type="primary">Browse File</el-button>
       </el-upload>      
-      <el-button @click="dialogVisible = false">Cancel</el-button>
+      <el-button @click="handleCancel">Cancel</el-button>
       <el-button type="primary" @click="handleSubmit">Upload</el-button>
     </el-dialog>
   </div>
@@ -52,17 +52,20 @@ export default {
       return Object.keys(this.listObj).every(item => this.listObj[item].hasSuccess)
     },
     handleSubmit() {
+      console.log(this.uploadedFiles.length)
       this.formData = new FormData()
       for (let i = 0, len = this.uploadedFiles.length; i < len; i++) {
         const file = this.uploadedFiles[i]
         this.formData.append('file', file.raw, file.name)
       }
+      console.log(this.formData)
       upload(this.formData).then(response => {
         if (response) {
           this.$emit('successCBK', response.data)
           this.listObj = {}
           this.fileList = []
-          this.formData = new FormData()
+          this.uploadedFiles = []
+          this.formData = null
           this.dialogVisible = false
         }
       }).catch(error => {
@@ -113,6 +116,14 @@ export default {
       this.$message.warning('Melebihi Batas Maksimal Upload Foto')
     },
     handlePreview(file) {
+    },
+    handleCancel() {
+      console.log('handleCancel')
+      console.log(this.uploadedFiles.length)
+      this.listObj = {}
+      this.fileList = []
+      this.dialogVisible = false
+      this.uploadedFiles = []
     },
     beforeUpload(file) {
       const _self = this
