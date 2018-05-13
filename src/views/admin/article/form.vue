@@ -445,6 +445,8 @@ export default {
           this.article.article_type = this.articleType
           this.article.article_tags = this.tagArray.toString()
           this.article.keyword_non_content = this.keywordArray.toString()
+          this.article.content = this.article.content.replace('\u003cbody\u003e\n', '\u003cbody\u003e')
+          this.article.content = this.article.content.replace('\n\u003c/body\u003e', '\u003c/body\u003e')
           this.reporterNameCheck()
           if (this.article.article_images) {
             this.article.images_count = this.article.article_images.length
@@ -465,8 +467,6 @@ export default {
                 console.log(error)
               })
           } else {
-            this.article.content = this.article.content.replace('&lt;!DOCTYPE html&gt;&lt;br /&gt;&lt;html&gt;&lt;br /&gt;&lt;head&gt;&lt;br /&gt;&lt;/head&gt;&lt;br /&gt;&lt;body&gt;', '&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;')
-            this.article.content = this.article.content.replace('&lt;/body&gt;&lt;br /&gt;&lt;/html&gt;', '&lt;/body&gt;&lt;/html&gt;')
             update(this.article)
               .then(response => {
                 if (response.status === 200) {
@@ -601,6 +601,10 @@ export default {
       }).then(response => {
         if (response) {
           this.article = response.data
+          this.article.content = this.article.content.replace('\u003c!DOCTYPE html\u003e\n\u003chtml\u003e\n\u003chead\u003e\n\u003c/head\u003e\n\u003cbody\u003e\n', '\u003c!DOCTYPE html\u003e\u003chtml\u003e\u003chead\u003e\u003c/head\u003e\u003cbody\u003e')
+          this.article.content = this.article.content.replace('\n\u003c/body\u003e\n\u003c/html\u003e', '\u003c/body\u003e\u003c/html\u003e')
+          this.article.content = this.article.content.replace('\u003cbody\u003e\n', '\u003cbody\u003e')
+          this.article.content = this.article.content.replace('\n\u003c/body\u003e', '\u003c/body\u003e')
           if (this.article.article_tags) {
             this.tagArray = this.article.article_tags.split(',')
           }
