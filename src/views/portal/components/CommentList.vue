@@ -10,7 +10,7 @@
               </el-col>
               <el-col :xs="21" :sm="21" class="comment-info">
                   <div> {{ comment.user.name }}</div>
-                  <div class="comment-date"> <timeago :auto-update="60" :since="comment.created_at | formatDate"> </timeago>  </div>
+                  <div class="comment-date"> <timeago :auto-update="60" :since="comment.created_at"> </timeago>  </div>
               </el-col>
             </el-row>
             <el-row class="comment-comment">
@@ -25,8 +25,9 @@
             </el-row>          
             <el-row >
               <el-col :span="12" class="comment-option" >
-                <span> <bb-love :articleID="comment.id" :type="'comment'" ></bb-love> </span>
-                <span class="opt-label"> {{ comment.likes_count}} </span>
+                <span> &nbsp; </span>
+                <!-- <span> <bb-love :articleID="comment.id" :type="'comment'" ></bb-love> </span>
+                <span class="opt-label"> {{ comment.likes_count}} </span> -->
                 <!-- <span class="opt-label"> | </span>
                 <span class="opt-label"> Reply </span> -->
               </el-col>

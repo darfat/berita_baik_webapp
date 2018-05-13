@@ -77,7 +77,7 @@
                 </div>
               </div>
               <div class="info">
-                  <bb-love></bb-love>
+                  <bb-love :articleID="article.id" :type="'article'" ></bb-love>
                   <share-pop :article="article"></share-pop>
                 <div class="bottom clearfix">
                   <router-link v-if="article.editorial" :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">

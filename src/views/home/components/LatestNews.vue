@@ -19,7 +19,7 @@
                     <div class="bottom clearfix">
                       <el-row >
                         <el-col :span="4">
-                          <span> <bb-love></bb-love> </span>
+                          <span>  </span>
                           <span> <fa-icon name="share-alt" scale="1"  ></fa-icon> </span>
                           
                         </el-col>

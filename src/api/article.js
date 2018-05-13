@@ -222,9 +222,9 @@ export function updateArticleSharedCount(data) {
     data
   })
 }
-export function updateArticleLoveCount(data) {
+export function updateArticleLikeCount(data) {
   return request({
-    url: '/article-update-love-count/' + data.articleID,
+    url: '/article-update-like-count/' + data.articleID,
     method: 'put',
     data
   })
@@ -233,6 +233,13 @@ export function updateArticleCommentCount(data) {
   return request({
     url: '/article-update-comment-count/' + data.articleID,
     method: 'put',
+    data
+  })
+}
+export function articleLikeUnlike(data) {
+  return request({
+    url: '/article-like-unlike',
+    method: 'post',
     data
   })
 }

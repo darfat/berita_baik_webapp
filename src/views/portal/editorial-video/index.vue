@@ -21,7 +21,7 @@
               <el-col>
                 <el-row >
                     <el-col :span="4" v-if="latestNews.id">
-                        <span> <bb-love></bb-love> </span>
+                        <span> <bb-love  :articleID="latestNews.id" :type="'article'"  ></bb-love> </span>
                         <span> <share-pop :article="latestNews"></share-pop>   </span>
                     </el-col>
                 </el-row>

@@ -32,8 +32,8 @@
                     <el-col>
                       <el-row :gutter="20" class="ln-share">
                           <el-col :span="4" v-if="latestNews.id">
-                              <span> <bb-love></bb-love> </span>
-                              <span><a @click="centerDialogVisible = true"> <fa-icon name="share-alt" scale="1.3"  ></fa-icon> </a>  </span>
+                              <!-- <span> <bb-love :articleID="latestNews.id" :type="'article'" ></bb-love> </span> -->
+                              <!-- <span><a @click="centerDialogVisible = true"> <fa-icon name="share-alt" scale="1.3"  ></fa-icon> </a>  </span> -->
                           </el-col>
                       </el-row>
                       <el-row :gutter="20" class="ln-title">

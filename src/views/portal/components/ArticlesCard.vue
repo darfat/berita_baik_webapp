@@ -31,7 +31,7 @@
             </div>            
             <div class="ac-bottom-content">
               <div class="share">
-                <bb-love></bb-love>
+                <bb-love :articleID="article.id" :type="'article'" ></bb-love>
                 <share-pop :article="article"></share-pop>              
               </div>
               <el-row class="ac-title">

@@ -23,7 +23,7 @@
               </div>
               <el-row >
                   <el-col :span="4" v-if="video.id">
-                      <span> <bb-love></bb-love> </span>
+                      <span> <bb-love :articleID="video.id" :type="'article'" ></bb-love> </span>
                       <span> <share-pop :article="video"></share-pop>   </span>
                   </el-col>
               </el-row>

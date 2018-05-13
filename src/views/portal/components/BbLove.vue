@@ -12,41 +12,40 @@
 </template>
 
 <script>
-// import { getArticle } from '@/api/article'
+import { articleLikeUnlike } from '@/api/article'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'BbLove',
   props: {
-    articleID: { type: String, default: '000' },
-    type: { type: String, default: 'article' },
+    articleID: { type: String },
+    type: { type: String },
     scale: { type: Number, default: 1 }
   },
   computed: {
     ...mapGetters([
       'name',
-      'roles'
+      'user_id'
     ])
   },
   data() {
     return {
-      title: {},
       state: false,
       loveClass: 'icon-20',
       loading: {
         love: false
-      }
+      },
+      articleLike: {}
     }
   },
-  created() {
+  mounted() {
     this.init()
   },
   methods: {
     init() {
-
     },
     loveUnLove() {
-      if (this.name) { // login name
+      if (this.user_id) { // login name
         if (this.state) {
           this.state = false
           this.loveClass = 'love-red'
@@ -54,6 +53,16 @@ export default {
           this.state = true
           this.loveClass = 'icon-20'
         }
+        this.articleLike = {
+          liked: this.state,
+          user_id: this.user_id,
+          article_id: this.articleID
+        }
+        articleLikeUnlike(this.articleLike).then(response => {
+          if (response) {
+            console.log('liked!')
+          }
+        })
       } else {
         this.$router.push({
           path: '/login'

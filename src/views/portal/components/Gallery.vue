@@ -13,7 +13,7 @@
                     <div class="bottom clearfix">
                       <el-row >
                         <el-col :span="4">
-                          <span> <bb-love></bb-love> </span>
+                          <span> <bb-love :articleID="mainGallery.id" :type="'article'"></bb-love> </span>
                           <span> <fa-icon name="share-alt" scale="1.3"  ></fa-icon>  </span>
                         </el-col>
                     </el-row>
@@ -62,7 +62,7 @@
                     <div class="bottom clearfix">
                       <el-row >
                         <el-col :span="4">
-                          <span> <bb-love></bb-love> </span>
+                          <span> <bb-love :articleID="g.id" :type="'article'"></bb-love> </span>
                           <span> <fa-icon name="share-alt" scale="1.3"  ></fa-icon>  </span>
                         </el-col>
                     </el-row>

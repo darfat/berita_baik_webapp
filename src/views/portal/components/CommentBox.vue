@@ -44,44 +44,53 @@ export default {
   computed: {
     ...mapGetters([
       'name',
-      'roles'
+      'user_id',
+      'role',
+      'image'
     ])
   },
   data() {
     return {
       comment: '',
       userLogin: {
-        id: '00000000-0000-0000-0000-000000000001',
-        name: 'Anonymous',
-        role: 'user',
         image: 'static/images/avatar/no_avatar.png'
       }
     }
   },
-  created() {
+  mounted() {
     this.init()
   },
   methods: {
     init() {
+      this.userLogin.id = this.user_id
+      this.userLogin.name = this.name
+      this.userLogin.role = this.role
+      if (this.image) {
+        this.userLogin.image = this.image
+      }
     },
     postComment() {
-      const data = {
-        'article_id': this.articleID,
-        'user_id': this.userLogin.id,
-        'comments': this.comment,
-        'active': true,
-        'likes_count': 0
+      if (this.user_id) { // login name
+        const data = {
+          'article_id': this.articleID,
+          'user_id': this.userLogin.id,
+          'comments': this.comment,
+          'active': true,
+          'likes_count': 0
+        }
+        create(data)
+          .then(response => {
+            EventBus.$emit('UPDATE_COMMENTS_EVENT', data)
+            this.comment = ''
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      } else {
+        this.$router.push({
+          path: '/login'
+        })
       }
-      console.log('post comment')
-      console.log(data)
-      create(data)
-        .then(response => {
-          EventBus.$emit('UPDATE_COMMENTS_EVENT', data)
-          this.comment = ''
-        })
-        .catch(error => {
-          console.log(error)
-        })
     }
 
   }

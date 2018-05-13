@@ -9,7 +9,7 @@
         </router-link>
       </div>
       <div class="share">
-        <bb-love></bb-love>        
+        <bb-love :articleID="item.article.id" :type="'article'" ></bb-love>        
         <share-pop :article="item.article"></share-pop>
       </div>
       <div class="text">      
