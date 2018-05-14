@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { articleLikeUnlike } from '@/api/article'
+import { articleLikeUnlike, getArticleLoveState } from '@/api/article'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -43,6 +43,20 @@ export default {
   },
   methods: {
     init() {
+      if (this.user_id) {
+        this.getLoveState()
+      }
+    },
+    getLoveState() {
+      const data = {
+        user_id: this.user_id,
+        article_id: this.articleID
+      }
+      getArticleLoveState(data).then(response => {
+        if (response && response.data) {
+          this.state = response.data.liked === 'true'
+        }
+      })
     },
     loveUnLove() {
       if (this.user_id) { // login name

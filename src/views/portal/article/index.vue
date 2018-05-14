@@ -84,7 +84,7 @@
                   <el-col :xs="24" :sm="8" class="e-icn">                    
                     <div class="icons mc">
                       <div class="mc-content">
-                        <bb-love :articleID="mainArticle.id" :type="'article'" :scale="2"></bb-love>
+                        <bb-love v-if="mainArticle && mainArticle.id" :articleID="mainArticle.id" :type="'article'" :scale="2"></bb-love>
                         <social-sharing v-if="mainArticle && mainArticle.editorial" :url="'http://beritabaik.id/dev/#/home/a/'+mainArticle.editorial.slug+'/'+mainArticle.slug" 
                         :title="mainArticle.title"
                         :description="mainArticle.title"

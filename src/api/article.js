@@ -243,3 +243,11 @@ export function articleLikeUnlike(data) {
     data
   })
 }
+export function getArticleLoveState(data) {
+  return request_auth({
+    url: '/article-like-state/' + data.article_id + '/' + data.user_id,
+    method: 'get',
+    data
+  })
+}
+

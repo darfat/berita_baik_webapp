@@ -32,8 +32,8 @@
                     <el-col>
                       <el-row :gutter="20" class="ln-share">
                           <el-col :span="4" v-if="latestNews.id">
-                              <!-- <span> <bb-love :articleID="latestNews.id" :type="'article'" ></bb-love> </span> -->
-                              <!-- <span><a @click="centerDialogVisible = true"> <fa-icon name="share-alt" scale="1.3"  ></fa-icon> </a>  </span> -->
+                              <span> <bb-love :articleID="latestNews.id" :type="'article'" ></bb-love> </span>
+                              <span><share-pop :article="latestNews"></share-pop>  </span>
                           </el-col>
                       </el-row>
                       <el-row :gutter="20" class="ln-title">
@@ -99,7 +99,7 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide } from '@/views/portal/components'
+import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide, SharePop } from '@/views/portal/components'
 import { getEditorialLabelBySlug, getEditorialIdBySlug } from '@/api/editorial'
 import { getLatestNewsByEditorial } from '@/api/article'
 
@@ -111,7 +111,8 @@ export default {
     ArticlesCard,
     BbLove,
     InfografisSide,
-    AdvertisementSide
+    AdvertisementSide,
+    SharePop
   },
   data() {
     return {
