@@ -52,24 +52,32 @@
             <el-form-item label="Gambar Utama"  prop="main_image" v-if="article.article_type !== 'video'" >
               <div>
                 <span> {{ main_image_name }}</span>
-                <!-- <image-uploader :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader> -->
-                <image-uploader-crop class="image-uploader-btn" :compress="0.9" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" @successCBK="mainImageSuccessCallback"></image-uploader-crop>
+                <image-uploader v-if="editorialSlug === 'infografis'" :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
+                <image-uploader-crop v-else class="image-uploader-btn" :compress="0.9" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" @successCBK="mainImageSuccessCallback"></image-uploader-crop>
               </div>
               <div>
-              <div slot="tip" class="el-upload__tip">Maks 2MB dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
+              <div slot="tip" class="el-upload__tip">Maks 4MB dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
               </div>
             </el-form-item>
             <el-form-item label="Gallery" v-if="article.article_type === 'image' && editorialSlug === 'gallery-foto'">
               <div class="gray-horizontal"></div>
               <div>
-                <span v-if="article.article_images && article.article_images.length > 0">
-                  {{article.article_images.length}} Foto Berhasil Diupload
-                </span>
-                <image-uploader :isMultiple="true" :limit=5 class="image-uploader-btn" @successCBK="gallerySuccessCallback"></image-uploader>
-                <div slot="tip" class="el-upload__tip">Jumlah Maksimal Upload 5 Foto, Maks 2MB Per Foto dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
-
+                <div v-if="article.article_images && article.article_images.length > 0">
+                  {{tempCount}} / {{article.article_images.length}} Foto Berhasil Diupload
+                </div>
+                <!-- <image-uploader :isMultiple="true" :limit=5 class="image-uploader-btn" @successCBK="gallerySuccessCallback"></image-uploader> -->
+                <div v-for="(item, index) in article.article_images" :key="index">
+                  <span>{{item.title}}</span>
+                  <image-uploader-crop  class="image-uploader-btn" :compress="0.9" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" :index="index" @successCBK="gallerySuccessCallback"></image-uploader-crop>
+                  <el-button icon='el-icon-remove' size="mini" type="danger" v-on:click="removeImages(index)">  </el-button>
+                </div>
+                <div slot="tip" class="el-upload__tip" ref="divTipImages">Maks 4MB Per Foto dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
+                <div class="gray-horizontal"></div>
+                <div class="m-t-10">
+                    <el-button class="primary" v-on:click="addImages">Tambah Gambar</el-button>
+                </div>
+                
               </div>
-              <div class="gray-horizontal"></div>
             </el-form-item>
             <el-form-item label="Youtube Embed"  prop="sources_path" v-if="article.article_type === 'video'" >
               <div>
@@ -225,7 +233,7 @@
                   </el-table>
                 </div>
                 <el-form-item class="m-t-10">
-                  <el-button v-on:click="addArticleRelateItem">Add Related News</el-button>
+                  <el-button v-on:click="addArticleRelateItem">Add Related News</el-button>                  
               </el-form-item>
             </el-form-item>
             <div class="gray-horizontal"></div>
@@ -419,7 +427,8 @@ export default {
       },
       validAuthor: true,
       action: 'add',
-      main_image_name: ''
+      main_image_name: '',
+      tempCount: 0
       // froalaConfig: {
       //   events: {
       //     'froalaEditor.initialized': function() {
@@ -441,6 +450,9 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid && this.isValidateAuthor() && this.isValidateYoutubeLinkAuthor()) {
+          if (this.article.article_type === 'video' || this.editorialSlug === 'infografis') {
+            this.article.content = '-'
+          }
           this.article.article_type = this.articleType
           this.article.article_tags = this.tagArray.toString()
           this.article.keyword_non_content = this.keywordArray.toString()
@@ -450,14 +462,9 @@ export default {
           if (this.article.article_images) {
             this.article.images_count = this.article.article_images.length
           }
-          if (this.article.article_type === 'video' || this.editorialSlug === 'infografis') {
-            this.article.content = '-'
-          }
           if (this.action === 'add') {
-            console.log(this.article)
             create(this.article)
               .then(response => {
-                console.log(response)
                 if (response.status === 201) {
                   this.$router.push({ path: '/editorial-articles/l/' + this.editorialSlug })
                 }
@@ -525,6 +532,10 @@ export default {
       if (this.articleId && this.articleId !== null) {
         this.getById(this.articleId)
         this.action = 'edit'
+      } else {
+        if (this.articleType === 'image') {
+          this.article.article_images.push({ title: '', url: '', content: '-', active: true })
+        }
       }
     },
     getSectionOptions() {
@@ -578,7 +589,6 @@ export default {
       getLatestArticleAll(params).then(response => {
         if (response) {
           this.article_opts = response.data.data
-          console.log(this.article_opts.length)
         }
       })
     },
@@ -640,9 +650,14 @@ export default {
     },
     getImages(article_id) {
       getArticleImages({ article_id }).then(response => {
-        console.log(response)
         if (response) {
           this.article.article_images = response.data
+          this.tempCount = 0
+          this.article.article_images.forEach(item => {
+            if (item.url.length > 1) {
+              this.tempCount++
+            }
+          })
         }
       })
     },
@@ -717,6 +732,24 @@ export default {
     removeArticleRelateItem(idx) {
       this.article.article_relates.splice(idx, 1)
     },
+    removeImages(idx) {
+      this.article.article_images.splice(idx, 1)
+      this.tempCount = 0
+      this.article.article_images.forEach(item => {
+        if (item.url.length > 1) {
+          this.tempCount++
+        }
+      })
+    },
+    addImages() {
+      const imgObj = { title: '', url: '', content: '-', active: true }
+      if (this.article.article_images) {
+        this.article.article_images.push(imgObj)
+      } else {
+        this.article.article_images = []
+        this.article.article_images.push(imgObj)
+      }
+    },
     addArticleAuthorItem() {
       const author = {
         role_id: null,
@@ -741,6 +774,23 @@ export default {
       }
     },
     gallerySuccessCallback(res) {
+      if (res) {
+        res.forEach(item => {
+          this.article.article_images[item.index] = { title: item.filename, url: item.url, content: '-', active: true }
+        })
+        this.$message({
+          type: 'success',
+          message: 'Foto Berhasil Diupload'
+        })
+        this.tempCount = 0
+        this.article.article_images.forEach(item => {
+          if (item.url.length > 1) {
+            this.tempCount++
+          }
+        })
+      }
+    },
+    gallerySuccessCallbackOld(res) {
       if (res) {
         res.forEach(item => {
           this.article.article_images.push({ title: item.filename, url: item.url, content: '-', active: true })

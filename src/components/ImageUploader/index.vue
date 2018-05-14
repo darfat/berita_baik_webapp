@@ -56,9 +56,11 @@ export default {
       this.formData = new FormData()
       for (let i = 0, len = this.uploadedFiles.length; i < len; i++) {
         const file = this.uploadedFiles[i]
-        this.formData.append('file', file.raw, file.name)
+        const d = new Date()
+        const time = d.getTime()
+        const filename = time + '-' + file.name
+        this.formData.append('file', file.raw, filename)
       }
-      console.log(this.formData)
       upload(this.formData).then(response => {
         if (response) {
           this.$emit('successCBK', response.data)
@@ -101,9 +103,9 @@ export default {
       }
     },
     onChange(file) {
-      const isGt2MB = file.size > 2000000
+      const isGt2MB = file.size > 4000000
       if (isGt2MB) {
-        this.$message.warning('Ukuran file foto tidak boleh lebih dari 2MB')
+        this.$message.warning('Ukuran file foto tidak boleh lebih dari 4MB')
         this.listObj = {}
         this.fileList = []
         this.formData = new FormData()

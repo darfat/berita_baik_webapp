@@ -38,14 +38,17 @@ export default {
       default: '#1890ff'
     },
     compress: {
-      type: Number,
+      type: Number
     },
     sizeLimit: {
-      type: Number,
+      type: Number
     },
     sizeLimitMessage: {
-      type: String,
-    }    
+      type: String
+    },
+    index: {
+      type: Number
+    }
   },
   components: {},
   data() {
@@ -58,23 +61,25 @@ export default {
   },
   methods: {
     handleCroppaFileChoose(file) {
-      console.log('handleCroppaFileChoose')
+      // console.log('handleCroppaFileChoose')
+      const d = new Date()
+      const time = d.getTime()
       this.filetype = file.type
-      this.filename = file.name
+      this.filename = time + '-' + file.name
     },
     handleCroppaFileSizeExceed(file) {
-      console.log('handleCroppaFileSizeExceed')
+      // console.log('handleCroppaFileSizeExceed')
       this.$message.warning('Terjadi Kesalahan \n Foto Yang Diupload Melebihi maksimal size, Batas Maksimal untuk upload foto adalah ' + this.sizeLimitMessage)
     },
     handleCroppaFileTypeMismatch(file) {
-      console.log('handleCroppaFileTypeMismatch')
+      // console.log('handleCroppaFileTypeMismatch')
       this.$message.warning('Terjadi Kesalahan \n Foto Yang Diupload hanya format jpg/png\n')
     },
     handleImageRemove() {
-      console.log('handleImageRemove')
+      // console.log('handleImageRemove')
     },
     uploadCroppedImage() {
-      console.log('upload cropped image')
+      // console.log('upload cropped image')
       this.imageCropper.generateBlob(
         blob => {
           // write code to upload the cropped image file (a file is a blob)
@@ -82,7 +87,11 @@ export default {
           formData.append('file', blob, this.filename)
           upload(formData).then(response => {
             if (response) {
-              this.$emit('successCBK', response.data)
+              var data = response.data
+              if (data && data.length > 0) {
+                data[0].index = this.index
+              }
+              this.$emit('successCBK', data)
               this.dialogVisible = false
             }
           }).catch(error => {
