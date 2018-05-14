@@ -60,30 +60,6 @@
                     </el-col>
                   </el-row>
             </div>
-            <el-dialog custom-class="ed-share" :visible.sync="centerDialogVisible" width="20%" center>
-                <span @click="centerDialogVisible = false" v-if="latestNews">
-                  <social-sharing  v-if="latestNews.editorial"  :url="'http://beritabaik.id/#/home/a/'+latestNews.editorial.slug+'/'+latestNews.slug" :title="latestNews.title" :description="latestNews.teaser" :quote="latestNews.title"
-                    :hashtags="'beritabaik,'+latestNews.article_tags" inline-template>
-                    <div class="icon-network">
-                      <network network="facebook">
-                        <fa-icon name="facebook-f" scale="1.8" class="network-icon"></fa-icon>
-                      </network>
-                      <network network="twitter">
-                        <fa-icon name="twitter" scale="1.8" class="network-icon"></fa-icon>
-                      </network>
-                      <network network="email">
-                        <fa-icon name="envelope" scale="1.8" class="network-icon"></fa-icon>
-                      </network>
-                      <network network="googleplus">
-                        <fa-icon name="google-plus" scale="1.8" class="network-icon"></fa-icon>
-                      </network>
-                      <network network="whatsapp">
-                        <fa-icon name="whatsapp" scale="2" class="network-icon"></fa-icon>
-                      </network>
-                    </div>
-                  </social-sharing>
-                </span>
-              </el-dialog>
           </el-col>        
         </el-row>
         

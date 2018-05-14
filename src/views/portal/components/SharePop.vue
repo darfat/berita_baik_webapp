@@ -5,8 +5,8 @@
       placement="right"
       trigger="click">
         <social-sharing
-          v-if="article"
-          :url="'http://beritabaik.id/#/home/a/'+article.editorial.slug+'/'+article.slug"
+          v-if="article && article.editorial"
+          :url="'http://beritabaik.id/dev/#/home/a/'+article.editorial.slug+'/'+article.slug"
           :title="article.title"
           :description="article.teaser"
           :quote="article.title"

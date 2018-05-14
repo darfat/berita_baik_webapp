@@ -85,12 +85,12 @@
                     <div class="icons mc">
                       <div class="mc-content">
                         <bb-love :articleID="mainArticle.id" :type="'article'" :scale="2"></bb-love>
-                        <social-sharing url="http://beritabaik.id/"
+                        <social-sharing v-if="mainArticle && mainArticle.editorial" :url="'http://beritabaik.id/dev/#/home/a/'+mainArticle.editorial.slug+'/'+mainArticle.slug" 
                         :title="mainArticle.title"
-                        :description="mainArticle.teaser"
+                        :description="mainArticle.title"
                         :quote="mainArticle.title"
                         @open="openShare(mainArticle.id)"
-                        hashtags="beritabaik,news"
+                        hashtags="beritabaik"
                         inline-template>
                           <div class="icon-network">                          
                               <network network="facebook">
@@ -105,7 +105,7 @@
                               <network network="googleplus">
                                 <fa-icon name="google-plus" scale="1" class="network-icon"></fa-icon>
                               </network>
-                              <network network="whatsapp">
+                              <network network="whatsapp" >
                                 <fa-icon name="whatsapp" scale="1" class="network-icon"></fa-icon>
                               </network>
                           </div>
