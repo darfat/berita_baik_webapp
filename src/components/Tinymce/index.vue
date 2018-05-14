@@ -2,8 +2,8 @@
   <div class="tinymce-container editor-container">
     <textarea class="tinymce-textarea" :id="tinymceId"></textarea>
     <div class="editor-custom-btn-container">
-      <!-- <editorImage color="#1890ff" class="editor-upload-btn" @successCBK="imageSuccessCBK"></editorImage> -->
-      <image-uploader :isMultiple="false" class="editor-upload-btn" @successCBK="imageSuccessCBK"></image-uploader>
+      <image-uploader-crop class="image-uploader-btn" @successCBK="imageSuccessCBK" :compress="0.8" :sizeLimit="2000000" :sizeLimitMessage="'2MB'" ></image-uploader-crop>
+      <!-- <image-uploader :isMultiple="false" class="editor-upload-btn" @successCBK="imageSuccessCBK"></image-uploader> -->
     </div>
   </div>
 </template>
@@ -13,9 +13,11 @@
 import plugins from './plugins'
 import toolbar from './toolbar'
 import ImageUploader from '@/components/ImageUploader'
+import ImageUploaderCrop from '@/components/ImageUploaderCrop'
+
 export default {
   name: 'tinymce',
-  components: { ImageUploader },
+  components: { ImageUploader, ImageUploaderCrop },
   props: {
     id: {
       type: String
@@ -142,7 +144,6 @@ export default {
     imageSuccessCBK(arr) {
       const _this = this
       arr.forEach(v => {
-        console.log(v.url)
         window.tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`)
       })
     }
@@ -169,5 +170,12 @@ export default {
 }
 .editor-upload-btn {
   display: inline-block;
+}
+img {
+    max-width: 400px;
+    height: auto;
+}
+.wscnph{
+  max-width: 100%;
 }
 </style>

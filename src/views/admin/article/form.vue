@@ -52,9 +52,8 @@
             <el-form-item label="Gambar Utama"  prop="main_image" v-if="article.article_type !== 'video'" >
               <div>
                 <span> {{ main_image_name }}</span>
-                <image-uploader :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
-                <!-- <image-uploader-crop :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader-crop> -->
-
+                <!-- <image-uploader :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader> -->
+                <image-uploader-crop class="image-uploader-btn" :compress="0.9" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" @successCBK="mainImageSuccessCallback"></image-uploader-crop>
               </div>
               <div>
               <div slot="tip" class="el-upload__tip">Maks 2MB dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
