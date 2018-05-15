@@ -1,15 +1,32 @@
 <template>  
   <div style="height: 500px; background-color: #323232"   v-loading="loading.galleries" >    
     <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" >
-      <swiper-slide :class="'slide-'+index" v-bind:style="{ backgroundImage: 'url(' + g.main_image + ')' }"  v-for="(g,index) in galleries" :key="g.id">
-        <div class="icon">
-          <svg-icon icon-class="camera" class="camera"></svg-icon>
-          <span v-if="g.images_count" >{{g.images_count}}</span>
-        </div>
-        <div class="title">
-          <h2><a>{{g.title}}</a></h2>
-          <p>{{g.subtitle}}</p>
-        </div>
+      <swiper-slide :class="'slide-'+index" v-bind:style="{ backgroundImage: 'url(' + g.main_image + ')' }"  v-for="(g,index) in galleries" :key="g.id" >
+        <div class="overlay-desc" v-if="g"  >        
+          <div class="align-center"> <h3 v-if="g.editorial" >{{ g.editorial.name }}</h3> </div>
+          <router-link v-if="g && g.editorial" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':g.editorial.slug, 'slug': g.slug } }" >                                       
+              <h2>{{ g.title }}</h2>
+          </router-link>
+          <p class="teaser-v">{{ g.teaser }}</p>        
+          <p class="red-line"></p>
+          <p class="author-v" >{{ g.reporter_name }} |
+            <timeago :auto-update="60" :since="g.publish_date"></timeago>
+          </p>     
+      </div>
+        <router-link v-if="g && g.editorial" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':g.editorial.slug, 'slug': g.slug } }" >                                       
+          <div class="content-image-bg">
+            <div class="icon">
+              <svg-icon icon-class="camera" class="camera"></svg-icon>
+              <span v-if="g.images_count" >{{g.images_count}}</span>
+            </div>
+            <!-- <div class="title">
+              <router-link v-if="g && g.editorial" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':g.editorial.slug, 'slug': g.slug } }" >                                       
+                <h2><a>{{g.title}}</a></h2>
+              </router-link>
+              <p>{{g.subtitle}}</p>
+            </div> -->
+          </div>
+        </router-link>
       </swiper-slide>
       <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
       <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
@@ -121,6 +138,49 @@ export default {
   .gallery-top {
     height: 80%!important;
     width: 100%;
+    .content-image-bg{
+      height:100%
+    }
+    .overlay-desc {
+        // background-color: rgba(0,0,0,0.3);
+        position: absolute;
+        right: 10%; left: 5%; top: 35%;
+        display: flex;
+        //align-items: flex-end;
+        // justify-content: flex-end;
+        color: white;  
+        flex-direction: column;
+        padding: 10px;
+        h2, h3, p { margin: 0; }
+        h2{
+            font-family: 'Neosans-Black';            
+            margin-top: 13px;
+            font-size: 25px;
+            // font-size: 2.573529411764706vw;
+        }
+        h3{
+            background-color: $main-blue;
+            display: table;
+            padding: 10px;
+            // width: 30%;
+            text-transform: uppercase;            
+            font-family: 'Neosans-Black';
+            font-size: 19px;
+            // font-size: 1.397058823529412vw;
+        }
+        .teaser-v{            
+            margin-top: 13px;
+            margin-bottom: 13px;
+            font-size: 16px;
+            // font-size: 1.1764705882352942vw;
+        }
+        .author-v{            
+            line-height: 18px;
+            font-weight: 900;
+            font-size: 12px;
+            //font-size: 0.8823529411764706vw;
+        }
+    }
     .icon{
       padding: 20px;
       color: $main-blue;      

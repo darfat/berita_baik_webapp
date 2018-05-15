@@ -49,7 +49,7 @@
               <div slot="tip" class="el-upload__tip"> Tag &lt;related/&gt; : untuk menambahkan Berita Terkait di dalam konten </div>
               </div>
             </el-form-item>
-            <el-form-item label="Gambar Utama"  prop="main_image" v-if="article.article_type !== 'video'" >
+            <el-form-item label="Gambar Utama"  prop="main_image" v-if="article.article_type === 'news' || editorialSlug === 'infografis'" >
               <div>
                 <span> {{ main_image_name }}</span>
                 <image-uploader v-if="editorialSlug === 'infografis'" :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
@@ -777,6 +777,11 @@ export default {
       if (res) {
         res.forEach(item => {
           this.article.article_images[item.index] = { title: item.filename, url: item.url, content: '-', active: true }
+          if (item.index === 0) {
+            this.article.main_image = item.url
+            this.article.thumb_image = item.url_thumb
+            this.main_image_name = item.filename
+          }
         })
         this.$message({
           type: 'success',

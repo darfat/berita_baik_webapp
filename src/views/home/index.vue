@@ -55,7 +55,6 @@
     </div>    
   </el-row>
 
-  
   <el-row>
     <div class="container">
     <el-col :xs="24" :sm="16"><galeri></galeri></el-col>
