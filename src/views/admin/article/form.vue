@@ -631,6 +631,9 @@ export default {
           if (this.article.article_type === 'image') {
             this.getImages(this.article.id)
           }
+          if (this.article.publish_date) {
+            this.article.publish_date = moment.utc(String(this.article.publish_date)).format('YYYY-MM-DD HH:mm:ss')
+          }
         }
       })
     },
