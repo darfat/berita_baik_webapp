@@ -62,6 +62,7 @@
             <el-form-item label="Gallery" v-if="article.article_type === 'image' && editorialSlug === 'gallery-foto'">
               <div class="gray-horizontal"></div>
               <div>
+                <div> <small> Main Image : <span> {{ main_image_name }}</span> </small></div>
                 <div v-if="article.article_images && article.article_images.length > 0">
                   {{tempCount}} / {{article.article_images.length}} Foto Berhasil Diupload
                 </div>
@@ -473,6 +474,7 @@ export default {
                 console.log(error)
               })
           } else {
+            this.article.publish_date = new Date(this.article.publish_date)
             update(this.article)
               .then(response => {
                 if (response.status === 200) {
