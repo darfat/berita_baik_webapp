@@ -45,8 +45,8 @@ require('froala-editor/css/froala_style.min.css')
 
 // Cropppa
 import Croppa from 'vue-croppa'
-
 // Cropppa
+import VueAnalytics from 'vue-analytics'
 
 Vue.use(ElementUI, { locale })
 Vue.use(feather, 'v-icon')
@@ -79,8 +79,11 @@ Vue.component('infinite-loading', InfiniteLoading)
 Vue.use(FBSignInButton)
 Vue.use(GSignInButton)
 Vue.use(vueEventCalendar, { locale: 'en' }) // locale can be 'zh','en','es','pt-br','ja','ko','fr','it','ru','de','vi','ua'
-
 Vue.use(Croppa, { componentName: 'my-image-cropper' })
+Vue.use(VueAnalytics, {
+  id: 'UA-118969342-1',
+  router
+})
 
 new Vue({
   el: '#app',
