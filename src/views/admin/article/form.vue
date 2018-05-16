@@ -49,7 +49,7 @@
               <div slot="tip" class="el-upload__tip"> Tag &lt;related/&gt; : untuk menambahkan Berita Terkait di dalam konten </div>
               </div>
             </el-form-item>
-            <el-form-item label="Gambar Utama"  prop="main_image" v-if="article.article_type !== 'video'" >
+            <el-form-item label="Gambar Utama"  prop="main_image" v-if="article.article_type === 'news' || editorialSlug === 'infografis'" >
               <div>
                 <span> {{ main_image_name }}</span>
                 <image-uploader v-if="editorialSlug === 'infografis'" :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
@@ -62,6 +62,7 @@
             <el-form-item label="Gallery" v-if="article.article_type === 'image' && editorialSlug === 'gallery-foto'">
               <div class="gray-horizontal"></div>
               <div>
+                <div> <small> Main Image : <span> {{ main_image_name }}</span> </small></div>
                 <div v-if="article.article_images && article.article_images.length > 0">
                   {{tempCount}} / {{article.article_images.length}} Foto Berhasil Diupload
                 </div>
@@ -473,6 +474,7 @@ export default {
                 console.log(error)
               })
           } else {
+            this.article.publish_date = new Date(this.article.publish_date)
             update(this.article)
               .then(response => {
                 if (response.status === 200) {
@@ -631,6 +633,9 @@ export default {
           if (this.article.article_type === 'image') {
             this.getImages(this.article.id)
           }
+          if (this.article.publish_date) {
+            this.article.publish_date = moment.utc(String(this.article.publish_date)).format('YYYY-MM-DD HH:mm:ss')
+          }
         }
       })
     },
@@ -777,6 +782,11 @@ export default {
       if (res) {
         res.forEach(item => {
           this.article.article_images[item.index] = { title: item.filename, url: item.url, content: '-', active: true }
+          if (item.index === 0) {
+            this.article.main_image = item.url
+            this.article.thumb_image = item.url_thumb
+            this.main_image_name = item.filename
+          }
         })
         this.$message({
           type: 'success',
