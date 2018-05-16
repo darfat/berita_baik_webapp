@@ -145,6 +145,34 @@ export const constantRouterMap = [
     }]
   },
   {
+    path: '/cms-public',
+    component: Layout,
+    redirect: '/bp-your-articles/y-news/berita-kamu',
+    name: 'back-berita-kamu',
+    meta: { title: 'Berita Kamu', icon: 'news' },
+    children: [
+      {
+        path: 'bp-your-articles/y-news/berita-kamu',
+        name: 'back-berita-kamu-list',
+        component: () => import('@/views/public/article/berita'),
+        meta: { title: 'Berita Kamu', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'bp-your-images/y-image/foto-kamu',
+        name: 'back-foto-kamu-list',
+        component: () => import('@/views/public/article/citra'),
+        meta: { title: 'Foto Kamu', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'bp-f/:articleType/:editorialSlug',
+        name: 'back-public-article-form',
+        props: true,
+        component: () => import('@/views/public/article/form'),
+        hidden: true
+      }
+    ]
+  },
+  {
     path: '/editorial-articles',
     component: Layout,
     redirect: '/editorial-articles/indonesia-baik',
