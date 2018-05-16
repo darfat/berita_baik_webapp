@@ -126,7 +126,7 @@ export default {
     PopularNewsSide,
     HomeYoutubeVideo,
     Subscribe,
-    Events,    
+    Events,
     ArticlesCard,
     InfografisSide,
     SocialFeed,
