@@ -55,17 +55,16 @@
     </div>    
   </el-row>
 
-  
   <el-row>
     <div class="container">
-    <el-col :xs="24" :sm="16"><galeri></galeri></el-col>
+    <el-col :xs="24" :sm="16"><gallery></gallery></el-col>
     <el-col :xs="24" :sm="8">
       <div class="ads">
         <ads-banner :showTitle=true :id="3"></ads-banner>
       </div>
     </el-col>
     </div>
-  </el-row>
+  </el-row> 
 
   <div class="container m-b-20"> 
       <div class="gray-separator"> <span> </span>  </div>
@@ -115,7 +114,7 @@
 </template>
 
 <script>
-import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, Galeri, AdsBanner } from '@/views/home/components'
+import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, AdsBanner, Gallery } from '@/views/home/components'
 import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide, SocialFeed, InstagramFeed, AdvertisementSide } from '@/views/portal/components'
 
 export default {
@@ -127,14 +126,14 @@ export default {
     PopularNewsSide,
     HomeYoutubeVideo,
     Subscribe,
-    Events,
-    Galeri,
+    Events,    
     ArticlesCard,
     InfografisSide,
     SocialFeed,
     InstagramFeed,
     AdvertisementSide,
-    AdsBanner
+    AdsBanner,
+    Gallery
   },
   computed: {
   }
@@ -169,7 +168,7 @@ export default {
 
 .ads{
   background-color: $black-2;
-  height: 500px;
+  min-height: 420px;
   text-align: center;
   padding: 10px;
   small{

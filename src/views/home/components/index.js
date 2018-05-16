@@ -7,4 +7,4 @@ export { default as LatestNews } from './LatestNews'
 export { default as HomeYoutubeVideo } from './HomeYoutubeVideo'
 export { default as Galeri } from './Galeri'
 export { default as AdsBanner } from './AdsBanner'
-
+export { default as Gallery } from './Gallery'
