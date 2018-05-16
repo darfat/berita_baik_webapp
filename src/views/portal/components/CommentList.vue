@@ -32,8 +32,9 @@
                 <!-- <span class="opt-label"> | </span>
                 <span class="opt-label"> Reply </span> -->
               </el-col>
-              <el-col :span="12" class="align-right">
-                  <span> <v-icon name="more-horizontal" base-class="icon-20"></v-icon> </span>
+              <el-col :span="12" class="align-right" v-if="role && role ==='editor'">
+                  <span> <v-icon name="more-horizontal" base-class="icon-20" ></v-icon> </span>
+                  <!-- <el-button @click="deleteComment(comment.id)">delete</el-button> -->
               </el-col>
             </el-row> 
         </el-row>
@@ -137,12 +138,13 @@ export default {
       this.getComments(this.articleID, page)
     },
     deleteComment(article_comment_id) {
-      destroy({article_comment_id}).then(response => {
+      destroy({ article_comment_id }).then(response => {
         if (response) {
           this.$message({
-          type: 'success',
-          message: 'Komentar berhasil dihapus'
-          })    
+            type: 'success',
+            message: 'Komentar berhasil dihapus'
+          })
+          this.getComments(this.articleID, this.page)
         }
       })
     }
