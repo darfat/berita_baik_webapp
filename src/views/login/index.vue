@@ -144,6 +144,7 @@ export default {
       })
     },
     onSignInSuccess(response, googleUser) {
+      console.log('google /fb signin success')
       /*
       FB.api('/me', dude => {
         console.log(`Good to see you, ${dude.name}.`)

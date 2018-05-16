@@ -11,6 +11,7 @@
           :description="article.teaser"
           :quote="article.title"
           :hashtags="'beritabaik,'+article.article_tags"
+          twitter-user="beritabaik_id"
           @open="openShare(article.id)"
           inline-template>
           <div class="share-pop">
