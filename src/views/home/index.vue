@@ -42,6 +42,7 @@
         <div class="side-separator">
             <span> Buka lebih banyak lagi </span>
         </div>
+        <div class="spacer m-t-10"></div>
         <infografis-side :editorialSlug="'infografis'"  > </infografis-side>      
         <div class="spacer m-t-10"></div>
         <div class="side-separator">
@@ -55,7 +56,7 @@
     </div>    
   </el-row>
 
-  <el-row>
+  <el-row :gutter="20">
     <div class="container">
     <el-col :xs="24" :sm="16"><gallery></gallery></el-col>
     <el-col :xs="24" :sm="8">
