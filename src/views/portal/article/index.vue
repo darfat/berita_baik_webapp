@@ -117,6 +117,7 @@
                           </div>
                         </social-sharing>                        
                         <v-icon name="more-horizontal" base-class="icon-30"></v-icon>
+                        <!-- <el-button @click="reportThis()" size="mini">report</el-button> -->
                       </div>
                     </div>
                   </el-col>                      
@@ -205,6 +206,8 @@ import EventBus from '@/utils/event-bus'
 import { getArticle, updateArticleSharedCount } from '@/api/article'
 import { getAuthorsByArticleID } from '@/api/author'
 import { getRelatesByArticleID } from '@/api/relate'
+import { create } from '@/api/reported_article'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'ArticleDetail',
@@ -226,6 +229,13 @@ export default {
     articleID: { type: String },
     slug: { type: String }
   },
+  computed: {
+    ...mapGetters([
+      'name',
+      'user_id',
+      'role'
+    ])
+  },
   data() {
     return {
       mainArticle: {},
@@ -239,7 +249,8 @@ export default {
       },
       content1: null,
       content2: null,
-      isHaveRelatedArticles: false
+      isHaveRelatedArticles: false,
+      report_reason: ''
     }
   },
   created() {
@@ -309,6 +320,17 @@ export default {
       updateArticleSharedCount({ articleID }).then(response => {
         if (response) {
           console.log('shared success')
+        }
+      })
+    },
+    reportThis() {
+      this.report_reason = 'Berita tidak baik'
+      create({ article_id: this.mainArticle.id, user_id: this.user_id, response: this.report_reason, active: true, editorial_id: this.mainArticle.editorial_id }).then(response => {
+        if (response) {
+          this.$message({
+            type: 'success',
+            message: 'Terima kasih atas laporan anda'
+          })
         }
       })
     }

@@ -2,7 +2,7 @@
   <!--<scroll-bar>-->
   <el-scrollbar wrapClass="scrollbar-wrapper">      
     <div class="logo">      
-      <a href="#/home" title="beritabaik.id" target="_blank">
+      <a href="/#/home" title="beritabaik.id" >
         <img :src="img_logo_mono" v-if="!isCollapse" class="logo-f">
         <img :src="img_ikon_mono" class="logo-i" v-else>
       </a>

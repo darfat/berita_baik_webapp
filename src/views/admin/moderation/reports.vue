@@ -53,11 +53,6 @@
           <el-button type="danger" size="mini" @click="deleteArticleRow(scope.row.article.id)" >Delete</el-button>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="Actions" width="150" class-name="small-padding fixed-width">
-        <template slot-scope="scope">
-          <el-button type="danger" size="mini" @click="deleteRow(scope.row.id)" >Delete</el-button>
-        </template>
-      </el-table-column>
     </el-table>
     <el-pagination
       @current-change="handleCurrentChange"
