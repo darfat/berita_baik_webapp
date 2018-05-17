@@ -70,6 +70,15 @@
                 <span> {{ main_image_name }}</span>
                 <image-uploader v-if="editorialSlug === 'infografis'" :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
                 <image-uploader-crop v-else class="image-uploader-btn" :compress="0.9" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" @successCBK="mainImageSuccessCallback"></image-uploader-crop>
+                <el-popover
+                  placement="right"
+                  width="400"
+                  trigger="click">
+                  <div>
+                    <img :src="article.main_image" width="100%" height="100%"/>
+                  </div>
+                  <el-button slot="reference" size="mini">Lihat Gambar</el-button>
+                </el-popover>
               </div>
               <div>
               <div slot="tip" class="el-upload__tip">Maks 4MB dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
@@ -88,6 +97,15 @@
                   <span>{{item.title}}</span>
                   <image-uploader-crop  class="image-uploader-btn" :compress="0.9" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" :index="index" @successCBK="gallerySuccessCallback"></image-uploader-crop>
                   <el-button icon='el-icon-remove' size="mini" type="danger" v-on:click="removeImages(index)">  </el-button>
+                    <el-popover
+                    placement="right"
+                    width="400"
+                    trigger="click">
+                    <div>
+                      <img :src="item.url" width="100%" height="100%"/>
+                    </div>
+                    <el-button slot="reference" size="mini">Lihat Gambar</el-button>
+                  </el-popover>
                 </div>
                 <div slot="tip" class="el-upload__tip" ref="divTipImages">Maks 4MB Per Foto dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
                 <div class="gray-horizontal"></div>
@@ -211,12 +229,16 @@
                 <el-date-picker type="datetime" placeholder="Pick a date" v-model="article.publish_date" style="width: 100%;" format="yyyy-MM-dd HH:mm:ss"></el-date-picker>
                 </el-col>
             </el-form-item>
-
             <div class="gray-horizontal"></div>
             <div class="spacer"></div>
             <el-form-item class="m-t-20">
-                <el-button type="primary" @click="onSubmit('articleForm')" v-if="action === 'add'">Create</el-button>
-                <el-button type="primary" @click="onSubmit('articleForm')" v-if="action === 'edit'">Update</el-button>
+                <el-button type="success" @click="onSubmit('articleForm',true,'Published')" v-if="action === 'edit'">Publish</el-button>
+                <el-button type="danger" @click="onSubmit('articleForm',false,'Konten Berita Ditolak')" v-if="action === 'edit'">Tolak</el-button>                
+            </el-form-item>
+            <div class="gray-horizontal"></div>
+            <div class="spacer"></div>
+            <el-form-item class="m-t-20">
+                <el-button type="primary" @click="onSubmit('articleForm',false,null)" v-if="action === 'edit'">Update</el-button>
                 <el-button  @click="back()" >Cancel</el-button>
             </el-form-item>
         </el-form>
@@ -289,8 +311,7 @@ export default {
         city_id: null,
         reporter_id: null,
         editor_id: null,
-        editorial: null,
-        status: 'Menunggu Verifikasi'
+        editorial: null
       },
       loading: {
         city: false
@@ -337,7 +358,7 @@ export default {
   watch: {},
 
   methods: {
-    onSubmit(formName) {
+    onSubmit(formName, isPublished, status) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           if (this.article.article_type === 'video' || this.editorialSlug === 'infografis') {
@@ -358,7 +379,7 @@ export default {
               .then(response => {
                 if (response.status === 201) {
                   this.$router.push({
-                    path: '/cms-public/bp-your-articles' + '/' + this.articleType + '/' + this.editorialSlug
+                    path: '/moderation/artikel-kamu-list' + '/' + this.articleType + '/' + this.editorialSlug
                   })
                 }
               })
@@ -366,13 +387,17 @@ export default {
                 console.log(error)
               })
           } else {
+            if (status !== null) {
+              this.article.status = status
+            }
+            this.article.published = isPublished
             this.article.publish_date = new Date(this.article.publish_date)
             update(this.article)
               .then(response => {
                 if (response.status === 200) {
                   console.log('update success')
                   this.$router.push({
-                    path: '/cms-public/bp-your-articles' + '/' + this.articleType + '/' + this.editorialSlug
+                    path: '/moderation/artikel-kamu-list' + '/' + this.articleType + '/' + this.editorialSlug
                   })
                 }
               })
@@ -609,7 +634,7 @@ export default {
     },
     back() {
       this.$router.push({
-        path: '/cms-public/bp-your-articles' + '/' + this.articleType + '/' + this.editorialSlug
+        path: '/moderation/artikel-kamu-list' + '/' + this.articleType + '/' + this.editorialSlug
       })
     },
     addArticleRelateItem() {

@@ -150,7 +150,7 @@ export const asyncRouterMap = [
     redirect: '/cms/dashboard',
     name: 'Dashboard',
     hidden: true,
-    meta: { troles: ['public', 'editor'] },
+    meta: { roles: ['public', 'editor'] },
     children: [{
       path: 'dashboard',
       component: () => import('@/views/admin/dashboard/index')
@@ -303,17 +303,57 @@ export const asyncRouterMap = [
     ]
   },
   {
+    path: '/moderation',
+    component: Layout,
+    redirect: '/moderation/artikel-kamu-list/y-news/berita-kamu',
+    name: 'moderation',
+    meta: { title: 'Moderasi', icon: 'example', roles: ['editor'] },
+    children: [
+      {
+        path: 'artikel-kamu-list/y-news/berita-kamu',
+        name: 'berita-kamu-list',
+        component: () => import('@/views/admin/moderation/berita'),
+        meta: { title: 'Berita Kamu', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'artikel-kamu-list/y-image/foto-kamu',
+        name: 'foto-kamu-list',
+        component: () => import('@/views/admin/moderation/citra'),
+        meta: { title: 'Foto Kamu', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'artikel-kamu-form/:articleType/:editorialSlug',
+        name: 'artikel-kamu-form',
+        props: true,
+        component: () => import('@/views/admin/moderation/myForm'),
+        hidden: true
+      },
+      {
+        path: 'article-reported',
+        name: 'article-reported-list',
+        component: () => import('@/views/admin/event/list'),
+        meta: { title: 'Report', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'article-comment',
+        name: 'article-comment-list',
+        component: () => import('@/views/admin/event/list'),
+        meta: { title: 'Komentar', icon: 'ic_bullet - circle - o' }
+      }
+    ]
+  },
+  {
     path: '/events',
     component: Layout,
     redirect: '/events/list',
     name: 'Events',
-    meta: { title: 'Events', icon: 'calendar', roles: ['editor'] },
+    meta: { title: 'Acara', icon: 'calendar', roles: ['editor'] },
     children: [
       {
         path: 'list',
         name: 'event-list',
         component: () => import('@/views/admin/event/list'),
-        meta: { title: 'Events', icon: 'calendar' }
+        meta: { title: 'Acara', icon: 'calendar' }
       },
       {
         path: 'form',
@@ -329,7 +369,7 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/configuration/tag',
     name: 'Configuration',
-    meta: { title: 'Configuration', icon: 'gear', roles: ['editor'] },
+    meta: { title: 'Konfigurasi', icon: 'gear', roles: ['editor'] },
     children: [
       {
         path: 'tag',
@@ -350,24 +390,24 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: 'noredirect',
     name: 'Settings',
-    meta: { title: 'Settings', icon: 'manager' },
+    meta: { title: 'Pengaturan', icon: 'manager' },
     children: [
       {
         path: '/settings/my-account',
         component: () => import('@/views/admin/settings/my-account/index'),
         redirect: 'noredirect',
         name: 'myAccount',
-        meta: { title: 'My Account', icon: 'user' },
+        meta: { title: 'Akun', icon: 'user' },
         children: [
           { path: 'edit-profile',
             component: () => import('@/views/admin/settings/my-account/profile/edit'),
             name: 'editProfile',
-            meta: { title: 'Edit Profile', icon: 'user' }
+            meta: { title: 'Ubah Data', icon: 'user' }
           },
           { path: 'change-password',
             component: () => import('@/views/admin/settings/my-account/password/edit'),
             name: 'ChangePassword',
-            meta: { title: 'Change Password', icon: 'password' }
+            meta: { title: 'Ubah Kata Sandi', icon: 'password' }
           }
         ]
       },

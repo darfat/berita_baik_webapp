@@ -1,7 +1,7 @@
 <template>
   <div class="app-container calendar-list-container">
       <div class="filter-container">
-      <el-input style="width: 200px;" class="filter-item" placeholder="Title" v-model="search.title">
+      <el-input style="width: 200px;" class="filter-item" placeholder="Judul" v-model="search.title">
       </el-input>
       <!-- <el-select clearable style="width: 90px" class="filter-item" v-model="listQuery.importance" placeholder="Author">
         <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item">

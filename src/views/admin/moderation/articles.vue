@@ -1,9 +1,7 @@
 <template>
   <div class="app-container calendar-list-container">
       <div class="filter-container">
-     <router-link class="filter-item" :to="{ name: 'back-public-article-form', params: { editorialSlug, articleType } }" >
-        <el-button type="primary" >Tulis Berita Baik</el-button>
-      </router-link>    
+        
       </div>
     
       <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row style="width: 100%"> 
@@ -28,7 +26,7 @@
       </el-table-column>
       <el-table-column class-name="status-col" label="Status" width="180" align="center">
         <template slot-scope="scope">
-          <el-tag :type="scope.row.published | statusFilter"> {{getPublishedStatus(scope.row.published,scope.row.status)}}</el-tag>
+          <el-tag :type="scope.row.published | statusFilter"> {{getPublishedStatus(scope.row.published, scope.row.status)}}</el-tag>
         </template>
       </el-table-column>
       <el-table-column align="center" prop="publish_date" label="Tanggal Publish" width="200">
@@ -40,7 +38,7 @@
       
       <el-table-column align="center" label="Actions" width="150" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <router-link class="filter-item" :to="{ name: 'back-public-article-form', params: { editorialSlug, articleType, 'articleId': scope.row.id} }" >
+          <router-link class="filter-item" :to="{ name: 'artikel-kamu-form', params: { editorialSlug, articleType, 'articleId': scope.row.id} }" >
             <el-button type="primary" size="mini" >Edit</el-button>
           </router-link>
           
@@ -60,10 +58,10 @@
 </template>
 
 <script>
-import { getListByEditorialSlug, searchListByEditorialSlug, updatePublished, softDelete, setAsBeritaUtama, setAsHeadline, setAsPilihanEditor } from '@/api/article'
+import { getListDraftByEditorialSlug, searchListByEditorialSlug, updatePublished, softDelete, setAsBeritaUtama, setAsHeadline, setAsPilihanEditor } from '@/api/article'
 
 export default {
-  name: 'myArticles',
+  name: 'articles',
   props: {
     editorialSlug: { type: String },
     articleType: { type: String }
@@ -96,7 +94,7 @@ export default {
   methods: {
     getArticlesByEditorialSlug(editorialSlug, page) {
       this.listLoading = true
-      getListByEditorialSlug({
+      getListDraftByEditorialSlug({
         editorialSlug,
         page: page,
         per_page: this.per_page

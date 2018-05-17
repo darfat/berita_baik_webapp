@@ -13,6 +13,13 @@ export function getListByEditorialSlug(params) {
     params
   })
 }
+export function getListDraftByEditorialSlug(params) {
+  return request_auth({
+    url: '/admin-draft-articles-editorial/' + params.editorialSlug,
+    method: 'get',
+    params
+  })
+}
 export function searchListByEditorialSlug(params) {
   return request_auth({
     url: '/admin-search-articles-editorial/' + params.editorialSlug,
