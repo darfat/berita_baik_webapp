@@ -338,7 +338,8 @@ export const asyncRouterMap = [
         path: 'article-comment',
         name: 'article-comment-list',
         component: () => import('@/views/admin/event/list'),
-        meta: { title: 'Komentar', icon: 'ic_bullet - circle - o' }
+        meta: { title: 'Komentar', icon: 'ic_bullet - circle - o' },
+        hidden: true
       }
     ]
   },
@@ -359,6 +360,28 @@ export const asyncRouterMap = [
         path: 'form',
         name: 'event-form',
         component: () => import('@/views/admin/event/form'),
+        props: true,
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/advertisements',
+    component: Layout,
+    redirect: '/advertisements/list',
+    name: 'advertisement',
+    meta: { title: 'Iklan', icon: 'calendar', roles: ['editor'] },
+    children: [
+      {
+        path: 'list',
+        name: 'advertisement-list',
+        component: () => import('@/views/admin/advertisement/list'),
+        meta: { title: 'Iklan', icon: 'calendar' }
+      },
+      {
+        path: 'form',
+        name: 'advertisement-form',
+        component: () => import('@/views/admin/advertisement/form'),
         props: true,
         hidden: true
       }

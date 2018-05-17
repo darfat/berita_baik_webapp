@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
-    <div class="filter-container  m-b-20">
-      <router-link class="filter-item" :to="{ name: 'event-form' }" >
+    <div class="filter-container m-b-20">
+      <router-link class="filter-item" :to="{ name: 'advertisement-form' }" >
         <el-button type="primary" >Create</el-button>
       </router-link>    
     </div>
@@ -11,30 +11,25 @@
           {{scope.$index + 1}}
         </template>
       </el-table-column> -->
-      <el-table-column label="Title" width="150">
+      <el-table-column label="Nama" width="150">
         <template slot-scope="scope">
           {{scope.row.title}}
         </template>
       </el-table-column>
-      <el-table-column label="Description" >
+      <el-table-column label="Posisi" >
         <template slot-scope="scope">
-          <span>{{scope.row.description}}</span>
+          <span>{{scope.row.position}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" prop="event_date" label="Date" width="210">
+      <el-table-column align="center" prop="date" label="Date" width="210">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
-          <span>{{scope.row.date | formatDateOnly}} - {{scope.row.end_date | formatDateOnly}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column class-name="status-col" label="Status" width="110" align="center">
-        <template slot-scope="scope">
-          <el-tag :type="scope.row.is_premium | statusFilter"> {{getPremiumStatus(scope.row.is_premium)}}</el-tag>
+          <span>{{scope.row.start_date | formatDateOnly}} - {{scope.row.end_date | formatDateOnly}}</span>
         </template>
       </el-table-column>
       <el-table-column align="center" label="Actions" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <router-link class="filter-item" :to="{ name: 'event-form', params: { 'eventId': scope.row.id} }" >
+          <router-link class="filter-item" :to="{ name: 'advertisement-form', params: { 'advertisementId': scope.row.id} }" >
             <el-button type="primary" size="mini" >Edit</el-button>
           </router-link>
           <el-button type="danger" size="mini" @click="deleteRow(scope.row.id)" >Delete</el-button>
@@ -52,7 +47,7 @@
 </template>
 
 <script>
-import { getAll, destroy } from '@/api/event'
+import { getAll, destroy } from '@/api/advertisement'
 
 export default {
   data() {
@@ -94,20 +89,13 @@ export default {
         this.listLoading = false
       })
     },
-    getPremiumStatus(isPremium) {
-      if (isPremium === true) {
-        return 'Premium'
-      } else {
-        return 'Standar'
-      }
-    },
-    deleteRow(eventID) {
+    deleteRow(advertisementID) {
       this.$confirm('Apakah anda yakin akan menghapus data ini?', 'Warning', {
         confirmButtonText: 'OK',
         cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
-        destroy({ eventID }).then(response => {
+        destroy({ advertisementID }).then(response => {
           this.$message({
             type: 'success',
             message: 'Hapus data berhasil'
