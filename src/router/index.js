@@ -133,23 +133,63 @@ export const constantRouterMap = [
   { path: '/signup', name: 'public-signup', component: () => import('@/views/portal/signup/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
 
+  { path: '*', redirect: '/404', hidden: true }
+
+]
+
+export default new Router({
+  // mode: 'history', //后端支持可开
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRouterMap
+})
+
+export const asyncRouterMap = [
   {
     path: '/cms',
     component: Layout,
     redirect: '/cms/dashboard',
     name: 'Dashboard',
     hidden: true,
+    meta: { roles: ['public', 'editor'] },
     children: [{
       path: 'dashboard',
       component: () => import('@/views/admin/dashboard/index')
     }]
   },
   {
+    path: '/cms-public',
+    component: Layout,
+    redirect: '/bp-your-articles/y-news/berita-kamu',
+    name: 'back-berita-kamu',
+    meta: { title: 'Berita Kamu', icon: 'news', roles: ['public'] },
+    children: [
+      {
+        path: 'bp-your-articles/y-news/berita-kamu',
+        name: 'back-berita-kamu-list',
+        component: () => import('@/views/public/article/berita'),
+        meta: { title: 'Berita Kamu', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'bp-your-articles/y-image/foto-kamu',
+        name: 'back-foto-kamu-list',
+        component: () => import('@/views/public/article/citra'),
+        meta: { title: 'Foto Kamu', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'bp-f/:articleType/:editorialSlug',
+        name: 'back-public-article-form',
+        props: true,
+        component: () => import('@/views/public/article/myForm'),
+        hidden: true
+      }
+    ]
+  },
+  {
     path: '/editorial-articles',
     component: Layout,
     redirect: '/editorial-articles/indonesia-baik',
     name: 'admin-editorial',
-    meta: { title: 'Editorial', icon: 'news' },
+    meta: { title: 'Editorial', icon: 'news', roles: ['editor'] },
     children: [
       {
         path: 'l/indonesia-baik',
@@ -263,17 +303,57 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/moderation',
+    component: Layout,
+    redirect: '/moderation/artikel-kamu-list/y-news/berita-kamu',
+    name: 'moderation',
+    meta: { title: 'Moderasi', icon: 'example', roles: ['editor'] },
+    children: [
+      {
+        path: 'artikel-kamu-list/y-news/berita-kamu',
+        name: 'berita-kamu-list',
+        component: () => import('@/views/admin/moderation/berita'),
+        meta: { title: 'Berita Kamu', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'artikel-kamu-list/y-image/foto-kamu',
+        name: 'foto-kamu-list',
+        component: () => import('@/views/admin/moderation/citra'),
+        meta: { title: 'Foto Kamu', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'artikel-kamu-form/:articleType/:editorialSlug',
+        name: 'artikel-kamu-form',
+        props: true,
+        component: () => import('@/views/admin/moderation/myForm'),
+        hidden: true
+      },
+      {
+        path: 'article-reported',
+        name: 'article-reported-list',
+        component: () => import('@/views/admin/moderation/reports'),
+        meta: { title: 'Report', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'article-comment',
+        name: 'article-comment-list',
+        component: () => import('@/views/admin/event/list'),
+        meta: { title: 'Komentar', icon: 'ic_bullet - circle - o' }
+      }
+    ]
+  },
+  {
     path: '/events',
     component: Layout,
     redirect: '/events/list',
     name: 'Events',
-    meta: { title: 'Events', icon: 'calendar' },
+    meta: { title: 'Acara', icon: 'calendar', roles: ['editor'] },
     children: [
       {
         path: 'list',
         name: 'event-list',
         component: () => import('@/views/admin/event/list'),
-        meta: { title: 'Events', icon: 'calendar' }
+        meta: { title: 'Acara', icon: 'calendar' }
       },
       {
         path: 'form',
@@ -289,7 +369,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/configuration/tag',
     name: 'Configuration',
-    meta: { title: 'Configuration', icon: 'gear' },
+    meta: { title: 'Konfigurasi', icon: 'gear', roles: ['editor'] },
     children: [
       {
         path: 'tag',
@@ -310,24 +390,24 @@ export const constantRouterMap = [
     component: Layout,
     redirect: 'noredirect',
     name: 'Settings',
-    meta: { title: 'Settings', icon: 'manager' },
+    meta: { title: 'Pengaturan', icon: 'manager' },
     children: [
       {
         path: '/settings/my-account',
         component: () => import('@/views/admin/settings/my-account/index'),
         redirect: 'noredirect',
         name: 'myAccount',
-        meta: { title: 'My Account', icon: 'user' },
+        meta: { title: 'Akun', icon: 'user' },
         children: [
           { path: 'edit-profile',
             component: () => import('@/views/admin/settings/my-account/profile/edit'),
             name: 'editProfile',
-            meta: { title: 'Edit Profile', icon: 'user' }
+            meta: { title: 'Ubah Data', icon: 'user' }
           },
           { path: 'change-password',
             component: () => import('@/views/admin/settings/my-account/password/edit'),
             name: 'ChangePassword',
-            meta: { title: 'Change Password', icon: 'password' }
+            meta: { title: 'Ubah Kata Sandi', icon: 'password' }
           }
         ]
       },
@@ -340,12 +420,4 @@ export const constantRouterMap = [
     ]
   },
   { path: '*', redirect: '/404', hidden: true }
-
 ]
-
-export default new Router({
-  // mode: 'history', //后端支持可开
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
-})
-

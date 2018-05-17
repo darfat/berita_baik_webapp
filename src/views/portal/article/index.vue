@@ -66,7 +66,7 @@
               </el-row>
               <el-row :gutter="20" class="article-option">
                   <el-col :xs="24" :sm="1" class="e-lbl mc">
-                    <span class="mc-content">Editor:</span>
+                    <span class="mc-content" v-if="mainArticleAuthors && mainArticleAuthors.length > 0">Editor:</span>
                   </el-col>
                   <el-col :xs="24" :sm="14" v-loading="loading.authors" class="e-img mc">
                     <div v-for="(author) in mainArticleAuthors" :key="author.id" class="mc-content">
@@ -85,12 +85,13 @@
                     <div class="icons mc">
                       <div class="mc-content">
                         <bb-love v-if="mainArticle && mainArticle.id" :articleID="mainArticle.id" :type="'article'" :scale="2"></bb-love>
-                        <social-sharing v-if="mainArticle && mainArticle.editorial" :url="'http://beritabaik.id/dev/#/home/a/'+mainArticle.editorial.slug+'/'+mainArticle.slug" 
+                        <social-sharing v-if="mainArticle && mainArticle.editorial" :url="'http://localhost:9528/#/home/a/'+mainArticle.editorial.slug+'/'+mainArticle.slug" 
                         :title="mainArticle.title"
-                        :description="mainArticle.title"
+                        :description="mainArticle.teaser"
                         :quote="mainArticle.title"
                         @open="openShare(mainArticle.id)"
                         hashtags="beritabaik"
+                        twitter-user="beritabaik_id"
                         inline-template>
                           <div class="icon-network">                          
                               <network network="facebook">

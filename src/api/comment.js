@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import request_auth from '@/utils/request_auth'
 
 export function getCommentsByArticleID(params) {
   return request({
@@ -9,9 +10,17 @@ export function getCommentsByArticleID(params) {
 }
 
 export function create(data) {
-  return request({
+  return request_auth({
     url: '/article_comments',
     method: 'post',
     data
+  })
+}
+
+export function destroy(data) {
+  console.log(data)
+  return request_auth({
+    url: '/article_comments/' + data.article_comment_id,
+    method: 'delete'
   })
 }

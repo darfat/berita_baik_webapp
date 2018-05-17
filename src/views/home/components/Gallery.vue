@@ -10,7 +10,7 @@
       <div class="crsl-info">
         <h2>{{g.editorial.name}}</h2>
         <h1><a>{{ subString(g.title,45) }}</a></h1>
-        <p class="teaser">{{ subString(g.teaser,110) }}</p>
+        <!-- <p class="teaser">{{ subString(g.teaser,110) }}</p> -->
         <p class="red-line"></p>
         <p class="author">{{g.reporter_name}} | <timeago :since="g.publish_date"></timeago></p>
       </div>

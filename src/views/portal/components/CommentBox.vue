@@ -4,7 +4,7 @@
         <el-row :gutter="20" >
             <el-col :xs="3" :sm="3">
               <div class="img-mini">
-                <img v-if="name" :src="userLogin.image" class="img-circle v-align-middle"/>
+                <img v-if="name && userLogin.image " :src="userLogin.image" class="img-circle v-align-middle"/>
                 <img v-else src="static/images/avatar/no_avatar.png" class="img-circle v-align-middle"/>
               </div>
             </el-col>
@@ -14,13 +14,14 @@
                     :rows="5"
                     placeholder="Tulis Komentarmu..."
                     v-model="comment"
+                    :maxlength="250"
                     >
                     </el-input>
             </el-col>
         </el-row>
         <el-row :gutter="0" class="m-t-10">
             <el-col class="align-right">
-                  <el-button type="primary" plain @click="postComment">Post</el-button>
+                  <el-button type="primary" plain @click="postComment">Kirim</el-button>
             </el-col>
         </el-row>
     </div>

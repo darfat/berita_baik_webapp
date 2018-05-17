@@ -1,23 +1,8 @@
 <template>
   <div class="app-container calendar-list-container">
       <div class="filter-container">
-      <el-input style="width: 200px;" class="filter-item" placeholder="Judul" v-model="search.title">
-      </el-input>
-      <!-- <el-select clearable style="width: 90px" class="filter-item" v-model="listQuery.importance" placeholder="Author">
-        <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item">
-        </el-option>
-      </el-select> -->
-      <!-- <el-select clearable class="filter-item" style="width: 130px" placeholder="Author">
-        <el-option v-for="item in  calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key">
-        </el-option>
-      </el-select>
-      <el-select @change='handleFilter' style="width: 140px" class="filter-item" v-model="listQuery.sort">
-        <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key">
-        </el-option>
-      </el-select> -->
-      <el-button class="filter-item" type="primary"  icon="el-icon-search" @click="handleFilter">Search</el-button>
-      <router-link class="filter-item" :to="{ name: 'admin-article-form', params: { editorialSlug, articleType } }" >
-        <el-button type="primary" >Create</el-button>
+     <router-link class="filter-item" :to="{ name: 'back-public-article-form', params: { editorialSlug, articleType } }" >
+        <el-button type="primary" >Tulis Berita Baik</el-button>
       </router-link>    
       </div>
     
@@ -28,15 +13,12 @@
       </el-table-column>
       <el-table-column label="Judul" >
         <template slot-scope="scope">
-          <router-link v-if="scope.row.article_type === 'news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':scope.row.editorial.slug, 'slug': scope.row.slug,  'articleID': scope.row.id} }">                  
+          <router-link v-if="scope.row.article_type === 'y-news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':scope.row.editorial.slug, 'slug': scope.row.slug,  'articleID': scope.row.id} }">                  
             <span v-html="scope.row.title">  </span>
           </router-link>
-          <router-link   v-if="scope.row.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':scope.row.editorial.slug, 'slug': scope.row.slug } }" >                      
+          <router-link   v-if="scope.row.article_type === 'y-image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':scope.row.editorial.slug, 'slug': scope.row.slug } }" >                      
             <span v-html="scope.row.title">  </span>
-          </router-link>
-          <router-link v-if="scope.row.article_type === 'video'" :to="{ name: 'editorial-video-detail', params: { 'editorialSlug':scope.row.editorial.slug, 'slug': scope.row.slug} }">
-            <span v-html="scope.row.title">  </span>
-          </router-link>
+          </router-link>         
         </template>
       </el-table-column>
       <el-table-column label="Reporter"   width="150" >
@@ -44,12 +26,9 @@
           {{scope.row.reporter_name}}
         </template>
       </el-table-column>
-      <el-table-column class-name="status-col" label="Status" width="110" align="center">
+      <el-table-column class-name="status-col" label="Status" width="180" align="center">
         <template slot-scope="scope">
-          <el-tag :type="scope.row.published | statusFilter"> {{getPublishedStatus(scope.row.published)}}</el-tag>
-          <el-tag v-if="scope.row.is_topslide" size="mini" type=""> Berita Utama</el-tag>
-          <el-tag v-if="scope.row.is_headline" size="mini" type=""> Headline</el-tag>
-          <el-tag v-if="scope.row.is_editor_pick" size="mini" type=""> Pilihan Editor</el-tag>
+          <el-tag :type="scope.row.published | statusFilter"> {{getPublishedStatus(scope.row.published,scope.row.status)}}</el-tag>
         </template>
       </el-table-column>
       <el-table-column align="center" prop="publish_date" label="Tanggal Publish" width="200">
@@ -58,27 +37,15 @@
           <span>{{scope.row.publish_date | formatDate }}</span>
         </template>
       </el-table-column>
-      <!-- <el-table-column align="center" label="Status" width="230" class-name="small-padding fixed-width">
+      
+      <el-table-column align="center" label="Actions" width="150" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-switch v-model="scope.row.published" @change="updatePublished(scope.row.id,scope.row.published)" active-text="Publish" inactive-text="Draft" active-color="#13ce66" inactive-color="#ff4949" ></el-switch>
-        </template>
-      </el-table-column> -->
-      <el-table-column align="center" label="Actions" width="300" class-name="small-padding fixed-width">
-        <template slot-scope="scope">
-          <router-link class="filter-item" :to="{ name: 'admin-article-form', params: { editorialSlug, articleType, 'articleId': scope.row.id} }" >
+          <router-link class="filter-item" :to="{ name: 'back-public-article-form', params: { editorialSlug, articleType, 'articleId': scope.row.id} }" >
             <el-button type="primary" size="mini" >Edit</el-button>
           </router-link>
           
           <el-button type="danger" size="mini" @click="deleteHandler(scope.row.id)">Delete</el-button>
           
-          <el-dropdown size="mini" split-button type="info">
-            Lainnya
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item v-if="(scope.row.article_type === 'news' || scope.row.article_type === 'image') &&  editorialSlug !== 'infografis' && !scope.row.is_topslide" ><el-button type="text" size="mini"  @click="setAsBeritaUtamaHandler(scope.row.id,scope.row.editorial.id)" >  Set as Berita Utama </el-button> </el-dropdown-item>
-              <el-dropdown-item v-if="(scope.row.article_type === 'news' || scope.row.article_type === 'image') &&  editorialSlug !== 'infografis'   && !scope.row.is_headline"> <el-button type="text" size="mini"  @click="setAsHeadlineHandler(scope.row.id,scope.row.editorial.id)" >Set as Headline </el-button></el-dropdown-item>
-              <el-dropdown-item v-if="scope.row.editorial && !scope.row.is_editor_pick" ><el-button type="text" size="mini"  @click="setAsPilihanEditorHandler(scope.row.id,scope.row.editorial.id)" >Set as Pilihan Editor</el-button></el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
         </template>
       </el-table-column>
     </el-table>
@@ -96,7 +63,7 @@
 import { getListByEditorialSlug, searchListByEditorialSlug, updatePublished, softDelete, setAsBeritaUtama, setAsHeadline, setAsPilihanEditor } from '@/api/article'
 
 export default {
-  name: 'articles',
+  name: 'myArticles',
   props: {
     editorialSlug: { type: String },
     articleType: { type: String }
@@ -144,11 +111,11 @@ export default {
         this.listLoading = false
       })
     },
-    getPublishedStatus(isPublished) {
+    getPublishedStatus(isPublished, status) {
       if (isPublished === true) {
         return 'Published'
       } else {
-        return 'Draft'
+        return status
       }
     },
     handleSizeChange(val) {
