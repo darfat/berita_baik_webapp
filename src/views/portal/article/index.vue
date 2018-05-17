@@ -115,8 +115,31 @@
                                 <fa-icon name="whatsapp" scale="1" class="network-icon"></fa-icon>
                               </network>
                           </div>
-                        </social-sharing>                        
-                        <v-icon name="more-horizontal" base-class="icon-30"></v-icon>
+                        </social-sharing> 
+                        <el-popover
+                          placement="top"
+                          width="160"
+                          v-model="vmore">
+                          <el-button size="mini" type="text" @click="dialogFormVisible = true">
+                            <fa-icon name="exclamation-circle" scale="1"></fa-icon> Report
+                          </el-button>                          
+                          <el-button slot="reference" size="mini"><v-icon name="more-horizontal" base-class="icon-30"></v-icon></el-button>
+                        </el-popover>
+                        <el-dialog title="Report" :visible.sync="dialogFormVisible">
+                          <p>Why reporting?</p>
+                          <el-radio-group v-model="radio2">
+                            <el-radio :label="1">Spam, commercial, or advertising purpose</el-radio>
+                            <el-radio :label="2">Pornography</el-radio>
+                            <el-radio :label="3">Violent content</el-radio>
+                            <el-radio :label="4">Harmful or dangerous act</el-radio>
+                            <el-radio :label="5">Ethnicity, religion, race, inter-group relations</el-radio>
+                            <el-radio :label="6">Other</el-radio>
+                          </el-radio-group>
+                          <span slot="footer" class="dialog-footer">
+                            <el-button @click="dialogFormVisible = false">Cancel</el-button>
+                            <el-button type="primary" @click="dialogFormVisible = false">Report</el-button>
+                          </span>
+                        </el-dialog>                                               
                       </div>
                     </div>
                   </el-col>                      
@@ -239,7 +262,10 @@ export default {
       },
       content1: null,
       content2: null,
-      isHaveRelatedArticles: false
+      isHaveRelatedArticles: false,
+      vmore: false,
+      dialogFormVisible: false,
+      radio2: 3
     }
   },
   created() {
@@ -331,5 +357,11 @@ export default {
     margin-bottom: 0;
   }
 }
-
+.el-radio-group{
+  background-color: blanchedalmond;
+  width: 100%;
+}
+.el-radio{
+  display: block;
+}
 </style>
