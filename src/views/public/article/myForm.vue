@@ -70,16 +70,25 @@
                 <span> {{ main_image_name }}</span>
                 <image-uploader v-if="editorialSlug === 'infografis'" :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
                 <image-uploader-crop v-else class="image-uploader-btn" :compress="0.9" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" @successCBK="mainImageSuccessCallback"></image-uploader-crop>
+                <el-popover
+                  placement="right"
+                  width="400"
+                  trigger="click">
+                  <div>
+                    <img :src="article.main_image" width="100%" height="100%"/>
+                  </div>
+                  <el-button slot="reference" size="mini">Lihat Gambar</el-button>
+                </el-popover>
               </div>
               <div>
               <div slot="tip" class="el-upload__tip">Maks 4MB dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
               </div>
             </el-form-item>
             
-            <el-form-item label="Gallery" v-if="article.article_type === 'y-image' && editorialSlug === 'foto-kamu'">
+            <el-form-item label="Galeri" v-if="article.article_type === 'y-image' && editorialSlug === 'foto-kamu'">
               <!-- <div class="gray-horizontal"></div> -->
               <div>
-                <div> <small> Main Image : <span> {{ main_image_name }}</span> </small></div>
+                <div> <small> Gambar Utama : <span> {{ main_image_name }}</span> </small></div>
                 <div v-if="article.article_images && article.article_images.length > 0">
                   {{tempCount}} / {{article.article_images.length}} Foto Berhasil Diupload
                 </div>
@@ -88,6 +97,15 @@
                   <span>{{item.title}}</span>
                   <image-uploader-crop  class="image-uploader-btn" :compress="0.9" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" :index="index" @successCBK="gallerySuccessCallback"></image-uploader-crop>
                   <el-button icon='el-icon-remove' size="mini" type="danger" v-on:click="removeImages(index)">  </el-button>
+                  <el-popover
+                    placement="right"
+                    width="400"
+                    trigger="click">
+                    <div>
+                      <img :src="item.url" width="100%" height="100%"/>
+                    </div>
+                    <el-button slot="reference" size="mini">Lihat Gambar</el-button>
+                  </el-popover>
                 </div>
                 <div slot="tip" class="el-upload__tip" ref="divTipImages">Maks 4MB Per Foto dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
                 <div class="gray-horizontal"></div>

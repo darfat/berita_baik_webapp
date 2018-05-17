@@ -85,10 +85,10 @@
               </div>
             </el-form-item>
             
-            <el-form-item label="Gallery" v-if="article.article_type === 'y-image' && editorialSlug === 'foto-kamu'">
+            <el-form-item label="Galeri" v-if="article.article_type === 'y-image' && editorialSlug === 'foto-kamu'">
               <!-- <div class="gray-horizontal"></div> -->
               <div>
-                <div> <small> Main Image : <span> {{ main_image_name }}</span> </small></div>
+                <div> <small> Gambar Utama : <span> {{ main_image_name }}</span> </small></div>
                 <div v-if="article.article_images && article.article_images.length > 0">
                   {{tempCount}} / {{article.article_images.length}} Foto Berhasil Diupload
                 </div>
