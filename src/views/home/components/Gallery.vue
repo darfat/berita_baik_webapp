@@ -1,6 +1,6 @@
 <template>
 <div class="gallery-wrapper" v-loading="loading.galleries">
-  <el-carousel :interval="9999" indicator-position="none" height="420px" arrow="always" :autoplay="false" ref="crsl">  
+  <el-carousel :interval="9999" indicator-position="none" height="420px" arrow="never" :autoplay="false" ref="crsl">  
     <el-carousel-item v-for="(g,index) in galleries" :key="g.id" :name="'slide-'+index" class="crsl-mainimg">
       <img :src="g.main_image" class="crsl-img">
       <div class="crsl-icon">
