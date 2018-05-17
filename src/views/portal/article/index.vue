@@ -58,6 +58,11 @@
                       <span v-html="content2" class="teks-content" ></span>
                     </div>
                   </el-col>
+                  <el-col>
+                    <div class="ads">
+                      <ads-banner :showTitle=true :id="1"></ads-banner>
+                    </div>
+                  </el-col>
               </el-row>
               <el-row >
                 <el-col>
@@ -194,7 +199,7 @@
 
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
-import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav, CommentList, Subscribe, Events, AdvertisementSide, InfografisSide } from '@/views/portal/components'
+import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav, CommentList, Subscribe, Events, AdvertisementSide, InfografisSide, AdsBanner } from '@/views/portal/components'
 import BbLove from '@/views/portal/components/BbLove'
 import EventBus from '@/utils/event-bus'
 import { getArticle, updateArticleSharedCount } from '@/api/article'
@@ -214,7 +219,8 @@ export default {
     Events,
     BbLove,
     AdvertisementSide,
-    InfografisSide
+    InfografisSide,
+    AdsBanner
   },
   props: {
     articleID: { type: String },

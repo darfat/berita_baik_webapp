@@ -56,7 +56,7 @@
     </div>    
   </el-row>
 
-  <el-row :gutter="20">
+  <el-row>
     <div class="container">
     <el-col :xs="24" :sm="16"><gallery></gallery></el-col>
     <el-col :xs="24" :sm="8">
@@ -115,8 +115,8 @@
 </template>
 
 <script>
-import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, AdsBanner, Gallery } from '@/views/home/components'
-import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide, SocialFeed, InstagramFeed, AdvertisementSide } from '@/views/portal/components'
+import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, Gallery } from '@/views/home/components'
+import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide, SocialFeed, InstagramFeed, AdvertisementSide, AdsBanner } from '@/views/portal/components'
 
 export default {
   name: 'frontpage',
