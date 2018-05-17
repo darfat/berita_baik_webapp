@@ -2,8 +2,8 @@
   <div class="dashboard-container">
     <h1> Dashboard Page </h1>
     <div class="dashboard-text">Hi {{name}} </div>
-    <div class="dashboard-text">Role :  {{role}}</div>
-    <!-- <div class="dashboard-text">roles:<span v-for='role in roles' :key='role'>{{role}}</span></div> -->
+    <!-- <div class="dashboard-text">Role :  {{roles}}</div> -->
+    <div class="dashboard-text">roles:<span v-for='a in roles' :key='a'>{{a}}</span></div>
   </div>
 </template>
 
@@ -16,6 +16,7 @@ export default {
     ...mapGetters([
       'name',
       'role',
+      'roles',
       'email',
       'user_id'
     ])

@@ -133,12 +133,24 @@ export const constantRouterMap = [
   { path: '/signup', name: 'public-signup', component: () => import('@/views/portal/signup/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
 
+  { path: '*', redirect: '/404', hidden: true }
+
+]
+
+export default new Router({
+  // mode: 'history', //后端支持可开
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRouterMap
+})
+
+export const asyncRouterMap = [
   {
     path: '/cms',
     component: Layout,
     redirect: '/cms/dashboard',
     name: 'Dashboard',
     hidden: true,
+    meta: { troles: ['public', 'editor'] },
     children: [{
       path: 'dashboard',
       component: () => import('@/views/admin/dashboard/index')
@@ -149,7 +161,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/bp-your-articles/y-news/berita-kamu',
     name: 'back-berita-kamu',
-    meta: { title: 'Berita Kamu', icon: 'news' },
+    meta: { title: 'Berita Kamu', icon: 'news', roles: ['public'] },
     children: [
       {
         path: 'bp-your-articles/y-news/berita-kamu',
@@ -177,7 +189,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/editorial-articles/indonesia-baik',
     name: 'admin-editorial',
-    meta: { title: 'Editorial', icon: 'news' },
+    meta: { title: 'Editorial', icon: 'news', roles: ['editor'] },
     children: [
       {
         path: 'l/indonesia-baik',
@@ -295,7 +307,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/events/list',
     name: 'Events',
-    meta: { title: 'Events', icon: 'calendar' },
+    meta: { title: 'Events', icon: 'calendar', roles: ['editor'] },
     children: [
       {
         path: 'list',
@@ -317,7 +329,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/configuration/tag',
     name: 'Configuration',
-    meta: { title: 'Configuration', icon: 'gear' },
+    meta: { title: 'Configuration', icon: 'gear', roles: ['editor'] },
     children: [
       {
         path: 'tag',
@@ -368,12 +380,4 @@ export const constantRouterMap = [
     ]
   },
   { path: '*', redirect: '/404', hidden: true }
-
 ]
-
-export default new Router({
-  // mode: 'history', //后端支持可开
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
-})
-

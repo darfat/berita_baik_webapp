@@ -10,7 +10,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import '@/icons' // icon
-import '@/permission' // permission control
+import '@/permission_role' // permission control
 import feather from 'vue-icon'
 import VueYouTubeEmbed from 'vue-youtube-embed'
 import VueTimeago from 'vue-timeago'

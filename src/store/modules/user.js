@@ -77,6 +77,8 @@ const user = {
         getInfo(state.token, state.user_id).then(response => {
           const data = response.data
           commit('SET_ROLE', data.role)
+          const roles = [data.role]
+          commit('SET_ROLES', roles)
           commit('SET_NAME', data.name)
           commit('SET_USERNAME', data.username)
           commit('SET_EMAIL', data.email)
@@ -96,6 +98,7 @@ const user = {
         logout(state.token).then(() => {
           commit('SET_TOKEN', '')
           commit('SET_ROLE', null)
+          commit('SET_ROLES', null)
           commit('SET_NAME', null)
           commit('SET_USERNAME', null)
           commit('SET_EMAIL', null)
@@ -116,6 +119,7 @@ const user = {
         commit('SET_TOKEN', '')
         commit('SET_TOKEN', '')
         commit('SET_ROLE', null)
+        commit('SET_ROLES', null)
         commit('SET_NAME', null)
         commit('SET_USERNAME', null)
         commit('SET_EMAIL', null)

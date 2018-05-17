@@ -12,7 +12,7 @@
       <img src="static/images/avatar/m01.png" v-else>
     </div>    
     <el-menu mode="vertical" unique-opened :default-active="$route.path" :collapse="isCollapse" >
-      <sidebar-item :routes="routes"></sidebar-item>
+      <sidebar-item :routes="permission_routers"></sidebar-item>
     </el-menu>
   </el-scrollbar>
   <!--</scroll-bar>-->
@@ -39,11 +39,12 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'sidebar'
+      'sidebar',
+      'permission_routers'
     ]),
-    routes() {
-      return this.$router.options.routes
-    },
+    // routes() {
+    //   return this.$router.options.routes
+    // },
     isCollapse() {
       return !this.sidebar.opened
     }
