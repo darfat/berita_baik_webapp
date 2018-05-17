@@ -33,8 +33,8 @@
                 <span class="opt-label"> Reply </span> -->
               </el-col>
               <el-col :span="12" class="align-right" v-if="role && role ==='editor'">
-                  <span> <v-icon name="more-horizontal" base-class="icon-20" ></v-icon> </span>
-                  <!-- <el-button @click="deleteComment(comment.id)">delete</el-button> -->
+                  <!-- <span> <v-icon name="more-horizontal" base-class="icon-20" ></v-icon> </span> -->
+                  <el-button @click="deleteComment(comment.id)" size="mini">delete</el-button>
               </el-col>
             </el-row> 
         </el-row>
