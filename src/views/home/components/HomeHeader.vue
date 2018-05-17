@@ -29,7 +29,7 @@
         <el-col :xs="12" :sm="4">
           <div class="head-item mc">
             <div class="head-item-contribute mc-content">
-                <router-link v-if="name" :to="{ name: 'back-public-article-form', params: { editorialSlug:'berita-kamu', articleType:'y-news' } }">
+                <router-link v-if="name && role === 'public'" :to="{ name: 'back-public-article-form', params: { editorialSlug:'berita-kamu', articleType:'y-news' } }">
                   <el-button icon="el-icon-edit" class="main-button" >Tulis Berita Baik</el-button>
                 </router-link>
                 <router-link v-else :to="{ name: 'public-login' }">
@@ -179,7 +179,8 @@ export default {
   computed: {
     ...mapGetters([
       'name',
-      'roles'
+      'roles',
+      'role'
     ])
   },
   methods: {

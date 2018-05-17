@@ -331,7 +331,7 @@ export const asyncRouterMap = [
       {
         path: 'article-reported',
         name: 'article-reported-list',
-        component: () => import('@/views/admin/event/list'),
+        component: () => import('@/views/admin/moderation/reports'),
         meta: { title: 'Report', icon: 'ic_bullet - circle - o' }
       },
       {
