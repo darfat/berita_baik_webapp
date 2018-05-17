@@ -29,7 +29,12 @@
         <el-col :xs="12" :sm="4">
           <div class="head-item mc">
             <div class="head-item-contribute mc-content">
+                <router-link v-if="name" :to="{ name: 'back-public-article-form', params: { editorialSlug:'berita-kamu', articleType:'y-news' } }">
                   <el-button icon="el-icon-edit" class="main-button" >Tulis Berita Baik</el-button>
+                </router-link>
+                <router-link v-else :to="{ name: 'public-login' }">
+                  <el-button icon="el-icon-edit" class="main-button" >Tulis Berita Baik</el-button>
+                </router-link>
             </div>
           </div>
         </el-col>        
@@ -126,7 +131,7 @@
                     <input type="checkbox" id="drop-4"/>
                     <ul>
                         <li><router-link :to="{ path: '/home-m/event-calendar' }">Acara</router-link></li>
-                        <li><router-link :to="{ path: '/home-c/gallery-foto-kamu' }">Foto Kamu</router-link></li>
+                        <li><router-link :to="{ path: '/home-c/foto-kamu' }">Foto Kamu</router-link></li>
                         <li><router-link :to="{ path: '/home/berita-kamu' }">Berita Kamu</router-link></li>
                     </ul>
                   </li>

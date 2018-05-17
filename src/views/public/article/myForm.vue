@@ -45,8 +45,7 @@
             <el-form-item label="Isi" prop="content" v-if="article.article_type !== 'video' && editorialSlug !== 'infografis'">
               <div>
               <tinymce :height="400" v-model="article.content" ref="editor"  id='content'   ></tinymce>
-              <!-- <froala :tag="'textarea'" :config="froalaConfig" v-model="article.content"></froala> -->
-              <div slot="tip" class="el-upload__tip"> Tag &lt;related/&gt; : untuk menambahkan Berita Terkait di dalam konten </div>
+              <!-- <div slot="tip" class="el-upload__tip"> Tag &lt;related/&gt; : untuk menambahkan Berita Terkait di dalam konten </div> -->
               </div>
             </el-form-item>
             <el-form-item label="Gambar Utama"  prop="main_image" v-if="article.article_type === 'y-news' || editorialSlug === 'infografis'" >
@@ -80,7 +79,7 @@
                 
               </div>
             </el-form-item>
-            <el-form-item label="Youtube Embed"  prop="sources_path" v-if="article.article_type === 'video'" >
+            <el-form-item label="Youtube Embed"  prop="sources_path" v-if="article.article_type === 'video'" hidden="true">
               <div>
                 <el-input v-model="article.sources_path"  :maxlength="100" ></el-input>
                 <div slot="tip" class="el-upload__tip">Copy seluruh link contoh : <i>https://www.youtube.com/watch?v=FlsCjmMhFmw</i></div>
@@ -187,14 +186,14 @@
               </el-col>
             </el-row>
             <div class="gray-horizontal"></div>
-            <el-row :gutter="20" v-if="article.article_type === 'y-news'">
+            <el-row :gutter="20" v-if="article.article_type === 'y-news'" hidden="true" >
               <el-col :span="6" style="padding-left:63px">
                 <div>
                   <span><strong> News </strong> </span>
                 </div>
               </el-col>
             </el-row>
-            <el-form-item label="Related News" v-if="article.article_type === 'y-news'">
+            <el-form-item label="Related News" v-if="article.article_type === 'y-news'" hidden="true">
                 <div>
                   <el-table
                     :data="article.article_relates"
@@ -237,8 +236,8 @@
                   <el-button v-on:click="addArticleRelateItem">Add Related News</el-button>                  
               </el-form-item>
             </el-form-item>
-            <div class="gray-horizontal"></div>
-            <el-form-item label="Author">
+            <div class="gray-horizontal" hidden="true"></div>
+            <el-form-item label="Author" hidden="true">
                 <div>
                   <el-table
                     :data="article.article_authors"
@@ -335,7 +334,7 @@ import Tinymce from '@/components/Tinymce/index'
 import moment from 'moment'
 
 export default {
-  name: 'ArticleForm',
+  name: 'MyForm',
   props: {
     editorialSlug: { type: String },
     articleType: { type: String },
@@ -373,20 +372,7 @@ export default {
         active: true,
         article_type: null,
         images_count: 0,
-        article_authors: [
-          {
-            role_id: null,
-            notes: 'reporter'
-          },
-          {
-            role_id: null,
-            notes: 'editor'
-          }
-          // {
-          //   role_id: null,
-          //   notes: 'writer'
-          // }
-        ],
+        article_authors: [],
         article_relates: [],
         article_images: [],
         lock_by_id: null,
@@ -430,14 +416,6 @@ export default {
       action: 'add',
       main_image_name: '',
       tempCount: 0
-      // froalaConfig: {
-      //   events: {
-      //     'froalaEditor.initialized': function() {
-      //       console.log('initialized')
-      //     }
-      //   },
-      //   imageManagerLoadURL: 'http://beritabaik.id/dev/static/upload/content/images/'
-      // }
     }
   },
 
@@ -450,7 +428,7 @@ export default {
   methods: {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
-        if (valid && this.isValidateAuthor() && this.isValidateYoutubeLinkAuthor()) {
+        if (valid) {
           if (this.article.article_type === 'video' || this.editorialSlug === 'infografis') {
             this.article.content = '-'
           }
@@ -459,7 +437,8 @@ export default {
           this.article.keyword_non_content = this.keywordArray.toString()
           this.article.content = this.article.content.replace('\u003cbody\u003e\n', '\u003cbody\u003e')
           this.article.content = this.article.content.replace('\n\u003c/body\u003e', '\u003c/body\u003e')
-          this.reporterNameCheck()
+          // this.reporterNameCheck()
+          this.article.reporter_name = this.name
           if (this.article.article_images) {
             this.article.images_count = this.article.article_images.length
           }
@@ -523,11 +502,11 @@ export default {
       this.getSectionOptions()
       this.getArticleTypeOptions()
       this.setEditorialId(this.editorialSlug)
-      this.getCityOptions()
-      this.getRoleOptions()
-      this.getUserOptions()
+      // this.getCityOptions()
+      // this.getRoleOptions()
+      // this.getUserOptions()
       if (this.articleType === 'y-news') {
-        this.getArticleOptions()
+        // this.getArticleOptions()
       }
       if (this.article.article_tags) {
         this.tagArray = this.article.article_tags.split(',')
@@ -543,6 +522,7 @@ export default {
           this.article.article_images.push({ title: '', url: '', content: '-', active: true })
         }
       }
+      this.article.reporter_name = this.name
     },
     getSectionOptions() {
       this.section_opts = getSections()
@@ -565,25 +545,19 @@ export default {
             this.article.article_authors.forEach(element => {
               if (element.notes === 'reporter') {
                 for (let i = 0; i < response.data.length; i++) {
-                  if (response.data[i].code === 'reporter') {
-                    element.role_id = response.data[i].id
-                  }
-                }
-              }
-              if (element.notes === 'editor') {
-                for (let i = 0; i < response.data.length; i++) {
-                  if (response.data[i].code === 'editor') {
+                  if (response.data[i].code === 'public') {
                     element.role_id = response.data[i].id
                   }
                 }
                 element.user_id = this.user_id
               }
-              if (element.notes === 'writer') {
+              if (element.notes === 'editor') {
                 for (let i = 0; i < response.data.length; i++) {
-                  if (response.data[i].code === 'writer') {
+                  if (response.data[i].code === 'public') {
                     element.role_id = response.data[i].id
                   }
                 }
+                element.user_id = this.user_id
               }
             })
           }
@@ -627,9 +601,9 @@ export default {
             this.keywordArray = this.article.keyword_non_content.split(',')
           }
           // get authors
-          this.getAuthors(this.article.id)
+          // this.getAuthors(this.article.id)
           // get relates
-          this.getRelates(this.article.id)
+          // this.getRelates(this.article.id)
           if (this.article.main_image) {
             const aarName = this.article.main_image.split('/')
             this.main_image_name = aarName[aarName.length - 1]

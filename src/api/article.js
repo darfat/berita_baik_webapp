@@ -3,7 +3,8 @@ import request_auth from '@/utils/request_auth'
 
 const NEWS_TYPE = 'news'
 const VIDEO_TYPE = 'video'
-const IMAGE_TYPE = 'image'
+// const IMAGE_TYPE = 'image'
+// const Y_IMAGE_TYPE = 'y-image'
 
 export function getListByEditorialSlug(params) {
   return request_auth({
@@ -97,7 +98,6 @@ export function getLatestArticleAll(params) {
   })
 }
 export function getEditorsPickNewss(params) {
-  params.type = NEWS_TYPE
   return request({
     url: '/article-by-editor-pick',
     method: 'get',
@@ -107,7 +107,6 @@ export function getEditorsPickNewss(params) {
 
 // citra
 export function getLatestImageByEditorial(params) {
-  params.type = IMAGE_TYPE
   return request({
     url: '/articles-editorial/latest/' + params.editorialSlug,
     method: 'get',
@@ -116,7 +115,6 @@ export function getLatestImageByEditorial(params) {
 }
 
 export function getImagesByEditorialSlug(params) {
-  params.type = IMAGE_TYPE
   return request({
     url: '/articles-editorial/' + params.editorialSlug,
     method: 'get',

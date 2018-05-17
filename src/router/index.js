@@ -158,7 +158,7 @@ export const constantRouterMap = [
         meta: { title: 'Berita Kamu', icon: 'ic_bullet - circle - o' }
       },
       {
-        path: 'bp-your-images/y-image/foto-kamu',
+        path: 'bp-your-articles/y-image/foto-kamu',
         name: 'back-foto-kamu-list',
         component: () => import('@/views/public/article/citra'),
         meta: { title: 'Foto Kamu', icon: 'ic_bullet - circle - o' }
@@ -167,7 +167,7 @@ export const constantRouterMap = [
         path: 'bp-f/:articleType/:editorialSlug',
         name: 'back-public-article-form',
         props: true,
-        component: () => import('@/views/public/article/form'),
+        component: () => import('@/views/public/article/myForm'),
         hidden: true
       }
     ]

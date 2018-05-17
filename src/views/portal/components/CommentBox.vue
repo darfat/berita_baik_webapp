@@ -14,7 +14,7 @@
                     :rows="5"
                     placeholder="Tulis Komentarmu..."
                     v-model="comment"
-                    maxlength="250"
+                    :maxlength="250"
                     >
                     </el-input>
             </el-col>

@@ -66,7 +66,7 @@
               </el-row>
               <el-row :gutter="20" class="article-option">
                   <el-col :xs="24" :sm="1" class="e-lbl mc">
-                    <span class="mc-content">Editor:</span>
+                    <span class="mc-content" v-if="mainArticleAuthors && mainArticleAuthors.length > 0">Editor:</span>
                   </el-col>
                   <el-col :xs="24" :sm="14" v-loading="loading.authors" class="e-img mc">
                     <div v-for="(author) in mainArticleAuthors" :key="author.id" class="mc-content">
