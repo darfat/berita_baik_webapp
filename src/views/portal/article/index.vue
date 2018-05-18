@@ -126,15 +126,18 @@
                           <el-button  type="text" slot="reference" size="mini"><v-icon name="more-horizontal" base-class="icon-20"></v-icon></el-button>
                         </el-popover>
                         <el-dialog title="Report" :visible.sync="dialogFormVisible">
-                          <p>Why reporting?</p>
-                          <el-radio-group v-model="report_reason">
-                            <el-radio :label="'Spam, commercial, or advertising purpose'">Spam, commercial, or advertising purpose</el-radio>
-                            <el-radio :label="'Pornography'">Pornography</el-radio>
-                            <el-radio :label="'Violent content'">Violent content</el-radio>
-                            <el-radio :label="'Harmful or dangerous act'">Harmful or dangerous act</el-radio>
-                            <el-radio :label="'Ethnicity, religion, race, inter-group relations'">Ethnicity, religion, race, inter-group relations</el-radio>
-                            <el-radio :label="'Other'">Other</el-radio>
-                          </el-radio-group>
+                          <span>Why reporting?</span>
+                          <div style="margin-top: 5px;">
+                            <el-radio-group v-model="report_reason" style="background-color:#fff;padding-left:5px;">
+                              <el-radio @change="showOtherOption(false)" label="Spam, commercial, or advertising purpose"></el-radio>
+                              <el-radio style="margin-left:0px;" @change="showOtherOption(false)" label="Pornography"></el-radio>
+                              <el-radio style="margin-left:0px;" @change="showOtherOption(false)" label="Violent content"></el-radio>
+                              <el-radio style="margin-left:0px;" @change="showOtherOption(false)" label="Harmful or dangerous act"></el-radio>
+                              <el-radio style="margin-left:0px;" @change="showOtherOption(false)" label="Ethnicity, religion, race, inter-group relations"></el-radio>
+                              <el-radio  @change="showOtherOption(true)"> Other </el-radio>
+                              <el-input v-if="showOther" type="textarea" :rows="2" v-model="report_reason" :maxlength="100" ></el-input>
+                            </el-radio-group>
+                          </div>
                           <span slot="footer" class="dialog-footer">
                             <el-button size="mini" @click="dialogFormVisible = false">Cancel</el-button>
                             <el-button type="primary" size="mini" @click="reportThis()">Report</el-button>
@@ -275,7 +278,8 @@ export default {
       report_reason: '',
       vmore: false,
       dialogFormVisible: false,
-      radio2: 3
+      radio2: 3,
+      showOther: false
     }
   },
   created() {
@@ -359,6 +363,12 @@ export default {
           })
         }
       })
+    },
+    showOtherOption(val) {
+      if (val === true) {
+        this.report_reason = ''
+      }
+      this.showOther = val
     }
   }
 }
