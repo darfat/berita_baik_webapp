@@ -198,3 +198,31 @@
         display: table-cell;
     }
 }
+
+
+.el-dialog{
+    .el-dialog__header,
+    .el-dialog__body,
+    .el-dialog__footer
+    {
+        background-color: red!important;
+    }
+}
+
+.rpt-opt{
+    display: block;
+    padding: 0 0 5px 5px;
+    clear: both;
+    .el-radio{
+        display: block;
+        margin-left: 0;
+        white-space: normal;
+        .el-radio__input{            
+            
+            .el-radio__original{
+                
+            }
+        }
+        
+    }
+}
