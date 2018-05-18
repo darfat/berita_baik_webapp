@@ -26,21 +26,20 @@ router.beforeEach((to, from, next) => {
       next({ path: '/home' })
       NProgress.done() // if current page is dashboard will not trigger	afterEach hook, so manually handle it
     } else {
-      // console.log(store.getters.roles.length)
+      console.log('3. to other')
       if (store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
         store.dispatch('GetInfo').then(res => { // 拉取user_info
-          console.log('get info')
           const data = res.data
           const roles = [data.role] // note: roles must be a array! such as: ['editor','develop']
           store.dispatch('GenerateRoutes', { roles }).then(() => { // 根据roles权限生成可访问的路由表
             console.log('generate routes')
             router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
-            if (data.role === 'editor') {
-              next({ path: '/cms' })
-            } else {
-              next({ path: '/home' })
-            }
-            // next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+            // if (data.role === 'editor') {
+            //   next({ path: '/cms' })
+            // } else {
+            //   next({ path: '/home' })
+            // }
+            next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
           })
         }).catch((err) => {
           store.dispatch('FedLogOut').then(() => {

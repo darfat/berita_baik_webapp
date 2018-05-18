@@ -46,13 +46,13 @@
               -->
               <fb-signin-button
                 :params="fbSignInParams"
-                @success="onSignInSuccess"
+                @success="onFBSignInSuccess"
                 @error="onSignInError">
                 <fa-icon name="facebook" class="icon" ></fa-icon>
               </fb-signin-button>
               <g-signin-button
                 :params="googleSignInParams"
-                @success="onSignInSuccess"
+                @success="onGoogleSignInSuccess"
                 @error="onSignInError">
                 <fa-icon name="google-plus" class="icon" ></fa-icon>
               </g-signin-button>
@@ -105,7 +105,7 @@ export default {
       checked: false,
       fbSignInParams: {
         // scope: 'email,user_likes',
-        scope: 'email',
+        scope: 'user_birthday, public_profile',
         return_scopes: true
       },
       /**
@@ -115,7 +115,7 @@ export default {
        * @type {Object}
        */
       googleSignInParams: {
-        client_id: '945256359753-38gpkeqcipc5nn3kts9f3frark3ut5pr.apps.googleusercontent.com'
+        client_id: '445951674727-iutk7l2evto1l3dpqjts17jrdqpa986j.apps.googleusercontent.com'
       }
     }
   },
@@ -143,16 +143,41 @@ export default {
         }
       })
     },
-    onSignInSuccess(response, googleUser) {
-      console.log('google /fb signin success')
-      /*
-      FB.api('/me', dude => {
-        console.log(`Good to see you, ${dude.name}.`)
+    onGoogleSignInSuccess(response, googleUser) {
+      console.log(response.w3)
+      const userInfo = {
+        username: response.w3.Eea,
+        email: response.w3.U3,
+        name: response.w3.ig,
+        image_path: response.w3.Paa
+      }
+      this.loading = true
+      this.$store.dispatch('LoginSignupGmail', userInfo).then(() => {
+        this.loading = false
+        this.$router.push({
+          path: '/home'
+        })
+      }).catch(() => {
+        this.loading = false
       })
-      */
       // `googleUser` is the GoogleUser object that represents the just-signed-in user.
       // See https://developers.google.com/identity/sign-in/web/reference#users
       // const profile = googleUser.getBasicProfile() // etc etc
+    },
+
+    onFBSignInSuccess(response) {
+      window.FB.api('/me?fields=id,name,about,birthday', dude => {
+        console.log(`Faceb to see you, ${dude.name}.`)
+        this.loading = true
+        this.$store.dispatch('LoginSignupFB', dude).then(() => {
+          this.loading = false
+          this.$router.push({
+            path: '/home'
+          })
+        }).catch(() => {
+          this.loading = false
+        })
+      })
     },
     onSignInError(error) {
       // `error` contains any error occurred.
