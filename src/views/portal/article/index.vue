@@ -134,8 +134,8 @@
                               <el-radio style="margin-left:0px;" @change="showOtherOption(false)" label="Violent content"></el-radio>
                               <el-radio style="margin-left:0px;" @change="showOtherOption(false)" label="Harmful or dangerous act"></el-radio>
                               <el-radio style="margin-left:0px;" @change="showOtherOption(false)" label="Ethnicity, religion, race, inter-group relations"></el-radio>
-                              <el-radio  @change="showOtherOption(true)"> Other </el-radio>
-                              <el-input v-if="showOther" type="textarea" :rows="2" v-model="report_reason" :maxlength="100" ></el-input>
+                              <el-radio style="margin-left:0px;" @change="showOtherOption(true)"> Other </el-radio>
+                              <el-input v-if="showOther" placeholder="Isi Laporan" type="textarea" :rows="2" v-model="report_reason" :maxlength="100" ></el-input>
                             </el-radio-group>
                           </div>
                           <span slot="footer" class="dialog-footer">
@@ -353,16 +353,23 @@ export default {
       })
     },
     reportThis() {
-      this.dialogFormVisible = false
-      console.log(this.report_reason)
-      create({ article_id: this.mainArticle.id, user_id: this.user_id, response: this.report_reason, active: true, editorial_id: this.mainArticle.editorial_id }).then(response => {
-        if (response) {
-          this.$message({
-            type: 'success',
-            message: 'Terima kasih atas laporan anda'
+      if (this.user_id) {
+        this.dialogFormVisible = false
+        if (this.report_reason && this.report_reason.length > 0) {
+          create({ article_id: this.mainArticle.id, user_id: this.user_id, response: this.report_reason, active: true, editorial_id: this.mainArticle.editorial_id }).then(response => {
+            if (response) {
+              this.$message({
+                type: 'success',
+                message: 'Terima kasih atas laporan anda'
+              })
+            }
           })
         }
-      })
+      } else {
+        this.$router.push({
+          path: '/login'
+        })
+      }
     },
     showOtherOption(val) {
       if (val === true) {
