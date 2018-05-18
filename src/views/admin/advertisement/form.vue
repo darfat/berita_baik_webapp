@@ -30,8 +30,15 @@
                 </el-col>
 
                 <el-col :span="21">
-                    <el-form-item label="Posisi" prop="posisition">
-                        <el-input v-model="advertisement.position"></el-input>
+                    <el-form-item label="Posisi" prop="position">
+                        <el-select v-model="advertisement.position" placeholder="Pilih Posisi">
+                          <el-option
+                            v-for="item in ads_opts"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                          </el-option>
+                        </el-select>
                     </el-form-item>
                 </el-col>
                 <el-col :span="21">
@@ -71,7 +78,33 @@ export default {
       loading: {
         snippet: false
       },
-      main_image_name: ''
+      main_image_name: '',
+      ads_opts: [
+        {
+          value: 'Home : Atas',
+          label: 'Home : Atas'
+        },
+        {
+          value: 'Home : Tengah',
+          label: 'Home : Tengah'
+        },
+        {
+          value: 'Home : Kanan',
+          label: 'Home : Kanan'
+        },
+        {
+          value: 'Home : Galeri',
+          label: 'Home : Galeri'
+        },
+        {
+          value: 'Berita : Atas',
+          label: 'Berita : Atas'
+        },
+        {
+          value: 'Berita : Tengah',
+          label: 'Berita : Tengah'
+        }
+      ]
     }
   },
   created() {
