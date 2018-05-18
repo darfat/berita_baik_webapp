@@ -1,4 +1,4 @@
-import { login, logout, getInfo, signup } from '@/api/login'
+import { login, logout, getInfo, signup, loginSignupFB, loginSignupGmail } from '@/api/login'
 import { getToken, setToken, setUserId, removeToken, getUserId, removeUserId } from '@/utils/auth'
 
 const user = {
@@ -60,6 +60,40 @@ const user = {
     Signup({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         signup(userInfo).then(response => {
+          const data = response.data
+          setToken(data.token)
+          setUserId(data.user_id)
+          commit('SET_TOKEN', data.token)
+          commit('SET_USER_ID', data.user_id)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    LoginSignupFB({ commit }, userInfo) {
+      const username = userInfo.id.trim()
+      const name = userInfo.name
+      return new Promise((resolve, reject) => {
+        loginSignupFB(username, name).then(response => {
+          const data = response.data
+          setToken(data.token)
+          setUserId(data.user_id)
+          commit('SET_TOKEN', data.token)
+          commit('SET_USER_ID', data.user_id)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    LoginSignupGmail({ commit }, userInfo) {
+      const username = userInfo.username.trim()
+      const name = userInfo.name
+      const email = userInfo.email
+      const image_path = userInfo.image_path
+      return new Promise((resolve, reject) => {
+        loginSignupGmail(username, email, name, image_path).then(response => {
           const data = response.data
           setToken(data.token)
           setUserId(data.user_id)

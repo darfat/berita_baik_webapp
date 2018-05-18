@@ -95,20 +95,20 @@ new Vue({
   // eslint-disable-next-line
 })
 // eslint-disable-next-line
-// var fbFeedHandler = (function (d, s, id) {
-//   // eslint-disable-next-line
-//   var js, fjs = d.getElementsByTagName(s)[0]
-//   if (d.getElementById(id)) return
-//   js = d.createElement(s)
-//   js.id = id
-//   js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=104551552924338&autoLogAppEvents=1'
-//   fjs.parentNode.insertBefore(js, fjs)
-// }(document, 'script', 'facebook-jssdk'))
-// window.fbAsyncInit = function() {
-//   window.FB.init({
-//     appId: '238377760235448',
-//     cookie: true, // enable cookies to allow the server to access the session
-//     xfbml: true, // parse social plugins on this page
-//     version: 'v2.8' // use graph api version 2.8
-//   })
-// }
+var fbFeedHandler = (function (d, s, id) {
+  // eslint-disable-next-line
+  var js, fjs = d.getElementsByTagName(s)[0]
+  if (d.getElementById(id)) return
+  js = d.createElement(s)
+  js.id = id
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=104551552924338&autoLogAppEvents=1'
+  fjs.parentNode.insertBefore(js, fjs)
+}(document, 'script', 'facebook-jssdk'))
+window.fbAsyncInit = function() {
+  window.FB.init({
+    appId: '104551552924338',
+    cookie: true, // enable cookies to allow the server to access the session
+    xfbml: true, // parse social plugins on this page
+    version: 'v2.8' // use graph api version 2.8
+  })
+}

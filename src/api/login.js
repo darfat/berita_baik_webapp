@@ -19,6 +19,43 @@ export function signup(data) {
     data
   })
 }
+export function loginSignupFB(username, name) {
+  return request_no_auth({
+    url: '/user/fb-login',
+    method: 'post',
+    data: {
+      username,
+      name,
+      facebook_id: username,
+      email: username,
+      password: username,
+      active: true,
+      id_number: '-',
+      id_number_type: 'KTP',
+      status: 'active',
+      role: 'public'
+    }
+  })
+}
+export function loginSignupGmail(username, email, name, image) {
+  return request_no_auth({
+    url: '/user/gmail-login',
+    method: 'post',
+    data: {
+      username,
+      name,
+      image,
+      email: email,
+      password: username,
+      gmail_id: username,
+      active: true,
+      id_number: '-',
+      id_number_type: 'KTP',
+      status: 'active',
+      role: 'public'
+    }
+  })
+}
 export function getInfo(token, user_id) {
   return request({
     url: '/user/info',
