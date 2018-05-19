@@ -90,11 +90,12 @@
                     <div class="icons mc">
                       <div class="mc-content">
                         <bb-love v-if="mainArticle && mainArticle.id" :articleID="mainArticle.id" :type="'article'" :scale="2"></bb-love>
-                        <social-sharing v-if="mainArticle && mainArticle.editorial" :url="'http://localhost:9528/#/home/a/'+mainArticle.editorial.slug+'/'+mainArticle.slug" 
+                        <social-sharing v-if="mainArticle && mainArticle.editorial" 
+                        :url="baseLinkPath+mainArticle.editorial.slug+'/'+mainArticle.slug" 
                         :title="mainArticle.title"
                         :description="mainArticle.teaser"
                         :quote="mainArticle.title"
-                        @open="openShare(mainArticle.id)"
+                        @open="openShare(mainArticle.id, baseLinkPath+mainArticle.editorial.slug+'/'+mainArticle.slug)"
                         hashtags="beritabaik"
                         twitter-user="beritabaik_id"
                         inline-template>
@@ -281,11 +282,21 @@ export default {
       vmore: false,
       dialogFormVisible: false,
       radio2: 3,
-      showOther: false
+      showOther: false,
+      metaParams: {
+        title: 'Berita Baik',
+        ogImage: false,
+        siteName: false,
+        description: false,
+        url: false
+      },
+      basePath: 'http://beritabaik.id/dev/',
+      baseLinkPath: ''
     }
   },
   created() {
     this.init()
+    this.baseLinkPath = this.basePath + '#/home/a/'
   },
   mounted() {
     this.initMounted()
@@ -347,7 +358,8 @@ export default {
         }
       })
     },
-    openShare(articleID) {
+    openShare(articleID, url) {
+      this.changeMeta(this.mainArticle, url)
       updateArticleSharedCount({ articleID }).then(response => {
         if (response) {
           console.log('shared success')
@@ -378,6 +390,33 @@ export default {
         this.report_reason = ''
       }
       this.showOther = val
+    },
+    changeMeta(article, url) {
+      console.log('change Meta')
+      var self = this
+      this.metaParams.ogImage = this.basePath + article.main_image
+      this.metaParams.siteName = 'Berita Baik'
+      this.metaParams.url = url
+      this.metaParams.description = article.teaser
+      this.metaParams.title = article.title
+      self.$emit('updateHead')
+      // window.setTimeout(function() {
+      // }, 1000)
+    }
+  },
+  head: {
+    // To use "this" in the component, it is necessary to return the object through a function
+    meta() {
+      return [
+        // { name: 'description', content: this.metaParams.description, id: 'metaDesc' },
+        { name: 'twitter:title', content: this.metaParams.title, id: 'metaTwTitle' },
+        { n: 'twitter:description', c: this.metaParams.description, id: 'metaTwDesc' },
+        { n: 'twitter:image', c: this.metaParams.ogImage, id: 'metaTwImage' },
+        { p: 'og:image', c: this.metaParams.ogImage, id: 'metaOgImage' },
+        { p: 'og:site_name', c: this.metaParams.siteName, id: 'metaOgSiteName' },
+        { p: 'og:description', c: this.metaParams.description, id: 'metaOgDesc' },
+        { p: 'og:url', c: this.metaParams.url, id: 'metaOgUrl' }
+      ]
     }
   }
 }
