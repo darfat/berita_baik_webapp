@@ -4,14 +4,14 @@
 }
 .el-carousel__item{
   background-color: #fff;
-  height: auto;
+  height: 350px;
   margin: 0;
-  padding-bottom: 15px;
+  padding: 0;
 }
 
 .image-hl{
   width: 100%;
-  max-height: 436px;
+  max-height: 350px;
   //height: 100%;
   object-fit: cover;
 }
@@ -29,12 +29,12 @@ h3{
 }
 
 .share{
-    padding: 10px 22px 5px 22px;
+    padding: 10px 0 5px 0;
 }
 
-.text{	
+.info{	
 	width: 100%;
-    padding: 0 22px;
+    padding: 20px;
     color: $black-2;
     min-height: 143px;
     background-color: #FFF;
