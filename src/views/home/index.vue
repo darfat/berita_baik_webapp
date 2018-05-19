@@ -82,18 +82,9 @@
       <div class="gray-separator"> <span> </span>  </div>
   </div>
   <div class="spacer"></div>
-
-  <el-row :gutter="10">
-    <div class="container">
-      <el-col :xs="24" :sm="24">
-        <ads-banner :showTitle=false position="Home : Tengah"></ads-banner>
-      </el-col>
-    </div>
-  </el-row>
-  <div class="container m-b-20"> 
-      <div class="gray-separator"> <span> </span>  </div>
-  </div>
-  <div class="spacer"></div>
+  
+  <ads-banner :showTitle=false position="Home : Tengah"></ads-banner>
+  
   <el-row :gutter="10">
     <div class="container">
       <el-col :xs="24" :sm="24">

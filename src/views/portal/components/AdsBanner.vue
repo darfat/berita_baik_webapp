@@ -1,8 +1,26 @@
 <template>
-<div class="ads-container" v-if="ads">    
+<div class="ads-container" v-if="ads">
   <div class="ads-title" v-if="showTitle">IKLAN</div>
-  <div class="ads-content" v-loading="loading.ads">
-    <img :src="ads.image" />
+  <div v-if="position === 'Home : Tengah'">
+    <el-row :gutter="10">
+      <div class="container">
+        <el-col :xs="24" :sm="24">
+          <div class="ads-content" v-loading="loading.ads">
+            <img :src="ads.image" />
+          </div>
+        </el-col>
+      </div>
+    </el-row>
+    
+    <div class="spacer"></div>
+    <div class="container m-t-20"> 
+        <div class="gray-separator"> <span> </span>  </div>
+    </div>
+  </div>
+  <div v-else>    
+    <div class="ads-content" v-loading="loading.ads">
+      <img :src="ads.image" />
+    </div>
   </div>
 </div>
 </template>
