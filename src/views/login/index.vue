@@ -136,7 +136,9 @@ export default {
           this.$store.dispatch('Login', this.loginForm).then(() => {
             this.loading = false
             this.$router.push({ path: '/home' })
-          }).catch(() => {
+          }).catch((err) => {
+            console.log(err)
+            this.$message.warning('Gagal Login')
             this.loading = false
           })
         } else {
