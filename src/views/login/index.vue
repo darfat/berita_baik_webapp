@@ -116,7 +116,7 @@ export default {
        * @type {Object}
        */
       googleSignInParams: {
-        client_id: '445951674727-iutk7l2evto1l3dpqjts17jrdqpa986j.apps.googleusercontent.com'
+        client_id: '41162363474-mo2568h4vs3tbs8pgepog137sbg148fa.apps.googleusercontent.com'
       },
       showNative: true
     }
