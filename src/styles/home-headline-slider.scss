@@ -3,15 +3,12 @@
     z-index: 1;
 }
 .el-carousel__item{
-  background-color: #fff;
-  height: 350px;
-  margin: 0;
-  padding: 0;
+  
 }
 
 .image-hl{
   width: 100%;
-  max-height: 350px;
+  max-height: 300px;
   //height: 100%;
   object-fit: cover;
 }
@@ -36,7 +33,7 @@ h3{
 	width: 100%;
     padding: 20px;
     color: $black-2;
-    min-height: 143px;
+    // min-height: 143px;
     background-color: #FFF;
     .headline{
         font-size: 24px;

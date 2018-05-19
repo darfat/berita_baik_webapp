@@ -133,7 +133,13 @@ h1, h2, h3, h4, h5, h6{
 */
 .hl-slider{  
   .el-carousel__container{
-    height: 350px;    
+    // height: auto;    
+  }
+  .el-carousel__item{
+    background-color: #fff;
+    max-height: 300px;
+    margin: 0;
+    padding: 0;
   }
   .el-carousel__indicators{
     // padding: 0;
