@@ -72,7 +72,8 @@ export default {
   data() {
     return {
       advertisement: {
-        status: 'new'
+        status: 'new',
+        active: true
       },
       action: 'add',
       loading: {

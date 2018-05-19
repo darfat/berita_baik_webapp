@@ -11,7 +11,7 @@
   <el-row :gutter="20">
     <div class="container">
     <el-col :xs="24" :sm="24">
-      <ads-banner :showTitle=true :id="1"></ads-banner>
+      <ads-banner :showTitle=true position="Home : Atas"></ads-banner>
       <div class="spacer"></div>
     </el-col>
     <el-col :xs="24" :sm="16">        
@@ -51,7 +51,8 @@
           </router-link>
         </div>
         <div class="spacer m-t-10"></div>
-        <advertisement-side></advertisement-side>
+        <!-- <advertisement-side></advertisement-side> -->
+        <ads-banner :showTitle=true position="Home : Kanan"></ads-banner>
     </el-col>
     </div>    
   </el-row>
@@ -61,7 +62,7 @@
     <el-col :xs="24" :sm="16"><gallery></gallery></el-col>
     <el-col :xs="24" :sm="8">
       <div class="ads">
-        <ads-banner :showTitle=true :id="3"></ads-banner>
+        <ads-banner :showTitle=true position="Home : Galeri"></ads-banner>
       </div>
     </el-col>
     </div>
@@ -85,7 +86,7 @@
   <el-row :gutter="10">
     <div class="container">
       <el-col :xs="24" :sm="24">
-        <ads-banner :showTitle=true :id="2"></ads-banner>
+        <ads-banner :showTitle=false position="Home : Tengah"></ads-banner>
       </el-col>
     </div>
   </el-row>
@@ -110,7 +111,6 @@
   </el-row>
   
  <div class="spacer"></div>
-  <el-button icon="el-icon-edit" class="main-button" @click="changeTitle()">Test</el-button>
 </div>    
 </template>
 
@@ -137,48 +137,6 @@ export default {
     Gallery
   },
   computed: {
-  },
-  data() {
-    return {
-      title: 'My Title Custom',
-      metaParams: {
-        title: 'website name',
-        ogImage: false,
-        siteName: false,
-        description: false,
-        url: false
-      }
-    }
-  },
-  methods: {
-    changeTitle() {
-      console.log('changeTitle')
-      var self = this
-      this.metaParams.ogImage = 'http://localhost:9528/static/upload/images/5.jpg'
-      this.metaParams.siteName = 'http://beritabaik.id'
-      this.metaParams.url = 'http://beritabaik.id'
-      this.metaParams.description = 'desc test'
-      this.metaParams.title = 'change title'
-      // http://localhost:9528/static/upload/images/5.jpg
-      self.$emit('updateHead')
-      // window.setTimeout(function() {
-      // }, 1000)
-    }
-  },
-  // Usage with context the component
-  head: {
-    // To use "this" in the component, it is necessary to return the object through a function
-    meta() {
-      return [
-        // { name: 'description', content: this.metaParams.description, id: 'metaDesc' },
-        { name: 'twitter:title', content: this.metaParams.title, id: 'metaTwTitle' },
-        { n: 'twitter:description', c: this.metaParams.description, id: 'metaTwDesc' },
-        { p: 'og:image', c: this.metaParams.ogImage, id: 'metaOgImage' },
-        { p: 'og:site_name', c: this.metaParams.siteName, id: 'metaOgSiteName' },
-        { p: 'og:description', c: this.metaParams.description, id: 'metaOgDesc' },
-        { p: 'og:url', c: this.metaParams.url, id: 'metaOgUrl' }
-      ]
-    }
   }
 }
 </script>

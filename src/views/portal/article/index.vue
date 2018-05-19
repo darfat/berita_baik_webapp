@@ -60,7 +60,7 @@
                   </el-col>
                   <el-col>
                     <div class="ads">
-                      <ads-banner :showTitle=true :id="1"></ads-banner>
+                      <ads-banner :showTitle=true position="Berita : Tengah"></ads-banner>
                     </div>
                   </el-col>
               </el-row>
