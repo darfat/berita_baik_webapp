@@ -125,24 +125,26 @@
                           </el-button>                          
                           <el-button  type="text" slot="reference" size="mini"><v-icon name="more-horizontal" base-class="icon-20"></v-icon></el-button>
                         </el-popover>
-                        <el-dialog title="Report" :visible.sync="dialogFormVisible">
-                          <span>Why reporting?</span>
-                          <div style="margin-top: 5px;">
-                            <el-radio-group v-model="report_reason" style="background-color:#fff;padding-left:5px;">
-                              <el-radio @change="showOtherOption(false)" label="Spam, commercial, or advertising purpose"></el-radio>
-                              <el-radio style="margin-left:0px;" @change="showOtherOption(false)" label="Pornography"></el-radio>
-                              <el-radio style="margin-left:0px;" @change="showOtherOption(false)" label="Violent content"></el-radio>
-                              <el-radio style="margin-left:0px;" @change="showOtherOption(false)" label="Harmful or dangerous act"></el-radio>
-                              <el-radio style="margin-left:0px;" @change="showOtherOption(false)" label="Ethnicity, religion, race, inter-group relations"></el-radio>
-                              <el-radio style="margin-left:0px;" @change="showOtherOption(true)"> Other </el-radio>
-                              <el-input v-if="showOther" placeholder="Isi Laporan" type="textarea" :rows="2" v-model="report_reason" :maxlength="100" ></el-input>
-                            </el-radio-group>
-                          </div>
-                          <span slot="footer" class="dialog-footer">
-                            <el-button size="mini" @click="dialogFormVisible = false">Cancel</el-button>
-                            <el-button type="primary" size="mini" @click="reportThis()">Report</el-button>
-                          </span>
-                        </el-dialog>                                               
+                        <div class="rpt">
+                          <el-dialog title="Report" :visible.sync="dialogFormVisible">
+                            <span>Why reporting?</span>
+                            <div class="rpt-opt">
+                              <el-radio-group v-model="report_reason">
+                                <el-radio @change="showOtherOption(false)" label="Spam, commercial, or advertising purpose"></el-radio>
+                                <el-radio style="margin-left:0px;" @change="showOtherOption(false)" label="Pornography"></el-radio>
+                                <el-radio style="margin-left:0px;" @change="showOtherOption(false)" label="Violent content"></el-radio>
+                                <el-radio style="margin-left:0px;" @change="showOtherOption(false)" label="Harmful or dangerous act"></el-radio>
+                                <el-radio style="margin-left:0px;" @change="showOtherOption(false)" label="Ethnicity, religion, race, inter-group relations"></el-radio>
+                                <el-radio  @change="showOtherOption(true)"> Other </el-radio>
+                                <el-input v-if="showOther" type="textarea" :rows="2" v-model="report_reason" :maxlength="100" ></el-input>
+                              </el-radio-group>
+                            </div>
+                            <span slot="footer" class="dialog-footer">
+                              <el-button size="mini" @click="dialogFormVisible = false">Cancel</el-button>
+                              <el-button type="primary" size="mini" @click="reportThis()">Report</el-button>
+                            </span>
+                          </el-dialog>
+                        </div>                                            
                       </div>
                     </div>
                   </el-col>                      
@@ -395,12 +397,5 @@ export default {
   &:last-child {
     margin-bottom: 0;
   }
-}
-.el-radio-group{
-  background-color: blanchedalmond;
-  width: 100%;
-}
-.el-radio{
-  display: block;
 }
 </style>

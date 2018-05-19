@@ -78,21 +78,7 @@ export default {
       loading: false,
       pwdType: 'password',
       img_b_logo,
-      checked: false,
-      fbSignInParams: {
-        // scope: 'email,user_likes',
-        scope: 'email',
-        return_scopes: true
-      },
-      /**
-       * The Auth2 parameters, as seen on
-       * https://developers.google.com/identity/sign-in/web/reference#gapiauth2initparams.
-       * As the very least, a valid client_id must present.
-       * @type {Object}
-       */
-      googleSignInParams: {
-        client_id: '945256359753-38gpkeqcipc5nn3kts9f3frark3ut5pr.apps.googleusercontent.com'
-      }
+      checked: false
     }
   },
   methods: {
@@ -108,6 +94,7 @@ export default {
         if (valid) {
           this.loading = true
           this.$store.dispatch('Login', this.loginForm).then(() => {
+            console.log('login success')
             this.loading = false
             this.$router.push({ path: '/cms' })
           })
@@ -121,20 +108,6 @@ export default {
           return false
         }
       })
-    },
-    onSignInSuccess(response, googleUser) {
-      /*
-      FB.api('/me', dude => {
-        console.log(`Good to see you, ${dude.name}.`)
-      })
-      */
-      // `googleUser` is the GoogleUser object that represents the just-signed-in user.
-      // See https://developers.google.com/identity/sign-in/web/reference#users
-      // const profile = googleUser.getBasicProfile() // etc etc
-    },
-    onSignInError(error) {
-      // `error` contains any error occurred.
-      console.log('OH NOES', error)
     }
   }
 }

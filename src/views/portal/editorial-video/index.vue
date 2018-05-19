@@ -11,7 +11,7 @@
                   <iframe 
                     width="640"
                     height="390"
-                    :src="'http://www.youtube.com/embed/'+$youtube.getIdFromURL(latestNews.sources_path)+'?rel=0&amp;fs=0&amp;showinfo=0'"
+                    :src="'https://www.youtube.com/embed/'+$youtube.getIdFromURL(latestNews.sources_path)+'?rel=0&amp;fs=0&amp;showinfo=0'"
                     frameborder="0"
                     allowfullscreen></iframe>
                 </div>
@@ -32,12 +32,12 @@
                     </div>
                   </el-col>
                 </el-row>
-                <el-row >
-                    <el-col class="sub-headline">
-                      <div v-html="latestNews.teaser" class="article-content">
+                <!-- <el-row >
+                    <el-col class="sub-headline" v-if="latestNews.content">
+                      <div v-html="latestNews.content" class="article-content">
                       </div>
                     </el-col>
-                </el-row>
+                </el-row> -->
                 <el-row >
                     <el-col :span="1"><article-separator></article-separator></el-col>
                 </el-row>
