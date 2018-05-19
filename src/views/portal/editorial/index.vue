@@ -79,7 +79,9 @@
             <popular-news-side :editorialSlug="editorialSlug" :editorialType="editorialType"> </popular-news-side>
             </div>
             <div class="side-separator">
-              <span> Buka lebih banyak lagi </span>
+              <router-link :to="{ name: 'content-more', params: { 'editorialSlug': editorialSlug, 'editorialType': editorialType } }">
+                <span> Buka lebih banyak lagi </span>
+              </router-link>
             </div>
             <!-- <div>
             <infografis-side :editorialSlug="'infografis'"  > </infografis-side>

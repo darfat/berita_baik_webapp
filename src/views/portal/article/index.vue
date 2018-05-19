@@ -193,11 +193,15 @@
         <div class="grid-content a-side">
           <popular-news-side :editorialSlug="editorialSlug"> </popular-news-side>
           <div class="side-separator">
-            <span> Buka lebih banyak lagi </span>
+            <router-link :to="{ name: 'content-more', params: { 'editorialSlug': editorialSlug } }">
+              <span> Buka lebih banyak lagi </span>
+            </router-link>
           </div>
           <infografis-side :editorialSlug="'infografis'"  > </infografis-side>
           <div class="side-separator">
-            <span> Buka lebih banyak lagi </span>
+            <router-link  :to="{ name: 'editorial-image', params: { 'editorialSlug': 'infografis' } }" >
+              <span> Buka lebih banyak lagi </span>
+            </router-link>
           </div>
           <div class="spacer m-t-10"></div>
           <advertisement-side></advertisement-side>

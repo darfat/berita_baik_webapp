@@ -58,7 +58,6 @@ export default {
       }).then(response => {
         if (response && response.data) {
           this.ads = response.data
-          console.log(this.ads)
         }
         this.loading.ads = false
       })

@@ -40,13 +40,15 @@
         <popular-news-side></popular-news-side>
         <div class="spacer"></div>
         <div class="side-separator">
+          <router-link :to="{ name: 'content-more', params: { 'editorialSlug': 'none',  } }">
             <span> Buka lebih banyak lagi </span>
+          </router-link>
         </div>
         <div class="spacer m-t-10"></div>
         <infografis-side :editorialSlug="'infografis'"  > </infografis-side>      
         <div class="spacer m-t-10"></div>
         <div class="side-separator">
-          <router-link  :to="{ name: 'infografis-menu', params: {} }" >
+          <router-link  :to="{ name: 'editorial-image', params: { 'editorialSlug': 'infografis' } }" >
             <span> Buka lebih banyak lagi </span>
           </router-link>
         </div>

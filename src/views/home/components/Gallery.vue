@@ -51,7 +51,6 @@ export default {
   },
   methods: {
     init() {
-      console.log('test gallery')
       this.getImages(this.editorialSlug)
     },
     getImages(editorialSlug) {

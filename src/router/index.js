@@ -124,6 +124,12 @@ export const constantRouterMap = [
       name: 'event-calendar',
       props: true,
       component: () => import('@/views/portal/eventcalendar/index')
+    },
+    {
+      path: 'home-m/more/:editorialSlug',
+      name: 'content-more',
+      props: true,
+      component: () => import('@/views/portal/content-cards/index')
     }]
   },
   // cms part
