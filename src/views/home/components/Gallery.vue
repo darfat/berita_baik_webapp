@@ -2,14 +2,18 @@
 <div class="gallery-wrapper" v-loading="loading.galleries">
   <el-carousel :interval="9999" indicator-position="none" height="420px" arrow="never" :autoplay="false" ref="crsl">  
     <el-carousel-item v-for="(g,index) in galleries" :key="g.id" :name="'slide-'+index" class="crsl-mainimg">
-      <img :src="g.main_image" class="crsl-img">
+      <router-link v-if="g && g.editorial" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':g.editorial.slug, 'slug': g.slug } }" >   
+        <img :src="g.main_image" class="crsl-img">
+      </router-link>
       <div class="crsl-icon">
         <svg-icon icon-class="camera" class="camera"></svg-icon>
         <span v-if="g.images_count" >{{g.images_count}}</span>
       </div>
       <div class="crsl-info">
         <h2>{{g.editorial.name}}</h2>
+        <router-link v-if="g && g.editorial" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':g.editorial.slug, 'slug': g.slug } }" >                                       
         <h1><a>{{ subString(g.title,45) }}</a></h1>
+        </router-link>
         <!-- <p class="teaser">{{ subString(g.teaser,110) }}</p> -->
         <p class="red-line"></p>
         <p class="author">{{g.reporter_name}} | <timeago :since="g.publish_date"></timeago></p>
@@ -47,6 +51,7 @@ export default {
   },
   methods: {
     init() {
+      console.log('test gallery')
       this.getImages(this.editorialSlug)
     },
     getImages(editorialSlug) {

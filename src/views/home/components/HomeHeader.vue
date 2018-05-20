@@ -29,9 +29,14 @@
         <el-col :xs="12" :sm="4">
           <div class="head-item mc">
             <div class="head-item-contribute mc-content">
+                <span v-if="name">
                 <router-link v-if="name && role === 'public'" :to="{ name: 'back-public-article-form', params: { editorialSlug:'berita-kamu', articleType:'y-news' } }">
                   <el-button icon="el-icon-edit" class="main-button" >Tulis Berita Baik</el-button>
                 </router-link>
+                <router-link v-if="name && role === 'editor'" :to="{ name: 'Dashboard'}">
+                  <el-button icon="el-icon-news" class="main-button" >CMS</el-button>
+                </router-link>
+                </span>
                 <router-link v-else :to="{ name: 'public-login' }">
                   <el-button icon="el-icon-edit" class="main-button" >Tulis Berita Baik</el-button>
                 </router-link>

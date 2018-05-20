@@ -40,9 +40,9 @@
                           </h1>
                         </el-col>
                       </el-row>
-                      <el-row :gutter="20" class="ln-teaser">
+                      <el-row :gutter="20" class="ln-teaser" v-if="latestNews.content && latestNews.content !=='-'">
                           <el-col class="sub-headline">
-                            <div v-html="latestNews.teaser" class="article-content">
+                            <div v-html="latestNews.content" class="article-content">
                             </div>
                           </el-col>
                       </el-row>                      

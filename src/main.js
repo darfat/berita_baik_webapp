@@ -34,19 +34,13 @@ import GSignInButton from 'vue-google-signin-button'
 // import 'vue-event-calendar/dist/style.css' // ^1.1.10, CSS has been extracted as one file, so you can easily update it.
 import '@/styles/event-calendar.scss' // global css
 import vueEventCalendar from 'vue-event-calendar'
-// froalla
-// Require Froala Editor js file.
-require('froala-editor/js/froala_editor.pkgd.min')
-
-// Require Froala Editor css files.
-require('froala-editor/css/froala_editor.pkgd.min.css')
-require('font-awesome/css/font-awesome.css')
-require('froala-editor/css/froala_style.min.css')
 
 // Cropppa
 import Croppa from 'vue-croppa'
-// Cropppa
+// vue anality
 import VueAnalytics from 'vue-analytics'
+// vue head
+import VueHead from 'vue-head'
 
 Vue.use(ElementUI, { locale })
 Vue.use(feather, 'v-icon')
@@ -84,6 +78,7 @@ Vue.use(VueAnalytics, {
   id: 'UA-118969342-1',
   router
 })
+Vue.use(VueHead)
 
 new Vue({
   el: '#app',

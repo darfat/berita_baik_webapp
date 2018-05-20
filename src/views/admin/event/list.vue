@@ -6,14 +6,14 @@
       </router-link>    
     </div>
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
-      <!-- <el-table-column align="center" label='ID' width="95">
+      <el-table-column align="center" label='ID' width="95">
         <template slot-scope="scope">
           {{scope.$index + 1}}
         </template>
-      </el-table-column> -->
+      </el-table-column>
       <el-table-column label="Title" width="150">
         <template slot-scope="scope">
-          {{scope.row.title}}
+         <router-link :to="{ path: '/home-m/event-calendar' }"> <span> {{scope.row.title}} </span> </router-link>
         </template>
       </el-table-column>
       <el-table-column label="Description" >

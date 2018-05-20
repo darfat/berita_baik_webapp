@@ -13,7 +13,7 @@
                     <iframe 
                         width="540"
                         height="290"
-                        :src="'http://www.youtube.com/embed/'+$youtube.getIdFromURL(popular.sources_path)+'?rel=0&amp;fs=0&amp;showinfo=0'"
+                        :src="'https://www.youtube.com/embed/'+$youtube.getIdFromURL(popular.sources_path)+'?rel=0&amp;fs=0&amp;showinfo=0'"
                         frameborder="0"
                         allowfullscreen></iframe>
                   </div>

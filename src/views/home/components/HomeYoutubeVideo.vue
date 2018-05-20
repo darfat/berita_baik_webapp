@@ -5,7 +5,7 @@
       <iframe 
         width="640"
         height="390"
-        :src="'http://www.youtube.com/embed/'+videoId+'?rel=0&amp;fs=0&amp;showinfo=0'"
+        :src="'https://www.youtube.com/embed/'+videoId+'?rel=0&amp;fs=0&amp;showinfo=0'"
         frameborder="0"
         allowfullscreen></iframe>
 
