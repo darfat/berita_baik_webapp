@@ -130,7 +130,9 @@ export const constantRouterMap = [
       name: 'content-more',
       props: true,
       component: () => import('@/views/portal/content-cards/index')
-    }]
+    },
+    { path: 'signup-success', component: () => import('@/views/portal/signup/success'), hidden: true }
+    ]
   },
   // cms part
   { path: '/cms-login', component: () => import('@/views/admin/login/index'), hidden: true },

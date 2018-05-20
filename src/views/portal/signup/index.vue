@@ -156,9 +156,9 @@ export default {
         if (valid) {
           this.signupVM.username = this.signupVM.email
           this.loading = true
-          this.$store.dispatch('Signup', this.signupVM).then(() => {
+          this.$store.dispatch('PreSignup', this.signupVM).then(() => {
             this.loading = false
-            this.$router.push({ path: '/home' })
+            this.$router.push({ path: '/signup-success' })
           }).catch(() => {
             this.loading = false
           })

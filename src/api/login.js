@@ -19,6 +19,13 @@ export function signup(data) {
     data
   })
 }
+export function preSignup(data) {
+  return request_no_auth({
+    url: '/user/pre-signup',
+    method: 'post',
+    data
+  })
+}
 export function loginSignupFB(username, name) {
   return request_no_auth({
     url: '/user/fb-login',
