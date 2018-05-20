@@ -6,7 +6,7 @@
               <img :src="img_b_logo" alt="beritabaik.id">
             </a>          
         </div>        
-        <div class="form">
+        <div class="form" v-if="showNative">
             <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px"
                 class="card-box login-form">
                 <el-form-item prop="username">
@@ -40,24 +40,25 @@
         </div>
         <div class="options">
             <div class="login-with"> 
-              <!--
-              <v-icon name="facebook" base-class="icon-0dot8em v-align-middle"></v-icon>
-              <v-icon name="mail" base-class="icon-0dot8em v-align-middle"></v-icon>
-              -->
+              <h2 v-if="!showNative">Login Menggunakan </h2>
+              <el-button type="text">
               <fb-signin-button
                 :params="fbSignInParams"
                 @success="onFBSignInSuccess"
                 @error="onSignInError">
                 <fa-icon name="facebook" class="icon" ></fa-icon>
               </fb-signin-button>
+              </el-button>
+              <el-button type="text">
               <g-signin-button
                 :params="googleSignInParams"
                 @success="onGoogleSignInSuccess"
                 @error="onSignInError">
                 <fa-icon name="google-plus" class="icon" ></fa-icon>
               </g-signin-button>
+              </el-button>
             </div>            
-            <div class="sign-up"> 
+            <div class="sign-up" v-if="showNative"> 
                 <span> Belum Mendaftar ? 
                   <router-link :to="{ name: 'public-signup' }">
                     <a>Daftar Sekarang</a> 
@@ -115,8 +116,9 @@ export default {
        * @type {Object}
        */
       googleSignInParams: {
-        client_id: '445951674727-iutk7l2evto1l3dpqjts17jrdqpa986j.apps.googleusercontent.com'
-      }
+        client_id: '41162363474-mo2568h4vs3tbs8pgepog137sbg148fa.apps.googleusercontent.com'
+      },
+      showNative: true
     }
   },
   methods: {
@@ -134,7 +136,9 @@ export default {
           this.$store.dispatch('Login', this.loginForm).then(() => {
             this.loading = false
             this.$router.push({ path: '/home' })
-          }).catch(() => {
+          }).catch((err) => {
+            console.log(err)
+            this.$message.warning('Gagal Login')
             this.loading = false
           })
         } else {

@@ -35,9 +35,9 @@ export function destroy(data) {
   })
 }
 
-export function getAdvertisementsByPosition(params) {
+export function getAdvertisementByPosition(params) {
   return request({
-    url: '/advertisements-by-poition/' + params.position,
+    url: '/ads-by-position/' + params.position,
     method: 'get'
   })
 }

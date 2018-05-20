@@ -64,11 +64,11 @@
             </el-row>
           </div>
         </el-col>
-        <el-col :xs="24" :sm="8" class="side-content  m-t-10">
+        <el-col :xs="24" :sm="8" class="side-content  m-t-20">
           <div class="grid-content a-side">
             <div class="spacer"></div>
             <div >
-              <advertisement-side :showTitle="false"></advertisement-side>
+              <ads-banner :showTitle=true position="Video : Kanan Atas"></ads-banner>
             </div>
             <div >
               <editor-pick-videos-side ></editor-pick-videos-side>
@@ -94,16 +94,21 @@
             <popular-video-side :editorialSlug="editorialSlug"> </popular-video-side>
             </div>
             <div class="side-separator">
+              <router-link :to="{ name: 'content-more', params: { 'editorialSlug': editorialSlug, 'title': 'VIDEO TERPOPULER' } }">
               <span> Buka lebih banyak lagi </span>
+              </router-link>
             </div>
-            <div>
+            <div class=" spacer m-t-10">
             <infografis-side :editorialSlug="'infografis'"  > </infografis-side>
             </div>
             <div class="side-separator">
-              <span> Buka lebih banyak lagi </span>
+              <router-link  :to="{ name: 'editorial-image', params: { 'editorialSlug': 'infografis' } }" >
+                <span> Buka lebih banyak lagi </span>
+              </router-link>
             </div>
             <div class="spacer m-t-10"></div>
-            <advertisement-side></advertisement-side>
+            <!-- <advertisement-side></advertisement-side> -->
+            <ads-banner :showTitle=true position="Home : Kanan"></ads-banner>
           </div>
         </el-col>
       </el-row>
@@ -117,7 +122,7 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { PopularNewsSide, VideosCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, EditorPickVideosSide, SharePop, ArticleNav, PopularVideoSide } from '@/views/portal/components'
+import { PopularNewsSide, VideosCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, EditorPickVideosSide, SharePop, ArticleNav, PopularVideoSide, AdsBanner } from '@/views/portal/components'
 import { getEditorialLabelBySlug } from '@/api/editorial'
 import { getLatestVideoByEditorial, getArticle } from '@/api/article'
 import EventBus from '@/utils/event-bus'
@@ -136,7 +141,8 @@ export default {
     EditorPickVideosSide,
     SharePop,
     ArticleNav,
-    PopularVideoSide
+    PopularVideoSide,
+    AdsBanner
   },
   data() {
     return {

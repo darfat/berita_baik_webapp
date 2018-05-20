@@ -1,4 +1,4 @@
-import { login, logout, getInfo, signup, loginSignupFB, loginSignupGmail } from '@/api/login'
+import { login, logout, getInfo, signup, loginSignupFB, loginSignupGmail, preSignup } from '@/api/login'
 import { getToken, setToken, setUserId, removeToken, getUserId, removeUserId } from '@/utils/auth'
 
 const user = {
@@ -124,7 +124,18 @@ const user = {
         })
       })
     },
-
+    PreSignup({ commit }, userInfo) {
+      return new Promise((resolve, reject) => {
+        preSignup(userInfo).then(response => {
+          const data = response.data
+          setUserId(data.user_id)
+          commit('SET_USER_ID', data.user_id)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
     // 登出
     LogOut({ commit, state }) {
       console.log('do logout')

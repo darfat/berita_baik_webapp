@@ -94,16 +94,24 @@
             <div>
 
             <popular-news-side v-if="editorialSlug === 'infografis'" :editorialSlug="editorialSlug" title="INFOGRAFIS TERPOPULER"> </popular-news-side>
-            <popular-news-side v-else :editorialSlug="editorialSlug" title="GALLERY TERPOPULER"> </popular-news-side>
+            <popular-news-side v-else :editorialSlug="editorialSlug" title="GALERI TERPOPULER"> </popular-news-side>
             </div>
             <div class="side-separator">
-              <span> Buka lebih banyak lagi </span>
+              <router-link v-if="editorialSlug === 'infografis'" :to="{ name: 'content-more', params: { 'editorialSlug': editorialSlug, 'title': 'INFOGRAFIS TERPOPULER' } }">
+                <span> Buka lebih banyak lagi </span>
+              </router-link>
+              <router-link v-else :to="{ name: 'content-more', params: { 'editorialSlug': editorialSlug, 'title': 'GALERI TERPOPULER' } }">
+                <span> Buka lebih banyak lagi </span>
+              </router-link>
             </div>
-            <div>
-            <infografis-side :editorialSlug="'infografis'"  > </infografis-side>
+            <div class="spacer m-t-10"></div>
+            <div v-if="editorialSlug !== 'infografis'">
+            <infografis-side  :editorialSlug="'infografis'"  > </infografis-side>
             </div>
-            <div class="side-separator">
-              <span> Buka lebih banyak lagi </span>
+            <div class="side-separator" v-if="editorialSlug !== 'infografis'">
+              <router-link  :to="{ name: 'editorial-image', params: { 'editorialSlug': 'infografis' } }" >
+                <span> Buka lebih banyak lagi </span>
+              </router-link>
             </div>
             <div class="spacer m-t-10"></div>
             <advertisement-side></advertisement-side>

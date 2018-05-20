@@ -1,43 +1,43 @@
 <template>
-<div class="ads-container">    
+<div class="ads-container" v-if="ads">
   <div class="ads-title" v-if="showTitle">IKLAN</div>
-  <div class="ads-content" v-if="advertisement.id == id" v-for="(advertisement) in advertisement_list" :key="advertisement.id">
-    <img :src="advertisement.main_image" />
+  <div v-if="position === 'Home : Tengah'">
+    <el-row :gutter="10">
+      <div class="container">
+        <el-col :xs="24" :sm="24">
+          <div class="ads-content" v-loading="loading.ads">
+            <img :src="ads.image" />
+          </div>
+        </el-col>
+      </div>
+    </el-row>
+    
+    <div class="spacer"></div>
+    <div class="container m-t-20"> 
+        <div class="gray-separator"> <span> </span>  </div>
+    </div>
+  </div>
+  <div v-else>    
+    <div class="ads-content" v-loading="loading.ads">
+      <img :src="ads.image" />
+    </div>
   </div>
 </div>
 </template>
 <script>
+import { getAdvertisementByPosition } from '@/api/advertisement'
 
 export default {
   name: 'AdsBanner',
   props: {
-    id: { default: 1, type: Number },
-    name: { default: 'home-1', type: String },
-    limit: { default: 1, type: Number },
-    page: { default: 1, type: Number },
-    showTitle: { default: true, type: Boolean }
+    position: { type: String },
+    showTitle: { type: Boolean }
   },
   data() {
     return {
-      advertisement_list: [
-        {
-          id: 1,
-          name: 'home-1',
-          main_image: 'static/images/music-02.png'
-        },
-        {
-          id: 2,
-          name: 'home-2',
-          main_image: 'static/images/music-03.png'
-        },
-        {
-          id: 3,
-          name: 'home-3',
-          main_image: 'static/images/ads1.jpg'
-        }
-      ],
+      ads: null,
       loading: {
-        advertisement_list: false
+        ads: false
       }
     }
   },
@@ -45,10 +45,23 @@ export default {
     this.init()
   },
   methods: {
-    init() {}
-  },
-  computed: {
-
+    init() {
+      if (this.position) {
+        this.getAdsByPosition(this.position)
+      }
+    },
+    getAdsByPosition(position) {
+      this.loading.ads = true
+      this.events = []
+      getAdvertisementByPosition({
+        position
+      }).then(response => {
+        if (response && response.data) {
+          this.ads = response.data
+        }
+        this.loading.ads = false
+      })
+    }
   }
 }
 </script>

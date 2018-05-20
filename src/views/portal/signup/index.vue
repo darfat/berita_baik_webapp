@@ -143,7 +143,7 @@ export default {
         return_scopes: true
       },
       googleSignInParams: {
-        client_id: '945256359753-38gpkeqcipc5nn3kts9f3frark3ut5pr.apps.googleusercontent.com'
+        client_id: '41162363474-mo2568h4vs3tbs8pgepog137sbg148fa.apps.googleusercontent.com'
       }
     }
   },
@@ -156,9 +156,9 @@ export default {
         if (valid) {
           this.signupVM.username = this.signupVM.email
           this.loading = true
-          this.$store.dispatch('Signup', this.signupVM).then(() => {
+          this.$store.dispatch('PreSignup', this.signupVM).then(() => {
             this.loading = false
-            this.$router.push({ path: '/home' })
+            this.$router.push({ path: '/signup-success' })
           }).catch(() => {
             this.loading = false
           })

@@ -67,7 +67,8 @@ export default {
   },
   methods: {
     init() {
-      this.getPopularArticles(this.editorialSlug)
+      const eSlug = this.$route.params.editorialSlug
+      this.getPopularArticles(eSlug)
     },
     subString(str, len) {
       if (str.length < len) {

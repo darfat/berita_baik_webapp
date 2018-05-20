@@ -124,7 +124,15 @@ export const constantRouterMap = [
       name: 'event-calendar',
       props: true,
       component: () => import('@/views/portal/eventcalendar/index')
-    }]
+    },
+    {
+      path: 'home-m/more/:editorialSlug',
+      name: 'content-more',
+      props: true,
+      component: () => import('@/views/portal/content-cards/index')
+    },
+    { path: 'signup-success', component: () => import('@/views/portal/signup/success'), hidden: true }
+    ]
   },
   // cms part
   { path: '/cms-login', component: () => import('@/views/admin/login/index'), hidden: true },
@@ -133,19 +141,7 @@ export const constantRouterMap = [
   { path: '/signup', name: 'public-signup', component: () => import('@/views/portal/signup/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
 
-  { path: '*', redirect: '/404', hidden: true },
-  {
-    path: '/cms',
-    component: Layout,
-    redirect: '/cms/dashboard',
-    name: 'Dashboard',
-    hidden: true,
-    meta: { roles: ['public', 'editor'] },
-    children: [{
-      path: 'dashboard',
-      component: () => import('@/views/admin/dashboard/index')
-    }]
-  }
+  { path: '*', redirect: '/404', hidden: true }
 ]
 
 export default new Router({
