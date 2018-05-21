@@ -137,7 +137,8 @@ export const constantRouterMap = [
       props: true,
       component: () => import('@/views/public/profile/index')
     },
-    { path: 'signup-success', component: () => import('@/views/portal/signup/success'), hidden: true }
+    { path: 'signup-success', component: () => import('@/views/portal/signup/success'), hidden: true },
+    { path: 'u-activation/:code', component: () => import('@/views/portal/signup/activation'), hidden: true }
     ]
   },
   // cms part

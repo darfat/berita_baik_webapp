@@ -13,9 +13,9 @@
           <el-col :xs="10" :sm="10">            
             <div class="info">      
               <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">
-              <h2 class="headline" >{{subString(item.article.title, 60)}}</h2>
+              <h2 class="headline" >{{subString(item.article.title, 120)}}</h2>
               </router-link>
-              <p v-html="subString(item.article.teaser, 160)" class="sub-headline" ></p>
+              <p v-html="subString(item.article.teaser, 360)" class="sub-headline" ></p>
               <p class="red-line"></p>
               <p class="author">{{ item.article.reporter_name}} | <timeago :since="item.article.publish_date"></timeago></p>
               <div class="share">
