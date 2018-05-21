@@ -13,7 +13,7 @@
   object-fit: cover;
 }
 
-h3{
+h2{
   position: absolute;
   top: 3%;
   left: 3%;
@@ -22,11 +22,14 @@ h3{
   background-color: $main-blue;
   padding: 8px 10px 5px 10px;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 1em;
 }
 
 .share{
-    padding: 10px 0 5px 0;
+    // padding: 10px 0 5px 0;
+    position: absolute;
+    bottom: 20px;
+
 }
 
 .info{	
@@ -35,14 +38,12 @@ h3{
     color: $black-2;
     // min-height: 143px;
     background-color: #FFF;
-    .headline{
-        font-size: 24px;
-        line-height: 32px;
-        margin: 0; padding-bottom: 10px;
+    .headline{        
+        margin: 0 0 10px 0;
     }
-    .sub-headline{
-        font-size: 16px;
-        line-height: 16px;
+    .teaser{
+        font-size: 1em;
+        line-height: 1.1em;
         margin: 0; padding-bottom: 5px;
     }
     .author{

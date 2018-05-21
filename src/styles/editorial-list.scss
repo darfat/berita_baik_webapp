@@ -34,23 +34,26 @@
             }
             .info{
                 padding: 20px;
+                h1{
+                    //font-weight: bold;
+                    //font-size: 2em;
+                    //line-height: 2.2em;
+                    margin: 0 0 10px 0;                
+                }
+                .teaser{    
+                    font-size: 1em;
+                    line-height: 1.1em;
+                    margin-bottom: 10px;
+                }
+                .author{
+                    font-weight: bold;
+                    font-size: 0.8em;
+                }
             }
-            h1{
-                //font-weight: bold;
-                //font-size: 2em;
-                //line-height: 2.2em;
-                margin: 0 0 10px 0;
-            }
-            .teaser{    
-                font-size: 1em;
-                margin-bottom: 10px;
-            }
-            .footer{
-                font-weight: bold;
-                font-size: 0.8em;
-            }
+            
             .share{
-                margin-top: 10px;
+                position: absolute;
+                bottom: 20px;
             }
 
         }
