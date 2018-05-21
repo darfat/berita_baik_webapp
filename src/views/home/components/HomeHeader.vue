@@ -51,7 +51,10 @@
               <div class="avatar-container" v-else>
                 <!-- <small v-if="name"> Hi, {{name}} </small> -->
                 <div class="avatar-wrapper">
-                  <img class="user-avatar" src="static/images/avatar/no_avatar.png">
+                  <router-link :to="{ name: 'editProfile' }">
+                  <img v-if="image" class="user-avatar" :src="image">
+                  <img v-else class="user-avatar" src="static/images/avatar/no_avatar.png">
+                  </router-link>
                 </div>
               </div>
               <!-- <el-dropdown-menu class="user-dropdown" slot="dropdown">
@@ -184,7 +187,8 @@ export default {
     ...mapGetters([
       'name',
       'roles',
-      'role'
+      'role',
+      'image'
     ])
   },
   methods: {
