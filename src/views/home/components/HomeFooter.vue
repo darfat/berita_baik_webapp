@@ -70,10 +70,10 @@ export default {
     &-s1{
       background-color: #333;
       padding: 30px 0 20px 0;      
-      a {
+      a, a:visited {
         color: #FEFEFE;  
       }
-      a:hover{
+      a:hover, a:active{
         color: #CCC;
       }
     }
@@ -83,7 +83,10 @@ export default {
       padding: 16px 0;
       color: #666;
       font-size: 0.6em;
-      a:hover{
+      a, a:visited{
+        color: #666;
+      }
+      a:hover, a:active{
         color: #ccc;
       }
     }

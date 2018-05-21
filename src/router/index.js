@@ -131,6 +131,12 @@ export const constantRouterMap = [
       props: true,
       component: () => import('@/views/portal/content-cards/index')
     },
+    {
+      path: 'home-p/profile',
+      name: 'profile-user',
+      props: true,
+      component: () => import('@/views/public/profile/index')
+    },
     { path: 'signup-success', component: () => import('@/views/portal/signup/success'), hidden: true }
     ]
   },

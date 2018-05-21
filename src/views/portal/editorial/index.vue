@@ -2,67 +2,30 @@
   <div class="editoral-container">  
     <el-row :gutter="20" class="headline-container" v-if="latestNews">
       <div class="container">
-        
-        <!-- <el-row :gutter="20">                 
-            <el-col :xs="24" v-if="latestNews.editorial">
-              <div class="grid-content title-container" v-if="editorialSlug !== latestNews.editorial.slug">
-                  <h1 class="main-article-title"> {{ editorialTitle }} </h1> 
-              </div>
+        <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">              
+          <el-row :gutter="0" >
+            <el-col :xs="24" :sm="14">              
+              <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
+                <img :src="latestNews.main_image" class="image-hl">                
+                <h2 v-if="latestNews.id">{{ latestNews.editorial.name }}</h2>                
+              </router-link>
             </el-col>          
-        </el-row> -->
-
-        <el-row :gutter="20">        
-          <el-col :xs="24">
-            <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">
-                  <el-row :gutter="20" >
-                    <el-col >
-                      <div>
-                          <div class="background">
-                            <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
-                              <img :src="latestNews.main_image" />
-                              <div class="editorial-type-img" v-if="latestNews.id">
-                                  <h2>{{ latestNews.editorial.name }}</h2>
-                              </div>
-                            </router-link>
-                          </div>
-                      </div>
-                    </el-col>
-                  </el-row>
-                  <el-row :gutter="20" class="content"> 
-                    <el-col>
-                      <el-row :gutter="20" class="ln-share">
-                          <el-col :span="4" v-if="latestNews.id">
-                              <span> <bb-love :articleID="latestNews.id" :type="'article'" ></bb-love> </span>
-                              <span><share-pop :article="latestNews"></share-pop>  </span>
-                          </el-col>
-                      </el-row>
-                      <el-row :gutter="20" class="ln-title">
-                        <el-col >                          
-                            <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
-                              <h1 class="headline" v-html="latestNews.title"></h1>
-                            </router-link>                         
-                        </el-col>
-                      </el-row>
-                      <el-row :gutter="20" class="ln-teaser">
-                          <el-col class="sub-headline">
-                            <div v-html="latestNews.teaser" class="article-content">
-                            </div>
-                          </el-col>
-                      </el-row>                    
-                      <el-row :gutter="20">
-                          <el-col class="footer">
-                            <p class="red-line"></p>
-                            <div class="author">
-                              {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
-                            </div>
-                          </el-col>
-                      </el-row>
-                    </el-col>
-                  </el-row>
-            </div>
-          </el-col>        
-        </el-row>
-        
+            <el-col :xs="24" :sm="10" class="info">                
+                <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
+                  <h1 class="headline" v-html="latestNews.title"></h1>
+                </router-link>                         
+                <div v-html="latestNews.teaser" class="teaser"></div>
+                <p class="red-line"></p>
+                <div class="author">
+                  {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
+                </div>
+                <div class="share">
+                <span><bb-love :articleID="latestNews.id" :type="'article'" ></bb-love></span>
+                <span><share-pop :article="latestNews"></share-pop></span>
+                </div>
+            </el-col>                    
+          </el-row>
+        </div>        
       </div>  
     </el-row>
     
