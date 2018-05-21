@@ -88,10 +88,22 @@
 
       }
       .avatar-wrapper{
-        img{
-          width: 50px;
-          height: auto;
+        .el-button{
+          border: none;
+          padding: 0;
+          img{
+            width: 50px;
+            height: auto;
+          }
         }
+        .el-button:hover,
+        .el-button:active,
+        .el-button:focus{
+          background: none;         
+        }
+        
+        
+                        
       }
     }
   }

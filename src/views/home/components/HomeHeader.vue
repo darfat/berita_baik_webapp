@@ -51,23 +51,31 @@
               <div class="avatar-container" v-else>
                 <!-- <small v-if="name"> Hi, {{name}} </small> -->
                 <div class="avatar-wrapper">
-                  <router-link :to="{ name: 'editProfile' }">
-                  <img v-if="image" class="user-avatar" :src="image">
-                  <img v-else class="user-avatar" src="static/images/avatar/no_avatar.png">
-                  </router-link>
+                  <!--<img class="user-avatar" src="static/images/avatar/no_avatar.png">-->
+                  <el-popover
+                    ref="refuser"
+                    placement="bottom"                    
+                    trigger="click"
+                    v-model="visible">
+                    <div class="user-menu">
+                      <div class="user-menu-item">
+                        <router-link :to="{ name: 'editProfile' }">
+                          <fa-icon name="user-circle-o" scale="1.6"></fa-icon> Profil Saya
+                        </router-link>
+                      </div>
+                      <div class="user-menu-item">
+                        <router-link :to="{ name: 'admin-logout' }">
+                          <fa-icon name="power-off" scale="1.6"></fa-icon> Keluar
+                        </router-link>
+                      </div>
+                    </div>                    
+                  </el-popover>
+                  <el-button v-popover:refuser>
+                    <img v-if="image" class="user-avatar" :src="image">
+                    <img v-else class="user-avatar" src="static/images/avatar/no_avatar.png">
+                  </el-button>
                 </div>
-              </div>
-              <!-- <el-dropdown-menu class="user-dropdown" slot="dropdown">
-              <router-link class="inlineBlock" to="/">
-              <el-dropdown-item>
-                Home
-              </el-dropdown-item>
-              </router-link>
-              <el-dropdown-item divided>
-              <span style="display:block;">LogOut</span>
-              </el-dropdown-item>
-              </el-dropdown-menu> -->
-            <!-- </el-dropdown> -->
+              </div>  
             </div>
           </div>
         </el-col>
