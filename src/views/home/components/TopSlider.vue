@@ -1,10 +1,10 @@
 <template>
-<div class="slidertop-wrapper" v-loading="loading.topslides">  
+<div class="slidertop-wrapper" >  
   <div class="swiper-nav">
     <div class="swiper-button-prev" slot="button-prev"><svg-icon icon-class="arrow_left"></svg-icon></div>  
     <div class="swiper-button-next" slot="button-next"><svg-icon icon-class="arrow_right"></svg-icon></div>
   </div>
-  <swiper :options="swiperOption" class="swiper-box">
+  <swiper :options="swiperOption" class="swiper-box" v-loading="loading.topslides">
     <swiper-slide v-for="item in topslides" :key="item.id" class="swiper-item">
       <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">
         <img :src="item.article.main_image">
@@ -13,8 +13,6 @@
     </swiper-slide>
     
   </swiper>
-  
-  
 </div>
 
 </template>

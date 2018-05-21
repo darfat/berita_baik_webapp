@@ -4,7 +4,7 @@
       <div class="section-title"> {{title}}</div>
   </el-row>
           
-  <div class="popular-news m-t-20">
+  <div class="popular-news m-t-20" v-loading="loading.popular_articles">
     <el-row :gutter="20" v-for="(popular) in popular_articles" :key="popular.id" >
       <el-col :span="10">
         <div>

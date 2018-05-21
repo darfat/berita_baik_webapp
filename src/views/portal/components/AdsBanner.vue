@@ -1,11 +1,11 @@
 <template>
 <div class="ads-container" v-if="ads">
   <div class="ads-title" v-if="showTitle">IKLAN</div>
-  <div v-if="position === 'Home : Tengah'">
+  <div v-if="position === 'Home : Tengah'" v-loading="loading.ads">
     <el-row :gutter="10">
       <div class="container">
         <el-col :xs="24" :sm="24">
-          <div class="ads-content" v-loading="loading.ads">
+          <div class="ads-content">
             <img :src="ads.image" />
           </div>
         </el-col>
@@ -17,8 +17,8 @@
         <div class="gray-separator"> <span> </span>  </div>
     </div>
   </div>
-  <div v-else>    
-    <div class="ads-content" v-loading="loading.ads">
+  <div v-else  v-loading="loading.ads">    
+    <div class="ads-content">
       <img :src="ads.image" />
     </div>
   </div>
