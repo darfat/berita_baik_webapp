@@ -40,19 +40,19 @@
                   <share-pop :article="article"></share-pop>
                 <div class="bottom clearfix">
                   <router-link v-if="article.article_type === 'news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">                  
-                    <h2 class="headline" v-html="subString(article.title,60)"  ></h2>
+                    <h2 class="headline" v-html="subString(article.title,100)"  ></h2>
                   </router-link>
                   <router-link   v-if="article.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug } }" >                      
-                    <h2 class="headline" v-html="subString(article.title,60)"  ></h2>
+                    <h2 class="headline" v-html="subString(article.title,100)"  ></h2>
                   </router-link>
                   <router-link v-if="article.article_type === 'video'" :to="{ name: 'editorial-video-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug} }">
-                    <h2 class="headline" v-html="subString(article.title,60)"  ></h2>
+                    <h2 class="headline" v-html="subString(article.title,100)"  ></h2>
                   </router-link>
                   <router-link v-if="article.article_type === 'y-news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">                  
-                    <h2 class="headline" v-html="subString(article.title,60)"  ></h2>
+                    <h2 class="headline" v-html="subString(article.title,100)"  ></h2>
                   </router-link>
                   <router-link   v-if="article.article_type === 'y-image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug } }" >                      
-                    <h2 class="headline" v-html="subString(article.title,60)"  ></h2>
+                    <h2 class="headline" v-html="subString(article.title,100)"  ></h2>
                   </router-link>
                 </div>
                
