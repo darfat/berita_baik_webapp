@@ -30,7 +30,7 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="Judul" prop="title">
-                <el-input v-model="article.title"  v-on:change="generateSlug" :maxlength="100" ></el-input>
+                <el-input v-model="article.title"  v-on:change="generateSlug" :maxlength="75" ></el-input>
             </el-form-item>
             <el-form-item label="Sub Judul" v-if="article.article_type === 'news'" >
                 <el-input v-model="article.subtitle" :maxlength="50" ></el-input>
@@ -38,7 +38,7 @@
             
             <el-form-item label="Ringkasan Utama" prop="teaser" v-if="article.article_type === 'news'" >
               <div class="editor-container">
-                 <el-input type="textarea" :rows="4" v-model="article.teaser" :maxlength="500" ></el-input>
+                 <el-input type="textarea" :rows="4" v-model="article.teaser" :maxlength="250" ></el-input>
                  <!-- <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser' ></tinymce> -->
               </div>
             </el-form-item>

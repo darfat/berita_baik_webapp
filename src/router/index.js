@@ -451,14 +451,14 @@ export const asyncRouterMap = [
     children: [
       {
         path: 'list',
-        name: 'users-mngmnt-list',
-        component: () => import('@/views/admin/advertisement/list'),
+        name: 'user-list',
+        component: () => import('@/views/admin/user/list'),
         meta: { title: 'Manajemen User', icon: 'user' }
       },
       {
         path: 'form',
-        name: 'users-mngmnt-form',
-        component: () => import('@/views/admin/advertisement/form'),
+        name: 'user-form',
+        component: () => import('@/views/admin/user/form'),
         props: true,
         hidden: true
       }
