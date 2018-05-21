@@ -48,23 +48,31 @@
           <div class="head-item mc">            
             <div class="head-item-user mc-content">              
               <a href="#/login" v-if="!name">Log In / Sign Up</a>              
-              <el-dropdown class="avatar-container" v-else>
+              <div class="avatar-container" v-else>
                 <!-- <small v-if="name"> Hi, {{name}} </small> -->
                 <div class="avatar-wrapper">
-                  <img class="user-avatar" src="static/images/avatar/no_avatar.png">
-                  <i class="el-icon-arrow-down el-icon--right"></i>                  
+                  <!--<img class="user-avatar" src="static/images/avatar/no_avatar.png">-->
+                  <el-popover
+                    ref="refuser"
+                    placement="bottom"                    
+                    trigger="click"
+                    v-model="visible">
+                    <div class="user-menu">
+                      <div class="user-menu-item">
+                        <a href="">
+                          <fa-icon name="user-circle-o" scale="1.6"></fa-icon> Profil Saya
+                        </a>
+                      </div>
+                      <div class="user-menu-item">
+                        <a href="">
+                          <fa-icon name="power-off" scale="1.6"></fa-icon> Keluar
+                        </a>
+                      </div>
+                    </div>                    
+                  </el-popover>
+                  <el-button v-popover:refuser><img class="user-avatar" src="static/images/avatar/no_avatar.png"></el-button>
                 </div>
-              <el-dropdown-menu class="user-dropdown" slot="dropdown">
-              <router-link class="inlineBlock" to="/">
-              <el-dropdown-item>
-                Home
-              </el-dropdown-item>
-              </router-link>
-              <el-dropdown-item divided>
-              <span style="display:block;">LogOut</span>
-              </el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
+              </div>  
             </div>
           </div>
         </el-col>

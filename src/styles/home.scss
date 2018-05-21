@@ -199,3 +199,28 @@ h1, h2, h3, h4, h5, h6{
     }
   }
 }
+
+.el-popover{
+  .user-menu{    
+    &-item{
+      margin-bottom: 10px;
+      a, a:hover, a:visited{
+        color: $bb-grayWhite;
+        font-size: 1em;
+        line-height: 2em;        
+        vertical-align: top;
+        font-family: 'Neosans';
+        // font-weight: 700;
+      }
+      .fa-icon{
+        width: 2em;
+      }
+    }
+    &-item:last-child{
+      margin-bottom: 0;
+      padding-top: 10px;
+      border-top: 1px solid $bb-grayWhite;
+    }
+  }
+}
+
