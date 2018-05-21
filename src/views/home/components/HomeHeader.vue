@@ -52,8 +52,7 @@
                 <!-- <small v-if="name"> Hi, {{name}} </small> -->
                 <div class="avatar-wrapper">
                   <img class="user-avatar" src="static/images/avatar/no_avatar.png">
-                  <i class="el-icon-arrow-down el-icon--right"></i>
-                  
+                  <i class="el-icon-arrow-down el-icon--right"></i>                  
                 </div>
               <el-dropdown-menu class="user-dropdown" slot="dropdown">
               <router-link class="inlineBlock" to="/">
