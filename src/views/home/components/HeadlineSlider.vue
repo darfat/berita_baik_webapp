@@ -15,7 +15,7 @@
               <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">
               <h1 class="headline" v-html="subString(item.article.title, 78)" ></h1>              
               </router-link>
-              <p v-html="subString(item.article.teaser, 255)" class="teaser" ></p>              
+              <p v-html="subString(item.article.teaser, 250)" class="teaser" ></p>              
               <p class="red-line"></p>
               <p class="author">{{ item.article.reporter_name}} | <timeago :since="item.article.publish_date"></timeago></p>
               <div class="share">
@@ -72,7 +72,7 @@ export default {
       if (str.length < len) {
         return str
       } else {
-        return str.substring(0, (len - 3)) + '...'
+        return str.substring(0, (len - 3)) + '&hellip;'
       }
     }
   }

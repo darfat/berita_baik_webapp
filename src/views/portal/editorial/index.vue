@@ -13,9 +13,9 @@
             <el-col :xs="24" :sm="10">
               <div class="info">
                 <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
-                  <h1 class="headline" v-html="subString(latestNews.title, 78)" ></h1>
-                </router-link>                         
-                <div  v-html="subString(latestNews.teaser, 255)"  class="teaser"></div>
+                  <h1 class="headline" v-html="subString(latestNews.title,50)"></h1>
+                </router-link>
+                <div v-html="subString(latestNews.teaser,250)" class="teaser"></div>                
                 <p class="red-line"></p>
                 <div class="author">
                   {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
@@ -140,7 +140,7 @@ export default {
       if (str.length < len) {
         return str
       } else {
-        return str.substring(0, (len - 3)) + '...'
+        return str.substring(0, (len - 3)) + '&hellip;'
       }
     }
   }
