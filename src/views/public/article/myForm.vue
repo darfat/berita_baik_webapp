@@ -235,7 +235,8 @@
             <el-form-item class="m-t-20">
                 <el-button type="primary" @click="onSubmit('articleForm')" v-if="action === 'add'">Create</el-button>
                 <el-button type="primary" @click="onSubmit('articleForm')" v-if="action === 'edit'">Update</el-button>
-                <el-button  @click="back()" >Cancel</el-button>
+                <el-button v-if="role==='public'" @click="back()" >Cancel</el-button>
+                <el-button v-if="role==='editor'" @click="backEditor()" >Cancel</el-button>
             </el-form-item>
         </el-form>
     
@@ -389,9 +390,16 @@ export default {
               .then(response => {
                 if (response.status === 200) {
                   console.log('update success')
-                  this.$router.push({
-                    path: '/cms-public/bp-your-articles' + '/' + this.articleType + '/' + this.editorialSlug
-                  })
+                  if (this.role === 'public') {
+                    this.$router.push({
+                      path: '/cms-public/bp-your-articles' + '/' + this.articleType + '/' + this.editorialSlug
+                    })
+                  }
+                  if (this.role === 'editor') {
+                    this.$router.push({
+                      path: '/data' + '/' + this.articleType + '/' + this.editorialSlug
+                    })
+                  }
                 }
               })
               .catch(error => {
@@ -628,6 +636,11 @@ export default {
     back() {
       this.$router.push({
         path: '/cms-public/bp-your-articles' + '/' + this.articleType + '/' + this.editorialSlug
+      })
+    },
+    backEditor() {
+      this.$router.push({
+        path: '/data' + '/' + this.articleType + '/' + this.editorialSlug
       })
     },
     addArticleRelateItem() {

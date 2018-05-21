@@ -32,7 +32,6 @@ router.beforeEach((to, from, next) => {
           const data = res.data
           const roles = [data.role] // note: roles must be a array! such as: ['editor','develop']
           store.dispatch('GenerateRoutes', { roles }).then(() => { // 根据roles权限生成可访问的路由表
-            console.log('generate routes')
             router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
             // if (data.role === 'editor') {
             //   next({ path: '/cms' })
@@ -53,6 +52,7 @@ router.beforeEach((to, from, next) => {
         if (hasPermission(store.getters.roles, to.meta.roles)) {
           next()//
         } else {
+          console.log('not found')
           next({ path: '/401', replace: true, query: { noGoBack: true }})
         }
         // 可删 ↑

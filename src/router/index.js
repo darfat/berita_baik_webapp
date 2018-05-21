@@ -319,7 +319,7 @@ export const asyncRouterMap = [
   {
     path: '/moderation',
     component: Layout,
-    redirect: '/moderation/artikel-kamu-list/y-news/berita-kamu',
+    redirect: 'noredirect',
     name: 'moderation',
     meta: { title: 'Moderasi', icon: 'example', roles: ['editor'] },
     children: [
@@ -384,13 +384,13 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/advertisements/list',
     name: 'advertisement',
-    meta: { title: 'Iklan', icon: 'calendar', roles: ['editor'] },
+    meta: { title: 'Iklan', icon: 'table', roles: ['editor'] },
     children: [
       {
         path: 'list',
         name: 'advertisement-list',
         component: () => import('@/views/admin/advertisement/list'),
-        meta: { title: 'Iklan', icon: 'calendar' }
+        meta: { title: 'Iklan', icon: 'table' }
       },
       {
         path: 'form',
@@ -402,23 +402,65 @@ export const asyncRouterMap = [
     ]
   },
   {
-    path: '/configuration',
+    path: '/data',
     component: Layout,
-    redirect: '/configuration/tag',
-    name: 'Configuration',
-    meta: { title: 'Konfigurasi', icon: 'gear', roles: ['editor'] },
+    redirect: '/data/y-news/berita-kamu',
+    name: 'admin-data',
+    meta: { title: 'Data', icon: 'gear', roles: ['editor'] },
     children: [
+      {
+        path: 'y-news/berita-kamu',
+        name: 'archive-berita-kamu-list',
+        component: () => import('@/views/public/article/berita'),
+        meta: { title: 'Berita Kamu', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'y-image/foto-kamu',
+        name: 'archive-foto-kamu-list',
+        component: () => import('@/views/public/article/citra'),
+        meta: { title: 'Foto Kamu', icon: 'ic_bullet - circle - o' }
+      },
       {
         path: 'tag',
         name: 'Tag',
         component: () => import('@/views/admin/tag/index'),
-        meta: { title: 'Tag', icon: 'tag' }
+        meta: { title: 'Tag', icon: 'tag' },
+        hidden: true
       },
       {
         path: 'editorial',
         name: 'EditorialConfig',
         component: () => import('@/views/admin/editorial/index'),
         meta: { title: 'Editorial', icon: 'work_order_item' }
+      },
+      {
+        path: 'bp-f/:articleType/:editorialSlug',
+        name: 'back-public-article-form',
+        props: true,
+        component: () => import('@/views/public/article/myForm'),
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/users-mngmnt',
+    component: Layout,
+    redirect: '/users-mngmnt/list',
+    name: 'users-mngmnt',
+    meta: { title: 'Manajemen User', icon: 'user', roles: ['editor'] },
+    children: [
+      {
+        path: 'list',
+        name: 'users-mngmnt-list',
+        component: () => import('@/views/admin/advertisement/list'),
+        meta: { title: 'Manajemen User', icon: 'user' }
+      },
+      {
+        path: 'form',
+        name: 'users-mngmnt-form',
+        component: () => import('@/views/admin/advertisement/form'),
+        props: true,
+        hidden: true
       }
     ]
   },
