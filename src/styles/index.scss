@@ -23,6 +23,10 @@
   src: url('../assets/fonts/neosans/NeoSans Medium Italic.otf'); 
 }
 @font-face {
+  font-family: 'Neosans-Medium';
+  src: url('../assets/fonts/neosans/NeoSans Medium.otf'); 
+}
+@font-face {
   font-family: 'Neosans-Black';
   src: url('../assets/fonts/neosans/NeoSans Black.otf'); 
 }
@@ -292,7 +296,7 @@ a:hover {
 }
 .headline {
   color: $headline;
-  font-family: 'Neosans-Black';
+  font-family: 'Neosans-Medium';
   word-wrap: break-word;
 }
 .sub-headline,
