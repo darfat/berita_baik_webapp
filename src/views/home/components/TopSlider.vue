@@ -97,7 +97,7 @@ export default {
 }
 .swiper-box {
   width: 86%;
-  height: 130px;
+  height: 150px; //267x150
   margin: 0 auto;
   z-index: 1;
 }

@@ -20,7 +20,7 @@
           <el-col >
             <p class="red-line"></p>            
             <div class="events-month" >{{periodMonth}}</div>
-            <p class="desc">Cicero famously orated against his political opponent Lucius Sergius Catilina.</p>
+            <p class="desc"></p>
           </el-col>
         </el-row>
       </el-col>
