@@ -293,9 +293,12 @@ a:hover {
 .headline {
   color: $headline;
   font-family: 'Neosans-Black';
+  word-wrap: break-word;
 }
-.sub-headline {
-  color: $subHeadline
+.sub-headline,
+.teaser {
+  color: $subHeadline;
+  word-wrap: break-word;
 }
 .content {
   color: $subHeadline

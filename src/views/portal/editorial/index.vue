@@ -10,7 +10,8 @@
                 <h2 v-if="latestNews.id">{{ latestNews.editorial.name }}</h2>                
               </router-link>
             </el-col>          
-            <el-col :xs="24" :sm="10" class="info">                
+            <el-col :xs="24" :sm="10">
+              <div class="info">
                 <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
                   <h1 class="headline" v-html="latestNews.title"></h1>
                 </router-link>                         
@@ -23,6 +24,7 @@
                 <span><bb-love :articleID="latestNews.id" :type="'article'" ></bb-love></span>
                 <span><share-pop :article="latestNews"></share-pop></span>
                 </div>
+              </div>  
             </el-col>                    
           </el-row>
         </div>        
