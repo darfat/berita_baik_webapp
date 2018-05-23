@@ -41,6 +41,8 @@ import Croppa from 'vue-croppa'
 import VueAnalytics from 'vue-analytics'
 // vue head
 import VueHead from 'vue-head'
+// lazy
+import VueLazyload from 'vue-lazyload'
 
 Vue.use(ElementUI, { locale })
 Vue.use(feather, 'v-icon')
@@ -79,6 +81,8 @@ Vue.use(VueAnalytics, {
   router
 })
 Vue.use(VueHead)
+
+Vue.use(VueLazyload)
 
 new Vue({
   el: '#app',

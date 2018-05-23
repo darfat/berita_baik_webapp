@@ -8,22 +8,23 @@
       <el-col :xs="24" :sm="12" v-for="(article) in articles" :key="article.id">
         <div class="news-col">
           <el-card :body-style="{ padding: '0px' }" class="news-card">            
-            <div class="mini-thumbnail">
+            <div class="mini-thumbnail" >
               <router-link  v-if="article.article_type === 'news' || article.article_type === 'y-news'"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
-                <img v-if="article.thumb_image" :src="article.thumb_image" class="card-image" />
-                <img v-else :src="article.main_image" class="card-image" />
+                <img v-if="article.thumb_image" v-lazy="article.thumb_image" class="card-image" />
+                <img v-else v-lazy="article.main_image" class="card-image" />
                 <div class="editorial-type-img">
                   <h3>{{ article.editorial.name }}</h3>
                 </div>
               </router-link>
               <!-- <router-link v-if="article.editorial.slug === 'infografis'" :to="{ name: 'infografis-detail-layout', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug} }" >                      
-                <img :src="article.main_image" class="card-image" />
+                <img v-lazy="article.main_image" class="card-image" />
                 <div class="editorial-type-img">
                   <h3>{{ article.editorial.name }}</h3>
                 </div>
               </router-link> -->
               <router-link   v-if="article.article_type === 'image' || article.article_type === 'y-image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug } }" >                      
-                <img :src="article.main_image" class="card-image" />
+                <img v-if="article.thumb_image" v-lazy="article.thumb_image" class="card-image" />
+                <img v-else v-lazy="article.main_image" class="card-image" />
                 <div class="editorial-type-img">
                   <h3>{{ article.editorial.name }}</h3>
                 </div>

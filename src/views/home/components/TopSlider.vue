@@ -7,7 +7,9 @@
   <swiper :options="swiperOption" class="swiper-box" v-loading="loading.topslides">
     <swiper-slide v-for="item in topslides" :key="item.id" class="swiper-item">
       <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">
-        <img :src="item.article.main_image">
+        <!-- <img v-lazy="item.article.main_image"> -->
+        <img v-if="item.article.thumb_image" v-lazy="item.article.thumb_image" />
+        <img v-else v-lazy="item.article.main_image" />
         <h3>{{item.editorial.name}}</h3>
       </router-link>
     </swiper-slide>

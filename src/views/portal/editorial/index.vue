@@ -6,7 +6,7 @@
           <el-row :gutter="0" >
             <el-col :xs="24" :sm="14">              
               <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
-                <img :src="latestNews.main_image" class="image-hl">                
+                <img v-lazy="latestNews.main_image" class="image-hl">                
                 <h2 v-if="latestNews.id">{{ latestNews.editorial.name }}</h2>                
               </router-link>
             </el-col>          

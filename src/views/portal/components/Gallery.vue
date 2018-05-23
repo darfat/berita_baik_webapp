@@ -4,7 +4,7 @@
         <el-row :gutter="20" >
             <el-col :span="24" class="gallery-col">
                   <div class="gallery-thumbnail">
-                      <img :src="mainGallery.main_image" class="gallery-image" />
+                      <img v-lazy="mainGallery.main_image" class="gallery-image" />
                       <div class="gallery-image-title">
                         <p v-if="mainGallery.editorial" >{{ mainGallery.editorial.name }}</p>
                       </div>
@@ -52,7 +52,9 @@
             <el-col :xs="24" :sm="8" v-for="(g) in galleries" :key="g.id" class="gallery-col">
                 <el-card  :body-style="{ padding: '0px' }" class="gallery-card">
                   <div class="gallery-thumbnail">
-                      <img :src="g.main_image" class="gallery-image" />
+                      <!-- <img v-lazy="g.main_image" class="gallery-image" /> -->
+                      <img v-if="g.thumb_image" v-lazy="g.thumb_image" class="gallery-image" />
+                      <img v-else v-lazy="g.main_image" class="gallery-image" />
                       <div class="gallery-image-title">
                         <p >{{ g.editorial.name }}</p>
                       </div>

@@ -6,7 +6,7 @@
       <div class="container">
         <el-col :xs="24" :sm="24">
           <div class="ads-content">
-            <img :src="ads.image" />
+            <img v-lazy="ads.image" />
           </div>
         </el-col>
       </div>
@@ -19,7 +19,7 @@
   </div>
   <div v-else  v-loading="loading.ads">    
     <div class="ads-content">
-      <img :src="ads.image" />
+      <img v-lazy="ads.image" />
     </div>
   </div>
 </div>

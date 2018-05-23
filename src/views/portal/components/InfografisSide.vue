@@ -6,7 +6,7 @@
               <el-col :span="24" class="side-image">
                 <div v-if="infografis.editorial">
                 <router-link :to="{ name: 'editorial-image-detail',  params: { 'editorialSlug':infografis.editorial.slug, 'slug': infografis.slug } }">
-                  <img :src="infografis.main_image" class="card-image"/>
+                  <img v-lazy="infografis.main_image" class="card-image"/>
                 </router-link>
                 </div>
               </el-col>
