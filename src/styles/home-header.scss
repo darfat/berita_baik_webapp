@@ -149,7 +149,7 @@ nav {
   border: none;
 }
 #logo img{
-  height: 30px;  
+  width: 30px;  
 }
 
 .social-media-container{
@@ -253,7 +253,7 @@ nav ul ul ul li {
 
 	
 /* Change ' +' in order to change the Dropdown symbol */
-li > a:after { content:  ' \25BC'; color: $bb-white-menu; }
+li > a:after { content:  ' \25BC'; color: $bb-white-menu; font-size: .7em; }
 li > a:only-child:after { content: ''; }
 
 .menu >li:last-child{
@@ -264,23 +264,25 @@ li > a:only-child:after { content: ''; }
 
 @media all and (max-width : 768px) {
 
-	#logo {
-		// display: block;
-		// padding: 0;
-		// width: 100%;
-		// text-align: center;
-		// float: none;
-	}
+.menu-wrapper{
+  //padding-bottom: 10px;
+}
+#logo{
+  img{
+    margin-left: 10px;
+  }    
+}
 
 .hamburger-menu{
     float: right;
-    text-align: right;    
+    text-align: right;
+    margin-top: 5px;
   }
 
 	nav {
 		margin: 0;
     padding-top: 0;    
-    min-height: 50px;
+    min-height: 50px;    
 	}
 
 	/* Hide the navigation menu by default */
@@ -367,19 +369,30 @@ li > a:only-child:after { content: ''; }
 		position: static;
 		/* has to be the same number as the "width" of "nav ul ul li" */ 
 
-	}
-
+  }
   
+  .arrow{
+    font-size: 0.7em;
+  }
+  
+  nav ul li:last-child{
+    padding-bottom: 10px;
+  }
 
 }
 
 @media all and (max-width : 330px) {
+  #logo{
+    img{
+      // margin-left: 10px;
+    }    
+  }
   .container{
     // margin: 0; padding: 0;
   }
   nav{
-    //font-size: 12px;
-    padding-top: 10px;
+    // font-size: 12px;
+    // padding-top: 10px;
   }
 	nav ul li {
 		display: block;
