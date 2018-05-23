@@ -4,13 +4,13 @@
     <el-carousel-item v-for="item in headlines" :key="item.id">
       <div class="item-wrapper-hl">
         <el-row>
-          <el-col :xs="14" :sm="14">
+          <el-col :xs="24" :sm="14">
             <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">
               <img :src="item.article.main_image" class="image-hl">
               <h2>{{item.editorial.name}}</h2>
             </router-link>
           </el-col>
-          <el-col :xs="10" :sm="10">            
+          <el-col :xs="24" :sm="10">            
             <div class="info">      
               <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">              
               <h1 class="headline" v-html="subString(item.article.title,101)"></h1>              
