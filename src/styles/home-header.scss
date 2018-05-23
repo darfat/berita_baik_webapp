@@ -413,9 +413,36 @@ li > a:only-child:after { content: ''; }
 .mc{
   width: 100%;  
   display: table;
-    min-height: 108px;    
+  min-height: 108px;
+  .mc-content{
+      vertical-align:middle;
+      display: table-cell;
+  }  
+}
+
+@media all and (max-width : 768px) {  
+  .mc{
+    width: 100%;  
+    display: table;
+    min-height: 60px;
     .mc-content{
         vertical-align:middle;
         display: table-cell;
+    }  
+  }
+  .head{
+    &-wrapper {
+      // height: 100px;
     }
+    &-item{    
+      height: auto;
+      text-align: center;
+      &-img{       
+        img{         
+          margin: 10px 0 0 0;
+        }
+      }   
+      
+    }
+  }    
 }
