@@ -188,7 +188,8 @@ export default {
       img_ikon_mono,
       search: '',
       scrolled: null,
-      status: false
+      status: false,
+      visible: false
     }
   },
   computed: {
