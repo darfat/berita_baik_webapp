@@ -119,7 +119,8 @@ export default {
         active: true,
         id_number: '-',
         id_number_type: 'ktp',
-        status: 'inactive'
+        status: 'inactive',
+        role: 'public'
       },
       rules: {
         name: [

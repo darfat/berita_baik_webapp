@@ -36,9 +36,9 @@
                 <el-input v-model="article.subtitle" :maxlength="50" ></el-input>
             </el-form-item>
             
-            <el-form-item label="Ringkasan Utama" prop="teaser" v-if="article.article_type === 'news'" >
+            <el-form-item label="Ringkasan Utama" prop="teaser" v-if="article.article_type === 'news' || article.article_type === 'image'" >
               <div class="editor-container">
-                 <el-input type="textarea" :rows="4" v-model="article.teaser" :maxlength="500" ></el-input>
+                 <el-input type="textarea" :rows="4" v-model="article.teaser" :maxlength="250" ></el-input>
                  <!-- <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser' ></tinymce> -->
               </div>
             </el-form-item>
@@ -360,11 +360,11 @@ export default {
     return {
       article: {
         title: '',
+        teaser: '',
         editorial_id: null,
         slug: '',
         publish_date: null,
         published: true,
-        teaser: null,
         content: null,
         main_image: null,
         section: null,
@@ -416,9 +416,9 @@ export default {
         title: [
           { required: true, message: 'Silahkan Isi judul', trigger: 'blur' }
         ],
-        teaser: [
-          { required: true, message: 'Silahkan Isi Ringkasan Utama', trigger: 'blur' }
-        ],
+        // teaser: [
+        //   { required: true, message: 'Silahkan Isi Ringkasan Utama', trigger: 'blur' }
+        // ],
         content: [
           { required: true, message: 'Silahkan Isi Berita', trigger: 'blur' }
         ],
@@ -453,6 +453,10 @@ export default {
         if (valid && this.isValidateAuthor() && this.isValidateYoutubeLinkAuthor()) {
           if (this.article.article_type === 'video' || this.editorialSlug === 'infografis') {
             this.article.content = '-'
+          }
+          if (this.article.article_type === 'news' && this.article.teaser.length < 1) {
+            this.$message.warning('Ringkasan Utama Belum Diisi')
+            return false
           }
           this.article.article_type = this.articleType
           this.article.article_tags = this.tagArray.toString()

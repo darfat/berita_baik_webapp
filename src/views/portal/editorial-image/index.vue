@@ -10,7 +10,7 @@
                     <el-col >
                       <div>
                           <div class="background">
-                              <img :src="latestNews.main_image" />
+                              <img v-lazy="latestNews.main_image" />
                               <!-- <div class="editorial-type-img" v-if="latestNews.id">
                                   <h2>{{ latestNews.editorial.name }}</h2>
                               </div> -->

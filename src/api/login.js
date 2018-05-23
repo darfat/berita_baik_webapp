@@ -88,3 +88,10 @@ export function logout() {
     method: 'post'
   })
 }
+export function activate(data) {
+  return request_no_auth({
+    url: '/user-activation/' + data.code,
+    method: 'get',
+    data
+  })
+}

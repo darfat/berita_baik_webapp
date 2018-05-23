@@ -336,6 +336,10 @@ export default {
           }
           EventBus.$emit('SET_ARTICLE_ID_COMMENTS_EVENT', { 'articleID': this.mainArticle.id })
           this.getAuthors(this.mainArticle.id)
+          const url = this.baseLinkPath + this.mainArticle.editorial.slug + '/' + this.mainArticle.slug
+          this.changeMeta(this.mainArticle, url)
+          // remove br
+          this.mainArticle.content = this.mainArticle.content.replace('\u003c!DOCTYPE html\u003e\u003cbr /\u003e\u003chtml\u003e\u003cbr /\u003e\u003chead\u003e\u003cbr /\u003e\u003c/head\u003e\u003cbr /\u003e', '\u003c!DOCTYPE html\u003e\u003chtml\u003e\u003chead\u003e\u003c/head\u003e')
         }
       })
     },
@@ -363,7 +367,6 @@ export default {
       })
     },
     openShare(articleID, url) {
-      this.changeMeta(this.mainArticle, url)
       updateArticleSharedCount({ articleID }).then(response => {
         if (response) {
           console.log('shared success')

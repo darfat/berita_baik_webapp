@@ -6,7 +6,7 @@
         <el-row class="latest-news" v-loading="loading.latestNews" v-if="latestNews.id">
           <el-col :xs="24" :sm="14" >            
             <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
-              <img :src="latestNews.main_image" class="image-hl">                
+              <img v-lazy="latestNews.main_image" class="image-hl">
               <h2 v-if="latestNews.id">{{ latestNews.editorial.name }}</h2>                
             </router-link>
           </el-col>          
@@ -26,8 +26,8 @@
               </div>
             </div>  
           </el-col>                    
-        </el-row>        
-      </div>  
+        </el-row>          
+      </div>       
     </el-row>
     
     <el-row class="list-container">
@@ -137,11 +137,14 @@ export default {
       }
     },
     subString(str, len) {
-      if (str.length < len) {
-        return str
-      } else {
-        return str.substring(0, (len - 3)) + '&hellip;'
+      if (str) {
+        if (str.length < len) {
+          return str
+        } else {
+          return str.substring(0, (len - 3)) + '&hellip;'
+        }
       }
+      return ''
     }
   }
 }

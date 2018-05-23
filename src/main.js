@@ -41,6 +41,8 @@ import Croppa from 'vue-croppa'
 import VueAnalytics from 'vue-analytics'
 // vue head
 import VueHead from 'vue-head'
+// lazy
+import VueLazyload from 'vue-lazyload'
 
 Vue.use(ElementUI, { locale })
 Vue.use(feather, 'v-icon')
@@ -80,6 +82,8 @@ Vue.use(VueAnalytics, {
 })
 Vue.use(VueHead)
 
+Vue.use(VueLazyload)
+
 new Vue({
   el: '#app',
   router,
@@ -107,3 +111,5 @@ window.fbAsyncInit = function() {
     version: 'v2.8' // use graph api version 2.8
   })
 }
+
+// 1957770944535094 bbb v3

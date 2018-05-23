@@ -1,7 +1,7 @@
 <template>
   <div class="app-container calendar-list-container">
-      <div class="filter-container">
-     <router-link class="filter-item" :to="{ name: 'back-public-article-form', params: { editorialSlug, articleType } }" >
+      <div class="filter-container" v-if="role==='public'">
+      <router-link class="filter-item" :to="{ name: 'back-public-article-form', params: { editorialSlug, articleType } }" >
         <el-button type="primary" >Tulis Berita Baik</el-button>
       </router-link>    
       </div>
@@ -21,7 +21,7 @@
           </router-link>         
         </template>
       </el-table-column>
-      <el-table-column label="Reporter"   width="150" >
+      <el-table-column label="Penulis"   width="150" >
         <template slot-scope="scope">
           {{scope.row.reporter_name}}
         </template>
@@ -61,12 +61,22 @@
 
 <script>
 import { getListByEditorialSlug, searchListByEditorialSlug, updatePublished, softDelete, setAsBeritaUtama, setAsHeadline, setAsPilihanEditor } from '@/api/article'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'myArticles',
   props: {
     editorialSlug: { type: String },
     articleType: { type: String }
+  },
+  computed: {
+    ...mapGetters([
+      'name',
+      'role',
+      'email',
+      'username',
+      'user_id'
+    ])
   },
   data() {
     return {

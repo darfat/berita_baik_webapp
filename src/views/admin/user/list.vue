@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container  m-b-20">
-      <router-link class="filter-item" :to="{ name: 'event-form' }" >
+      <router-link class="filter-item" :to="{ name: 'user-form' }" >
         <el-button type="primary" >Create</el-button>
       </router-link>    
     </div>
@@ -11,32 +11,29 @@
           {{scope.$index + 1}}
         </template>
       </el-table-column>
-      <el-table-column label="Title" width="150">
+      <el-table-column label="Nama" width="150">
         <template slot-scope="scope">
-         <router-link :to="{ name: 'event-calendar', params: {  'eventID': scope.row.id} }"> 
-            <span> {{scope.row.title}} </span> 
-          </router-link>
+          <span> {{scope.row.name}} </span>
         </template>
       </el-table-column>
-      <el-table-column label="Description" >
+      <el-table-column label="Email" >
         <template slot-scope="scope">
-          <span>{{scope.row.description}}</span>
+          <span>{{scope.row.email}}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" prop="event_date" label="Date" width="210">
+      <el-table-column label="Role" >
         <template slot-scope="scope">
-          <i class="el-icon-time"></i>
-          <span>{{scope.row.date | formatDateOnly}} - {{scope.row.end_date | formatDateOnly}}</span>
+          <span>{{scope.row.role}}</span>
         </template>
       </el-table-column>
       <el-table-column class-name="status-col" label="Status" width="110" align="center">
         <template slot-scope="scope">
-          <el-tag :type="scope.row.is_premium | statusFilter"> {{getPremiumStatus(scope.row.is_premium)}}</el-tag>
+          <el-tag :type="scope.row.status | statusFilter"> {{scope.row.status}}</el-tag>
         </template>
       </el-table-column>
       <el-table-column align="center" label="Actions" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <router-link class="filter-item" :to="{ name: 'event-form', params: { 'eventId': scope.row.id} }" >
+          <router-link class="filter-item" :to="{ name: 'user-form', params: { 'userID': scope.row.id} }" >
             <el-button type="primary" size="mini" >Edit</el-button>
           </router-link>
           <el-button type="danger" size="mini" @click="deleteRow(scope.row.id)" >Delete</el-button>
@@ -54,7 +51,7 @@
 </template>
 
 <script>
-import { getAll, destroy } from '@/api/event'
+import { getAll, destroy } from '@/api/user'
 
 export default {
   data() {
@@ -70,8 +67,8 @@ export default {
   filters: {
     statusFilter(status) {
       const statusMap = {
-        true: 'success',
-        false: 'gray'
+        'active': 'success',
+        'inactive': 'gray'
       }
       return statusMap[status]
     }
@@ -96,20 +93,13 @@ export default {
         this.listLoading = false
       })
     },
-    getPremiumStatus(isPremium) {
-      if (isPremium === true) {
-        return 'Premium'
-      } else {
-        return 'Standar'
-      }
-    },
-    deleteRow(eventID) {
+    deleteRow(userID) {
       this.$confirm('Apakah anda yakin akan menghapus data ini?', 'Warning', {
         confirmButtonText: 'OK',
         cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
-        destroy({ eventID }).then(response => {
+        destroy({ userID }).then(response => {
           this.$message({
             type: 'success',
             message: 'Hapus data berhasil'

@@ -24,41 +24,68 @@
       </div>
       <div class="cld" >
         <div class="cld-title">
-        <h2>Acara Bulan Ini</h2>
+        <h2 v-if="eventID">Acara</h2>
+        <h2 v-else >Acara Bulan Ini</h2>
         <p class="red-line"></p>
         </div>
-        <vue-event-calendar :events="events"  @month-changed="handleMonthChanged" >
-          <template slot-scope="props">
-            <el-collapse accordion v-model="activeName" v-for="(event, index) in props.showEvents" :key="index" v-loading="loading.events">
-              <el-collapse-item :name=index>
-                <template slot="title">            
-                  <div v-if="activeName === index" >
-                    <h2>{{event.title}}</h2>              
+        <div v-if="eventID">
+          <div>
+          <el-collapse  accordion v-model="activeName" >
+                <el-collapse-item name="1">
+                  <img :src="event.image" >
+                  <h2>{{event.title}}</h2>
+                  <p>{{event.description}}</p>
+                  <div class="edate">
+                    <fa-icon name="clock-o" ></fa-icon>
+                      {{event.date | formatDateOnly }} -  {{event.end_date | formatDateOnly }}
                   </div>
-                  <div v-else>              
-                    <img :src="event.image" :alt="event.title" ><h2>{{event.title}}</h2>           
+                  <div class="venue">
+                    <fa-icon name="map-marker"></fa-icon>
+                    {{event.place}}
+                    <small>{{event.address}}</small>
                   </div>
-                </template>
-                <img :src="event.image" >
-                <h3>Details:</h3>
-                <p>{{event.description}}</p>
-                <div class="edate">
-                  <fa-icon name="clock-o" ></fa-icon>
-                    {{event.date | formatDateOnly }} -  {{event.end_date | formatDateOnly }}
-                </div>
-                <div class="venue">
-                  <fa-icon name="map-marker"></fa-icon>
-                  {{event.place}}
-                  <small>{{event.address}}</small>
-                </div>
-                <div class="venue">
-                  <fa-icon name="tag"></fa-icon>Ticketing <a :href="event.ticketing_url" target="_blank"  >[Registration Here]</a>
-                  {{event.place}}
-                </div>              
-              </el-collapse-item>
-            </el-collapse>
-            
-          </template>
+                  <div class="venue">
+                    <fa-icon name="tag"></fa-icon>Ticketing <a :href="event.ticketing_url" target="_blank"  >[Registration Here]</a>
+                    {{event.place}}
+                  </div>              
+                </el-collapse-item>
+              </el-collapse> 
+          </div>
+          <div class="m-t-20">
+          <el-button size="mini" type="info"  @click="showAll" round>Acara Lainnya</el-button>
+          </div>
+        </div>
+        <vue-event-calendar v-else :events="events"  @month-changed="handleMonthChanged" @day-changed="handleDayChanged">
+            <template slot-scope="props">
+              <el-collapse  accordion v-model="activeName" v-for="(event, index) in props.showEvents" :key="index" v-loading="loading.events">
+                <el-collapse-item :name=index>
+                  <template slot="title">            
+                    <div v-if="activeName === index" >
+                      <h2>{{event.title}}</h2>              
+                    </div>
+                    <div v-else>              
+                      <img :src="event.image" :alt="event.title" ><h2>{{event.title}}</h2>           
+                    </div>
+                  </template>
+                  <img :src="event.image" >
+                  <h3>Details:</h3>
+                  <p>{{event.description}}</p>
+                  <div class="edate">
+                    <fa-icon name="clock-o" ></fa-icon>
+                      {{event.date | formatDateOnly }} -  {{event.end_date | formatDateOnly }}
+                  </div>
+                  <div class="venue">
+                    <fa-icon name="map-marker"></fa-icon>
+                    {{event.place}}
+                    <small>{{event.address}}</small>
+                  </div>
+                  <div class="venue">
+                    <fa-icon name="tag"></fa-icon>Ticketing <a :href="event.ticketing_url" target="_blank"  >[Registration Here]</a>
+                    {{event.place}}
+                  </div>              
+                </el-collapse-item>
+              </el-collapse>            
+            </template>
         </vue-event-calendar>
         <hr />
       </div>
@@ -73,7 +100,7 @@
 </template>
 
 <script>
-import { getEventsByPeriod, getPremiumEvents } from '@/api/event'
+import { getEventsByPeriod, getPremiumEvents, getEventById } from '@/api/event'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import moment from 'moment'
 import Subscribe from '@/views/portal/components/Subscribe'
@@ -81,6 +108,11 @@ import Subscribe from '@/views/portal/components/Subscribe'
 export default {
   name: 'EventCalendar',
   components: { swiper, swiperSlide, Subscribe },
+  props: {
+    eventID: {
+      type: String
+    }
+  },
   data() {
     return {
       period: null,
@@ -89,6 +121,7 @@ export default {
         premiumEvents: false
       },
       events: [],
+      event: {},
       premiumEvents: [],
       title: 'Event Calendar',
       swiperOption: {
@@ -116,9 +149,12 @@ export default {
       this.$EventCalendar.toDate(moment(new Date()).format('YYYY/MM/DD'))
       this.getEventsByPeriod(this.period)
       this.getPremiumEvents()
+      if (this.eventID) {
+        this.getById(this.eventID)
+      }
     },
     handleDayChanged(data) {
-      // console.log('date-changed', data)
+      console.log('date-changed', data)
     },
     handleMonthChanged(data) {
       // console.log('month-changed', data)
@@ -153,6 +189,22 @@ export default {
         }
         this.loading.premiumEvents = false
       })
+    },
+    getById(eventID) {
+      getEventById({
+        eventID
+      }).then(response => {
+        if (response) {
+          this.event = response.data
+          if (this.event.image) {
+            const aarName = this.event.image.split('/')
+            this.main_image_name = aarName[aarName.length - 1]
+          }
+        }
+      })
+    },
+    showAll() {
+      location.reload()
     }
   }
 }

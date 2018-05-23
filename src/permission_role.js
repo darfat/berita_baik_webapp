@@ -3,7 +3,6 @@ import store from './store'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css'// progress bar style
 import { getToken } from '@/utils/auth' // getToken from cookie
-
 NProgress.configure({ showSpinner: false })// NProgress Configuration
 
 // permissiom judge function
@@ -18,6 +17,7 @@ const loginPatttern = '/login'
 const signupPattern = '/signup'
 const signupSuccessPattern = '/signup-success'
 const cmsLoginPattern = '/cms-login'
+const signupActivationPattern = '/u-activation'
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
@@ -32,7 +32,6 @@ router.beforeEach((to, from, next) => {
           const data = res.data
           const roles = [data.role] // note: roles must be a array! such as: ['editor','develop']
           store.dispatch('GenerateRoutes', { roles }).then(() => { // 根据roles权限生成可访问的路由表
-            console.log('generate routes')
             router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
             // if (data.role === 'editor') {
             //   next({ path: '/cms' })
@@ -53,6 +52,7 @@ router.beforeEach((to, from, next) => {
         if (hasPermission(store.getters.roles, to.meta.roles)) {
           next()//
         } else {
+          console.log('not found')
           next({ path: '/401', replace: true, query: { noGoBack: true }})
         }
         // 可删 ↑
@@ -60,7 +60,7 @@ router.beforeEach((to, from, next) => {
     }
   } else {
     /* has no token*/
-    if (to.path && (to.path.startsWith(homePattern) || to.path.startsWith(loginPatttern) || to.path.startsWith(signupPattern) || to.path.startsWith(cmsLoginPattern) || to.path.startsWith(signupSuccessPattern))) {
+    if (to.path && (to.path.startsWith(homePattern) || to.path.startsWith(loginPatttern) || to.path.startsWith(signupPattern) || to.path.startsWith(cmsLoginPattern) || to.path.startsWith(signupSuccessPattern) || to.path.startsWith(signupActivationPattern))) {
     // if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
       next()
     } else {

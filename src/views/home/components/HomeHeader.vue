@@ -59,18 +59,21 @@
                     v-model="visible">
                     <div class="user-menu">
                       <div class="user-menu-item">
-                        <a href="">
+                        <router-link :to="{ name: 'editProfile' }">
                           <fa-icon name="user-circle-o" scale="1.6"></fa-icon> Profil Saya
-                        </a>
+                        </router-link>
                       </div>
                       <div class="user-menu-item">
-                        <a href="">
+                        <router-link :to="{ name: 'admin-logout' }">
                           <fa-icon name="power-off" scale="1.6"></fa-icon> Keluar
-                        </a>
+                        </router-link>
                       </div>
                     </div>                    
                   </el-popover>
-                  <el-button v-popover:refuser><img class="user-avatar" src="static/images/avatar/no_avatar.png"></el-button>
+                  <el-button v-popover:refuser>
+                    <img v-if="image" class="user-avatar" :src="image">
+                    <img v-else class="user-avatar" src="static/images/avatar/no_avatar.png">
+                  </el-button>
                 </div>
               </div>  
             </div>
@@ -185,14 +188,16 @@ export default {
       img_ikon_mono,
       search: '',
       scrolled: null,
-      status: false
+      status: false,
+      visible: false
     }
   },
   computed: {
     ...mapGetters([
       'name',
       'roles',
-      'role'
+      'role',
+      'image'
     ])
   },
   methods: {

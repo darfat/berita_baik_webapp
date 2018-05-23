@@ -1,12 +1,12 @@
 <template>
 <div >    
         <div class="section-title"> INFOGRAFIS</div>
-          <div class="infografis-news m-t-10">
+          <div class="infografis-news m-t-10" v-loading="loading.infografis_list">
             <el-row :gutter="20" v-for="(infografis) in infografis_list" :key="infografis.id" class="side-row"  >
               <el-col :span="24" class="side-image">
                 <div v-if="infografis.editorial">
                 <router-link :to="{ name: 'editorial-image-detail',  params: { 'editorialSlug':infografis.editorial.slug, 'slug': infografis.slug } }">
-                  <img :src="infografis.main_image" class="card-image"/>
+                  <img v-lazy="infografis.main_image" class="card-image"/>
                 </router-link>
                 </div>
               </el-col>
@@ -44,8 +44,8 @@ export default {
       getImagesByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit }).then(response => {
         if (response) {
           this.infografis_list = response.data.data
-          this.loading.infografis_list = false
         }
+        this.loading.infografis_list = false
       })
     }
   }
