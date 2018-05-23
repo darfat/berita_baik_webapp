@@ -257,7 +257,7 @@ export const asyncRouterMap = [
         path: 'l/teknologi',
         name: 'admin-teknologi-list',
         component: () => import('@/views/admin/article/teknologi'),
-        meta: { title: 'Terknologi', icon: 'ic_bullet - circle - o' }
+        meta: { title: 'Teknologi', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/musik',
