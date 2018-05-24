@@ -2,13 +2,13 @@
 <div class="comment-box">
     <div class="content">
         <el-row :gutter="20" >
-            <el-col :xs="3" :sm="3">
+            <el-col :xs="6" :sm="3" class="content-img">
               <div class="img-mini">
                 <img v-if="name && userLogin.image " :src="userLogin.image" class="img-circle v-align-middle"/>
                 <img v-else src="static/images/avatar/no_avatar.png" class="img-circle v-align-middle"/>
               </div>
             </el-col>
-            <el-col :xs="21" :sm="21">
+            <el-col :xs="18" :sm="21" class="content-comment">
                 <el-input
                     type="textarea"
                     :rows="5"

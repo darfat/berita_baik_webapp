@@ -8,11 +8,12 @@
     padding-right: 40px;
     padding-top: 30px;
     padding-bottom: 20px;
-
-    img{
-        width: auto;
-        height: 100%;
-    }
+    &-img{        
+        img{
+            width: auto;
+            height: 100%;
+        }
+    }   
 }
 .comment-box .content .disabled-lbl{
     color: #fff;

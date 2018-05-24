@@ -3,13 +3,13 @@
     <div  class="content" v-loading="loading.comments" > 
         <el-row :gutter="20" v-for="(comment) in comments" :key="comment.id" class="data">
             <el-row >
-              <el-col :xs="3" :sm="3" class="comment-img">
+              <el-col :xs="6" :sm="3" class="comment-img">
                   <div class="img-mini">
                     <img v-if="name && comment.user  && comment.user.image" :src="comment.user.image" class="img-circle v-align-middle"/>
                     <img v-else src="static/images/avatar/no_avatar.png" class="img-circle v-align-middle"/>
                   </div>
               </el-col>
-              <el-col :xs="21" :sm="21" class="comment-info">
+              <el-col :xs="18" :sm="21" class="comment-info">
                   <div> {{ comment.user.name }}</div>
                   <div class="comment-date"> <timeago :auto-update="60" :since="comment.created_at"> </timeago>  </div>
               </el-col>
