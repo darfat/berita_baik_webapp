@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { getListByEditorialSlug, searchListByEditorialSlug, updatePublished, softDelete, setAsBeritaUtama, setAsHeadline, setAsPilihanEditor } from '@/api/article'
+import { getMyListByEditorialSlug, softDelete } from '@/api/article'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -87,7 +87,7 @@ export default {
       total_pages: 1,
       total_entries_size: 0,
       search: {
-        title: null
+        title: ''
       }
     }
   },
@@ -106,8 +106,9 @@ export default {
   methods: {
     getArticlesByEditorialSlug(editorialSlug, page) {
       this.listLoading = true
-      getListByEditorialSlug({
+      getMyListByEditorialSlug({
         editorialSlug,
+        userID: this.user_id,
         page: page,
         per_page: this.per_page
       }).then(response => {
@@ -142,9 +143,14 @@ export default {
     handleFilter() {
       // const data = Object.assign({}, row) // copy obj
       this.listLoading = true
-      searchListByEditorialSlug({
-        title: this.search.title,
+      let title = this.search.title
+      if (this.search && this.search.title) {
+        title = this.search.title.toLowerCase()
+      }
+      getMyListByEditorialSlug({
+        title,
         editorialSlug: this.editorialSlug,
+        userID: this.user_id,
         page: 1,
         per_page: this.per_page
       }).then(response => {
@@ -156,17 +162,6 @@ export default {
           this.page = response.data.page
         }
         this.listLoading = false
-      })
-    },
-    updatePublished(article_id, published) {
-      console.log('updatePublished ' + article_id)
-      updatePublished({
-        article_id,
-        published
-      }).then(response => {
-        if (response) {
-          console.log(response.data)
-        }
       })
     },
     deleteHandler(article_id) {
@@ -185,81 +180,6 @@ export default {
         this.$message({
           type: 'success',
           message: 'Data Berhasil Dihapus'
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: 'Batalkan'
-        })
-      })
-    },
-    setAsBeritaUtamaHandler(article_id, editorial_id) {
-      this.$confirm('Anda yakin akan memilih berita ini sebagai Berita Utama?', 'Warning', {
-        confirmButtonText: 'OK',
-        cancelButtonText: 'Cancel',
-        type: 'warning'
-      }).then(() => {
-        setAsBeritaUtama({
-          article_id,
-          editorial_id
-        }).then(response => {
-          if (response) {
-            this.getArticlesByEditorialSlug(this.editorialSlug, this.page)
-          }
-        })
-        this.$message({
-          type: 'success',
-          message: 'Data Berhasil Di Update'
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: 'Batalkan'
-        })
-      })
-    },
-    setAsHeadlineHandler(article_id, editorial_id) {
-      this.$confirm('Anda yakin akan memilih berita ini sebagai Headline?', 'Warning', {
-        confirmButtonText: 'OK',
-        cancelButtonText: 'Cancel',
-        type: 'warning'
-      }).then(() => {
-        setAsHeadline({
-          article_id,
-          editorial_id
-        }).then(response => {
-          if (response) {
-            this.getArticlesByEditorialSlug(this.editorialSlug, this.page)
-          }
-        })
-        this.$message({
-          type: 'success',
-          message: 'Data Berhasil Di Update'
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: 'Batalkan'
-        })
-      })
-    },
-    setAsPilihanEditorHandler(article_id, editorial_id) {
-      this.$confirm('Anda yakin akan memilih berita ini sebagai Plihan Editor?', 'Warning', {
-        confirmButtonText: 'OK',
-        cancelButtonText: 'Cancel',
-        type: 'warning'
-      }).then(() => {
-        setAsPilihanEditor({
-          article_id,
-          editorial_id
-        }).then(response => {
-          if (response) {
-            this.getArticlesByEditorialSlug(this.editorialSlug, this.page)
-          }
-        })
-        this.$message({
-          type: 'success',
-          message: 'Data Berhasil Di Update'
         })
       }).catch(() => {
         this.$message({
