@@ -178,41 +178,37 @@
         </div>
       </el-row>
     </el-row>
-    <el-row class="list-container">      
-      <div class="container">
-      <el-col :xs="24" :sm="16" class="content">
-        <div class="grid-content a-content">
-              <articles-card :editorialSlug="editorialSlug" :limit=10 :showPaging="false" ></articles-card>
-            <el-row >
-              <el-col>
-              </el-col>
-            </el-row>
-        </div>
-      </el-col>
-      <el-col :xs="24" :sm="8" class="side-content">
-        <div class="grid-content a-side">
-          <popular-news-side :editorialSlug="editorialSlug"> </popular-news-side>
-          <div class="side-separator">
-            <router-link :to="{ name: 'content-more', params: { 'editorialSlug': editorialSlug } }">
-              <span> Buka lebih banyak lagi </span>
-            </router-link>
+    <div class="container">
+      <el-row :gutter="20" class="list-container">        
+        <el-col class="content">
+          <div class="grid-content a-content">
+            <articles-card :editorialSlug="editorialSlug" :limit=10 :showPaging="false" ></articles-card>            
           </div>
-          <infografis-side :editorialSlug="'infografis'"  > </infografis-side>
-          <div class="side-separator">
-            <router-link  :to="{ name: 'editorial-image', params: { 'editorialSlug': 'infografis' } }" >
-              <span> Buka lebih banyak lagi </span>
-            </router-link>
+        </el-col>
+        <el-col class="side-content">
+          <div class="grid-content a-side">
+            <popular-news-side :editorialSlug="editorialSlug"> </popular-news-side>
+            <div class="side-separator">
+              <router-link :to="{ name: 'content-more', params: { 'editorialSlug': editorialSlug } }">
+                <span> Buka lebih banyak lagi </span>
+              </router-link>
+            </div>
+            <div class="spacer m-t-20"></div>
+            <infografis-side :editorialSlug="'infografis'"  > </infografis-side>
+            <div class="side-separator">
+              <router-link  :to="{ name: 'editorial-image', params: { 'editorialSlug': 'infografis' } }" >
+                <span> Buka lebih banyak lagi </span>
+              </router-link>
+            </div>
+            <div class="spacer m-t-20"></div>
+            <advertisement-side></advertisement-side>
+            <div class="side-separator">
+              <span>  </span>
+            </div>          
           </div>
-          <div class="spacer m-t-10"></div>
-          <advertisement-side></advertisement-side>
-          <div class="side-separator">
-            <span>  </span>
-          </div>          
-        </div>
-      </el-col>
-      
-      </div>
-    </el-row>
+        </el-col>        
+      </el-row>
+    </div>
     
     <!-- <div class="content-container">
       <div class="gray-separator"> <span> </span>  </div>

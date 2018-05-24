@@ -29,36 +29,35 @@
         </el-row>          
       </div>       
     </el-row>
-    
-    <el-row class="list-container">
-      <div class="container">
-        <el-col :xs="24" :sm="16" class="content">
-          <div class="grid-content">
+    <div class="container">
+      <el-row :gutter="20" class="list-container">        
+          <el-col class="content">
+            <div class="grid-content">
               <articles-card :editorialSlug="editorialSlug" :editorialType="editorialType" :limit=10 :showPaging="false"></articles-card>
-          </div>
-        </el-col>
-        <el-col :xs="24" :sm="8" class="side-content">
-          <div class="grid-content a-side">
-            <div>
-            <popular-news-side :editorialSlug="editorialSlug" :editorialType="editorialType"> </popular-news-side>
             </div>
-            <div class="side-separator">
-              <router-link :to="{ name: 'content-more', params: { 'editorialSlug': editorialSlug, 'editorialType': editorialType } }">
+          </el-col>
+          <el-col class="side-content">
+            <div class="grid-content a-side">
+              <div>
+              <popular-news-side :editorialSlug="editorialSlug" :editorialType="editorialType"> </popular-news-side>
+              </div>
+              <div class="side-separator">
+                <router-link :to="{ name: 'content-more', params: { 'editorialSlug': editorialSlug, 'editorialType': editorialType } }">
+                  <span> Buka lebih banyak lagi </span>
+                </router-link>
+              </div>
+              <!-- <div>
+              <infografis-side :editorialSlug="'infografis'"  > </infografis-side>
+              </div>
+              <div class="side-separator">
                 <span> Buka lebih banyak lagi </span>
-              </router-link>
+              </div> -->
+              <div class="spacer m-t-10"></div>
+              <advertisement-side></advertisement-side>
             </div>
-            <!-- <div>
-            <infografis-side :editorialSlug="'infografis'"  > </infografis-side>
-            </div>
-            <div class="side-separator">
-              <span> Buka lebih banyak lagi </span>
-            </div> -->
-            <div class="spacer m-t-10"></div>
-            <advertisement-side></advertisement-side>
-          </div>
-        </el-col>
-      </div>
-    </el-row>
+          </el-col>        
+      </el-row>
+    </div>
 
   </div>
 </template>
