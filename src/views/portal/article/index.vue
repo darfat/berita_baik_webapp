@@ -1,6 +1,6 @@
 <template>
   <div class="article-container">
-    <el-row :gutter="20" class="headline-container">
+    <el-row class="headline-container">
       <div class="container">        
         <el-col :xs="24">
           <div class="grid-content main" v-loading="loading.mainArticle">
@@ -169,7 +169,7 @@
         </el-col>
       </div>
     </el-row>
-    <el-row :gutter="20" class="comments-container" v-if="mainArticle.is_can_comment" > 
+    <el-row class="comments-container" v-if="mainArticle.is_can_comment" > 
       <el-row :gutter="20" >
         <div class="container">
         <el-col :xs="24" :sm="24"  class="comments-content">
@@ -178,7 +178,7 @@
         </div>
       </el-row>
     </el-row>
-    <el-row :gutter="20" class="list-container">      
+    <el-row class="list-container">      
       <div class="container">
       <el-col :xs="24" :sm="16" class="content">
         <div class="grid-content a-content">
