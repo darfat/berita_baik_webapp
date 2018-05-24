@@ -82,17 +82,16 @@
         </div>
       </el-row>
     </el-row>
-    <el-row class="list-container">
-      <div class="container">
-        <el-col :xs="24" :sm="16" class="content">
+    <div class="container">
+      <el-row :gutter="20" class="list-container">        
+        <el-col class="content">
           <div class="grid-content">
               <articles-card :editorialSlug="editorialSlug" :editorialType="editorialType" :limit=10 :showPaging="false" :articleType="'image'"></articles-card>
           </div>
         </el-col>
-        <el-col :xs="24" :sm="8" class="side-content">
+        <el-col class="side-content">
           <div class="grid-content a-side">
             <div>
-
             <popular-news-side v-if="editorialSlug === 'infografis'" :editorialSlug="editorialSlug" title="INFOGRAFIS TERPOPULER"> </popular-news-side>
             <popular-news-side v-else :editorialSlug="editorialSlug" title="GALERI TERPOPULER"> </popular-news-side>
             </div>
@@ -104,7 +103,7 @@
                 <span> Buka lebih banyak lagi </span>
               </router-link>
             </div>
-            <div class="spacer m-t-10"></div>
+            <div class="spacer m-t-20"></div>
             <div v-if="editorialSlug !== 'infografis'">
             <infografis-side  :editorialSlug="'infografis'"  > </infografis-side>
             </div>
@@ -113,12 +112,12 @@
                 <span> Buka lebih banyak lagi </span>
               </router-link>
             </div>
-            <div class="spacer m-t-10"></div>
+            <div class="spacer m-t-20"></div>
             <advertisement-side></advertisement-side>
           </div>
-        </el-col>
-      </div>
-    </el-row>
+        </el-col>        
+      </el-row>
+    </div>
   </div>
 </template>
 

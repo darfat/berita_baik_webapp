@@ -52,7 +52,7 @@
               <div class="side-separator">
                 <span> Buka lebih banyak lagi </span>
               </div> -->
-              <div class="spacer m-t-10"></div>
+              <div class="spacer m-t-20"></div>
               <advertisement-side></advertisement-side>
             </div>
           </el-col>        
