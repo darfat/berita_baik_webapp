@@ -44,8 +44,9 @@ h2{
     }
     .teaser{
         font-size: 0.9em;
-        line-height: 1em;
+        line-height: 1.2em;
         margin: 0; padding-bottom: 5px;
+        text-align: justify;
     }
     .author{
         margin: 0; padding: 0;
@@ -54,6 +55,34 @@ h2{
         font-weight: 900;
     }
 }
-
+@media (min-width: 320px) and (max-width: 480px) {
+    h2{
+        font-size: 0.8em;
+    }    
+    .image-hl{
+        width: 100%;
+        max-height: 150px;       
+        object-fit: cover;
+    }
+    .info{        
+        padding: 10px;        
+        .headline{
+            font-size: 1em;
+        }
+        .teaser{
+            font-size: 0.8em;
+            line-height: 1.1em;            
+        }
+        .author{           
+            font-size: 0.75em;            
+        }
+    }
+    .share{
+        position: relative;
+        display: block;
+        bottom: 0;
+        margin-top: 10px;
+    }
+}
 
 

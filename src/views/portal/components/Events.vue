@@ -18,8 +18,10 @@
       <el-col :xs="24" :sm="6">
         <el-row >
           <el-col >
-            <p class="red-line"></p>            
-            <div class="events-month" >{{periodMonth}}</div>
+            <p class="red-line"></p>       
+            <router-link :to="{ name: 'event-calendar' }">     
+              <div class="events-month" >{{periodMonth}}</div>
+            </router-link>
             <p class="desc"></p>
           </el-col>
         </el-row>
@@ -37,7 +39,11 @@
           <el-col :span="16" class="mc">
              <div class="mc-content"> 
                <ul v-if="groupedEvents && groupedEvents[0]" >
-                 <li v-for="(event) in groupedEvents[0].events" :key="event.id">{{event.title}}</li>
+                 <li v-for="(event) in groupedEvents[0].events" :key="event.id">
+                   <router-link :to="{ name: 'event-calendar', params: {  'eventID': event.id} }"> 
+                    <span class="event-content-title"> {{event.title}} </span>
+                   </router-link>
+                  </li>
                </ul>                
               </div>
           </el-col>
@@ -56,7 +62,11 @@
           <el-col :span="16" class="mc">
              <div class="mc-content">
                <ul v-if="groupedEvents && groupedEvents[1]" >
-                 <li v-for="(event) in groupedEvents[1].events" :key="event.id">{{event.title}}</li>
+                 <li v-for="(event) in groupedEvents[1].events" :key="event.id">
+                   <router-link :to="{ name: 'event-calendar', params: {  'eventID': event.id} }"> 
+                    <span class="event-content-title"> {{event.title}} </span>
+                   </router-link>
+                 </li>
                </ul>
                 
               </div>
@@ -76,7 +86,11 @@
           <el-col :span="16" class="mc" >
              <div class="mc-content">
                <ul v-if="groupedEvents && groupedEvents[2]" >
-                 <li v-for="(event) in groupedEvents[2].events" :key="event.id">{{event.title}}</li>
+                 <li v-for="(event) in groupedEvents[2].events" :key="event.id">
+                   <router-link :to="{ name: 'event-calendar', params: {  'eventID': event.id} }"> 
+                    <span class="event-content-title"> {{event.title}} </span>
+                   </router-link>
+                 </li>
                </ul>                
               </div>
           </el-col>

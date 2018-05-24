@@ -13,7 +13,9 @@
       </el-table-column>
       <el-table-column label="Title" width="150">
         <template slot-scope="scope">
-         <router-link :to="{ path: '/home-m/event-calendar' }"> <span> {{scope.row.title}} </span> </router-link>
+         <router-link :to="{ name: 'event-calendar', params: {  'eventID': scope.row.id} }"> 
+            <span> {{scope.row.title}} </span> 
+          </router-link>
         </template>
       </el-table-column>
       <el-table-column label="Description" >

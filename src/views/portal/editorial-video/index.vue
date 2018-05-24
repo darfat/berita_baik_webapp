@@ -1,6 +1,6 @@
 <template>
   <div class="editoral-container">
-    <el-row :gutter="20" class="headline-container" v-if="latestNews">      
+    <el-row class="headline-container" v-if="latestNews">      
       <div class="container">
         <el-col :xs="24" :sm="16">
           <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">
@@ -77,7 +77,7 @@
       </el-col>
       </div>      
     </el-row>
-    <el-row :gutter="20" class="list-container" v-if="latestNews" >
+    <el-row class="list-container" v-if="latestNews" >
       <div class="container">
       <el-row :gutter="20" >        
         <el-col :xs="24" :sm="16"  >

@@ -95,7 +95,7 @@
                   <li><router-link :to="{ path: '/home/indonesia-baik' }">Indonesia Baik</router-link></li>
                   <li>
                       <!-- First Tier Drop Down -->
-                      <label for="drop-1" class="toggle">Indonesia Bangga &#9660;</label>
+                      <label for="drop-1" class="toggle">Indonesia Bangga <span class="arrow">&#9660;</span></label>
                       <router-link :to="{ path: '/home/p/indonesia-bangga' }">Indonesia Bangga</router-link>
                       <input type="checkbox" id="drop-1"/>
                       <ul>
@@ -107,7 +107,7 @@
                   <li><router-link :to="{ path: '/home/indonesia-membangun' }">Indonesia Membangun</router-link></li>
                   <li>
                   <!-- First Tier Drop Down -->
-                  <label for="drop-2" class="toggle">Melancong &#9660;</label>
+                  <label for="drop-2" class="toggle">Melancong <span class="arrow">&#9660;</span></label>
                   <router-link :to="{ path: '/home/p/melancong' }">Melancong</router-link>
                   <input type="checkbox" id="drop-2"/>
                   <ul>
@@ -118,7 +118,7 @@
                   <li><router-link :to="{ path: '/home/teknologi' }">Teknologi</router-link></li>
                   <li>
                   <!-- First Tier Drop Down -->
-                  <label for="drop-3" class="toggle">Panggung &#9660;</label>
+                  <label for="drop-3" class="toggle">Panggung <span class="arrow">&#9660;</span></label>
                   <router-link :to="{ path: '/home/p/panggung' }">Panggung</router-link>
                   <input type="checkbox" id="drop-3"/>
                   <ul>
@@ -131,7 +131,7 @@
                   </li>
                   <li>
                   <!-- First Tier Drop Down -->
-                  <label for="drop-4" class="toggle">Citra &#9660;</label>
+                  <label for="drop-4" class="toggle">Citra <span class="arrow">&#9660;</span></label>
                   <router-link :to="{ path: '/home-c/gallery-foto' }">Citra</router-link>
                   <input type="checkbox" id="drop-4"/>
                   <ul>
@@ -141,9 +141,9 @@
                   </ul>
                   </li>
                   <li>
-                    <label for="drop-4" class="toggle">More &#9660;</label>
+                    <label for="drop-5" class="toggle">More <span class="arrow">&#9660;</span></label>
                     <router-link :to="{ path: '/home-m/event-calendar' }">More</router-link>
-                    <input type="checkbox" id="drop-4"/>
+                    <input type="checkbox" id="drop-5"/>
                     <ul>
                         <li><router-link :to="{ path: '/home-m/event-calendar' }">Acara</router-link></li>
                         <li><router-link :to="{ path: '/home-c/foto-kamu' }">Foto Kamu</router-link></li>
@@ -188,7 +188,8 @@ export default {
       img_ikon_mono,
       search: '',
       scrolled: null,
-      status: false
+      status: false,
+      visible: false
     }
   },
   computed: {
@@ -224,6 +225,9 @@ export default {
   }
 }
 .el-col {
-    border-radius: 0px;
+  border-radius: 0px;
+}
+.sticky{
+  transition: all 0.4s ease;
 }
 </style>

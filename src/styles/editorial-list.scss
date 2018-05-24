@@ -1,21 +1,21 @@
 @import './variables.scss';
-
 .grid-content {
     border-radius: 4px;
     min-height: 36px;
 }
 
 .editoral-container {
+    background-color: #fff;
     .headline-container {
         background-color: #e6e6e6;
+        padding: 20px 0;
         .latest-news{
+            border-radius: 4px;    
             background-color: #fff;
-            margin: 20px 0;
-            height: 300px;
-            img{
+            height: 300px;            
+            .image-hl{                
                 width:100%;
-                max-height: 300px;
-                // height: 100%;
+                max-height: 300px;                
                 object-fit: cover;
             }
             h2 {
@@ -42,8 +42,9 @@
                 }
                 .teaser{    
                     font-size: 0.9em;
-                    line-height: 1em;
+                    line-height: 1.2em;
                     margin-bottom: 10px;
+                    text-align: justify;
                 }
                 .author{
                     font-weight: bold;
@@ -55,7 +56,6 @@
                 position: absolute;
                 bottom: 20px;
             }
-
         }
     }    
 }
@@ -69,4 +69,42 @@
 }
 .a-side{
   margin-left: 20px;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .editoral-container {        
+        .headline-container {            
+            .latest-news{                
+                height: auto;
+                .image-hl{
+                    width: 100%;
+                    max-height: 150px;
+                    object-fit: cover;
+                }
+                h2 {
+                    font-size: 0.8em;                
+                }
+                .info{
+                    padding: 10px;
+                    h1{                        
+                       font-size: 1em;                       
+                    }
+                    .teaser{    
+                        font-size: 0.8em;
+                        line-height: 1.1em;
+                    }
+                    .author{
+                        font-size: 0.75em;
+                    }
+                }
+                
+                .share{
+                    position: relative;
+                    display: block;
+                    bottom: 0;
+                    margin-top: 10px;
+                }
+            }
+        }    
+    }    
 }

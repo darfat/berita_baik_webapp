@@ -1,11 +1,12 @@
 <template>
   <div class="user-form-container">      
         <h2>User Form</h2>
-        <el-form class="form-container" ref="userForm" :model="user" label-width="120px">
+        <el-form class="form-container" ref="userForm" :model="user" label-width="160px">
             <el-row>
                 <el-col :span="21">
                     <el-form-item label="Email" prop="email">
-                        <el-input v-model="user.email" disabled></el-input>
+                        <el-input v-model="user.email"  v-if="action ==='add'"></el-input>
+                        <el-input v-model="user.email" disabled v-else></el-input>
                     </el-form-item>
                 </el-col>
                 <el-col :span="21">
@@ -30,14 +31,26 @@
                         <el-input v-model="user.bio"></el-input>
                     </el-form-item>
                 </el-col>
-                <el-col :span="21" hidden>
-                    <el-form-item label="Introduction" prop="Introduction">
-                        <el-input v-model="user.introduction"></el-input>
+                 <el-col :span="5">
+                    <el-form-item label="Inisial" prop="Inisial">
+                        <el-input v-model="user.initial"></el-input>
                     </el-form-item>
                 </el-col>
                 <el-col :span="21">
-                    <el-form-item label="Inisial" prop="Inisial">
-                        <el-input v-model="user.initial"></el-input>
+                    <el-form-item label="Password" prop="password">
+                        <el-input :type="passwordType" v-model="user.password"></el-input>
+                        <!-- <span class="show-pwd" @click="showPassword"><svg-icon icon-class="eye" /></span> -->
+                    </el-form-item>
+                </el-col>
+                <el-col :span="21">
+                    <el-form-item label="Confirm Password" prop="confirmPassword">
+                        <el-input :type="confirmPasswordType" v-model="user.confirmPassword"></el-input>
+                        <!-- <span class="show-pwd" @click="showConfirmPassword"><svg-icon icon-class="eye" /></span> -->
+                    </el-form-item>
+                </el-col>
+                <el-col :span="21" hidden>
+                    <el-form-item label="Introduction" prop="Introduction">
+                        <el-input v-model="user.introduction"></el-input>
                     </el-form-item>
                 </el-col>
                 <el-col :span="21" hidden>
@@ -93,8 +106,13 @@ export default {
   data() {
     return {
       user: {
-        status: 'new'
+        status: 'active',
+        active: true,
+        id_number: '-',
+        id_number_type: '-'
       },
+      passwordType: 'password',
+      confirmPasswordType: 'password',
       action: 'add',
       loading: {
         snippet: false
@@ -143,6 +161,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           if (this.action === 'add') {
+            this.user.username = this.user.email
             create(this.user)
               .then(response => {
                 console.log('create success')

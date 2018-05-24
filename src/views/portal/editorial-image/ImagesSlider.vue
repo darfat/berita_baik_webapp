@@ -3,7 +3,7 @@
   <el-carousel :interval=9000 v-loading="loading.images">
     <el-carousel-item v-for="item in images" :key="item.id">
       <div class="item-wrapper-hl">
-          <img :src="item.url" class="image-hl">
+          <img v-lazy="item.url" class="image-hl">
       </div>
     </el-carousel-item>
   </el-carousel>

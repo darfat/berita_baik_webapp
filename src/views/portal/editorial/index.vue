@@ -1,37 +1,36 @@
 <template>
   <div class="editoral-container">  
-    <el-row :gutter="20" class="headline-container" v-if="latestNews">
-      <div class="container">
-        <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">              
-          <el-row :gutter="0" >
-            <el-col :xs="24" :sm="14">              
+
+    <el-row class="headline-container" v-if="latestNews">
+      <div class="container">        
+        <el-row class="latest-news" v-loading="loading.latestNews" v-if="latestNews.id">
+          <el-col :xs="24" :sm="14" >            
+            <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
+              <img v-lazy="latestNews.main_image" class="image-hl">
+              <h2 v-if="latestNews.id">{{ latestNews.editorial.name }}</h2>                
+            </router-link>
+          </el-col>          
+          <el-col :xs="24" :sm="10">
+            <div class="info">
               <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
-                <img :src="latestNews.main_image" class="image-hl">                
-                <h2 v-if="latestNews.id">{{ latestNews.editorial.name }}</h2>                
+                <h1 class="headline" v-html="subString(latestNews.title,101)"></h1>
               </router-link>
-            </el-col>          
-            <el-col :xs="24" :sm="10">
-              <div class="info">
-                <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':latestNews.editorial.slug, 'slug': latestNews.slug,  'articleID': latestNews.id} }">
-                  <h1 class="headline" v-html="subString(latestNews.title,101)"></h1>
-                </router-link>
-                <div v-html="subString(latestNews.teaser,250)" class="teaser"></div>                
-                <p class="red-line"></p>
-                <div class="author">
-                  {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
-                </div>
-                <div class="share">
-                <span><bb-love :articleID="latestNews.id" :type="'article'" ></bb-love></span>
-                <span><share-pop :article="latestNews"></share-pop></span>
-                </div>
-              </div>  
-            </el-col>                    
-          </el-row>
-        </div>        
-      </div>  
+              <div v-html="subString(latestNews.teaser,250)" class="teaser"></div>                
+              <p class="red-line"></p>
+              <div class="author">
+                {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
+              </div>
+              <div class="share">
+              <span><bb-love :articleID="latestNews.id" :type="'article'" ></bb-love></span>
+              <span><share-pop :article="latestNews"></share-pop></span>
+              </div>
+            </div>  
+          </el-col>                    
+        </el-row>          
+      </div>       
     </el-row>
     
-    <el-row :gutter="20" class="list-container">
+    <el-row class="list-container">
       <div class="container">
         <el-col :xs="24" :sm="16" class="content">
           <div class="grid-content">
@@ -60,6 +59,7 @@
         </el-col>
       </div>
     </el-row>
+
   </div>
 </template>
 
@@ -137,11 +137,14 @@ export default {
       }
     },
     subString(str, len) {
-      if (str.length < len) {
-        return str
-      } else {
-        return str.substring(0, (len - 3)) + '&hellip;'
+      if (str) {
+        if (str.length < len) {
+          return str
+        } else {
+          return str.substring(0, (len - 3)) + '&hellip;'
+        }
       }
+      return ''
     }
   }
 }
@@ -150,12 +153,13 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/styles/editorial-list.scss";
 .el-row {
-  margin-bottom: 0;
+  // margin-bottom: 20px;
   &:last-child {
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
   }
 }
 .el-col {
     border-radius: 0px;
+    // background-color: #fff;
 }
 </style>

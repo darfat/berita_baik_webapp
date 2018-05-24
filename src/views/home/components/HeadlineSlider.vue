@@ -4,18 +4,19 @@
     <el-carousel-item v-for="item in headlines" :key="item.id">
       <div class="item-wrapper-hl">
         <el-row>
-          <el-col :xs="14" :sm="14">
+          <el-col :xs="24" :sm="14">
             <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">
-              <img :src="item.article.main_image" class="image-hl">
+              <img v-lazy="item.article.main_image" class="image-hl">
               <h2>{{item.editorial.name}}</h2>
             </router-link>
           </el-col>
-          <el-col :xs="10" :sm="10">            
+          <el-col :xs="24" :sm="10">            
             <div class="info">      
               <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">              
               <h1 class="headline" v-html="subString(item.article.title,101)"></h1>              
               </router-link>
-              <p v-html="subString(item.article.teaser, 250)" class="teaser" ></p>              
+              <p v-if="item.article.teaser" v-html="subString(item.article.teaser, 253)" class="teaser" ></p> 
+              <!-- <p v-else v-html="subString(item.article.content, 250)" class="teaser" ></p>               -->
               <p class="red-line"></p>
               <p class="author">{{ item.article.reporter_name}} | <timeago :since="item.article.publish_date"></timeago></p>
               <div class="share">
@@ -69,11 +70,14 @@ export default {
       })
     },
     subString(str, len) {
-      if (str.length < len) {
-        return str
-      } else {
-        return str.substring(0, (len - 3)) + '&hellip;'
+      if (str) {
+        if (str.length < len) {
+          return str
+        } else {
+          return str.substring(0, (len - 3)) + '&hellip;'
+        }
       }
+      return ''
     }
   }
 }

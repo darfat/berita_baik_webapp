@@ -135,11 +135,14 @@
         }
       },
       subString(str, len) {
-        if (str.length < len) {
-          return str
-        } else {
-          return str.substring(0, (len - 3)) + '...'
+        if (str) {
+          if (str.length < len) {
+            return str
+          } else {
+            return str.substring(0, (len - 3)) + '...'
+          }
         }
+        return ''
       },
       getVideos(editorialSlug, page) {
         this.loading.list = true

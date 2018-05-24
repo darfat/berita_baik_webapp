@@ -9,12 +9,12 @@
       <el-col :span="10">
         <div>
           <router-link v-if="popular.article_type === 'news' || popular.article_type === 'y-news'"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
-            <img v-if="popular.thumb_image" :src="popular.thumb_image" class="card-image" />
-            <img v-else :src="popular.main_image" class="card-image" />
+            <img v-if="popular.thumb_image" v-lazy="popular.thumb_image" class="card-image" />
+            <img v-else v-lazy="popular.main_image" class="card-image" />
           </router-link>
           <router-link v-if="popular.article_type === 'image' || popular.article_type === 'y-image'"  :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
-            <img v-if="popular.thumb_image" :src="popular.thumb_image" class="card-image" />
-            <img v-else :src="popular.main_image" class="card-image" />
+            <img v-if="popular.thumb_image" v-lazy="popular.thumb_image" class="card-image" />
+            <img v-else v-lazy="popular.main_image" class="card-image" />
           </router-link>
         </div>
       </el-col>
@@ -71,11 +71,14 @@ export default {
       this.getPopularArticles(eSlug)
     },
     subString(str, len) {
-      if (str.length < len) {
-        return str
-      } else {
-        return str.substring(0, (len - 3)) + '...'
+      if (str) {
+        if (str.length < len) {
+          return str
+        } else {
+          return str.substring(0, (len - 3)) + '...'
+        }
       }
+      return ''
     },
     getPopularArticles(editorialSlug) {
       this.loading.popular_articles = true

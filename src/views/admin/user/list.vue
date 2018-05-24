@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <div class="filter-container  m-b-20">
-      <!-- <router-link class="filter-item" :to="{ name: 'event-form' }" >
+      <router-link class="filter-item" :to="{ name: 'user-form' }" >
         <el-button type="primary" >Create</el-button>
-      </router-link>     -->
+      </router-link>    
     </div>
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label='ID' width="95">
