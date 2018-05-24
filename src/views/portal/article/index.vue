@@ -121,10 +121,10 @@
                           placement="top"
                           width="160"
                           v-model="vmore">
-                          <el-button size="mini" type="text" @click="dialogFormVisible = true">
-                            <fa-icon name="exclamation-circle" scale="1"></fa-icon> Report
+                          <el-button size="mini" type="text" @click="dialogFormVisible = true" class="report-btn">
+                            <fa-icon name="exclamation-circle" scale="1"></fa-icon> <span>Report</span>
                           </el-button>                          
-                          <el-button  type="text" slot="reference" size="mini"><v-icon name="more-horizontal" base-class="icon-20"></v-icon></el-button>
+                          <el-button  type="text" slot="reference" size="mini" class="more-btn"><v-icon name="more-horizontal" base-class="icon-20"></v-icon></el-button>
                         </el-popover>
                         <div class="rpt">
                           <el-dialog title="Report" :visible.sync="dialogFormVisible">
@@ -142,7 +142,7 @@
                             </div>
                             <span slot="footer" class="dialog-footer">
                               <el-button size="mini" @click="dialogFormVisible = false">Cancel</el-button>
-                              <el-button type="primary" size="mini" @click="reportThis()">Report</el-button>
+                              <el-button class="submit-btn" size="mini" @click="reportThis()">Report</el-button>
                             </span>
                           </el-dialog>
                         </div>                                            

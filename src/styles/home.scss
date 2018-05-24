@@ -169,6 +169,7 @@ h1, h2, h3, h4, h5, h6{
   }
 }
 
+// dialog article details
 .rpt{
   .el-dialog{
     .el-dialog__header,
@@ -176,6 +177,8 @@ h1, h2, h3, h4, h5, h6{
     .el-dialog__footer
     {
         background-color: #e6e6e6;
+        padding-left: 40px;
+        padding-right: 40px;
     }
     .el-dialog__header{
       text-align: center;
@@ -188,18 +191,20 @@ h1, h2, h3, h4, h5, h6{
         width: 100%;
       }
       .el-dialog__headerbtn{
-        top: -18px;
-        right: 0;
-        background-color: #e6e6e6;
-        padding: 5px;
+        top: 5%;
+        right: 1%;
+        border: 2px solid #696968;
+        border-radius: 50%;
+        i{ color: #696968; padding: 4px; font-size: .8em; font-weight: bold}        
       }
     }
     .el-dialog__body{
-        padding: 20px;  
+        padding: 20px 40px;  
     }
   }
 }
 
+// popover header login
 .el-popover{
   .user-menu{    
     &-item{
