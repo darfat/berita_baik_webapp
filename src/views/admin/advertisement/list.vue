@@ -6,12 +6,17 @@
       </router-link>    
     </div>
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
-      <!-- <el-table-column align="center" label='ID' width="95">
+      <el-table-column align="center" label='#Order' width="95">
         <template slot-scope="scope">
-          {{scope.$index + 1}}
+          {{scope.row.order_no}}
         </template>
-      </el-table-column> -->
-      <el-table-column label="Nama" width="150">
+      </el-table-column>
+      <el-table-column label="Klien" width="150">
+        <template slot-scope="scope">
+          {{scope.row.client_name}}
+        </template>
+      </el-table-column>
+      <el-table-column label="Iklan" width="150">
         <template slot-scope="scope">
           {{scope.row.title}}
         </template>
@@ -25,6 +30,11 @@
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
           <span>{{scope.row.start_date | formatDateOnly}} - {{scope.row.end_date | formatDateOnly}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="Created By" >
+        <template slot-scope="scope">
+          <span v-if="scope.row.user">{{scope.row.user.name}}</span>
         </template>
       </el-table-column>
       <el-table-column align="center" label="Actions" width="230" class-name="small-padding fixed-width">
