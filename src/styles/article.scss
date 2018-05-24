@@ -199,7 +199,23 @@
     }
 }
 
+.more-btn,
+.report-btn{
+    color: #696968;
+}
+.submit-btn{
+    background-color: #696968;
+    color: #fff;
+}
+.report-btn{
+    .fa-icon{
 
+    }
+    span{
+        vertical-align: top;
+        line-height: 1.5em;
+    }
+}
 .el-dialog{
     .el-dialog__header,
     .el-dialog__body,
