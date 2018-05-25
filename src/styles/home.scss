@@ -134,7 +134,7 @@ h1, h2, h3, h4, h5, h6{
 .hl-slider{  
   .el-carousel__container{
     // height: auto;    
-  }
+  }  
   .el-carousel__item{
     background-color: #fff;
     max-height: 300px;
@@ -149,6 +149,14 @@ h1, h2, h3, h4, h5, h6{
     height: 12px;
     border-radius: 50%;
   }
+  @media (min-width: 320px) and (max-width: 768px) {
+    .el-carousel__container{
+      height: 400px;      
+    }
+    .el-carousel__item{     
+      max-height: 400px;     
+    }
+  }
 }
 /* 
   carousel galeri-foto
@@ -156,8 +164,7 @@ h1, h2, h3, h4, h5, h6{
   set indicator
 */
 .gf-slider{  
-  .el-carousel__container{
-    // height: 563px;
+  .el-carousel__container{    
     position:relative;
     height: 0;
     padding-bottom: 68%;
