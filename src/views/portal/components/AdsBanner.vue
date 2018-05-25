@@ -57,7 +57,9 @@ export default {
         position
       }).then(response => {
         if (response && response.data) {
-          this.ads = response.data
+          if (response.data.status && response.data.status !== 'notFound') {
+            this.ads = response.data
+          }
         }
         this.loading.ads = false
       })

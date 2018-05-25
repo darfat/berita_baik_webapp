@@ -520,6 +520,7 @@ export default {
       moment.locale('id')
       this.article.publish_date = new Date()
       this.article.article_type = this.articleType
+      this.article.user_id = this.user_id
       this.getSectionOptions()
       this.getArticleTypeOptions()
       this.setEditorialId(this.editorialSlug)

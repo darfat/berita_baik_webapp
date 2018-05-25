@@ -1,8 +1,23 @@
 <template>
   <div class="advertisement-form-container">      
         <h2>Iklan Form</h2>
-        <el-form class="form-container" ref="advertisementForm" :model="advertisement" label-width="120px">
+        <el-form class="form-container" ref="advertisementForm" :model="advertisement" :rules="rules" label-width="120px">
             <el-row>
+              <el-col :span="21">
+                    <el-form-item label="Nama Klien" prop="client_name">
+                        <el-input v-model="advertisement.client_name"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="21">
+                    <el-form-item label="No Order" prop="order_no">
+                        <el-input v-model="advertisement.order_no"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="21">
+                    <el-form-item label="No Banner" prop="banner_no">
+                        <el-input v-model="advertisement.banner_no"></el-input>
+                    </el-form-item>
+                </el-col>
                 <el-col :span="21">
                     <el-form-item label="Nama Iklan" prop="title">
                         <el-input v-model="advertisement.title"></el-input>
@@ -42,6 +57,11 @@
                     </el-form-item>
                 </el-col>
                 <el-col :span="21">
+                    <el-form-item label="URL" prop="url">
+                        <el-input v-model="advertisement.url"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="21">
                     <el-form-item label="Deskripsi" prop="description">
                         <el-input type="textarea" :autosize="{ minRows: 4 }" v-model="advertisement.description"></el-input>
                     </el-form-item>
@@ -60,6 +80,7 @@
 <script>
 import { update, create, getAdvertisementById } from '@/api/advertisement'
 import ImageUploader from '@/components/ImageUploader'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'AdvertisementForm',
@@ -68,6 +89,15 @@ export default {
   },
   components: {
     ImageUploader
+  },
+  computed: {
+    ...mapGetters([
+      'name',
+      'role',
+      'email',
+      'username',
+      'user_id'
+    ])
   },
   data() {
     return {
@@ -105,7 +135,21 @@ export default {
           value: 'Berita : Tengah',
           label: 'Berita : Tengah'
         }
-      ]
+      ],
+      rules: {
+        title: [
+          { required: true, message: 'Silahkan Isi Nama Iklan', trigger: 'blur' }
+        ],
+        client_name: [
+          { required: true, message: 'Silahkan Isi Nama Klien', trigger: 'blur' }
+        ],
+        order_no: [
+          { required: true, message: 'Silahkan Is No Order', trigger: 'blur' }
+        ],
+        position: [
+          { required: true, message: 'Silahkan Isi Posisi Iklan', trigger: 'blur' }
+        ]
+      }
     }
   },
   created() {
@@ -113,7 +157,8 @@ export default {
   },
   methods: {
     init() {
-      console.log(this.advertisementId)
+      this.advertisement.user_id = this.user_id
+
       if (this.advertisementId && this.advertisementId !== null) {
         this.getById(this.advertisementId)
         this.action = 'edit'

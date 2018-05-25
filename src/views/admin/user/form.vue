@@ -1,7 +1,7 @@
 <template>
   <div class="user-form-container">      
         <h2>User Form</h2>
-        <el-form class="form-container" ref="userForm" :model="user" label-width="160px">
+        <el-form class="form-container" ref="userForm" :model="user"  :rules="rules"  label-width="160px">
             <el-row>
                 <el-col :span="21">
                     <el-form-item label="Email" prop="email">
@@ -104,6 +104,28 @@ export default {
     ImageUploader
   },
   data() {
+    const validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('Silakan Isi Password'))
+      } else {
+        if (value && value.length < 8) {
+          callback(new Error('Password kurang dari 8 digit'))
+        }
+        if (this.user.confirmPassword !== '') {
+          this.$refs.userForm.validateField('confirmPassword')
+        }
+        callback()
+      }
+    }
+    const validatePass2 = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('Silakan Ulangi Password anda'))
+      } else if (value !== this.user.password) {
+        callback(new Error('Password tidak sama'))
+      } else {
+        callback()
+      }
+    }
     return {
       user: {
         status: 'active',
@@ -144,7 +166,24 @@ export default {
           value: 'inactive',
           label: 'Inactive'
         }
-      ]
+      ],
+      rules: {
+        email: [
+          { required: true, message: 'Silahkan Isi Email', trigger: 'blur' }
+        ],
+        name: [
+          { required: true, message: 'Silahkan Isi Nama', trigger: 'blur' }
+        ],
+        role: [
+          { required: true, message: 'Silahkan Isi Role', trigger: 'blur' }
+        ],
+        password: [
+          { trigger: 'blur', validator: validatePass }
+        ],
+        confirmPassword: [
+          { trigger: 'blur', validator: validatePass2 }
+        ]
+      }
     }
   },
   created() {

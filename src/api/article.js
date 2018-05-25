@@ -27,6 +27,13 @@ export function searchListByEditorialSlug(params) {
     params
   })
 }
+export function getMyListByEditorialSlug(params) {
+  return request_auth({
+    url: '/admin-my-articles-editorial/' + params.editorialSlug + '/' + params.userID,
+    method: 'get',
+    params
+  })
+}
 export function getAll(params) {
   return request({
     url: '/articles',
