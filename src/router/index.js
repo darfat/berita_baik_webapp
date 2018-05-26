@@ -138,6 +138,8 @@ export const constantRouterMap = [
       component: () => import('@/views/public/profile/index')
     },
     { path: 'signup-success', component: () => import('@/views/portal/signup/success'), hidden: true },
+    { path: 'password-reset-success', component: () => import('@/views/login/passwordResetSuccess'), hidden: true },
+
     { path: 'u-activation/:code', component: () => import('@/views/portal/signup/activation'), hidden: true }
     ]
   },

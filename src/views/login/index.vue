@@ -25,7 +25,7 @@
                 </el-form-item>
                 <el-row :gutter="20">
                     <el-col :span="12">
-                        <div><a> Lupa Sandi ? </a></div>
+                        <div><a @click="clickResetPassDialog(true)"> Lupa Sandi ? </a></div>
                         <div><el-checkbox v-model="checked">Ingat Saya</el-checkbox></div>
                     </el-col>
                     <el-col :span="12" class="align-right">
@@ -33,9 +33,7 @@
                           Masuk
                         </el-button>
                     </el-col>
-                </el-row>
-               
-                
+                </el-row>                                
               </el-form>
         </div>
         <div class="options">
@@ -66,6 +64,16 @@
                 </span>
             </div>
         </div>
+        <el-dialog title="Reset Password" :visible.sync="showResetPassDialog" class="card-box login-form" width="30%"
+  center :modalAppendToBody="false">
+                  <el-form :model="resetPassForm"  ref="resetPassForm" >
+                      <el-input ref="resetPassEmailInput" v-model="resetPassForm.email" type="email" auto-complete="off" placeholder="Masukan Email"></el-input>
+                  </el-form>
+                  <span slot="footer" class="dialog-footer">
+                    <el-button @click="showResetPassDialog = false">Cancel</el-button>
+                    <el-button type="success" @click="resetPassword()">Confirm</el-button>
+                  </span>
+        </el-dialog>
       </div>
   </div>
 </template>
@@ -73,6 +81,7 @@
 <script>
 import { isvalidUsername } from '@/utils/validate'
 import img_b_logo from '@/assets/images/ikon_berita_baik.png'
+import { sendEmailResetPassword } from '@/api/login'
 
 export default {
   name: 'login',
@@ -118,7 +127,11 @@ export default {
       googleSignInParams: {
         client_id: '41162363474-mo2568h4vs3tbs8pgepog137sbg148fa.apps.googleusercontent.com'
       },
-      showNative: true
+      showNative: true,
+      showResetPassDialog: false,
+      resetPassForm: {
+        email: ''
+      }
     }
   },
   methods: {
@@ -128,6 +141,9 @@ export default {
       } else {
         this.pwdType = 'password'
       }
+    },
+    clickResetPassDialog(val) {
+      this.showResetPassDialog = val
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
@@ -186,6 +202,20 @@ export default {
     onSignInError(error) {
       // `error` contains any error occurred.
       console.log('OH NOES', error)
+    },
+    resetPassword() {
+      this.showResetPassDialog = false
+      sendEmailResetPassword({ email: this.resetPassForm.email }).then(response => {
+        if (response) {
+          this.$message({
+            type: 'success',
+            message: 'Silakan cek email untuk melihat password terbaru, Terima Kasih'
+          })
+        }
+      }).catch(error => {
+        console.log(error)
+        this.$message.warning('Terjadi Kesalahan \n')
+      })
     }
   }
 }
