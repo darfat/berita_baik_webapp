@@ -45,6 +45,12 @@
                     </el-form-item>
                 </el-col>
                 <el-col :span="21">
+                    <el-form-item label="Foto" prop="foto">
+                        <image-uploader-crop class="image-uploader-btn" :width=160 :height=160 :compress="0.9" :sizeLimit="2000000" :sizeLimitMessage="'2MB'" @successCBK="mainImageSuccessCallback"></image-uploader-crop>
+                    </el-form-item>
+                </el-col>
+
+                <el-col :span="21">
                     <el-form-item>
                         <el-button @click="reset">Cancel</el-button>
                         <el-button type="primary" @click="onSubmit('profileForm')" >Update</el-button>
@@ -57,6 +63,7 @@
 <script>
 import { update, getProfileById } from '@/api/profile'
 import { mapGetters } from 'vuex'
+import ImageUploaderCrop from '@/components/ImageUploaderCrop'
 
 export default {
   name: 'profileDetail',
@@ -72,12 +79,16 @@ export default {
       'user_id'
     ])
   },
+  components: {
+    ImageUploaderCrop
+  },
   data() {
     return {
       profile: {
         name: '',
         email: ''
-      }
+      },
+      main_image_name: ''
     }
   },
   created() {
@@ -125,6 +136,16 @@ export default {
     reset() {
       this.getById(this.user_id)
       this.action = 'edit'
+    },
+    mainImageSuccessCallback(res) {
+      if (res) {
+        this.profile.image = res[res.length - 1].url
+        this.main_image_name = res[res.length - 1].filename
+        this.$message({
+          type: 'success',
+          message: 'Foto Berhasil Diupload'
+        })
+      }
     }
   }
 }
