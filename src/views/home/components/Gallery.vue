@@ -16,7 +16,7 @@
         </router-link>
         <!-- <p class="teaser">{{ subString(g.teaser,110) }}</p> -->
         <p class="red-line"></p>
-        <p class="author">{{g.reporter_name}} | <timeago :since="g.publish_date"></timeago></p>
+        <p class="author">{{g.reporter_name}} | <timeago :since="g.publish_date | formatUTC"></timeago></p>
       </div>
     </el-carousel-item>  
     <div class="crsl-thumb hidden-xs-only" ref="crsl-thumb">

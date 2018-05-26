@@ -25,7 +25,7 @@
                     <el-row >
                         <el-col  class="side-footer">
                          <div class="author">
-                          {{ item.reporter_name }} | <timeago :since="item.publish_date"></timeago>
+                          {{ item.reporter_name }} | <timeago :since="item.publish_date | formatUTC"></timeago>
                         </div>
                         </el-col>
                     </el-row>

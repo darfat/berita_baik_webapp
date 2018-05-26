@@ -18,7 +18,7 @@
               <div v-html="subString(latestNews.teaser,250)" class="teaser"></div>                
               <p class="red-line"></p>
               <div class="author">
-                {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
+                {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date | formatUTC"></timeago>
               </div>
               <div class="share">
               <span><bb-love :articleID="latestNews.id" :type="'article'" ></bb-love></span>
@@ -53,7 +53,7 @@
                 <span> Buka lebih banyak lagi </span>
               </div> -->
               <div class="spacer m-t-20"></div>
-              <advertisement-side></advertisement-side>
+              <!-- <advertisement-side></advertisement-side> -->
             </div>
           </el-col>        
       </el-row>

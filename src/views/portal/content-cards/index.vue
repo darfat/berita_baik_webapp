@@ -60,7 +60,7 @@
                   <p class="red-line"></p>
                   <p class="author">
                   {{ article.reporter_name }} |
-                    <timeago :auto-update="60" :since="article.publish_date"></timeago>
+                    <timeago :auto-update="60" :since="article.publish_date | formatUTC"></timeago>
                   </p>  
                 </div>
               </div>

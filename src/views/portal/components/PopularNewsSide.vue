@@ -30,7 +30,7 @@
         <el-row >
             <el-col  class="side-footer">
               <p class="red-line"></p>
-              <p class="author">{{ popular.reporter_name }} | <timeago :since="popular.publish_date"></timeago></p>
+              <p class="author">{{ popular.reporter_name }} | <timeago :since="popular.publish_date | formatUTC"></timeago></p>
             </el-col>
         </el-row>        
       </el-col>         

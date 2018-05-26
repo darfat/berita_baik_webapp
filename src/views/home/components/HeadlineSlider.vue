@@ -18,7 +18,7 @@
               <p v-if="item.article.teaser" v-html="subString(item.article.teaser, 253)" class="teaser" ></p> 
               <!-- <p v-else v-html="subString(item.article.content, 250)" class="teaser" ></p>               -->
               <p class="red-line"></p>
-              <p class="author">{{ item.article.reporter_name}} | <timeago :since="item.article.publish_date"></timeago></p>
+              <p class="author">{{ item.article.reporter_name}} | <timeago :since="item.article.publish_date | formatUTC"></timeago></p>
               <div class="share">
                 <bb-love :articleID="item.article.id" :type="'article'" ></bb-love>        
                 <share-pop :article="item.article"></share-pop>

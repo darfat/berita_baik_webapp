@@ -21,7 +21,7 @@
                 </div>
                 <h1 class="headline" v-html="latestNews.title,101"></h1>
                 <p class="red-line"></p>
-                <p class="author">{{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago></p>
+                <p class="author">{{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date | formatUTC"></timeago></p>
               </div>
               <div class="comment" v-if="latestNews" >              
                 <comment-box :articleID="latestNews.id"></comment-box>

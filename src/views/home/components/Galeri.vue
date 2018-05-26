@@ -10,7 +10,7 @@
           <p class="teaser-v">{{ g.teaser }}</p>        
           <p class="red-line"></p>
           <p class="author-v" >{{ g.reporter_name }} |
-            <timeago :auto-update="60" :since="g.publish_date"></timeago>
+            <timeago :auto-update="60" :since="g.publish_date | formatUTC"></timeago>
           </p>     
       </div>
         <router-link v-if="g && g.editorial" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':g.editorial.slug, 'slug': g.slug } }" >                                       
