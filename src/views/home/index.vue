@@ -116,7 +116,6 @@ export default {
     initMounted() {
       EventBus.$on('SET_SHOW_ADS_GALLERY', event => {
         if (event) {
-          console.log(event)
           if (event.position === 'Home : Galeri') {
             this.showAdsGallery = event.show
           }

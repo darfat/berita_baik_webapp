@@ -100,7 +100,7 @@ export default {
             var self = this;
             window.setTimeout(function() {
               self.$router.push({ path: '/cms' })
-            }, 100)
+            }, 1000)
           })
           .catch(error => {
             this.$message.warning('Login Tidak Berhasil')

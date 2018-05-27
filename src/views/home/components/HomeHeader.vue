@@ -71,8 +71,8 @@
                     </div>                    
                   </el-popover>
                   <el-button v-popover:refuser>
-                    <img v-if="image" class="user-avatar" :src="image">
-                    <img v-else class="user-avatar" src="static/images/avatar/no_avatar.png">
+                    <img v-if="image" class="user-avatar" :src="image" style="border-radius:50%">
+                    <img v-else class="user-avatar" src="static/images/avatar/no_avatar.png" style="border-radius:50%">
                   </el-button>
                 </div>
               </div>  
