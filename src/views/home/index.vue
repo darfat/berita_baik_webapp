@@ -55,6 +55,7 @@
           <ads-banner :showTitle=true position="Home : Kanan"></ads-banner>
       </el-col>
     </el-row>
+<<<<<<< HEAD
     <el-row>    
       <el-col :xs="24" :sm="16"><gallery></gallery></el-col>
       <el-col :xs="24" :sm="8" v-if="showAdsGallery">
@@ -62,6 +63,14 @@
           <ads-banner :showTitle=false position="Home : Galeri"></ads-banner>
         </div>
       </el-col> 
+=======
+    <el-row v-if="isAds">      
+      <el-col :xs="24" :sm="16"><gallery></gallery></el-col>      
+      <ads-banner :showTitle=false position="Home : Galeri"></ads-banner>      
+    </el-row>    
+    <el-row v-if="!isAds">      
+      <el-col :xs="24" :sm="24"><gallery></gallery></el-col>      
+>>>>>>> origin/master
     </el-row>
     <div class="gray-separator"><span></span> </div> 
     <home-youtube-video></home-youtube-video>
@@ -86,6 +95,11 @@ import EventBus from '@/utils/event-bus'
 
 export default {
   name: 'frontpage',
+  data() {
+    return {
+      isAds: true
+    }
+  },
   components: {
     TopSlider,
     HeadlineSlider,
@@ -143,16 +157,4 @@ export default {
     // margin-bottom: 0;
   }
 }
-
-.ads-gallery{
-    margin-left: 3px;
-    background-color: $black-2;
-    min-height: 420px;
-    text-align: center;
-    padding: 10px;
-    small{
-      color: #666;
-    }
-  }
-
 </style>

@@ -42,9 +42,7 @@ export default {
       }]
     }
   },
-  created() {
-    console.log('searchadvanced')
-  }
+  created() {}
 }
 </script>
 

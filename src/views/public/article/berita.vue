@@ -16,8 +16,6 @@ export default {
       articleType: 'y-news'
     }
   },
-  created() {
-    console.log('created')
-  }
+  created() {}
 }
 </script>

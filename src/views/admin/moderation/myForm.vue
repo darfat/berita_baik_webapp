@@ -395,7 +395,6 @@ export default {
             update(this.article)
               .then(response => {
                 if (response.status === 200) {
-                  console.log('update success')
                   this.$router.push({
                     path: '/moderation/artikel-kamu-list' + '/' + this.articleType + '/' + this.editorialSlug
                   })

@@ -65,13 +65,9 @@ export default {
     openShare(articleID, url) {
       // this.changeMeta(this.article, url)
       updateArticleSharedCount({ articleID }).then(response => {
-        if (response) {
-          console.log('shared success')
-        }
       })
     },
     changeMeta(article, url) {
-      console.log('change Meta')
       var self = this
       this.metaParams.ogImage = this.basePath + article.main_image
       this.metaParams.siteName = 'Berita Baik'

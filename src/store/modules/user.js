@@ -119,7 +119,6 @@ const user = {
           commit('SET_IMAGE', data.image)
           resolve(response)
         }).catch(error => {
-          console.log(error)
           reject(error)
         })
       })
@@ -138,7 +137,6 @@ const user = {
     },
     // 登出
     LogOut({ commit, state }) {
-      console.log('do logout')
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
           commit('SET_TOKEN', '')

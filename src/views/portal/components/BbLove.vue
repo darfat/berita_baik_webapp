@@ -73,9 +73,6 @@ export default {
           article_id: this.articleID
         }
         articleLikeUnlike(this.articleLike).then(response => {
-          if (response) {
-            console.log('liked!')
-          }
         })
       } else {
         this.$router.push({

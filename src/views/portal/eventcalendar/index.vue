@@ -153,9 +153,7 @@ export default {
         this.getById(this.eventID)
       }
     },
-    handleDayChanged(data) {
-      console.log('date-changed', data)
-    },
+    handleDayChanged(data) {},
     handleMonthChanged(data) {
       // console.log('month-changed', data)
       const datas = data.split('/')

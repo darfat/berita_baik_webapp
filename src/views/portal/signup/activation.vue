@@ -32,7 +32,6 @@ export default {
   },
   methods: {
     init() {
-      console.log('init')
       this.code = this.$route.params.code
       this.doActivation(this.code)
     },
@@ -41,7 +40,6 @@ export default {
         code
       }).then(response => {
         if (response) {
-          console.log(response)
           this.activationSuccess = true
         }
       })

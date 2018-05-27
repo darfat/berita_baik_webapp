@@ -84,9 +84,7 @@ export default {
       ]
     }
   },
-  created() {
-    console.log('aboutus')
-  }
+  created() {}
 }
 </script>
 

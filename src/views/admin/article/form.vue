@@ -482,7 +482,6 @@ export default {
             update(this.article)
               .then(response => {
                 if (response.status === 200) {
-                  console.log('update success')
                   this.$router.push({ path: '/editorial-articles/l/' + this.editorialSlug })
                 }
               })

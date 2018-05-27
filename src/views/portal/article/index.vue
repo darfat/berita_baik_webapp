@@ -363,11 +363,7 @@ export default {
       })
     },
     openShare(articleID, url) {
-      updateArticleSharedCount({ articleID }).then(response => {
-        if (response) {
-          console.log('shared success')
-        }
-      })
+      updateArticleSharedCount({ articleID }).then(response => {})
     },
     reportThis() {
       if (this.user_id) {
@@ -395,7 +391,6 @@ export default {
       this.showOther = val
     },
     changeMeta(article, url) {
-      console.log('change Meta')
       var self = this
       this.metaParams.ogImage = this.basePath + article.main_image
       this.metaParams.siteName = 'Berita Baik'
@@ -419,6 +414,8 @@ export default {
   //       { p: 'og:site_name', c: this.metaParams.siteName, id: 'metaOgSiteName' },
   //       { p: 'og:description', c: this.metaParams.description, id: 'metaOgDesc' },
   //       { p: 'og:url', c: this.metaParams.url, id: 'metaOgUrl' }
+  //       { p: 'og:type', c: this.metaParams.type, id: 'metaOgType' },
+  //       { p: 'og:title', c: this.metaParams.title, id: 'metaOgTitle' }
   //     ]
   //   }
   // }

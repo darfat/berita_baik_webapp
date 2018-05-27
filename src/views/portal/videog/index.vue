@@ -50,9 +50,7 @@ export default {
       title: ''
     }
   },
-  created() {
-    console.log('videog main')
-  }
+  created() {}
 }
 </script>
 

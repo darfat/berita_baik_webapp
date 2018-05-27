@@ -88,7 +88,10 @@
           <div id="logo" v-if="scrolled > 50">
                 <router-link :to="{ path: '/' }" exact><img class="" :src="img_ikon_mono" alt="beritabaik.id"></router-link>
           </div>
-          <label for="drop" class="toggle"><svg-icon icon-class="Hamburger" class="hamburger-menu"></svg-icon></label>
+          <transition name="el-fade-in-linear">
+          <label for="drop" class="toggle" v-if="!show" @click="show = !show"><svg-icon icon-class="menu" class="hamburger-menu"></svg-icon></label>
+          <label for="drop" class="toggle" v-else @click="show = !show"><svg-icon icon-class="cross" class="cross-menu"></svg-icon></label>
+          </transition>
           <input type="checkbox" id="drop" />          
               <ul class="menu">
                   <!--<li :class="scrolled > 100 ? 'home-hide': 'home'"><router-link :to="{ path: '/' }" exact>{{$t('portal.navbar.home')}}</router-link></li>-->
@@ -188,8 +191,8 @@ export default {
       img_ikon_mono,
       search: '',
       scrolled: null,
-      status: false,
-      visible: false
+      visible: false,
+      show: false
     }
   },
   computed: {

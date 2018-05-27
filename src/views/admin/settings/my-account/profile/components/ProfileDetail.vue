@@ -127,7 +127,6 @@ export default {
       getProfileById({
         userID
       }).then(response => {
-        console.log(response)
         if (response) {
           this.profile = response.data
         }

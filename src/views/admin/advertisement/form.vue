@@ -170,7 +170,6 @@ export default {
           if (this.action === 'add') {
             create(this.advertisement)
               .then(response => {
-                console.log('create success')
                 this.$router.push({ name: 'advertisement-list' })
               })
               .catch(error => {
@@ -179,7 +178,6 @@ export default {
           } else {
             update(this.advertisement)
               .then(response => {
-                console.log('update success')
                 this.$router.push({ name: 'advertisement-list' })
               })
               .catch(error => {

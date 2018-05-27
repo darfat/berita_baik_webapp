@@ -164,7 +164,6 @@ export default {
       })
     },
     onGoogleSignInSuccess(response, googleUser) {
-      console.log(response.w3)
       const userInfo = {
         username: response.w3.Eea,
         email: response.w3.U3,
@@ -187,7 +186,6 @@ export default {
 
     onFBSignInSuccess(response) {
       window.FB.api('/me?fields=id,name,about,birthday', dude => {
-        console.log(`Faceb to see you, ${dude.name}.`)
         this.loading = true
         this.$store.dispatch('LoginSignupFB', dude).then(() => {
           this.loading = false
