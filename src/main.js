@@ -87,7 +87,23 @@ Vue.use(VueAnalytics, {
 })
 Vue.use(VueHead)
 
-Vue.use(VueLazyload)
+// Vue.use(VueLazyload)
+// or with options
+
+// attempt: 1
+
+Vue.use(VueLazyload, {
+  error: 'static/images/no_image.jpg',
+  filter: {
+    progressive(listener, options) {
+      const isCDN = /qiniudn.com/
+      if (isCDN.test(listener.src)) {
+        listener.el.setAttribute('lazy-progressive', 'true')
+        listener.loading = listener.src + '?imageView2/1/w/10/h/10'
+      }
+    }
+  }
+})
 
 new Vue({
   el: '#app',
