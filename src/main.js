@@ -40,7 +40,7 @@ import Croppa from 'vue-croppa'
 // vue anality
 import VueAnalytics from 'vue-analytics'
 // vue head
-import VueHead from 'vue-head'
+// import VueHead from 'vue-head'
 // lazy
 import VueLazyload from 'vue-lazyload'
 
@@ -85,7 +85,7 @@ Vue.use(VueAnalytics, {
   id: 'UA-118969342-1',
   router
 })
-Vue.use(VueHead)
+// Vue.use(VueHead)
 
 // Vue.use(VueLazyload)
 // or with options

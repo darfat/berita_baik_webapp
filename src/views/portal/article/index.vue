@@ -8,7 +8,7 @@
             <el-row :gutter="20">
               <el-col >                
                 <div class="thumbnail">
-                    <img :src="mainArticle.main_image" />
+                    <img v-lazy="mainArticle.main_image" />
                   <!-- <div class="editorial-type-img" v-if="mainArticle.editorial">
                       <h2>{{ mainArticle.editorial.name }}</h2>
                   </div> -->
@@ -332,8 +332,8 @@ export default {
           }
           EventBus.$emit('SET_ARTICLE_ID_COMMENTS_EVENT', { 'articleID': this.mainArticle.id })
           this.getAuthors(this.mainArticle.id)
-          const url = this.baseLinkPath + this.mainArticle.editorial.slug + '/' + this.mainArticle.slug
-          this.changeMeta(this.mainArticle, url)
+          // const url = this.baseLinkPath + this.mainArticle.editorial.slug + '/' + this.mainArticle.slug
+          // this.changeMeta(this.mainArticle, url)
           // remove br
           this.mainArticle.content = this.mainArticle.content.replace('\u003c!DOCTYPE html\u003e\u003cbr /\u003e\u003chtml\u003e\u003cbr /\u003e\u003chead\u003e\u003cbr /\u003e\u003c/head\u003e\u003cbr /\u003e', '\u003c!DOCTYPE html\u003e\u003chtml\u003e\u003chead\u003e\u003c/head\u003e')
         }
@@ -406,22 +406,22 @@ export default {
       // window.setTimeout(function() {
       // }, 1000)
     }
-  },
-  head: {
-    // To use "this" in the component, it is necessary to return the object through a function
-    meta() {
-      return [
-        // { name: 'description', content: this.metaParams.description, id: 'metaDesc' },
-        { name: 'twitter:title', content: this.metaParams.title, id: 'metaTwTitle' },
-        { n: 'twitter:description', c: this.metaParams.description, id: 'metaTwDesc' },
-        { n: 'twitter:image', c: this.metaParams.ogImage, id: 'metaTwImage' },
-        { p: 'og:image', c: this.metaParams.ogImage, id: 'metaOgImage' },
-        { p: 'og:site_name', c: this.metaParams.siteName, id: 'metaOgSiteName' },
-        { p: 'og:description', c: this.metaParams.description, id: 'metaOgDesc' },
-        { p: 'og:url', c: this.metaParams.url, id: 'metaOgUrl' }
-      ]
-    }
   }
+  // head: {
+  //   // To use "this" in the component, it is necessary to return the object through a function
+  //   meta() {
+  //     return [
+  //       // { name: 'description', content: this.metaParams.description, id: 'metaDesc' },
+  //       { name: 'twitter:title', content: this.metaParams.title, id: 'metaTwTitle' },
+  //       { n: 'twitter:description', c: this.metaParams.description, id: 'metaTwDesc' },
+  //       { n: 'twitter:image', c: this.metaParams.ogImage, id: 'metaTwImage' },
+  //       { p: 'og:image', c: this.metaParams.ogImage, id: 'metaOgImage' },
+  //       { p: 'og:site_name', c: this.metaParams.siteName, id: 'metaOgSiteName' },
+  //       { p: 'og:description', c: this.metaParams.description, id: 'metaOgDesc' },
+  //       { p: 'og:url', c: this.metaParams.url, id: 'metaOgUrl' }
+  //     ]
+  //   }
+  // }
 }
 </script>
 
