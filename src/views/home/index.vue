@@ -87,7 +87,7 @@ export default {
   name: 'frontpage',
   data() {
     return {
-      isAds: true
+      isAds: false
     }
   },
   components: {
@@ -107,11 +107,6 @@ export default {
     Gallery
   },
   computed: {
-  },
-  data() {
-    return {
-      showAdsGallery: true
-    }
   },
   mounted() {
     this.initMounted()
