@@ -57,9 +57,11 @@
     </el-row>
     <el-row>    
       <el-col :xs="24" :sm="16"><gallery></gallery></el-col>
-      <ads-banner :showTitle=false position="Home : Galeri"></ads-banner>
-
-      
+      <el-col :xs="24" :sm="8" v-if="showAdsGallery">
+        <div class="ads-gallery">
+          <ads-banner :showTitle=false position="Home : Galeri"></ads-banner>
+        </div>
+      </el-col> 
     </el-row>
     <div class="gray-separator"><span></span> </div> 
     <home-youtube-video></home-youtube-video>
@@ -80,6 +82,7 @@
 <script>
 import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, Gallery } from '@/views/home/components'
 import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide, SocialFeed, InstagramFeed, AdvertisementSide, AdsBanner } from '@/views/portal/components'
+import EventBus from '@/utils/event-bus'
 
 export default {
   name: 'frontpage',
@@ -100,6 +103,26 @@ export default {
     Gallery
   },
   computed: {
+  },
+  data() {
+    return {
+      showAdsGallery: true
+    }
+  },
+  mounted() {
+    this.initMounted()
+  },
+  methods: {
+    initMounted() {
+      EventBus.$on('SET_SHOW_ADS_GALLERY', event => {
+        if (event) {
+          console.log(event)
+          if (event.position === 'Home : Galeri') {
+            this.showAdsGallery = event.show
+          }
+        }
+      })
+    }
   }
 }
 </script>
