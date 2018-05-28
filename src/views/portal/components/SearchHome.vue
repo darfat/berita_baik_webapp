@@ -72,14 +72,14 @@
               <el-card :body-style="{ padding: '0px' }">
               <div class="mini-thumbnail">
                 <router-link  v-if="article.article_type === 'news' || article.article_type === 'y-news'"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
-                  <img v-if="article.thumb_image" v-lazy="article.thumb_image" class="card-image" />
+                  <img v-if="article.thumb_image" v-lazy="article.thumb_image" class="image" />
                   <img v-else v-lazy="article.main_image" class="image" />
                   <div class="editorial-type-img">
                     <h3>{{ article.editorial.name }}</h3>
                   </div>
                 </router-link>
                 <router-link   v-if="article.article_type === 'image' || article.article_type === 'y-image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug } }" >                      
-                  <img v-if="article.thumb_image" v-lazy="article.thumb_image" class="card-image" />
+                  <img v-if="article.thumb_image" v-lazy="article.thumb_image" class="image" />
                   <img v-else v-lazy="article.main_image" class="image" />
                   <div class="editorial-type-img">
                     <h3>{{ article.editorial.name }}</h3>
