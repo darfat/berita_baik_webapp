@@ -124,134 +124,190 @@ export const constantRouterMap = [
       name: 'event-calendar',
       props: true,
       component: () => import('@/views/portal/eventcalendar/index')
-    }]
+    },
+    {
+      path: 'home-m/more/:editorialSlug',
+      name: 'content-more',
+      props: true,
+      component: () => import('@/views/portal/content-cards/index')
+    },
+    {
+      path: 'home-p/profile',
+      name: 'profile-user',
+      props: true,
+      component: () => import('@/views/public/profile/index')
+    },
+    { path: 'signup-success', component: () => import('@/views/portal/signup/success'), hidden: true },
+    { path: 'password-reset-success', component: () => import('@/views/login/passwordResetSuccess'), hidden: true },
+
+    { path: 'u-activation/:code', component: () => import('@/views/portal/signup/activation'), hidden: true }
+    ]
   },
   // cms part
   { path: '/cms-login', component: () => import('@/views/admin/login/index'), hidden: true },
   // public
-  // { path: '/login', name: 'public-login', component: () => import('@/views/login/index'), hidden: true },
-  // { path: '/signup', name: 'public-signup', component: () => import('@/views/portal/signup/index'), hidden: true },
+  { path: '/login', name: 'public-login', component: () => import('@/views/login/index'), hidden: true },
+  { path: '/signup', name: 'public-signup', component: () => import('@/views/portal/signup/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
 
+  { path: '*', redirect: '/404', hidden: true }
+]
+
+export default new Router({
+  // mode: 'history', //后端支持可开
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRouterMap
+})
+
+export const asyncRouterMap = [
   {
     path: '/cms',
     component: Layout,
     redirect: '/cms/dashboard',
     name: 'Dashboard',
     hidden: true,
+    meta: { roles: ['public', 'editor'] },
     children: [{
       path: 'dashboard',
       component: () => import('@/views/admin/dashboard/index')
     }]
   },
   {
+    path: '/cms-public',
+    component: Layout,
+    redirect: '/bp-your-articles/y-news/berita-kamu',
+    name: 'back-berita-kamu',
+    meta: { title: 'Berita Kamu', icon: 'news', roles: ['public'] },
+    children: [
+      {
+        path: 'bp-your-articles/y-news/berita-kamu',
+        name: 'back-berita-kamu-list',
+        component: () => import('@/views/public/article/berita'),
+        meta: { title: 'Berita Kamu', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'bp-your-articles/y-image/foto-kamu',
+        name: 'back-foto-kamu-list',
+        component: () => import('@/views/public/article/citra'),
+        meta: { title: 'Foto Kamu', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'bp-f/:articleType/:editorialSlug',
+        name: 'back-public-article-form',
+        props: true,
+        component: () => import('@/views/public/article/myForm'),
+        hidden: true
+      }
+    ]
+  },
+  {
     path: '/editorial-articles',
     component: Layout,
     redirect: '/editorial-articles/indonesia-baik',
     name: 'admin-editorial',
-    meta: { title: 'Editorial', icon: 'example' },
+    meta: { title: 'Editorial', icon: 'news', roles: ['editor'] },
     children: [
       {
         path: 'l/indonesia-baik',
         name: 'admin-indonesia-baik-list',
         component: () => import('@/views/admin/article/indonesiaBaik'),
-        meta: { title: 'Indonesia Baik', icon: 'table' }
+        meta: { title: 'Indonesia Baik', icon: 'ic_bullet - circle - o' }
       },
       // {
       //   path: 'l/indonesia-bangga',
       //   name: 'admin-indonesia-bangga-list',
       //   // component: () => import('@/views/admin/article/indonesiaBangga'),
-      //   meta: { title: 'Indonesia Bangga', icon: 'table' }
+      //   meta: { title: 'Indonesia Bangga', icon: 'ic_bullet - circle - o' }
       // },
       {
         path: 'l/komunitas',
         name: 'admin-komunitas-list',
         component: () => import('@/views/admin/article/komunitas'),
-        meta: { title: 'Komunitas', icon: 'table' }
+        meta: { title: 'Komunitas', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/sosok-inspiratif',
         name: 'admin-sosok-inspiratif-list',
         component: () => import('@/views/admin/article/sosokInspiratif'),
-        meta: { title: 'Sosok Inspiratif', icon: 'table' }
+        meta: { title: 'Sosok Inspiratif', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/prestasi',
         name: 'admin-prestasi-list',
         component: () => import('@/views/admin/article/prestasi'),
-        meta: { title: 'Prestasi', icon: 'table' }
+        meta: { title: 'Prestasi', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/indonesia-membangun',
         name: 'admin-indonesia-membangun-list',
         component: () => import('@/views/admin/article/indonesiaMembangun'),
-        meta: { title: 'Indonesia Membangun', icon: 'table' }
+        meta: { title: 'Indonesia Membangun', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/tempat-wisata',
         name: 'admin-tempat-wisata-list',
         component: () => import('@/views/admin/article/tempatWisata'),
-        meta: { title: 'Tempat Wisata', icon: 'table' }
+        meta: { title: 'Tempat Wisata', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/kuliner',
         name: 'admin-kuliner-list',
         component: () => import('@/views/admin/article/kuliner'),
-        meta: { title: 'Kuliner', icon: 'table' }
+        meta: { title: 'Kuliner', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/teknologi',
         name: 'admin-teknologi-list',
         component: () => import('@/views/admin/article/teknologi'),
-        meta: { title: 'Terknologi', icon: 'table' }
+        meta: { title: 'Teknologi', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/musik',
         name: 'admin-musik-list',
         component: () => import('@/views/admin/article/musik'),
-        meta: { title: 'Musik', icon: 'table' }
+        meta: { title: 'Musik', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/fashion',
         name: 'admin-fashion-list',
         component: () => import('@/views/admin/article/fashion'),
-        meta: { title: 'Fashion', icon: 'table' }
+        meta: { title: 'Fashion', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/film',
         name: 'admin-film-list',
         component: () => import('@/views/admin/article/film'),
-        meta: { title: 'Film', icon: 'table' }
+        meta: { title: 'Film', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/seni',
         name: 'admin-seni-list',
         component: () => import('@/views/admin/article/seni'),
-        meta: { title: 'Seni', icon: 'table' }
+        meta: { title: 'Seni', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/gaya-hidup',
         name: 'admin-gaya-hidup-list',
         component: () => import('@/views/admin/article/gayaHidup'),
-        meta: { title: 'Gaya Hidup', icon: 'table' }
+        meta: { title: 'Gaya Hidup', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/gallery-foto',
         name: 'admin-gallery-foto-list',
         component: () => import('@/views/admin/article/citra'),
-        meta: { title: 'Citra', icon: 'table' }
+        meta: { title: 'Citra', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/video',
         name: 'admin-video-list',
         component: () => import('@/views/admin/article/video'),
-        meta: { title: 'Video', icon: 'table' }
+        meta: { title: 'Video', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'l/infografis',
         name: 'admin-infografis-list',
         component: () => import('@/views/admin/article/infografis'),
-        meta: { title: 'Infografis', icon: 'table' }
+        meta: { title: 'Infografis', icon: 'ic_bullet - circle - o' }
       },
       {
         path: 'f/:editorialSlug',
@@ -263,17 +319,58 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/moderation',
+    component: Layout,
+    redirect: 'noredirect',
+    name: 'moderation',
+    meta: { title: 'Moderasi', icon: 'example', roles: ['editor'] },
+    children: [
+      {
+        path: 'artikel-kamu-list/y-news/berita-kamu',
+        name: 'berita-kamu-list',
+        component: () => import('@/views/admin/moderation/berita'),
+        meta: { title: 'Berita Kamu', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'artikel-kamu-list/y-image/foto-kamu',
+        name: 'foto-kamu-list',
+        component: () => import('@/views/admin/moderation/citra'),
+        meta: { title: 'Foto Kamu', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'artikel-kamu-form/:articleType/:editorialSlug',
+        name: 'artikel-kamu-form',
+        props: true,
+        component: () => import('@/views/admin/moderation/myForm'),
+        hidden: true
+      },
+      {
+        path: 'article-reported',
+        name: 'article-reported-list',
+        component: () => import('@/views/admin/moderation/reports'),
+        meta: { title: 'Report', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'article-comment',
+        name: 'article-comment-list',
+        component: () => import('@/views/admin/event/list'),
+        meta: { title: 'Komentar', icon: 'ic_bullet - circle - o' },
+        hidden: true
+      }
+    ]
+  },
+  {
     path: '/events',
     component: Layout,
     redirect: '/events/list',
     name: 'Events',
-    meta: { title: 'Events', icon: 'example' },
+    meta: { title: 'Acara', icon: 'calendar', roles: ['editor'] },
     children: [
       {
         path: 'list',
         name: 'event-list',
         component: () => import('@/views/admin/event/list'),
-        meta: { title: 'Events', icon: 'calendar' }
+        meta: { title: 'Acara', icon: 'calendar' }
       },
       {
         path: 'form',
@@ -285,23 +382,87 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/configuration',
+    path: '/advertisements',
     component: Layout,
-    redirect: '/configuration/tag',
-    name: 'Configuration',
-    meta: { title: 'Configuration', icon: 'example' },
+    redirect: '/advertisements/list',
+    name: 'advertisement',
+    meta: { title: 'Iklan', icon: 'table', roles: ['editor'] },
     children: [
+      {
+        path: 'list',
+        name: 'advertisement-list',
+        component: () => import('@/views/admin/advertisement/list'),
+        meta: { title: 'Iklan', icon: 'table' }
+      },
+      {
+        path: 'form',
+        name: 'advertisement-form',
+        component: () => import('@/views/admin/advertisement/form'),
+        props: true,
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/data',
+    component: Layout,
+    redirect: '/data/y-news/berita-kamu',
+    name: 'admin-data',
+    meta: { title: 'Data', icon: 'gear', roles: ['editor'] },
+    children: [
+      {
+        path: 'y-news/berita-kamu',
+        name: 'archive-berita-kamu-list',
+        component: () => import('@/views/public/article/berita'),
+        meta: { title: 'Berita Kamu', icon: 'ic_bullet - circle - o' }
+      },
+      {
+        path: 'y-image/foto-kamu',
+        name: 'archive-foto-kamu-list',
+        component: () => import('@/views/public/article/citra'),
+        meta: { title: 'Foto Kamu', icon: 'ic_bullet - circle - o' }
+      },
       {
         path: 'tag',
         name: 'Tag',
         component: () => import('@/views/admin/tag/index'),
-        meta: { title: 'Tag', icon: 'tag' }
+        meta: { title: 'Tag', icon: 'tag' },
+        hidden: true
       },
       {
         path: 'editorial',
         name: 'EditorialConfig',
         component: () => import('@/views/admin/editorial/index'),
-        meta: { title: 'Editorial', icon: 'editorial' }
+        meta: { title: 'Editorial', icon: 'work_order_item' }
+      },
+      {
+        path: 'bp-f/:articleType/:editorialSlug',
+        name: 'back-public-article-form',
+        props: true,
+        component: () => import('@/views/public/article/myForm'),
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/users-mngmnt',
+    component: Layout,
+    redirect: '/users-mngmnt/list',
+    name: 'users-mngmnt',
+    meta: { title: 'Manajemen User', icon: 'user', roles: ['editor'] },
+    children: [
+      {
+        path: 'list',
+        name: 'user-list',
+        component: () => import('@/views/admin/user/list'),
+        meta: { title: 'Manajemen User', icon: 'user' }
+      },
+      {
+        path: 'form',
+        name: 'user-form',
+        component: () => import('@/views/admin/user/form'),
+        props: true,
+        hidden: true
       }
     ]
   },
@@ -310,36 +471,34 @@ export const constantRouterMap = [
     component: Layout,
     redirect: 'noredirect',
     name: 'Settings',
-    meta: { title: 'Settings', icon: 'example' },
+    meta: { title: 'Pengaturan', icon: 'manager' },
     children: [
       {
         path: '/settings/my-account',
         component: () => import('@/views/admin/settings/my-account/index'),
         redirect: 'noredirect',
         name: 'myAccount',
-        meta: { title: 'My Account', icon: 'user' },
+        meta: { title: 'Akun', icon: 'user' },
         children: [
           { path: 'edit-profile',
             component: () => import('@/views/admin/settings/my-account/profile/edit'),
             name: 'editProfile',
-            meta: { title: 'Edit Profile', icon: 'user' }
+            meta: { title: 'Ubah Data', icon: 'user' }
           },
           { path: 'change-password',
             component: () => import('@/views/admin/settings/my-account/password/edit'),
             name: 'ChangePassword',
-            meta: { title: 'Change Password', icon: 'password' }
+            meta: { title: 'Ubah Kata Sandi', icon: 'password' }
           }
         ]
+      },
+      {
+        path: 'logout',
+        name: 'admin-logout',
+        component: () => import('@/views/admin/logout/index'),
+        meta: { title: 'Logout', icon: 'shutdown' }
       }
     ]
   },
   { path: '*', redirect: '/404', hidden: true }
-
 ]
-
-export default new Router({
-  // mode: 'history', //后端支持可开
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
-})
-

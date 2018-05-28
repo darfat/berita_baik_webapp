@@ -1,20 +1,20 @@
 <template>
-<div class="slidertop-wrapper" v-loading="loading.topslides">  
+<div class="slidertop-wrapper" >  
   <div class="swiper-nav">
     <div class="swiper-button-prev" slot="button-prev"><svg-icon icon-class="arrow_left"></svg-icon></div>  
     <div class="swiper-button-next" slot="button-next"><svg-icon icon-class="arrow_right"></svg-icon></div>
   </div>
-  <swiper :options="swiperOption" class="swiper-box">
+  <swiper :options="swiperOption" class="swiper-box" v-loading="loading.topslides">
     <swiper-slide v-for="item in topslides" :key="item.id" class="swiper-item">
       <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':item.editorial.slug, 'slug': item.article.slug,  'articleID': item.article.id} }">
-        <img :src="item.article.main_image">
+        <!-- <img v-lazy="item.article.main_image"> -->
+        <img v-if="item.article.thumb_image" v-lazy="item.article.thumb_image" />
+        <img v-else v-lazy="item.article.main_image" />
         <h3>{{item.editorial.name}}</h3>
       </router-link>
     </swiper-slide>
     
   </swiper>
-  
-  
 </div>
 
 </template>
@@ -97,7 +97,7 @@ export default {
 }
 .swiper-box {
   width: 86%;
-  height: 130px;
+  height: 150px; //267x150
   margin: 0 auto;
   z-index: 1;
 }

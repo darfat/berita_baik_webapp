@@ -1,40 +1,41 @@
 <template>
 <div >
-          <el-row>
-              <div class="section-title"> {{title}}</div>
-          </el-row>
+  <el-row>
+      <div class="section-title"> {{title}}</div>
+  </el-row>
           
-          <div class="popular-news m-t-20">
-            <el-row :gitter="20" v-for="(popular) in popular_articles" :key="popular.id" class="side-row"  >
-              <el-col :span="8" class="side-image">
-                <div>
-                  <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
-                    <img v-if="popular.thumb_image" :src="popular.thumb_image" class="card-image" />
-                    <img v-else :src="popular.main_image" class="card-image" />
-                  </router-link>
-                </div>
-              </el-col>
-              <el-col :span="16" class="side-content">
-                <div class="content-container">
-                   <el-row class="side-title-section">
-                      <div>
-                        <router-link :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
-                          <span class="headline" v-html="subString(popular.title,50)"  ></span>
-                        </router-link>
-                      </div>
-                    </el-row>                    
-                    <el-row >
-                        <el-col  class="side-footer">
-                         <p class="red-line"></p>
-                         <div class="author">
-                          {{ popular.reporter_name }} | <timeago :since="popular.publish_date"></timeago>
-                        </div>
-                        </el-col>
-                    </el-row>
-                </div>
-              </el-col>         
-            </el-row>            
-          </div>
+  <div class="popular-news m-t-20" v-loading="loading.popular_articles">
+    <el-row :gutter="20" v-for="(popular) in popular_articles" :key="popular.id" >
+      <el-col :span="10">
+        <div>
+          <router-link v-if="popular.article_type === 'news' || popular.article_type === 'y-news'"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
+            <img v-if="popular.thumb_image" v-lazy="popular.thumb_image" class="card-image" />
+            <img v-else v-lazy="popular.main_image" class="card-image" />
+          </router-link>
+          <router-link v-if="popular.article_type === 'image' || popular.article_type === 'y-image'"  :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
+            <img v-if="popular.thumb_image" v-lazy="popular.thumb_image" class="card-image" />
+            <img v-else v-lazy="popular.main_image" class="card-image" />
+          </router-link>
+        </div>
+      </el-col>
+      <el-col :span="14" class="side-content">                
+        <el-row class="side-title-section">              
+          <router-link v-if="popular.article_type === 'news' || popular.article_type === 'y-news'"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
+            <span class="headline" v-html="subString(popular.title,60)"  ></span>
+          </router-link>   
+          <router-link v-if="popular.article_type === 'image' || popular.article_type === 'y-image'"  :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
+            <span class="headline" v-html="subString(popular.title,60)"  ></span>
+          </router-link>              
+        </el-row>                    
+        <el-row >
+            <el-col  class="side-footer">
+              <p class="red-line"></p>
+              <p class="author">{{ popular.reporter_name }} | <timeago :since="popular.publish_date | formatUTC"></timeago></p>
+            </el-col>
+        </el-row>        
+      </el-col>         
+    </el-row>            
+  </div>
 </div>
 </template>
 <script>
@@ -66,14 +67,18 @@ export default {
   },
   methods: {
     init() {
-      this.getPopularArticles(this.editorialSlug)
+      const eSlug = this.$route.params.editorialSlug
+      this.getPopularArticles(eSlug)
     },
     subString(str, len) {
-      if (str.length < len) {
-        return str
-      } else {
-        return str.substring(0, (len - 3)) + '...'
+      if (str) {
+        if (str.length < len) {
+          return str
+        } else {
+          return str.substring(0, (len - 3)) + '...'
+        }
       }
+      return ''
     },
     getPopularArticles(editorialSlug) {
       this.loading.popular_articles = true
@@ -115,5 +120,13 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/styles/popular-news-side.scss";
-
+.el-row {
+  margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+.el-col {
+  border-radius: 0;
+}
 </style>

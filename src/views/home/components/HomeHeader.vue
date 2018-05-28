@@ -29,7 +29,17 @@
         <el-col :xs="12" :sm="4">
           <div class="head-item mc">
             <div class="head-item-contribute mc-content">
+                <span v-if="name">
+                <router-link v-if="name && role === 'public'" :to="{ name: 'back-public-article-form', params: { editorialSlug:'berita-kamu', articleType:'y-news' } }">
                   <el-button icon="el-icon-edit" class="main-button" >Tulis Berita Baik</el-button>
+                </router-link>
+                <router-link v-if="name && role === 'editor'" :to="{ name: 'Dashboard'}">
+                  <el-button icon="el-icon-news" class="main-button" >CMS</el-button>
+                </router-link>
+                </span>
+                <router-link v-else :to="{ name: 'public-login' }">
+                  <el-button icon="el-icon-edit" class="main-button" >Tulis Berita Baik</el-button>
+                </router-link>
             </div>
           </div>
         </el-col>        
@@ -38,24 +48,34 @@
           <div class="head-item mc">            
             <div class="head-item-user mc-content">              
               <a href="#/login" v-if="!name">Log In / Sign Up</a>              
-              <el-dropdown class="avatar-container" v-else>
+              <div class="avatar-container" v-else>
                 <!-- <small v-if="name"> Hi, {{name}} </small> -->
                 <div class="avatar-wrapper">
-                  <img class="user-avatar" src="static/images/avatar/no_avatar.png">
-                  <i class="el-icon-arrow-down el-icon--right"></i>
-                  
+                  <!--<img class="user-avatar" src="static/images/avatar/no_avatar.png">-->
+                  <el-popover
+                    ref="refuser"
+                    placement="bottom"                    
+                    trigger="click"
+                    v-model="visible">
+                    <div class="user-menu">
+                      <div class="user-menu-item">
+                        <router-link :to="{ name: 'editProfile' }">
+                          <fa-icon name="user-circle-o" scale="1.6"></fa-icon> Profil Saya
+                        </router-link>
+                      </div>
+                      <div class="user-menu-item">
+                        <router-link :to="{ name: 'admin-logout' }">
+                          <fa-icon name="power-off" scale="1.6"></fa-icon> Keluar
+                        </router-link>
+                      </div>
+                    </div>                    
+                  </el-popover>
+                  <el-button v-popover:refuser>
+                    <img v-if="image" class="user-avatar" :src="image" style="border-radius:50%">
+                    <img v-else class="user-avatar" src="static/images/avatar/no_avatar.png" style="border-radius:50%">
+                  </el-button>
                 </div>
-              <el-dropdown-menu class="user-dropdown" slot="dropdown">
-              <router-link class="inlineBlock" to="/">
-              <el-dropdown-item>
-                Home
-              </el-dropdown-item>
-              </router-link>
-              <el-dropdown-item divided>
-              <span style="display:block;">LogOut</span>
-              </el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
+              </div>  
             </div>
           </div>
         </el-col>
@@ -68,14 +88,17 @@
           <div id="logo" v-if="scrolled > 50">
                 <router-link :to="{ path: '/' }" exact><img class="" :src="img_ikon_mono" alt="beritabaik.id"></router-link>
           </div>
-          <label for="drop" class="toggle"><svg-icon icon-class="Hamburger" class="hamburger-menu"></svg-icon></label>
+          <transition name="el-fade-in-linear">
+          <label for="drop" class="toggle" v-if="!show" @click="show = !show"><svg-icon icon-class="menu" class="hamburger-menu"></svg-icon></label>
+          <label for="drop" class="toggle" v-else @click="show = !show"><svg-icon icon-class="cross" class="cross-menu"></svg-icon></label>
+          </transition>
           <input type="checkbox" id="drop" />          
               <ul class="menu">
-                  <li :class="scrolled > 100 ? 'home-hide': 'home'"><router-link :to="{ path: '/' }" exact>{{$t('portal.navbar.home')}}</router-link></li>
+                  <!--<li :class="scrolled > 100 ? 'home-hide': 'home'"><router-link :to="{ path: '/' }" exact>{{$t('portal.navbar.home')}}</router-link></li>-->
                   <li><router-link :to="{ path: '/home/indonesia-baik' }">Indonesia Baik</router-link></li>
                   <li>
                       <!-- First Tier Drop Down -->
-                      <label for="drop-1" class="toggle">Indonesia Bangga &#9660;</label>
+                      <label for="drop-1" class="toggle">Indonesia Bangga <span class="arrow">&#9660;</span></label>
                       <router-link :to="{ path: '/home/p/indonesia-bangga' }">Indonesia Bangga</router-link>
                       <input type="checkbox" id="drop-1"/>
                       <ul>
@@ -87,7 +110,7 @@
                   <li><router-link :to="{ path: '/home/indonesia-membangun' }">Indonesia Membangun</router-link></li>
                   <li>
                   <!-- First Tier Drop Down -->
-                  <label for="drop-2" class="toggle">Melancong &#9660;</label>
+                  <label for="drop-2" class="toggle">Melancong <span class="arrow">&#9660;</span></label>
                   <router-link :to="{ path: '/home/p/melancong' }">Melancong</router-link>
                   <input type="checkbox" id="drop-2"/>
                   <ul>
@@ -98,7 +121,7 @@
                   <li><router-link :to="{ path: '/home/teknologi' }">Teknologi</router-link></li>
                   <li>
                   <!-- First Tier Drop Down -->
-                  <label for="drop-3" class="toggle">Panggung &#9660;</label>
+                  <label for="drop-3" class="toggle">Panggung <span class="arrow">&#9660;</span></label>
                   <router-link :to="{ path: '/home/p/panggung' }">Panggung</router-link>
                   <input type="checkbox" id="drop-3"/>
                   <ul>
@@ -111,7 +134,7 @@
                   </li>
                   <li>
                   <!-- First Tier Drop Down -->
-                  <label for="drop-4" class="toggle">Citra &#9660;</label>
+                  <label for="drop-4" class="toggle">Citra <span class="arrow">&#9660;</span></label>
                   <router-link :to="{ path: '/home-c/gallery-foto' }">Citra</router-link>
                   <input type="checkbox" id="drop-4"/>
                   <ul>
@@ -121,21 +144,21 @@
                   </ul>
                   </li>
                   <li>
-                    <label for="drop-4" class="toggle">More &#9660;</label>
+                    <label for="drop-5" class="toggle">More <span class="arrow">&#9660;</span></label>
                     <router-link :to="{ path: '/home-m/event-calendar' }">More</router-link>
-                    <input type="checkbox" id="drop-4"/>
+                    <input type="checkbox" id="drop-5"/>
                     <ul>
                         <li><router-link :to="{ path: '/home-m/event-calendar' }">Acara</router-link></li>
-                        <li><router-link :to="{ path: '/home-c/gallery-foto-kamu' }">Foto Kamu</router-link></li>
+                        <li><router-link :to="{ path: '/home-c/foto-kamu' }">Foto Kamu</router-link></li>
                         <li><router-link :to="{ path: '/home/berita-kamu' }">Berita Kamu</router-link></li>
                     </ul>
                   </li>
                   <li>
-                    <div class="social-media-container">
+                    <div class="social-media-container" :class="scrolled > 50 ? 'home-hide': 'home'">
                       <a href="https://www.facebook.com/beritabaik.id/" target="_blank"><fa-icon name="facebook" scale="1" class="icon" ></fa-icon></a>
                       <a href="https://twitter.com/beritabaik_id" target="_blank"><fa-icon name="twitter" scale="1" class="icon" ></fa-icon></a>
                       <a href="https://www.instagram.com/beritabaik.id/" target="_blank"><fa-icon name="instagram" scale="1" class="icon" ></fa-icon></a>
-                      <a href="" target="_blank"><fa-icon name="youtube-square" scale="1" class="icon" ></fa-icon></a>
+                      <a href="https://www.youtube.com/channel/UCMhqsN7csDXMaJCIvt3s0BQ?view_as=subscriber" target="_blank"><fa-icon name="youtube-square" scale="1" class="icon" ></fa-icon></a>
                     </div> 
                   </li>               
               </ul>
@@ -168,13 +191,16 @@ export default {
       img_ikon_mono,
       search: '',
       scrolled: null,
-      status: false
+      visible: false,
+      show: false
     }
   },
   computed: {
     ...mapGetters([
       'name',
-      'roles'
+      'roles',
+      'role',
+      'image'
     ])
   },
   methods: {
@@ -202,6 +228,9 @@ export default {
   }
 }
 .el-col {
-    border-radius: 0px;
+  border-radius: 0px;
+}
+.sticky{
+  transition: all 0.4s ease;
 }
 </style>

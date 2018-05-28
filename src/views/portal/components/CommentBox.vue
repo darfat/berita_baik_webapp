@@ -2,25 +2,26 @@
 <div class="comment-box">
     <div class="content">
         <el-row :gutter="20" >
-            <el-col :xs="3" :sm="3">
+            <el-col :xs="6" :sm="3" class="content-img">
               <div class="img-mini">
-                <img v-if="name" :src="userLogin.image" class="img-circle v-align-middle"/>
+                <img v-if="name && userLogin.image " :src="userLogin.image" class="img-circle v-align-middle"/>
                 <img v-else src="static/images/avatar/no_avatar.png" class="img-circle v-align-middle"/>
               </div>
             </el-col>
-            <el-col :xs="21" :sm="21">
+            <el-col :xs="18" :sm="21" class="content-comment">
                 <el-input
                     type="textarea"
                     :rows="5"
                     placeholder="Tulis Komentarmu..."
                     v-model="comment"
+                    :maxlength="250"
                     >
                     </el-input>
             </el-col>
         </el-row>
         <el-row :gutter="0" class="m-t-10">
             <el-col class="align-right">
-                  <el-button type="primary" plain @click="postComment">Post</el-button>
+                  <el-button type="primary" plain @click="postComment">Kirim</el-button>
             </el-col>
         </el-row>
     </div>
@@ -44,44 +45,53 @@ export default {
   computed: {
     ...mapGetters([
       'name',
-      'roles'
+      'user_id',
+      'role',
+      'image'
     ])
   },
   data() {
     return {
       comment: '',
       userLogin: {
-        id: '00000000-0000-0000-0000-000000000001',
-        name: 'Anonymous',
-        role: 'user',
         image: 'static/images/avatar/no_avatar.png'
       }
     }
   },
-  created() {
+  mounted() {
     this.init()
   },
   methods: {
     init() {
+      this.userLogin.id = this.user_id
+      this.userLogin.name = this.name
+      this.userLogin.role = this.role
+      if (this.image) {
+        this.userLogin.image = this.image
+      }
     },
     postComment() {
-      const data = {
-        'article_id': this.articleID,
-        'user_id': this.userLogin.id,
-        'comments': this.comment,
-        'active': true,
-        'likes_count': 0
+      if (this.user_id) { // login name
+        const data = {
+          'article_id': this.articleID,
+          'user_id': this.userLogin.id,
+          'comments': this.comment,
+          'active': true,
+          'likes_count': 0
+        }
+        create(data)
+          .then(response => {
+            EventBus.$emit('UPDATE_COMMENTS_EVENT', data)
+            this.comment = ''
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      } else {
+        this.$router.push({
+          path: '/login'
+        })
       }
-      console.log('post comment')
-      console.log(data)
-      create(data)
-        .then(response => {
-          EventBus.$emit('UPDATE_COMMENTS_EVENT', data)
-          this.comment = ''
-        })
-        .catch(error => {
-          console.log(error)
-        })
     }
 
   }

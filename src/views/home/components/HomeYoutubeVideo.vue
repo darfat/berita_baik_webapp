@@ -5,7 +5,7 @@
       <iframe 
         width="640"
         height="390"
-        :src="'http://www.youtube.com/embed/'+videoId+'?rel=0&amp;fs=0&amp;showinfo=0'"
+        :src="'https://www.youtube.com/embed/'+videoId+'?rel=0&amp;fs=0&amp;showinfo=0'"
         frameborder="0"
         allowfullscreen></iframe>
 
@@ -15,7 +15,7 @@
         <p class="teaser-v">{{ latestVideo.teaser }}</p>        
         <p class="red-line"></p>
         <p class="author-v" >{{ latestVideo.reporter_name }} |
-          <timeago :auto-update="60" :since="latestVideo.publish_date"></timeago>
+          <timeago v-if="latestVideo && latestVideo.publish_date" :auto-update="60" :since="latestVideo.publish_date | formatUTC"></timeago>
         </p>     
       </div>
     </div>    

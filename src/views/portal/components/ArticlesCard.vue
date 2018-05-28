@@ -4,26 +4,27 @@
       <div class="section-title">{{title}}</div>
     </el-row>
     <div class="m-t-20">
-    <el-row :gutter="20">
+    <el-row :gutter="20" v-loading="loading.articles">
       <el-col :xs="24" :sm="12" v-for="(article) in articles" :key="article.id">
         <div class="news-col">
           <el-card :body-style="{ padding: '0px' }" class="news-card">            
-            <div class="mini-thumbnail">
-              <router-link  v-if="article.article_type === 'news'"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
-                <img v-if="article.thumb_image" :src="article.thumb_image" class="card-image" />
-                <img v-else :src="article.main_image" class="card-image" />
+            <div class="mini-thumbnail" >
+              <router-link  v-if="article.article_type === 'news' || article.article_type === 'y-news'"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
+                <img v-if="article.thumb_image" v-lazy="article.thumb_image" class="card-image" />
+                <img v-else v-lazy="article.main_image" class="card-image" />
                 <div class="editorial-type-img">
                   <h3>{{ article.editorial.name }}</h3>
                 </div>
               </router-link>
               <!-- <router-link v-if="article.editorial.slug === 'infografis'" :to="{ name: 'infografis-detail-layout', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug} }" >                      
-                <img :src="article.main_image" class="card-image" />
+                <img v-lazy="article.main_image" class="card-image" />
                 <div class="editorial-type-img">
                   <h3>{{ article.editorial.name }}</h3>
                 </div>
               </router-link> -->
-              <router-link   v-if="article.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug } }" >                      
-                <img :src="article.main_image" class="card-image" />
+              <router-link   v-if="article.article_type === 'image' || article.article_type === 'y-image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug } }" >                      
+                <img v-if="article.thumb_image" v-lazy="article.thumb_image" class="card-image" />
+                <img v-else v-lazy="article.main_image" class="card-image" />
                 <div class="editorial-type-img">
                   <h3>{{ article.editorial.name }}</h3>
                 </div>
@@ -31,23 +32,23 @@
             </div>            
             <div class="ac-bottom-content">
               <div class="share">
-                <bb-love></bb-love>
+                <bb-love :articleID="article.id" :type="'article'" ></bb-love>
                 <share-pop :article="article"></share-pop>              
               </div>
               <el-row class="ac-title">
                 <div v-if="article.editorial">
-                  <router-link v-if="article.article_type === 'news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
-                    <h2 class="headline" v-html="subString(article.title,78)" ></h2>
+                  <router-link v-if="article.article_type === 'news' || article.article_type === 'y-news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
+                    <h2 class="headline" v-html="subString(article.title,100)" ></h2>                    
                   </router-link>
-                  <router-link   v-if="article.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug } }" >                      
-                    <h2 class="headline" v-html="subString(article.title,78)" ></h2>
+                  <router-link   v-if="article.article_type === 'image' || article.article_type === 'y-image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug } }" >                      
+                    <h2 class="headline" v-html="subString(article.title,100)" ></h2>
                   </router-link>
                 </div>
               </el-row>
               <p class="red-line"></p>
               <p class="author">
                     {{ article.reporter_name }} |
-                    <timeago :auto-update="60" :since="article.publish_date"></timeago>
+                    <timeago :auto-update="60" :since="article.publish_date | formatUTC"></timeago>
               </p>             
             </div>
           </el-card>
@@ -143,11 +144,14 @@
         }
       },
       subString(str, len) {
-        if (str.length < len) {
-          return str
-        } else {
-          return str.substring(0, (len - 3)) + '...'
+        if (str) {
+          if (str.length < len) {
+            return str
+          } else {
+            return str.substring(0, (len - 3)) + '...'
+          }
         }
+        return ''
       },
       getArticles(editorialSlug, page) {
         this.loading.articles = true

@@ -3,19 +3,17 @@
     z-index: 1;
 }
 .el-carousel__item{
-  background-color: #fff;
-  height: auto;
-  margin: 0;
-  padding-bottom: 15px;
+  
 }
 
 .image-hl{
   width: 100%;
-  max-height: 400px;
+  max-height: 300px; // 533x300
+  //height: 100%;
   object-fit: cover;
 }
 
-h3{
+h2{
   position: absolute;
   top: 3%;
   left: 3%;
@@ -24,28 +22,31 @@ h3{
   background-color: $main-blue;
   padding: 8px 10px 5px 10px;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 1em;
 }
 
 .share{
-    padding: 10px 22px 5px 22px;
+    // padding: 10px 0 5px 0;
+    position: absolute;
+    bottom: 20px;
+
 }
 
-.text{	
+.info{	
 	width: 100%;
-    padding: 0 22px;
+    padding: 20px;
     color: $black-2;
-    min-height: 143px;
+    // min-height: 143px;
     background-color: #FFF;
-    .headline{
-        font-size: 24px;
-        line-height: 32px;
-        margin: 0; padding-bottom: 10px;
+    .headline{        
+        margin: 0 0 10px 0;
+        font-size: 1.5em;
     }
-    .sub-headline{
-        font-size: 16px;
-        line-height: 16px;
+    .teaser{
+        font-size: 0.9em;
+        line-height: 1.2em;
         margin: 0; padding-bottom: 5px;
+        text-align: justify;
     }
     .author{
         margin: 0; padding: 0;
@@ -54,6 +55,34 @@ h3{
         font-weight: 900;
     }
 }
-
+@media (min-width: 320px) and (max-width: 768px) {
+    h2{
+        font-size: 0.8em;
+    }    
+    .image-hl{
+        width: 100%;
+        max-height: 200px;       
+        object-fit: cover;
+    }
+    .info{        
+        padding: 10px;        
+        .headline{
+            font-size: 1em;
+        }
+        .teaser{
+            font-size: 0.8em;
+            line-height: 1.1em;            
+        }
+        .author{           
+            font-size: 0.75em;            
+        }
+    }
+    .share{
+        position: relative;
+        display: block;
+        bottom: 0;
+        margin-top: 10px;
+    }
+}
 
 

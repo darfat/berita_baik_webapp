@@ -7,7 +7,7 @@
         list-type="picture-card" accept="image/*" :on-preview="handlePreview" :on-remove="handleRemove" :on-exceed="handleExceed" :on-success="handleSuccess" :on-change="onChange" :before-upload="beforeUpload" :auto-upload="false">
         <el-button size="small" type="primary">Browse File</el-button>
       </el-upload>      
-      <el-button @click="dialogVisible = false">Cancel</el-button>
+      <el-button @click="handleCancel">Cancel</el-button>
       <el-button type="primary" @click="handleSubmit">Upload</el-button>
     </el-dialog>
   </div>
@@ -37,22 +37,41 @@ export default {
       dialogVisible: false,
       listObj: {},
       fileList: [],
-      formData: new FormData()
+      formData: new FormData(),
+      uploadedFiles: []
     }
+  },
+  created() {
+    this.listObj = {}
+    this.fileList = []
+    this.formData = new FormData()
+    this.uploadedFiles = []
   },
   methods: {
     checkAllSuccess() {
       return Object.keys(this.listObj).every(item => this.listObj[item].hasSuccess)
     },
     handleSubmit() {
+      this.formData = new FormData()
+      for (let i = 0, len = this.uploadedFiles.length; i < len; i++) {
+        const file = this.uploadedFiles[i]
+        const d = new Date()
+        const time = d.getTime()
+        const filename = time + '-' + file.name
+        this.formData.append('file', file.raw, filename)
+      }
       upload(this.formData).then(response => {
         if (response) {
           this.$emit('successCBK', response.data)
           this.listObj = {}
           this.fileList = []
-          this.formData = new FormData()
+          this.uploadedFiles = []
+          this.formData = null
           this.dialogVisible = false
         }
+      }).catch(error => {
+        console.log(error)
+        this.$message.warning('Terjadi Kesalahan \n' + error)
       })
     },
     handleSuccess(response, file) {
@@ -75,23 +94,35 @@ export default {
           return
         }
       }
+      for (let i = 0, len = this.uploadedFiles.length; i < len; i++) {
+        if (this.uploadedFiles[i].uid === uid) {
+          this.uploadedFiles.splice(i)
+          return
+        }
+      }
     },
     onChange(file) {
-      const isGt2MB = file.size > 2000000
+      const isGt2MB = file.size > 4000000
       if (isGt2MB) {
-        this.$message.warning('Ukuran file foto tidak boleh lebih dari 2MB')
+        this.$message.warning('Ukuran file foto tidak boleh lebih dari 4MB')
         this.listObj = {}
         this.fileList = []
         this.formData = new FormData()
         return false
       } else {
-        this.formData.append('file', file.raw, file.name)
+        this.uploadedFiles.push(file)
       }
     },
     handleExceed(files, fileList) {
       this.$message.warning('Melebihi Batas Maksimal Upload Foto')
     },
     handlePreview(file) {
+    },
+    handleCancel() {
+      this.listObj = {}
+      this.fileList = []
+      this.dialogVisible = false
+      this.uploadedFiles = []
     },
     beforeUpload(file) {
       const _self = this

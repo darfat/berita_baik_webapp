@@ -10,6 +10,7 @@ const homePattern = '/home'
 const loginPatttern = '/login'
 const signupPattern = '/signup'
 const cmsLoginPattern = '/cms-login'
+
 router.beforeEach((to, from, next) => {
   NProgress.start()
   if (getToken()) {

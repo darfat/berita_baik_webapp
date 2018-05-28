@@ -4,13 +4,13 @@ import 'normalize.css/normalize.css'// A modern alternative to CSS resets
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import locale from 'element-ui/lib/locale/lang/en'
+import locale from 'element-ui/lib/locale/lang/id'
 import '@/styles/index.scss' // global css
 import App from './App'
 import router from './router'
 import store from './store'
 import '@/icons' // icon
-import '@/permission' // permission control
+import '@/permission_role' // permission control
 import feather from 'vue-icon'
 import VueYouTubeEmbed from 'vue-youtube-embed'
 import VueTimeago from 'vue-timeago'
@@ -34,20 +34,15 @@ import GSignInButton from 'vue-google-signin-button'
 // import 'vue-event-calendar/dist/style.css' // ^1.1.10, CSS has been extracted as one file, so you can easily update it.
 import '@/styles/event-calendar.scss' // global css
 import vueEventCalendar from 'vue-event-calendar'
-// froalla
-// Require Froala Editor js file.
-require('froala-editor/js/froala_editor.pkgd.min')
 
-// Require Froala Editor css files.
-require('froala-editor/css/froala_editor.pkgd.min.css')
-require('font-awesome/css/font-awesome.css')
-require('froala-editor/css/froala_style.min.css')
-
-// Import and use Vue Froala lib.
-import VueFroala from 'vue-froala-wysiwyg'
-Vue.use(VueFroala)
-
-// end froala
+// Cropppa
+import Croppa from 'vue-croppa'
+// vue anality
+import VueAnalytics from 'vue-analytics'
+// vue head
+// import VueHead from 'vue-head'
+// lazy
+import VueLazyload from 'vue-lazyload'
 
 Vue.use(ElementUI, { locale })
 Vue.use(feather, 'v-icon')
@@ -65,12 +60,17 @@ Vue.use(SocialSharing)
 Vue.component('fa-icon', Icon)
 Vue.filter('formatDate', function(value) {
   if (value) {
-    return moment(String(value)).format('DD MMMM YYYY hh:mm')
+    return moment.utc(String(value)).format('DD MMMM YYYY HH:mm:ss')
   }
 })
 Vue.filter('formatDateOnly', function(value) {
   if (value) {
-    return moment(String(value)).format('DD MMMM YYYY')
+    return moment.utc(String(value)).format('DD MMMM YYYY')
+  }
+})
+Vue.filter('formatUTC', function(value) {
+  if (value) {
+    return moment(String(value)).add(-7, 'hours').format()
   }
 })
 Vue.config.productionTip = false
@@ -80,6 +80,31 @@ Vue.component('infinite-loading', InfiniteLoading)
 Vue.use(FBSignInButton)
 Vue.use(GSignInButton)
 Vue.use(vueEventCalendar, { locale: 'en' }) // locale can be 'zh','en','es','pt-br','ja','ko','fr','it','ru','de','vi','ua'
+Vue.use(Croppa, { componentName: 'my-image-cropper' })
+Vue.use(VueAnalytics, {
+  id: 'UA-118969342-1',
+  router
+})
+// Vue.use(VueHead)
+
+// Vue.use(VueLazyload)
+// or with options
+
+// attempt: 1
+
+Vue.use(VueLazyload, {
+  error: 'static/images/no_image.jpg',
+  filter: {
+    progressive(listener, options) {
+      const isCDN = /qiniudn.com/
+      if (isCDN.test(listener.src)) {
+        listener.el.setAttribute('lazy-progressive', 'true')
+        listener.loading = listener.src + '?imageView2/1/w/10/h/10'
+      }
+    }
+  }
+})
+
 new Vue({
   el: '#app',
   router,
@@ -90,20 +115,22 @@ new Vue({
   // eslint-disable-next-line
 })
 // eslint-disable-next-line
-// var fbFeedHandler = (function (d, s, id) {
-//   // eslint-disable-next-line
-//   var js, fjs = d.getElementsByTagName(s)[0]
-//   if (d.getElementById(id)) return
-//   js = d.createElement(s)
-//   js.id = id
-//   js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=104551552924338&autoLogAppEvents=1'
-//   fjs.parentNode.insertBefore(js, fjs)
-// }(document, 'script', 'facebook-jssdk'))
-// window.fbAsyncInit = function() {
-//   window.FB.init({
-//     appId: '238377760235448',
-//     cookie: true, // enable cookies to allow the server to access the session
-//     xfbml: true, // parse social plugins on this page
-//     version: 'v2.8' // use graph api version 2.8
-//   })
-// }
+var fbFeedHandler = (function (d, s, id) {
+  // eslint-disable-next-line
+  var js, fjs = d.getElementsByTagName(s)[0]
+  if (d.getElementById(id)) return
+  js = d.createElement(s)
+  js.id = id
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=1957770944535094&autoLogAppEvents=1'
+  fjs.parentNode.insertBefore(js, fjs)
+}(document, 'script', 'facebook-jssdk'))
+window.fbAsyncInit = function() {
+  window.FB.init({
+    appId: '1957770944535094',
+    cookie: true, // enable cookies to allow the server to access the session
+    xfbml: true, // parse social plugins on this page
+    version: 'v2.8' // use graph api version 2.8
+  })
+}
+
+// 1957770944535094 bbb v3

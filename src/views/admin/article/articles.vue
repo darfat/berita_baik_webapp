@@ -1,7 +1,7 @@
 <template>
   <div class="app-container calendar-list-container">
       <div class="filter-container">
-      <el-input style="width: 200px;" class="filter-item" placeholder="Title">
+      <el-input style="width: 200px;" class="filter-item" placeholder="Judul" v-model="search.title">
       </el-input>
       <!-- <el-select clearable style="width: 90px" class="filter-item" v-model="listQuery.importance" placeholder="Author">
         <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item">
@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import { getListByEditorialSlug, updatePublished, softDelete, setAsBeritaUtama, setAsHeadline, setAsPilihanEditor } from '@/api/article'
+import { getListByEditorialSlug, searchListByEditorialSlug, updatePublished, softDelete, setAsBeritaUtama, setAsHeadline, setAsPilihanEditor } from '@/api/article'
 
 export default {
   name: 'articles',
@@ -108,7 +108,10 @@ export default {
       per_page: 10,
       page: 1,
       total_pages: 1,
-      total_entries_size: 0
+      total_entries_size: 0,
+      search: {
+        title: null
+      }
     }
   },
   filters: {
@@ -149,28 +152,38 @@ export default {
       }
     },
     handleSizeChange(val) {
-      console.log(`${val} items per page`)
     },
     handleCurrentChange(page) {
-      console.log(`current page: ${page}`)
       this.getArticlesByEditorialSlug(this.editorialSlug, page)
     },
     handleUpdate(row) {
-      const data = Object.assign({}, row) // copy obj
-      console.log(data)
+      // const data = Object.assign({}, row) // copy obj
+      // console.log(data)
     },
     handleFilter() {
       // const data = Object.assign({}, row) // copy obj
+      this.listLoading = true
+      searchListByEditorialSlug({
+        title: this.search.title,
+        editorialSlug: this.editorialSlug,
+        page: 1,
+        per_page: this.per_page
+      }).then(response => {
+        if (response) {
+          this.list = response.data.data
+          this.per_page = response.data.per_page
+          this.total_pages = response.data.total_pages
+          this.total_entries_size = response.data.total_entries_size
+          this.page = response.data.page
+        }
+        this.listLoading = false
+      })
     },
     updatePublished(article_id, published) {
-      console.log('updatePublished ' + article_id)
       updatePublished({
         article_id,
         published
       }).then(response => {
-        if (response) {
-          console.log(response.data)
-        }
       })
     },
     deleteHandler(article_id) {

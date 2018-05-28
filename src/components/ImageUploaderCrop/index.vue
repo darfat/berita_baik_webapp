@@ -3,34 +3,32 @@
     <el-button icon='el-icon-upload' size="mini" :style="{background:color,borderColor:color}" @click=" dialogVisible=true" type="primary">Browse File
     </el-button>
     <el-dialog :visible.sync="dialogVisible">
-      <div>
-        
-        <a class="btn" @click="toggleShow">set avatar</a>
-        <el-button @click="toggleShow = false">Browse File</el-button>
-                  <my-upload field="img"
-                        @crop-success="cropSuccess"
-                        @crop-upload-success="cropUploadSuccess"
-                        @crop-upload-fail="cropUploadFail"
-                        v-model="show"
-                        lang-type="en"
-                        :width="300"
-                        :height="300"
-                        url=""
-                        :params="params"
-                        :headers="headers"
-                        img-format="png"></my-upload>
-                  <img :src="imgDataUrl">
+      <div class="editor-slide-upload">        
+        <my-image-cropper :file-size-limit="sizeLimit"
+          :width="width"
+          :height="height"
+          accept=".jpg,.jpeg,.png" 
+          v-model="imageCropper"
+          :canvas-color="'gray'"
+          @file-choose="handleCroppaFileChoose"
+          @file-size-exceed="handleCroppaFileSizeExceed"
+          @file-type-mismatch="handleCroppaFileTypeMismatch"
+          @image-remove="handleImageRemove"
+          :prevent-white-space="true"
+          :remove-button-size="20"
+          ></my-image-cropper>
       </div>
       <div>
       <el-button @click="dialogVisible = false">Cancel</el-button>
+      <el-button type="primary" @click="uploadCroppedImage">Upload</el-button>
+
       </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { uploadDataURI } from '@/api/image_upload'
-import myUpload from 'vue-image-crop-upload'
+import { upload } from '@/api/image_upload'
 
 export default {
   name: 'imageUploaderCrop',
@@ -39,55 +37,81 @@ export default {
       type: String,
       default: '#1890ff'
     },
-    isMultiple: {
-      type: Boolean,
-      default: true
+    compress: {
+      type: Number
+    },
+    sizeLimit: {
+      type: Number
+    },
+    sizeLimitMessage: {
+      type: String
+    },
+    index: {
+      type: Number
+    },
+    width: {
+      type: Number,
+      default: 533
+    },
+    height: {
+      type: Number,
+      default: 300
     }
   },
-  components: {
-    myUpload
-  },
+  components: {},
   data() {
     return {
       dialogVisible: false,
-      show: false,
-      params: {
-        token: '123456798',
-        name: 'avatar'
-      },
-      headers: {
-        smail: '*_~'
-      },
-      imgDataUrl: ''
+      imageCropper: {},
+      filename: null,
+      filetype: null
     }
   },
   methods: {
-    toggleShow() {
-      this.show = !this.show
+    handleCroppaFileChoose(file) {
+      // console.log('handleCroppaFileChoose')
+      const d = new Date()
+      const time = d.getTime()
+      this.filetype = file.type
+      this.filename = time + '-' + file.name
     },
-    cropSuccess(imgDataUrl, field) {
-      console.log('-------- crop success --------')
-      this.imgDataUrl = imgDataUrl
-      console.log('do something with this image')
-      uploadDataURI({ imgDataUrl }).then(response => {
-        if (response) {
-          this.$emit('successCBK', response.data)
-          this.dialogVisible = false
-        }
-      })
+    handleCroppaFileSizeExceed(file) {
+      // console.log('handleCroppaFileSizeExceed')
+      this.$message.warning('Terjadi Kesalahan \n Foto Yang Diupload Melebihi maksimal size, Batas Maksimal untuk upload foto adalah ' + this.sizeLimitMessage)
     },
-    cropUploadSuccess(jsonData, field) {
-      console.log('-------- upload success --------')
-      console.log(jsonData)
-      console.log('field: ' + field)
+    handleCroppaFileTypeMismatch(file) {
+      // console.log('handleCroppaFileTypeMismatch')
+      this.$message.warning('Terjadi Kesalahan \n Foto Yang Diupload hanya format jpg/png\n')
     },
-    cropUploadFail(status, field) {
-      console.log('-------- upload fail --------')
-      console.log(status)
-      console.log('field: ' + field)
+    handleImageRemove() {
+      // console.log('handleImageRemove')
+    },
+    uploadCroppedImage() {
+      // console.log('upload cropped image')
+      this.imageCropper.generateBlob(
+        blob => {
+          // write code to upload the cropped image file (a file is a blob)
+          var formData = new FormData()
+          formData.append('file', blob, this.filename)
+          upload(formData).then(response => {
+            if (response) {
+              var data = response.data
+              if (data && data.length > 0) {
+                data[0].index = this.index
+              }
+              this.$emit('successCBK', data)
+              this.dialogVisible = false
+            }
+          }).catch(error => {
+            console.log(error)
+            this.$message.warning('Terjadi Kesalahan \n' + error)
+          })
+        },
+        this.filetype,
+        this.compress
+      ) // 90% default jpeg file
     }
   }
-
 }
 
 </script>
@@ -96,6 +120,7 @@ export default {
 .upload-container {
   .editor-slide-upload {
     margin-bottom: 20px;
+    max-width: 800px;
   }
 }
 </style>

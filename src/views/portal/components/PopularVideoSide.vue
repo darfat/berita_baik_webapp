@@ -13,7 +13,7 @@
                     <iframe 
                         width="540"
                         height="290"
-                        :src="'http://www.youtube.com/embed/'+$youtube.getIdFromURL(popular.sources_path)+'?rel=0&amp;fs=0&amp;showinfo=0'"
+                        :src="'https://www.youtube.com/embed/'+$youtube.getIdFromURL(popular.sources_path)+'?rel=0&amp;fs=0&amp;showinfo=0'"
                         frameborder="0"
                         allowfullscreen></iframe>
                   </div>
@@ -32,7 +32,7 @@
                         <el-col  class="side-footer">
                          <p class="red-line"></p>
                          <div class="author">
-                          {{ popular.reporter_name }} | <timeago :since="popular.publish_date"></timeago>
+                          {{ popular.reporter_name }} | <timeago :since="popular.publish_date | formatUTC"></timeago>
                         </div>
                         </el-col>
                     </el-row>
@@ -74,11 +74,14 @@ export default {
       this.getPopularArticles(this.editorialSlug)
     },
     subString(str, len) {
-      if (str.length < len) {
-        return str
-      } else {
-        return str.substring(0, (len - 3)) + '...'
+      if (str) {
+        if (str.length < len) {
+          return str
+        } else {
+          return str.substring(0, (len - 3)) + '...'
+        }
       }
+      return ''
     },
     getPopularArticles(editorialSlug) {
       this.loading.popular_articles = true

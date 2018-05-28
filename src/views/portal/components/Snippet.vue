@@ -34,12 +34,9 @@ export default {
   },
   created() {
     this.init()
-    console.log('get infografis by id')
   },
   methods: {
-    init() {
-      console.log('init')
-    }
+    init() {}
   }
 }
 </script>

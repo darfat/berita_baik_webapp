@@ -41,7 +41,7 @@
     // height: 100px;
   }
   &-item{    
-    // height: 108px;    
+    height: 108px;    
     &-img{       
       img{        
         max-width: 100%;
@@ -88,10 +88,22 @@
 
       }
       .avatar-wrapper{
-        img{
-          width: 40px;
-          height: 40px;
+        .el-button{
+          border: none;
+          padding: 0;
+          img{
+            width: 50px;
+            height: auto;
+          }
         }
+        .el-button:hover,
+        .el-button:active,
+        .el-button:focus{
+          background: none;         
+        }
+        
+        
+                        
       }
     }
   }
@@ -137,16 +149,16 @@ nav {
   border: none;
 }
 #logo img{
-  height: 30px;  
+  width: 30px;  
 }
 
 .social-media-container{
   color: $bb-white-menu;
   padding-top: 12px;
-  padding-right: 10px;
+  padding-right: 0;
   float: right;
   a{
-    padding: 0 5px 0 0;
+    padding: 0 0 0 0;
     display: inline;
     .icon{
       width: 25px;
@@ -241,7 +253,7 @@ nav ul ul ul li {
 
 	
 /* Change ' +' in order to change the Dropdown symbol */
-li > a:after { content:  ' \25BC'; color: $bb-white-menu; }
+li > a:after { content:  ' \25BC'; color: $bb-white-menu; font-size: .7em; }
 li > a:only-child:after { content: ''; }
 
 .menu >li:last-child{
@@ -252,23 +264,26 @@ li > a:only-child:after { content: ''; }
 
 @media all and (max-width : 768px) {
 
-	#logo {
-		// display: block;
-		// padding: 0;
-		// width: 100%;
-		// text-align: center;
-		// float: none;
-	}
+.menu-wrapper{
+  //padding-bottom: 10px;
+}
+#logo{
+  img{
+    margin-left: 10px;
+  }    
+}
 
+.cross-menu,
 .hamburger-menu{
     float: right;
-    text-align: right;    
+    text-align: right;
+    margin-top: 5px;
   }
 
 	nav {
 		margin: 0;
     padding-top: 0;    
-    min-height: 50px;
+    min-height: 50px;    
 	}
 
 	/* Hide the navigation menu by default */
@@ -355,19 +370,30 @@ li > a:only-child:after { content: ''; }
 		position: static;
 		/* has to be the same number as the "width" of "nav ul ul li" */ 
 
-	}
-
+  }
   
+  .arrow{
+    font-size: 0.7em;
+  }
+  
+  nav ul li:last-child{
+    padding-bottom: 10px;
+  }
 
 }
 
 @media all and (max-width : 330px) {
+  #logo{
+    img{
+      // margin-left: 10px;
+    }    
+  }
   .container{
     // margin: 0; padding: 0;
   }
   nav{
-    //font-size: 12px;
-    padding-top: 10px;
+    // font-size: 12px;
+    // padding-top: 10px;
   }
 	nav ul li {
 		display: block;
@@ -388,9 +414,36 @@ li > a:only-child:after { content: ''; }
 .mc{
   width: 100%;  
   display: table;
-    min-height: 108px;    
+  min-height: 108px;
+  .mc-content{
+      vertical-align:middle;
+      display: table-cell;
+  }  
+}
+
+@media all and (max-width : 768px) {  
+  .mc{
+    width: 100%;  
+    display: table;
+    min-height: 60px;
     .mc-content{
         vertical-align:middle;
         display: table-cell;
+    }  
+  }
+  .head{
+    &-wrapper {
+      // height: 100px;
     }
+    &-item{    
+      height: auto;
+      text-align: center;
+      &-img{       
+        img{         
+          margin: 10px 0 0 0;
+        }
+      }   
+      
+    }
+  }    
 }

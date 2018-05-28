@@ -48,7 +48,7 @@
 <script>
 import { isvalidUsername } from '@/utils/validate'
 import img_b_logo from '@/assets/images/ikon_berita_baik.png'
-
+/* eslint-disable */
 export default {
   name: 'cmsLogin',
   data() {
@@ -78,21 +78,7 @@ export default {
       loading: false,
       pwdType: 'password',
       img_b_logo,
-      checked: false,
-      fbSignInParams: {
-        // scope: 'email,user_likes',
-        scope: 'email',
-        return_scopes: true
-      },
-      /**
-       * The Auth2 parameters, as seen on
-       * https://developers.google.com/identity/sign-in/web/reference#gapiauth2initparams.
-       * As the very least, a valid client_id must present.
-       * @type {Object}
-       */
-      googleSignInParams: {
-        client_id: '945256359753-38gpkeqcipc5nn3kts9f3frark3ut5pr.apps.googleusercontent.com'
-      }
+      checked: false
     }
   },
   methods: {
@@ -109,29 +95,22 @@ export default {
           this.loading = true
           this.$store.dispatch('Login', this.loginForm).then(() => {
             this.loading = false
-            this.$router.push({ path: '/cms' })
-          }).catch(() => {
+            this.$router.push({ path: '/home' })
+            var self = this;
+            window.setTimeout(function() {
+              self.$router.push({ path: '/cms' })
+            }, 1000)
+          })
+          .catch(error => {
+            this.$message.warning('Login Tidak Berhasil')
             this.loading = false
           })
         } else {
           console.error('error submit!!')
+          this.$message.warning('Terjadi kesalahan')
           return false
         }
       })
-    },
-    onSignInSuccess(response, googleUser) {
-      /*
-      FB.api('/me', dude => {
-        console.log(`Good to see you, ${dude.name}.`)
-      })
-      */
-      // `googleUser` is the GoogleUser object that represents the just-signed-in user.
-      // See https://developers.google.com/identity/sign-in/web/reference#users
-      // const profile = googleUser.getBasicProfile() // etc etc
-    },
-    onSignInError(error) {
-      // `error` contains any error occurred.
-      console.log('OH NOES', error)
     }
   }
 }

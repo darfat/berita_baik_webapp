@@ -71,17 +71,33 @@
             <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" v-for="(article) in articles" :key="article.id">              
               <el-card :body-style="{ padding: '0px' }">
               <div class="mini-thumbnail">
-                <img :src="article.main_image" class="image">
+                <router-link  v-if="article.article_type === 'news' || article.article_type === 'y-news'"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
+                  <img v-if="article.thumb_image" v-lazy="article.thumb_image" class="card-image" />
+                  <img v-else v-lazy="article.main_image" class="image" />
+                  <div class="editorial-type-img">
+                    <h3>{{ article.editorial.name }}</h3>
+                  </div>
+                </router-link>
+                <router-link   v-if="article.article_type === 'image' || article.article_type === 'y-image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug } }" >                      
+                  <img v-if="article.thumb_image" v-lazy="article.thumb_image" class="card-image" />
+                  <img v-else v-lazy="article.main_image" class="image" />
+                  <div class="editorial-type-img">
+                    <h3>{{ article.editorial.name }}</h3>
+                  </div>
+                </router-link>
                 <div class="editorial-type-img" v-if="article.editorial">
                   <h3>{{ article.editorial.name }}</h3>
                 </div>
               </div>
               <div class="info">
-                  <bb-love></bb-love>
+                  <bb-love :articleID="article.id" :type="'article'" ></bb-love>
                   <share-pop :article="article"></share-pop>
                 <div class="bottom clearfix">
-                  <router-link v-if="article.editorial" :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
-                    <h2 class="headline" v-html="subString(article.title,80)"  ></h2>
+                  <router-link  v-if="article.article_type === 'news' || article.article_type === 'y-news'"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug,  'articleID': article.id} }">
+                    <h2 class="headline" v-html="subString(article.title,100)"  ></h2>
+                  </router-link>
+                  <router-link   v-if="article.article_type === 'image' || article.article_type === 'y-image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':article.editorial.slug, 'slug': article.slug } }" >                      
+                    <h2 class="headline" v-html="subString(article.title,100)"  ></h2>
                   </router-link>
                 </div>
                
@@ -89,7 +105,7 @@
                   <p class="red-line"></p>
                   <p class="author">
                   {{ article.reporter_name }} |
-                    <timeago :auto-update="60" :since="article.publish_date"></timeago>
+                    <timeago :auto-update="60" :since="article.publish_date | formatUTC"></timeago>
                   </p>  
                 </div>
               </div>
@@ -198,7 +214,7 @@ export default {
       if (this.isShowSearchAdvance) {
         SearchArticlesByDateAndReporter({
           article_type: 'news',
-          reporter_name: this.searchAdvance.reporter_name,
+          reporter_name: this.searchAdvance.reporter_name.toLowerCase(),
           start_date: this.searchAdvance.start_date,
           end_date: this.searchAdvance.end_date,
           page,
@@ -212,7 +228,6 @@ export default {
             if (response.data.data && response.data.data.length) {
               this.articles = this.articles.concat(response.data.data)
               $state.loaded()
-              console.log(`${Math.ceil(this.articles.length / this.per_page)} is completed`)
               if (Math.ceil(this.articles.length / this.per_page) === this.total_pages) {
                 $state.complete()
               }
@@ -222,6 +237,9 @@ export default {
           }
         })
       } else {
+        if (this.searchAny) {
+          this.searchAny = this.searchAny.toLowerCase()
+        }
         SearchArticles({
           article_type: 'news',
           title: this.searchAny,
@@ -236,7 +254,6 @@ export default {
             if (response.data.data && response.data.data.length) {
               this.articles = this.articles.concat(response.data.data)
               $state.loaded()
-              console.log(`${Math.ceil(this.articles.length / this.per_page)} is completed`)
               if (Math.ceil(this.articles.length / this.per_page) === this.total_pages) {
                 $state.complete()
               }
@@ -248,11 +265,14 @@ export default {
       }
     },
     subString(str, len) {
-      if (str.length < len) {
-        return str
-      } else {
-        return str.substring(0, (len - 3)) + '...'
+      if (str) {
+        if (str.length < len) {
+          return str
+        } else {
+          return str.substring(0, (len - 3)) + '...'
+        }
       }
+      return ''
     }
   }
 }

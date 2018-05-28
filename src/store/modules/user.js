@@ -1,11 +1,11 @@
-import { login, logout, getInfo, signup } from '@/api/login'
-import { getToken, setToken, setUserId, removeToken, getUserId } from '@/utils/auth'
+import { login, logout, getInfo, signup, loginSignupFB, loginSignupGmail, preSignup } from '@/api/login'
+import { getToken, setToken, setUserId, removeToken, getUserId, removeUserId } from '@/utils/auth'
 
 const user = {
   state: {
     token: getToken(),
     name: '',
-    avatar: '',
+    image: '',
     user_id: getUserId(),
     roles: [],
     role: '',
@@ -20,8 +20,8 @@ const user = {
     SET_NAME: (state, name) => {
       state.name = name
     },
-    SET_AVATAR: (state, avatar) => {
-      state.avatar = avatar
+    SET_IMAGE: (state, image) => {
+      state.image = image
     },
     SET_ROLES: (state, roles) => {
       state.roles = roles
@@ -71,31 +71,84 @@ const user = {
         })
       })
     },
+    LoginSignupFB({ commit }, userInfo) {
+      const username = userInfo.id.trim()
+      const name = userInfo.name
+      return new Promise((resolve, reject) => {
+        loginSignupFB(username, name).then(response => {
+          const data = response.data
+          setToken(data.token)
+          setUserId(data.user_id)
+          commit('SET_TOKEN', data.token)
+          commit('SET_USER_ID', data.user_id)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    LoginSignupGmail({ commit }, userInfo) {
+      const username = userInfo.username.trim()
+      const name = userInfo.name
+      const email = userInfo.email
+      const image_path = userInfo.image_path
+      return new Promise((resolve, reject) => {
+        loginSignupGmail(username, email, name, image_path).then(response => {
+          const data = response.data
+          setToken(data.token)
+          setUserId(data.user_id)
+          commit('SET_TOKEN', data.token)
+          commit('SET_USER_ID', data.user_id)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
         getInfo(state.token, state.user_id).then(response => {
           const data = response.data
           commit('SET_ROLE', data.role)
+          const roles = [data.role]
+          commit('SET_ROLES', roles)
           commit('SET_NAME', data.name)
           commit('SET_USERNAME', data.username)
           commit('SET_EMAIL', data.email)
-          // commit('SET_AVATAR', data.avatar)
+          commit('SET_IMAGE', data.image)
           resolve(response)
         }).catch(error => {
-          console.log(error)
           reject(error)
         })
       })
     },
-
+    PreSignup({ commit }, userInfo) {
+      return new Promise((resolve, reject) => {
+        preSignup(userInfo).then(response => {
+          const data = response.data
+          setUserId(data.user_id)
+          commit('SET_USER_ID', data.user_id)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
     // 登出
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
           commit('SET_TOKEN', '')
-          commit('SET_ROLES', [])
+          commit('SET_ROLE', null)
+          commit('SET_ROLES', null)
+          commit('SET_NAME', null)
+          commit('SET_USERNAME', null)
+          commit('SET_EMAIL', null)
+          commit('SET_USER_ID', null)
+          commit('SET_IMAGE', null)
           removeToken()
+          removeUserId()
           resolve()
         }).catch(error => {
           reject(error)
@@ -107,7 +160,15 @@ const user = {
     FedLogOut({ commit }) {
       return new Promise(resolve => {
         commit('SET_TOKEN', '')
+        commit('SET_TOKEN', '')
+        commit('SET_ROLE', null)
+        commit('SET_ROLES', null)
+        commit('SET_NAME', null)
+        commit('SET_USERNAME', null)
+        commit('SET_EMAIL', null)
+        commit('SET_USER_ID', null)
         removeToken()
+        removeUserId()
         resolve()
       })
     }

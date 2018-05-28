@@ -3,14 +3,15 @@
     <div  class="content" v-loading="loading.comments" > 
         <el-row :gutter="20" v-for="(comment) in comments" :key="comment.id" class="data">
             <el-row >
-              <el-col :xs="3" :sm="3" class="comment-img">
+              <el-col :xs="6" :sm="3" class="comment-img">
                   <div class="img-mini">
-                    <img :src="comment.user.image" class="img-circle v-align-middle"/>
+                    <img v-if="name && comment.user  && comment.user.image" :src="comment.user.image" class="img-circle v-align-middle"/>
+                    <img v-else src="static/images/avatar/no_avatar.png" class="img-circle v-align-middle"/>
                   </div>
               </el-col>
-              <el-col :xs="21" :sm="21" class="comment-info">
+              <el-col :xs="18" :sm="21" class="comment-info">
                   <div> {{ comment.user.name }}</div>
-                  <div class="comment-date"> <timeago :auto-update="60" :since="comment.created_at"> </timeago>  </div>
+                  <div class="comment-date"> <timeago :auto-update="60" :since="comment.created_at | formatUTC"> </timeago>  </div>
               </el-col>
             </el-row>
             <el-row class="comment-comment">
@@ -25,13 +26,15 @@
             </el-row>          
             <el-row >
               <el-col :span="12" class="comment-option" >
-                <span> <bb-love :articleID="comment.id" :type="'comment'" ></bb-love> </span>
-                <span class="opt-label"> {{ comment.likes_count}} </span>
+                <span> &nbsp; </span>
+                <!-- <span> <bb-love :articleID="comment.id" :type="'comment'" ></bb-love> </span>
+                <span class="opt-label"> {{ comment.likes_count}} </span> -->
                 <!-- <span class="opt-label"> | </span>
                 <span class="opt-label"> Reply </span> -->
               </el-col>
-              <el-col :span="12" class="align-right">
-                  <span> <v-icon name="more-horizontal" base-class="icon-20"></v-icon> </span>
+              <el-col :span="12" class="align-right" v-if="role && role ==='editor'">
+                  <!-- <span> <v-icon name="more-horizontal" base-class="icon-20" ></v-icon> </span> -->
+                  <el-button @click="deleteComment(comment.id)" size="mini">delete</el-button>
               </el-col>
             </el-row> 
         </el-row>
@@ -60,9 +63,10 @@
 </template>
 
 <script>
-import { getCommentsByArticleID } from '@/api/comment'
+import { getCommentsByArticleID, destroy } from '@/api/comment'
 import BbLove from '@/views/portal/components/BbLove'
 import EventBus from '@/utils/event-bus'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'CommentList',
@@ -72,6 +76,14 @@ export default {
   },
   components: {
     BbLove
+  },
+  computed: {
+    ...mapGetters([
+      'name',
+      'user_id',
+      'role',
+      'image'
+    ])
   },
   data() {
     return {
@@ -124,6 +136,17 @@ export default {
     },
     handleCurrentChange(page) {
       this.getComments(this.articleID, page)
+    },
+    deleteComment(article_comment_id) {
+      destroy({ article_comment_id }).then(response => {
+        if (response) {
+          this.$message({
+            type: 'success',
+            message: 'Komentar berhasil dihapus'
+          })
+          this.getComments(this.articleID, this.page)
+        }
+      })
     }
   }
 }

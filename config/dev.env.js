@@ -7,6 +7,5 @@ module.exports = merge(prodEnv, {
   BASE_API: '"http://localhost:3000"',
   VERSION: '"/v1"',
   AUTH_GROUP: '"/auth"',
-  SAMPLE_API: '"https://easy-mock.com/mock/5950a2419adc231f356a6636/vue-admin"',
   APP_ID: '"BERITABAIK_WEBAPP_V01"'
 })

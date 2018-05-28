@@ -41,7 +41,6 @@ export default {
         editorialSlug: this.editorialSlug,
         articleID: this.articleID
       }).then(response => {
-        console.log(response)
         if (response && response.data) {
           const article = response.data
           if (this.type === 'news') {

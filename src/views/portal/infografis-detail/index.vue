@@ -18,7 +18,7 @@
                     <el-col>
                       <el-row :gutter="20">
                           <el-col :span="4" v-if="infografis.id">
-                              <span> <bb-love></bb-love> </span>
+                              <span> <bb-love :articleID="infografis.id" :type="'article'" ></bb-love> </span>
                               <span><share-pop :article="infografis"></share-pop>  </span>
                           </el-col>
                       </el-row>
@@ -88,7 +88,7 @@
               <span> Buka lebih banyak lagi </span>
             </div> -->
             <div class="spacer m-t-10"></div>
-            <advertisement-side></advertisement-side>
+            <!-- <advertisement-side></advertisement-side> -->
           </div>
         </el-col>
       </div>
@@ -128,7 +128,6 @@ export default {
   },
   methods: {
     init() {
-      console.log(this.slug)
       this.getMainArticle(this.slug)
     },
     getMainArticle(slug) {

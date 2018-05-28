@@ -36,9 +36,9 @@
                 <el-input v-model="article.subtitle" :maxlength="50" ></el-input>
             </el-form-item>
             
-            <el-form-item label="Ringkasan Utama" prop="teaser" v-if="article.article_type === 'news'" >
+            <el-form-item label="Ringkasan Utama" prop="teaser" v-if="article.article_type === 'news' || article.article_type === 'image'" >
               <div class="editor-container">
-                 <el-input type="textarea" :rows="4" v-model="article.teaser" :maxlength="500" ></el-input>
+                 <el-input type="textarea" :rows="4" v-model="article.teaser" :maxlength="250" ></el-input>
                  <!-- <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser' ></tinymce> -->
               </div>
             </el-form-item>
@@ -49,28 +49,36 @@
               <div slot="tip" class="el-upload__tip"> Tag &lt;related/&gt; : untuk menambahkan Berita Terkait di dalam konten </div>
               </div>
             </el-form-item>
-            <el-form-item label="Gambar Utama"  prop="main_image" v-if="article.article_type !== 'video'" >
+            <el-form-item label="Gambar Utama"  prop="main_image" v-if="article.article_type === 'news' || editorialSlug === 'infografis'" >
               <div>
                 <span> {{ main_image_name }}</span>
-                <image-uploader :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
-                <!-- <image-uploader-crop :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader-crop> -->
-
+                <image-uploader v-if="editorialSlug === 'infografis'" :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
+                <image-uploader-crop v-else class="image-uploader-btn" :compress="0.9" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" @successCBK="mainImageSuccessCallback"></image-uploader-crop>
               </div>
               <div>
-              <div slot="tip" class="el-upload__tip">Maks 2MB dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
+              <div slot="tip" class="el-upload__tip">Maks 4MB dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
               </div>
             </el-form-item>
             <el-form-item label="Gallery" v-if="article.article_type === 'image' && editorialSlug === 'gallery-foto'">
               <div class="gray-horizontal"></div>
               <div>
-                <span v-if="article.article_images && article.article_images.length > 0">
-                  {{article.article_images.length}} Foto Berhasil Diupload
-                </span>
-                <image-uploader :isMultiple="true" :limit=5 class="image-uploader-btn" @successCBK="gallerySuccessCallback"></image-uploader>
-                <div slot="tip" class="el-upload__tip">Jumlah Maksimal Upload 5 Foto, Maks 2MB Per Foto dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
-
+                <div> <small> Main Image : <span> {{ main_image_name }}</span> </small></div>
+                <div v-if="article.article_images && article.article_images.length > 0">
+                  {{tempCount}} / {{article.article_images.length}} Foto Berhasil Diupload
+                </div>
+                <!-- <image-uploader :isMultiple="true" :limit=5 class="image-uploader-btn" @successCBK="gallerySuccessCallback"></image-uploader> -->
+                <div v-for="(item, index) in article.article_images" :key="index">
+                  <span>{{item.title}}</span>
+                  <image-uploader-crop  class="image-uploader-btn" :compress="0.9" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" :index="index" @successCBK="gallerySuccessCallback"></image-uploader-crop>
+                  <el-button icon='el-icon-remove' size="mini" type="danger" v-on:click="removeImages(index)">  </el-button>
+                </div>
+                <div slot="tip" class="el-upload__tip" ref="divTipImages">Maks 4MB Per Foto dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
+                <div class="gray-horizontal"></div>
+                <div class="m-t-10">
+                    <el-button class="primary" v-on:click="addImages">Tambah Gambar</el-button>
+                </div>
+                
               </div>
-              <div class="gray-horizontal"></div>
             </el-form-item>
             <el-form-item label="Youtube Embed"  prop="sources_path" v-if="article.article_type === 'video'" >
               <div>
@@ -226,7 +234,7 @@
                   </el-table>
                 </div>
                 <el-form-item class="m-t-10">
-                  <el-button v-on:click="addArticleRelateItem">Add Related News</el-button>
+                  <el-button v-on:click="addArticleRelateItem">Add Related News</el-button>                  
               </el-form-item>
             </el-form-item>
             <div class="gray-horizontal"></div>
@@ -289,7 +297,7 @@
             
             <el-form-item label="Tanggal Publish">
                 <el-col :span="11">
-                <el-date-picker type="datetime" placeholder="Pick a date" v-model="article.publish_date" style="width: 100%;"></el-date-picker>
+                <el-date-picker type="datetime" placeholder="Pick a date" v-model="article.publish_date" style="width: 100%;" format="yyyy-MM-dd HH:mm:ss"></el-date-picker>
                 </el-col>
             </el-form-item>
 
@@ -309,7 +317,7 @@
 // eslint-disable-next-line
 // eslint-disable-indent
 
-import { create, getArticleByID, update, getLatestNewsAll } from '@/api/article'
+import { create, getArticleByID, update, getLatestArticleAll, getArticleImages } from '@/api/article'
 import { getSections } from '@/api/section'
 import { getArticleTypes } from '@/api/article_type'
 import { getEditorialIdBySlug } from '@/api/editorial'
@@ -324,6 +332,7 @@ import ImageUploader from '@/components/ImageUploader'
 import ImageUploaderCrop from '@/components/ImageUploaderCrop'
 import VueGoogleAutocomplete from 'vue-google-autocomplete'
 import Tinymce from '@/components/Tinymce/index'
+import moment from 'moment'
 
 export default {
   name: 'ArticleForm',
@@ -351,11 +360,11 @@ export default {
     return {
       article: {
         title: '',
+        teaser: '',
         editorial_id: null,
         slug: '',
-        publish_date: new Date(),
+        publish_date: null,
         published: true,
-        teaser: null,
         content: null,
         main_image: null,
         section: null,
@@ -363,6 +372,7 @@ export default {
         is_can_comment: true,
         active: true,
         article_type: null,
+        images_count: 0,
         article_authors: [
           {
             role_id: null,
@@ -406,9 +416,9 @@ export default {
         title: [
           { required: true, message: 'Silahkan Isi judul', trigger: 'blur' }
         ],
-        teaser: [
-          { required: true, message: 'Silahkan Isi Ringkasan Utama', trigger: 'blur' }
-        ],
+        // teaser: [
+        //   { required: true, message: 'Silahkan Isi Ringkasan Utama', trigger: 'blur' }
+        // ],
         content: [
           { required: true, message: 'Silahkan Isi Berita', trigger: 'blur' }
         ],
@@ -418,7 +428,8 @@ export default {
       },
       validAuthor: true,
       action: 'add',
-      main_image_name: ''
+      main_image_name: '',
+      tempCount: 0
       // froalaConfig: {
       //   events: {
       //     'froalaEditor.initialized': function() {
@@ -440,12 +451,21 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid && this.isValidateAuthor() && this.isValidateYoutubeLinkAuthor()) {
+          if (this.article.article_type === 'video' || this.editorialSlug === 'infografis') {
+            this.article.content = '-'
+          }
+          if (this.article.article_type === 'news' && this.article.teaser.length < 1) {
+            this.$message.warning('Ringkasan Utama Belum Diisi')
+            return false
+          }
           this.article.article_type = this.articleType
           this.article.article_tags = this.tagArray.toString()
           this.article.keyword_non_content = this.keywordArray.toString()
+          this.article.content = this.article.content.replace('\u003cbody\u003e\n', '\u003cbody\u003e')
+          this.article.content = this.article.content.replace('\n\u003c/body\u003e', '\u003c/body\u003e')
           this.reporterNameCheck()
-          if (this.article.article_type === 'video' || this.editorialSlug === 'infografis') {
-            this.article.content = '-'
+          if (this.article.article_images) {
+            this.article.images_count = this.article.article_images.length
           }
           if (this.action === 'add') {
             create(this.article)
@@ -458,11 +478,10 @@ export default {
                 console.log(error)
               })
           } else {
+            this.article.publish_date = new Date(this.article.publish_date)
             update(this.article)
               .then(response => {
-                console.log(response)
                 if (response.status === 200) {
-                  console.log('update success')
                   this.$router.push({ path: '/editorial-articles/l/' + this.editorialSlug })
                 }
               })
@@ -490,8 +509,6 @@ export default {
     },
     isValidateYoutubeLinkAuthor() {
       const isValid = true
-      console.log('validate youtube link')
-      console.log(this.article.sources_path)
       if (this.article.article_type === 'video' && !this.article.sources_path) {
         this.$message.warning('Silakan Isi Link Video Youtube Terlebih Dahulu')
         return false
@@ -499,14 +516,19 @@ export default {
       return isValid
     },
     init() {
+      moment.locale('id')
+      this.article.publish_date = new Date()
       this.article.article_type = this.articleType
+      this.article.user_id = this.user_id
       this.getSectionOptions()
       this.getArticleTypeOptions()
       this.setEditorialId(this.editorialSlug)
       this.getCityOptions()
       this.getRoleOptions()
       this.getUserOptions()
-      this.getArticleOptions()
+      if (this.articleType === 'news') {
+        this.getArticleOptions()
+      }
       if (this.article.article_tags) {
         this.tagArray = this.article.article_tags.split(',')
       }
@@ -516,6 +538,10 @@ export default {
       if (this.articleId && this.articleId !== null) {
         this.getById(this.articleId)
         this.action = 'edit'
+      } else {
+        if (this.articleType === 'image') {
+          this.article.article_images.push({ title: '', url: '', content: '-', active: true })
+        }
       }
     },
     getSectionOptions() {
@@ -566,7 +592,7 @@ export default {
     },
     getArticleOptions() {
       const params = {}
-      getLatestNewsAll(params).then(response => {
+      getLatestArticleAll(params).then(response => {
         if (response) {
           this.article_opts = response.data.data
         }
@@ -590,6 +616,10 @@ export default {
       }).then(response => {
         if (response) {
           this.article = response.data
+          this.article.content = this.article.content.replace('\u003c!DOCTYPE html\u003e\n\u003chtml\u003e\n\u003chead\u003e\n\u003c/head\u003e\n\u003cbody\u003e\n', '\u003c!DOCTYPE html\u003e\u003chtml\u003e\u003chead\u003e\u003c/head\u003e\u003cbody\u003e')
+          this.article.content = this.article.content.replace('\n\u003c/body\u003e\n\u003c/html\u003e', '\u003c/body\u003e\u003c/html\u003e')
+          this.article.content = this.article.content.replace('\u003cbody\u003e\n', '\u003cbody\u003e')
+          this.article.content = this.article.content.replace('\n\u003c/body\u003e', '\u003c/body\u003e')
           if (this.article.article_tags) {
             this.tagArray = this.article.article_tags.split(',')
           }
@@ -603,6 +633,12 @@ export default {
           if (this.article.main_image) {
             const aarName = this.article.main_image.split('/')
             this.main_image_name = aarName[aarName.length - 1]
+          }
+          if (this.article.article_type === 'image') {
+            this.getImages(this.article.id)
+          }
+          if (this.article.publish_date) {
+            this.article.publish_date = moment.utc(String(this.article.publish_date)).format('YYYY-MM-DD HH:mm:ss')
           }
         }
       })
@@ -618,6 +654,19 @@ export default {
       getRelatesByArticleID({ articleID }).then(response => {
         if (response) {
           this.article.article_relates = response.data
+        }
+      })
+    },
+    getImages(article_id) {
+      getArticleImages({ article_id }).then(response => {
+        if (response) {
+          this.article.article_images = response.data
+          this.tempCount = 0
+          this.article.article_images.forEach(item => {
+            if (item.url.length > 1) {
+              this.tempCount++
+            }
+          })
         }
       })
     },
@@ -692,6 +741,24 @@ export default {
     removeArticleRelateItem(idx) {
       this.article.article_relates.splice(idx, 1)
     },
+    removeImages(idx) {
+      this.article.article_images.splice(idx, 1)
+      this.tempCount = 0
+      this.article.article_images.forEach(item => {
+        if (item.url.length > 1) {
+          this.tempCount++
+        }
+      })
+    },
+    addImages() {
+      const imgObj = { title: '', url: '', content: '-', active: true }
+      if (this.article.article_images) {
+        this.article.article_images.push(imgObj)
+      } else {
+        this.article.article_images = []
+        this.article.article_images.push(imgObj)
+      }
+    },
     addArticleAuthorItem() {
       const author = {
         role_id: null,
@@ -718,7 +785,28 @@ export default {
     gallerySuccessCallback(res) {
       if (res) {
         res.forEach(item => {
-          console.log(item.url)
+          this.article.article_images[item.index] = { title: item.filename, url: item.url, content: '-', active: true }
+          if (item.index === 0) {
+            this.article.main_image = item.url
+            this.article.thumb_image = item.url_thumb
+            this.main_image_name = item.filename
+          }
+        })
+        this.$message({
+          type: 'success',
+          message: 'Foto Berhasil Diupload'
+        })
+        this.tempCount = 0
+        this.article.article_images.forEach(item => {
+          if (item.url.length > 1) {
+            this.tempCount++
+          }
+        })
+      }
+    },
+    gallerySuccessCallbackOld(res) {
+      if (res) {
+        res.forEach(item => {
           this.article.article_images.push({ title: item.filename, url: item.url, content: '-', active: true })
         })
         this.$message({

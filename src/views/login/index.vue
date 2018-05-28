@@ -6,7 +6,7 @@
               <img :src="img_b_logo" alt="beritabaik.id">
             </a>          
         </div>        
-        <div class="form">
+        <div class="form" v-if="showNative">
             <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px"
                 class="card-box login-form">
                 <el-form-item prop="username">
@@ -25,7 +25,7 @@
                 </el-form-item>
                 <el-row :gutter="20">
                     <el-col :span="12">
-                        <div><a> Lupa Sandi ? </a></div>
+                        <div><a @click="clickResetPassDialog(true)"> Lupa Sandi ? </a></div>
                         <div><el-checkbox v-model="checked">Ingat Saya</el-checkbox></div>
                     </el-col>
                     <el-col :span="12" class="align-right">
@@ -33,31 +33,30 @@
                           Masuk
                         </el-button>
                     </el-col>
-                </el-row>
-               
-                
+                </el-row>                                
               </el-form>
         </div>
         <div class="options">
             <div class="login-with"> 
-              <!--
-              <v-icon name="facebook" base-class="icon-0dot8em v-align-middle"></v-icon>
-              <v-icon name="mail" base-class="icon-0dot8em v-align-middle"></v-icon>
-              -->
+              <h2 v-if="!showNative">Login Menggunakan </h2>
+              <el-button type="text">
               <fb-signin-button
                 :params="fbSignInParams"
-                @success="onSignInSuccess"
+                @success="onFBSignInSuccess"
                 @error="onSignInError">
                 <fa-icon name="facebook" class="icon" ></fa-icon>
               </fb-signin-button>
+              </el-button>
+              <el-button type="text">
               <g-signin-button
                 :params="googleSignInParams"
-                @success="onSignInSuccess"
+                @success="onGoogleSignInSuccess"
                 @error="onSignInError">
                 <fa-icon name="google-plus" class="icon" ></fa-icon>
               </g-signin-button>
+              </el-button>
             </div>            
-            <div class="sign-up"> 
+            <div class="sign-up" v-if="showNative"> 
                 <span> Belum Mendaftar ? 
                   <router-link :to="{ name: 'public-signup' }">
                     <a>Daftar Sekarang</a> 
@@ -65,6 +64,16 @@
                 </span>
             </div>
         </div>
+        <el-dialog title="Reset Password" :visible.sync="showResetPassDialog" class="card-box login-form" width="30%"
+  center :modalAppendToBody="false">
+                  <el-form :model="resetPassForm"  ref="resetPassForm" >
+                      <el-input ref="resetPassEmailInput" v-model="resetPassForm.email" type="email" auto-complete="off" placeholder="Masukan Email"></el-input>
+                  </el-form>
+                  <span slot="footer" class="dialog-footer">
+                    <el-button @click="showResetPassDialog = false">Cancel</el-button>
+                    <el-button type="success" @click="resetPassword()">Confirm</el-button>
+                  </span>
+        </el-dialog>
       </div>
   </div>
 </template>
@@ -72,6 +81,7 @@
 <script>
 import { isvalidUsername } from '@/utils/validate'
 import img_b_logo from '@/assets/images/ikon_berita_baik.png'
+import { sendEmailResetPassword } from '@/api/login'
 
 export default {
   name: 'login',
@@ -105,7 +115,7 @@ export default {
       checked: false,
       fbSignInParams: {
         // scope: 'email,user_likes',
-        scope: 'email',
+        scope: 'user_birthday, public_profile',
         return_scopes: true
       },
       /**
@@ -115,7 +125,12 @@ export default {
        * @type {Object}
        */
       googleSignInParams: {
-        client_id: '945256359753-38gpkeqcipc5nn3kts9f3frark3ut5pr.apps.googleusercontent.com'
+        client_id: '41162363474-mo2568h4vs3tbs8pgepog137sbg148fa.apps.googleusercontent.com'
+      },
+      showNative: true,
+      showResetPassDialog: false,
+      resetPassForm: {
+        email: ''
       }
     }
   },
@@ -127,6 +142,9 @@ export default {
         this.pwdType = 'password'
       }
     },
+    clickResetPassDialog(val) {
+      this.showResetPassDialog = val
+    },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
@@ -134,7 +152,9 @@ export default {
           this.$store.dispatch('Login', this.loginForm).then(() => {
             this.loading = false
             this.$router.push({ path: '/home' })
-          }).catch(() => {
+          }).catch((err) => {
+            console.log(err)
+            this.$message.warning('Gagal Login')
             this.loading = false
           })
         } else {
@@ -143,19 +163,57 @@ export default {
         }
       })
     },
-    onSignInSuccess(response, googleUser) {
-      /*
-      FB.api('/me', dude => {
-        console.log(`Good to see you, ${dude.name}.`)
+    onGoogleSignInSuccess(response, googleUser) {
+      const userInfo = {
+        username: response.w3.Eea,
+        email: response.w3.U3,
+        name: response.w3.ig,
+        image_path: response.w3.Paa
+      }
+      this.loading = true
+      this.$store.dispatch('LoginSignupGmail', userInfo).then(() => {
+        this.loading = false
+        this.$router.push({
+          path: '/home'
+        })
+      }).catch(() => {
+        this.loading = false
       })
-      */
       // `googleUser` is the GoogleUser object that represents the just-signed-in user.
       // See https://developers.google.com/identity/sign-in/web/reference#users
       // const profile = googleUser.getBasicProfile() // etc etc
     },
+
+    onFBSignInSuccess(response) {
+      window.FB.api('/me?fields=id,name,about,birthday', dude => {
+        this.loading = true
+        this.$store.dispatch('LoginSignupFB', dude).then(() => {
+          this.loading = false
+          this.$router.push({
+            path: '/home'
+          })
+        }).catch(() => {
+          this.loading = false
+        })
+      })
+    },
     onSignInError(error) {
       // `error` contains any error occurred.
       console.log('OH NOES', error)
+    },
+    resetPassword() {
+      this.showResetPassDialog = false
+      sendEmailResetPassword({ email: this.resetPassForm.email }).then(response => {
+        if (response) {
+          this.$message({
+            type: 'success',
+            message: 'Silakan cek email untuk melihat password terbaru, Terima Kasih'
+          })
+        }
+      }).catch(error => {
+        console.log(error)
+        this.$message.warning('Terjadi Kesalahan \n')
+      })
     }
   }
 }

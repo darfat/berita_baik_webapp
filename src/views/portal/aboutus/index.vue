@@ -19,9 +19,7 @@ export default {
       title: ''
     }
   },
-  created() {
-    console.log('gallery main')
-  }
+  created() {}
 }
 
 </script>

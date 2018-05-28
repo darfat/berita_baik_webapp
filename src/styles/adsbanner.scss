@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .ads{
     &-container{        
         width: 100%;        
@@ -27,3 +29,14 @@
     }
     
 }
+
+.ads-gallery{
+    margin-left: 3px;
+    background-color: $black-2;
+    min-height: 420px;
+    text-align: center;
+    padding: 10px;
+    small{
+      color: #666;
+    }
+  }

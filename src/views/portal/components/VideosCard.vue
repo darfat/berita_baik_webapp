@@ -13,7 +13,7 @@
               <iframe 
                   width="640"
                   height="390"
-                  :src="'http://www.youtube.com/embed/'+$youtube.getIdFromURL(video.sources_path)+'?rel=0&amp;fs=0&amp;showinfo=0'"
+                  :src="'https://www.youtube.com/embed/'+$youtube.getIdFromURL(video.sources_path)+'?rel=0&amp;fs=0&amp;showinfo=0'"
                   frameborder="0"
                   allowfullscreen></iframe>
             </div>
@@ -23,7 +23,7 @@
               </div>
               <el-row >
                   <el-col :span="4" v-if="video.id">
-                      <span> <bb-love></bb-love> </span>
+                      <span> <bb-love :articleID="video.id" :type="'article'" ></bb-love> </span>
                       <span> <share-pop :article="video"></share-pop>   </span>
                   </el-col>
               </el-row>
@@ -43,7 +43,7 @@
                 <el-col class="ac-footer">
                   <div class="author">
                     {{ video.reporter_name }} |
-                    <timeago :auto-update="60" :since="video.publish_date"></timeago>
+                    <timeago :auto-update="60" :since="video.publish_date | formatUTC"></timeago>
                   </div>
                 </el-col>
               </el-row>
@@ -135,11 +135,14 @@
         }
       },
       subString(str, len) {
-        if (str.length < len) {
-          return str
-        } else {
-          return str.substring(0, (len - 3)) + '...'
+        if (str) {
+          if (str.length < len) {
+            return str
+          } else {
+            return str.substring(0, (len - 3)) + '...'
+          }
         }
+        return ''
       },
       getVideos(editorialSlug, page) {
         this.loading.list = true

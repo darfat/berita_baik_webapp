@@ -1,79 +1,44 @@
 <template>
   <div class="editoral-container">
-    <el-row :gutter="20" class="headline-container" v-if="latestNews">
+    <div class="headline-container" v-if="latestNews">
       <div class="container">
-        <el-row :gutter="20" >
-          
-          <el-col :xs="24">
-            <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">
-                  <el-row :gutter="20" v-if="editorialSlug === 'infografis'">
-                    <el-col >
-                      <div>
-                          <div class="background">
-                              <img :src="latestNews.main_image" />
-                              <!-- <div class="editorial-type-img" v-if="latestNews.id">
-                                  <h2>{{ latestNews.editorial.name }}</h2>
-                              </div> -->
-                          </div>
-                      </div>
-                    </el-col>
-                  </el-row>
-                  <el-row :gutter="20" v-if="editorialSlug !== 'infografis'">
-                    <el-col >
-                      <div v-if="latestNews">
-                          <images-slider :articleID="latestNews.id" :article="latestNews"></images-slider>
-                      </div>
-                    </el-col>
-                  </el-row>
-                  <el-row :gutter="20" class="content"> 
-                    <el-col>
-                      <el-row :gutter="20" class="ln-share">
-                          <el-col :span="4" v-if="latestNews.id">
-                              <span> <bb-love></bb-love> </span>
-                              <span><share-pop :article="latestNews"></share-pop>  </span>
-                          </el-col>
-                      </el-row>
-                      <el-row :gutter="20" class="ln-title">
-                        <el-col >
-                          <div class="headline"> 
-                              {{ latestNews.title }}
-                          </div>
-                        </el-col>
-                      </el-row>
-                      <el-row :gutter="20" class="ln-teaser">
-                          <el-col class="sub-headline">
-                            <div v-html="latestNews.teaser" class="article-content">
-                            </div>
-                          </el-col>
-                      </el-row>                      
-                      <el-row :gutter="20">
-                          <el-col class="footer">
-                            <p class="red-line"></p>
-                            <div class="author">
-                              {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago>
-                            </div>
-                          </el-col>
-                      </el-row>
-                    </el-col>
-                  </el-row>
-                  <el-row :gutter="20" class="m-t-10" v-if="latestNews" >
-                    <el-col >
-                      <comment-box :articleID="latestNews.id"></comment-box>
-                    </el-col>
-                  </el-row>
+
+        <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">              
+          <div class="image-hl" v-if="editorialSlug === 'infografis'">
+              <img v-lazy="latestNews.main_image" />
+          </div>              
+          <!--<div class="image-hl" v-if="editorialSlug !== 'infografis'">-->
+          <div class="image-hl" v-else>
+            <images-slider :articleID="latestNews.id" :article="latestNews"></images-slider>
+          </div>
+          <div class="info">            
+            <div class="share" v-if="latestNews.id">
+              <span> <bb-love :articleID="latestNews.id" :type="'article'" ></bb-love> </span>
+              <span><share-pop :article="latestNews"></share-pop>  </span>                      
             </div>
-            <div>
-              <el-row :gutter="20">
-                <el-col v-if="latestNews">
-                  <article-nav :editorialSlug="editorialSlug" :articleID="latestNews.id" type="image" navTitle="Gallery"></article-nav>
-                </el-col>
-              </el-row>
+            <h1 class="headline" v-html="latestNews.title"></h1>                    
+            <div class="" v-if="latestNews.content && latestNews.content !=='-'">                      
+              <div v-html="latestNews.content" class="article-content"></div>                      
             </div>
-          </el-col>          
-        </el-row>
+            <p class="red-line"></p>
+            <p class="author">
+              {{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date | formatUTC"></timeago>
+            </p>
+          </div>
+
+          <div class="comment" v-if="latestNews" >                
+            <comment-box :articleID="latestNews.id"></comment-box>                
+          </div>
+        </div>
+
+        <div v-if="latestNews" class="navigasi">
+          <article-nav :editorialSlug="editorialSlug" :articleID="latestNews.id" type="image" navTitle="Gallery"></article-nav>
+        </div>
+
       </div>  
-    </el-row>
-    <el-row :gutter="20" class="comments-container" v-if="latestNews.id" >
+    </div>
+
+    <el-row class="comments-container" v-if="latestNews.id" >
       <el-row :gutter="20" >
         <div class="container">
         <el-col :xs="24" :sm="24"  class="comments-content">
@@ -82,35 +47,42 @@
         </div>
       </el-row>
     </el-row>
-    <el-row :gutter="20" class="list-container">
-      <div class="container">
-        <el-col :xs="24" :sm="16" class="content">
+    <div class="container">
+      <el-row :gutter="20" class="list-container">        
+        <el-col class="content">
           <div class="grid-content">
               <articles-card :editorialSlug="editorialSlug" :editorialType="editorialType" :limit=10 :showPaging="false" :articleType="'image'"></articles-card>
           </div>
         </el-col>
-        <el-col :xs="24" :sm="8" class="side-content">
+        <el-col class="side-content">
           <div class="grid-content a-side">
             <div>
-
             <popular-news-side v-if="editorialSlug === 'infografis'" :editorialSlug="editorialSlug" title="INFOGRAFIS TERPOPULER"> </popular-news-side>
-            <popular-news-side v-else :editorialSlug="editorialSlug" title="GALLERY TERPOPULER"> </popular-news-side>
+            <popular-news-side v-else :editorialSlug="editorialSlug" title="GALERI TERPOPULER"> </popular-news-side>
             </div>
             <div class="side-separator">
-              <span> Buka lebih banyak lagi </span>
+              <router-link v-if="editorialSlug === 'infografis'" :to="{ name: 'content-more', params: { 'editorialSlug': editorialSlug, 'title': 'INFOGRAFIS TERPOPULER' } }">
+                <span> Buka lebih banyak lagi </span>
+              </router-link>
+              <router-link v-else :to="{ name: 'content-more', params: { 'editorialSlug': editorialSlug, 'title': 'GALERI TERPOPULER' } }">
+                <span> Buka lebih banyak lagi </span>
+              </router-link>
             </div>
-            <div>
-            <infografis-side :editorialSlug="'infografis'"  > </infografis-side>
+            <div class="spacer m-t-20"></div>
+            <div v-if="editorialSlug !== 'infografis'">
+            <infografis-side  :editorialSlug="'infografis'"  > </infografis-side>
             </div>
-            <div class="side-separator">
-              <span> Buka lebih banyak lagi </span>
+            <div class="side-separator" v-if="editorialSlug !== 'infografis'">
+              <router-link  :to="{ name: 'editorial-image', params: { 'editorialSlug': 'infografis' } }" >
+                <span> Buka lebih banyak lagi </span>
+              </router-link>
             </div>
-            <div class="spacer m-t-10"></div>
-            <advertisement-side></advertisement-side>
+            <div class="spacer m-t-20"></div>
+            <!-- <advertisement-side></advertisement-side> -->
           </div>
-        </el-col>
-      </div>
-    </el-row>
+        </el-col>        
+      </el-row>
+    </div>
   </div>
 </template>
 

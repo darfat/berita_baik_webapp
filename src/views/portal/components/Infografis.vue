@@ -17,7 +17,7 @@
                   <el-col>
                     <el-row :gutter="20">
                         <el-col :span="4" v-if="infografis.id">
-                            <span> <bb-love></bb-love> </span>
+                            <span> <bb-love :articleID="infografis.id" :type="'article'"></bb-love> </span>
                             <span><share-pop :article="infografis"></share-pop>  </span>
                         </el-col>
                     </el-row>

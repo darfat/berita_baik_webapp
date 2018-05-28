@@ -1,52 +1,65 @@
 <template>
 <span>
   <a class="love" v-on:click="loveUnLove" v-if="scale === 1" >      
-       <v-icon name="heart" base-class="icon-20 love-me" v-show="state === true"  ></v-icon> 
-       <v-icon name="heart" base-class="icon-20 hate-me" v-show="state === false" ></v-icon> 
+    <v-icon name="heart" base-class="icon-20 love-me" v-show="state === true"  ></v-icon> 
+    <v-icon name="heart" base-class="icon-20 hate-me" v-show="state === false" ></v-icon> 
   </a>
   <a class="love" v-on:click="loveUnLove" v-else >      
-       <v-icon name="heart" base-class="icon-30 love-me" v-show="state === true"  ></v-icon> 
-       <v-icon name="heart" base-class="icon-30 hate-me" v-show="state === false" ></v-icon> 
+    <v-icon name="heart" base-class="icon-24 love-me" v-show="state === true"  ></v-icon> 
+    <v-icon name="heart" base-class="icon-24 hate-me" v-show="state === false" ></v-icon> 
   </a>
 </span>
 </template>
 
 <script>
-// import { getArticle } from '@/api/article'
+import { articleLikeUnlike, getArticleLoveState } from '@/api/article'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'BbLove',
   props: {
-    articleID: { type: String, default: '000' },
-    type: { type: String, default: 'article' },
+    articleID: { type: String },
+    type: { type: String },
     scale: { type: Number, default: 1 }
   },
   computed: {
     ...mapGetters([
       'name',
-      'roles'
+      'user_id'
     ])
   },
   data() {
     return {
-      title: {},
       state: false,
       loveClass: 'icon-20',
       loading: {
         love: false
-      }
+      },
+      articleLike: {}
     }
   },
-  created() {
+  mounted() {
     this.init()
   },
   methods: {
     init() {
-
+      if (this.user_id) {
+        this.getLoveState()
+      }
+    },
+    getLoveState() {
+      const data = {
+        user_id: this.user_id,
+        article_id: this.articleID
+      }
+      getArticleLoveState(data).then(response => {
+        if (response && response.data) {
+          this.state = response.data.liked === 'true'
+        }
+      })
     },
     loveUnLove() {
-      if (this.name) { // login name
+      if (this.user_id) { // login name
         if (this.state) {
           this.state = false
           this.loveClass = 'love-red'
@@ -54,6 +67,13 @@ export default {
           this.state = true
           this.loveClass = 'icon-20'
         }
+        this.articleLike = {
+          liked: this.state,
+          user_id: this.user_id,
+          article_id: this.articleID
+        }
+        articleLikeUnlike(this.articleLike).then(response => {
+        })
       } else {
         this.$router.push({
           path: '/login'

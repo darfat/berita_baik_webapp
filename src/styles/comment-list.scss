@@ -7,6 +7,12 @@
     padding-right: 25px;
     padding-top: 20px;
     padding-bottom: 20px;
+    .comment-img{
+        img{
+            width: auto;
+            height: 100%;
+        }
+    }
 }
 .comment-list .content .data{
     margin-top: 20px;

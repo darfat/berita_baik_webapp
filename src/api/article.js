@@ -3,11 +3,33 @@ import request_auth from '@/utils/request_auth'
 
 const NEWS_TYPE = 'news'
 const VIDEO_TYPE = 'video'
-const IMAGE_TYPE = 'image'
+// const IMAGE_TYPE = 'image'
+// const Y_IMAGE_TYPE = 'y-image'
 
 export function getListByEditorialSlug(params) {
-  return request({
+  return request_auth({
     url: '/admin-articles-editorial/' + params.editorialSlug,
+    method: 'get',
+    params
+  })
+}
+export function getListDraftByEditorialSlug(params) {
+  return request_auth({
+    url: '/admin-draft-articles-editorial/' + params.editorialSlug,
+    method: 'get',
+    params
+  })
+}
+export function searchListByEditorialSlug(params) {
+  return request_auth({
+    url: '/admin-search-articles-editorial/' + params.editorialSlug,
+    method: 'get',
+    params
+  })
+}
+export function getMyListByEditorialSlug(params) {
+  return request_auth({
+    url: '/admin-my-articles-editorial/' + params.editorialSlug + '/' + params.userID,
     method: 'get',
     params
   })
@@ -82,9 +104,14 @@ export function getLatestNewsAll(params) {
     params
   })
 }
-
+export function getLatestArticleAll(params) {
+  return request_auth({
+    url: '/articles-all/opts',
+    method: 'get',
+    params
+  })
+}
 export function getEditorsPickNewss(params) {
-  params.type = NEWS_TYPE
   return request({
     url: '/article-by-editor-pick',
     method: 'get',
@@ -94,7 +121,6 @@ export function getEditorsPickNewss(params) {
 
 // citra
 export function getLatestImageByEditorial(params) {
-  params.type = IMAGE_TYPE
   return request({
     url: '/articles-editorial/latest/' + params.editorialSlug,
     method: 'get',
@@ -103,7 +129,6 @@ export function getLatestImageByEditorial(params) {
 }
 
 export function getImagesByEditorialSlug(params) {
-  params.type = IMAGE_TYPE
   return request({
     url: '/articles-editorial/' + params.editorialSlug,
     method: 'get',
@@ -209,3 +234,39 @@ export function setAsPilihanEditor(data) {
     data
   })
 }
+export function updateArticleSharedCount(data) {
+  return request({
+    url: '/article-update-shared-count/' + data.articleID,
+    method: 'put',
+    data
+  })
+}
+export function updateArticleLikeCount(data) {
+  return request({
+    url: '/article-update-like-count/' + data.articleID,
+    method: 'put',
+    data
+  })
+}
+export function updateArticleCommentCount(data) {
+  return request({
+    url: '/article-update-comment-count/' + data.articleID,
+    method: 'put',
+    data
+  })
+}
+export function articleLikeUnlike(data) {
+  return request({
+    url: '/article-like-unlike',
+    method: 'post',
+    data
+  })
+}
+export function getArticleLoveState(data) {
+  return request_auth({
+    url: '/article-like-state/' + data.article_id + '/' + data.user_id,
+    method: 'get',
+    data
+  })
+}
+

@@ -4,7 +4,7 @@
         <el-row :gutter="20" >
             <el-col :span="24" class="gallery-col">
                   <div class="gallery-thumbnail">
-                      <img :src="mainGallery.main_image" class="gallery-image" />
+                      <img v-lazy="mainGallery.main_image" class="gallery-image" />
                       <div class="gallery-image-title">
                         <p v-if="mainGallery.editorial" >{{ mainGallery.editorial.name }}</p>
                       </div>
@@ -13,7 +13,7 @@
                     <div class="bottom clearfix">
                       <el-row >
                         <el-col :span="4">
-                          <span> <bb-love></bb-love> </span>
+                          <span> <bb-love :articleID="mainGallery.id" :type="'article'"></bb-love> </span>
                           <span> <fa-icon name="share-alt" scale="1.3"  ></fa-icon>  </span>
                         </el-col>
                     </el-row>
@@ -39,7 +39,7 @@
                     <el-row >
                         <el-col class="gallery-footer">
                         <div class="author" >
-                          {{ mainGallery.reporter_name }} | <timeago :since="mainGallery.publish_date"></timeago>
+                          {{ mainGallery.reporter_name }} | <timeago :since="mainGallery.publish_date | formatUTC"></timeago>
                         </div>
                       </el-col>
                     </el-row>
@@ -52,7 +52,9 @@
             <el-col :xs="24" :sm="8" v-for="(g) in galleries" :key="g.id" class="gallery-col">
                 <el-card  :body-style="{ padding: '0px' }" class="gallery-card">
                   <div class="gallery-thumbnail">
-                      <img :src="g.main_image" class="gallery-image" />
+                      <!-- <img v-lazy="g.main_image" class="gallery-image" /> -->
+                      <img v-if="g.thumb_image" v-lazy="g.thumb_image" class="gallery-image" />
+                      <img v-else v-lazy="g.main_image" class="gallery-image" />
                       <div class="gallery-image-title">
                         <p >{{ g.editorial.name }}</p>
                       </div>
@@ -62,7 +64,7 @@
                     <div class="bottom clearfix">
                       <el-row >
                         <el-col :span="4">
-                          <span> <bb-love></bb-love> </span>
+                          <span> <bb-love :articleID="g.id" :type="'article'"></bb-love> </span>
                           <span> <fa-icon name="share-alt" scale="1.3"  ></fa-icon>  </span>
                         </el-col>
                     </el-row>
@@ -78,7 +80,7 @@
                     <el-row >
                         <el-col class="gallery-footer">
                         <div class="author">
-                          {{ g.reporter_name }} | <timeago :since="g.publish_date"></timeago>  
+                          {{ g.reporter_name }} | <timeago :since="g.publish_date | formatUTC"></timeago>  
                         </div>
                       </el-col>
                     </el-row>
@@ -146,8 +148,6 @@ export default {
     }
   },
   created() {
-    console.log('galerry')
-    console.log(this.showPaging)
     this.init()
   },
   methods: {

@@ -27,11 +27,15 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+@import "src/styles/variables.scss";
 @import "src/styles/mixin.scss";
 .app-wrapper {
   @include clearfix;
   position: relative;
   height: 100%;
   width: 100%;
+}
+.sidebar-container{
+  background-color: $main-blue;  
 }
 </style>
