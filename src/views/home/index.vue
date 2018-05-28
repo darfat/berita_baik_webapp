@@ -2,6 +2,7 @@
 <div class="app-wrapper">
   <el-row class="slider-wrapper">    
     <div class="container">
+      <ads-banner :showTitle=false position="Home : Atas"></ads-banner>   
       <top-slider></top-slider>
       <div class="m-t-20"></div>
       <headline-slider></headline-slider>
@@ -10,7 +11,7 @@
   <div class="container">
     <el-row :gutter="20">    
       <el-col :xs="24" :sm="24">
-        <ads-banner :showTitle=true position="Home : Atas"></ads-banner>        
+        <ads-banner :showTitle=false position="Home : Tengah"></ads-banner>
       </el-col>
       <el-col :xs="24" :sm="16">        
           <articles-card :title="'Berita Baik Terbaru'" :limit="4"></articles-card>
@@ -51,22 +52,19 @@
             </router-link>
           </div>
           <div class="m-t-10"></div>
-          <!-- <advertisement-side></advertisement-side> -->
           <ads-banner :showTitle=true position="Home : Kanan"></ads-banner>
       </el-col>
     </el-row>
-    <el-row>    
-      <el-col :xs="24" :sm="16"><gallery></gallery></el-col>
-      <el-col :xs="24" :sm="8">
-        <div class="ads">
-          <ads-banner :showTitle=true position="Home : Galeri"></ads-banner>
-        </div>
-      </el-col>    
+    <el-row v-if="isAds">      
+      <el-col :xs="24" :sm="16"><gallery></gallery></el-col>      
+      <ads-banner :showTitle=false position="Home : Galeri"></ads-banner>      
+    </el-row>    
+    <el-row v-if="!isAds">      
+      <el-col :xs="24" :sm="24"><gallery></gallery></el-col>      
     </el-row>
     <div class="gray-separator"><span></span> </div> 
     <home-youtube-video></home-youtube-video>
     <div class="gray-separator"><span></span></div>
-    <ads-banner :showTitle=false position="Home : Tengah"></ads-banner>
     <el-row >    
       <el-col :xs="24" :sm="24">
         <events></events>
@@ -86,6 +84,11 @@ import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide, Socia
 
 export default {
   name: 'frontpage',
+  data() {
+    return {
+      isAds: true
+    }
+  },
   components: {
     TopSlider,
     HeadlineSlider,
@@ -124,15 +127,4 @@ export default {
     // margin-bottom: 0;
   }
 }
-
-.ads{
-  background-color: $black-2;
-  min-height: 420px;
-  text-align: center;
-  padding: 10px;
-  small{
-    color: #666;
-  }
-}
-
 </style>

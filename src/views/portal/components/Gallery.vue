@@ -39,7 +39,7 @@
                     <el-row >
                         <el-col class="gallery-footer">
                         <div class="author" >
-                          {{ mainGallery.reporter_name }} | <timeago :since="mainGallery.publish_date"></timeago>
+                          {{ mainGallery.reporter_name }} | <timeago :since="mainGallery.publish_date | formatUTC"></timeago>
                         </div>
                       </el-col>
                     </el-row>
@@ -80,7 +80,7 @@
                     <el-row >
                         <el-col class="gallery-footer">
                         <div class="author">
-                          {{ g.reporter_name }} | <timeago :since="g.publish_date"></timeago>  
+                          {{ g.reporter_name }} | <timeago :since="g.publish_date | formatUTC"></timeago>  
                         </div>
                       </el-col>
                     </el-row>

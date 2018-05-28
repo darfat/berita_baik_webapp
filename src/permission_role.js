@@ -18,6 +18,7 @@ const signupPattern = '/signup'
 const signupSuccessPattern = '/signup-success'
 const cmsLoginPattern = '/cms-login'
 const signupActivationPattern = '/u-activation'
+const passwordResetSuccessPattern = '/password-reset-success'
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
@@ -60,7 +61,7 @@ router.beforeEach((to, from, next) => {
     }
   } else {
     /* has no token*/
-    if (to.path && (to.path.startsWith(homePattern) || to.path.startsWith(loginPatttern) || to.path.startsWith(signupPattern) || to.path.startsWith(cmsLoginPattern) || to.path.startsWith(signupSuccessPattern) || to.path.startsWith(signupActivationPattern))) {
+    if (to.path && (to.path.startsWith(homePattern) || to.path.startsWith(loginPatttern) || to.path.startsWith(signupPattern) || to.path.startsWith(cmsLoginPattern) || to.path.startsWith(signupSuccessPattern) || to.path.startsWith(signupActivationPattern) || to.path.startsWith(passwordResetSuccessPattern))) {
     // if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
       next()
     } else {

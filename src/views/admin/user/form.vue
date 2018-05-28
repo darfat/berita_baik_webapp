@@ -36,13 +36,13 @@
                         <el-input v-model="user.initial"></el-input>
                     </el-form-item>
                 </el-col>
-                <el-col :span="21">
+                <el-col :span="21" v-if="action==='add'">
                     <el-form-item label="Password" prop="password">
                         <el-input :type="passwordType" v-model="user.password"></el-input>
                         <!-- <span class="show-pwd" @click="showPassword"><svg-icon icon-class="eye" /></span> -->
                     </el-form-item>
                 </el-col>
-                <el-col :span="21">
+                <el-col :span="21" v-if="action==='add'">
                     <el-form-item label="Confirm Password" prop="confirmPassword">
                         <el-input :type="confirmPasswordType" v-model="user.confirmPassword"></el-input>
                         <!-- <span class="show-pwd" @click="showConfirmPassword"><svg-icon icon-class="eye" /></span> -->

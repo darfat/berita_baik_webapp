@@ -2,7 +2,7 @@
   <div class="editoral-container">
     <div class="headline-container">
       <div class="container">
-        <el-row gutter="20" v-if="latestNews">
+        <el-row :gutter=20 v-if="latestNews">
           <el-col :xs="24" :sm="16" class="headline-container-l">
             <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">
               <div  v-loading="loading.latestNews" class="videoWrapper">
@@ -21,7 +21,7 @@
                 </div>
                 <h1 class="headline" v-html="latestNews.title,101"></h1>
                 <p class="red-line"></p>
-                <p class="author">{{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date"></timeago></p>
+                <p class="author">{{ latestNews.reporter_name }} | <timeago :auto-update="60" :since="latestNews.publish_date | formatUTC"></timeago></p>
               </div>
               <div class="comment" v-if="latestNews" >              
                 <comment-box :articleID="latestNews.id"></comment-box>
@@ -44,14 +44,14 @@
     </div>   
     
     <div class="container">
-      <el-row :gutter="20" class="comments-container">
+      <el-row :gutter=20 class="comments-container">
         <el-col class="comments-content">          
           <comment-list :articleID="this.latestNews.id"></comment-list>
           <div class="gray-separator"></div>
         </el-col>
       </el-row>
 
-      <el-row :gutter="20" class="list-container" v-if="latestNews" >        
+      <el-row :gutter=20 class="list-container" v-if="latestNews" >        
           <el-col class="content">
             <div class="grid-content video-content">
               <videos-card :editorialSlug="editorialSlug" :editorialType="editorialType" :limit=10 :showPaging="false"></videos-card>

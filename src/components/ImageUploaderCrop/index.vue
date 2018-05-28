@@ -5,8 +5,8 @@
     <el-dialog :visible.sync="dialogVisible">
       <div class="editor-slide-upload">        
         <my-image-cropper :file-size-limit="sizeLimit"
-          :width="533"
-          :height="300"
+          :width="width"
+          :height="height"
           accept=".jpg,.jpeg,.png" 
           v-model="imageCropper"
           :canvas-color="'gray'"
@@ -48,6 +48,14 @@ export default {
     },
     index: {
       type: Number
+    },
+    width: {
+      type: Number,
+      default: 533
+    },
+    height: {
+      type: Number,
+      default: 300
     }
   },
   components: {},

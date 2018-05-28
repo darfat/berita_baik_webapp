@@ -95,3 +95,10 @@ export function activate(data) {
     data
   })
 }
+export function sendEmailResetPassword(data) {
+  return request_no_auth({
+    url: '/user-reset-password/' + data.email,
+    method: 'put',
+    data
+  })
+}

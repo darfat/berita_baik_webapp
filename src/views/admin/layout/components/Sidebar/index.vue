@@ -8,8 +8,14 @@
       </a>
     </div>
     <div class="user">
-      <img src="static/images/avatar/m01.png" v-if="!isCollapse">
-      <img src="static/images/avatar/m01.png" v-else>
+       <span v-if="image">
+        <img :src="image" v-if="!isCollapse">
+        <img :src="image" v-else>
+       </span>
+       <span v-else>
+        <img src="static/images/avatar/m01.png" v-if="!isCollapse">
+        <img src="static/images/avatar/m01.png" v-else>
+       </span>
     </div>    
     <el-menu mode="vertical" unique-opened :default-active="$route.path" :collapse="isCollapse" >
       <sidebar-item :routes="permission_routers"></sidebar-item>
@@ -40,7 +46,8 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'permission_routers'
+      'permission_routers',
+      'image'
     ]),
     // routes() {
     //   return this.$router.options.routes

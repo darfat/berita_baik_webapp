@@ -88,7 +88,7 @@
               <span> Buka lebih banyak lagi </span>
             </div> -->
             <div class="spacer m-t-10"></div>
-            <advertisement-side></advertisement-side>
+            <!-- <advertisement-side></advertisement-side> -->
           </div>
         </el-col>
       </div>
