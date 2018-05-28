@@ -105,7 +105,6 @@ export default {
           if (this.action === 'add') {
             create(this.event)
               .then(response => {
-                console.log('create success')
                 this.$router.push({ name: 'event-list' })
               })
               .catch(error => {
@@ -114,7 +113,6 @@ export default {
           } else {
             update(this.event)
               .then(response => {
-                console.log('update success')
                 this.$router.push({ name: 'event-list' })
               })
               .catch(error => {

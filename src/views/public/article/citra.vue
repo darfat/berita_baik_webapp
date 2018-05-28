@@ -16,8 +16,6 @@ export default {
       articleType: 'y-image'
     }
   },
-  created() {
-    console.log('created')
-  }
+  created() {}
 }
 </script>

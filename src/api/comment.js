@@ -18,7 +18,6 @@ export function create(data) {
 }
 
 export function destroy(data) {
-  console.log(data)
   return request_auth({
     url: '/article_comments/' + data.article_comment_id,
     method: 'delete'

@@ -81,6 +81,7 @@
 <script>
 import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, Gallery } from '@/views/home/components'
 import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide, SocialFeed, InstagramFeed, AdvertisementSide, AdsBanner } from '@/views/portal/components'
+import EventBus from '@/utils/event-bus'
 
 export default {
   name: 'frontpage',
@@ -106,6 +107,25 @@ export default {
     Gallery
   },
   computed: {
+  },
+  data() {
+    return {
+      showAdsGallery: true
+    }
+  },
+  mounted() {
+    this.initMounted()
+  },
+  methods: {
+    initMounted() {
+      EventBus.$on('SET_SHOW_ADS_GALLERY', event => {
+        if (event) {
+          if (event.position === 'Home : Galeri') {
+            this.showAdsGallery = event.show
+          }
+        }
+      })
+    }
   }
 }
 </script>

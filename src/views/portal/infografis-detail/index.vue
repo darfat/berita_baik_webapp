@@ -128,7 +128,6 @@ export default {
   },
   methods: {
     init() {
-      console.log(this.slug)
       this.getMainArticle(this.slug)
     },
     getMainArticle(slug) {

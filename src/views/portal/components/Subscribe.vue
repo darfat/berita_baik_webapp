@@ -57,7 +57,6 @@ export default {
         if (valid) {
           create(this.userSubscribe)
             .then(response => {
-              console.log('create success')
               this.$message({
                 type: 'success',
                 message: 'Terima kasih, data berhasil kami simpan'

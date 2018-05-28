@@ -129,11 +129,8 @@ export default {
         return status
       }
     },
-    handleSizeChange(val) {
-      console.log(`${val} items per page`)
-    },
+    handleSizeChange(val) {},
     handleCurrentChange(page) {
-      console.log(`current page: ${page}`)
       this.getArticlesByEditorialSlug(this.editorialSlug, page)
     },
     handleUpdate(row) {

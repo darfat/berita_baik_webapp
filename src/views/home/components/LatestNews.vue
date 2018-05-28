@@ -117,9 +117,7 @@ export default {
       ]
     }
   },
-  created() {
-    console.log('articles card')
-  }
+  created() {}
 }
 </script>
 

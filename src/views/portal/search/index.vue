@@ -22,8 +22,6 @@ export default {
   },
   created() {
     this.keyword = this.$route.params.keyword
-    console.log('seach layout main : ')
-    console.log(this.keyword)
   }
 }
 </script>

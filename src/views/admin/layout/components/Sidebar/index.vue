@@ -74,8 +74,10 @@ export default {
 .user{  
   margin: 20px 0;
   padding: 0 10px;  
+  text-align: center;
   img{
     width: 160px;
+    border-radius: 50%;
   }
 }
 .hideSidebar {

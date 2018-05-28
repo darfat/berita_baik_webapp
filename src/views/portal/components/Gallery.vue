@@ -148,8 +148,6 @@ export default {
     }
   },
   created() {
-    console.log('galerry')
-    console.log(this.showPaging)
     this.init()
   },
   methods: {

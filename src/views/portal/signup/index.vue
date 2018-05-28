@@ -148,9 +148,7 @@ export default {
       }
     }
   },
-  created() {
-    console.log('PortalSignup')
-  },
+  created() {},
   methods: {
     handleSignup() {
       this.$refs.signupVM.validate(valid => {

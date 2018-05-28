@@ -20,7 +20,6 @@ service.interceptors.request.use(config => {
   return config
 }, error => {
   // Do something with request error
-  console.log(error) // for debug
   Promise.reject(error)
 })
 
@@ -51,8 +50,6 @@ service.interceptors.response.use(
           })
         })
       }
-      console.log('go to here....')
-      console.log(res)
       return Promise.reject('error')
     } else {
       if (response.data !== null && response.data.length === 0) {
@@ -62,9 +59,6 @@ service.interceptors.response.use(
     }
   },
   error => {
-    console.log('Error !')
-
-    console.log(error.message)// for debug
     // Message({
     //   message: error.message,
     //   type: 'error',

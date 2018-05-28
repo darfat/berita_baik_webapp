@@ -21,9 +21,7 @@ export default {
       title: ''
     }
   },
-  created() {
-    console.log('infografis main')
-  }
+  created() {}
 }
 
 </script>

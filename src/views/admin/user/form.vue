@@ -203,7 +203,6 @@ export default {
             this.user.username = this.user.email
             create(this.user)
               .then(response => {
-                console.log('create success')
                 this.$router.push({ name: 'user-list' })
               })
               .catch(error => {
@@ -212,7 +211,6 @@ export default {
           } else {
             update(this.user)
               .then(response => {
-                console.log('update success')
                 this.$router.push({ name: 'user-list' })
               })
               .catch(error => {

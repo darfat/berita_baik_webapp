@@ -42,7 +42,6 @@ export default {
       //   this.$message('Please wait for all pictures to upload successfully or there is a network problem. Please refresh the page and upload again!')
       //   return
       // }
-      console.log(arr)
       upload({
         'imageAttachment': arr
       }).then(response => {

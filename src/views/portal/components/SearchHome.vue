@@ -228,7 +228,6 @@ export default {
             if (response.data.data && response.data.data.length) {
               this.articles = this.articles.concat(response.data.data)
               $state.loaded()
-              console.log(`${Math.ceil(this.articles.length / this.per_page)} is completed`)
               if (Math.ceil(this.articles.length / this.per_page) === this.total_pages) {
                 $state.complete()
               }
@@ -255,7 +254,6 @@ export default {
             if (response.data.data && response.data.data.length) {
               this.articles = this.articles.concat(response.data.data)
               $state.loaded()
-              console.log(`${Math.ceil(this.articles.length / this.per_page)} is completed`)
               if (Math.ceil(this.articles.length / this.per_page) === this.total_pages) {
                 $state.complete()
               }

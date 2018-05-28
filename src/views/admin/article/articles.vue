@@ -152,10 +152,8 @@ export default {
       }
     },
     handleSizeChange(val) {
-      console.log(`${val} items per page`)
     },
     handleCurrentChange(page) {
-      console.log(`current page: ${page}`)
       this.getArticlesByEditorialSlug(this.editorialSlug, page)
     },
     handleUpdate(row) {
@@ -182,14 +180,10 @@ export default {
       })
     },
     updatePublished(article_id, published) {
-      console.log('updatePublished ' + article_id)
       updatePublished({
         article_id,
         published
       }).then(response => {
-        if (response) {
-          console.log(response.data)
-        }
       })
     },
     deleteHandler(article_id) {

@@ -63,15 +63,11 @@ export default {
   },
   methods: {
     openShare(articleID, url) {
-      this.changeMeta(this.article, url)
+      // this.changeMeta(this.article, url)
       updateArticleSharedCount({ articleID }).then(response => {
-        if (response) {
-          console.log('shared success')
-        }
       })
     },
     changeMeta(article, url) {
-      console.log('change Meta')
       var self = this
       this.metaParams.ogImage = this.basePath + article.main_image
       this.metaParams.siteName = 'Berita Baik'
@@ -83,22 +79,22 @@ export default {
       // window.setTimeout(function() {
       // }, 1000)
     }
-  },
-  head: {
-    // To use "this" in the component, it is necessary to return the object through a function
-    meta() {
-      return [
-        // { name: 'description', content: this.metaParams.description, id: 'metaDesc' },
-        { name: 'twitter:title', content: this.metaParams.title, id: 'metaTwTitle' },
-        { n: 'twitter:description', c: this.metaParams.description, id: 'metaTwDesc' },
-        { n: 'twitter:image', c: this.metaParams.ogImage, id: 'metaTwImage' },
-        { p: 'og:image', c: this.metaParams.ogImage, id: 'metaOgImage' },
-        { p: 'og:site_name', c: this.metaParams.siteName, id: 'metaOgSiteName' },
-        { p: 'og:description', c: this.metaParams.description, id: 'metaOgDesc' },
-        { p: 'og:url', c: this.metaParams.url, id: 'metaOgUrl' }
-      ]
-    }
   }
+  // head: {
+  //   // To use "this" in the component, it is necessary to return the object through a function
+  //   meta() {
+  //     return [
+  //       // { name: 'description', content: this.metaParams.description, id: 'metaDesc' },
+  //       { name: 'twitter:title', content: this.metaParams.title, id: 'metaTwTitle' },
+  //       { n: 'twitter:description', c: this.metaParams.description, id: 'metaTwDesc' },
+  //       { n: 'twitter:image', c: this.metaParams.ogImage, id: 'metaTwImage' },
+  //       { p: 'og:image', c: this.metaParams.ogImage, id: 'metaOgImage' },
+  //       { p: 'og:site_name', c: this.metaParams.siteName, id: 'metaOgSiteName' },
+  //       { p: 'og:description', c: this.metaParams.description, id: 'metaOgDesc' },
+  //       { p: 'og:url', c: this.metaParams.url, id: 'metaOgUrl' }
+  //     ]
+  //   }
+  // }
 }
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>

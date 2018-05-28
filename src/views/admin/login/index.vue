@@ -94,13 +94,12 @@ export default {
         if (valid) {
           this.loading = true
           this.$store.dispatch('Login', this.loginForm).then(() => {
-            console.log('login success')
             this.loading = false
             this.$router.push({ path: '/home' })
             var self = this;
             window.setTimeout(function() {
               self.$router.push({ path: '/cms' })
-            }, 100)
+            }, 1000)
           })
           .catch(error => {
             this.$message.warning('Login Tidak Berhasil')

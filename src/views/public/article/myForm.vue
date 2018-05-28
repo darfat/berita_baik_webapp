@@ -389,7 +389,6 @@ export default {
             update(this.article)
               .then(response => {
                 if (response.status === 200) {
-                  console.log('update success')
                   if (this.role === 'public') {
                     this.$router.push({
                       path: '/cms-public/bp-your-articles' + '/' + this.articleType + '/' + this.editorialSlug

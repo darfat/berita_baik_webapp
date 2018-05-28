@@ -65,9 +65,7 @@ export default {
       editorialSlug: 'gallery-foto'
     }
   },
-  created() {
-    console.log('gallery main')
-  }
+  created() {}
 }
 
 </script>

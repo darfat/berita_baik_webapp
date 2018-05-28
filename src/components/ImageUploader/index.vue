@@ -52,7 +52,6 @@ export default {
       return Object.keys(this.listObj).every(item => this.listObj[item].hasSuccess)
     },
     handleSubmit() {
-      console.log(this.uploadedFiles.length)
       this.formData = new FormData()
       for (let i = 0, len = this.uploadedFiles.length; i < len; i++) {
         const file = this.uploadedFiles[i]
@@ -120,8 +119,6 @@ export default {
     handlePreview(file) {
     },
     handleCancel() {
-      console.log('handleCancel')
-      console.log(this.uploadedFiles.length)
       this.listObj = {}
       this.fileList = []
       this.dialogVisible = false

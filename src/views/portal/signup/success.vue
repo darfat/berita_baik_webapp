@@ -27,9 +27,7 @@ export default {
     this.init()
   },
   methods: {
-    init() {
-      console.log('init')
-    }
+    init() {}
   }
 }
 </script>

@@ -78,9 +78,7 @@ export default {
       }
     }
   },
-  created() {
-    console.log('gallery...')
-  },
+  created() {},
   mounted() {
     this.init()
 

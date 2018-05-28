@@ -71,8 +71,8 @@
                     </div>                    
                   </el-popover>
                   <el-button v-popover:refuser>
-                    <img v-if="image" class="user-avatar" :src="image">
-                    <img v-else class="user-avatar" src="static/images/avatar/no_avatar.png">
+                    <img v-if="image" class="user-avatar" :src="image" style="border-radius:50%">
+                    <img v-else class="user-avatar" src="static/images/avatar/no_avatar.png" style="border-radius:50%">
                   </el-button>
                 </div>
               </div>  
@@ -158,7 +158,7 @@
                       <a href="https://www.facebook.com/beritabaik.id/" target="_blank"><fa-icon name="facebook" scale="1" class="icon" ></fa-icon></a>
                       <a href="https://twitter.com/beritabaik_id" target="_blank"><fa-icon name="twitter" scale="1" class="icon" ></fa-icon></a>
                       <a href="https://www.instagram.com/beritabaik.id/" target="_blank"><fa-icon name="instagram" scale="1" class="icon" ></fa-icon></a>
-                      <a href="" target="_blank"><fa-icon name="youtube-square" scale="1" class="icon" ></fa-icon></a>
+                      <a href="https://www.youtube.com/channel/UCMhqsN7csDXMaJCIvt3s0BQ?view_as=subscriber" target="_blank"><fa-icon name="youtube-square" scale="1" class="icon" ></fa-icon></a>
                     </div> 
                   </li>               
               </ul>
