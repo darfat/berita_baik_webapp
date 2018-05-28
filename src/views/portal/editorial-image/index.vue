@@ -17,8 +17,11 @@
               <span><share-pop :article="latestNews"></share-pop>  </span>                      
             </div>
             <h1 class="headline" v-html="latestNews.title"></h1>                    
-            <div class="" v-if="latestNews.content && latestNews.content !=='-'">                      
+            <div class="" v-if="latestNews.content && latestNews.content !=='-' && editorialSlug !== 'infografis'">                      
               <div v-html="latestNews.content" class="article-content"></div>                      
+            </div>
+            <div class="" v-if="latestNews.teaser && latestNews.teaser !=='-' && editorialSlug === 'infografis'">                      
+              <div v-html="latestNews.teaser" class="article-content"></div>                      
             </div>
             <p class="red-line"></p>
             <p class="author">
