@@ -312,6 +312,10 @@ li > a:only-child:after { content: ''; }
 		display: block;
 	}
 
+  [id^=drop]:not(:checked) + ul {
+		display: none;
+  }
+  
 	/* Change menu item's width to 100% */
 	nav ul li {
 		display: block;

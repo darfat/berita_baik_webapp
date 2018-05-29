@@ -92,44 +92,44 @@
           <label for="drop" class="toggle" v-if="!show" @click="show = !show"><svg-icon icon-class="menu" class="hamburger-menu"></svg-icon></label>
           <label for="drop" class="toggle" v-else @click="show = !show"><svg-icon icon-class="cross" class="cross-menu"></svg-icon></label>
           </transition>
-          <input type="checkbox" id="drop" />          
+          <input type="checkbox" id="drop" :checked=" show ? 'checked' : '' " />          
               <ul class="menu">
                   <!--<li :class="scrolled > 100 ? 'home-hide': 'home'"><router-link :to="{ path: '/' }" exact>{{$t('portal.navbar.home')}}</router-link></li>-->
-                  <li><router-link :to="{ path: '/home/indonesia-baik' }">Indonesia Baik</router-link></li>
+                  <li @click="show = !show"><router-link :to="{ path: '/home/indonesia-baik' }">Indonesia Baik</router-link></li>
                   <li>
                       <!-- First Tier Drop Down -->
                       <label for="drop-1" class="toggle">Indonesia Bangga <span class="arrow">&#9660;</span></label>
                       <router-link :to="{ path: '/home/p/indonesia-bangga' }">Indonesia Bangga</router-link>
                       <input type="checkbox" id="drop-1"/>
                       <ul>
-                          <li><router-link :to="{ path: '/home/komunitas' }">Komunitas</router-link></li>
-                          <li><router-link :to="{ path: '/home/sosok-inspiratif' }">Sosok Inspiratif</router-link></li>
-                          <li><router-link :to="{ path: '/home/prestasi' }">Prestasi</router-link></li>
+                          <li @click="show = !show"><router-link :to="{ path: '/home/komunitas' }">Komunitas</router-link></li>
+                          <li @click="show = !show"><router-link :to="{ path: '/home/sosok-inspiratif' }">Sosok Inspiratif</router-link></li>
+                          <li @click="show = !show"><router-link :to="{ path: '/home/prestasi' }">Prestasi</router-link></li>
                       </ul>
                   </li>
-                  <li><router-link :to="{ path: '/home/indonesia-membangun' }">Indonesia Membangun</router-link></li>
+                  <li @click="show = !show"><router-link :to="{ path: '/home/indonesia-membangun' }">Indonesia Membangun</router-link></li>
                   <li>
                   <!-- First Tier Drop Down -->
                   <label for="drop-2" class="toggle">Melancong <span class="arrow">&#9660;</span></label>
                   <router-link :to="{ path: '/home/p/melancong' }">Melancong</router-link>
                   <input type="checkbox" id="drop-2"/>
                   <ul>
-                      <li><router-link :to="{ path: '/home/tempat-wisata' }">Tempat Wisata</router-link></li>
-                      <li><router-link :to="{ path: '/home/kuliner' }">Kuliner</router-link></li>                    
+                      <li @click="show = !show"><router-link :to="{ path: '/home/tempat-wisata' }">Tempat Wisata</router-link></li>
+                      <li @click="show = !show"><router-link :to="{ path: '/home/kuliner' }">Kuliner</router-link></li>                    
                   </ul>
                   </li>
-                  <li><router-link :to="{ path: '/home/teknologi' }">Teknologi</router-link></li>
+                  <li @click="show = !show"><router-link :to="{ path: '/home/teknologi' }">Teknologi</router-link></li>
                   <li>
                   <!-- First Tier Drop Down -->
                   <label for="drop-3" class="toggle">Panggung <span class="arrow">&#9660;</span></label>
                   <router-link :to="{ path: '/home/p/panggung' }">Panggung</router-link>
                   <input type="checkbox" id="drop-3"/>
                   <ul>
-                      <li><router-link :to="{ path: '/home/musik' }">Musik</router-link></li>
-                      <li><router-link :to="{ path: '/home/fashion' }">Fashion</router-link></li>
-                      <li><router-link :to="{ path: '/home/film' }">Film</router-link></li>
-                      <li><router-link :to="{ path: '/home/seni' }">Seni</router-link></li>
-                      <li><router-link :to="{ path: '/home/gaya-hidup' }">Gaya Hidup</router-link></li>
+                      <li @click="show = !show"><router-link :to="{ path: '/home/musik' }">Musik</router-link></li>
+                      <li @click="show = !show"><router-link :to="{ path: '/home/fashion' }">Fashion</router-link></li>
+                      <li @click="show = !show"><router-link :to="{ path: '/home/film' }">Film</router-link></li>
+                      <li @click="show = !show"><router-link :to="{ path: '/home/seni' }">Seni</router-link></li>
+                      <li @click="show = !show"><router-link :to="{ path: '/home/gaya-hidup' }">Gaya Hidup</router-link></li>
                   </ul>
                   </li>
                   <li>
@@ -138,9 +138,9 @@
                   <router-link :to="{ path: '/home-c/gallery-foto' }">Citra</router-link>
                   <input type="checkbox" id="drop-4"/>
                   <ul>
-                      <li><router-link :to="{ path: '/home-c/gallery-foto' }">Galeri Foto</router-link></li>
-                      <li><router-link :to="{ path: '/home-g/video' }">Video</router-link></li>
-                      <li><router-link :to="{ path: '/home-c/infografis' }">Infografis</router-link></li>
+                      <li @click="show = !show"><router-link :to="{ path: '/home-c/gallery-foto' }">Galeri Foto</router-link></li>
+                      <li @click="show = !show"><router-link :to="{ path: '/home-g/video' }">Video</router-link></li>
+                      <li @click="show = !show"><router-link :to="{ path: '/home-c/infografis' }">Infografis</router-link></li>
                   </ul>
                   </li>
                   <li>
@@ -148,9 +148,9 @@
                     <router-link :to="{ path: '/home-m/event-calendar' }">More</router-link>
                     <input type="checkbox" id="drop-5"/>
                     <ul>
-                        <li><router-link :to="{ path: '/home-m/event-calendar' }">Acara</router-link></li>
-                        <li><router-link :to="{ path: '/home-c/foto-kamu' }">Foto Kamu</router-link></li>
-                        <li><router-link :to="{ path: '/home/berita-kamu' }">Berita Kamu</router-link></li>
+                        <li @click="show = !show"><router-link :to="{ path: '/home-m/event-calendar' }">Acara</router-link></li>
+                        <li @click="show = !show"><router-link :to="{ path: '/home-c/foto-kamu' }">Foto Kamu</router-link></li>
+                        <li @click="show = !show"><router-link :to="{ path: '/home/berita-kamu' }">Berita Kamu</router-link></li>
                     </ul>
                   </li>
                   <li>
