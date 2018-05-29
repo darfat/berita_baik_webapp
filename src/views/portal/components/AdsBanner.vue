@@ -10,6 +10,7 @@
   </div>
   <div v-if="position === 'Home : Atas'" class="m-b-20"></div>   
   <div v-if="position === 'Home : Tengah'" class="m-b-20"></div>   
+  <div v-if="position === 'Artikel : Atas'" class="m-b-20"></div>   
 </div>
 </template>
 <script>

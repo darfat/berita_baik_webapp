@@ -192,11 +192,6 @@ export default {
           value: 'Video : Headline',
           label: 'Video : Headline',
           type: '3'
-        },
-        {
-          value: 'Video : Kanan',
-          label: 'Video : Kanan',
-          type: '3'
         }
       ],
       ads_dimension: [

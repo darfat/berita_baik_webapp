@@ -91,7 +91,7 @@
               </router-link>
             </div>
             <div class="spacer m-t-20"></div>
-            <!-- <advertisement-side></advertisement-side> -->
+            <ads-banner :showTitle=true position="Kanal : Kanan"></ads-banner>
           </div>
         </el-col>        
       </el-row>
@@ -102,7 +102,7 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, SharePop, ArticleNav } from '@/views/portal/components'
+import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, SharePop, ArticleNav, AdsBanner } from '@/views/portal/components'
 import { getEditorialLabelBySlug } from '@/api/editorial'
 import { getLatestImageByEditorial, getArticle } from '@/api/article'
 import EventBus from '@/utils/event-bus'
@@ -121,7 +121,8 @@ export default {
     CommentList,
     ImagesSlider,
     SharePop,
-    ArticleNav
+    ArticleNav,
+    AdsBanner
   },
   data() {
     return {

@@ -2,6 +2,7 @@
   <div class="article-container">
     <el-row class="headline-container">
       <div class="container">        
+        <ads-banner :showTitle=false position="Artikel : Atas"></ads-banner>
         <el-col :xs="24">
           <div class="grid-content main" v-loading="loading.mainArticle">
 
@@ -67,7 +68,7 @@
                   </el-col>
                   <el-col>
                     <div class="ads">
-                      <ads-banner :showTitle=true position="Berita : Tengah"></ads-banner>
+                      <ads-banner :showTitle=false position="Artikel : Tengah"></ads-banner>
                     </div>
                   </el-col>
               </el-row>
@@ -87,8 +88,10 @@
                       </div>
                       <div class="e-name" v-if="author.notes === 'editor'">
                       <span> {{ author.user.name }} </span>
-                      <span class="follow-user">                            
-                        <v-icon name="user" base-class="icon-follow"></v-icon> Follow
+                      <span class="follow-user" v-if="author.user && author.user.instagram_username">       
+                        <a :href="'http://instagram.com/' + author.user.instagram_username" target="_blank">                  
+                     <v-icon name="user" base-class="icon-follow"></v-icon> Follow 
+                        </a>
                       </span>
                       </div>
                     </div>  
@@ -208,7 +211,7 @@
               </router-link>
             </div>
             <div class="spacer m-t-20"></div>
-            <!-- <advertisement-side></advertisement-side> -->
+            <ads-banner :showTitle=true position="Artikel : Kanan"></ads-banner>
             <div class="side-separator">
               <span>  </span>
             </div>          

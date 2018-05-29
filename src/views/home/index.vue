@@ -52,7 +52,7 @@
             </router-link>
           </div>
           <div class="m-t-10"></div>
-          <ads-banner :showTitle=false position="Home : Kanan"></ads-banner>
+          <ads-banner :showTitle=true position="Home : Kanan"></ads-banner>
       </el-col>
     </el-row>
     <el-row v-if="isAds">      
