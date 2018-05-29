@@ -25,15 +25,11 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-.about-wrapper{
-  margin-top: 155px;
-  margin-bottom: 1px;
-  margin-left: auto;
-  margin-right: auto;
+.about-wrapper{  
+  margin: 20px auto;
   width: 100%;
   height: auto;
   background-color: #FFF;
-  padding-bottom: 20px;
+  padding: 0;
 }
-
 </style>
