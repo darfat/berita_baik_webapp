@@ -25,7 +25,6 @@
                 </el-form-item>
                 <el-row :gutter="20">
                     <el-col :span="12">
-                        <div><a> Lupa Sandi ? </a></div>
                         <div><el-checkbox v-model="checked">Ingat Saya</el-checkbox></div>
                     </el-col>
                     <el-col :span="12" class="align-right">
