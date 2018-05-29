@@ -9,16 +9,20 @@
               <el-col >                
                 <div class="thumbnail">
                     <img v-lazy="mainArticle.main_image" />
+                    <div  class="copywriter" v-if="mainArticle.copywriter || mainArticle.designer">
+                      <span  v-if="mainArticle.copywriter"> <i> &nbsp; {{mainArticle.copywriter }} </i></span>
+                      <span  v-if="mainArticle.copywriter && mainArticle.designer "> &nbsp;| </span>
+                      <span  v-if="mainArticle.designer"> <i> &nbsp; {{mainArticle.designer }} </i></span>
+                    </div>
                   <!-- <div class="editorial-type-img" v-if="mainArticle.editorial">
                       <h2>{{ mainArticle.editorial.name }}</h2>
                   </div> -->
                 </div>                
               </el-col>
             </el-row>
-
             <el-row class="content">
               <el-row :gutter="20" v-if="mainArticle.subtitle">
-                <el-col ><h3 v-html="mainArticle.subtitle"></h3></el-col>
+                <el-col ><b><span v-html="mainArticle.subtitle"></span></b></el-col>
               </el-row>              
               <el-row :gutter="20">
                 <el-col >
@@ -27,6 +31,9 @@
               </el-row>              
               <el-row :gutter="20">
                   <el-col>
+                    <p class="advertorial" v-if="mainArticle.is_advert">
+                      ADVERTORIAL
+                    </p>
                     <p class="red-line"></p>
                     <p class="author">
                       {{ mainArticle.reporter_name }} |

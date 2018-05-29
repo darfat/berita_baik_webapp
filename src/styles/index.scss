@@ -151,7 +151,7 @@ a:hover {
 .h-gray-divider{
   content: "";
   flex: 1 1;
-  border-bottom: 1px solid #b0b0b0;
+  border-bottom: 1px solid #515151;
   margin: auto;
 }
 
@@ -193,7 +193,7 @@ a:hover {
 .side-separator span{
   display: flex;
   flex-direction: row;
-  color: #b0b0b0;
+  color: #515151;
   font-size: 0.7em;  
 }
 .side-separator span:before{
@@ -212,7 +212,7 @@ a:hover {
 .gray-separator span{
   display: flex;
   flex-direction: row;
-  color: #b0b0b0;
+  color: #515151;
 }
 .gray-separator span:before{
   content: "";
@@ -336,6 +336,15 @@ a:hover {
 }
 .wscnph{
   max-width: 100%;
+}
+.copywriter{
+  font-size: 0.7em;
+  color: #515151
+}
+.advertorial {
+  color: $main-red;
+  font-size: 0.75em;
+  font-weight: bold;
 }
 //END start
 

@@ -87,17 +87,22 @@
               </div>
             </el-form-item>
             <div class="gray-horizontal"></div>
+            <div class="spacer m-t-10"></div>
+            <el-row :gutter="20">
+              <el-col :span="12">
+                  <el-form-item label="Copywriter">
+                     <el-input v-model="article.copywriter" :maxlength="100" ></el-input>
+                  </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                  <el-form-item label="Designer">
+                    <el-input v-model="article.designer" :maxlength="100" ></el-input>
+                  </el-form-item>
+              </el-col>
+            </el-row>
             <el-row :gutter="20">
               <el-col :span="12">
                   <el-form-item label="Kota">
-                      <!-- <el-select v-model="article.city_id" placeholder="Pilih kota">
-                        <el-option
-                            v-for="item in city_opts"
-                            :key="item.id"
-                            :label="item.name"
-                            :value="item.id" >
-                        </el-option>
-                      </el-select> -->
                       <vue-google-autocomplete
                           id="map2"
                           ref="city"
