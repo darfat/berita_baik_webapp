@@ -31,7 +31,7 @@
           <el-col :xs="24" :sm="8" class="headline-container-r">
             <div class="grid-content">
               <div >
-                <ads-banner :showTitle=true position="Video : Kanan Atas"></ads-banner>
+                <ads-banner :showTitle=false position="Video : Headline"></ads-banner>
               </div>
               <div >
                 <editor-pick-videos-side ></editor-pick-videos-side>
@@ -76,8 +76,7 @@
                 </router-link>
               </div>
               <div class="spacer m-t-20"></div>
-              <!-- <advertisement-side></advertisement-side> -->
-              <ads-banner :showTitle=true position="Home : Kanan"></ads-banner>
+              <ads-banner :showTitle=true position="Kanal : Kanan"></ads-banner>
             </div>
           </el-col>        
       </el-row>

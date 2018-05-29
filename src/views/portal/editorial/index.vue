@@ -53,7 +53,7 @@
                 <span> Buka lebih banyak lagi </span>
               </div> -->
               <div class="spacer m-t-20"></div>
-              <!-- <advertisement-side></advertisement-side> -->
+              <ads-banner :showTitle=true position="Kanal : Kanan"></ads-banner>
             </div>
           </el-col>        
       </el-row>
@@ -65,7 +65,7 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide, SharePop } from '@/views/portal/components'
+import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide, SharePop, AdsBanner } from '@/views/portal/components'
 import { getEditorialLabelBySlug, getEditorialIdBySlug } from '@/api/editorial'
 import { getLatestNewsByEditorial } from '@/api/article'
 
@@ -78,7 +78,8 @@ export default {
     BbLove,
     InfografisSide,
     AdvertisementSide,
-    SharePop
+    SharePop,
+    AdsBanner
   },
   data() {
     return {

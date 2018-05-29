@@ -36,24 +36,56 @@
                   </el-form-item>
                 </el-col>
                 <el-col :span="21">
-                    <el-form-item label="Gambar" prop="image">
-                      <span> {{ main_image_name }}</span>
-                      <image-uploader :isMultiple="false" :limit=1 class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
-                      <div slot="tip" class="el-upload__tip">Jumlah Maksimal Upload 5 Foto, Maks 2MB Per Foto dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
-
+                    <el-form-item label="Ukuran" prop="dimension">
+                        <el-select v-model="advertisement.type" placeholder="Pilih Ukuran Iklan">
+                          <el-option
+                            v-for="item in ads_dimension"
+                            :key="item.type"
+                            :label="item.label "
+                            :value="item.type">
+                          </el-option>
+                        </el-select>
                     </el-form-item>
                 </el-col>
-
                 <el-col :span="21">
                     <el-form-item label="Posisi" prop="position">
                         <el-select v-model="advertisement.position" placeholder="Pilih Posisi">
-                          <el-option
+                          <el-option v-if="item.type === advertisement.type"
                             v-for="item in ads_opts"
                             :key="item.value"
                             :label="item.label"
                             :value="item.value">
                           </el-option>
                         </el-select>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="21">
+                    <el-form-item label="Gambar" prop="image">
+                      <span> {{ main_image_name }}</span>
+                        <image-uploader-crop class="image-uploader-btn" :compress="0.8" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
+                        :width=600
+                        :height=66
+                        @successCBK="mainImageSuccessCallback"
+                        v-if="advertisement.type === '1'">
+                        </image-uploader-crop>
+                        <image-uploader-crop class="image-uploader-btn" :compress="0.8" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
+                        :width=600
+                        :height=50
+                        @successCBK="mainImageSuccessCallback"
+                        v-if="advertisement.type === '2'">
+                        </image-uploader-crop>
+                        <image-uploader-crop class="image-uploader-btn" :compress="0.8" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
+                        :width=283
+                        :height=285
+                        @successCBK="mainImageSuccessCallback"
+                        v-if="advertisement.type === '3'">
+                      </image-uploader-crop>
+                      <image-uploader-crop class="image-uploader-btn" :compress="0.8" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
+                        :width=315
+                        :height=402
+                        @successCBK="mainImageSuccessCallback"
+                        v-if="advertisement.type === '4'">
+                      </image-uploader-crop>
                     </el-form-item>
                 </el-col>
                 <el-col :span="21">
@@ -79,7 +111,7 @@
 
 <script>
 import { update, create, getAdvertisementById } from '@/api/advertisement'
-import ImageUploader from '@/components/ImageUploader'
+import ImageUploaderCrop from '@/components/ImageUploaderCrop'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -88,7 +120,7 @@ export default {
     advertisementId: { type: String }
   },
   components: {
-    ImageUploader
+    ImageUploaderCrop
   },
   computed: {
     ...mapGetters([
@@ -113,27 +145,79 @@ export default {
       ads_opts: [
         {
           value: 'Home : Atas',
-          label: 'Home : Atas'
+          label: 'Home : Atas',
+          type: '1'
         },
         {
           value: 'Home : Tengah',
-          label: 'Home : Tengah'
+          label: 'Home : Tengah',
+          type: '1'
         },
         {
           value: 'Home : Kanan',
-          label: 'Home : Kanan'
+          label: 'Home : Kanan',
+          type: '3'
         },
         {
           value: 'Home : Galeri',
-          label: 'Home : Galeri'
+          label: 'Home : Galeri',
+          type: '4'
         },
         {
-          value: 'Berita : Atas',
-          label: 'Berita : Atas'
+          value: 'Artikel : Atas',
+          label: 'Artikel : Atas',
+          type: '1'
         },
         {
-          value: 'Berita : Tengah',
-          label: 'Berita : Tengah'
+          value: 'Artikel : Tengah',
+          label: 'Artikel : Tengah',
+          type: '2'
+        },
+        {
+          value: 'Artikel : Kanan',
+          label: 'Artikel : Kanan',
+          type: '3'
+        },
+        {
+          value: 'Kanal : Atas',
+          label: 'Kanal : Atas',
+          type: '1'
+        },
+        {
+          value: 'Kanal : Kanan',
+          label: 'Kanal : Kanan',
+          type: '3'
+        },
+        {
+          value: 'Video : Headline',
+          label: 'Video : Headline',
+          type: '3'
+        }
+      ],
+      ads_dimension: [
+        {
+          type: '1',
+          width: 900,
+          height: 99,
+          label: '900 x 99 (Landscape)'
+        },
+        {
+          type: '2',
+          width: 900,
+          height: 75,
+          label: '900 x 75 (Landscape)'
+        },
+        {
+          type: '3',
+          width: 283,
+          height: 285,
+          label: '283 x 285 (Square)'
+        },
+        {
+          type: '4',
+          width: 315,
+          height: 400,
+          label: '315 x 400 (Home Galeri)'
         }
       ],
       rules: {
@@ -163,6 +247,9 @@ export default {
         this.getById(this.advertisementId)
         this.action = 'edit'
       }
+    },
+    onChangeType() {
+      this.advertisement.position = ''
     },
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
