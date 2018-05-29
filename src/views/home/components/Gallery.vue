@@ -36,10 +36,12 @@
 </template>
 <script>
 import { getImagesByEditorialSlug } from '@/api/article'
+import { getAdvertisementByPosition } from '@/api/advertisement'
+
 export default {
   props: {
     editorialSlug: { type: String, default: 'gallery-foto' },
-    limit: { default: 6, type: Number }
+    limit: { type: Number }
   },
   data() {
     return {
@@ -62,11 +64,24 @@ export default {
     getImages(editorialSlug) {
       this.loading.galleries = true
       if (editorialSlug) {
-        getImagesByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit }).then(response => {
-          if (response) {
-            this.galleries = response.data.data
+        const position = 'Home : Galeri'
+        getAdvertisementByPosition({
+          position
+        }).then(response => {
+          let limit = 4
+          if (response && response.data) {
+            if (response.data.status && response.data.status !== 'notFound') {
+              limit = 4
+            } else {
+              limit = 6
+            }
           }
-          this.loading.galleries = false
+          getImagesByEditorialSlug({ editorialSlug, page: 1, per_page: limit }).then(response => {
+            if (response) {
+              this.galleries = response.data.data
+            }
+            this.loading.galleries = false
+          })
         })
       }
     },

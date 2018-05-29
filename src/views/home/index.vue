@@ -52,15 +52,16 @@
             </router-link>
           </div>
           <div class="m-t-10"></div>
-          <ads-banner :showTitle=true position="Home : Kanan"></ads-banner>
+          <ads-banner :showTitle=false position="Home : Kanan"></ads-banner>
       </el-col>
     </el-row>
     <el-row v-if="isAds">      
-      <el-col :xs="24" :sm="16"><gallery></gallery></el-col>      
-      <ads-banner :showTitle=false position="Home : Galeri"></ads-banner>      
+      <el-col :xs="24" :sm="16"><gallery ></gallery></el-col>     
+      <el-col :xs="24" :sm="8"><ads-banner :showTitle=false position="Home : Galeri"></ads-banner>  </el-col>      
+          
     </el-row>    
     <el-row v-if="!isAds">      
-      <el-col :xs="24" :sm="24"><gallery></gallery></el-col>      
+      <el-col :xs="24" :sm="24"><gallery ></gallery></el-col>      
     </el-row>
     <div class="gray-separator"><span></span> </div> 
     <home-youtube-video></home-youtube-video>
@@ -82,12 +83,16 @@
 import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, Gallery } from '@/views/home/components'
 import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide, SocialFeed, InstagramFeed, AdvertisementSide, AdsBanner } from '@/views/portal/components'
 import EventBus from '@/utils/event-bus'
+import { getAdvertisementByPosition } from '@/api/advertisement'
 
 export default {
   name: 'frontpage',
   data() {
     return {
-      isAds: false
+      isAds: false,
+      loading: {
+        adsGallery: false
+      }
     }
   },
   components: {
@@ -108,6 +113,9 @@ export default {
   },
   computed: {
   },
+  created() {
+    this.getAdsByPosition('Home : Galeri')
+  },
   mounted() {
     this.initMounted()
   },
@@ -119,6 +127,21 @@ export default {
             this.showAdsGallery = event.show
           }
         }
+      })
+    },
+    getAdsByPosition(position) {
+      this.loading.adsGallery = true
+      getAdvertisementByPosition({
+        position
+      }).then(response => {
+        if (response && response.data) {
+          if (response.data.status && response.data.status !== 'notFound') {
+            this.isAds = true
+          } else {
+            this.isAds = false
+          }
+        }
+        this.loading.adsGallery = false
       })
     }
   }
