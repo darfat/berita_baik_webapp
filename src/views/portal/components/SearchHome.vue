@@ -3,23 +3,23 @@
       <div class="container">
         <div class="search-box">
           <el-row>
-            <el-col :span="4" class="search-box-label">
+            <el-col :xs="24" :sm="4" class="search-box-label">
               Pencarian
             </el-col>
-            <el-col :span="20" class="search-box-input">
+            <el-col :xs="24" :sm="20" class="search-box-input">
               <el-input placeholder="Pencarian" v-model="searchAny" class="" @keyup.enter.native="onEnterClick">
               <el-button slot="append" icon="el-icon-search" @click="onEnterClick"></el-button>
               </el-input>
             </el-col>
           </el-row>
           <el-row style="margin-top: 10px;">
-            <el-col :span="4">
+            <el-col :xs="24" :sm="4">
               &nbsp;  
             </el-col>
-            <el-col :span="14" class="search-box-result">
+            <el-col :xs="24" :sm="14" class="search-box-result">
               {{ total_entries_size }} Artikel                 
             </el-col>
-            <el-col :span="6" class="search-box-advanced">
+            <el-col :xs="24" :sm="6" class="search-box-advanced">
               <a v-on:click="isShowSearchAdvance = !isShowSearchAdvance" >Opsi Lanjutan +</a>
             </el-col>
           </el-row>                         
@@ -29,12 +29,12 @@
             <b>INFORMASI</b> Nama pengguna/penulis berisi <i>username</i> yang dipakai penulis terkait.
           </div>
           
-          <el-row type="flex"  justify="space-between" class="search-advanced-input">
-            <el-col :span="6">
+          <el-row class="search-advanced-input">
+            <el-col :xs="24" :sm="6">
               <span>Penulis</span>
               <el-input v-model="searchAdvance.reporter_name"></el-input>
             </el-col>
-            <el-col :span="12">
+            <el-col :xs="24" :sm="12">
               <!-- <span>Mulai</span>
               <el-input
                 placeholder="Pick a date"
@@ -60,7 +60,7 @@
             </el-col>             -->
           </el-row>
           <el-row type="flex" justify="end">            
-            <el-col :span="6" style="text-align: right">
+            <el-col :xs="24" :sm="6" style="text-align: right">
               <el-button  @click="clearSearchAdvance" >Batal</el-button>
               <el-button  @click="doSearchAdvance" >Terapkan</el-button>
             </el-col>            
@@ -283,4 +283,16 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/styles/search-home.scss";
+.el-row {
+  margin-bottom: 20px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+.el-col {
+    margin-bottom: 10px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+}
 </style>
