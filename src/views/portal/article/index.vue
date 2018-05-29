@@ -9,11 +9,11 @@
               <el-col >                
                 <div class="thumbnail">
                     <img v-lazy="mainArticle.main_image" />
-                    <div  class="copywriter" v-if="mainArticle.copywriter || mainArticle.designer">
+                    <!-- <div  class="copywriter" v-if="mainArticle.copywriter || mainArticle.designer">
                       <span  v-if="mainArticle.copywriter"> <i> &nbsp; {{mainArticle.copywriter }} </i></span>
                       <span  v-if="mainArticle.copywriter && mainArticle.designer "> &nbsp;| </span>
                       <span  v-if="mainArticle.designer"> <i> &nbsp; {{mainArticle.designer }} </i></span>
-                    </div>
+                    </div> -->
                   <!-- <div class="editorial-type-img" v-if="mainArticle.editorial">
                       <h2>{{ mainArticle.editorial.name }}</h2>
                   </div> -->

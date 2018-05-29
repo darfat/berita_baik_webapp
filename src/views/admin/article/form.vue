@@ -88,7 +88,7 @@
             </el-form-item>
             <div class="gray-horizontal"></div>
             <div class="spacer m-t-10"></div>
-            <el-row :gutter="20">
+            <el-row :gutter="20"  v-if="editorialSlug === 'infografis'">
               <el-col :span="12">
                   <el-form-item label="Copywriter">
                      <el-input v-model="article.copywriter" :maxlength="100" ></el-input>

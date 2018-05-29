@@ -15,11 +15,11 @@
           <!--<div class="image-hl" v-if="editorialSlug !== 'infografis'">-->
           <div class="image-hl" v-else>
             <images-slider :articleID="latestNews.id" :article="latestNews"></images-slider>
-            <div  class="copywriter" v-if="latestNews.copywriter || latestNews.designer">
+            <!-- <div  class="copywriter" v-if="latestNews.copywriter || latestNews.designer">
               <span  v-if="latestNews.copywriter"> <i> &nbsp; {{latestNews.copywriter }} </i></span>
               <span  v-if="latestNews.copywriter && latestNews.designer "> &nbsp; | </span>
               <span  v-if="latestNews.designer"> <i> &nbsp; {{latestNews.designer }} </i></span>
-            </div>
+            </div> -->
           </div>
           <div class="info">            
             <div class="share" v-if="latestNews.id">
