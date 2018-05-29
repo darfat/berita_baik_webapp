@@ -234,6 +234,13 @@ export function setAsPilihanEditor(data) {
     data
   })
 }
+export function setAsAdvert(data) {
+  return request_auth({
+    url: '/article-set-as-advert/' + data.editorial_id + '/' + data.article_id,
+    method: 'put',
+    data
+  })
+}
 export function updateArticleSharedCount(data) {
   return request({
     url: '/article-update-shared-count/' + data.articleID,

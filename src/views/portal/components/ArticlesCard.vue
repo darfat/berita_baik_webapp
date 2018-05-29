@@ -59,12 +59,13 @@
     <div class="ac-paging" v-if="showPaging">
       <el-pagination
         background
+        :pager-count="pagerCount"
         layout="prev, pager, next"
-        prev-text="Sebelumnya" next-text="Selanjutnya"
+        prev-text="<" next-text=">"
         @current-change="handleCurrentChange"
         :current-page.sync="page"
         :page-size="per_page"
-        :total="total_entries_size"  
+        :total="total_entries_size"
       >
       </el-pagination>
     </div>
@@ -119,6 +120,10 @@
       showPaging: {
         default: true,
         type: Boolean
+      },
+      pagerCount: {
+        default: 5,
+        type: Number
       }
     },
     data() {

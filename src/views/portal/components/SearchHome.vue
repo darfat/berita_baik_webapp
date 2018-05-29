@@ -212,9 +212,12 @@ export default {
     infiniteHandler($state) {
       const page = Math.floor(this.articles.length / this.per_page) + 1
       if (this.isShowSearchAdvance) {
+        if (this.searchAdvance.reporter_name) {
+          this.searchAdvance.reporter_name = this.searchAdvance.reporter_name.toLowerCase()
+        }
         SearchArticlesByDateAndReporter({
           article_type: 'news',
-          reporter_name: this.searchAdvance.reporter_name.toLowerCase(),
+          reporter_name: this.searchAdvance.reporter_name,
           start_date: this.searchAdvance.start_date,
           end_date: this.searchAdvance.end_date,
           page,
