@@ -12,14 +12,14 @@
               </el-input>
             </el-col>
           </el-row>
-          <el-row style="margin-top: 10px;">
-            <el-col :xs="24" :sm="4">
+          <el-row class="m-t-10">
+            <el-col :xs="0" :sm="4">
               &nbsp;  
             </el-col>
-            <el-col :xs="24" :sm="14" class="search-box-result">
+            <el-col :xs="12" :sm="8" class="search-box-result">
               {{ total_entries_size }} Artikel                 
             </el-col>
-            <el-col :xs="24" :sm="6" class="search-box-advanced">
+            <el-col :xs="12" :sm="12" class="search-box-advanced">
               <a v-on:click="isShowSearchAdvance = !isShowSearchAdvance" >Opsi Lanjutan +</a>
             </el-col>
           </el-row>                         
@@ -284,15 +284,15 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/styles/search-home.scss";
 .el-row {
-  margin-bottom: 20px;
+  margin-bottom: 0;
   &:last-child {
     margin-bottom: 0;
   }
 }
 .el-col {
-    margin-bottom: 10px;
+    // margin-bottom: 10px;
     &:last-child {
-      margin-bottom: 0;
+      // margin-bottom: 0;
     }
 }
 </style>
