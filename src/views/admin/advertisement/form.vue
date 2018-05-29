@@ -27,7 +27,7 @@
                   <el-form-item label="Tanggal">
                     <el-row :gutter="20">
                       <el-col :span="6">
-                        <el-date-picker type="datetime" placeholder="Awal" v-model="advertisement.start_date" style="width: 100%;"></el-date-picker>
+                        <el-date-picker type="date" placeholder="Awal" v-model="advertisement.start_date" style="width: 100%;"></el-date-picker>
                       </el-col>
                       <el-col :span="6">
                         <el-date-picker type="datetime" placeholder="Akhir" v-model="advertisement.end_date" style="width: 100%;"></el-date-picker>

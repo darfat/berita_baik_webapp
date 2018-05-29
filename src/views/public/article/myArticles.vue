@@ -115,7 +115,7 @@ export default {
       if (this.role === 'editor') {
         data = {
           editorialSlug,
-          userID: "00",
+          userID: '00',
           page: page,
           per_page: this.per_page
         }
@@ -163,7 +163,7 @@ export default {
       if (this.role === 'editor') {
         data = {
           title,
-          userID: "00",
+          userID: '00',
           editorialSlug: this.editorialSlug,
           page: 1,
           per_page: this.per_page

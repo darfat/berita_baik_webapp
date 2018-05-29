@@ -1,9 +1,29 @@
 <template>
   <div class="app-container">
     <div class="filter-container m-b-20">
+      <el-row :gutter="20">
+        <el-col :span="6">
+            <el-date-picker type="date" placeholder="Pilih Tanggal" v-model="search.date" style="width: 100%;"></el-date-picker>
+        </el-col>
+        <el-col :span="4">
+            <el-select v-model="search.position" placeholder="Pilih Posisi">
+              <el-option  v-for="item in ads_opts" :key="item.value" :label="item.label" :value="item.value">
+              </el-option>
+            </el-select>
+        </el-col>
+        <el-col :span="4">
+          <el-button type="primary" @click="handleFilter()">Search</el-button>
+          &nbsp;
+          <el-button type="info" @click="handleClear()">Clear</el-button>
+
+        </el-col>
+       
+      </el-row>
+      <div class="m-t-20">
       <router-link class="filter-item" :to="{ name: 'advertisement-form' }" >
         <el-button type="primary" >Create</el-button>
-      </router-link>    
+      </router-link>   
+      </div> 
     </div>
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label='#Order' width="95">
@@ -67,7 +87,63 @@ export default {
       per_page: 15,
       page: 1,
       total_pages: 1,
-      total_entries_size: 0
+      total_entries_size: 0,
+      search: {
+        date: null,
+        position: null
+      },
+      ads_opts: [
+        {
+          value: 'Home : Atas',
+          label: 'Home : Atas',
+          type: '1'
+        },
+        {
+          value: 'Home : Tengah',
+          label: 'Home : Tengah',
+          type: '1'
+        },
+        {
+          value: 'Home : Kanan',
+          label: 'Home : Kanan',
+          type: '3'
+        },
+        {
+          value: 'Home : Galeri',
+          label: 'Home : Galeri',
+          type: '4'
+        },
+        {
+          value: 'Artikel : Atas',
+          label: 'Artikel : Atas',
+          type: '1'
+        },
+        {
+          value: 'Artikel : Tengah',
+          label: 'Artikel : Tengah',
+          type: '2'
+        },
+        {
+          value: 'Artikel : Kanan',
+          label: 'Artikel : Kanan',
+          type: '3'
+        },
+        {
+          value: 'Kanal : Atas',
+          label: 'Kanal : Atas',
+          type: '1'
+        },
+        {
+          value: 'Kanal : Kanan',
+          label: 'Kanal : Kanan',
+          type: '3'
+        },
+        {
+          value: 'Video : Headline',
+          label: 'Video : Headline',
+          type: '3'
+        }
+      ]
     }
   },
   filters: {
@@ -85,10 +161,19 @@ export default {
   methods: {
     getAll(page) {
       this.listLoading = true
-      getAll({
+      // eslint-disable-next-line
+      let params = {
         page: page,
         per_page: this.per_page
-      }).then(response => {
+      }
+      if (this.search.date !== null) {
+        params.date = this.search.date
+      }
+      if (this.search.position !== null) {
+        params.position = this.search.position
+      }
+      console.log(params)
+      getAll(params).then(response => {
         if (response) {
           this.list = response.data.data
           this.per_page = response.data.per_page
@@ -110,7 +195,7 @@ export default {
             type: 'success',
             message: 'Hapus data berhasil'
           })
-          this.getAll()
+          this.getAll(1)
         })
       }).catch(() => {
         this.$message({
@@ -123,6 +208,13 @@ export default {
     },
     handleCurrentChange(page) {
       this.getAll(page)
+    },
+    handleFilter() {
+      this.getAll(1)
+    },
+    handleClear() {
+      this.search.date = null
+      this.search.position = null
     }
   }
 }
