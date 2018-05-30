@@ -1,6 +1,7 @@
 @import "src/styles/variables.scss";
+
 .search{
-  padding: 40px 0;
+  padding: 20px 0;
   background-color: #e6e6e6;
   &-box{
     &-label{
@@ -22,7 +23,7 @@
     }
   }
   &-advanced{
-    margin: 40px 0;
+    margin: 20px 0;
     padding: 20px;
     border: 2px solid $main-blue;
     background-color: #fff;
@@ -51,7 +52,7 @@
   }
   &-result{
     width: 100%;    
-    margin: 40px 0;
+    margin: 20px 0;
   }
 
   &-pagination{
@@ -104,15 +105,6 @@
         margin: 0;
     }
     
-  }
-
- 
-
-  hr{
-    height: 10px;
-    background-color: $main-red;
-    border: none;
-    width: 10%;    
   }
 
 }

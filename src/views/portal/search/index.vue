@@ -27,9 +27,7 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-.search-wrapper {
-  margin-top: 155px;
-  margin-bottom: 1px;
+.search-wrapper {  
   margin-left: auto;
   margin-right: auto;  
   width: 100%;
@@ -38,10 +36,10 @@ export default {
 }
 
 .container{
-  padding: 40px 0;
+  // padding: 40px 0;
 }
 
 hr{
-  margin: 20px 0;
+  // margin: 20px 0;
 }
 </style>

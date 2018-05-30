@@ -107,6 +107,12 @@ export const constantRouterMap = [
       props: true,
       component: () => import('@/views/portal/aboutus/index')
     },
+    { // static
+      path: 'home-page/pedoman',
+      name: 'pedoman-menu',
+      props: true,
+      component: () => import('@/views/portal/pedoman/index')
+    },
     {
       path: 'home-search/s/:keyword',
       name: 'search-home',
