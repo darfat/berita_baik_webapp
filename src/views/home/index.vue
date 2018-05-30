@@ -144,6 +144,9 @@ export default {
         this.loading.adsGallery = false
       })
     }
+  },
+  metaInfo: {
+    title: 'Beranda'
   }
 }
 </script>

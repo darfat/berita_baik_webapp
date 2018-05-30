@@ -187,6 +187,11 @@ export default {
     pause() {
       this.player.pauseVideo()
     }
+  },
+  metaInfo() {
+    return {
+      title: 'Video'
+    }
   }
 }
 </script>

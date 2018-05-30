@@ -79,22 +79,39 @@ export default {
       // window.setTimeout(function() {
       // }, 1000)
     }
+  },
+  metaInfo() {
+    return {
+      title: this.metaParams && this.metaParams.title,
+      meta: [
+        { charset: 'utf-8' },
+        {
+          'vmid': 'og:title',
+          'name': 'og:title',
+          'property': 'og:title',
+          'content': this.metaParams && this.metaParams.title
+        },
+        {
+          'vmid': 'og:description',
+          'name': 'og:description',
+          'property': 'og:description',
+          'content': this.metaParams && this.metaParams.description
+        },
+        {
+          'vmid': 'og:url',
+          'name': 'og:url',
+          'property': 'og:url',
+          'content': this.metaParams && this.metaParams.url
+        },
+        {
+          'vmid': 'og:image',
+          'name': 'og:image',
+          'property': 'og:image',
+          'content': this.metaParams && this.metaParams.ogImage
+        }
+      ]
+    }
   }
-  // head: {
-  //   // To use "this" in the component, it is necessary to return the object through a function
-  //   meta() {
-  //     return [
-  //       // { name: 'description', content: this.metaParams.description, id: 'metaDesc' },
-  //       { name: 'twitter:title', content: this.metaParams.title, id: 'metaTwTitle' },
-  //       { n: 'twitter:description', c: this.metaParams.description, id: 'metaTwDesc' },
-  //       { n: 'twitter:image', c: this.metaParams.ogImage, id: 'metaTwImage' },
-  //       { p: 'og:image', c: this.metaParams.ogImage, id: 'metaOgImage' },
-  //       { p: 'og:site_name', c: this.metaParams.siteName, id: 'metaOgSiteName' },
-  //       { p: 'og:description', c: this.metaParams.description, id: 'metaOgDesc' },
-  //       { p: 'og:url', c: this.metaParams.url, id: 'metaOgUrl' }
-  //     ]
-  //   }
-  // }
 }
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
