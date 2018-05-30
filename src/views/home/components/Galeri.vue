@@ -12,7 +12,7 @@
           <router-link v-if="g && g.editorial" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':g.editorial.slug, 'slug': g.slug } }" >            
             <h2 v-html="g.title"></h2>
           </router-link>
-          <p class="teaser-v">{{ g.teaser }}</p>        
+          <p class="teaser-v">{{ g.teaser }} Teaser Lorem Ipsum Dolor sit Amet : Makarim</p>        
           <p class="red-line"></p>
           <p class="author-v" >{{ g.reporter_name }} |
             <timeago :auto-update="60" :since="g.publish_date | formatUTC"></timeago>
@@ -108,8 +108,8 @@ export default {
   background-position: center;
 }
 .gallery-top {
-  height: 80%!important;
-  width: 100%;
+  // height: 80%!important;
+  // width: 100%;
   img{
     // width: 100%;
     // max-height: 300px;
@@ -123,27 +123,28 @@ export default {
     h3{
       background-color: $main-blue;
       color: white;
-      padding: 10px;
+      padding: 6px 10px;
       margin: 0;
       text-transform: uppercase;        
     }      
   }
   .overlay-desc {
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.6);
     width: 100%;
     position: absolute;
-    bottom: 0;
+    bottom: 80px;
+    // top: 50%;
     color: white;        
-    padding: 1% 3%;
+    padding: 0.8% 3% 0 3%;
     margin: 0;
     h2, h3, p { margin: 0; }   
     h2{
         font-family: 'Neosans-Black';
-        font-size: 25px;
-        margin-bottom: 10px;
+        font-size: 22px;        
     }       
     .teaser-v{        
-        font-size: 16px;          
+        font-size: 14px;
+        margin-bottom: 5px;
     }
     .author-v{            
         line-height: 18px;
@@ -154,9 +155,15 @@ export default {
 }
 
 .gallery-thumbs {
-  height: 20%!important;
-  box-sizing: border-box;
-  padding: 5px 0;    
+  // height: 20%!important;
+  // box-sizing: border-box;
+  // padding: 5px 0;
+  position: absolute;
+  bottom: 0;
+  height: 80px;
+  background-color: rgba(0,0,0,0.6);
+  padding: 5px 0;
+  
 }
 .gallery-thumbs .swiper-slide {
   width: 25%;
