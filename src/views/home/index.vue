@@ -56,12 +56,12 @@
       </el-col>
     </el-row>
     <el-row v-if="isAds">      
-      <el-col :xs="24" :sm="16"><gallery ></gallery></el-col>     
-      <el-col :xs="24" :sm="8"><ads-banner :showTitle=false position="Home : Galeri"></ads-banner>  </el-col>      
+      <el-col :xs="24" :sm="16"><galeri></galeri></el-col>     
+      <el-col :xs="24" :sm="8" class="ads-gallery"><ads-banner :showTitle=false position="Home : Galeri"></ads-banner>  </el-col>      
           
     </el-row>    
     <el-row v-if="!isAds">      
-      <el-col :xs="24" :sm="24"><gallery ></gallery></el-col>      
+      <el-col :xs="24" :sm="24"><galeri></galeri></el-col>      
     </el-row>
     <div class="gray-separator"><span></span> </div> 
     <home-youtube-video></home-youtube-video>
@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, Gallery } from '@/views/home/components'
+import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, Gallery, Galeri } from '@/views/home/components'
 import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide, SocialFeed, InstagramFeed, AdvertisementSide, AdsBanner } from '@/views/portal/components'
 import EventBus from '@/utils/event-bus'
 import { getAdvertisementByPosition } from '@/api/advertisement'
@@ -109,7 +109,8 @@ export default {
     InstagramFeed,
     AdvertisementSide,
     AdsBanner,
-    Gallery
+    Gallery,
+    Galeri
   },
   computed: {
   },
