@@ -102,7 +102,7 @@ export default {
 @import "src/styles/variables.scss";
 .swiper-container {
   background-color: #323232;
-  height: 420px;
+  height: 520px;
   width: 100%;
 }
 .swiper-slide {
@@ -131,7 +131,7 @@ export default {
     }      
   }
   .overlay-desc {
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0,0,0,0.4);
     width: 100%;
     position: absolute;
     bottom: 80px;
@@ -164,7 +164,7 @@ export default {
   position: absolute;
   bottom: 0;
   height: 80px;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.8);
   padding: 5px 0;
   
 }
