@@ -2,7 +2,9 @@
   <div class="swiper-container" v-loading="loading.galleries" >    
     <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop" >
       <swiper-slide :class="'slide-'+index" v-for="(g,index) in galleries" :key="g.id" >        
-        <img v-lazy="g.main_image" :alt="g.title">
+        <router-link v-if="g && g.editorial" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':g.editorial.slug, 'slug': g.slug } }" >
+          <img v-lazy="g.main_image" :alt="g.title">
+        </router-link>
         <div class="overlay-title" v-if="g" >
           <router-link v-if="g && g.editorial" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':g.editorial.slug, 'slug': g.slug } }" >
             <h3 v-if="g.editorial" >{{ g.editorial.name }}</h3>
@@ -12,7 +14,7 @@
           <router-link v-if="g && g.editorial" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':g.editorial.slug, 'slug': g.slug } }" >            
             <h2 v-html="g.title"></h2>
           </router-link>
-          <p class="teaser-v">{{ g.teaser }} Teaser Lorem Ipsum Dolor sit Amet : Makarim</p>        
+          <p class="teaser-v" v-if="g.teaser">{{ g.teaser }}</p>        
           <p class="red-line"></p>
           <p class="author-v" >{{ g.reporter_name }} |
             <timeago :auto-update="60" :since="g.publish_date | formatUTC"></timeago>
@@ -140,7 +142,8 @@ export default {
     h2, h3, p { margin: 0; }   
     h2{
         font-family: 'Neosans-Black';
-        font-size: 22px;        
+        font-size: 22px;
+        color: #fff;
     }       
     .teaser-v{        
         font-size: 14px;
