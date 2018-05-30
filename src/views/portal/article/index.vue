@@ -2,6 +2,7 @@
   <div class="article-container">
     <el-row class="headline-container">
       <div class="container">        
+        <ads-banner :showTitle=false position="Artikel : Atas"></ads-banner>
         <el-col :xs="24">
           <div class="grid-content main" v-loading="loading.mainArticle">
 
@@ -9,16 +10,20 @@
               <el-col >                
                 <div class="thumbnail">
                     <img v-lazy="mainArticle.main_image" />
+                    <!-- <div  class="copywriter" v-if="mainArticle.copywriter || mainArticle.designer">
+                      <span  v-if="mainArticle.copywriter"> <i> &nbsp; {{mainArticle.copywriter }} </i></span>
+                      <span  v-if="mainArticle.copywriter && mainArticle.designer "> &nbsp;| </span>
+                      <span  v-if="mainArticle.designer"> <i> &nbsp; {{mainArticle.designer }} </i></span>
+                    </div> -->
                   <!-- <div class="editorial-type-img" v-if="mainArticle.editorial">
                       <h2>{{ mainArticle.editorial.name }}</h2>
                   </div> -->
                 </div>                
               </el-col>
             </el-row>
-
             <el-row class="content">
               <el-row :gutter="20" v-if="mainArticle.subtitle">
-                <el-col ><h3 v-html="mainArticle.subtitle"></h3></el-col>
+                <el-col ><b><span v-html="mainArticle.subtitle"></span></b></el-col>
               </el-row>              
               <el-row :gutter="20">
                 <el-col >
@@ -27,6 +32,9 @@
               </el-row>              
               <el-row :gutter="20">
                   <el-col>
+                    <p class="advertorial" v-if="mainArticle.is_advert">
+                      ADVERTORIAL
+                    </p>
                     <p class="red-line"></p>
                     <p class="author">
                       {{ mainArticle.reporter_name }} |
@@ -60,7 +68,7 @@
                   </el-col>
                   <el-col>
                     <div class="ads">
-                      <ads-banner :showTitle=true position="Berita : Tengah"></ads-banner>
+                      <ads-banner :showTitle=false position="Artikel : Tengah"></ads-banner>
                     </div>
                   </el-col>
               </el-row>
@@ -80,8 +88,10 @@
                       </div>
                       <div class="e-name" v-if="author.notes === 'editor'">
                       <span> {{ author.user.name }} </span>
-                      <span class="follow-user">                            
-                        <v-icon name="user" base-class="icon-follow"></v-icon> Follow
+                      <span class="follow-user" v-if="author.user && author.user.instagram_username">       
+                        <a :href="'http://instagram.com/' + author.user.instagram_username" target="_blank">                  
+                     <v-icon name="user" base-class="icon-follow"></v-icon> Follow 
+                        </a>
                       </span>
                       </div>
                     </div>  
@@ -201,7 +211,7 @@
               </router-link>
             </div>
             <div class="spacer m-t-20"></div>
-            <!-- <advertisement-side></advertisement-side> -->
+            <ads-banner :showTitle=true position="Artikel : Kanan"></ads-banner>
             <div class="side-separator">
               <span>  </span>
             </div>          

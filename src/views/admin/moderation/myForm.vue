@@ -370,7 +370,9 @@ export default {
           this.article.content = this.article.content.replace('\u003cbody\u003e\n', '\u003cbody\u003e')
           this.article.content = this.article.content.replace('\n\u003c/body\u003e', '\u003c/body\u003e')
           // this.reporterNameCheck()
-          this.article.reporter_name = this.name
+          if (this.role === 'public') {
+            this.article.reporter_name = this.name
+          }
           if (this.article.article_images) {
             this.article.images_count = this.article.article_images.length
           }

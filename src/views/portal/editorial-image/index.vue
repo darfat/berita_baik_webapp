@@ -6,10 +6,20 @@
         <div class="grid-content latest-news" v-loading="loading.latestNews" v-if="latestNews.id">              
           <div class="image-hl" v-if="editorialSlug === 'infografis'">
               <img v-lazy="latestNews.main_image" />
+              <div  class="copywriter" v-if="latestNews.copywriter || latestNews.designer">
+                  <span  v-if="latestNews.copywriter"> <i> &nbsp; {{latestNews.copywriter }} </i></span>
+                  <span  v-if="latestNews.copywriter && latestNews.designer "> &nbsp; | </span>
+                  <span  v-if="latestNews.designer"> <i> &nbsp; {{latestNews.designer }} </i></span>
+              </div>
           </div>              
           <!--<div class="image-hl" v-if="editorialSlug !== 'infografis'">-->
           <div class="image-hl" v-else>
             <images-slider :articleID="latestNews.id" :article="latestNews"></images-slider>
+            <!-- <div  class="copywriter" v-if="latestNews.copywriter || latestNews.designer">
+              <span  v-if="latestNews.copywriter"> <i> &nbsp; {{latestNews.copywriter }} </i></span>
+              <span  v-if="latestNews.copywriter && latestNews.designer "> &nbsp; | </span>
+              <span  v-if="latestNews.designer"> <i> &nbsp; {{latestNews.designer }} </i></span>
+            </div> -->
           </div>
           <div class="info">            
             <div class="share" v-if="latestNews.id">
@@ -17,8 +27,11 @@
               <span><share-pop :article="latestNews"></share-pop>  </span>                      
             </div>
             <h1 class="headline" v-html="latestNews.title"></h1>                    
-            <div class="" v-if="latestNews.content && latestNews.content !=='-'">                      
+            <div class="" v-if="latestNews.content && latestNews.content !=='-' && editorialSlug !== 'infografis'">                      
               <div v-html="latestNews.content" class="article-content"></div>                      
+            </div>
+            <div class="" v-if="latestNews.teaser && latestNews.teaser !=='-' && editorialSlug === 'infografis'">                      
+              <div v-html="latestNews.teaser" class="article-content"></div>                      
             </div>
             <p class="red-line"></p>
             <p class="author">
@@ -78,7 +91,7 @@
               </router-link>
             </div>
             <div class="spacer m-t-20"></div>
-            <!-- <advertisement-side></advertisement-side> -->
+            <ads-banner :showTitle=true position="Kanal : Kanan"></ads-banner>
           </div>
         </el-col>        
       </el-row>
@@ -89,7 +102,7 @@
 <script>
 import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
-import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, SharePop, ArticleNav } from '@/views/portal/components'
+import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, SharePop, ArticleNav, AdsBanner } from '@/views/portal/components'
 import { getEditorialLabelBySlug } from '@/api/editorial'
 import { getLatestImageByEditorial, getArticle } from '@/api/article'
 import EventBus from '@/utils/event-bus'
@@ -108,7 +121,8 @@ export default {
     CommentList,
     ImagesSlider,
     SharePop,
-    ArticleNav
+    ArticleNav,
+    AdsBanner
   },
   data() {
     return {

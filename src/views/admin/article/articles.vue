@@ -50,6 +50,7 @@
           <el-tag v-if="scope.row.is_topslide" size="mini" type=""> Berita Utama</el-tag>
           <el-tag v-if="scope.row.is_headline" size="mini" type=""> Headline</el-tag>
           <el-tag v-if="scope.row.is_editor_pick" size="mini" type=""> Pilihan Editor</el-tag>
+          <el-tag v-if="scope.row.is_advert" size="mini" type=""> Advertorial</el-tag>
         </template>
       </el-table-column>
       <el-table-column align="center" prop="publish_date" label="Tanggal Publish" width="200">
@@ -77,6 +78,7 @@
               <el-dropdown-item v-if="(scope.row.article_type === 'news' || scope.row.article_type === 'image') &&  editorialSlug !== 'infografis' && !scope.row.is_topslide" ><el-button type="text" size="mini"  @click="setAsBeritaUtamaHandler(scope.row.id,scope.row.editorial.id)" >  Set as Berita Utama </el-button> </el-dropdown-item>
               <el-dropdown-item v-if="(scope.row.article_type === 'news' || scope.row.article_type === 'image') &&  editorialSlug !== 'infografis'   && !scope.row.is_headline"> <el-button type="text" size="mini"  @click="setAsHeadlineHandler(scope.row.id,scope.row.editorial.id)" >Set as Headline </el-button></el-dropdown-item>
               <el-dropdown-item v-if="scope.row.editorial && !scope.row.is_editor_pick" ><el-button type="text" size="mini"  @click="setAsPilihanEditorHandler(scope.row.id,scope.row.editorial.id)" >Set as Pilihan Editor</el-button></el-dropdown-item>
+              <el-dropdown-item v-if="(scope.row.article_type === 'news' )  && !scope.row.is_topslide" ><el-button type="text" size="mini"  @click="setAsAdverttHandler(scope.row.id,scope.row.editorial.id)" >  Set as Advertorial </el-button> </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </template>
@@ -93,7 +95,7 @@
 </template>
 
 <script>
-import { getListByEditorialSlug, searchListByEditorialSlug, updatePublished, softDelete, setAsBeritaUtama, setAsHeadline, setAsPilihanEditor } from '@/api/article'
+import { getListByEditorialSlug, searchListByEditorialSlug, updatePublished, softDelete, setAsBeritaUtama, setAsHeadline, setAsPilihanEditor, setAsAdvert } from '@/api/article'
 
 export default {
   name: 'articles',
@@ -261,12 +263,37 @@ export default {
       })
     },
     setAsPilihanEditorHandler(article_id, editorial_id) {
-      this.$confirm('Anda yakin akan memilih berita ini sebagai Plihan Editor?', 'Warning', {
+      this.$confirm('Anda yakin akan memilih berita ini sebagai Pilihan Editor?', 'Warning', {
         confirmButtonText: 'OK',
         cancelButtonText: 'Cancel',
         type: 'warning'
       }).then(() => {
         setAsPilihanEditor({
+          article_id,
+          editorial_id
+        }).then(response => {
+          if (response) {
+            this.getArticlesByEditorialSlug(this.editorialSlug, this.page)
+          }
+        })
+        this.$message({
+          type: 'success',
+          message: 'Data Berhasil Di Update'
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: 'Batalkan'
+        })
+      })
+    },
+    setAsAdverttHandler(article_id, editorial_id) {
+      this.$confirm('Anda yakin akan memilih berita ini sebagai Advertorial?', 'Warning', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      }).then(() => {
+        setAsAdvert({
           article_id,
           editorial_id
         }).then(response => {

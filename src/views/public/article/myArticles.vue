@@ -106,12 +106,21 @@ export default {
   methods: {
     getArticlesByEditorialSlug(editorialSlug, page) {
       this.listLoading = true
-      getMyListByEditorialSlug({
+      let data = {
         editorialSlug,
         userID: this.user_id,
         page: page,
         per_page: this.per_page
-      }).then(response => {
+      }
+      if (this.role === 'editor') {
+        data = {
+          editorialSlug,
+          userID: '00',
+          page: page,
+          per_page: this.per_page
+        }
+      }
+      getMyListByEditorialSlug(data).then(response => {
         if (response) {
           this.list = response.data.data
           this.per_page = response.data.per_page
@@ -144,13 +153,23 @@ export default {
       if (this.search && this.search.title) {
         title = this.search.title.toLowerCase()
       }
-      getMyListByEditorialSlug({
+      let data = {
         title,
         editorialSlug: this.editorialSlug,
         userID: this.user_id,
         page: 1,
         per_page: this.per_page
-      }).then(response => {
+      }
+      if (this.role === 'editor') {
+        data = {
+          title,
+          userID: '00',
+          editorialSlug: this.editorialSlug,
+          page: 1,
+          per_page: this.per_page
+        }
+      }
+      getMyListByEditorialSlug(data).then(response => {
         if (response) {
           this.list = response.data.data
           this.per_page = response.data.per_page

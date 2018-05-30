@@ -2,13 +2,14 @@
 <div class="gallery-wrapper" v-loading="loading.galleries">
   <el-carousel :interval="9999" indicator-position="none" height="420px" :autoplay="false" arrow="never" ref="crsl">    
     <el-carousel-item v-for="(g,index) in galleries" :key="g.id" :name="'slide-'+index" class="crsl-mainimg">
-      <router-link v-if="g && g.editorial" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':g.editorial.slug, 'slug': g.slug } }" >   
-        <img :src="g.main_image" class="crsl-img">
-      </router-link>
+        <router-link v-if="g && g.editorial" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':g.editorial.slug, 'slug': g.slug } }" >   
+          <img :src="g.main_image" class="crsl-img">
+        </router-link>
       <div class="crsl-icon">
         <svg-icon icon-class="camera" class="camera"></svg-icon>
         <span v-if="g.images_count" >{{g.images_count}}</span>
       </div>
+      <router-link v-if="g && g.editorial" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':g.editorial.slug, 'slug': g.slug } }" >   
       <div class="crsl-overlay"></div>
       <div class="crsl-name"><h2>{{g.editorial.name}}</h2></div>
       <div class="crsl-info">        
@@ -19,6 +20,7 @@
         <p class="red-line"></p>
         <p class="author">{{g.reporter_name}} | <timeago :since="g.publish_date | formatUTC"></timeago></p>
       </div>
+      </router-link>
     </el-carousel-item>  
     <div class="crsl-thumb hidden-xs-only" ref="crslThumb">
       <button v-for="(gt,idx) in galleries" :key="gt.id" v-on:click="setActiveItem('slide-'+idx)" :name="'slide-'+idx"><img :src="gt.main_image"></button>
@@ -34,10 +36,12 @@
 </template>
 <script>
 import { getImagesByEditorialSlug } from '@/api/article'
+import { getAdvertisementByPosition } from '@/api/advertisement'
+
 export default {
   props: {
     editorialSlug: { type: String, default: 'gallery-foto' },
-    limit: { default: 4, type: Number }
+    limit: { type: Number }
   },
   data() {
     return {
@@ -60,11 +64,24 @@ export default {
     getImages(editorialSlug) {
       this.loading.galleries = true
       if (editorialSlug) {
-        getImagesByEditorialSlug({ editorialSlug, page: 1, per_page: this.limit }).then(response => {
-          if (response) {
-            this.galleries = response.data.data
+        const position = 'Home : Galeri'
+        getAdvertisementByPosition({
+          position
+        }).then(response => {
+          let limit = 4
+          if (response && response.data) {
+            if (response.data.status && response.data.status !== 'notFound') {
+              limit = 4
+            } else {
+              limit = 6
+            }
           }
-          this.loading.galleries = false
+          getImagesByEditorialSlug({ editorialSlug, page: 1, per_page: limit }).then(response => {
+            if (response) {
+              this.galleries = response.data.data
+            }
+            this.loading.galleries = false
+          })
         })
       }
     },
@@ -95,7 +112,7 @@ export default {
     position: absolute;
     width: 100%;
     height: 500px;
-    background: rgba(5,29,73, .3);        
+    background: rgba(5,29,73, .2);        
     top: 0;
   }
   &-mainimg{
