@@ -131,10 +131,10 @@ export default {
     }      
   }
   .overlay-desc {
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.6);
     width: 100%;
     position: absolute;
-    bottom: 80px;
+    bottom: 100px;
     // top: 50%;
     color: white;        
     padding: 0.8% 3% 0 3%;
@@ -163,8 +163,8 @@ export default {
   // padding: 5px 0;
   position: absolute;
   bottom: 0;
-  height: 80px;
-  background-color: rgba(0,0,0,0.8);
+  height: 100px;
+  background-color: rgba(0,0,0,0.6);
   padding: 5px 0;
   
 }
