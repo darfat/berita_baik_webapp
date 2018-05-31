@@ -55,7 +55,7 @@
           <ads-banner :showTitle=true position="Home : Kanan"></ads-banner>
       </el-col>
     </el-row>
-    <el-row v-if="isAds">      
+    <el-row :gutter="20" v-if="isAds">      
       <el-col :xs="24" :sm="16"><galeri></galeri></el-col>     
       <el-col :xs="24" :sm="8" class="ads-gallery"><ads-banner :showTitle=false position="Home : Galeri"></ads-banner>  </el-col>      
           
