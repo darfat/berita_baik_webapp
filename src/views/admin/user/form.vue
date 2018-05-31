@@ -48,6 +48,11 @@
                         <!-- <span class="show-pwd" @click="showConfirmPassword"><svg-icon icon-class="eye" /></span> -->
                     </el-form-item>
                 </el-col>
+                <el-col :span="21" >
+                    <el-form-item label="Instagram" prop="Instagram">
+                        <el-input v-model="user.instagram_username"></el-input>
+                    </el-form-item>
+                </el-col>
                 <el-col :span="21" hidden>
                     <el-form-item label="Introduction" prop="Introduction">
                         <el-input v-model="user.introduction"></el-input>

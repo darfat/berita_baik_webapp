@@ -28,6 +28,11 @@
                     <el-form-item label="Inisial" prop="Inisial">
                         <el-input v-model="profile.initial"></el-input>
                     </el-form-item>
+                </el-col>                
+                <el-col :span="21" >
+                    <el-form-item label="Instagram" prop="Instagram">
+                        <el-input v-model="profile.instagram_username"></el-input>
+                    </el-form-item>
                 </el-col>
                 <el-col :span="21" hidden>
                     <el-form-item label="NIK" prop="NIK">
