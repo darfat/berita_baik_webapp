@@ -30,7 +30,7 @@
                         <el-date-picker type="date" placeholder="Awal" v-model="advertisement.start_date" style="width: 100%;"></el-date-picker>
                       </el-col>
                       <el-col :span="6">
-                        <el-date-picker type="datetime" placeholder="Akhir" v-model="advertisement.end_date" style="width: 100%;"></el-date-picker>
+                        <el-date-picker type="date" placeholder="Akhir" v-model="advertisement.end_date" style="width: 100%;"></el-date-picker>
                       </el-col>
                     </el-row>
                   </el-form-item>
@@ -82,7 +82,7 @@
                       </image-uploader-crop>
                       <image-uploader-crop class="image-uploader-btn" :compress="0.8" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
                         :width=315
-                        :height=402
+                        :height=500
                         @successCBK="mainImageSuccessCallback"
                         v-if="advertisement.type === '4'">
                       </image-uploader-crop>
@@ -197,15 +197,15 @@ export default {
       ads_dimension: [
         {
           type: '1',
-          width: 900,
-          height: 99,
-          label: '900 x 99 (Landscape)'
+          width: 600,
+          height: 69,
+          label: '600 x 66 (Landscape)'
         },
         {
           type: '2',
-          width: 900,
-          height: 75,
-          label: '900 x 75 (Landscape)'
+          width: 600,
+          height: 50,
+          label: '600 x 50 (Landscape)'
         },
         {
           type: '3',
