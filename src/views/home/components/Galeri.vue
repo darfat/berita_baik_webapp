@@ -102,7 +102,7 @@ export default {
 @import "src/styles/variables.scss";
 .swiper-container {
   background-color: #323232;
-  height: 520px;
+  height: 500px;
   width: 100%;
 }
 .swiper-slide {
@@ -134,7 +134,7 @@ export default {
     background-color: rgba(0,0,0,0.4);
     width: 100%;
     position: absolute;
-    bottom: 80px;
+    bottom: 100px;
     // top: 50%;
     color: white;        
     padding: 0.8% 3% 0 3%;
@@ -163,7 +163,7 @@ export default {
   // padding: 5px 0;
   position: absolute;
   bottom: 0;
-  height: 80px;
+  height: 100px;
   background-color: rgba(0,0,0,0.8);
   padding: 5px 0;
   
