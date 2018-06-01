@@ -5,144 +5,18 @@
       <div class="container">
         <el-row :gutter="10" type="flex" align="middle" justify="end" class="topnav-content">
           <el-col :span="20">
-            <a href="#"><router-link :to="{ name: 'kerjasama-menu' }">{{$t('portal.topbar.collaboration')}}</router-link></a>
-            <a href="#"><svg-icon icon-class="envelop"></svg-icon>&nbsp;{{$t('portal.topbar.beritabaik_mail_account')}}</a>
             <a href="#"><router-link :to="{ name: 'tentang-kami-menu' }">{{$t('portal.topbar.aboutUs')}}</router-link></a>
+            <a href="#"><svg-icon icon-class="envelop"></svg-icon>&nbsp;{{$t('portal.topbar.beritabaik_mail_account')}}</a>
+            <a href="#"><router-link :to="{ name: 'kerjasama-menu' }">{{$t('portal.topbar.collaboration')}}</router-link></a>
           </el-col>        
         </el-row>
       </div>     
     </div>
-    <!--
-    <div class="hd-wrapper container">
-      <el-row :gutter="10" type="flex" align="middle" justify="space-between" class="hd-content">
-        <el-col :span="8" class="hd-logo">
-          <a href="#/home" title="beritabaik.id" ><img class="" :src="img_logo" alt="beritabaik.id"></a>
-        </el-col>
-        <el-col :span="9" class="hd-srch">
-          <span class="hidden-xs-only"><search-box></search-box></span>
-          <span class="hidden-sm-and-up"><button class="svg-btn"><svg-icon icon-class="search2"></svg-icon></button></span>
-        </el-col>
-        <el-col :span="4" class="hd-write">
-          <span v-if="name">
-          <router-link v-if="name && role === 'public'" :to="{ name: 'back-public-article-form', params: { editorialSlug:'berita-kamu', articleType:'y-news' } }">
-            <el-button icon="el-icon-edit" class="main-button hidden-xs-only" >Tulis Berita Baik</el-button>
-            <span class="hidden-sm-and-up"><button class="svg-btn"><svg-icon icon-class="pencil2"></svg-icon></button></span>
-          </router-link>
-          <router-link v-if="name && role === 'editor'" :to="{ name: 'Dashboard'}">
-            <el-button icon="el-icon-news" class="main-button hidden-xs-only" >CMS</el-button>
-            <span class="hidden-sm-and-up"><button class="svg-btn"><svg-icon icon-class="news"></svg-icon>CMS</button></span>
-          </router-link>
-          </span>
-          <router-link v-else :to="{ name: 'public-login' }">
-            <el-button icon="el-icon-edit" class="main-button hidden-xs-only" >Tulis Berita Baik</el-button>
-            <span class="hidden-sm-and-up"><button class="svg-btn"><svg-icon icon-class="pencil2"></svg-icon></button></span>
-          </router-link>          
-        </el-col>
-        <el-col :span="3" class="hd-user">
-          <a href="#/login" v-if="!name">Log In / Sign Up</a>              
-          <div class="avatar-container" v-else>            
-            <div class="avatar-wrapper">              
-              <el-popover
-                ref="refuser"
-                placement="bottom"                    
-                trigger="click"
-                v-model="visible">
-                <div class="user-menu">
-                  <div class="user-menu-item">
-                    <router-link :to="{ name: 'editProfile' }">
-                      <fa-icon name="user-circle-o" scale="1.6"></fa-icon> Profil Saya
-                    </router-link>
-                  </div>
-                  <div class="user-menu-item">
-                    <router-link :to="{ name: 'admin-logout' }">
-                      <fa-icon name="power-off" scale="1.6"></fa-icon> Keluar
-                    </router-link>
-                  </div>
-                </div>                    
-              </el-popover>
-              <el-button v-popover:refuser>
-                <img v-if="image" class="user-avatar" :src="image" style="border-radius:50%">
-                <img v-else class="user-avatar" src="static/images/avatar/no_avatar.png" style="border-radius:50%">
-              </el-button>
-            </div>
-          </div>
-        </el-col>
-      </el-row>      
-    </div>
-    -->
     
-    <div class="head-wrapper container">      
-      <el-row :gutter="10">
-        <el-col :xs="24" :sm="8">
-          <div class="head-item mc">
-            <div class="head-item-img mc-content">
-              <a href="#/home" title="beritabaik.id" ><img class="" :src="img_logo" alt="beritabaik.id"></a>
-            </div>
-          </div>
-        </el-col>
-        <el-col :xs="24" :sm="9">
-          <div class="head-item mc">
-            <div class="head-item-search mc-content">              
-              <search-box></search-box>
-            </div>
-          </div>
-        </el-col>
-        <el-col :xs="12" :sm="4">
-          <div class="head-item mc">
-            <div class="head-item-contribute mc-content">
-                <span v-if="name">
-                <router-link v-if="name && role === 'public'" :to="{ name: 'back-public-article-form', params: { editorialSlug:'berita-kamu', articleType:'y-news' } }">
-                  <el-button icon="el-icon-edit" class="main-button" >Tulis Berita Baik</el-button>
-                </router-link>
-                <router-link v-if="name && role === 'editor'" :to="{ name: 'Dashboard'}">
-                  <el-button icon="el-icon-news" class="main-button" >CMS</el-button>
-                </router-link>
-                </span>
-                <router-link v-else :to="{ name: 'public-login' }">
-                  <el-button icon="el-icon-edit" class="main-button" >Tulis Berita Baik</el-button>
-                </router-link>
-            </div>
-          </div>
-        </el-col>        
-        <el-col :xs="12" :sm="3">
-          
-          <div class="head-item mc">            
-            <div class="head-item-user mc-content">              
-              <a href="#/login" v-if="!name">Log In / Sign Up</a>              
-              <div class="avatar-container" v-else>
-                <!-- <small v-if="name"> Hi, {{name}} </small> -->
-                <div class="avatar-wrapper">
-                  <!--<img class="user-avatar" src="static/images/avatar/no_avatar.png">-->
-                  <el-popover
-                    ref="refuser"
-                    placement="bottom"                    
-                    trigger="click"
-                    v-model="visible">
-                    <div class="user-menu">
-                      <div class="user-menu-item">
-                        <router-link :to="{ name: 'editProfile' }">
-                          <fa-icon name="user-circle-o" scale="1.6"></fa-icon> Profil Saya
-                        </router-link>
-                      </div>
-                      <div class="user-menu-item">
-                        <router-link :to="{ name: 'admin-logout' }">
-                          <fa-icon name="power-off" scale="1.6"></fa-icon> Keluar
-                        </router-link>
-                      </div>
-                    </div>                    
-                  </el-popover>
-                  <el-button v-popover:refuser>
-                    <img v-if="image" class="user-avatar" :src="image" style="border-radius:50%">
-                    <img v-else class="user-avatar" src="static/images/avatar/no_avatar.png" style="border-radius:50%">
-                  </el-button>
-                </div>
-              </div>  
-            </div>
-          </div>
-        </el-col>
-      </el-row>
+    <div class="hd-wrapper container">
+      <home-header-xs class="hidden-sm-and-up"></home-header-xs>
+      <home-header-sm class="hidden-xs-only"></home-header-sm>
     </div>
-
     <sticky className="sticky" height="100">
       <div class="menu-wrapper">
       <nav class="container">
@@ -235,6 +109,8 @@
 <script>
 import Sticky from '@/components/Sticky'
 import SearchBox from '@/views/portal/components/SearchBox'
+import HomeHeaderXs from '@/views/home/components/HomeHeaderXs'
+import HomeHeaderSm from '@/views/home/components/HomeHeaderSm'
 import img_logo from '@/assets/images/logo_berita_baik.png'
 import img_ikon from '@/assets/images/ikon_berita_baik.png'
 import img_ikon_mono from '@/assets/images/ikon_berita_baik_white.png'
@@ -243,7 +119,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'HomeHeader',
-  components: { Sticky, SearchBox },
+  components: { Sticky, SearchBox, HomeHeaderXs, HomeHeaderSm },
   data() {
     return {
       img_logo,
