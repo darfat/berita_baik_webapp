@@ -2,13 +2,75 @@
     <el-header height="auto" >
       
     <div class="topnav-wrapper">
-      <el-menu class="container" mode="horizontal">   
-        <el-menu-item index="1"><a href="#">{{$t('portal.topbar.collaboration')}}</a></el-menu-item>
-        <el-menu-item index="2"><fa-icon name="envelope" scale="1" ></fa-icon><span>&nbsp;{{$t('portal.topbar.beritabaik_mail_account')}}</span></el-menu-item>
-        <el-menu-item index="3"><a href="#">{{$t('portal.topbar.aboutUs')}}</a></el-menu-item>
-      </el-menu>
+      <div class="container">
+        <el-row :gutter="10" type="flex" align="middle" justify="end" class="topnav-content">
+          <el-col :span="20">
+            <a href="#"><router-link :to="{ name: 'kerjasama-menu' }">{{$t('portal.topbar.collaboration')}}</router-link></a>
+            <a href="#"><svg-icon icon-class="envelop"></svg-icon>&nbsp;{{$t('portal.topbar.beritabaik_mail_account')}}</a>
+            <a href="#"><router-link :to="{ name: 'tentang-kami-menu' }">{{$t('portal.topbar.aboutUs')}}</router-link></a>
+          </el-col>        
+        </el-row>
+      </div>     
     </div>
-
+    <!--
+    <div class="hd-wrapper container">
+      <el-row :gutter="10" type="flex" align="middle" justify="space-between" class="hd-content">
+        <el-col :span="8" class="hd-logo">
+          <a href="#/home" title="beritabaik.id" ><img class="" :src="img_logo" alt="beritabaik.id"></a>
+        </el-col>
+        <el-col :span="9" class="hd-srch">
+          <span class="hidden-xs-only"><search-box></search-box></span>
+          <span class="hidden-sm-and-up"><button class="svg-btn"><svg-icon icon-class="search2"></svg-icon></button></span>
+        </el-col>
+        <el-col :span="4" class="hd-write">
+          <span v-if="name">
+          <router-link v-if="name && role === 'public'" :to="{ name: 'back-public-article-form', params: { editorialSlug:'berita-kamu', articleType:'y-news' } }">
+            <el-button icon="el-icon-edit" class="main-button hidden-xs-only" >Tulis Berita Baik</el-button>
+            <span class="hidden-sm-and-up"><button class="svg-btn"><svg-icon icon-class="pencil2"></svg-icon></button></span>
+          </router-link>
+          <router-link v-if="name && role === 'editor'" :to="{ name: 'Dashboard'}">
+            <el-button icon="el-icon-news" class="main-button hidden-xs-only" >CMS</el-button>
+            <span class="hidden-sm-and-up"><button class="svg-btn"><svg-icon icon-class="news"></svg-icon>CMS</button></span>
+          </router-link>
+          </span>
+          <router-link v-else :to="{ name: 'public-login' }">
+            <el-button icon="el-icon-edit" class="main-button hidden-xs-only" >Tulis Berita Baik</el-button>
+            <span class="hidden-sm-and-up"><button class="svg-btn"><svg-icon icon-class="pencil2"></svg-icon></button></span>
+          </router-link>          
+        </el-col>
+        <el-col :span="3" class="hd-user">
+          <a href="#/login" v-if="!name">Log In / Sign Up</a>              
+          <div class="avatar-container" v-else>            
+            <div class="avatar-wrapper">              
+              <el-popover
+                ref="refuser"
+                placement="bottom"                    
+                trigger="click"
+                v-model="visible">
+                <div class="user-menu">
+                  <div class="user-menu-item">
+                    <router-link :to="{ name: 'editProfile' }">
+                      <fa-icon name="user-circle-o" scale="1.6"></fa-icon> Profil Saya
+                    </router-link>
+                  </div>
+                  <div class="user-menu-item">
+                    <router-link :to="{ name: 'admin-logout' }">
+                      <fa-icon name="power-off" scale="1.6"></fa-icon> Keluar
+                    </router-link>
+                  </div>
+                </div>                    
+              </el-popover>
+              <el-button v-popover:refuser>
+                <img v-if="image" class="user-avatar" :src="image" style="border-radius:50%">
+                <img v-else class="user-avatar" src="static/images/avatar/no_avatar.png" style="border-radius:50%">
+              </el-button>
+            </div>
+          </div>
+        </el-col>
+      </el-row>      
+    </div>
+    -->
+    
     <div class="head-wrapper container">      
       <el-row :gutter="10">
         <el-col :xs="24" :sm="8">
@@ -20,8 +82,7 @@
         </el-col>
         <el-col :xs="24" :sm="9">
           <div class="head-item mc">
-            <div class="head-item-search mc-content">
-              <!-- <el-input placeholder="Search" suffix-icon="el-icon-search" v-model="search" v-on:keyup.enter="onEnterClick" ></el-input> -->
+            <div class="head-item-search mc-content">              
               <search-box></search-box>
             </div>
           </div>
@@ -192,7 +253,8 @@ export default {
       search: '',
       scrolled: null,
       visible: false,
-      show: false
+      show: false,
+      sshow: false
     }
   },
   computed: {

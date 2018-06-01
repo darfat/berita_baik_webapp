@@ -7,35 +7,83 @@
 /*
   top navigation ok
 */
-.topnav-wrapper {
-  background-color : $main-blue;
-  .el-menu{
-    background-color: transparent;
-    border: none;    
-    &-item{
-      color: white;
-      float: right;
-      line-height: 18px;
-      height: 24px;
-      white-space: nowrap;
-      @media (min-width: 320px) and (max-width: 480px) {
-        font-size: 12px;
-        line-height: 12px;
-      }      
-      &:hover{        
-        color: $blue-1;
-        background-color: transparent;
-      }
+.topnav{
+  &-wrapper {
+    background-color : $main-blue;
+    color: #FFF;
+    height: 100%;    
+  }
+  &-content{
+    min-height: 40px;
+    text-align: right;
+    a:not(:first-child) {
+      padding-left: 20px;
     }
+    @media all and (max-width: 480px) {
+      font-size: 10px;      
+      a:not(:first-child) {
+        padding-left: 5px;
+      }
+      svg{
+        height: 14px;
+      }
+    }  
   }
 }
-
 /********************
   logo beritabaik.id
   search form
   lang select
   user/member area 
 **********************/
+.hd{
+  &-wrapper{
+    background-color: #fff;
+    .svg-btn{
+      border: none;
+      background: transparent;
+    }
+  }
+  &-content{
+    height: 90px;
+  }
+  &-logo{
+    text-align: left;
+    img{
+      max-height: 50px      
+    }
+  }
+  &-srch{
+    text-align: right;
+  }
+}
+// @media all and (max-width: 480px) {
+@media all and (max-width : 768px) {  
+  .hd{
+    &-wrapper{
+      // background-color: #fff;
+    }
+    &-content{
+      height: 70px;
+    }
+    &-logo{
+      // text-align: left;
+      img{
+        max-height: 30px      
+      }
+    }
+    &-right{
+      // text-align: right;
+    }
+    &-srch{
+      
+    }
+    &-tb{
+      display: inline;
+    }
+  }
+}
+
 .head{
   &-wrapper {
     // height: 100px;
@@ -100,15 +148,42 @@
         .el-button:active,
         .el-button:focus{
           background: none;         
-        }
-        
-        
-                        
+        }                        
       }
     }
   }
 }
-
+@media all and (max-width : 768px) { 
+  .hdr-xs{
+    height: 80px;
+    img{
+      max-height: 40px;
+    }
+    button,
+    button:hover,
+    button:focus,
+    button:active {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+    .head-attr{
+      text-align: right;
+    }
+    .head-search{              
+      margin-bottom: 10px;          
+    }
+    
+  }
+}
+@media all and (max-width : 330px) {
+  .hdr-xs{
+    height: 70px;    
+    img{
+      max-height: 30px;
+    }
+  }
+}
 .menu-wrapper {
   background-color: $main-red;  
   padding: 0;
