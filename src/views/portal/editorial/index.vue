@@ -146,6 +146,11 @@ export default {
       }
       return ''
     }
+  },
+  metaInfo() {
+    return {
+      title: this.editorialSlug
+    }
   }
 }
 </script>

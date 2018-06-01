@@ -411,6 +411,38 @@ export default {
       // window.setTimeout(function() {
       // }, 1000)
     }
+  },
+  metaInfo() {
+    return {
+      title: this.mainArticle && this.mainArticle.title,
+      meta: [
+        { charset: 'utf-8' },
+        {
+          'vmid': 'og:title',
+          'name': 'og:title',
+          'property': 'og:title',
+          'content': this.mainArticle && this.mainArticle.title
+        },
+        {
+          'vmid': 'og:description',
+          'name': 'og:description',
+          'property': 'og:description',
+          'content': this.mainArticle && this.mainArticle.teaser
+        },
+        {
+          'vmid': 'og:url',
+          'name': 'og:url',
+          'property': 'og:url',
+          'content': this.mainArticle && this.mainArticle.editorial && this.baseLinkPath + this.mainArticle.editorial.slug + '/' + this.mainArticle.slug
+        },
+        {
+          'vmid': 'og:image',
+          'name': 'og:image',
+          'property': 'og:image',
+          'content': this.mainArticle && this.basePath + this.mainArticle.main_image
+        }
+      ]
+    }
   }
   // head: {
   //   // To use "this" in the component, it is necessary to return the object through a function

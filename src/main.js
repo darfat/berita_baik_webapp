@@ -43,6 +43,7 @@ import VueAnalytics from 'vue-analytics'
 // import VueHead from 'vue-head'
 // lazy
 import VueLazyload from 'vue-lazyload'
+import Meta from 'vue-meta'
 
 Vue.use(ElementUI, { locale })
 Vue.use(feather, 'v-icon')
@@ -104,7 +105,7 @@ Vue.use(VueLazyload, {
     }
   }
 })
-
+Vue.use(Meta)
 new Vue({
   el: '#app',
   router,

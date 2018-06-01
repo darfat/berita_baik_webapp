@@ -280,17 +280,20 @@
                       </template>
                     </el-table-column>
                     <!-- <el-table-column
-                      prop="social_media_id"
-                      label="Sosial Media">
-                      <template slot-scope="scope">
-                        {{ scope.row.social_media_id }}
+                      prop="contributor"
+                      label="">
+                       <template slot-scope="scope">
                       </template>
                     </el-table-column> -->
                   </el-table>
+
                 </div>
-                <!-- <el-form-item class="m-t-10">
-                  <el-button>Add More Author</el-button>
-                </el-form-item> -->
+                <el-row>
+                    <el-col :span="8">
+                      <el-checkbox v-model="article.is_use_contributor">Kontributor</el-checkbox>
+                      <el-input v-if="article.is_use_contributor" v-model="article.reporter_name" :maxlength="100" placeholder="Silakan input nama kontributor"></el-input>
+                    </el-col> 
+                </el-row>
                 <el-alert
                   v-if="!validAuthor"
                   title="error alert"
@@ -299,7 +302,7 @@
                   show-icon>
                 </el-alert>
             </el-form-item>
-            
+                
             <el-form-item label="Tanggal Publish">
                 <el-col :span="11">
                 <el-date-picker type="datetime" placeholder="Pick a date" v-model="article.publish_date" style="width: 100%;" format="yyyy-MM-dd HH:mm:ss"></el-date-picker>
@@ -378,6 +381,7 @@ export default {
         active: true,
         article_type: null,
         images_count: 0,
+        is_use_contributor: false,
         article_authors: [
           {
             role_id: null,
@@ -821,15 +825,17 @@ export default {
       }
     },
     reporterNameCheck() { // need to optimize
-      this.article.article_authors.forEach(element => {
-        if (element.notes === 'reporter') {
-          this.author_opts.forEach(author => {
-            if (author.id === element.user_id) {
-              this.article.reporter_name = author.name
-            }
-          })
-        }
-      })
+      if (this.article.is_use_contributor === false) {
+        this.article.article_authors.forEach(element => {
+          if (element.notes === 'reporter') {
+            this.author_opts.forEach(author => {
+              if (author.id === element.user_id) {
+                this.article.reporter_name = author.name
+              }
+            })
+          }
+        })
+      }
     },
     getAddressData(addressData, placeResultData, id) {
       const long_lat = addressData.longitude + ',' + addressData.latitude

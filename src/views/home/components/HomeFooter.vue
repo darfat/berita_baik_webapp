@@ -17,7 +17,7 @@
             <a href="">Aturan</a>
             <a href="">Privasi</a>
             <a href="">Cara Menulis di Berita Baik</a>
-            <a href="">Pedoman</a>
+            <a href=""><router-link :to="{ name: 'pedoman-menu' }">Pedoman </router-link></a>
             </el-col>
           </el-row>
         </div>

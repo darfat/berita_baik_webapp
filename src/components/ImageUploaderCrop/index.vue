@@ -120,7 +120,7 @@ export default {
 .upload-container {
   .editor-slide-upload {
     margin-bottom: 20px;
-    max-width: 800px;
+    max-width: 1200px;
   }
 }
 </style>

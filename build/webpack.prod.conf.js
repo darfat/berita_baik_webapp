@@ -10,7 +10,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-
+// Add these
+// const PrerenderSPAPlugin = require('prerender-spa-plugin')
+// const PuppeteerRenderer = PrerenderSPAPlugin.PuppeteerRenderer
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -122,11 +124,16 @@ const webpackConfig = merge(baseWebpackConfig, {
       }
     ]),
 
-    // Jquery loader plugin.
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery"
-    })
+    // // Jquery loader plugin.
+    // new webpack.ProvidePlugin({
+    //   $: "jquery",
+    //   jQuery: "jquery"
+    // }),
+    // new PrerenderSPAPlugin({
+    //   staticDir: __dirname, // The path to the folder where index.html is.
+    //   routes: ['/'], // List of routes to prerender.
+    //   renderer: new PuppeteerRenderer()
+    // })
   ]
 })
 

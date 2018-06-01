@@ -8,6 +8,9 @@ const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+// Add these
+// const PrerenderSPAPlugin = require('prerender-spa-plugin')
+// const PuppeteerRenderer = PrerenderSPAPlugin.PuppeteerRenderer
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -63,10 +66,15 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       title: 'berita-baik-admin'
     }),
     // Jquery loader plugin.
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery"
-    })
+    // new webpack.ProvidePlugin({
+    //   $: "jquery",
+    //   jQuery: "jquery"
+    // }),
+    // new PrerenderSPAPlugin({
+    //   staticDir: __dirname, // The path to the folder where index.html is.
+    //   routes: ['/'], // List of routes to prerender.
+    //   renderer: new PuppeteerRenderer()
+    // })
   ]
 })
 
