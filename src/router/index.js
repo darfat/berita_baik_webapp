@@ -113,6 +113,36 @@ export const constantRouterMap = [
       props: true,
       component: () => import('@/views/portal/pedoman/index')
     },
+    { // static
+      path: 'home-page/kerjasama',
+      name: 'kerjasama-menu',
+      props: true,
+      component: () => import('@/views/portal/kerjasama/index')
+    },
+    { // static
+      path: 'home-page/kontak',
+      name: 'kontak-menu',
+      props: true,
+      component: () => import('@/views/portal/kontak/index')
+    },
+    { // static
+      path: 'home-page/aturan',
+      name: 'aturan-menu',
+      props: true,
+      component: () => import('@/views/portal/aturan/index')
+    },
+    { // static
+      path: 'home-page/privacy',
+      name: 'privacy-menu',
+      props: true,
+      component: () => import('@/views/portal/privacy/index')
+    },
+    { // static
+      path: 'home-page/cara-menulis',
+      name: 'cara-menulis-menu',
+      props: true,
+      component: () => import('@/views/portal/cara-menulis/index')
+    },
     {
       path: 'home-search/s/:keyword',
       name: 'search-home',
