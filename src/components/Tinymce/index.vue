@@ -2,7 +2,7 @@
   <div class="tinymce-container editor-container">
     <textarea class="tinymce-textarea" :id="tinymceId"></textarea>
     <div class="editor-custom-btn-container">
-      <image-uploader-crop class="image-uploader-btn" @successCBK="imageSuccessCBK" :compress="0.8" :sizeLimit="2000000" :sizeLimitMessage="'2MB'" ></image-uploader-crop>
+      <image-uploader-crop class="image-uploader-btn" @successCBK="imageSuccessCBK" :compress="0.7" :sizeLimit="2000000" :sizeLimitMessage="'2MB'" ></image-uploader-crop>
       <!-- <image-uploader :isMultiple="false" class="editor-upload-btn" @successCBK="imageSuccessCBK"></image-uploader> -->
     </div>
   </div>

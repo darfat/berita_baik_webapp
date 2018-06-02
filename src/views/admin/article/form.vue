@@ -53,10 +53,10 @@
               <div>
                 <span> {{ main_image_name }}</span>
                 <image-uploader v-if="editorialSlug === 'infografis'" :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
-                <image-uploader-crop v-else class="image-uploader-btn" :compress="0.9" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" @successCBK="mainImageSuccessCallback"></image-uploader-crop>
+                <image-uploader-crop v-else class="image-uploader-btn" :compress="0.7" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" @successCBK="mainImageSuccessCallback"></image-uploader-crop>
               </div>
               <div>
-              <div slot="tip" class="el-upload__tip">Maks 4MB dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>
+              <div slot="tip" class="el-upload__tip">Maks 4MB dan Nama File Gambar Utama Tidak Boleh Ada Spasi | Ukuran foto original disarankan diatas 2MB</div>
               </div>
             </el-form-item>
             <el-form-item label="Gallery" v-if="article.article_type === 'image' && editorialSlug === 'gallery-foto'">
@@ -69,7 +69,7 @@
                 <!-- <image-uploader :isMultiple="true" :limit=5 class="image-uploader-btn" @successCBK="gallerySuccessCallback"></image-uploader> -->
                 <div v-for="(item, index) in article.article_images" :key="index">
                   <span>{{item.title}}</span>
-                  <image-uploader-crop  class="image-uploader-btn" :compress="0.9" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" :index="index" @successCBK="gallerySuccessCallback"></image-uploader-crop>
+                  <image-uploader-crop  class="image-uploader-btn" :compress="0.7" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" :index="index" @successCBK="gallerySuccessCallback"></image-uploader-crop>
                   <el-button icon='el-icon-remove' size="mini" type="danger" v-on:click="removeImages(index)">  </el-button>
                 </div>
                 <div slot="tip" class="el-upload__tip" ref="divTipImages">Maks 4MB Per Foto dan Nama File Gambar Utama Tidak Boleh Ada Spasi</div>

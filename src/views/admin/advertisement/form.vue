@@ -62,25 +62,25 @@
                 <el-col :span="21">
                     <el-form-item label="Gambar" prop="image">
                       <span> {{ main_image_name }}</span>
-                        <image-uploader-crop class="image-uploader-btn" :compress="0.8" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
+                        <image-uploader-crop class="image-uploader-btn" :compress="0.7" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
                         :width=600
                         :height=66
                         @successCBK="mainImageSuccessCallback"
                         v-if="advertisement.type === '1'">
                         </image-uploader-crop>
-                        <image-uploader-crop class="image-uploader-btn" :compress="0.8" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
+                        <image-uploader-crop class="image-uploader-btn" :compress="0.7" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
                         :width=600
                         :height=50
                         @successCBK="mainImageSuccessCallback"
                         v-if="advertisement.type === '2'">
                         </image-uploader-crop>
-                        <image-uploader-crop class="image-uploader-btn" :compress="0.8" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
+                        <image-uploader-crop class="image-uploader-btn" :compress="0.7" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
                         :width=283
                         :height=285
                         @successCBK="mainImageSuccessCallback"
                         v-if="advertisement.type === '3'">
                       </image-uploader-crop>
-                      <image-uploader-crop class="image-uploader-btn" :compress="0.8" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
+                      <image-uploader-crop class="image-uploader-btn" :compress="0.7" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
                         :width=315
                         :height=500
                         @successCBK="mainImageSuccessCallback"
