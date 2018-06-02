@@ -16,8 +16,16 @@
   &-content{
     min-height: 40px;
     text-align: right;
+    font-size: 14px;
+    a, a:hover, a:visited
+    {
+      color: #fff;      
+    }
     a:not(:first-child) {
       padding-left: 20px;
+    }
+    svg{
+      height: 16px;
     }
     @media all and (max-width: 480px) {
       font-size: 10px;      
@@ -53,8 +61,45 @@
       max-height: 50px      
     }
   }
+  &-write{
+    text-align: right;
+    .main-button{
+      background-color: $main-blue;
+      color: $bb-white-menu;
+      font-size: 0.75em;  
+      font-family: 'Neosans-black';  
+      text-transform: uppercase;        
+    }
+  }
   &-srch{
     text-align: right;
+  }
+  &-user{
+    text-align: right;
+    a{        
+      font-family: 'Neosans-black'; 
+      font-size: 0.75em;        
+      color: $main-blue;
+      text-transform: uppercase;        
+    }
+    a:hover{
+      color: $main-red;
+    }
+    .avatar-wrapper{
+      .el-button{
+        border: none;
+        padding: 0;
+        img{
+          width: 50px;
+          height: auto;
+        }
+      }
+      .el-button:hover,
+      .el-button:active,
+      .el-button:focus{
+        background: none;         
+      }                        
+    }
   }
 }
 // @media all and (max-width: 480px) {
@@ -73,75 +118,38 @@
       }
     }
     &-right{
-      // text-align: right;
-    }
-    &-srch{
-      
-    }
-    &-tb{
-      display: inline;
-    }
-  }
-}
-
-.head{
-  &-wrapper {
-    // height: 100px;
-  }
-  &-item{    
-    height: 108px;    
-    &-img{       
-      img{        
-        max-width: 100%;
-        height: auto;
-        //margin: 25px 0;
+      text-align: right;
+      .cms{
+        font-size: 10px;
+        line-height: 20px;
+        font-weight: bold;        
+      }      
+      button{
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
       }
-    }
-    &-search{
-      // padding: 30px 10%;
-    }
-    &-lang{
-      // padding: 30px 0;
-    }
-    &-contribute{      
-      // padding: 30px 0;
-      text-align: right;      
-      .main-button{
-        background-color: $main-blue;
-        color: $bb-white-menu;
-        font-size: 0.75em;  
-        font-family: 'Neosans-black';  
-        text-transform: uppercase;        
+      svg{
+        height: 16px;
       }
-
-    }
-    &-user{
-      // padding: 30px 0;
-      text-align: right;   
-      .vertical-line{
-        width: 0px; /* Use only border style */
-        height: 100%;
-        float: left; 
-        border: 1px inset; /* This is default border style for <hr> tag */
+      .spacer-l{
+        margin-left: 5px;
+        padding-right: 5px;
+        border-left: 1px solid #ccc;
       }
-      a{
-        
-        font-family: 'Neosans-black'; 
-        font-size: 0.75em;        
-        color: $main-blue;
-        text-transform: uppercase;        
-      }
-      a:hover{
-        color: $main-red;
-
+      .avatar-container{
+        height: 100%;        
+        display: inline;        
       }
       .avatar-wrapper{
+        display: inline;
         .el-button{
           border: none;
-          padding: 0;
+          padding: 0;          
           img{
-            width: 50px;
-            height: auto;
+            vertical-align: bottom;
+            width: auto;
+            height: 18px;
           }
         }
         .el-button:hover,
@@ -151,39 +159,13 @@
         }                        
       }
     }
-  }
-}
-@media all and (max-width : 768px) { 
-  .hdr-xs{
-    height: 80px;
-    img{
-      max-height: 40px;
-    }
-    button,
-    button:hover,
-    button:focus,
-    button:active {
-      border: none;
-      background-color: transparent;
-      cursor: pointer;
-    }
-    .head-attr{
-      text-align: right;
-    }
-    .head-search{              
-      margin-bottom: 10px;          
-    }
     
   }
-}
-@media all and (max-width : 330px) {
-  .hdr-xs{
-    height: 70px;    
-    img{
-      max-height: 30px;
-    }
+  .search-box{
+    margin-bottom: 10px;
   }
 }
+
 .menu-wrapper {
   background-color: $main-red;  
   padding: 0;
