@@ -97,9 +97,9 @@ export default {
 }
 .swiper-box {
   width: 86%;
-  height: 150px; //267x150
+  height: auto; //267x150
   margin: 0 auto;
-  z-index: 1;
+  z-index: 1;  
 }
 .swiper-item {
   height: 100%;
@@ -162,5 +162,9 @@ h3{
   font-size: 0.7em;
   text-transform: uppercase;
 }
-
+@media all and (max-width : 768px) {
+  h3{
+    // top: 20px;
+  }
+}
 </style>

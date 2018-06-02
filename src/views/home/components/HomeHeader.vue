@@ -166,7 +166,7 @@ export default {
   }
 }
 .el-col {
-  border-radius: 0px;
+  border-radius: 0;
 }
 .sticky{
   transition: all 0.4s ease;

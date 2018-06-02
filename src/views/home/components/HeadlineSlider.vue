@@ -84,5 +84,14 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-@import "src/styles/home-headline-slider.scss";
+  @import "src/styles/home-headline-slider.scss";
+  .el-row {
+    margin-bottom: 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .el-col {
+    border-radius: 0;
+  }
 </style>

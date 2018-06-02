@@ -164,9 +164,9 @@ export default {
 }
 
 .el-row {
-  margin-bottom: 20px;
+  margin-bottom: 0;
   &:last-child {
-    // margin-bottom: 0;
+    margin-bottom: 0;
   }
 }
 </style>

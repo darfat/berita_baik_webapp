@@ -77,5 +77,12 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-    @import "src/styles/home-header.scss";
+  @import "src/styles/home-header.scss";
+  
+  .el-row {
+    margin-bottom: 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 </style>
