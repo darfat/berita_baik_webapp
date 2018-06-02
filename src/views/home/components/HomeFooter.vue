@@ -13,10 +13,10 @@
             <el-col :span="24" class="footer-nav">
             <a href="">Beranda</a>
             <a href=""><router-link :to="{ name: 'tentang-kami-menu' }">Tentang Kami</router-link></a>
-            <a href="">Kontak</a>
-            <a href="">Aturan</a>
-            <a href="">Privasi</a>
-            <a href="">Cara Menulis di Berita Baik</a>
+            <a href=""><router-link :to="{ name: 'kontak-menu' }">Kontak</router-link></a>
+            <a href=""><router-link :to="{ name: 'aturan-menu' }">Aturan</router-link></a>
+            <a href=""><router-link :to="{ name: 'privacy-menu' }">Privasi</router-link></a>
+            <a href=""><router-link :to="{ name: 'cara-menulis-menu' }">Cara Menulis di Berita Baik</router-link></a>
             <a href=""><router-link :to="{ name: 'pedoman-menu' }">Pedoman </router-link></a>
             </el-col>
           </el-row>
