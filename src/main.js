@@ -44,6 +44,7 @@ import VueAnalytics from 'vue-analytics'
 // lazy
 import VueLazyload from 'vue-lazyload'
 import Meta from 'vue-meta'
+import * as VueGoogleMaps from 'vue2-google-maps'
 
 Vue.use(ElementUI, { locale })
 Vue.use(feather, 'v-icon')
@@ -106,6 +107,14 @@ Vue.use(VueLazyload, {
   }
 })
 Vue.use(Meta)
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyCN0keq9G9Hby59mKdWiNWSoTERyQhwX3w',
+    libraries: 'places'
+  }
+})
+
 new Vue({
   el: '#app',
   router,

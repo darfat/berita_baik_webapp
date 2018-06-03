@@ -35,9 +35,9 @@
         <el-col :span="6">
           <address>
             <h2>Bandung</h2>
-            Jl Banten No. 01<br>
-            T. 022-5737331 F. 87853266<br>
-            Bandung 10210<br>
+            Jl. Cigadung Raya Barat no.5<br>
+            Bandung, Jawa Barat, 40191<br>
+            Indonesia<br>
           </address>
         </el-col>
         <el-col :span="6">
@@ -55,6 +55,21 @@
     <div class="container map">
       <h1>Peta Lokasi</h1>
       <div class="map-box">
+        <GmapMap
+          :center="{lat:-6.871069, lng:107.622433}"
+          :zoom="16"
+          map-type-id="terrain"
+          style="width: 1004px; height: 400px"
+        >
+          <GmapMarker
+            :key="index"
+            v-for="(m, index) in markers"
+            :position="m.position"
+            :clickable="true"
+            :draggable="true"
+            @click="center=m.position"
+          />
+        </GmapMap>
       </div>
     </div>
   </div>
@@ -71,16 +86,23 @@ export default {
       team: [
         { id: '1', name: 'Boim', title: 'Chief Executive Officer', image: 'static/images/avatar/m01.png', url: '' },
         { id: '2', name: 'Avitia', title: 'Editor in Chief', image: 'static/images/avatar/f01.png', url: '' },
-        { id: '3', name: 'XXX', title: 'Editor in Chief', image: 'static/images/avatar/m03.png', url: '' },
+        { id: '3', name: '-', title: 'Editor in Chief', image: 'static/images/avatar/m03.png', url: '' },
         { id: '4', name: 'Darwin', title: 'Creative Director / Video Editor', image: 'static/images/avatar/m02.png', url: '' },
         { id: '5', name: 'Annisa', title: 'Administration Coordinator', image: 'static/images/avatar/f03.png', url: '' },
-        { id: '6', name: 'XXX', title: 'Writer', image: 'static/images/avatar/m04.png', url: '' },
-        { id: '7', name: 'XXX', title: 'Writer', image: 'static/images/avatar/m05.png', url: '' },
-        { id: '8', name: 'XXX', title: 'Writer', image: 'static/images/avatar/f04.png', url: '' },
-        { id: '9', name: 'XXX', title: 'Web Developer', image: 'static/images/avatar/m06.png', url: '' },
-        { id: '10', name: 'XXX', title: 'Front-end Developer', image: 'static/images/avatar/f07.png', url: '' },
-        { id: '11', name: 'XXX', title: 'Social Media Specialist', image: 'static/images/avatar/f08.png', url: '' },
-        { id: '12', name: 'XXX', title: 'Designer', image: 'static/images/avatar/m09.png', url: '' }
+        { id: '6', name: 'Haris', title: 'Content Writer', image: 'static/images/avatar/m04.png', url: '' },
+        { id: '7', name: 'Asep', title: 'Fotografer', image: 'static/images/avatar/m05.png', url: '' },
+        { id: '8', name: 'Tya', title: 'Editor', image: 'static/images/avatar/f04.png', url: '' },
+        { id: '9', name: '-', title: 'Web Developer', image: 'static/images/avatar/m06.png', url: '' },
+        { id: '10', name: '-', title: 'Front-end Developer', image: 'static/images/avatar/f07.png', url: '' },
+        { id: '11', name: '-', title: 'Social Media Specialist', image: 'static/images/avatar/f08.png', url: '' },
+        { id: '12', name: '-', title: 'Designer', image: 'static/images/avatar/m09.png', url: '' }
+      ],
+      markers: [{
+        position: {
+          lat: -6.871069,
+          lng: 107.622433
+        }
+      }
       ]
     }
   },

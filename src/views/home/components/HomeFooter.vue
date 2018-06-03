@@ -13,11 +13,19 @@
             <el-col :span="24" class="footer-nav">
             <router-link :to="{ name: 'Home' }">Beranda</router-link>
             <router-link :to="{ name: 'tentang-kami-menu' }">Tentang Kami</router-link>
+            <a href="#">Kontak</a>
+            <a href="#">Aturan</a>
+            <a href="#">Privasi</a>
+            <a href="#">Cara Menulis di Berita Baik</a>
+            <router-link :to="{ name: 'pedoman-menu' }">Pedoman </router-link>
+            <!--
+            <router-link :to="{ name: 'tentang-kami-menu' }">Tentang Kami</router-link>
             <router-link :to="{ name: 'kontak-menu' }">Kontak</router-link>
             <router-link :to="{ name: 'aturan-menu' }">Aturan</router-link>
             <router-link :to="{ name: 'privacy-menu' }">Privasi</router-link>
             <router-link :to="{ name: 'cara-menulis-menu' }">Cara Menulis di Berita Baik</router-link>
             <router-link :to="{ name: 'pedoman-menu' }">Pedoman </router-link>
+            -->
             </el-col>
           </el-row>
         </div>
@@ -25,12 +33,20 @@
           <el-row type="flex" class="container footer-copy">
             <el-col :span="12" >
             Copyright &copy; {{new Date().getFullYear()}} PT Warta Milenial Indonesia&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="#">Term of Use</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="#">Privacy</a>
+            <!--
             <router-link :to="{ name: 'aturan-menu' }">Term of Use</router-link>&nbsp;&nbsp;|&nbsp;&nbsp;
             <router-link :to="{ name: 'privacy-menu' }">Privacy</router-link>
+            -->
             </el-col>
             <el-col :span="12" style="text-align: right">
+              <a href="#">Sitemap</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+              <a href="#">Contact Us</a>
+              <!--
               <router-link :to="{ name: 'sitemap-menu' }">Sitemap</router-link>&nbsp;&nbsp;|&nbsp;&nbsp;
               <router-link :to="{ name: 'kontak-menu' }">Contact Us</router-link>
+              -->
             </el-col>
           </el-row>
         </div>
