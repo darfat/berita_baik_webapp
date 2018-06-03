@@ -35,9 +35,9 @@
         <el-col :span="6">
           <address>
             <h2>Bandung</h2>
-            Jl Banten No. 01<br>
-            T. 022-5737331 F. 87853266<br>
-            Bandung 10210<br>
+            Jl. Cigadung Raya Barat no.5<br>
+            Bandung, Jawa Barat, 40191<br>
+            Indonesia<br>
           </address>
         </el-col>
         <el-col :span="6">
@@ -55,6 +55,21 @@
     <div class="container map">
       <h1>Peta Lokasi</h1>
       <div class="map-box">
+        <GmapMap
+          :center="{lat:-6.871069, lng:107.622433}"
+          :zoom="16"
+          map-type-id="terrain"
+          style="width: 1004px; height: 400px"
+        >
+          <GmapMarker
+            :key="index"
+            v-for="(m, index) in markers"
+            :position="m.position"
+            :clickable="true"
+            :draggable="true"
+            @click="center=m.position"
+          />
+        </GmapMap>
       </div>
     </div>
   </div>
@@ -81,6 +96,13 @@ export default {
         { id: '10', name: '-', title: 'Front-end Developer', image: 'static/images/avatar/f07.png', url: '' },
         { id: '11', name: '-', title: 'Social Media Specialist', image: 'static/images/avatar/f08.png', url: '' },
         { id: '12', name: '-', title: 'Designer', image: 'static/images/avatar/m09.png', url: '' }
+      ],
+      markers: [{
+        position: {
+          lat: -6.871069,
+          lng: 107.622433
+        }
+      }
       ]
     }
   },
