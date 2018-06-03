@@ -445,7 +445,7 @@ export default {
       //       console.log('initialized')
       //     }
       //   },
-      //   imageManagerLoadURL: 'http://beritabaik.id/dev/static/upload/content/images/'
+      //   imageManagerLoadURL: 'https://beritabaik.id/static/upload/content/images/'
       // }
     }
   },

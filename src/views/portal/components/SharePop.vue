@@ -54,7 +54,7 @@ export default {
         description: false,
         url: false
       },
-      basePath: 'http://beritabaik.id/dev/',
+      basePath: 'https://beritabaik.id/',
       baseLinkPath: ''
     }
   },
