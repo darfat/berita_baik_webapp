@@ -71,16 +71,16 @@ export default {
       team: [
         { id: '1', name: 'Boim', title: 'Chief Executive Officer', image: 'static/images/avatar/m01.png', url: '' },
         { id: '2', name: 'Avitia', title: 'Editor in Chief', image: 'static/images/avatar/f01.png', url: '' },
-        { id: '3', name: 'XXX', title: 'Editor in Chief', image: 'static/images/avatar/m03.png', url: '' },
+        { id: '3', name: 'Tya', title: 'Editor in Chief', image: 'static/images/avatar/m03.png', url: '' },
         { id: '4', name: 'Darwin', title: 'Creative Director / Video Editor', image: 'static/images/avatar/m02.png', url: '' },
         { id: '5', name: 'Annisa', title: 'Administration Coordinator', image: 'static/images/avatar/f03.png', url: '' },
-        { id: '6', name: 'XXX', title: 'Writer', image: 'static/images/avatar/m04.png', url: '' },
-        { id: '7', name: 'XXX', title: 'Writer', image: 'static/images/avatar/m05.png', url: '' },
-        { id: '8', name: 'XXX', title: 'Writer', image: 'static/images/avatar/f04.png', url: '' },
-        { id: '9', name: 'XXX', title: 'Web Developer', image: 'static/images/avatar/m06.png', url: '' },
-        { id: '10', name: 'XXX', title: 'Front-end Developer', image: 'static/images/avatar/f07.png', url: '' },
-        { id: '11', name: 'XXX', title: 'Social Media Specialist', image: 'static/images/avatar/f08.png', url: '' },
-        { id: '12', name: 'XXX', title: 'Designer', image: 'static/images/avatar/m09.png', url: '' }
+        { id: '6', name: 'Haris', title: 'Content Writer', image: 'static/images/avatar/m04.png', url: '' },
+        { id: '7', name: 'Asep', title: 'Fotografer', image: 'static/images/avatar/m05.png', url: '' },
+        { id: '8', name: '-', title: 'Writer', image: 'static/images/avatar/f04.png', url: '' },
+        { id: '9', name: '-', title: 'Web Developer', image: 'static/images/avatar/m06.png', url: '' },
+        { id: '10', name: '-', title: 'Front-end Developer', image: 'static/images/avatar/f07.png', url: '' },
+        { id: '11', name: '-', title: 'Social Media Specialist', image: 'static/images/avatar/f08.png', url: '' },
+        { id: '12', name: '-', title: 'Designer', image: 'static/images/avatar/m09.png', url: '' }
       ]
     }
   },
