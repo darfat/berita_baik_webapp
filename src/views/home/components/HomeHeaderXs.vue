@@ -66,7 +66,8 @@ export default {
   data() {
     return {
       img_logo,
-      isShow: false
+      isShow: false,
+      visible: false
     }
   },
   computed: {

@@ -62,7 +62,8 @@ export default {
   components: { SearchBox },
   data() {
     return {
-      img_logo
+      img_logo,
+      visible: false
     }
   },
   computed: {
