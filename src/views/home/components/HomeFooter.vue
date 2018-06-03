@@ -32,7 +32,7 @@
         <div class="footer-wrapper-s2">
           <el-row type="flex" class="container footer-copy">
             <el-col :span="12" >
-            Copyright &copy; {{new Date().getFullYear()}} PT Warta Milenial Indonesia&nbsp;&nbsp;|&nbsp;&nbsp;
+            Copyright &copy; 2018 PT Warta Milenial Indonesia&nbsp;&nbsp;|&nbsp;&nbsp;
             <a href="#">Term of Use</a>&nbsp;&nbsp;|&nbsp;&nbsp;
             <a href="#">Privacy</a>
             <!--
