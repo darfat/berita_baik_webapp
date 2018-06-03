@@ -82,7 +82,7 @@
                       </image-uploader-crop>
                       <image-uploader-crop class="image-uploader-btn" :compress="0.7" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
                         :width=315
-                        :height=500
+                        :height=490
                         @successCBK="mainImageSuccessCallback"
                         v-if="advertisement.type === '4'">
                       </image-uploader-crop>
@@ -216,8 +216,8 @@ export default {
         {
           type: '4',
           width: 315,
-          height: 400,
-          label: '315 x 400 (Home Galeri)'
+          height: 490,
+          label: '315 x 490 (Home Galeri)'
         }
       ],
       rules: {
