@@ -143,6 +143,12 @@ export const constantRouterMap = [
       props: true,
       component: () => import('@/views/portal/cara-menulis/index')
     },
+    { // static
+      path: 'home-page/sitemap',
+      name: 'sitemap-menu',
+      props: true,
+      component: () => import('@/views/portal/sitemap/index')
+    },
     {
       path: 'home-search/s/:keyword',
       name: 'search-home',
