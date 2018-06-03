@@ -13,7 +13,7 @@
       <el-col :xs="24" :sm="24">
         <ads-banner :showTitle=false position="Home : Tengah"></ads-banner>
       </el-col>
-      <el-col :xs="24" :sm="16">        
+      <el-col :xs="24" :sm="16" class="m-t-20">        
           <articles-card :title="'Berita Baik Terbaru'" :limit="4"></articles-card>
           <div class="side-separator">
             <router-link  :to="{ name: 'editorial-menu', params: { 'editorialSlug':'indonesia-baik'} }" >
@@ -35,7 +35,7 @@
             </router-link>
           </div>
       </el-col>    
-      <el-col :xs="24" :sm="8">      
+      <el-col :xs="24" :sm="8" class="m-t-20">      
           <popular-news-side></popular-news-side>
           
           <div class="side-separator">
