@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-row :gutter="10" type="flex" align="middle" justify="space-between" class="hd-content">
-        <el-col :span="8" class="hd-logo">
+        <el-col :span="9" class="hd-logo">
           <a href="#/home" title="beritabaik.id" ><img class="" :src="img_logo" alt="beritabaik.id"></a>
         </el-col>
-        <el-col :span="9" class="hd-srch">
+        <el-col :span="8" class="hd-srch">
           <search-box></search-box>          
         </el-col>
         <el-col :span="4" class="hd-write">
