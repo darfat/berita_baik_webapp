@@ -5,8 +5,11 @@
     </div>
     <div class="container desc">
       <h1>Tentang Kami</h1>
-      <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dignissim vel diam eu ultrices. Nulla id neque quis nunc mattis tempus ultricies id purus. Nulla maximus ex a congue pellentesque. Praesent vel risus et erat imperdiet sagittis eget at metus. Suspendisse dapibus faucibus sapien vel porta. Donec pulvinar porta erat, id faucibus risus aliquet ac. Ut vitae viverra dui. Maecenas nec maximus quam. Vivamus mollis ultrices est ut blandit. Donec eu vehicula nunc.</p> -->
-      <!-- <p>Vivamus convallis viverra lobortis. Donec pharetra sapien nec aliquet vulputate. Vivamus fermentum eu lorem a ornare. Sed sagittis erat dui, sit amet malesuada arcu tristique quis. Sed mattis pharetra nisi id euismod. In diam nunc, ultricies sed justo in, facilisis congue nulla. Nulla ornare elit ut malesuada lacinia. Proin fermentum malesuada ex, ut vehicula ante volutpat sed. Pellentesque volutpat semper urna, hendrerit venenatis velit ornare in. Suspendisse posuere mauris sed leo commodo, eu aliquam augue consectetur. Pellentesque sed urna vitae lacus congue malesuada. Aenean eget risus a ex convallis tempus nec eget massa.</p> -->
+      <p align="justity">Indonesia adalah negara yang kaya dan ramah. Sepenggal kalimat ini menunjukkan bahwa negeri ini patut untuk dibanggakan di mata rakyatnya sendiri.  Dengan semangat ini, <b>beritabaik.id</b> lahir untuk mengapresiasi segala macam kebaikan dan prestasi Indonesia sekecil apapun.</p>
+      <p align="justity">Di bawah PT. Warta Milenial Indonesia (WMI), Beritabaik.id adalah portal berita yang mengusung gaya positive journalism. Informasi yang kami suguhkan lebih banyak membicarakan tentang prestasi dan kebaikan-kebaikan skala besar maupun kecil dari seluruh penjuru nusantara. Karena kami yakin dan percaya, masih banyak hal-hal positif di negeri ini yang belum terberitakan.</p>
+      <p align="justity">Dengan konten-konten informasi bernada positif, <b>beritabaik.id</b> tidak bermaksud untuk menghilangkan sisi kritis masyarakat. Kehadiran kami justru ingin menjadi penyeimbang sekaligus penyegar informasi di tengah kejenuhan masyarakat terhadap jumlah berita bernada negatif di sejumlah media massa ternama di Indonesia yang masih mendominasi arus informasi publik.</p>
+      <p align="justity">Beritabaik.id memiliki visi untuk menjadi media massa nasional yang secara khusus mengangkat isu-isu positif di seluruh penjuru Indonesia, serta mengubah pola pikir skeptis dan pratirasa terhadap kondisi sosial, ekonomi hingga politik di Indonesia, khususnya pada level generasi milenial dan generasi Z, agar generasi berikutnya memiliki cara pandang yang lebih positif.</p>
+      <p align="justity">Mari berbagi kebaikan bersama Beritabaik.id. Karena kebaikan sekecil apapun menjadi lebih berarti ketika dihargai</p>
     </div>
     <div class="team">
       <div class="container">
@@ -168,6 +171,7 @@ export default {
   }
   p{
     line-height: 1.5em;
+    text-align: justify;
   }
 }
 </style>

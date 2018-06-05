@@ -6,7 +6,7 @@
         <el-row :gutter="10" type="flex" align="middle" justify="end" class="topnav-content">
           <el-col :span="20">
             <router-link :to="{ name: 'tentang-kami-menu' }">{{$t('portal.topbar.aboutUs')}}</router-link>
-            <a href="#"><svg-icon icon-class="envelop"></svg-icon>&nbsp;{{$t('portal.topbar.beritabaik_mail_account')}}</a>
+            <a href="mailto:redaksi@beritabaik.id"><svg-icon icon-class="envelop"></svg-icon>&nbsp;{{$t('portal.topbar.beritabaik_mail_account')}}</a>
             <a href="#">{{$t('portal.topbar.collaboration')}}</a>
             <!-- <a href="#"><router-link :to="{ name: 'kerjasama-menu' }">{{$t('portal.topbar.collaboration')}}</router-link></a> -->            
           </el-col>        
