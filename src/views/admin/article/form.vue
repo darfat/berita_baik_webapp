@@ -30,7 +30,7 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="Judul" prop="title">
-                <el-input v-model="article.title"  v-on:change="generateSlug" :maxlength="100" ></el-input>
+                <el-input v-model="article.title"  v-on:change="generateSlug" :maxlength="65" ></el-input>
             </el-form-item>
             <el-form-item label="Sub Judul" v-if="article.article_type === 'news'" >
                 <el-input v-model="article.subtitle" :maxlength="50" ></el-input>

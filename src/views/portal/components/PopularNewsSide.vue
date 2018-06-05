@@ -21,10 +21,10 @@
       <el-col :span="14" class="side-content">                
         <el-row class="side-title-section">              
           <router-link v-if="popular.article_type === 'news' || popular.article_type === 'y-news'"  :to="{ name: 'article-detail-route', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
-            <span class="headline" v-html="subString(popular.title,60)"  ></span>
+            <span class="headline" v-html="subString(popular.title,66)"  ></span>
           </router-link>   
           <router-link v-if="popular.article_type === 'image' || popular.article_type === 'y-image'"  :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':popular.editorial.slug, 'slug': popular.slug,  'articleID': popular.id} }">
-            <span class="headline" v-html="subString(popular.title,60)"  ></span>
+            <span class="headline" v-html="subString(popular.title,66)"  ></span>
           </router-link>              
         </el-row>                    
         <el-row >

@@ -44,7 +44,6 @@
               <el-row :gutter="20" class="m-t-10">
                   <el-col class="teks">
                     <div v-if="!isHaveRelatedArticles" v-html="mainArticle.content" class="teks-content" ></div>
-                    <!-- <froalaView v-if="!isHaveRelatedArticles" v-model="mainArticle.content" class="teks-content"></froalaView> -->
                     <div v-else class="teks-content" >
                       <span v-html="content1" ></span>
                       <div class="bacajuga" v-if="mainArticle.article_relates">

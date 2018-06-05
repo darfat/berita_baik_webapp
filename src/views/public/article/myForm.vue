@@ -30,7 +30,7 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="Judul" prop="title">
-                <el-input v-model="article.title"  v-on:change="generateSlug" :maxlength="100" ></el-input>
+                <el-input v-model="article.title"  v-on:change="generateSlug" :maxlength="65" ></el-input>
             </el-form-item>            
             <el-form-item label="Ringkasan Utama" prop="teaser" v-if="article.article_type === 'y-news'" >
               <div class="editor-container">

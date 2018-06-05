@@ -43,7 +43,7 @@ export default {
   },
   props: {
     editorialSlug: { type: String, default: 'gallery-foto' },
-    limit: { default: 5, type: Number }
+    limit: { default: 10, type: Number }
   },
   data() {
     return {
