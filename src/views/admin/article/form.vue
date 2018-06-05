@@ -35,11 +35,12 @@
             <el-form-item label="Sub Judul" v-if="article.article_type === 'news'" >
                 <el-input v-model="article.subtitle" :maxlength="50" ></el-input>
             </el-form-item>
-            
+            <el-form-item label="Slug" v-if="article.article_type === 'news' || article.article_type === 'image'" >
+                <el-input v-model="article.slug" :maxlength="120" ></el-input>
+            </el-form-item>
             <el-form-item label="Ringkasan Utama" prop="teaser" v-if="article.article_type === 'news' || article.article_type === 'image'" >
               <div class="editor-container">
                  <el-input type="textarea" :rows="4" v-model="article.teaser" :maxlength="250" ></el-input>
-                 <!-- <tinymce :height="100" v-model="article.teaser" ref="editor"  id='teaser' ></tinymce> -->
               </div>
             </el-form-item>
             <el-form-item label="Isi" prop="content" v-if="article.article_type !== 'video' && editorialSlug !== 'infografis'">
