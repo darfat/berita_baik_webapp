@@ -54,6 +54,7 @@ export default {
       },
       swiperOptionTop: {
         spaceBetween: 10,
+        freeMode: true,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
@@ -61,6 +62,7 @@ export default {
       },
       swiperOptionThumbs: {
         spaceBetween: 10,
+        freeMode: true,
         centeredSlides: true,
         slidesPerView: 5,
         touchRatio: 0.2,
