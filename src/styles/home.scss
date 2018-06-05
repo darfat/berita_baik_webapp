@@ -65,6 +65,12 @@ h1, h2, h3, h4, h5, h6{
 
 .comments-paging,
 .ac-paging{
+  
+  .el-pagination {
+    // white-space: pre-wrap;
+    padding: 0;    
+  }
+  
   .el-pagination.is-background .btn-next,
   .el-pagination.is-background .btn-prev,
   .el-pagination.is-background .el-pager li {    
@@ -72,7 +78,11 @@ h1, h2, h3, h4, h5, h6{
     color: $black-2;
     font-family: DINPro-Regular, Neosans-Medium-Italic, Arial, sans-serif;
     font-weight: 700;
-    font-size: 12px;    
+    font-size: 12px;
+    @media all and (max-width : 768px) {
+      font-size: 10px;
+      margin: 0;
+    }    
     &:hover { 
       color: $main-red;
     }

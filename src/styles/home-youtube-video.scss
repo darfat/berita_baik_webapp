@@ -1,4 +1,7 @@
 @import "src/styles/variables.scss";
+.video-container{
+    padding: 10px 0 20px 0;
+}
 .video-wrapper {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */

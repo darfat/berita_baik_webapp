@@ -54,6 +54,7 @@ export default {
       },
       swiperOptionTop: {
         spaceBetween: 10,
+        freeMode: true,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
@@ -61,6 +62,7 @@ export default {
       },
       swiperOptionThumbs: {
         spaceBetween: 10,
+        freeMode: true,
         centeredSlides: true,
         slidesPerView: 5,
         touchRatio: 0.2,
@@ -106,15 +108,16 @@ export default {
   width: 100%;
 }
 .swiper-slide {
-  background-size: cover;
-  background-position: center;
+  // background-size: cover;
+  // background-position: center;
 }
 .gallery-top {
   // height: 80%!important;
   // width: 100%;
   img{
-    // width: 100%;
-    // max-height: 300px;
+    width: 100%;
+    height: 100%;
+    max-height: 500px;
     // object-fit: none;
     // object-position: 50% 50%;
   }
@@ -164,7 +167,7 @@ export default {
   position: absolute;
   bottom: 0;
   height: 100px;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0,0,0,0.4);
   padding: 5px 0;
   
 }
