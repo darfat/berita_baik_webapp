@@ -184,5 +184,50 @@ export default {
 .gallery-thumbs .swiper-slide-active {
   opacity: 1;
 }
+/*
+ mobile view
+*/
+@media all and (max-width : 768px) {
+  .swiper-container {
+    height: 300px;
+  }
+  .gallery-thumbs {
+    height: 60px;
+  }
+  .gallery-top {
+    .overlay-desc {
+      bottom: 60px;
+    }
+  }  
+}
+
+@media all and (max-width : 480px) {
+  .swiper-container {
+    height: 200px;
+  }
+  .gallery-thumbs {
+    height: 30px;
+  }
+  .gallery-top {
+    .overlay-title {    
+      h3{
+        font-size: 14px;
+      }      
+    }
+    .overlay-desc {
+      bottom: 30px;
+      h2{        
+        font-size: 16px;        
+      }       
+      .teaser-v{        
+        font-size: 12px;            
+      }
+      .author-v{            
+        line-height: 14px;            
+        font-size: 10px;          
+      }
+    }
+  }  
+}
 </style>
 
