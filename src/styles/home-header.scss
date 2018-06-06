@@ -359,8 +359,8 @@ li > a:only-child:after { content: ''; }
 	/* Stylinf the toggle lable */
 	.toggle {
 		display: block;
-		//background-color: $red-1;
-		padding: 10px 0;	
+		// background-color: $red-1;
+		padding: 10px 10px;	
 		color: $bb-white-menu;
 		text-decoration: none;
 		border: none;
@@ -447,6 +447,11 @@ li > a:only-child:after { content: ''; }
     padding-bottom: 10px;
   }
 
+  nav a:hover{
+    border-left: 2px solid $bb-white-menu;
+    border-bottom: none;
+  }
+  
 }
 
 @media all and (max-width : 330px) {
