@@ -514,3 +514,19 @@ li > a:only-child:after { content: ''; }
     }
   }    
 }
+
+/*
+  additional style
+  comment-box
+*/
+@media all and (max-width: 480px) {    
+  .comment-box .content{
+    &-comment{
+      padding: 0;
+      textarea{
+        padding: 0;
+        background-color: red;       
+      }      
+    }
+  }  
+}

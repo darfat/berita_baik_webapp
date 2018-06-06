@@ -1,14 +1,14 @@
 <template>
 <div class="comment-box">
     <div class="content">
-        <el-row :gutter="20" >
-            <el-col :xs="6" :sm="3" class="content-img">
+        <el-row >
+            <el-col :xs="4" :sm="3" class="content-img">
               <div class="img-mini">
                 <img v-if="name && userLogin.image " :src="userLogin.image" class="img-circle v-align-middle"/>
                 <img v-else src="static/images/avatar/no_avatar.png" class="img-circle v-align-middle"/>
               </div>
             </el-col>
-            <el-col :xs="18" :sm="21" class="content-comment">
+            <el-col :xs="20" :sm="21" class="content-comment">
                 <el-input
                     type="textarea"
                     :rows="5"
@@ -21,7 +21,7 @@
         </el-row>
         <el-row :gutter="0" class="m-t-10">
             <el-col class="align-right">
-                  <el-button type="primary" plain @click="postComment">Kirim</el-button>
+                  <el-button plain @click="postComment">Kirim</el-button>
             </el-col>
         </el-row>
     </div>
