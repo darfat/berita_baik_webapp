@@ -144,7 +144,7 @@ export default {
     &-nav{
       font-size: 0.5em;      
       a{
-        padding: 0 3px;
+        padding: 0 2px 0 0;
       }    
     }
   }
