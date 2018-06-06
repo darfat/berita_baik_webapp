@@ -1,6 +1,6 @@
 <template>
 <div class="slidertop-wrapper" >  
-  <div class="swiper-nav">
+  <div class="swiper-nav hidden-xs-only">
     <div class="swiper-button-prev" slot="button-prev"><svg-icon icon-class="arrow_left"></svg-icon></div>  
     <div class="swiper-button-next" slot="button-next"><svg-icon icon-class="arrow_right"></svg-icon></div>
   </div>
@@ -57,7 +57,7 @@ export default {
           // when window width is <= 640px
           640: {
             slidesPerView: 3,
-            spaceBetween: 20
+            spaceBetween: 10
           }
         }
       },
@@ -99,7 +99,10 @@ export default {
   width: 86%;
   height: auto; //267x150
   margin: 0 auto;
-  z-index: 1;  
+  z-index: 1;
+  @media all and (max-width : 768px) {
+    width: 100%;
+  }
 }
 .swiper-item {
   height: 100%;
