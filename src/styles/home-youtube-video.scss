@@ -117,7 +117,35 @@
             }
         }
     }
-}  
+}
+
+@media only screen and (max-width: 480px) {
+    .video-wrapper {        
+        padding-bottom: 56.25%;    
+        .overlay-desc {            
+            right: 20%; left: 2%; top: 20%;
+            h1{
+                margin-top: 10px;
+                font-size: 0.9em;
+            }
+            h2{                
+                font-size: 0.5em;
+                padding: 2px 5px;                
+            }
+            .teaser-v{
+                font-size: 0.6em;
+            }
+            .author-v{            
+                font-size: 0.6em;
+            }
+            .red-line {                
+                width: 10px;
+                height: 5px;
+                margin: 5px 0;
+            }
+        }
+    }
+}
 
     
     
