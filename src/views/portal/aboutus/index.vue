@@ -28,8 +28,8 @@ export default {
 .about-wrapper{  
   margin: 0;
   width: 100%;
-  height: auto;
-  background-color: #e6e6e6;
+  height: auto;  
   padding: 20px 0 0 0;
+  background-color: #e6e6e6;
 }
 </style>

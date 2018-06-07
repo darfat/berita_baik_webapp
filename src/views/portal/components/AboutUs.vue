@@ -235,8 +235,8 @@ export default {
       font-size: 1.4em;
     }
     h2{
-      margin: 10px 0 0 0;      
       font-size: 1.1em;
+      margin: 10px 0 0 0;
     }
   }
 }
