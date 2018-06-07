@@ -11,7 +11,7 @@
             <el-col :xs="20" :sm="21" class="content-comment">
                 <el-input
                     type="textarea"
-                    :rows="5"
+                    :rows="3"
                     placeholder="Tulis Komentarmu..."
                     v-model="comment"
                     :maxlength="250"
