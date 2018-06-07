@@ -26,10 +26,10 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 .about-wrapper{  
-  margin: 20px auto;
+  margin: 0;
   width: 100%;
   height: auto;
-  background-color: #FFF;
-  padding: 0;
+  background-color: #e6e6e6;
+  padding: 20px 0 0 0;
 }
 </style>
