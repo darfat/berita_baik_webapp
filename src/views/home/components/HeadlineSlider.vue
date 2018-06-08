@@ -1,6 +1,6 @@
 <template>
 <div class="hl-slider">
-  <el-carousel v-loading="loading.headlines" :interval=9000 arrow="always" >
+  <el-carousel v-loading="loading.headlines" :interval=9000>
     <el-carousel-item v-for="item in headlines" :key="item.id">
       <div class="item-wrapper-hl">
         <el-row>
