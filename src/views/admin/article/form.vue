@@ -30,7 +30,10 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="Judul" prop="title">
-                <el-input v-model="article.title"  v-on:change="generateSlug" :maxlength="65" ></el-input>
+                <div>
+                  <el-input v-model="article.title"  v-on:change="generateSlug" :maxlength="65" ></el-input>
+                  <span slot="tip" class="el-upload__tip" v-if="article && article.title"> Jumlah Huruf : {{article.title.length}}</span>
+                </div>
             </el-form-item>
             <el-form-item label="Sub Judul" v-if="article.article_type === 'news'" >
                 <el-input v-model="article.subtitle" :maxlength="50" ></el-input>
@@ -439,15 +442,8 @@ export default {
       validAuthor: true,
       action: 'add',
       main_image_name: '',
-      tempCount: 0
-      // froalaConfig: {
-      //   events: {
-      //     'froalaEditor.initialized': function() {
-      //       console.log('initialized')
-      //     }
-      //   },
-      //   imageManagerLoadURL: 'https://beritabaik.id/static/upload/content/images/'
-      // }
+      tempCount: 0,
+      titleLetterCount: 0
     }
   },
 
@@ -847,6 +843,11 @@ export default {
       this.article.city = cityResultData.formatted_address
       const long_lat = cityData.longitude + ',' + cityData.latitude
       this.article.city_long_lat = long_lat
+    },
+    countTitleLetter() {
+      if (this.article && this.article.title) {
+        this.titleLetterCount = this.article.title.length
+      }
     }
   }
 }
