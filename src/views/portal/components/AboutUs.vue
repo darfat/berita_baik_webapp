@@ -60,7 +60,8 @@
         <GmapMap
           :center="{lat:-6.871069, lng:107.622433}"
           :zoom="16"
-          map-type-id="terrain"          
+          map-type-id="terrain" 
+          style="width: 100%; height: 100%;"         
         >
           <GmapMarker
             :key="index"
@@ -171,10 +172,10 @@ export default {
     }    
   }
   .map{
-    padding-bottom: 20px;
+    padding-bottom: 20px;    
     &-box{
       width: 100%;
-      min-height: 400px;
+      height: 400px;      
       background-color: #eee;
     }
   }
@@ -224,10 +225,10 @@ export default {
       }    
     }
     .map{
-      padding-bottom: 20px;
+      padding-bottom: 20px;      
       &-box{
         width: 100%;
-        min-height: 200px;
+        height: 300px;
         background-color: #eee;
       }
     }
