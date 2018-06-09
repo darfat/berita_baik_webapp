@@ -107,6 +107,8 @@ Vue.use(VueLazyload, {
   }
 })
 Vue.use(Meta)
+Vue.component('google-map', VueGoogleMaps.Map)
+Vue.component('google-marker', VueGoogleMaps.Marker)
 
 Vue.use(VueGoogleMaps, {
   load: {

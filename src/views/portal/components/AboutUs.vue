@@ -51,18 +51,19 @@
           </address>
         </el-col>
       </el-row>
-      <div class="email"><el-button >Kirim kami Email</el-button></div>
+      <div class="email"><el-button ><a href="mailto:redaksi@beritabaik.id">Kirim kami Email</a></el-button></div>
     </div>
     
     <div class="container map">
       <h1>Peta Lokasi</h1>
       <div class="map-box">
-        <GmapMap
-          :center="{lat:-6.871069, lng:107.622433}"
+        <google-map
+          :center="{lat:10, lng:10}"
           :zoom="16"
-          map-type-id="terrain"          
+          map-type-id="terrain"        
+          ref="map"  
         >
-          <GmapMarker
+          <google-marker
             :key="index"
             v-for="(m, index) in markers"
             :position="m.position"
@@ -70,7 +71,7 @@
             :draggable="true"
             @click="center=m.position"
           />
-        </GmapMap>
+        </google-map>
       </div>
     </div>
   </div>
@@ -85,12 +86,12 @@ export default {
     return {
       img: 'static/images/us.jpg',
       team: [
-        { id: '1', name: 'Putra Prima Perdana', title: 'Chief Executive Officer', image: 'static/images/avatar/m01.png', url: '' },
+        { id: '1', name: 'Ismail Rahaji Pamungkas', title: 'Chief Executive Officer', image: 'static/images/avatar/m01.png', url: '' },
         { id: '5', name: 'Annisa', title: 'Administration Coordinator', image: 'static/images/avatar/f03.png', url: '' },
         { id: '3', name: 'Arya Ardhita', title: 'Chief Marketing Officer', image: 'static/images/avatar/m03.png', url: '' },
         { id: '2', name: 'Avitia Nurmatari', title: 'Editor in Chief', image: 'static/images/avatar/f01.png', url: '' },
         { id: '8', name: 'Tya Eka Yulianti', title: 'Managing Editor', image: 'static/images/avatar/f04.png', url: '' },
-        { id: '9', name: 'Ismail Rahaji Pamungkas', title: 'Head Design', image: 'static/images/avatar/m06.png', url: '' },
+        // { id: '9', name: 'Ismail Rahaji Pamungkas', title: 'Head Design', image: 'static/images/avatar/m06.png', url: '' },
         { id: '4', name: 'Teguh Kusumah Akbar', title: 'Head Creative', image: 'static/images/avatar/m02.png', url: '' },
         { id: '6', name: 'Haris Sulaiman', title: 'Copy Writer', image: 'static/images/avatar/m04.png', url: '' },
         { id: '10', name: 'Churiyana Nugraha', title: 'Reporter', image: 'static/images/avatar/f07.png', url: '' },
