@@ -60,8 +60,8 @@
         <google-map
           :center="{lat:10, lng:10}"
           :zoom="16"
-          map-type-id="terrain"        
-          ref="map"  
+          map-type-id="terrain" 
+          style="width: 100%; height: 100%;"         
         >
           <google-marker
             :key="index"
@@ -172,10 +172,10 @@ export default {
     }    
   }
   .map{
-    padding-bottom: 20px;
+    padding-bottom: 20px;    
     &-box{
       width: 100%;
-      min-height: 400px;
+      height: 400px;      
       background-color: #eee;
     }
   }
@@ -225,10 +225,10 @@ export default {
       }    
     }
     .map{
-      padding-bottom: 20px;
+      padding-bottom: 20px;      
       &-box{
         width: 100%;
-        min-height: 200px;
+        height: 300px;
         background-color: #eee;
       }
     }

@@ -151,7 +151,7 @@ h1, h2, h3, h4, h5, h6{
   }  
   .el-carousel__item{
     background-color: #fff;
-    max-height: 300px;
+    // max-height: 300px;
     margin: 0;
     padding: 0;
   }
@@ -162,14 +162,15 @@ h1, h2, h3, h4, h5, h6{
     width: 12px;
     height: 12px;
     border-radius: 50%;
+    background-color: $main-blue;
   }
   
   @media all and (max-width : 768px) {
     .el-carousel__container{
-      height: 400px;      
+      height: 420px;      
     }
     .el-carousel__item{     
-      max-height: 400px;     
+      
     }
   }
 }
