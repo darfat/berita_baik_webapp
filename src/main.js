@@ -95,7 +95,7 @@ Vue.use(VueAnalytics, {
 // attempt: 1
 
 Vue.use(VueLazyload, {
-  error: 'static/images/no_image.jpg',
+  error: '/static/images/no_image.jpg',
   filter: {
     progressive(listener, options) {
       const isCDN = /qiniudn.com/
