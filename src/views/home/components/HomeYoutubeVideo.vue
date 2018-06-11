@@ -1,15 +1,17 @@
 <template>  
   <section class="video-container" v-loading="loading.latestVideo">    
     <div class="video-wrapper">
-      <!--<youtube :video-id="videoId" @ready="ready" @playing="playing" v-if="latestVideo" ></youtube>-->
-      <iframe 
+      <youtube :video-id="videoId" @ready="ready" @playing="playing" @paused="paused" v-if="latestVideo" 
+      player-width="100%" player-height="565px" 
+      ></youtube>
+      <!-- <iframe 
         width="640"
         height="390"
         :src="'https://www.youtube.com/embed/'+videoId+'?rel=0&amp;fs=0&amp;showinfo=0'"
         frameborder="0"
-        allowfullscreen></iframe>
+        allowfullscreen @click="clickFrame"></iframe> -->
 
-      <div class="overlay-desc" v-show="ready"  >        
+      <div class="overlay-desc" v-show="showTitle"  >        
         <div class="align-center"> <h2 v-if="latestVideo.editorial" >{{ latestVideo.editorial.name }}</h2> </div>
         <h1>{{ latestVideo.title }}</h1>
         <p class="teaser-v">{{ latestVideo.teaser }}</p>        
@@ -36,7 +38,8 @@ export default {
       loading: {
         latestVideo: false
       },
-      videoId: ''
+      videoId: '',
+      showTitle: true
     }
   },
   created() {
@@ -62,6 +65,7 @@ export default {
     },
     playing(player) {
       // The player is playing a video.
+      this.showTitle = false
     },
     change() {
       // when you change the value, the player will also change.
@@ -72,9 +76,14 @@ export default {
     },
     stop() {
       this.player.stopVideo()
+      this.showTitle = true
     },
-    pause() {
+    paused() {
       this.player.pauseVideo()
+      this.showTitle = true
+    },
+    clickFrame() {
+      this.showTitle = false
     }
   }
 }

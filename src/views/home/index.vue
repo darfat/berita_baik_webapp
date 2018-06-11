@@ -66,12 +66,12 @@
     <div class="gray-separator"><span></span> </div> 
     <home-youtube-video></home-youtube-video>
     <div class="gray-separator"><span></span></div>
-    <el-row >    
+    <el-row v-if="isShowEvent">    
       <el-col :xs="24" :sm="24">
         <events></events>
       </el-col>
     </el-row>    
-    <div class="gray-separator"><span></span></div>    
+    <div v-if="isShowEvent" class="gray-separator"><span></span></div>    
     <el-row >    
       <el-col :xs="24" :sm="24"><subscribe></subscribe></el-col>    
     </el-row>
@@ -84,12 +84,15 @@ import { TopSlider, HeadlineSlider, LatestNews, HomeYoutubeVideo, Gallery, Galer
 import { PopularNewsSide, Subscribe, Events, ArticlesCard, InfografisSide, SocialFeed, InstagramFeed, AdvertisementSide, AdsBanner } from '@/views/portal/components'
 import EventBus from '@/utils/event-bus'
 import { getAdvertisementByPosition } from '@/api/advertisement'
+import { getEventCountByPeriod } from '@/api/event'
+import moment from 'moment'
 
 export default {
   name: 'frontpage',
   data() {
     return {
       isAds: false,
+      isShowEvent: false,
       loading: {
         adsGallery: false
       }
@@ -116,6 +119,7 @@ export default {
   },
   created() {
     this.getAdsByPosition('Home : Galeri')
+    this.getCountEvent(moment(new Date()).format('YYYYMM'))
   },
   mounted() {
     this.initMounted()
@@ -143,6 +147,19 @@ export default {
           }
         }
         this.loading.adsGallery = false
+      })
+    },
+    getCountEvent(period) {
+      getEventCountByPeriod({
+        period
+      }).then(response => {
+        if (response && response.data) {
+          if (response.data.count > 0) {
+            this.isShowEvent = true
+          } else {
+            this.isShowEvent = false
+          }
+        }
       })
     }
   },

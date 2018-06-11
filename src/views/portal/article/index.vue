@@ -100,11 +100,10 @@
                       <div class="mc-content">
                         <bb-love v-if="mainArticle && mainArticle.id" :articleID="mainArticle.id" :type="'article'" :scale="2"></bb-love>
                         <social-sharing v-if="mainArticle && mainArticle.editorial" 
-                        :url="baseLinkPath+mainArticle.editorial.slug+'/'+mainArticle.slug" 
+                        :url="baseLinkPath+mainArticle.slug"
                         :title="mainArticle.title"
                         :description="mainArticle.teaser"
-                        :quote="mainArticle.title"
-                        @open="openShare(mainArticle.id, baseLinkPath+mainArticle.editorial.slug+'/'+mainArticle.slug)"
+                        @open="openShare(mainArticle.id, baseLinkPath+mainArticle.slug)"
                         hashtags="beritabaik"
                         twitter-user="beritabaik_id"
                         inline-template>
@@ -115,12 +114,12 @@
                               <network network="twitter">
                                 <fa-icon name="twitter" scale="1" class="network-icon"></fa-icon>
                               </network>
-                              <network network="email">
+                              <!-- <network network="email">
                                 <fa-icon name="envelope" scale="1" class="network-icon"></fa-icon>
                               </network>
                               <network network="googleplus">
                                 <fa-icon name="google-plus" scale="1" class="network-icon"></fa-icon>
-                              </network>
+                              </network> -->
                               <network network="whatsapp" >
                                 <fa-icon name="whatsapp" scale="1" class="network-icon"></fa-icon>
                               </network>
@@ -219,19 +218,6 @@
       </el-row>
     </div>
     
-    <!-- <div class="content-container">
-      <div class="gray-separator"> <span> </span>  </div>
-    </div>
-    
-    <el-row :gutter="20" class="subscriber-container">
-      <div class="m-t-10"></div>
-      <div class="container">
-          <el-col :xs="24" :sm="24" class="content">
-              <subscribe></subscribe>
-          </el-col>
-      </div>      
-    </el-row> -->
-    <!-- <div class="m-t-10"></div> -->
   </div>
 </template>
 
@@ -299,13 +285,13 @@ export default {
         description: false,
         url: false
       },
-      basePath: 'https://beritabaik.id/',
+      basePath: 'http://156.67.218.208',
       baseLinkPath: ''
     }
   },
   created() {
     this.init()
-    this.baseLinkPath = this.basePath + '#/home/a/'
+    this.baseLinkPath = this.basePath + '/share/index.php?slug='
   },
   mounted() {
     this.initMounted()
@@ -345,6 +331,13 @@ export default {
           // this.changeMeta(this.mainArticle, url)
           // remove br
           this.mainArticle.content = this.mainArticle.content.replace('\u003c!DOCTYPE html\u003e\u003cbr /\u003e\u003chtml\u003e\u003cbr /\u003e\u003chead\u003e\u003cbr /\u003e\u003c/head\u003e\u003cbr /\u003e', '\u003c!DOCTYPE html\u003e\u003chtml\u003e\u003chead\u003e\u003c/head\u003e')
+          if (this.mainArticle.city !== null && this.mainArticle.city.length > 0 && this.mainArticle.teaser !== null && this.mainArticle.teaser.length > 0) {
+            const aCityParser = this.mainArticle.city.split(',')
+            if (aCityParser) {
+              const aCity = aCityParser[0]
+              this.mainArticle.content = this.mainArticle.content.replace(this.mainArticle.teaser, '\u003cspan\u003e\u003cstrong\u003e' + aCity + '\u003c/span\u003e\u003c/strong\u003e - ' + this.mainArticle.teaser)
+            }
+          }
         }
       })
     },
@@ -398,68 +391,13 @@ export default {
         this.report_reason = ''
       }
       this.showOther = val
-    },
-    changeMeta(article, url) {
-      var self = this
-      this.metaParams.ogImage = this.basePath + article.main_image
-      this.metaParams.siteName = 'Berita Baik'
-      this.metaParams.url = url
-      this.metaParams.description = article.teaser
-      this.metaParams.title = article.title
-      self.$emit('updateHead')
-      // window.setTimeout(function() {
-      // }, 1000)
     }
   },
   metaInfo() {
     return {
-      title: this.mainArticle && this.mainArticle.title,
-      meta: [
-        { charset: 'utf-8' },
-        {
-          'vmid': 'og:title',
-          'name': 'og:title',
-          'property': 'og:title',
-          'content': this.mainArticle && this.mainArticle.title
-        },
-        {
-          'vmid': 'og:description',
-          'name': 'og:description',
-          'property': 'og:description',
-          'content': this.mainArticle && this.mainArticle.teaser
-        },
-        {
-          'vmid': 'og:url',
-          'name': 'og:url',
-          'property': 'og:url',
-          'content': this.mainArticle && this.mainArticle.editorial && this.baseLinkPath + this.mainArticle.editorial.slug + '/' + this.mainArticle.slug
-        },
-        {
-          'vmid': 'og:image',
-          'name': 'og:image',
-          'property': 'og:image',
-          'content': this.mainArticle && this.basePath + this.mainArticle.main_image
-        }
-      ]
+      title: this.mainArticle && this.mainArticle.title
     }
   }
-  // head: {
-  //   // To use "this" in the component, it is necessary to return the object through a function
-  //   meta() {
-  //     return [
-  //       // { name: 'description', content: this.metaParams.description, id: 'metaDesc' },
-  //       { name: 'twitter:title', content: this.metaParams.title, id: 'metaTwTitle' },
-  //       { n: 'twitter:description', c: this.metaParams.description, id: 'metaTwDesc' },
-  //       { n: 'twitter:image', c: this.metaParams.ogImage, id: 'metaTwImage' },
-  //       { p: 'og:image', c: this.metaParams.ogImage, id: 'metaOgImage' },
-  //       { p: 'og:site_name', c: this.metaParams.siteName, id: 'metaOgSiteName' },
-  //       { p: 'og:description', c: this.metaParams.description, id: 'metaOgDesc' },
-  //       { p: 'og:url', c: this.metaParams.url, id: 'metaOgUrl' }
-  //       { p: 'og:type', c: this.metaParams.type, id: 'metaOgType' },
-  //       { p: 'og:title', c: this.metaParams.title, id: 'metaOgTitle' }
-  //     ]
-  //   }
-  // }
 }
 </script>
 

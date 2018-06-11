@@ -49,3 +49,10 @@ export function getPremiumEvents(params) {
     params
   })
 }
+
+export function getEventCountByPeriod(params) {
+  return request({
+    url: '/event-count-by-period/' + params.period,
+    method: 'get'
+  })
+}
