@@ -285,7 +285,7 @@ export default {
         description: false,
         url: false
       },
-      basePath: 'http://156.67.218.208',
+      basePath: 'https://beritabaik.id',
       baseLinkPath: ''
     }
   },
