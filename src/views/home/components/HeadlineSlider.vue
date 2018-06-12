@@ -43,7 +43,7 @@ export default {
     SharePop
   },
   props: {
-    limit: { default: 9, type: Number }
+    limit: { default: 8, type: Number }
   },
   data() {
     return {
