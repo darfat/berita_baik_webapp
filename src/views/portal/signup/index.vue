@@ -2,9 +2,9 @@
   <div class="signup">      
       <div class="signup-box">
         <div class="logo">
-            <a href="#/home">
+            <router-link :to="{ name: 'Home' }" >
               <img :src="img_b_logo" alt="beritabaik.id">
-            </a>          
+            </router-link>         
         </div>
         
         <div class="form">

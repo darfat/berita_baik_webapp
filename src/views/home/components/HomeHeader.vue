@@ -7,7 +7,7 @@
           <el-col :span="20">
             <router-link :to="{ name: 'tentang-kami-menu' }">{{$t('portal.topbar.aboutUs')}}</router-link>
             <a href="mailto:redaksi@beritabaik.id"><svg-icon icon-class="envelop"></svg-icon>&nbsp;{{$t('portal.topbar.beritabaik_mail_account')}}</a>
-            <a href="#">{{$t('portal.topbar.collaboration')}}</a>
+            <router-link :to="{ name: 'Home' }" >{{$t('portal.topbar.collaboration')}}</router-link>
             <!-- <a href="#"><router-link :to="{ name: 'kerjasama-menu' }">{{$t('portal.topbar.collaboration')}}</router-link></a> -->            
           </el-col>        
         </el-row>
@@ -22,7 +22,7 @@
       <div class="menu-wrapper">
       <nav class="container">
           <div id="logo" v-if="scrolled > 50">
-                <router-link :to="{ path: '/' }" exact><img class="" :src="img_ikon_mono" alt="beritabaik.id"></router-link>
+                <router-link :to="{ name: 'Home' }" exact><img class="" :src="img_ikon_mono" alt="beritabaik.id"></router-link>
           </div>
           <transition name="el-fade-in-linear">
           <label for="drop" class="toggle" v-if="!show" @click="show = !show"><svg-icon icon-class="menu" class="hamburger-menu"></svg-icon></label>

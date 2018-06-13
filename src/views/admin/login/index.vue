@@ -2,9 +2,9 @@
   <div class="login">      
       <div class="login-box">
         <div class="logo">
-            <a href="#/home">
+            <router-link :to="{ name: 'Home' }" >
               <img :src="img_b_logo" alt="beritabaik.id">
-            </a>          
+            </router-link>
         </div>        
         <div class="form">
             <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px"

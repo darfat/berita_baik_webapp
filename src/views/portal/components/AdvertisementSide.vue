@@ -26,7 +26,7 @@ export default {
       advertisement_list: [
         {
           id: 1,
-          main_image: 'static/images/ads1.jpg'
+          main_image: '/static/images/ads1.jpg'
         }
       ],
       loading: {

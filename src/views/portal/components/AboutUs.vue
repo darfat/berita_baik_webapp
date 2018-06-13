@@ -84,20 +84,20 @@ export default {
   name: 'AboutUs',
   data() {
     return {
-      img: 'static/images/us.jpg',
+      img: '/static/images/us.jpg',
       team: [
-        { id: '1', name: 'Ismail Rahaji Pamungkas', title: 'Chief Executive Officer', image: 'static/images/avatar/m01.png', url: '' },
-        { id: '5', name: 'Annisa', title: 'Administration Coordinator', image: 'static/images/avatar/f03.png', url: '' },
-        { id: '3', name: 'Arya Ardhita', title: 'Chief Marketing Officer', image: 'static/images/avatar/m03.png', url: '' },
-        { id: '2', name: 'Avitia Nurmatari', title: 'Editor in Chief', image: 'static/images/avatar/f01.png', url: '' },
-        { id: '8', name: 'Tya Eka Yulianti', title: 'Managing Editor', image: 'static/images/avatar/f04.png', url: '' },
-        // { id: '9', name: 'Ismail Rahaji Pamungkas', title: 'Head Design', image: 'static/images/avatar/m06.png', url: '' },
-        { id: '4', name: 'Teguh Kusumah Akbar', title: 'Head Creative', image: 'static/images/avatar/m02.png', url: '' },
-        { id: '6', name: 'Haris Sulaiman', title: 'Copy Writer', image: 'static/images/avatar/m04.png', url: '' },
-        { id: '10', name: 'Churiyana Nugraha', title: 'Reporter', image: 'static/images/avatar/f07.png', url: '' },
-        { id: '12', name: 'Djuli Pamungkas', title: 'Photographer', image: 'static/images/avatar/m09.png', url: '' },
-        { id: '7', name: 'Asep Solihin', title: 'Videographer', image: 'static/images/avatar/m05.png', url: '' },
-        { id: '11', name: 'Arinda Hifky', title: 'Marketing Communication', image: 'static/images/avatar/f08.png', url: '' }
+        { id: '1', name: 'Ismail Rahaji Pamungkas', title: 'Chief Executive Officer', image: '/static/images/avatar/m01.png', url: '' },
+        { id: '5', name: 'Annisa', title: 'Administration Coordinator', image: '/static/images/avatar/f03.png', url: '' },
+        { id: '3', name: 'Arya Ardhita', title: 'Chief Marketing Officer', image: '/static/images/avatar/m03.png', url: '' },
+        { id: '2', name: 'Avitia Nurmatari', title: 'Editor in Chief', image: '/static/images/avatar/f01.png', url: '' },
+        { id: '8', name: 'Tya Eka Yulianti', title: 'Managing Editor', image: '/static/images/avatar/f04.png', url: '' },
+        // { id: '9', name: 'Ismail Rahaji Pamungkas', title: 'Head Design', image: '/static/images/avatar/m06.png', url: '' },
+        { id: '4', name: 'Teguh Kusumah Akbar', title: 'Head Creative', image: '/static/images/avatar/m02.png', url: '' },
+        { id: '6', name: 'Haris Sulaiman', title: 'Copy Writer', image: '/static/images/avatar/m04.png', url: '' },
+        { id: '10', name: 'Churiyana Nugraha', title: 'Reporter', image: '/static/images/avatar/f07.png', url: '' },
+        { id: '12', name: 'Djuli Pamungkas', title: 'Photographer', image: '/static/images/avatar/m09.png', url: '' },
+        { id: '7', name: 'Asep Solihin', title: 'Videographer', image: '/static/images/avatar/m05.png', url: '' },
+        { id: '11', name: 'Arinda Hifky', title: 'Marketing Communication', image: '/static/images/avatar/f08.png', url: '' }
       ],
       markers: [{
         position: {

@@ -2,9 +2,9 @@
   <div class="login">      
       <div class="login-box">
         <div class="logo">
-            <a href="#/home">
+            <router-link :to="{ name: 'Home' }" >
               <img :src="img_b_logo" alt="beritabaik.id">
-            </a>          
+            </router-link>   
         </div>        
         <div class="form" v-if="showNative">
             <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px"
@@ -168,7 +168,8 @@ export default {
         username: response.w3.Eea,
         email: response.w3.U3,
         name: response.w3.ig,
-        image_path: response.w3.Paa
+        image_path: response.w3.Paa,
+        image: response.w3.Paa
       }
       this.loading = true
       this.$store.dispatch('LoginSignupGmail', userInfo).then(() => {

@@ -2,10 +2,10 @@
   <!--<scroll-bar>-->
   <el-scrollbar wrapClass="scrollbar-wrapper">      
     <div class="logo">      
-      <a href="/#/home" title="beritabaik.id" >
+      <router-link :to="{ name: 'Home' }" exact>
         <img :src="img_logo_mono" v-if="!isCollapse" class="logo-f">
         <img :src="img_ikon_mono" class="logo-i" v-else>
-      </a>
+      </router-link>
     </div>
     <div class="user">
        <span v-if="image">
@@ -13,8 +13,8 @@
         <img :src="image" v-else>
        </span>
        <span v-else>
-        <img src="static/images/avatar/m01.png" v-if="!isCollapse">
-        <img src="static/images/avatar/m01.png" v-else>
+        <img src="/static/images/avatar/m01.png" v-if="!isCollapse">
+        <img src="/static/images/avatar/m01.png" v-else>
        </span>
     </div>    
     <el-menu mode="vertical" unique-opened :default-active="$route.path" :collapse="isCollapse" >

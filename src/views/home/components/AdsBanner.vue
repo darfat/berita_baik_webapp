@@ -23,17 +23,17 @@ export default {
         {
           id: 1,
           name: 'home-1',
-          main_image: 'static/images/music-02.png'
+          main_image: '/static/images/music-02.png'
         },
         {
           id: 2,
           name: 'home-2',
-          main_image: 'static/images/music-03.png'
+          main_image: '/static/images/music-03.png'
         },
         {
           id: 3,
           name: 'home-3',
-          main_image: 'static/images/ads1.jpg'
+          main_image: '/static/images/ads1.jpg'
         }
       ],
       loading: {

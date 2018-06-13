@@ -2,7 +2,7 @@
   <div>
     <el-row :gutter="10" type="flex" align="middle" justify="space-between" class="hd-content">
         <el-col :span="8" class="hd-logo">
-          <a href="#/home" title="beritabaik.id" ><img class="" :src="img_logo" alt="beritabaik.id"></a>
+          <router-link :to="{ name: 'Home' }" >img class="" :src="img_logo" alt="beritabaik.id"></router-link>
         </el-col>
         <el-col :span="16" class="hd-right">
           <button class="svg-btn" @click="isShow = !isShow"><svg-icon icon-class="search2"></svg-icon></button>
@@ -19,7 +19,8 @@
             <button class="svg-btn"><svg-icon icon-class="pencil2"></svg-icon></button>
           </router-link>        
           <span class="spacer-l"></span>
-          <a href="#/login" v-if="!name" class=""><svg-icon icon-class="user2"></svg-icon></a>
+          <router-link :to="{ name: 'public-login' }" v-if="!name"><svg-icon icon-class="user2"></svg-icon></router-link>
+          <!-- <a href="#/login" v-if="!name" class=""><svg-icon icon-class="user2"></svg-icon></a> -->
           <div class="avatar-container" v-else>            
             <div class="avatar-wrapper">              
               <el-popover
@@ -42,7 +43,7 @@
               </el-popover>
               <el-button v-popover:refuser>
                 <img v-if="image" class="user-avatar" :src="image" style="border-radius:50%">
-                <img v-else class="user-avatar" src="static/images/avatar/no_avatar.png" style="border-radius:50%">
+                <img v-else class="user-avatar" src="/static/images/avatar/no_avatar.png" style="border-radius:50%">
               </el-button>
             </div>
           </div>

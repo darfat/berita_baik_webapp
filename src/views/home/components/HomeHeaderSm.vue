@@ -2,7 +2,7 @@
   <div>
     <el-row :gutter="10" type="flex" align="middle" justify="space-between" class="hd-content">
         <el-col :span="9" class="hd-logo">
-          <a href="#/home" title="beritabaik.id" ><img class="" :src="img_logo" alt="beritabaik.id"></a>
+          <router-link :to="{ name: 'Home' }" ><img class="" :src="img_logo" alt="beritabaik.id"></router-link>
         </el-col>
         <el-col :span="8" class="hd-srch">
           <search-box></search-box>          
@@ -21,7 +21,7 @@
           </router-link>          
         </el-col>
         <el-col :span="3" class="hd-user">
-          <a href="#/login" v-if="!name">Log In / Sign Up</a>
+          <router-link :to="{ name: 'public-login' }" v-if="!name">Log In / Sign Up</router-link>
           <div class="avatar-container" v-else>            
             <div class="avatar-wrapper">              
               <el-popover
@@ -44,7 +44,7 @@
               </el-popover>
               <el-button v-popover:refuser>
                 <img v-if="image" class="user-avatar" :src="image" style="border-radius:50%">
-                <img v-else class="user-avatar" src="static/images/avatar/no_avatar.png" style="border-radius:50%">
+                <img v-else class="user-avatar" src="/static/images/avatar/no_avatar.png" style="border-radius:50%">
               </el-button>
             </div>
           </div>

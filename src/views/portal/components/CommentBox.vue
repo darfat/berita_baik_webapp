@@ -5,7 +5,7 @@
             <el-col :xs="4" :sm="3" class="content-img">
               <div class="img-mini">
                 <img v-if="name && userLogin.image " :src="userLogin.image" class="img-circle v-align-middle"/>
-                <img v-else src="static/images/avatar/no_avatar.png" class="img-circle v-align-middle"/>
+                <img v-else src="/static/images/avatar/no_avatar.png" class="img-circle v-align-middle"/>
               </div>
             </el-col>
             <el-col :xs="20" :sm="21" class="content-comment">
@@ -54,7 +54,7 @@ export default {
     return {
       comment: '',
       userLogin: {
-        image: 'static/images/avatar/no_avatar.png'
+        image: '/static/images/avatar/no_avatar.png'
       }
     }
   },
