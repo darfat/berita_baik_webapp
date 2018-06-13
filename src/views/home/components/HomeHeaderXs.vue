@@ -2,7 +2,7 @@
   <div>
     <el-row :gutter="10" type="flex" align="middle" justify="space-between" class="hd-content">
         <el-col :span="8" class="hd-logo">
-          <router-link :to="{ name: 'Home' }" >img class="" :src="img_logo" alt="beritabaik.id"></router-link>
+          <router-link :to="{ name: 'Home' }" ><img class="" :src="img_logo" alt="beritabaik.id"></router-link>
         </el-col>
         <el-col :span="16" class="hd-right">
           <button class="svg-btn" @click="isShow = !isShow"><svg-icon icon-class="search2"></svg-icon></button>
