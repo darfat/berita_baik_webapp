@@ -58,8 +58,8 @@
       <h1>Peta Lokasi</h1>
       <div class="map-box">
         <google-map
-          :center="{lat:10, lng:10}"
-          :zoom="16"
+          :center="{lat:-6.870964, lng:107.622551}" 
+          :zoom="17"
           map-type-id="terrain" 
           style="width: 100%; height: 100%;"         
         >
@@ -101,8 +101,8 @@ export default {
       ],
       markers: [{
         position: {
-          lat: -6.871069,
-          lng: 107.622433
+          lat: -6.870964,
+          lng: 107.622551 // -6.870964, 107.622551
         }
       }
       ]
