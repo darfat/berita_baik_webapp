@@ -273,7 +273,7 @@
                       width="500">
                       <template slot-scope="scope">
                         <el-select v-model="scope.row.user_id"  placeholder="Pilih User" style="width: 90%">
-                          <el-option v-if='scope.row.notes === item.role'
+                          <el-option v-if='"public" !== item.role'
                               v-for="item in author_opts"
                               :key="item.id"
                               :label="item.name +' - '+ item.instagram_username"

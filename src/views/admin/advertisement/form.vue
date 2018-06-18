@@ -62,7 +62,7 @@
                 <el-col :span="21">
                     <el-form-item label="Gambar" prop="image">
                       <span> {{ main_image_name }}</span>
-                        <image-uploader-crop class="image-uploader-btn" :compress="0.7" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
+                        <!-- <image-uploader-crop class="image-uploader-btn" :compress="0.7" :sizeLimit="4000000" :sizeLimitMessage="'4MB'" 
                         :width=600
                         :height=66
                         @successCBK="mainImageSuccessCallback"
@@ -85,7 +85,9 @@
                         :height=490
                         @successCBK="mainImageSuccessCallback"
                         v-if="advertisement.type === '4'">
-                      </image-uploader-crop>
+                      </image-uploader-crop> -->
+                      <image-uploader  :isMultiple="false" class="image-uploader-btn" @successCBK="mainImageSuccessCallback"></image-uploader>
+
                     </el-form-item>
                 </el-col>
                 <el-col :span="21">
@@ -113,6 +115,7 @@
 import { update, create, getAdvertisementById } from '@/api/advertisement'
 import ImageUploaderCrop from '@/components/ImageUploaderCrop'
 import { mapGetters } from 'vuex'
+import ImageUploader from '@/components/ImageUploader'
 
 export default {
   name: 'AdvertisementForm',
@@ -120,7 +123,8 @@ export default {
     advertisementId: { type: String }
   },
   components: {
-    ImageUploaderCrop
+    ImageUploaderCrop,
+    ImageUploader
   },
   computed: {
     ...mapGetters([
@@ -171,7 +175,7 @@ export default {
         {
           value: 'Artikel : Tengah',
           label: 'Artikel : Tengah',
-          type: '2'
+          type: '1'
         },
         {
           value: 'Artikel : Kanan',
@@ -197,21 +201,21 @@ export default {
       ads_dimension: [
         {
           type: '1',
-          width: 600,
-          height: 69,
-          label: '600 x 66 (Landscape)'
+          width: 400,
+          height: 130,
+          label: '400 x 130 (Landscape)'
         },
-        {
-          type: '2',
-          width: 600,
-          height: 50,
-          label: '600 x 50 (Landscape)'
-        },
+        // {
+        //   type: '2',
+        //   width: 400,
+        //   height: 50,
+        //   label: '600 x 50 (Landscape)'
+        // },
         {
           type: '3',
-          width: 283,
-          height: 285,
-          label: '283 x 285 (Square)'
+          width: 250,
+          height: 250,
+          label: '250 x 250 (Square)'
         },
         {
           type: '4',
