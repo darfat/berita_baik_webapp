@@ -5,7 +5,7 @@
       player-width="100%" player-height="565px" 
       class="hidden-xs-only"></youtube>
       <youtube :video-id="videoId" @ready="ready" @playing="playing" @paused="paused" v-if="latestVideo" 
-      player-width="100%" player-height="200px" 
+      player-width="100%" player-height="220px" 
       class="hidden-sm-and-up"></youtube>
       <!-- <iframe 
         width="640"
