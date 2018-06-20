@@ -3,7 +3,10 @@
     <div class="video-wrapper">
       <youtube :video-id="videoId" @ready="ready" @playing="playing" @paused="paused" v-if="latestVideo" 
       player-width="100%" player-height="565px" 
-      ></youtube>
+      class="hidden-xs-only"></youtube>
+      <youtube :video-id="videoId" @ready="ready" @playing="playing" @paused="paused" v-if="latestVideo" 
+      player-width="100%" player-height="200px" 
+      class="hidden-sm-and-up"></youtube>
       <!-- <iframe 
         width="640"
         height="390"
