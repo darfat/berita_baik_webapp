@@ -2,7 +2,7 @@
 <div class="app-wrapper">
   <el-row class="slider-wrapper">    
     <div class="container">
-      <ads-banner :showTitle=false position="Home : Atas"></ads-banner>   
+      <ads-banner :showTitle=true position="Home : Atas"></ads-banner>   
       <top-slider></top-slider>
       <div class="m-t-20"></div>
       <headline-slider></headline-slider>
@@ -11,7 +11,7 @@
   <div class="container">
     <el-row :gutter="20">    
       <el-col :xs="24" :sm="24">
-        <ads-banner :showTitle=false position="Home : Tengah"></ads-banner>
+        <ads-banner :showTitle=true position="Home : Tengah"></ads-banner>
       </el-col>
       <el-col :xs="24" :sm="16">        
           <articles-card :title="'Berita Baik Terbaru'" :limit="4"></articles-card>

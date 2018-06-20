@@ -2,7 +2,7 @@
   <div class="tinymce-container editor-container">
     <textarea class="tinymce-textarea" :id="tinymceId"></textarea>
     <div class="editor-custom-btn-container">
-      <image-uploader-crop class="image-uploader-btn" @successCBK="imageSuccessCBK" :compress="0.7" :sizeLimit="2000000" :sizeLimitMessage="'2MB'" ></image-uploader-crop>
+      <image-uploader-crop class="image-uploader-btn" @successCBK="imageSuccessCBK" :compress="0.7" :width=560 :height=314 :sizeLimit="2000000" :sizeLimitMessage="'2MB'" ></image-uploader-crop>
       <!-- <image-uploader :isMultiple="false" class="editor-upload-btn" @successCBK="imageSuccessCBK"></image-uploader> -->
     </div>
   </div>
@@ -12,12 +12,11 @@
 // import editorImage from './components/editorImage'
 import plugins from './plugins'
 import toolbar from './toolbar'
-import ImageUploader from '@/components/ImageUploader'
 import ImageUploaderCrop from '@/components/ImageUploaderCrop'
 
 export default {
   name: 'tinymce',
-  components: { ImageUploader, ImageUploaderCrop },
+  components: { ImageUploaderCrop },
   props: {
     id: {
       type: String
@@ -176,6 +175,7 @@ img {
     height: auto;
 }
 .wscnph{
-  max-width: 100%;
+  max-width: 560px;
+  max-height: 314px;
 }
 </style>

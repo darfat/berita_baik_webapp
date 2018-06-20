@@ -197,7 +197,40 @@
        top: 0;       
     }
 }
-
+.bacajuga-end{
+    border-top: 1px solid $bb-grayWhite;
+    border-bottom: 0px solid $bb-grayWhite;
+    margin: 20px 20px 0 0;
+    padding: 0;
+    h4{
+        color: $main-red;
+        margin: 10px 0 0 0;
+    }
+    ul{         
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 1.6em; 
+    }
+    ul li {
+        color: $main-red;
+        list-style: none;
+        font-weight: 700;        
+        padding-left: 0;         
+        text-indent: -1.6em;        
+    }
+  
+   ul li::before {
+       color: $main-red;
+       content: "\2022";
+       font-size: 1em;
+       padding-right: .4em;
+       padding-left: 0;       
+       position: relative;
+       top: 0;       
+    }
+}
 .mc{
     // width: 100%;  
     display: table;

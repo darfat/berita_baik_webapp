@@ -43,7 +43,25 @@
               </el-row>
               <el-row :gutter="20" class="m-t-10">
                   <el-col class="teks">
-                    <div v-if="!isHaveRelatedArticles" v-html="mainArticle.content" class="teks-content" ></div>
+                    <div v-if="!isHaveRelatedArticles" >
+                      <div v-html="mainArticle.content" class="teks-content" > </div>
+                      <div class="bacajuga-end" v-if="mainArticle.article_relates">
+                        <h4>Baca Juga :</h4>
+                        <ul> 
+                          <li v-for="(relate) in mainArticle.article_relates" :key="relate.id" > 
+                            <router-link v-if="relate.Article.article_type === 'news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':relate.Article.editorial.slug, 'slug': relate.Article.slug,  'articleID': relate.Article.id} }">                  
+                               <span v-html="relate.Article.title">  </span> 
+                            </router-link>
+                            <router-link   v-if="relate.Article.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':relate.Article.editorial.slug, 'slug': relate.Article.slug } }" >                      
+                               <span v-html="relate.Article.title">  </span> 
+                            </router-link>
+                            <router-link v-if="relate.Article.article_type === 'video'" :to="{ name: 'editorial-video-detail', params: { 'editorialSlug':relate.Article.editorial.slug, 'slug': relate.Article.slug} }">
+                               <span v-html="relate.Article.title">  </span>   
+                            </router-link>                          
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                     <div v-else class="teks-content" >
                       <span v-html="content1" ></span>
                       <div class="bacajuga" v-if="mainArticle.article_relates">
@@ -321,10 +339,10 @@ export default {
             this.content1 = contents[0]
             this.content2 = contents[1]
             this.isHaveRelatedArticles = true
-            this.getRelated(this.mainArticle.id)
           } else {
             this.isHaveRelatedArticles = false
           }
+          this.getRelated(this.mainArticle.id)
           EventBus.$emit('SET_ARTICLE_ID_COMMENTS_EVENT', { 'articleID': this.mainArticle.id })
           this.getAuthors(this.mainArticle.id)
           // const url = this.baseLinkPath + this.mainArticle.editorial.slug + '/' + this.mainArticle.slug
