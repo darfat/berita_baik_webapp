@@ -4,19 +4,6 @@
 }
 .video-wrapper {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    // padding-top: 25px;
-    height: 0;    
-    iframe,
-    object,
-    embed {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
     .overlay-desc {
         // background-color: rgba(0,0,0,0.3);
         position: absolute;
@@ -61,20 +48,6 @@
 @media only screen and (max-width: 1200px) {
     .video-wrapper {
         position: relative;
-        padding-bottom: 35%;
-        // padding-bottom: 56.25%;
-        padding-top: 0;
-        height: 0;
-        overflow: hidden;
-        iframe,
-        object,
-        embed {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
     
         .overlay-desc {
             // background-color: rgba(0,0,0,0.3);
@@ -121,7 +94,7 @@
 
 @media only screen and (max-width: 480px) {
     .video-wrapper {        
-        padding-bottom: 56.25%;    
+        position: relative;
         .overlay-desc {            
             right: 20%; left: 2%; top: 20%;
             h1{
