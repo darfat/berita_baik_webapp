@@ -44,7 +44,8 @@
               <el-row :gutter="20" class="m-t-10">
                   <el-col class="teks">
                     <div v-if="!isHaveRelatedArticles" >
-                      <div v-html="mainArticle.content" class="teks-content" > </div>
+                      <div  class="teks-content" v-html="mainArticle.content">
+                      </div>
                       <div class="bacajuga-end" v-if="mainArticle.article_relates">
                         <h4>Baca Juga :</h4>
                         <ul> 
@@ -349,11 +350,22 @@ export default {
           // this.changeMeta(this.mainArticle, url)
           // remove br
           this.mainArticle.content = this.mainArticle.content.replace('\u003c!DOCTYPE html\u003e\u003cbr /\u003e\u003chtml\u003e\u003cbr /\u003e\u003chead\u003e\u003cbr /\u003e\u003c/head\u003e\u003cbr /\u003e', '\u003c!DOCTYPE html\u003e\u003chtml\u003e\u003chead\u003e\u003c/head\u003e')
-          if (this.mainArticle.city !== null && this.mainArticle.city.length > 0 && this.mainArticle.teaser !== null && this.mainArticle.teaser.length > 0) {
+          // if (this.mainArticle.city !== null && this.mainArticle.city.length > 0 && this.mainArticle.teaser !== null && this.mainArticle.teaser.length > 0) {
+          //   const aCityParser = this.mainArticle.city.split(',')
+          //   if (aCityParser) {
+          //     const aCity = aCityParser[0]
+          //     this.mainArticle.content = this.mainArticle.content.replace(this.mainArticle.teaser, '\u003cspan\u003e\u003cstrong\u003e' + aCity + '\u003c/span\u003e\u003c/strong\u003e - ' + this.mainArticle.teaser)
+          //   }
+          // }
+          if (this.mainArticle.city !== null && this.mainArticle.city.length > 0) {
             const aCityParser = this.mainArticle.city.split(',')
             if (aCityParser) {
               const aCity = aCityParser[0]
-              this.mainArticle.content = this.mainArticle.content.replace(this.mainArticle.teaser, '\u003cspan\u003e\u003cstrong\u003e' + aCity + '\u003c/span\u003e\u003c/strong\u003e - ' + this.mainArticle.teaser)
+              if (this.mainArticle.content.indexOf('\u003cbody\u003e\u003cdiv dir=\"auto\"\u003e') !== -1) {
+                this.mainArticle.content = this.mainArticle.content.replace('\u003cbody\u003e\u003cdiv dir=\"auto\"\u003e', '\u003cbody\u003e\u003cdiv dir=\"auto\"\u003e' + '\u003cspan\u003e\u003cstrong\u003e' + aCity + '\u003c/span\u003e\u003c/strong\u003e - ')
+              } else if (this.mainArticle.content.indexOf('\u003cbody\u003e\u003cp\u003e') !== -1) {
+                this.mainArticle.content = this.mainArticle.content.replace('\u003cbody\u003e\u003cp\u003e', '\u003cbody\u003e\u003cp\u003e' + '\u003cspan\u003e\u003cstrong\u003e' + aCity + '\u003c/span\u003e\u003c/strong\u003e - ')
+              }
             }
           }
         }
