@@ -50,13 +50,13 @@
                         <h4>Baca Juga :</h4>
                         <ul> 
                           <li v-for="(relate) in mainArticle.article_relates" :key="relate.id" > 
-                            <router-link v-if="relate.Article.article_type === 'news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':relate.Article.editorial.slug, 'slug': relate.Article.slug,  'articleID': relate.Article.id} }">                  
+                            <router-link v-if="relate.Article.article_type === 'news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':editorialSlug, 'slug': relate.Article.slug,  'articleID': relate.Article.id} }">                  
                                <span v-html="relate.Article.title">  </span> 
                             </router-link>
-                            <router-link   v-if="relate.Article.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':relate.Article.editorial.slug, 'slug': relate.Article.slug } }" >                      
+                            <router-link   v-if="relate.Article.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':'gallery-foto', 'slug': relate.Article.slug } }" >                      
                                <span v-html="relate.Article.title">  </span> 
                             </router-link>
-                            <router-link v-if="relate.Article.article_type === 'video'" :to="{ name: 'editorial-video-detail', params: { 'editorialSlug':relate.Article.editorial.slug, 'slug': relate.Article.slug} }">
+                            <router-link v-if="relate.Article.article_type === 'video'" :to="{ name: 'editorial-video-detail', params: { 'editorialSlug':'video', 'slug': relate.Article.slug} }">
                                <span v-html="relate.Article.title">  </span>   
                             </router-link>                          
                           </li>
@@ -69,13 +69,13 @@
                         <h4>Baca Juga :</h4>
                         <ul> 
                           <li v-for="(relate) in mainArticle.article_relates" :key="relate.id" > 
-                            <router-link v-if="relate.Article.article_type === 'news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':relate.Article.editorial.slug, 'slug': relate.Article.slug,  'articleID': relate.Article.id} }">                  
+                            <router-link v-if="relate.Article.article_type === 'news'" :to="{ name: 'article-detail-route', params: { 'editorialSlug':editorialSlug, 'slug': relate.Article.slug,  'articleID': relate.Article.id} }">                  
                                <span v-html="relate.Article.title">  </span> 
                             </router-link>
-                            <router-link   v-if="relate.Article.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':relate.Article.editorial.slug, 'slug': relate.Article.slug } }" >                      
+                            <router-link   v-if="relate.Article.article_type === 'image'" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':'gallery-foto', 'slug': relate.Article.slug } }" >                      
                                <span v-html="relate.Article.title">  </span> 
                             </router-link>
-                            <router-link v-if="relate.Article.article_type === 'video'" :to="{ name: 'editorial-video-detail', params: { 'editorialSlug':relate.Article.editorial.slug, 'slug': relate.Article.slug} }">
+                            <router-link v-if="relate.Article.article_type === 'video'" :to="{ name: 'editorial-video-detail', params: { 'editorialSlug':'video', 'slug': relate.Article.slug} }">
                                <span v-html="relate.Article.title">  </span>   
                             </router-link>                          
                           </li>
