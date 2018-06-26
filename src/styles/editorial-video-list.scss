@@ -78,8 +78,17 @@
     }
 }
 
-@media (min-width: 320px) and (max-width: 768px) {
-    .editoral-container {                
+@media all and (max-width: 768px) {
+    .editoral-container {
+        .headline-container{
+            .latest-news{
+                .info{                            
+                    h1{
+                       font-size: 1.2em;                       
+                    }
+                }
+            }
+        }                
         .list-container{
             flex-direction: column;
             .content{
