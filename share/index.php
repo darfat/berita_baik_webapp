@@ -21,7 +21,15 @@ function makePage($data) {
 //  echo $data["title"];
   // 1. get the page
   $pageUrl = "https://beritabaik.id/home/a/" . $data["editorial"]["slug"] . "/" .$data["slug"];
-  $refreshURL = "https://beritabaik.id/#/home/a/" . $data["editorial"]["slug"] . "/" .$data["slug"];
+  $refreshURL = "https://beritabaik.id/home/a/" . $data["editorial"]["slug"] . "/" .$data["slug"];
+  if ($data["editorial"]["slug"] == "gallery-foto") {
+    $pageUrl = "https://beritabaik.id/home-c/" . $data["editorial"]["slug"] . "/" .$data["slug"];
+    $refreshURL = "https://beritabaik.id/home-c/" . $data["editorial"]["slug"] . "/" .$data["slug"];
+  } elseif ($data["editorial"]["slug"] == "infografis") {
+    $pageUrl = "https://beritabaik.id/home-c/" . $data["editorial"]["slug"] . "/" .$data["slug"];
+    $refreshURL = "https://beritabaik.id/home-c/" . $data["editorial"]["slug"] . "/" .$data["slug"];
+  }
+  $imagePath = str_replace(" ","%20",$data["main_image"]);
   // 2. generate the HTML with open graph tags
   $html  = '<!doctype html>'.PHP_EOL;
   $html .= '<html>'.PHP_EOL;
@@ -35,7 +43,7 @@ function makePage($data) {
   $html .= '<meta property="twitter:creator" content="@beritabaik_id"/>'.PHP_EOL;
   $html .= '<meta property="twitter:title" content="'.$data["title"].'"/>'.PHP_EOL;
   $html .= '<meta property="twitter:description" content="'.$data["teaser"].'"/>'.PHP_EOL;
-  $html .= '<meta property="twitter:image" content="https://beritabaik.id/'.$data["main_image"].'"/>'.PHP_EOL;
+  $html .= '<meta property="twitter:image" content="https://beritabaik.id'.$imagePath.'"/>'.PHP_EOL;
   $html .= '<meta property="og:title" content="'.$data["title"].'"/>'.PHP_EOL;
   $html .= '<meta property="og:url" content="'.$pageUrl.'"/>'.PHP_EOL;
   $html .= '<meta property="fb:app_id" content="1957770944535094"/>'.PHP_EOL;
@@ -44,7 +52,7 @@ function makePage($data) {
   $html .= '<meta property="og:image:width" content="600"/>'.PHP_EOL;
   $html .= '<meta property="og:image:height" content="315"/>'.PHP_EOL;
   $html .= '<meta property="og:description" content="'.$data["teaser"].'"/>'.PHP_EOL;
-  $html .= '<meta property="og:image" content="https://beritabaik.id/'.$data["main_image"].'"/>'.PHP_EOL;
+  $html .= '<meta property="og:image" content="https://beritabaik.id'.$imagePath.'"/>'.PHP_EOL;
   $html .= '<meta rel="canonical" href="'.$pageUrl.'">'.PHP_EOL;
   $html .= '<meta http-equiv="refresh" content="0;url='.$refreshURL.'">'.PHP_EOL;
   $html .= '</head>'.PHP_EOL;

@@ -1,0 +1,33 @@
+# <IfModule mod_rewrite.c>
+RewriteEngine On
+
+
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+	
+
+
+# Enforce www
+#RewriteCond %{HTTP_HOST} !^www\. [NC]
+#RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Enforce NO www
+RewriteCond %{HTTP_HOST} ^www.beritabaik.id [NC]
+RewriteRule ^(.*)$ http://beritabaik.id/$1 [L,R=301]
+
+DirectoryIndex index.php index.html
+
+RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Twitter|Pinterest|Google.*snippet)
+RewriteRule ^home/a/([a-z\-]+)/(.*)$ https://beritabaik.id/share/index.php?slug=$2 [NC,L]
+
+RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Twitter|Pinterest|Google.*snippet)
+RewriteRule ^home-c/([a-z\-]+)/(.*)$ https://beritabaik.id/share/index.php?slug=$2 [NC,L]
+
+
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+
+
+# </IfModule>
+

@@ -365,6 +365,10 @@ export default {
                 this.mainArticle.content = this.mainArticle.content.replace('\u003cbody\u003e\u003cdiv dir=\"auto\"\u003e', '\u003cbody\u003e\u003cdiv dir=\"auto\"\u003e' + '\u003cspan\u003e\u003cstrong\u003e' + aCity + '\u003c/span\u003e\u003c/strong\u003e - ')
               } else if (this.mainArticle.content.indexOf('\u003cbody\u003e\u003cp\u003e') !== -1) {
                 this.mainArticle.content = this.mainArticle.content.replace('\u003cbody\u003e\u003cp\u003e', '\u003cbody\u003e\u003cp\u003e' + '\u003cspan\u003e\u003cstrong\u003e' + aCity + '\u003c/span\u003e\u003c/strong\u003e - ')
+              } else if (this.mainArticle.content.indexOf('\u003cbody\u003e\u003cp class=\"p1\"\u003e') !== -1) {
+                this.mainArticle.content = this.mainArticle.content.replace('\u003cbody\u003e\u003cp class=\"p1\"\u003e', '\u003cbody\u003e\u003cp class=\"p1\"\u003e' + '\u003cspan\u003e\u003cstrong\u003e' + aCity + '\u003c/span\u003e\u003c/strong\u003e - ')
+              } else if (this.mainArticle.content.indexOf('\u003cbody\u003e\u003cdiv\u003e') !== -1) {
+                this.mainArticle.content = this.mainArticle.content.replace('\u003cbody\u003e\u003cdiv\u003e', '\u003cbody\u003e\u003cdiv\u003e' + '\u003cspan\u003e\u003cstrong\u003e' + aCity + '\u003c/span\u003e\u003c/strong\u003e - ')
               }
             }
           }
