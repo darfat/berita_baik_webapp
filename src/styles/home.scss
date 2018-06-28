@@ -147,7 +147,10 @@ h1, h2, h3, h4, h5, h6{
 */
 .hl-slider{  
   .el-carousel__container{
-    // height: auto;    
+    // height: auto;
+    .el-carousel__arrow{
+      background-color: rgba(5,29,73,1);
+    } 
   }  
   .el-carousel__item{
     background-color: #fff;
@@ -167,7 +170,10 @@ h1, h2, h3, h4, h5, h6{
   
   @media all and (max-width : 768px) {
     .el-carousel__container{
-      height: 420px;      
+      height: 420px;
+      .el-carousel__arrow{
+        background-color: rgba(5,29,73,0.6);
+      }
     }
     .el-carousel__item{     
       
