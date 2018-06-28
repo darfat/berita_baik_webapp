@@ -406,7 +406,10 @@ export default {
         city_id: null,
         reporter_id: null,
         editor_id: null,
-        editorial: null
+        editorial: null,
+        viewed_count: 0,
+        shared_count: 0,
+        liked_count: 0
       },
       loading: {
         city: false

@@ -90,7 +90,7 @@ import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
 import { PopularNewsSide, VideosCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, EditorPickVideosSide, SharePop, ArticleNav, PopularVideoSide, AdsBanner } from '@/views/portal/components'
 import { getEditorialLabelBySlug } from '@/api/editorial'
-import { getLatestVideoByEditorial, getArticle } from '@/api/article'
+import { getLatestVideoByEditorial, getArticle, updateArticleViewedCount } from '@/api/article'
 import EventBus from '@/utils/event-bus'
 
 export default {
@@ -163,10 +163,14 @@ export default {
           if (response) {
             this.latestNews = response.data
             EventBus.$emit('SET_ARTICLE_ID_COMMENTS_EVENT', { 'articleID': this.latestNews.id })
-            this.loading.latestNews = false
+            this.countingView(this.latestNews.id)
           }
+          this.loading.latestNews = false
         })
       }
+    },
+    countingView(articleID) {
+      updateArticleViewedCount({ articleID }).then(response => {})
     },
     ready(player) {
       this.player = player

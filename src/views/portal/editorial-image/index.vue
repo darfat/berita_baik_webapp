@@ -104,7 +104,7 @@ import ArticleSeparator from '@/components/ArticleSeparator'
 import BbLove from '@/views/portal/components/BbLove'
 import { PopularNewsSide, ArticlesCard, InfografisSide, AdvertisementSide, CommentBox, CommentList, SharePop, ArticleNav, AdsBanner } from '@/views/portal/components'
 import { getEditorialLabelBySlug } from '@/api/editorial'
-import { getLatestImageByEditorial, getArticle } from '@/api/article'
+import { getLatestImageByEditorial, getArticle, updateArticleViewedCount } from '@/api/article'
 import EventBus from '@/utils/event-bus'
 import ImagesSlider from './ImagesSlider'
 
@@ -182,10 +182,14 @@ export default {
           if (response) {
             this.latestNews = response.data
             EventBus.$emit('SET_ARTICLE_ID_COMMENTS_EVENT', { 'articleID': this.latestNews.id })
+            this.countingView(this.latestNews.id)
           }
           this.loading.latestNews = false
         })
       }
+    },
+    countingView(articleID) {
+      updateArticleViewedCount({ articleID }).then(response => {})
     }
   },
   metaInfo() {

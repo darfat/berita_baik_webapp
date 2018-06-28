@@ -276,4 +276,11 @@ export function getArticleLoveState(data) {
     data
   })
 }
+export function updateArticleViewedCount(data) {
+  return request({
+    url: '/article-update-viewed-count/' + data.articleID,
+    method: 'put',
+    data
+  })
+}
 

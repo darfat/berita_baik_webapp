@@ -245,10 +245,11 @@ import ArticleSeparator from '@/components/ArticleSeparator'
 import { PopularNewsSide, ArticlesCard, CommentBox, ArticleNav, CommentList, Subscribe, Events, AdvertisementSide, InfografisSide, AdsBanner } from '@/views/portal/components'
 import BbLove from '@/views/portal/components/BbLove'
 import EventBus from '@/utils/event-bus'
-import { getArticle, updateArticleSharedCount } from '@/api/article'
+import { getArticle, updateArticleSharedCount, updateArticleViewedCount } from '@/api/article'
 import { getAuthorsByArticleID } from '@/api/author'
 import { getRelatesByArticleID } from '@/api/relate'
 import { create } from '@/api/reported_article'
+
 import { mapGetters } from 'vuex'
 
 export default {
@@ -369,9 +370,12 @@ export default {
                 this.mainArticle.content = this.mainArticle.content.replace('\u003cbody\u003e\u003cp class=\"p1\"\u003e', '\u003cbody\u003e\u003cp class=\"p1\"\u003e' + '\u003cspan\u003e\u003cstrong\u003e' + aCity + '\u003c/span\u003e\u003c/strong\u003e - ')
               } else if (this.mainArticle.content.indexOf('\u003cbody\u003e\u003cdiv\u003e') !== -1) {
                 this.mainArticle.content = this.mainArticle.content.replace('\u003cbody\u003e\u003cdiv\u003e', '\u003cbody\u003e\u003cdiv\u003e' + '\u003cspan\u003e\u003cstrong\u003e' + aCity + '\u003c/span\u003e\u003c/strong\u003e - ')
+              } else if (this.mainArticle.content.indexOf('\u003cbody\u003e\u003cp class=\"p2\"\u003e') !== -1) {
+                this.mainArticle.content = this.mainArticle.content.replace('\u003cbody\u003e\u003cp class=\"p2\"\u003e', '\u003cbody\u003e\u003cp class=\"p2\"\u003e' + '\u003cspan\u003e\u003cstrong\u003e' + aCity + '\u003c/span\u003e\u003c/strong\u003e - ')
               }
             }
           }
+          this.countingView(this.mainArticle.id)
         }
       })
     },
@@ -400,6 +404,9 @@ export default {
     },
     openShare(articleID, url) {
       updateArticleSharedCount({ articleID }).then(response => {})
+    },
+    countingView(articleID) {
+      updateArticleViewedCount({ articleID }).then(response => {})
     },
     reportThis() {
       if (this.user_id) {
