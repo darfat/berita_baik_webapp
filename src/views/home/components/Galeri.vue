@@ -13,8 +13,8 @@
         <div class="overlay-desc" v-if="g">          
           <router-link v-if="g && g.editorial" :to="{ name: 'editorial-image-detail', params: { 'editorialSlug':g.editorial.slug, 'slug': g.slug } }" >            
             <h2 v-html="g.title"></h2>
-          </router-link>
-          <p class="teaser-v" v-if="g.teaser">{{ g.teaser }}</p>        
+          </router-link>          
+          <p class="teaser-v hidden-xs-only" v-if="g.teaser">{{ g.teaser }}</p>        
           <p class="red-line"></p>
           <p class="author-v" >{{ g.reporter_name }} |
             <timeago :auto-update="60" :since="g.publish_date | formatUTC"></timeago>
